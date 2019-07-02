@@ -1,6 +1,6 @@
 {
   "name": "transcripter",
-  "version": "1.0.0 beta",
+  "version": "1.0.0b",
   "description": "Create readable transcripts from YouTube captions",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "SRT",
     "transcript",
     "VTT",
-    "YouTube",
+    "YouTube"
   ],
   "author": "open .",
   "license": "ISC",
@@ -26,6 +26,11 @@
   "homepage": "https://github.com/samdutton/transcripter#readme",
   "dependencies": {
     "eslint": "latest",
+    "grunt": "latest",
+    "grunt-cli": "latest",
+    "grunt-eslint": "latest",
+    "grunt-stylelint": "latest",
+    "stylelint": "latest",
     "yargs": "latest"
   }
 }
