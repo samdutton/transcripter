@@ -1,6 +1,6 @@
 {
   "name": "transcripter",
-  "version": "1.0.0",
+  "version": "1.0.0 beta",
   "description": "Create readable transcripts from YouTube captions",
   "main": "index.js",
   "scripts": {

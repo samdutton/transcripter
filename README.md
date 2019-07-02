@@ -29,6 +29,7 @@ Check for errors in _error-log.txt_.
 ## Command line options
 
 ```
+-a, --append  Append output to existing files in output directory
 -h, --help    Show help
 -i, --input   Input directory, default is [_input_](src/input)
 -o, --output  Output directory, default is [_output_](src/output)
