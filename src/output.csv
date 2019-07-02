@@ -1,0 +1,16 @@
+Name,Page type,URL,Performance,Progressive Web App,Accessibility,Best Practices,SEO
+Ace Hardware,home,https://www.acehardware.com,27,31,75,73,91
+Ace Hardware,category,https://www.acehardware.com/departments/outdoor-living/grills-and-smokers,29,23,75,67,91
+Ace Hardware,product,https://www.acehardware.com/departments/outdoor-living/grills-and-smokers/gas-grills/8863367,30,31,69,67,82
+Bed Bath & Beyond,home,https://www.bedbathandbeyond.com,100,54,85,87,90
+Bed Bath & Beyond,category,https://www.bedbathandbeyond.com/store/category/home-decor/10004/,100,54,85,87,90
+Bed Bath & Beyond,product,https://www.bedbathandbeyond.com/store/product/cool-and-cozy-coastal-bedroom/236045?categoryId=10548,100,54,85,87,80
+Lands' End,home,https://www.landsend.com,3,31,64,60,100
+Lands' End,category,https://www.landsend.com/shop/mens-dress-shirts/-/N-fzl ,6,31,71,67,100
+Lands' End,product,https://www.landsend.com/products/mens-short-sleeve-swim-tee-rash-guard/id_332281,4,31,69,53,100
+Neiman Marcus,home,https://www.neimanmarcus.com,4,31,81,73,100
+Neiman Marcus,category,https://www.neimanmarcus.com/en-gb/c/shoes-cat000141,7,23,88,67,100
+Neiman Marcus,product,https://www.neimanmarcus.com/p/burberry-thornaby-short-sleeve-check-sport-shirt-prod198990444,1,31,66,67,100
+Ulta,home,https://www.ulta.com,9.5,31,73,93,91
+Ulta,category,https://www.ulta.com/hair?N=26wz,8,31,67,80,91
+Ulta,product,https://www.ulta.com/perfect-hair-day-phd-dry-shampoo?productId=xlsImpprod13031193,29,31,76,73,91

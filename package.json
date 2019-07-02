@@ -1,0 +1,31 @@
+{
+  "name": "transcripter",
+  "version": "1.0.0",
+  "description": "Create readable transcripts from YouTube captions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samdutton/transcripter.git"
+  },
+  "keywords": [
+    "caption",
+    "Google Developers",
+    "SRT",
+    "transcript",
+    "VTT",
+    "YouTube",
+  ],
+  "author": "open .",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samdutton/transcripter/issues"
+  },
+  "homepage": "https://github.com/samdutton/transcripter#readme",
+  "dependencies": {
+    "eslint": "latest",
+    "yargs": "latest"
+  }
+}
