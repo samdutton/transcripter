@@ -1,0 +1,4196 @@
+1
+00:00:00,000 --> 00:00:02,465
+[MUSIC PLAYING]
+
+2
+00:00:02,465 --> 00:00:06,420
+
+
+3
+00:00:06,420 --> 00:00:09,840
+MARIKO KOSAKA: Let's go
+back to February 1993
+
+4
+00:00:09,840 --> 00:00:13,680
+on www-talk mailing list.
+
+5
+00:00:13,680 --> 00:00:15,840
+JAKE ARCHIBALD: This
+man, Marc Andreessen,
+
+6
+00:00:15,840 --> 00:00:19,500
+he's the creator of Mosaic, one
+of the earliest web browsers.
+
+7
+00:00:19,500 --> 00:00:21,360
+He wrote this.
+
+8
+00:00:21,360 --> 00:00:26,020
+"I'd like to propose a new
+optional HTML tag, IMG."
+
+9
+00:00:26,020 --> 00:00:29,980
+
+
+10
+00:00:29,980 --> 00:00:32,530
+MARIKO KOSAKA: And this man
+replied, Sir Tim Berners-Lee,
+
+11
+00:00:32,530 --> 00:00:44,440
+he wrote, "Or how about ENTITY,
+ICON6, SYSTEM, URL, &ICON6."
+
+12
+00:00:44,440 --> 00:00:46,150
+[CHUCKLES]
+
+13
+00:00:46,150 --> 00:00:50,060
+JAKE ARCHIBALD: And Marc
+replied, "Quick, Tim, look over
+
+14
+00:00:50,060 --> 00:00:50,560
+there."
+
+15
+00:00:50,560 --> 00:00:52,910
+And two months later, Mosaic
+shipped with the IMG tag.
+
+16
+00:00:52,910 --> 00:00:53,537
+[LAUGHTER]
+
+17
+00:00:53,537 --> 00:00:55,120
+MARIKO KOSAKA: It's
+really fair to say
+
+18
+00:00:55,120 --> 00:00:58,690
+that IMG has been pretty popular
+on the web for the past 25
+
+19
+00:00:58,690 --> 00:00:59,367
+years, right?
+
+20
+00:00:59,367 --> 00:01:00,200
+JAKE ARCHIBALD: Yes.
+
+21
+00:01:00,200 --> 00:01:02,283
+MARIKO KOSAKA: In fact,
+according to HTTP Archive,
+
+22
+00:01:02,283 --> 00:01:07,000
+the average web page loads
+650 kilobytes of images.
+
+23
+00:01:07,000 --> 00:01:09,615
+That means it's 52%
+of page content.
+
+24
+00:01:09,615 --> 00:01:10,490
+JAKE ARCHIBALD: Yeah.
+
+25
+00:01:10,490 --> 00:01:12,070
+And images are less
+blocking compared
+
+26
+00:01:12,070 --> 00:01:13,750
+to things like CSS and scripts.
+
+27
+00:01:13,750 --> 00:01:16,720
+But they can take bandwidth
+away from more important things.
+
+28
+00:01:16,720 --> 00:01:19,330
+And of course, if the image
+is your primary content,
+
+29
+00:01:19,330 --> 00:01:21,100
+loading it quickly
+is very important.
+
+30
+00:01:21,100 --> 00:01:21,933
+MARIKO KOSAKA: Yeah.
+
+31
+00:01:21,933 --> 00:01:24,190
+Unfortunately, websites
+throw those bytes away
+
+32
+00:01:24,190 --> 00:01:27,070
+by using really inefficient
+codec like the one that
+
+33
+00:01:27,070 --> 00:01:28,142
+comes with Photoshop.
+
+34
+00:01:28,142 --> 00:01:30,350
+JAKE ARCHIBALD: And there
+are better options as well.
+
+35
+00:01:30,350 --> 00:01:33,250
+So this is mozjpeg from Mozilla.
+
+36
+00:01:33,250 --> 00:01:36,019
+But there is also
+WebP, which is probably
+
+37
+00:01:36,019 --> 00:01:37,810
+supported by the majority
+of your visitors.
+
+38
+00:01:37,810 --> 00:01:40,544
+As you can see, that
+WebP has beaten mozjpeg.
+
+39
+00:01:40,544 --> 00:01:42,460
+But both of them have
+done really, really well
+
+40
+00:01:42,460 --> 00:01:45,097
+compared to Photoshop's
+JPEG encoder.
+
+41
+00:01:45,097 --> 00:01:45,930
+MARIKO KOSAKA: Yeah.
+
+42
+00:01:45,930 --> 00:01:51,000
+But except you
+can't really see it.
+
+43
+00:01:51,000 --> 00:01:53,050
+All you can see is
+some text and numbers.
+
+44
+00:01:53,050 --> 00:01:56,410
+And these [? come-online ?]
+tools are great for batch
+
+45
+00:01:56,410 --> 00:01:59,110
+processing and automating your
+build process and everything.
+
+46
+00:01:59,110 --> 00:02:01,390
+But when you are
+trying to build a site
+
+47
+00:02:01,390 --> 00:02:02,950
+and trying to choose
+something, it's
+
+48
+00:02:02,950 --> 00:02:06,400
+really not a good experience
+to change the option.
+
+49
+00:02:06,400 --> 00:02:09,400
+Because you can't really see
+the effects of the image while
+
+50
+00:02:09,400 --> 00:02:10,660
+you are doing it.
+
+51
+00:02:10,660 --> 00:02:14,380
+So a lot of innovative,
+small compressions
+
+52
+00:02:14,380 --> 00:02:16,355
+are hidden behind these texts.
+
+53
+00:02:16,355 --> 00:02:17,230
+JAKE ARCHIBALD: Yeah.
+
+54
+00:02:17,230 --> 00:02:19,210
+And this winds me up every
+time I see a new image
+
+55
+00:02:19,210 --> 00:02:19,930
+format come out.
+
+56
+00:02:19,930 --> 00:02:21,430
+Because you get
+these really bold
+
+57
+00:02:21,430 --> 00:02:23,380
+claims in a few sample images.
+
+58
+00:02:23,380 --> 00:02:26,090
+And I'm left feeling,
+I don't believe you.
+
+59
+00:02:26,090 --> 00:02:27,970
+I don't believe you
+unless I can try it
+
+60
+00:02:27,970 --> 00:02:29,770
+in an easy way using
+my own images, not
+
+61
+00:02:29,770 --> 00:02:31,000
+cherry-picked examples.
+
+62
+00:02:31,000 --> 00:02:33,370
+So we thought, let's make
+image compression easy
+
+63
+00:02:33,370 --> 00:02:35,897
+using the world's most
+accessible GUI, the web.
+
+64
+00:02:35,897 --> 00:02:36,730
+MARIKO KOSAKA: Yeah.
+
+65
+00:02:36,730 --> 00:02:38,400
+So that's what we did.
+
+66
+00:02:38,400 --> 00:02:40,650
+I'm really excited
+for this slide.
+
+67
+00:02:40,650 --> 00:02:43,560
+Because I get to do this
+announcements of the product
+
+68
+00:02:43,560 --> 00:02:44,170
+thing.
+
+69
+00:02:44,170 --> 00:02:45,280
+Well, here we go.
+
+70
+00:02:45,280 --> 00:02:49,900
+Today, we are excited to
+announce new progressive web
+
+71
+00:02:49,900 --> 00:02:51,450
+app, Squoosh.
+
+72
+00:02:51,450 --> 00:02:52,480
+JAKE ARCHIBALD: Yay.
+
+73
+00:02:52,480 --> 00:02:53,570
+OK, fair enough.
+
+74
+00:02:53,570 --> 00:02:54,300
+MARIKO KOSAKA: Did you
+like that animation?
+
+75
+00:02:54,300 --> 00:02:55,720
+JAKE ARCHIBALD: It was
+a beautiful animation.
+
+76
+00:02:55,720 --> 00:02:56,280
+Well done.
+
+77
+00:02:56,280 --> 00:02:56,620
+MARIKO KOSAKA: Thank you.
+
+78
+00:02:56,620 --> 00:02:58,578
+JAKE ARCHIBALD: So now
+the most terrifying part
+
+79
+00:02:58,578 --> 00:03:01,930
+of any presentation, we are
+going to give a live demo a go.
+
+80
+00:03:01,930 --> 00:03:04,910
+And with the big web
+quiz failing earlier,
+
+81
+00:03:04,910 --> 00:03:06,160
+luck isn't on our side.
+
+82
+00:03:06,160 --> 00:03:09,040
+Actually, so with the
+big web quiz stuff,
+
+83
+00:03:09,040 --> 00:03:11,200
+I had noticed some of
+the answers changing
+
+84
+00:03:11,200 --> 00:03:14,470
+from underneath me as I was
+correcting them and editing
+
+85
+00:03:14,470 --> 00:03:15,340
+them yesterday.
+
+86
+00:03:15,340 --> 00:03:18,100
+And when that happened,
+I thought, well,
+
+87
+00:03:18,100 --> 00:03:19,720
+what could have happened here?
+
+88
+00:03:19,720 --> 00:03:21,970
+Could Surma have coded it wrong?
+
+89
+00:03:21,970 --> 00:03:24,780
+Or am I so jet lagged I don't
+really know what's going on?
+
+90
+00:03:24,780 --> 00:03:25,940
+And I went for that one.
+
+91
+00:03:25,940 --> 00:03:27,940
+I just didn't believe Surma
+could have done it wrong.
+
+92
+00:03:27,940 --> 00:03:28,840
+OK, are you ready to go?
+
+93
+00:03:28,840 --> 00:03:29,673
+MARIKO KOSAKA: Yeah.
+
+94
+00:03:29,673 --> 00:03:31,404
+JAKE ARCHIBALD: OK.
+
+95
+00:03:31,404 --> 00:03:32,320
+It's going to be fine.
+
+96
+00:03:32,320 --> 00:03:33,530
+So this is Squoosh.
+
+97
+00:03:33,530 --> 00:03:34,600
+This is squoosh.app.
+
+98
+00:03:34,600 --> 00:03:36,940
+So all we need now is
+an image to compress.
+
+99
+00:03:36,940 --> 00:03:40,300
+And there are some example
+ones along the bottom here.
+
+100
+00:03:40,300 --> 00:03:42,520
+But let's pick a
+real-world example.
+
+101
+00:03:42,520 --> 00:03:44,319
+I'm going to go to the
+Google I/O website.
+
+102
+00:03:44,319 --> 00:03:45,610
+This is the one from this year.
+
+103
+00:03:45,610 --> 00:03:50,940
+Now that header image there
+is a massive 1.7 megabytes.
+
+104
+00:03:50,940 --> 00:03:53,680
+And that is a large portion
+of the page weight here.
+
+105
+00:03:53,680 --> 00:03:55,720
+So I'm going to save
+that image, and we're
+
+106
+00:03:55,720 --> 00:03:57,400
+going to drag it into Squoosh.
+
+107
+00:03:57,400 --> 00:03:59,390
+With Squoosh, it
+supports the file picker.
+
+108
+00:03:59,390 --> 00:04:01,474
+It supports copy and paste.
+
+109
+00:04:01,474 --> 00:04:03,640
+In this case, we're just
+going to use drag and drop.
+
+110
+00:04:03,640 --> 00:04:04,481
+There we go.
+
+111
+00:04:04,481 --> 00:04:05,980
+So on the left-hand
+side here, we've
+
+112
+00:04:05,980 --> 00:04:07,820
+got the original
+1.7 megabyte image.
+
+113
+00:04:07,820 --> 00:04:10,760
+And on the right-hand
+side, we've got mozjpeg.
+
+114
+00:04:10,760 --> 00:04:12,520
+As you can see
+straight away, mozjpeg
+
+115
+00:04:12,520 --> 00:04:16,089
+has taken it from 1.7
+megabytes to 500k.
+
+116
+00:04:16,089 --> 00:04:17,279
+That's huge.
+
+117
+00:04:17,279 --> 00:04:19,269
+And to my eyes, I
+can't really see
+
+118
+00:04:19,269 --> 00:04:21,850
+a difference between the two.
+
+119
+00:04:21,850 --> 00:04:25,000
+If we zoom right in to the
+folks on the screen here,
+
+120
+00:04:25,000 --> 00:04:27,370
+we can start to
+see the difference.
+
+121
+00:04:27,370 --> 00:04:28,870
+If we drag from
+side to side-- there
+
+122
+00:04:28,870 --> 00:04:30,694
+you go-- slight difference.
+
+123
+00:04:30,694 --> 00:04:32,110
+But it's not going
+to be displayed
+
+124
+00:04:32,110 --> 00:04:33,151
+like this on the website.
+
+125
+00:04:33,151 --> 00:04:35,650
+It's displayed zoomed out, and
+you can't see a difference.
+
+126
+00:04:35,650 --> 00:04:37,350
+All this is a-- this
+kind of interface,
+
+127
+00:04:37,350 --> 00:04:40,492
+this works with touch
+events and stuff as well.
+
+128
+00:04:40,492 --> 00:04:41,950
+You can touch the
+screen and do it.
+
+129
+00:04:41,950 --> 00:04:43,570
+So it works great
+on a Chromebook.
+
+130
+00:04:43,570 --> 00:04:46,610
+I was paid to say that, but
+it is, nonetheless, true.
+
+131
+00:04:46,610 --> 00:04:48,900
+[LAUGHTER]
+
+132
+00:04:48,900 --> 00:04:50,500
+But because it's
+displayed for these--
+
+133
+00:04:50,500 --> 00:04:52,660
+it's optimized for
+high-resolution screens,
+
+134
+00:04:52,660 --> 00:04:55,090
+this big image, well, we
+can tweak the settings
+
+135
+00:04:55,090 --> 00:04:55,760
+based on that.
+
+136
+00:04:55,760 --> 00:04:59,920
+So we're going to bring the
+quality down to 44, obviously,
+
+137
+00:04:59,920 --> 00:05:02,104
+one that we rehearsed.
+
+138
+00:05:02,104 --> 00:05:03,520
+And that's just
+because it's going
+
+139
+00:05:03,520 --> 00:05:05,680
+to be resize down like that.
+
+140
+00:05:05,680 --> 00:05:07,540
+And we can't really
+go lower than 44,
+
+141
+00:05:07,540 --> 00:05:10,160
+because it starts picking up
+banding issues, especially
+
+142
+00:05:10,160 --> 00:05:11,770
+around the sky bit there.
+
+143
+00:05:11,770 --> 00:05:13,620
+But we've really
+dropped the file size.
+
+144
+00:05:13,620 --> 00:05:15,850
+It's almost another 200k gone.
+
+145
+00:05:15,850 --> 00:05:18,490
+Now, lossy formats, they
+work by removing data
+
+146
+00:05:18,490 --> 00:05:20,950
+that humans aren't very
+good at seeing anyway.
+
+147
+00:05:20,950 --> 00:05:24,100
+So for instance, we're
+more sensitive to changes
+
+148
+00:05:24,100 --> 00:05:26,120
+in brightness than
+changes in color.
+
+149
+00:05:26,120 --> 00:05:28,630
+So these lossy formats,
+they'll store color data
+
+150
+00:05:28,630 --> 00:05:32,069
+at a lower resolution
+than the brightness data.
+
+151
+00:05:32,069 --> 00:05:34,360
+But again, since this is
+aimed at high-density screens,
+
+152
+00:05:34,360 --> 00:05:35,690
+we can go even lower.
+
+153
+00:05:35,690 --> 00:05:38,560
+So we're going to dive into
+these advanced settings here.
+
+154
+00:05:38,560 --> 00:05:42,820
+We tried to expose everything
+that these codecs can do.
+
+155
+00:05:42,820 --> 00:05:46,550
+So there are some scary things
+here like trellis multipass.
+
+156
+00:05:46,550 --> 00:05:47,600
+What does that do?
+
+157
+00:05:47,600 --> 00:05:49,120
+Well, I have absolutely no idea.
+
+158
+00:05:49,120 --> 00:05:50,170
+But I can check this.
+
+159
+00:05:50,170 --> 00:05:51,782
+I can see the impact of it.
+
+160
+00:05:51,782 --> 00:05:53,240
+It's really cheap
+for me to try it.
+
+161
+00:05:53,240 --> 00:05:53,800
+I'm not breaking anything.
+
+162
+00:05:53,800 --> 00:05:53,950
+MARIKO KOSAKA: Yeah.
+
+163
+00:05:53,950 --> 00:05:55,750
+The great thing about
+having UI is that you
+
+164
+00:05:55,750 --> 00:05:57,315
+can see it right here, right?
+
+165
+00:05:57,315 --> 00:05:59,190
+And you can figure that
+out, like, toggle it.
+
+166
+00:05:59,190 --> 00:05:59,300
+JAKE ARCHIBALD: Yeah.
+
+167
+00:05:59,300 --> 00:05:59,850
+You can start to
+learn what they do.
+
+168
+00:05:59,850 --> 00:06:00,700
+MARIKO KOSAKA: And if it's
+[? a come-online ?] tool,
+
+169
+00:06:00,700 --> 00:06:03,530
+you can't really see until
+you're finished, right?
+
+170
+00:06:03,530 --> 00:06:04,210
+JAKE ARCHIBALD:
+Absolutely, and one
+
+171
+00:06:04,210 --> 00:06:05,200
+of the options we
+are going to look at
+
+172
+00:06:05,200 --> 00:06:06,660
+is the auto-subsample chroma.
+
+173
+00:06:06,660 --> 00:06:08,660
+This is the thing that's
+changing the resolution
+
+174
+00:06:08,660 --> 00:06:09,940
+of the color data.
+
+175
+00:06:09,940 --> 00:06:12,840
+By default, it halves it, but
+we're going to quarter it.
+
+176
+00:06:12,840 --> 00:06:14,870
+And that's another
+20k gone as well.
+
+177
+00:06:14,870 --> 00:06:19,450
+So we've now reduced it by
+83% of the original that
+
+178
+00:06:19,450 --> 00:06:21,520
+is on the I/O website.
+
+179
+00:06:21,520 --> 00:06:25,240
+If we zoom right in, it's
+looking like a bit of a mess.
+
+180
+00:06:25,240 --> 00:06:26,990
+You can really see
+the difference there.
+
+181
+00:06:26,990 --> 00:06:30,310
+But again, zoomed out, which is
+how it's displayed on the site,
+
+182
+00:06:30,310 --> 00:06:31,460
+it's really different.
+
+183
+00:06:31,460 --> 00:06:34,810
+It's really difficult
+to tell the difference.
+
+184
+00:06:34,810 --> 00:06:37,390
+Mozilla have done an amazing
+job at getting the most out
+
+185
+00:06:37,390 --> 00:06:39,340
+of an old image
+format like JPEG.
+
+186
+00:06:39,340 --> 00:06:40,610
+But let's compare it to WebP.
+
+187
+00:06:40,610 --> 00:06:43,780
+So on the left-hand side,
+we're going to switch to WebP.
+
+188
+00:06:43,780 --> 00:06:46,980
+And we'll drop the
+quality down to 20.
+
+189
+00:06:46,980 --> 00:06:49,180
+WebP is a much more
+modern image format.
+
+190
+00:06:49,180 --> 00:06:51,420
+It's based on the
+VP8 video codec.
+
+191
+00:06:51,420 --> 00:06:52,840
+It's supported in Chrome.
+
+192
+00:06:52,840 --> 00:06:56,230
+It's coming to Edge
+18, Firefox 65.
+
+193
+00:06:56,230 --> 00:06:57,537
+But straight off now, we'll--
+
+194
+00:06:57,537 --> 00:06:58,870
+we're going to be around about--
+
+195
+00:06:58,870 --> 00:06:59,285
+MARIKO KOSAKA: Sorry.
+
+196
+00:06:59,285 --> 00:06:59,700
+Sorry.
+
+197
+00:06:59,700 --> 00:07:00,120
+[INAUDIBLE]
+
+198
+00:07:00,120 --> 00:07:00,290
+Yes.
+
+199
+00:07:00,290 --> 00:07:01,498
+JAKE ARCHIBALD: There we go--
+
+200
+00:07:01,498 --> 00:07:04,070
+about another 100k
+less than the JPEG.
+
+201
+00:07:04,070 --> 00:07:07,000
+That's 1/10 of the
+size of the original.
+
+202
+00:07:07,000 --> 00:07:09,267
+If we zoom into those
+people on the screen again,
+
+203
+00:07:09,267 --> 00:07:11,350
+we can start to see the
+difference between the two
+
+204
+00:07:11,350 --> 00:07:12,470
+codecs.
+
+205
+00:07:12,470 --> 00:07:16,000
+JPEG goes for a very blocky
+look, whereas WebP loses
+
+206
+00:07:16,000 --> 00:07:18,090
+details through smoothing.
+
+207
+00:07:18,090 --> 00:07:20,020
+In fact, the WebP,
+at this size, kind of
+
+208
+00:07:20,020 --> 00:07:22,749
+looks in some ways
+worse than the JPEG.
+
+209
+00:07:22,749 --> 00:07:23,290
+I don't know.
+
+210
+00:07:23,290 --> 00:07:24,064
+It's subjective.
+
+211
+00:07:24,064 --> 00:07:25,480
+But that's also
+because we've been
+
+212
+00:07:25,480 --> 00:07:27,070
+able to drop the
+quality of the WebP
+
+213
+00:07:27,070 --> 00:07:29,410
+a lot more because it doesn't
+suffer from those banding
+
+214
+00:07:29,410 --> 00:07:31,480
+issues that we get with JPEG.
+
+215
+00:07:31,480 --> 00:07:34,931
+And again zoomed out,
+there's barely a difference.
+
+216
+00:07:34,931 --> 00:07:37,180
+So now we've done that, we
+can download the two images
+
+217
+00:07:37,180 --> 00:07:39,940
+and hopefully send them to
+the people who on the I/O site
+
+218
+00:07:39,940 --> 00:07:43,540
+because that's 1.4 megabytes
+saved for every visitor that
+
+219
+00:07:43,540 --> 00:07:46,720
+supports WebP, 1.3
+megabytes saved for people
+
+220
+00:07:46,720 --> 00:07:49,030
+who like to support JPEG.
+
+221
+00:07:49,030 --> 00:07:51,250
+So that's lossy compression.
+
+222
+00:07:51,250 --> 00:07:54,180
+But we support lossless
+compression as well.
+
+223
+00:07:54,180 --> 00:07:57,130
+The Squoosh logo
+here, this is an SVG.
+
+224
+00:07:57,130 --> 00:07:58,810
+Vector formats are
+great because they're
+
+225
+00:07:58,810 --> 00:08:03,307
+maximum resolution on any
+device density, any size.
+
+226
+00:08:03,307 --> 00:08:05,140
+But it's worth looking
+at how this comes out
+
+227
+00:08:05,140 --> 00:08:07,570
+in a nonvector format.
+
+228
+00:08:07,570 --> 00:08:08,620
+This looks a bit broken.
+
+229
+00:08:08,620 --> 00:08:10,300
+This is because we're
+using JPEG, which
+
+230
+00:08:10,300 --> 00:08:11,770
+doesn't support transparency.
+
+231
+00:08:11,770 --> 00:08:13,970
+So we'll change
+to another format.
+
+232
+00:08:13,970 --> 00:08:19,520
+We'll change to OptiPNG, which
+is an optimized PNG format.
+
+233
+00:08:19,520 --> 00:08:21,520
+Once we do that, it's bigger.
+
+234
+00:08:21,520 --> 00:08:23,860
+It's over twice the
+size, which is not great.
+
+235
+00:08:23,860 --> 00:08:26,809
+But we can optimize for
+these kind of codecs.
+
+236
+00:08:26,809 --> 00:08:28,350
+So we're going to
+reduce the palette.
+
+237
+00:08:28,350 --> 00:08:32,710
+We're going to bring it down
+to, I don't know, 70 colors.
+
+238
+00:08:32,710 --> 00:08:35,360
+And we can turn off differing
+because we're happy with just
+
+239
+00:08:35,360 --> 00:08:36,960
+a flat color there.
+
+240
+00:08:36,960 --> 00:08:39,940
+And once we do that,
+we are now smaller
+
+241
+00:08:39,940 --> 00:08:42,419
+with the PNG versus the SVG.
+
+242
+00:08:42,419 --> 00:08:44,590
+It's just a few K.
+If we zoom right
+
+243
+00:08:44,590 --> 00:08:49,330
+in, we can start to see, I don't
+know, very subtle differences.
+
+244
+00:08:49,330 --> 00:08:53,480
+But zoomed out, it's
+not a big deal at all.
+
+245
+00:08:53,480 --> 00:08:55,370
+But let's throw this at
+WebP's lossless mode.
+
+246
+00:08:55,370 --> 00:08:56,828
+So we're going to
+copy the settings
+
+247
+00:08:56,828 --> 00:09:00,110
+from one site to the other so we
+keep the reduced palette data,
+
+248
+00:09:00,110 --> 00:09:03,590
+switch to WebP, and put
+it in lossless mode.
+
+249
+00:09:03,590 --> 00:09:06,500
+So WebP's lossless
+codec, it's kind
+
+250
+00:09:06,500 --> 00:09:08,079
+of like a completely
+different codec.
+
+251
+00:09:08,079 --> 00:09:10,370
+They should have probably
+called it something different
+
+252
+00:09:10,370 --> 00:09:12,574
+because it's much
+more similar to PNG.
+
+253
+00:09:12,574 --> 00:09:14,990
+But now you can see we've cut
+even more off the file size.
+
+254
+00:09:14,990 --> 00:09:19,340
+We're 34% smaller than
+what we were with the PNG,
+
+255
+00:09:19,340 --> 00:09:21,260
+with the SVG even.
+
+256
+00:09:21,260 --> 00:09:24,950
+But this is yet another
+cherry-picked demo.
+
+257
+00:09:24,950 --> 00:09:28,650
+Like, we have scripted this
+to look good on stage, right?
+
+258
+00:09:28,650 --> 00:09:30,170
+What I am saying
+to you right now
+
+259
+00:09:30,170 --> 00:09:34,220
+is literally written on
+this screen, including that,
+
+260
+00:09:34,220 --> 00:09:38,720
+and that, and that, and this.
+
+261
+00:09:38,720 --> 00:09:39,950
+MARIKO KOSAKA: Excuse me.
+
+262
+00:09:39,950 --> 00:09:41,700
+[LAUGHTER]
+
+263
+00:09:41,700 --> 00:09:43,550
+Yeah, well, but
+all we are saying
+
+264
+00:09:43,550 --> 00:09:45,140
+is that, just don't
+trust our demo.
+
+265
+00:09:45,140 --> 00:09:48,860
+Just go to our app, throw your
+own image, and try it out.
+
+266
+00:09:48,860 --> 00:09:52,070
+And see how many bytes you
+can shave off the image
+
+267
+00:09:52,070 --> 00:09:54,891
+by keeping acceptable quality.
+
+268
+00:09:54,891 --> 00:09:56,390
+So we can go back
+to the slides now.
+
+269
+00:09:56,390 --> 00:10:01,604
+
+
+270
+00:10:01,604 --> 00:10:02,395
+JAKE ARCHIBALD: OK.
+
+271
+00:10:02,395 --> 00:10:04,360
+So that's the good parts.
+
+272
+00:10:04,360 --> 00:10:06,240
+But Squoosh is still in beta.
+
+273
+00:10:06,240 --> 00:10:07,300
+It isn't finished yet.
+
+274
+00:10:07,300 --> 00:10:09,810
+There are-- there's
+a few rough edges.
+
+275
+00:10:09,810 --> 00:10:11,500
+And we do want to be
+honest about that.
+
+276
+00:10:11,500 --> 00:10:15,340
+For instance, right now,
+if you open it in Firefox,
+
+277
+00:10:15,340 --> 00:10:16,389
+you get this.
+
+278
+00:10:16,389 --> 00:10:18,430
+We're a little bit behind
+on our browser support.
+
+279
+00:10:18,430 --> 00:10:19,156
+[LAUGHTER]
+
+280
+00:10:19,156 --> 00:10:19,844
+Oh, come on.
+
+281
+00:10:19,844 --> 00:10:21,010
+Look, we've run out of time.
+
+282
+00:10:21,010 --> 00:10:22,300
+We are hoping to fix this.
+
+283
+00:10:22,300 --> 00:10:22,380
+MARIKO KOSAKA: Yeah.
+
+284
+00:10:22,380 --> 00:10:24,050
+We had the big web quiz
+to build and everything.
+
+285
+00:10:24,050 --> 00:10:26,140
+JAKE ARCHIBALD: We had
+other things to build.
+
+286
+00:10:26,140 --> 00:10:27,300
+We are joking of course.
+
+287
+00:10:27,300 --> 00:10:28,216
+MARIKO KOSAKA: Joking.
+
+288
+00:10:28,216 --> 00:10:29,610
+JAKE ARCHIBALD: Come on, right?
+
+289
+00:10:29,610 --> 00:10:30,443
+MARIKO KOSAKA: Yeah.
+
+290
+00:10:30,443 --> 00:10:33,610
+As well as being a useful tool--
+which we hope that you find it
+
+291
+00:10:33,610 --> 00:10:34,750
+useful too--
+
+292
+00:10:34,750 --> 00:10:36,790
+we wanted to practice
+what we preach.
+
+293
+00:10:36,790 --> 00:10:40,360
+So we wanted to make the
+Squoosh to be a great PWA.
+
+294
+00:10:40,360 --> 00:10:46,060
+So Squoosh works in latest
+version of all modern browsers.
+
+295
+00:10:46,060 --> 00:10:48,992
+[APPLAUSE]
+
+296
+00:10:48,992 --> 00:10:49,950
+Well, this is kind of--
+
+297
+00:10:49,950 --> 00:10:52,090
+JAKE ARCHIBALD: Only Googlers
+can get a round of applause
+
+298
+00:10:52,090 --> 00:10:53,780
+for just making things
+work with other browsers.
+
+299
+00:10:53,780 --> 00:10:54,571
+MARIKO KOSAKA: Yes.
+
+300
+00:10:54,571 --> 00:10:57,047
+This is kind of sad that
+we got applause for this.
+
+301
+00:10:57,047 --> 00:10:57,880
+JAKE ARCHIBALD: Yes.
+
+302
+00:10:57,880 --> 00:11:00,880
+In fact, what you're seeing
+here is Firefox 63 opening
+
+303
+00:11:00,880 --> 00:11:03,260
+a WebP of my stupid cats.
+
+304
+00:11:03,260 --> 00:11:06,880
+And this is in Firefox 63,
+which does not support WebP.
+
+305
+00:11:06,880 --> 00:11:09,077
+WebP support doesn't
+land until Firefox 65.
+
+306
+00:11:09,077 --> 00:11:09,910
+MARIKO KOSAKA: Yeah.
+
+307
+00:11:09,910 --> 00:11:12,560
+But we didn't want the key
+features to be missing.
+
+308
+00:11:12,560 --> 00:11:16,300
+So we needed to make sure the
+Squoosh could lead and create
+
+309
+00:11:16,300 --> 00:11:20,310
+images in all modern browsers
+using those codecs, which
+
+310
+00:11:20,310 --> 00:11:21,490
+brings onto--
+
+311
+00:11:21,490 --> 00:11:23,330
+let's talk about how
+we built Squoosh.
+
+312
+00:11:23,330 --> 00:11:25,240
+JAKE ARCHIBALD:
+Yeah, and this is
+
+313
+00:11:25,240 --> 00:11:26,990
+an idea I had around
+about five years ago.
+
+314
+00:11:26,990 --> 00:11:28,698
+It's something I'd
+been wanting to build.
+
+315
+00:11:28,698 --> 00:11:30,454
+And I tried to build
+it five years ago,
+
+316
+00:11:30,454 --> 00:11:32,120
+but browsers weren't
+quite smart enough.
+
+317
+00:11:32,120 --> 00:11:35,050
+But more importantly, I
+wasn't quite smart enough.
+
+318
+00:11:35,050 --> 00:11:38,080
+So Squoosh is a real team
+effort with contributions
+
+319
+00:11:38,080 --> 00:11:41,548
+from all of these talented
+engineers and Paul Kinlin.
+
+320
+00:11:41,548 --> 00:11:43,214
+MARIKO KOSAKA: The
+key thing that made--
+
+321
+00:11:43,214 --> 00:11:45,634
+[LAUGHTER]
+
+322
+00:11:45,634 --> 00:11:47,930
+Are you glad that joke
+landed really well?
+
+323
+00:11:47,930 --> 00:11:49,215
+JAKE ARCHIBALD: Thank you.
+
+324
+00:11:49,215 --> 00:11:50,590
+MARIKO KOSAKA:
+The key thing that
+
+325
+00:11:50,590 --> 00:11:53,320
+made Squoosh possible
+is WebAssembly,
+
+326
+00:11:53,320 --> 00:11:57,380
+which is supported in all modern
+browsers for over a year now.
+
+327
+00:11:57,380 --> 00:11:59,740
+I know we have
+WebAssembly sessions later
+
+328
+00:11:59,740 --> 00:12:00,860
+in this conference.
+
+329
+00:12:00,860 --> 00:12:04,630
+But as a little primer,
+Wasm, or WebAssembly,
+
+330
+00:12:04,630 --> 00:12:07,180
+is a compile target for the web.
+
+331
+00:12:07,180 --> 00:12:12,880
+So you have your code written in
+C, Rascal, or whatever choice.
+
+332
+00:12:12,880 --> 00:12:16,570
+You would usually compile
+it to run it on different OS
+
+333
+00:12:16,570 --> 00:12:17,410
+as the app.
+
+334
+00:12:17,410 --> 00:12:20,050
+But using WebAssembly,
+the technology,
+
+335
+00:12:20,050 --> 00:12:24,670
+you can compile the same
+code and run it in browser.
+
+336
+00:12:24,670 --> 00:12:28,600
+So for Squoosh, the mozjpeg,
+the web WebP, the OptiPNG,
+
+337
+00:12:28,600 --> 00:12:30,760
+all of those codecs
+are written in C.
+
+338
+00:12:30,760 --> 00:12:34,080
+So we used a tool called
+Emscripten to compile the C
+
+339
+00:12:34,080 --> 00:12:39,165
+code into a WebAssembly so
+that we can run it in browser.
+
+340
+00:12:39,165 --> 00:12:40,040
+JAKE ARCHIBALD: Yeah.
+
+341
+00:12:40,040 --> 00:12:41,890
+And this was really, really
+essential for the project
+
+342
+00:12:41,890 --> 00:12:43,390
+because browsers
+do actually ship
+
+343
+00:12:43,390 --> 00:12:46,600
+with imaging coders
+like JPEG and PNG,
+
+344
+00:12:46,600 --> 00:12:49,340
+which you can access via
+the Canvas API like this.
+
+345
+00:12:49,340 --> 00:12:50,710
+But they suck.
+
+346
+00:12:50,710 --> 00:12:52,355
+They are really, really bad.
+
+347
+00:12:52,355 --> 00:12:53,980
+We have made them
+available in Squoosh.
+
+348
+00:12:53,980 --> 00:12:55,270
+So you can use them if you want.
+
+349
+00:12:55,270 --> 00:12:56,350
+They are actually quite fast.
+
+350
+00:12:56,350 --> 00:12:58,420
+That's the one thing
+they've got going for them.
+
+351
+00:12:58,420 --> 00:12:59,560
+We thought, why not?
+
+352
+00:12:59,560 --> 00:13:01,600
+But you only get this
+one quality option.
+
+353
+00:13:01,600 --> 00:13:03,430
+And ugh, they're just rubbish.
+
+354
+00:13:03,430 --> 00:13:07,529
+This is Chrome's JPEG encoder
+on the left compared to mozjpeg.
+
+355
+00:13:07,529 --> 00:13:09,820
+And it's ugh, the Chrome
+version is just a lot rougher.
+
+356
+00:13:09,820 --> 00:13:10,382
+It's blah.
+
+357
+00:13:10,382 --> 00:13:11,290
+It's horrible.
+
+358
+00:13:11,290 --> 00:13:13,662
+It's actually way
+worse in Firefox.
+
+359
+00:13:13,662 --> 00:13:14,620
+MARIKO KOSAKA: Firefox.
+
+360
+00:13:14,620 --> 00:13:17,020
+JAKE ARCHIBALD: The JPEG
+encoder in Mozilla's browser
+
+361
+00:13:17,020 --> 00:13:20,151
+is terrible compared to
+Mozilla's JPEG encoder.
+
+362
+00:13:20,151 --> 00:13:22,717
+[LAUGHTER]
+
+363
+00:13:22,717 --> 00:13:23,550
+MARIKO KOSAKA: Yeah.
+
+364
+00:13:23,550 --> 00:13:25,560
+We see the same
+thing for PNG too.
+
+365
+00:13:25,560 --> 00:13:28,530
+So that Squoosh logo that
+we looked at in the demo,
+
+366
+00:13:28,530 --> 00:13:32,400
+if you use a browser's
+native compressor,
+
+367
+00:13:32,400 --> 00:13:34,710
+then those are the
+numbers you get.
+
+368
+00:13:34,710 --> 00:13:39,570
+The Firefox are significantly
+better than other browsers.
+
+369
+00:13:39,570 --> 00:13:45,720
+But it's still not good compared
+to OptiPNG, which Squoosh uses.
+
+370
+00:13:45,720 --> 00:13:50,010
+And this is for exactly the
+same image, pixel-by-pixel, just
+
+371
+00:13:50,010 --> 00:13:51,570
+compression, different numbers.
+
+372
+00:13:51,570 --> 00:13:51,990
+JAKE ARCHIBALD: Exactly.
+
+373
+00:13:51,990 --> 00:13:54,180
+And Wasm let's us bypass
+the browser's encoders
+
+374
+00:13:54,180 --> 00:13:55,320
+and use much better ones.
+
+375
+00:13:55,320 --> 00:13:58,110
+It also let us bring
+in the WebP decoder
+
+376
+00:13:58,110 --> 00:14:00,690
+to use in browsers that don't
+have native WebP support.
+
+377
+00:14:00,690 --> 00:14:04,500
+Now, I know almost nothing about
+C. So that part of the project
+
+378
+00:14:04,500 --> 00:14:06,750
+was really down to this man.
+
+379
+00:14:06,750 --> 00:14:08,400
+So please, welcome
+to the stage--
+
+380
+00:14:08,400 --> 00:14:10,290
+so good, we named him once--
+
+381
+00:14:10,290 --> 00:14:11,190
+it's Surma.
+
+382
+00:14:11,190 --> 00:14:13,070
+[MUSIC PLAYING]
+
+383
+00:14:13,070 --> 00:14:14,480
+[APPLAUSE]
+
+384
+00:14:14,480 --> 00:14:18,710
+
+
+385
+00:14:18,710 --> 00:14:23,990
+MARIKO KOSAKA: So you made most
+of the WebAssembly stuff work.
+
+386
+00:14:23,990 --> 00:14:25,136
+SURMA: Yeah.
+
+387
+00:14:25,136 --> 00:14:27,630
+[LAUGHTER]
+
+388
+00:14:27,630 --> 00:14:28,770
+JAKE ARCHIBALD: How was it?
+
+389
+00:14:28,770 --> 00:14:30,065
+SURMA: It was good.
+
+390
+00:14:30,065 --> 00:14:30,940
+JAKE ARCHIBALD: Cool.
+
+391
+00:14:30,940 --> 00:14:32,987
+SURMA: Cool.
+
+392
+00:14:32,987 --> 00:14:34,820
+JAKE ARCHIBALD: Surma,
+ladies and gentlemen.
+
+393
+00:14:34,820 --> 00:14:35,764
+[MUSIC PLAYING]
+
+394
+00:14:35,764 --> 00:14:38,457
+[APPLAUSE]
+
+395
+00:14:38,457 --> 00:14:39,290
+MARIKO KOSAKA: Yeah.
+
+396
+00:14:39,290 --> 00:14:42,080
+Well, thankfully Surma
+wrote an article about it.
+
+397
+00:14:42,080 --> 00:14:43,845
+So we have some things to share.
+
+398
+00:14:43,845 --> 00:14:44,720
+JAKE ARCHIBALD: Yeah.
+
+399
+00:14:44,720 --> 00:14:47,340
+Compiling a codec to Wasm, that
+involved writing a little bit
+
+400
+00:14:47,340 --> 00:14:50,800
+of C++, which included the
+codec and some of the Emscripten
+
+401
+00:14:50,800 --> 00:14:51,402
+stuff.
+
+402
+00:14:51,402 --> 00:14:52,610
+And then we wrote a function.
+
+403
+00:14:52,610 --> 00:14:55,120
+This is the function we want
+to expose to JavaScript.
+
+404
+00:14:55,120 --> 00:14:58,210
+It takes our image data,
+takes it as a string
+
+405
+00:14:58,210 --> 00:15:01,360
+because that's how Emscripten
+represents binary data in C++.
+
+406
+00:15:01,360 --> 00:15:04,450
+So on the JavaScript side,
+we're passing in a Uint8array.
+
+407
+00:15:04,450 --> 00:15:06,790
+And it ends up in
+C++ as a string.
+
+408
+00:15:06,790 --> 00:15:09,160
+And we also have our other
+arguments, width and height,
+
+409
+00:15:09,160 --> 00:15:10,480
+and the codec settings.
+
+410
+00:15:10,480 --> 00:15:13,220
+In this example, I'm
+just using quality.
+
+411
+00:15:13,220 --> 00:15:16,060
+And then we call out to the
+actual encoder under the hood,
+
+412
+00:15:16,060 --> 00:15:18,400
+passing in all the settings,
+getting the output,
+
+413
+00:15:18,400 --> 00:15:19,450
+and then we return it.
+
+414
+00:15:19,450 --> 00:15:21,760
+And this vowel and
+type memory view stuff,
+
+415
+00:15:21,760 --> 00:15:23,680
+this is annotation
+to tell Emscripten
+
+416
+00:15:23,680 --> 00:15:27,130
+to treat the return value as a
+Uint8array back in JavaScript
+
+417
+00:15:27,130 --> 00:15:27,780
+land.
+
+418
+00:15:27,780 --> 00:15:30,110
+And then all we needed
+to do is tell Emscripten
+
+419
+00:15:30,110 --> 00:15:31,550
+which methods to expose.
+
+420
+00:15:31,550 --> 00:15:33,430
+That's it.
+
+421
+00:15:33,430 --> 00:15:34,900
+MARIKO KOSAKA: I'm
+a web developer.
+
+422
+00:15:34,900 --> 00:15:36,690
+You completely lost me.
+
+423
+00:15:36,690 --> 00:15:38,300
+Do you get any of this?
+
+424
+00:15:38,300 --> 00:15:39,570
+JAKE ARCHIBALD: No, I
+don't understand it either.
+
+425
+00:15:39,570 --> 00:15:41,440
+But I copied the patterns
+from Surma's article.
+
+426
+00:15:41,440 --> 00:15:42,280
+And hey, it just works.
+
+427
+00:15:42,280 --> 00:15:42,640
+It's great.
+
+428
+00:15:42,640 --> 00:15:43,180
+MARIKO KOSAKA: Great.
+
+429
+00:15:43,180 --> 00:15:44,350
+JAKE ARCHIBALD: I was able
+to take those patterns
+
+430
+00:15:44,350 --> 00:15:46,300
+and use them for different
+kinds of C projects as well,
+
+431
+00:15:46,300 --> 00:15:47,674
+like text compressions
+and stuff.
+
+432
+00:15:47,674 --> 00:15:49,910
+It's-- yeah, it's pretty
+good, pretty good.
+
+433
+00:15:49,910 --> 00:15:50,743
+MARIKO KOSAKA: Yeah.
+
+434
+00:15:50,743 --> 00:15:53,230
+So compiling that
+code with Emscripten
+
+435
+00:15:53,230 --> 00:15:56,680
+gives a JavaScript
+file in Wasm binary.
+
+436
+00:15:56,680 --> 00:15:59,080
+So now you can
+include that script
+
+437
+00:15:59,080 --> 00:16:02,110
+onto your page, which also
+loads that Wasm binary.
+
+438
+00:16:02,110 --> 00:16:04,180
+And once all of the
+script is ready,
+
+439
+00:16:04,180 --> 00:16:06,220
+you can just call
+that encoding function
+
+440
+00:16:06,220 --> 00:16:07,565
+as if you're calling JavaScript.
+
+441
+00:16:07,565 --> 00:16:08,440
+JAKE ARCHIBALD: Yeah.
+
+442
+00:16:08,440 --> 00:16:11,650
+Using Emscripten, it feels a
+little bit rough and ready.
+
+443
+00:16:11,650 --> 00:16:13,090
+But the docs are really good.
+
+444
+00:16:13,090 --> 00:16:15,850
+And Surma's article is good
+enough to get you started.
+
+445
+00:16:15,850 --> 00:16:16,990
+MARIKO KOSAKA: Yeah.
+
+446
+00:16:16,990 --> 00:16:21,040
+But in this case, we are dealing
+with a large C project here.
+
+447
+00:16:21,040 --> 00:16:24,400
+And those are really
+CPU intensive.
+
+448
+00:16:24,400 --> 00:16:27,230
+So that brings us
+to performance,
+
+449
+00:16:27,230 --> 00:16:30,309
+which we were kind of worried
+about in the beginning
+
+450
+00:16:30,309 --> 00:16:32,100
+of the project because
+we knew that's going
+
+451
+00:16:32,100 --> 00:16:33,785
+to be a thing that
+we need to take care.
+
+452
+00:16:33,785 --> 00:16:34,660
+JAKE ARCHIBALD: Yeah.
+
+453
+00:16:34,660 --> 00:16:36,520
+We're halfway through the
+talk, so we're actually finally
+
+454
+00:16:36,520 --> 00:16:37,940
+starting to get to the point.
+
+455
+00:16:37,940 --> 00:16:38,773
+MARIKO KOSAKA: Yeah.
+
+456
+00:16:38,773 --> 00:16:42,280
+So we used PREACT to
+orchestrate the DOM
+
+457
+00:16:42,280 --> 00:16:44,016
+and webpack to bundle
+it all together.
+
+458
+00:16:44,016 --> 00:16:44,890
+JAKE ARCHIBALD: Yeah.
+
+459
+00:16:44,890 --> 00:16:46,348
+We used PREACT
+because it does what
+
+460
+00:16:46,348 --> 00:16:48,100
+it does in 3k, which
+is kind of amazing.
+
+461
+00:16:48,100 --> 00:16:49,630
+We also had Jason on the
+project-- that's probably--
+
+462
+00:16:49,630 --> 00:16:49,954
+MARIKO KOSAKA: That's true.
+
+463
+00:16:49,954 --> 00:16:50,350
+Clear it off the [INAUDIBLE].
+
+464
+00:16:50,350 --> 00:16:50,910
+JAKE ARCHIBALD:
+--another reason.
+
+465
+00:16:50,910 --> 00:16:52,210
+We wouldn't want to upset him.
+
+466
+00:16:52,210 --> 00:16:54,501
+And we used webpack because
+there isn't really anything
+
+467
+00:16:54,501 --> 00:16:56,710
+else that does what webpack
+does, certainly, not
+
+468
+00:16:56,710 --> 00:16:57,918
+in the way we wanted it done.
+
+469
+00:16:57,918 --> 00:16:59,860
+We wanted a lot of
+control over it.
+
+470
+00:16:59,860 --> 00:17:01,797
+And it was really only webpack.
+
+471
+00:17:01,797 --> 00:17:02,630
+MARIKO KOSAKA: Yeah.
+
+472
+00:17:02,630 --> 00:17:08,650
+So as a result, our app
+is 400 Kilobyte gzipped,
+
+473
+00:17:08,650 --> 00:17:11,290
+all in all, everything.
+
+474
+00:17:11,290 --> 00:17:14,020
+But this is well
+below the median
+
+475
+00:17:14,020 --> 00:17:18,020
+from HTTP Archive,
+which is 1.5 megabytes.
+
+476
+00:17:18,020 --> 00:17:19,655
+So we're quite happy about that.
+
+477
+00:17:19,655 --> 00:17:20,530
+JAKE ARCHIBALD: Yeah.
+
+478
+00:17:20,530 --> 00:17:20,800
+We're winning.
+
+479
+00:17:20,800 --> 00:17:21,383
+We're winning.
+
+480
+00:17:21,383 --> 00:17:23,880
+We're happy with that.
+
+481
+00:17:23,880 --> 00:17:25,579
+So the vast majority
+of that size
+
+482
+00:17:25,579 --> 00:17:27,530
+is the codecs and
+the processes, like,
+
+483
+00:17:27,530 --> 00:17:29,249
+the stuff we brought
+in from C land.
+
+484
+00:17:29,249 --> 00:17:30,040
+And that's-- yeah--
+
+485
+00:17:30,040 --> 00:17:31,780
+300 kilobytes of that stuff.
+
+486
+00:17:31,780 --> 00:17:34,280
+And I'm pretty sure there's
+some waste and duplication here.
+
+487
+00:17:34,280 --> 00:17:37,130
+But like I said, Emscripten's
+a little bit rough and ready.
+
+488
+00:17:37,130 --> 00:17:38,850
+And cosharing
+between Wasm modules,
+
+489
+00:17:38,850 --> 00:17:40,970
+it doesn't seem all
+that easy right now.
+
+490
+00:17:40,970 --> 00:17:42,360
+It's something we'll look into.
+
+491
+00:17:42,360 --> 00:17:45,140
+But we were able to limit
+that damage by lazy-loading
+
+492
+00:17:45,140 --> 00:17:46,510
+these using workers.
+
+493
+00:17:46,510 --> 00:17:47,343
+MARIKO KOSAKA: Yeah.
+
+494
+00:17:47,343 --> 00:17:50,690
+As we've already seen,
+compressor is CPU intensive.
+
+495
+00:17:50,690 --> 00:17:53,000
+So depending on
+settings, encoding
+
+496
+00:17:53,000 --> 00:17:56,450
+can take 30 seconds
+to sometimes minutes.
+
+497
+00:17:56,450 --> 00:17:59,710
+And when that thing is
+happening and occupying CPU,
+
+498
+00:17:59,710 --> 00:18:01,850
+we don't want that
+UI to be frozen.
+
+499
+00:18:01,850 --> 00:18:03,710
+We want users to
+be pinch zooming,
+
+500
+00:18:03,710 --> 00:18:06,440
+and moving around, and
+testing, and possibly changing
+
+501
+00:18:06,440 --> 00:18:08,771
+the options too.
+
+502
+00:18:08,771 --> 00:18:09,270
+So--
+
+503
+00:18:09,270 --> 00:18:09,570
+JAKE ARCHIBALD: Yeah.
+
+504
+00:18:09,570 --> 00:18:11,194
+Workers give us this
+lazy loading stuff
+
+505
+00:18:11,194 --> 00:18:12,330
+for free, which is great.
+
+506
+00:18:12,330 --> 00:18:14,390
+But the main benefit
+is concurrency.
+
+507
+00:18:14,390 --> 00:18:16,437
+We create up to two workers.
+
+508
+00:18:16,437 --> 00:18:18,020
+And both of those
+are just going to be
+
+509
+00:18:18,020 --> 00:18:19,186
+pointing at the same script.
+
+510
+00:18:19,186 --> 00:18:21,170
+That's one for the
+left-hand side of the image
+
+511
+00:18:21,170 --> 00:18:23,130
+and one for the right-hand
+side of the image.
+
+512
+00:18:23,130 --> 00:18:26,540
+This means the left-hand
+side can be encoding a JPEG.
+
+513
+00:18:26,540 --> 00:18:28,910
+And the right-hand side
+can be optimizing PNG.
+
+514
+00:18:28,910 --> 00:18:31,299
+And all the while, the main
+thread stays responsive.
+
+515
+00:18:31,299 --> 00:18:33,590
+And that was really all the
+concurrency that we needed.
+
+516
+00:18:33,590 --> 00:18:34,423
+MARIKO KOSAKA: Yeah.
+
+517
+00:18:34,423 --> 00:18:37,552
+But it came with
+another benefit too.
+
+518
+00:18:37,552 --> 00:18:39,510
+So the left-hand side--
+let's say [INAUDIBLE],,
+
+519
+00:18:39,510 --> 00:18:42,500
+left-hand side worker is
+compressing an image, right?
+
+520
+00:18:42,500 --> 00:18:44,720
+But what if a user
+changes the setting?
+
+521
+00:18:44,720 --> 00:18:46,910
+The current job is out of date.
+
+522
+00:18:46,910 --> 00:18:48,510
+We need to update it.
+
+523
+00:18:48,510 --> 00:18:52,722
+But those compression
+encoders are
+
+524
+00:18:52,722 --> 00:18:53,930
+written in a synchronous way.
+
+525
+00:18:53,930 --> 00:18:55,330
+So there is no abort API.
+
+526
+00:18:55,330 --> 00:18:56,540
+There is no way to kill it.
+
+527
+00:18:56,540 --> 00:18:59,690
+However, we put it into worker.
+
+528
+00:18:59,690 --> 00:19:02,760
+So in this case, we just
+terminate the worker,
+
+529
+00:19:02,760 --> 00:19:05,740
+and then click new workers, put
+the new job in, and then start
+
+530
+00:19:05,740 --> 00:19:06,705
+it back up again.
+
+531
+00:19:06,705 --> 00:19:07,580
+JAKE ARCHIBALD: Yeah.
+
+532
+00:19:07,580 --> 00:19:11,392
+And the implementation
+for this is pretty simple.
+
+533
+00:19:11,392 --> 00:19:12,350
+So it's just like this.
+
+534
+00:19:12,350 --> 00:19:12,690
+MARIKO KOSAKA: Ooh.
+
+535
+00:19:12,690 --> 00:19:13,481
+JAKE ARCHIBALD: Oh.
+
+536
+00:19:13,481 --> 00:19:15,087
+Oh, go on, you click.
+
+537
+00:19:15,087 --> 00:19:15,920
+This is the problem.
+
+538
+00:19:15,920 --> 00:19:17,240
+We've got two slide clickers.
+
+539
+00:19:17,240 --> 00:19:19,040
+And we needed to
+rehearse who was doing
+
+540
+00:19:19,040 --> 00:19:20,910
+the changing for each slide.
+
+541
+00:19:20,910 --> 00:19:23,000
+So what you saw there
+was us messing it up.
+
+542
+00:19:23,000 --> 00:19:25,400
+[LAUGHTER]
+
+543
+00:19:25,400 --> 00:19:27,420
+Implementation is
+roughly like this--
+
+544
+00:19:27,420 --> 00:19:29,480
+if busy, terminate, and restart.
+
+545
+00:19:29,480 --> 00:19:32,350
+But also, we only spin up one of
+these workers when we need it,
+
+546
+00:19:32,350 --> 00:19:33,440
+like, just in time.
+
+547
+00:19:33,440 --> 00:19:35,510
+So if you're doing something
+kind of like what we were doing
+
+548
+00:19:35,510 --> 00:19:37,676
+in the demo-- we had the
+original image on one side,
+
+549
+00:19:37,676 --> 00:19:38,510
+JPEG on the other.
+
+550
+00:19:38,510 --> 00:19:40,384
+We only spin up one
+worker because we're only
+
+551
+00:19:40,384 --> 00:19:42,810
+having one side doing
+compression at the time.
+
+552
+00:19:42,810 --> 00:19:46,340
+And also, if one of those
+workers is idle for 10 seconds,
+
+553
+00:19:46,340 --> 00:19:47,310
+we kill it as well.
+
+554
+00:19:47,310 --> 00:19:49,730
+And that is really just to
+be kind to the user's device
+
+555
+00:19:49,730 --> 00:19:51,050
+to bring the memory
+footprint down.
+
+556
+00:19:51,050 --> 00:19:51,883
+MARIKO KOSAKA: Yeah.
+
+557
+00:19:51,883 --> 00:19:54,750
+That worker is almost
+empty when it started.
+
+558
+00:19:54,750 --> 00:19:58,040
+Heavy stuff is imported
+when it's needed.
+
+559
+00:19:58,040 --> 00:20:00,560
+This keeps the worker
+startup time down.
+
+560
+00:20:00,560 --> 00:20:04,160
+And also, you don't really need
+to download and parse and wait
+
+561
+00:20:04,160 --> 00:20:06,890
+for the OptiPNG
+and mozjpeg stuff
+
+562
+00:20:06,890 --> 00:20:09,135
+if user is just encoding WebP.
+
+563
+00:20:09,135 --> 00:20:10,010
+JAKE ARCHIBALD: Yeah.
+
+564
+00:20:10,010 --> 00:20:12,380
+And using a wait
+import like this,
+
+565
+00:20:12,380 --> 00:20:13,920
+this is part of the platform.
+
+566
+00:20:13,920 --> 00:20:15,770
+It's supported behind
+a flag in Chrome.
+
+567
+00:20:15,770 --> 00:20:18,237
+But it isn't supported and
+stable or in other browsers.
+
+568
+00:20:18,237 --> 00:20:20,570
+Thankfully, it's something
+that webpack can just handle.
+
+569
+00:20:20,570 --> 00:20:22,990
+It polyfills it,
+and it just works.
+
+570
+00:20:22,990 --> 00:20:24,950
+Now, the final
+piece of this puzzle
+
+571
+00:20:24,950 --> 00:20:26,727
+is how we actually
+talk to the workers.
+
+572
+00:20:26,727 --> 00:20:27,560
+MARIKO KOSAKA: Yeah.
+
+573
+00:20:27,560 --> 00:20:30,810
+So request and response
+communication with workers--
+
+574
+00:20:30,810 --> 00:20:32,430
+eh, a little tricky.
+
+575
+00:20:32,430 --> 00:20:36,350
+So the way worker works is that
+you send the worker some job.
+
+576
+00:20:36,350 --> 00:20:39,780
+And at some point, they
+come back with the results.
+
+577
+00:20:39,780 --> 00:20:42,360
+But you need to associate
+those requests and response.
+
+578
+00:20:42,360 --> 00:20:45,800
+So in this code example,
+we just give a unique ID.
+
+579
+00:20:45,800 --> 00:20:48,270
+And when worker is
+done with that job,
+
+580
+00:20:48,270 --> 00:20:49,610
+then it gives back the ID.
+
+581
+00:20:49,610 --> 00:20:53,240
+But you have to write
+your own logic for this.
+
+582
+00:20:53,240 --> 00:20:55,062
+And it's like, eh, eh, eh.
+
+583
+00:20:55,062 --> 00:20:56,270
+JAKE ARCHIBALD: It's rubbish.
+
+584
+00:20:56,270 --> 00:20:57,020
+I really don't like it.
+
+585
+00:20:57,020 --> 00:20:59,272
+It's one of the things that
+puts me off putting stuff
+
+586
+00:20:59,272 --> 00:21:00,230
+into the-- of a thread.
+
+587
+00:21:00,230 --> 00:21:02,330
+It goes ah, I'm going to have
+to do the post method thing.
+
+588
+00:21:02,330 --> 00:21:02,710
+I don't like it.
+
+589
+00:21:02,710 --> 00:21:02,900
+MARIKO KOSAKA: Yeah.
+
+590
+00:21:02,900 --> 00:21:04,840
+That's a layer to
+worry about when
+
+591
+00:21:04,840 --> 00:21:06,170
+you're writing application.
+
+592
+00:21:06,170 --> 00:21:09,140
+JAKE ARCHIBALD: But again,
+to the rescue, it's Surma.
+
+593
+00:21:09,140 --> 00:21:10,310
+[LAUGHTER]
+
+594
+00:21:10,310 --> 00:21:12,830
+He built Comlink, a little
+library that you can use,
+
+595
+00:21:12,830 --> 00:21:14,420
+you can get from mPm to use it.
+
+596
+00:21:14,420 --> 00:21:15,260
+It's just like this.
+
+597
+00:21:15,260 --> 00:21:17,180
+You create a worker
+as you usually would.
+
+598
+00:21:17,180 --> 00:21:18,620
+And then you tell
+Comlink all of the things
+
+599
+00:21:18,620 --> 00:21:19,700
+that you want to expose.
+
+600
+00:21:19,700 --> 00:21:21,590
+These can be classes, values.
+
+601
+00:21:21,590 --> 00:21:23,230
+But we were just
+using functions.
+
+602
+00:21:23,230 --> 00:21:26,360
+And then over in your page,
+you just hook the Comlink up
+
+603
+00:21:26,360 --> 00:21:27,140
+to the worker.
+
+604
+00:21:27,140 --> 00:21:29,270
+And now you can call
+those functions just as
+
+605
+00:21:29,270 --> 00:21:30,487
+if they're part of your page.
+
+606
+00:21:30,487 --> 00:21:33,070
+Comlink takes care of all of the
+bookkeeping, the post message
+
+607
+00:21:33,070 --> 00:21:34,880
+stuff, all of that mess.
+
+608
+00:21:34,880 --> 00:21:37,460
+MARIKO KOSAKA: So once
+we've split up that codecs,
+
+609
+00:21:37,460 --> 00:21:41,340
+our app came down
+to 35 kilobyte.
+
+610
+00:21:41,340 --> 00:21:42,350
+Yeah.
+
+611
+00:21:42,350 --> 00:21:44,660
+But I want to make sure
+that a user will still
+
+612
+00:21:44,660 --> 00:21:47,900
+have to download those
+300 kilobytes if they
+
+613
+00:21:47,900 --> 00:21:49,430
+want to use all of the codecs.
+
+614
+00:21:49,430 --> 00:21:54,010
+But they don't need
+to load those upfront.
+
+615
+00:21:54,010 --> 00:21:59,950
+But 35 kilobytes, it still
+contains the pinch zoom logic,
+
+616
+00:21:59,950 --> 00:22:03,485
+the options panel, the fancy
+slider, then this thing,
+
+617
+00:22:03,485 --> 00:22:07,270
+and that thing, this thing,
+this thing, ooh, that thing too.
+
+618
+00:22:07,270 --> 00:22:13,210
+And what these have in
+common is that it's not
+
+619
+00:22:13,210 --> 00:22:16,085
+here, our first page.
+
+620
+00:22:16,085 --> 00:22:16,960
+JAKE ARCHIBALD: Yeah.
+
+621
+00:22:16,960 --> 00:22:19,900
+Imagine going to a restaurant
+and asking to see the menu.
+
+622
+00:22:19,900 --> 00:22:22,750
+And 10 minutes later, you
+still haven't been given it.
+
+623
+00:22:22,750 --> 00:22:25,630
+So you're going to ask,
+excuse me, where's the menu?
+
+624
+00:22:25,630 --> 00:22:28,240
+And they say, oh, well,
+we're busy preparing
+
+625
+00:22:28,240 --> 00:22:30,190
+every single dish we do.
+
+626
+00:22:30,190 --> 00:22:32,380
+And then we'll
+give you the menu,
+
+627
+00:22:32,380 --> 00:22:33,960
+so when you pick
+something-- bam--
+
+628
+00:22:33,960 --> 00:22:35,570
+we will give you
+that straight away.
+
+629
+00:22:35,570 --> 00:22:36,660
+It's ready.
+
+630
+00:22:36,660 --> 00:22:37,420
+[LAUGHTER]
+
+631
+00:22:37,420 --> 00:22:38,253
+MARIKO KOSAKA: Yeah.
+
+632
+00:22:38,253 --> 00:22:42,250
+You laugh but much of the web
+is built this way, especially
+
+633
+00:22:42,250 --> 00:22:43,360
+JavaScript-heavy apps.
+
+634
+00:22:43,360 --> 00:22:43,540
+JAKE ARCHIBALD: Yeah.
+
+635
+00:22:43,540 --> 00:22:45,456
+Because you might look
+at the menu and decide,
+
+636
+00:22:45,456 --> 00:22:47,590
+oh, I don't want
+any of this stuff.
+
+637
+00:22:47,590 --> 00:22:49,120
+Or you might want
+something simple.
+
+638
+00:22:49,120 --> 00:22:51,190
+You're certainly unlikely
+to want everything.
+
+639
+00:22:51,190 --> 00:22:54,040
+So why should getting the menu
+and making a choice be blocked
+
+640
+00:22:54,040 --> 00:22:55,930
+on them preparing
+all of their most
+
+641
+00:22:55,930 --> 00:22:57,677
+complex, time-consuming dishes?
+
+642
+00:22:57,677 --> 00:22:58,510
+MARIKO KOSAKA: Yeah.
+
+643
+00:22:58,510 --> 00:22:59,680
+Same for JavaScript apps.
+
+644
+00:22:59,680 --> 00:23:03,820
+They prepare everything up
+front before doing anything.
+
+645
+00:23:03,820 --> 00:23:05,800
+So the user really
+shouldn't have
+
+646
+00:23:05,800 --> 00:23:09,190
+to wait for all of these
+things to download, parse,
+
+647
+00:23:09,190 --> 00:23:10,690
+and execute.
+
+648
+00:23:10,690 --> 00:23:12,445
+They just need to
+get to this page.
+
+649
+00:23:12,445 --> 00:23:14,820
+JAKE ARCHIBALD: And like most
+web apps-- like most apps--
+
+650
+00:23:14,820 --> 00:23:17,580
+Squoosh has a limited set
+of first interactions.
+
+651
+00:23:17,580 --> 00:23:20,020
+[INAUDIBLE] it's dropping
+an image onto the page,
+
+652
+00:23:20,020 --> 00:23:22,090
+selecting one file
+by the file picker,
+
+653
+00:23:22,090 --> 00:23:24,050
+or selecting one
+of the demo images.
+
+654
+00:23:24,050 --> 00:23:26,290
+So we split all of that out.
+
+655
+00:23:26,290 --> 00:23:28,330
+This is roughly how things
+looked at the start.
+
+656
+00:23:28,330 --> 00:23:29,050
+We had our intro.
+
+657
+00:23:29,050 --> 00:23:30,850
+And we had our compression UI.
+
+658
+00:23:30,850 --> 00:23:32,997
+If no file had been
+selected, we show the intro.
+
+659
+00:23:32,997 --> 00:23:35,080
+Otherwise, we send that
+file to the compression UI
+
+660
+00:23:35,080 --> 00:23:36,580
+and display that.
+
+661
+00:23:36,580 --> 00:23:39,340
+We changed this so the
+whole compression API part,
+
+662
+00:23:39,340 --> 00:23:40,900
+that was loaded asynchronously.
+
+663
+00:23:40,900 --> 00:23:42,692
+And the tool chain
+actually made that
+
+664
+00:23:42,692 --> 00:23:43,900
+a lot easier than I expected.
+
+665
+00:23:43,900 --> 00:23:44,733
+MARIKO KOSAKA: Yeah.
+
+666
+00:23:44,733 --> 00:23:47,590
+So first up, we
+removed the URL import
+
+667
+00:23:47,590 --> 00:23:49,720
+and instead,
+dynamically imported
+
+668
+00:23:49,720 --> 00:23:52,950
+that in the constructor
+and set that as a state.
+
+669
+00:23:52,950 --> 00:23:57,160
+So dynamic imports are supported
+natively in Chrome and Safari.
+
+670
+00:23:57,160 --> 00:24:00,190
+But using webpack provides
+similar functionality
+
+671
+00:24:00,190 --> 00:24:01,660
+to all of the browsers.
+
+672
+00:24:01,660 --> 00:24:01,870
+JAKE ARCHIBALD: Yeah.
+
+673
+00:24:01,870 --> 00:24:04,090
+So the compression UI is
+going to start downloading
+
+674
+00:24:04,090 --> 00:24:05,950
+as soon as the intro loads.
+
+675
+00:24:05,950 --> 00:24:07,720
+But there is a small
+chance that the user
+
+676
+00:24:07,720 --> 00:24:10,880
+is going to be able to select
+a file before it's ready.
+
+677
+00:24:10,880 --> 00:24:12,700
+So in which case, we
+just show a spinner.
+
+678
+00:24:12,700 --> 00:24:14,741
+Very unlikely that the
+user is going to see that,
+
+679
+00:24:14,741 --> 00:24:16,507
+but we put that in just in case.
+
+680
+00:24:16,507 --> 00:24:17,340
+MARIKO KOSAKA: Yeah.
+
+681
+00:24:17,340 --> 00:24:20,640
+So remember with
+codec, speed it up.
+
+682
+00:24:20,640 --> 00:24:22,550
+We chopped that
+300 kilobytes off.
+
+683
+00:24:22,550 --> 00:24:29,330
+But with the code splitting,
+we made that into 15 kilobytes.
+
+684
+00:24:29,330 --> 00:24:33,230
+And this is despite our app
+being JavaScript-driven,
+
+685
+00:24:33,230 --> 00:24:34,700
+using frameworks.
+
+686
+00:24:34,700 --> 00:24:38,000
+And 15 kilobyte gzipped
+is even with empty cache
+
+687
+00:24:38,000 --> 00:24:38,930
+on the user's device.
+
+688
+00:24:38,930 --> 00:24:39,930
+JAKE ARCHIBALD: Exactly.
+
+689
+00:24:39,930 --> 00:24:42,260
+And that means on a
+slow 3G connection,
+
+690
+00:24:42,260 --> 00:24:44,960
+the user gets the first
+interaction in 3.3 seconds.
+
+691
+00:24:44,960 --> 00:24:48,060
+And that's a slow
+connection on a slow phone,
+
+692
+00:24:48,060 --> 00:24:51,110
+but it's not the
+worst conditions.
+
+693
+00:24:51,110 --> 00:24:53,990
+Even on 2G, we are
+still interactive
+
+694
+00:24:53,990 --> 00:24:55,679
+in less than 5 seconds.
+
+695
+00:24:55,679 --> 00:24:57,470
+Now, I don't think many
+people in this room
+
+696
+00:24:57,470 --> 00:24:58,640
+spend a lot of time on 2G.
+
+697
+00:24:58,640 --> 00:24:59,714
+I know I don't.
+
+698
+00:24:59,714 --> 00:25:01,130
+But this kind of
+performance means
+
+699
+00:25:01,130 --> 00:25:04,160
+the app is really usable
+even in emerging markets.
+
+700
+00:25:04,160 --> 00:25:05,780
+And this is why
+I'm a huge fan of
+
+701
+00:25:05,780 --> 00:25:07,440
+these microframeworks,
+like PREACT,
+
+702
+00:25:07,440 --> 00:25:10,820
+but also Lit-html,
+hyperHTML, Svelte.
+
+703
+00:25:10,820 --> 00:25:13,340
+We couldn't have actually
+hit these numbers with React
+
+704
+00:25:13,340 --> 00:25:15,770
+because that's 30, 40
+kilobytes out the door.
+
+705
+00:25:15,770 --> 00:25:18,310
+We couldn't do it with Vue,
+because that's 20 kilobytes.
+
+706
+00:25:18,310 --> 00:25:19,220
+Angular is 60.
+
+707
+00:25:19,220 --> 00:25:20,360
+Ember is bigger still.
+
+708
+00:25:20,360 --> 00:25:22,990
+But let's not get carried away.
+
+709
+00:25:22,990 --> 00:25:26,300
+15 kilobytes, 8 of
+which is JavaScript,
+
+710
+00:25:26,300 --> 00:25:29,990
+is actually a lot of
+JavaScript for these couple
+
+711
+00:25:29,990 --> 00:25:30,687
+of interactions.
+
+712
+00:25:30,687 --> 00:25:31,520
+MARIKO KOSAKA: Yeah.
+
+713
+00:25:31,520 --> 00:25:33,650
+So for instance,
+let's look at how
+
+714
+00:25:33,650 --> 00:25:37,760
+we might build this user
+interface with just Vanilla
+
+715
+00:25:37,760 --> 00:25:39,110
+JavaScript.
+
+716
+00:25:39,110 --> 00:25:41,330
+So here's a minimal
+implementation
+
+717
+00:25:41,330 --> 00:25:43,940
+of drag and drop,
+just a few lines.
+
+718
+00:25:43,940 --> 00:25:46,540
+And then add that to
+that drag and drop
+
+719
+00:25:46,540 --> 00:25:49,640
+is the self-selecting
+of file code.
+
+720
+00:25:49,640 --> 00:25:51,140
+That's not that much.
+
+721
+00:25:51,140 --> 00:25:53,870
+And then this is for
+selecting one of the demos,
+
+722
+00:25:53,870 --> 00:25:55,290
+clicking, and loading the image.
+
+723
+00:25:55,290 --> 00:26:00,020
+So these, all of that
+code, minified and gzipped,
+
+724
+00:26:00,020 --> 00:26:02,502
+it's only 550 bytes.
+
+725
+00:26:02,502 --> 00:26:03,710
+JAKE ARCHIBALD: Or 350 bytes.
+
+726
+00:26:03,710 --> 00:26:04,020
+MARIKO KOSAKA: Ooh.
+
+727
+00:26:04,020 --> 00:26:04,790
+JAKE ARCHIBALD: But whatever.
+
+728
+00:26:04,790 --> 00:26:05,900
+I'll go with the
+number on the screen.
+
+729
+00:26:05,900 --> 00:26:07,400
+MARIKO KOSAKA: Can't
+see the number.
+
+730
+00:26:07,400 --> 00:26:09,987
+Yes, 350 bytes.
+
+731
+00:26:09,987 --> 00:26:11,820
+JAKE ARCHIBALD: And
+that's why I get really,
+
+732
+00:26:11,820 --> 00:26:15,320
+really grumpy when I see sites
+like with this 600k or more
+
+733
+00:26:15,320 --> 00:26:16,290
+JavaScript bundle.
+
+734
+00:26:16,290 --> 00:26:17,859
+And that's for
+first interaction.
+
+735
+00:26:17,859 --> 00:26:19,400
+I have friends who
+build native apps.
+
+736
+00:26:19,400 --> 00:26:21,858
+And when they talk about their
+two megabyte Android Instant
+
+737
+00:26:21,858 --> 00:26:24,410
+Apps, I love being able to
+go, instant, 2 megabytes.
+
+738
+00:26:24,410 --> 00:26:24,920
+Great.
+
+739
+00:26:24,920 --> 00:26:26,158
+15k.
+
+740
+00:26:26,158 --> 00:26:27,115
+[LAUGHTER]
+
+741
+00:26:27,115 --> 00:26:27,740
+But then they--
+
+742
+00:26:27,740 --> 00:26:29,020
+MARIKO KOSAKA: With
+your smug face on.
+
+743
+00:26:29,020 --> 00:26:29,894
+JAKE ARCHIBALD: Yeah.
+
+744
+00:26:29,894 --> 00:26:31,035
+[CHUCKLE]
+
+745
+00:26:31,035 --> 00:26:32,660
+I think it's called
+a shit-eating grin.
+
+746
+00:26:32,660 --> 00:26:33,160
+Anyway.
+
+747
+00:26:33,160 --> 00:26:34,040
+[LAUGHTER]
+
+748
+00:26:34,040 --> 00:26:35,960
+But then they can
+point to large parts
+
+749
+00:26:35,960 --> 00:26:39,920
+of the web that have
+thrown this advantage away.
+
+750
+00:26:39,920 --> 00:26:42,590
+Parts of the website have
+taken on the worst of native
+
+751
+00:26:42,590 --> 00:26:44,200
+but none of the benefits.
+
+752
+00:26:44,200 --> 00:26:45,033
+MARIKO KOSAKA: Yeah.
+
+753
+00:26:45,033 --> 00:26:47,810
+So if you take anything,
+anything out of this
+
+754
+00:26:47,810 --> 00:26:51,440
+talk, please, please, please,
+study your website or your web
+
+755
+00:26:51,440 --> 00:26:54,710
+apps, and find out what
+the first interaction is.
+
+756
+00:26:54,710 --> 00:26:57,140
+And shift the reasonable
+amount of code
+
+757
+00:26:57,140 --> 00:26:58,740
+for that first interaction.
+
+758
+00:26:58,740 --> 00:27:00,210
+Now, reasonable amount of code.
+
+759
+00:27:00,210 --> 00:27:01,220
+How do we find out?
+
+760
+00:27:01,220 --> 00:27:02,550
+We have a lot of tools.
+
+761
+00:27:02,550 --> 00:27:03,050
+Yeah.
+
+762
+00:27:03,050 --> 00:27:06,380
+Just experiment, and find out
+what is reasonable to you.
+
+763
+00:27:06,380 --> 00:27:08,562
+
+
+764
+00:27:08,562 --> 00:27:10,520
+JAKE ARCHIBALD: So you
+also need to keep an eye
+
+765
+00:27:10,520 --> 00:27:12,830
+on the bundles between builds.
+
+766
+00:27:12,830 --> 00:27:14,510
+And with webpack--
+and right now that,
+
+767
+00:27:14,510 --> 00:27:17,012
+unfortunately, means going
+and looking at minified code.
+
+768
+00:27:17,012 --> 00:27:18,470
+Because that's
+where it does things
+
+769
+00:27:18,470 --> 00:27:20,090
+like tree-shaking and
+dead-code removal.
+
+770
+00:27:20,090 --> 00:27:21,190
+It's part of the
+minification process.
+
+771
+00:27:21,190 --> 00:27:21,350
+MARIKO KOSAKA: Yeah.
+
+772
+00:27:21,350 --> 00:27:23,267
+We ran into a few bugs
+because of that, right?
+
+773
+00:27:23,267 --> 00:27:24,141
+JAKE ARCHIBALD: Yeah.
+
+774
+00:27:24,141 --> 00:27:26,530
+We were still not quite sure
+if it was a bug in webpack
+
+775
+00:27:26,530 --> 00:27:29,030
+or if it was our expectations
+were different to what webpack
+
+776
+00:27:29,030 --> 00:27:29,570
+was doing.
+
+777
+00:27:29,570 --> 00:27:31,945
+But it was when we dived into
+the minified bundle, that's
+
+778
+00:27:31,945 --> 00:27:33,170
+when we found that stuff out.
+
+779
+00:27:33,170 --> 00:27:36,120
+Alternatives, like rollup
+are much better here.
+
+780
+00:27:36,120 --> 00:27:38,640
+They will show you the dead-code
+removal during development.
+
+781
+00:27:38,640 --> 00:27:40,390
+So it's easier to see
+when something's not
+
+782
+00:27:40,390 --> 00:27:41,340
+going as you expect.
+
+783
+00:27:41,340 --> 00:27:43,760
+But rollup doesn't have the
+kind of holistic asset graph
+
+784
+00:27:43,760 --> 00:27:45,500
+that we really needed
+for this project.
+
+785
+00:27:45,500 --> 00:27:47,510
+Anyway, my point is,
+there are huge gains
+
+786
+00:27:47,510 --> 00:27:49,387
+to be had by keeping
+an eye on this stuff.
+
+787
+00:27:49,387 --> 00:27:50,220
+MARIKO KOSAKA: Yeah.
+
+788
+00:27:50,220 --> 00:27:53,900
+So like we said, we used
+PREACT to orchestrate the DOM
+
+789
+00:27:53,900 --> 00:27:57,800
+But we also used
+Web Components When
+
+790
+00:27:57,800 --> 00:27:59,414
+we were building
+this system, we were
+
+791
+00:27:59,414 --> 00:28:00,830
+talking to a lot
+of developers of,
+
+792
+00:28:00,830 --> 00:28:02,780
+yeah, we are building
+this cool app.
+
+793
+00:28:02,780 --> 00:28:03,881
+And we were using PREACT.
+
+794
+00:28:03,881 --> 00:28:04,880
+And you're going to be--
+
+795
+00:28:04,880 --> 00:28:05,990
+got Web Components.
+
+796
+00:28:05,990 --> 00:28:08,000
+And they were kind of surprised.
+
+797
+00:28:08,000 --> 00:28:10,400
+Because they were asking
+questions like, well, wait.
+
+798
+00:28:10,400 --> 00:28:12,507
+Isn't Web Components an
+alternative to frameworks?
+
+799
+00:28:12,507 --> 00:28:14,090
+JAKE ARCHIBALD: Yeah,
+but they're not.
+
+800
+00:28:14,090 --> 00:28:15,410
+I don't know why you
+would think that.
+
+801
+00:28:15,410 --> 00:28:16,980
+Well, actually, I don't know
+why you would think that,
+
+802
+00:28:16,980 --> 00:28:18,355
+and I think it's
+our fault. Well,
+
+803
+00:28:18,355 --> 00:28:20,112
+I think it's Google's
+fault. I think
+
+804
+00:28:20,112 --> 00:28:22,070
+our messaging suggested
+that Web Components are
+
+805
+00:28:22,070 --> 00:28:23,750
+the same thing as Polymer.
+
+806
+00:28:23,750 --> 00:28:26,150
+And Polymer is an alternative
+to the frameworks.
+
+807
+00:28:26,150 --> 00:28:28,370
+But web-components,
+they're not the same thing.
+
+808
+00:28:28,370 --> 00:28:30,050
+Web Components are
+the lower level
+
+809
+00:28:30,050 --> 00:28:31,257
+primitive that Polymer uses.
+
+810
+00:28:31,257 --> 00:28:32,090
+MARIKO KOSAKA: Yeah.
+
+811
+00:28:32,090 --> 00:28:36,070
+We did use Polymer's custom
+element polyfill for Edge.
+
+812
+00:28:36,070 --> 00:28:39,010
+But for other browsers, we
+just shipped the Vanilla web
+
+813
+00:28:39,010 --> 00:28:40,035
+components
+
+814
+00:28:40,035 --> 00:28:40,910
+JAKE ARCHIBALD: Yeah.
+
+815
+00:28:40,910 --> 00:28:43,201
+We used custom elements for
+some of our leaf components
+
+816
+00:28:43,201 --> 00:28:45,696
+that contained the
+minimal amount of state.
+
+817
+00:28:45,696 --> 00:28:47,570
+For instance, this is
+the pinch-zoom element.
+
+818
+00:28:47,570 --> 00:28:50,040
+Just put stuff inside it;
+now you can pinch-zoom it.
+
+819
+00:28:50,040 --> 00:28:51,570
+And it has an API.
+
+820
+00:28:51,570 --> 00:28:54,800
+We also did this with our
+side-by-side slidy thing,
+
+821
+00:28:54,800 --> 00:28:55,370
+comparison.
+
+822
+00:28:55,370 --> 00:28:56,240
+MARIKO KOSAKA: We
+call it two-up.
+
+823
+00:28:56,240 --> 00:28:57,530
+JAKE ARCHIBALD: We
+call it a two-up, yeah,
+
+824
+00:28:57,530 --> 00:28:58,760
+because we didn't know
+what else to call it.
+
+825
+00:28:58,760 --> 00:29:00,560
+A fancy range
+input, drop target--
+
+826
+00:29:00,560 --> 00:29:02,780
+we made components for
+all these bits and pieces.
+
+827
+00:29:02,780 --> 00:29:03,613
+MARIKO KOSAKA: Yeah.
+
+828
+00:29:03,613 --> 00:29:06,260
+So we could have done all
+of this in PREACT component
+
+829
+00:29:06,260 --> 00:29:07,700
+because we were using PREACT.
+
+830
+00:29:07,700 --> 00:29:10,970
+But using Web Components,
+we can take that
+
+831
+00:29:10,970 --> 00:29:13,220
+and put it into some
+other project using
+
+832
+00:29:13,220 --> 00:29:17,210
+different frameworks or just
+use it as is in the project
+
+833
+00:29:17,210 --> 00:29:18,950
+that you don't really
+need framework.
+
+834
+00:29:18,950 --> 00:29:19,130
+JAKE ARCHIBALD: Yeah.
+
+835
+00:29:19,130 --> 00:29:20,150
+And if you're open
+sourcing client,
+
+836
+00:29:20,150 --> 00:29:22,108
+Web Components are the
+best way to share things
+
+837
+00:29:22,108 --> 00:29:23,627
+like this, so we did.
+
+838
+00:29:23,627 --> 00:29:25,460
+We have released a few
+of our Web Components
+
+839
+00:29:25,460 --> 00:29:26,280
+a separate project.
+
+840
+00:29:26,280 --> 00:29:28,340
+So we'll make more
+available as we extract them
+
+841
+00:29:28,340 --> 00:29:29,539
+from the main app.
+
+842
+00:29:29,539 --> 00:29:30,830
+We were hoping to release more.
+
+843
+00:29:30,830 --> 00:29:32,121
+But uh, we've run out of Time--
+
+844
+00:29:32,121 --> 00:29:32,870
+Whatever.
+
+845
+00:29:32,870 --> 00:29:34,550
+We used PREACT,
+but these things,
+
+846
+00:29:34,550 --> 00:29:37,737
+they can be used in Vue, Svelte,
+Angular, React, whatever.
+
+847
+00:29:37,737 --> 00:29:38,570
+MARIKO KOSAKA: Yeah.
+
+848
+00:29:38,570 --> 00:29:41,540
+Most frameworks are
+fine with Web Component.
+
+849
+00:29:41,540 --> 00:29:44,220
+But some have a few rough edges.
+
+850
+00:29:44,220 --> 00:29:47,735
+So if you are curious, check out
+custom-elements-everywhere.com
+
+851
+00:29:47,735 --> 00:29:51,630
+to see how custom elements work
+with whatever the framework you
+
+852
+00:29:51,630 --> 00:29:53,300
+are using.
+
+853
+00:29:53,300 --> 00:29:55,050
+JAKE ARCHIBALD: We
+also released libraries
+
+854
+00:29:55,050 --> 00:29:56,310
+for some of the other
+things we built,
+
+855
+00:29:56,310 --> 00:29:57,894
+like a pointer
+event helper, thing,
+
+856
+00:29:57,894 --> 00:30:00,060
+and a webpack plugin for
+dealing with asset inlining
+
+857
+00:30:00,060 --> 00:30:01,260
+and optimization.
+
+858
+00:30:01,260 --> 00:30:03,240
+So it has been--
+
+859
+00:30:03,240 --> 00:30:05,100
+well, we're vastly
+running out of time--
+
+860
+00:30:05,100 --> 00:30:09,450
+20-odd minutes, and I haven't
+yet mentioned service workers.
+
+861
+00:30:09,450 --> 00:30:11,910
+MARIKO KOSAKA: A new record
+at the very end, very end.
+
+862
+00:30:11,910 --> 00:30:13,547
+JAKE ARCHIBALD: New
+personal record.
+
+863
+00:30:13,547 --> 00:30:14,880
+Yes, the site does work offline.
+
+864
+00:30:14,880 --> 00:30:16,890
+Our service worker approach
+isn't particularly novel.
+
+865
+00:30:16,890 --> 00:30:17,700
+We catch the things.
+
+866
+00:30:17,700 --> 00:30:18,450
+We serve the things.
+
+867
+00:30:18,450 --> 00:30:19,430
+That means it works offline.
+
+868
+00:30:19,430 --> 00:30:20,850
+And we also let
+the user know when
+
+869
+00:30:20,850 --> 00:30:22,420
+there's an update available.
+
+870
+00:30:22,420 --> 00:30:23,253
+MARIKO KOSAKA: Yeah.
+
+871
+00:30:23,253 --> 00:30:27,900
+But there's one unique
+thing about this Squoosh.
+
+872
+00:30:27,900 --> 00:30:32,190
+That is, when users first visit
+the site, we cache all of it
+
+873
+00:30:32,190 --> 00:30:33,750
+in the next interaction.
+
+874
+00:30:33,750 --> 00:30:38,550
+But we do not cache any of the
+codec, the 300 kilobyte bit,
+
+875
+00:30:38,550 --> 00:30:41,400
+until the user access
+will drop the image
+
+876
+00:30:41,400 --> 00:30:42,820
+and then get to this view.
+
+877
+00:30:42,820 --> 00:30:42,960
+JAKE ARCHIBALD: Yeah.
+
+878
+00:30:42,960 --> 00:30:45,000
+And this was just being kind
+to the user's bandwidth.
+
+879
+00:30:45,000 --> 00:30:46,458
+When the user just
+visits the site,
+
+880
+00:30:46,458 --> 00:30:49,124
+it feels rude to download
+the whole 400k app.
+
+881
+00:30:49,124 --> 00:30:50,790
+So we wait for some
+signal from the user
+
+882
+00:30:50,790 --> 00:30:52,260
+that they're
+actually interested.
+
+883
+00:30:52,260 --> 00:30:54,210
+And that's when we cache
+the chunkier parts.
+
+884
+00:30:54,210 --> 00:30:55,043
+MARIKO KOSAKA: Yeah.
+
+885
+00:30:55,043 --> 00:30:57,090
+And this is what we love
+about the web, right?
+
+886
+00:30:57,090 --> 00:30:59,400
+Write it once, build
+it, and then put it
+
+887
+00:30:59,400 --> 00:31:05,415
+into phone, tablet, desktop,
+with the fraction of the size.
+
+888
+00:31:05,415 --> 00:31:07,540
+JAKE ARCHIBALD: Of the
+equivalent native app, yeah.
+
+889
+00:31:07,540 --> 00:31:10,320
+And those native apps are only
+targeting one operating system.
+
+890
+00:31:10,320 --> 00:31:11,760
+Whereas, we can
+hit loads of them.
+
+891
+00:31:11,760 --> 00:31:13,710
+And to share it,
+just copy the URL--
+
+892
+00:31:13,710 --> 00:31:14,430
+MARIKO KOSAKA:
+That's the best part.
+
+893
+00:31:14,430 --> 00:31:14,730
+JAKE ARCHIBALD: --and
+send it to someone.
+
+894
+00:31:14,730 --> 00:31:15,720
+MARIKO KOSAKA: That's
+the best part of the web.
+
+895
+00:31:15,720 --> 00:31:16,720
+JAKE ARCHIBALD: Love it.
+
+896
+00:31:16,720 --> 00:31:19,120
+MARIKO KOSAKA: So if you
+want to dig into the code,
+
+897
+00:31:19,120 --> 00:31:20,610
+it's all on GitHub.
+
+898
+00:31:20,610 --> 00:31:23,100
+There are lots of
+things we want to do.
+
+899
+00:31:23,100 --> 00:31:26,610
+There are bugs to fix,
+codecs we want to include.
+
+900
+00:31:26,610 --> 00:31:30,020
+And if you're interested, please
+come join us to build this up.
+
+901
+00:31:30,020 --> 00:31:33,047
+We really want this tool to
+be really useful to everyone.
+
+902
+00:31:33,047 --> 00:31:34,380
+JAKE ARCHIBALD: Yes, absolutely.
+
+903
+00:31:34,380 --> 00:31:36,090
+So thanks for listening.
+
+904
+00:31:36,090 --> 00:31:38,469
+Now go Squoosh some images.
+
+905
+00:31:38,469 --> 00:31:40,260
+MARIKO KOSAKA: Please
+never say that again.
+
+906
+00:31:40,260 --> 00:31:41,160
+[APPLAUSE]
+
+907
+00:31:41,160 --> 00:31:42,153
+Thank you very much.
+
+908
+00:31:42,153 --> 00:31:42,340
+JAKE ARCHIBALD: I
+promise nothing.
+
+909
+00:31:42,340 --> 00:31:43,530
+Thank you very much.
+
+910
+00:31:43,530 --> 00:31:45,680
+[MUSIC PLAYING]
+
+911
+00:31:45,680 --> 00:31:53,555

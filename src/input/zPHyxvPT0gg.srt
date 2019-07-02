@@ -1,0 +1,3898 @@
+1
+00:00:00,000 --> 00:00:03,776
+[MUSIC PLAYING]
+
+2
+00:00:03,776 --> 00:00:07,087
+
+
+3
+00:00:07,087 --> 00:00:08,920
+BEN GALBRAITH: Welcome
+to Chrome Dev Summit.
+
+4
+00:00:08,920 --> 00:00:10,120
+I'm Ben Galbraith.
+
+5
+00:00:10,120 --> 00:00:12,615
+I lead product for the
+Chrome platform teams.
+
+6
+00:00:12,615 --> 00:00:13,990
+DION ALMAER: And
+I'm Dior Almaer,
+
+7
+00:00:13,990 --> 00:00:16,282
+and I lead product for our
+developer ecosystem efforts.
+
+8
+00:00:16,282 --> 00:00:17,989
+BEN GALBRAITH: Thanks
+for joining us here
+
+9
+00:00:17,989 --> 00:00:21,006
+at the Yerba Buena Center for
+the Arts here in San Francisco.
+
+10
+00:00:21,006 --> 00:00:22,630
+And a special shout-out
+to those of you
+
+11
+00:00:22,630 --> 00:00:23,755
+watching on the livestream.
+
+12
+00:00:23,755 --> 00:00:25,296
+DION ALMAER: We look
+forward all year
+
+13
+00:00:25,296 --> 00:00:27,250
+to this opportunity to
+gather with developers
+
+14
+00:00:27,250 --> 00:00:30,580
+from around the world to
+celebrate the web platform.
+
+15
+00:00:30,580 --> 00:00:33,530
+And of course, it's an
+opportunity for the Chrome team
+
+16
+00:00:33,530 --> 00:00:36,010
+and others here at
+Google to provide updates
+
+17
+00:00:36,010 --> 00:00:40,130
+on our latest work and get
+feedback from the community.
+
+18
+00:00:40,130 --> 00:00:42,400
+BEN GALBRAITH:
+2018 marks 10 years
+
+19
+00:00:42,400 --> 00:00:44,680
+since the launch of
+Chrome, but it also
+
+20
+00:00:44,680 --> 00:00:46,930
+marks Android's
+10-year anniversary,
+
+21
+00:00:46,930 --> 00:00:51,350
+and 20 years since Google
+was founded, back in 1998.
+
+22
+00:00:51,350 --> 00:00:53,620
+So this is a really
+big year for us,
+
+23
+00:00:53,620 --> 00:00:57,490
+and it's got us reflecting
+on these past 10 years.
+
+24
+00:00:57,490 --> 00:01:00,040
+Back in 2008, Dion
+and I were at Mozilla
+
+25
+00:01:00,040 --> 00:01:02,920
+working on developer tools
+when we received probably
+
+26
+00:01:02,920 --> 00:01:05,500
+the most unique product
+announcement we'd ever seen,
+
+27
+00:01:05,500 --> 00:01:09,130
+the Chrome comic, which walked
+through Chrome's new features,
+
+28
+00:01:09,130 --> 00:01:12,550
+like the Omnibox, and
+architectural innovations
+
+29
+00:01:12,550 --> 00:01:15,010
+like the multi-process
+architecture,
+
+30
+00:01:15,010 --> 00:01:17,584
+and the high-performance
+V8 JavaScript runtime.
+
+31
+00:01:17,584 --> 00:01:19,000
+DION ALMAER: And
+years later, it's
+
+32
+00:01:19,000 --> 00:01:22,720
+really fun to note the
+V8 was reused by Node.js
+
+33
+00:01:22,720 --> 00:01:25,870
+and plenty of other open
+source projects out there.
+
+34
+00:01:25,870 --> 00:01:28,210
+BEN GALBRAITH: Chrome
+launched in this time,
+
+35
+00:01:28,210 --> 00:01:30,010
+in the midst of a
+web renaissance,
+
+36
+00:01:30,010 --> 00:01:32,650
+back in the Ajax movement
+that saw developers
+
+37
+00:01:32,650 --> 00:01:36,040
+pushing the boundaries of
+what was possible on the web,
+
+38
+00:01:36,040 --> 00:01:38,390
+doing things that we
+just hadn't seen before.
+
+39
+00:01:38,390 --> 00:01:40,390
+And it's amazing to see
+just how far the web has
+
+40
+00:01:40,390 --> 00:01:43,930
+come in these 10 years, with
+publishers like Huffington
+
+41
+00:01:43,930 --> 00:01:47,290
+Post transforming the
+typical documents of the web
+
+42
+00:01:47,290 --> 00:01:49,810
+into rich, interactive
+experiences--
+
+43
+00:01:49,810 --> 00:01:51,820
+DION ALMAER: --and Google
+Maps, an early pioneer
+
+44
+00:01:51,820 --> 00:01:55,210
+of that Ajax era, had gone
+from maps of tiled images
+
+45
+00:01:55,210 --> 00:01:59,830
+to a street-to-space continuum
+combining 360-degree photos,
+
+46
+00:01:59,830 --> 00:02:03,560
+vector maps, 3D models,
+and satellite imagery,
+
+47
+00:02:03,560 --> 00:02:05,119
+all just in the browser.
+
+48
+00:02:05,119 --> 00:02:07,660
+BEN GALBRAITH: And productivity
+apps have come into their own
+
+49
+00:02:07,660 --> 00:02:11,710
+on the platform, with pro tools
+like the incomparable AutoCAD
+
+50
+00:02:11,710 --> 00:02:13,732
+and the collaborative
+design platform, Figma.
+
+51
+00:02:13,732 --> 00:02:15,190
+And because they're
+on the web, you
+
+52
+00:02:15,190 --> 00:02:17,230
+can get right into these things.
+
+53
+00:02:17,230 --> 00:02:19,030
+And when you're done
+being productive,
+
+54
+00:02:19,030 --> 00:02:21,250
+you can pop into high-quality
+games like Crossy Road
+
+55
+00:02:21,250 --> 00:02:23,290
+for, you know, just a
+minute-- just a couple.
+
+56
+00:02:23,290 --> 00:02:25,822
+Just a quick minute.
+
+57
+00:02:25,822 --> 00:02:27,316
+[LAUGHTER]
+
+58
+00:02:27,316 --> 00:02:28,162
+
+
+59
+00:02:28,162 --> 00:02:29,620
+DION ALMAER: And
+Chrome has changed
+
+60
+00:02:29,620 --> 00:02:31,330
+quite a bit over
+this time, and more
+
+61
+00:02:31,330 --> 00:02:34,151
+than just these subtle
+changes to the logo.
+
+62
+00:02:34,151 --> 00:02:35,650
+BEN GALBRAITH:
+Earlier this year, we
+
+63
+00:02:35,650 --> 00:02:37,930
+highlighted Chrome's
+new refreshed design,
+
+64
+00:02:37,930 --> 00:02:41,110
+and updated usability
+enhancements such as better tab
+
+65
+00:02:41,110 --> 00:02:43,960
+treatment for people like
+Dion that have 500 tabs
+
+66
+00:02:43,960 --> 00:02:45,042
+open at a time.
+
+67
+00:02:45,042 --> 00:02:46,000
+DION ALMAER: It's true.
+
+68
+00:02:46,000 --> 00:02:46,960
+[CHUCKLING]
+
+69
+00:02:46,960 --> 00:02:50,710
+BEN GALBRAITH: And also a
+smarter Omnibox and auto-fill
+
+70
+00:02:50,710 --> 00:02:51,490
+features.
+
+71
+00:02:51,490 --> 00:02:53,680
+But the most important
+update was clearly--
+
+72
+00:02:53,680 --> 00:02:55,960
+DION ALMAER: --the birthday
+mode and the Dino game,
+
+73
+00:02:55,960 --> 00:02:59,330
+which run for the entire
+month of September.
+
+74
+00:02:59,330 --> 00:03:02,385
+Do you know this is played
+over 270 million times a month?
+
+75
+00:03:02,385 --> 00:03:03,760
+BEN GALBRAITH:
+That's incredible.
+
+76
+00:03:03,760 --> 00:03:04,885
+DION ALMAER: It kind of is.
+
+77
+00:03:04,885 --> 00:03:05,500
+[CHUCKLING]
+
+78
+00:03:05,500 --> 00:03:07,180
+BEN GALBRAITH: But
+here at CDS, it's
+
+79
+00:03:07,180 --> 00:03:08,876
+really the
+platform-related features
+
+80
+00:03:08,876 --> 00:03:10,000
+that we want to talk about.
+
+81
+00:03:10,000 --> 00:03:12,170
+So let's highlight a few.
+
+82
+00:03:12,170 --> 00:03:13,780
+DION ALMAER: So
+back in 2008, Chrome
+
+83
+00:03:13,780 --> 00:03:16,490
+launched with process
+isolation, an architecture that
+
+84
+00:03:16,490 --> 00:03:19,720
+put each tab in its own
+operating system process,
+
+85
+00:03:19,720 --> 00:03:23,260
+making Chrome exceptionally
+stable, but also exceptionally
+
+86
+00:03:23,260 --> 00:03:24,400
+secure.
+
+87
+00:03:24,400 --> 00:03:26,860
+The process boundary acts as
+a line of defense in the event
+
+88
+00:03:26,860 --> 00:03:29,230
+malicious code is
+able to exploit a bug
+
+89
+00:03:29,230 --> 00:03:31,810
+and attempt to read
+data from another tab.
+
+90
+00:03:31,810 --> 00:03:33,730
+Over the past 10
+years, this model
+
+91
+00:03:33,730 --> 00:03:35,680
+has become the
+industry standard.
+
+92
+00:03:35,680 --> 00:03:37,840
+BEN GALBRAITH: This year,
+desktop Chrome browsers
+
+93
+00:03:37,840 --> 00:03:41,890
+took this model further with
+the launch of Site Isolation.
+
+94
+00:03:41,890 --> 00:03:45,490
+So now, Chrome ensures that
+even within a single tab,
+
+95
+00:03:45,490 --> 00:03:48,710
+content from different
+Domains is isolated.
+
+96
+00:03:48,710 --> 00:03:50,590
+So in this example,
+in the iframe,
+
+97
+00:03:50,590 --> 00:03:53,770
+this news site is
+using a display ad,
+
+98
+00:03:53,770 --> 00:03:55,600
+and it's running in
+a different process
+
+99
+00:03:55,600 --> 00:03:57,520
+than the rest of the page.
+
+100
+00:03:57,520 --> 00:03:59,650
+We've wanted to extend
+process isolation this way
+
+101
+00:03:59,650 --> 00:04:02,500
+for some time, and we think
+it's an important protection
+
+102
+00:04:02,500 --> 00:04:04,019
+for the web.
+
+103
+00:04:04,019 --> 00:04:06,310
+DION ALMAER: Now we've also
+been continuing our efforts
+
+104
+00:04:06,310 --> 00:04:10,840
+to encourage developers to
+use HTTPS for all web traffic.
+
+105
+00:04:10,840 --> 00:04:12,930
+This ensures that
+the content of a site
+
+106
+00:04:12,930 --> 00:04:15,430
+isn't maliciously
+modified while in transit,
+
+107
+00:04:15,430 --> 00:04:19,070
+and also that user data
+is transferred securely.
+
+108
+00:04:19,070 --> 00:04:20,570
+BEN GALBRAITH: In
+the latest Chrome,
+
+109
+00:04:20,570 --> 00:04:24,980
+we mark pages as not secure
+when they're served from HTTP.
+
+110
+00:04:24,980 --> 00:04:27,620
+And when the user begins to
+interact with form fields,
+
+111
+00:04:27,620 --> 00:04:32,200
+we further emphasize the
+point with a stronger warning.
+
+112
+00:04:32,200 --> 00:04:35,140
+DION ALMAER: The HTTPS movement
+is a collaborative effort,
+
+113
+00:04:35,140 --> 00:04:37,270
+with organizations
+like Let's Encrypt
+
+114
+00:04:37,270 --> 00:04:39,820
+playing a big role in lowering
+the barriers to upgrading
+
+115
+00:04:39,820 --> 00:04:40,750
+sites.
+
+116
+00:04:40,750 --> 00:04:42,130
+And it's working.
+
+117
+00:04:42,130 --> 00:04:45,520
+In Chrome itself, we're
+seeing big shifts to HTTPS.
+
+118
+00:04:45,520 --> 00:04:50,470
+And over 80% of the top 100
+sites are now all HTTPS.
+
+119
+00:04:50,470 --> 00:04:52,480
+We think this is actually
+a major accomplishment
+
+120
+00:04:52,480 --> 00:04:55,669
+because the web is such
+a massive ecosystem.
+
+121
+00:04:55,669 --> 00:04:56,710
+BEN GALBRAITH: All right.
+
+122
+00:04:56,710 --> 00:04:58,390
+In addition to
+security and stability,
+
+123
+00:04:58,390 --> 00:05:01,390
+speed was a big theme
+for Chrome at launch.
+
+124
+00:05:01,390 --> 00:05:05,320
+And V8 is a big
+part of that story.
+
+125
+00:05:05,320 --> 00:05:08,200
+The team recently posted a
+retrospective highlighting
+
+126
+00:05:08,200 --> 00:05:10,660
+its improvements over
+this period, including
+
+127
+00:05:10,660 --> 00:05:13,660
+significant gains in
+JavaScript execution speed,
+
+128
+00:05:13,660 --> 00:05:18,130
+and a 100x decrease in
+garbage collection jank.
+
+129
+00:05:18,130 --> 00:05:20,920
+And the team is looking
+forward to the next 10
+
+130
+00:05:20,920 --> 00:05:23,950
+years of improvements by
+optimizing V8 for the latest
+
+131
+00:05:23,950 --> 00:05:27,730
+JavaScript language features,
+like promises and async/await,
+
+132
+00:05:27,730 --> 00:05:30,310
+supporting the Node.js
+server-side community,
+
+133
+00:05:30,310 --> 00:05:32,830
+and being responsive to
+the needs of the framework
+
+134
+00:05:32,830 --> 00:05:34,360
+ecosystem.
+
+135
+00:05:34,360 --> 00:05:36,770
+DION ALMAER: There's a fun
+recent example of this--
+
+136
+00:05:36,770 --> 00:05:40,180
+how the team rapidly responded
+to JavaScript inefficiencies
+
+137
+00:05:40,180 --> 00:05:43,270
+related to the react framework's
+recently announced hooks
+
+138
+00:05:43,270 --> 00:05:45,460
+feature, finding ways
+to make this feature
+
+139
+00:05:45,460 --> 00:05:49,000
+work much faster on V8.
+
+140
+00:05:49,000 --> 00:05:51,940
+Now V8 has also expanded
+to support WebAssembly,
+
+141
+00:05:51,940 --> 00:05:54,460
+also called Wasm, a
+cross-browser standard
+
+142
+00:05:54,460 --> 00:05:57,550
+for executing low-level
+code, like C and C++,
+
+143
+00:05:57,550 --> 00:05:59,544
+at very high speed.
+
+144
+00:05:59,544 --> 00:06:01,960
+Earlier this year, the team
+launched the new Wasm compiler
+
+145
+00:06:01,960 --> 00:06:04,930
+called Liftoff, and the
+popular Unity game engine
+
+146
+00:06:04,930 --> 00:06:08,560
+found that it resulted in a
+10x reduction in the load time
+
+147
+00:06:08,560 --> 00:06:10,600
+for their Wasm code.
+
+148
+00:06:10,600 --> 00:06:12,280
+BEN GALBRAITH: And
+WebAssembly threads
+
+149
+00:06:12,280 --> 00:06:14,440
+are now available
+in a Chrome origin
+
+150
+00:06:14,440 --> 00:06:17,530
+trial, which opens the
+door for more complex code
+
+151
+00:06:17,530 --> 00:06:19,275
+to come to the web.
+
+152
+00:06:19,275 --> 00:06:20,650
+DION ALMAER: Now
+it's been really
+
+153
+00:06:20,650 --> 00:06:23,230
+fun to see the community explode
+the power of WebAssembly,
+
+154
+00:06:23,230 --> 00:06:27,340
+both through new creations and
+by bringing old code bases--
+
+155
+00:06:27,340 --> 00:06:29,965
+BEN GALBRAITH: Actually, I think
+I prefer the term vintage code
+
+156
+00:06:29,965 --> 00:06:30,464
+bases.
+
+157
+00:06:30,464 --> 00:06:32,800
+DION ALMAER: Vintage-- vintage,
+high-quality code bases
+
+158
+00:06:32,800 --> 00:06:34,000
+to the web.
+
+159
+00:06:34,000 --> 00:06:35,830
+This tweet was one
+of my favorites, kind
+
+160
+00:06:35,830 --> 00:06:38,320
+of a in inception
+moment, because now I
+
+161
+00:06:38,320 --> 00:06:42,787
+think you can run IE on Windows
+95 on Chrome on Android.
+
+162
+00:06:42,787 --> 00:06:43,870
+BEN GALBRAITH: It's crazy.
+
+163
+00:06:43,870 --> 00:06:44,200
+[LAUGHTER]
+
+164
+00:06:44,200 --> 00:06:46,060
+DION ALMAER: What a
+world that we live in.
+
+165
+00:06:46,060 --> 00:06:46,600
+BEN GALBRAITH: It's
+hard to believe,
+
+166
+00:06:46,600 --> 00:06:48,558
+but back when Chrome
+launched, video on the web
+
+167
+00:06:48,558 --> 00:06:49,240
+wasn't a thing.
+
+168
+00:06:49,240 --> 00:06:50,980
+We had to use plugins.
+
+169
+00:06:50,980 --> 00:06:55,000
+And now, of course, HTML
+video is ubiquitous.
+
+170
+00:06:55,000 --> 00:06:58,700
+This year, Chrome
+landed support for AV1,
+
+171
+00:06:58,700 --> 00:07:01,600
+which is the next generation
+media codec, completely
+
+172
+00:07:01,600 --> 00:07:05,560
+royalty-free, that provides
+a 30% bitrate reduction,
+
+173
+00:07:05,560 --> 00:07:10,000
+even over each HEVC, which
+makes streaming video on the web
+
+174
+00:07:10,000 --> 00:07:12,370
+faster as this becomes adopted.
+
+175
+00:07:12,370 --> 00:07:15,580
+And because AV1 has
+major industry backing,
+
+176
+00:07:15,580 --> 00:07:19,894
+we can expect to see it receive
+significant adoption over time.
+
+177
+00:07:19,894 --> 00:07:22,060
+DION ALMAER: Now one constant
+over the past 10 years
+
+178
+00:07:22,060 --> 00:07:24,680
+is the importance of
+optimizing images.
+
+179
+00:07:24,680 --> 00:07:26,800
+This is sort of like
+flossing for the internet--
+
+180
+00:07:26,800 --> 00:07:29,320
+vital for your site's
+health, yet plenty of us
+
+181
+00:07:29,320 --> 00:07:30,850
+don't really seem
+to do it enough.
+
+182
+00:07:30,850 --> 00:07:32,470
+And as a Brit, trust
+me on that one.
+
+183
+00:07:32,470 --> 00:07:33,710
+[BEN CHUCKLING]
+
+184
+00:07:33,710 --> 00:07:35,470
+Now a few years ago,
+Chrome added support
+
+185
+00:07:35,470 --> 00:07:37,210
+for WebP, a new
+image format that
+
+186
+00:07:37,210 --> 00:07:40,660
+results in an average 30%
+savings over other formats
+
+187
+00:07:40,660 --> 00:07:42,644
+like PNG, JPEG, and GIF.
+
+188
+00:07:42,644 --> 00:07:43,560
+BEN GALBRAITH: "Jiff."
+
+189
+00:07:43,560 --> 00:07:44,560
+DION ALMAER: What was that?
+
+190
+00:07:44,560 --> 00:07:44,670
+BEN GALBRAITH: No.
+
+191
+00:07:44,670 --> 00:07:45,310
+DION ALMAER: Oh, sorry.
+
+192
+00:07:45,310 --> 00:07:45,840
+BEN GALBRAITH: I didn't talk.
+
+193
+00:07:45,840 --> 00:07:46,620
+[LAUGHTER]
+
+194
+00:07:46,620 --> 00:07:48,453
+DION ALMAER: And this
+year, Edge and Firefox
+
+195
+00:07:48,453 --> 00:07:50,470
+ship support for
+WebP, so make sure
+
+196
+00:07:50,470 --> 00:07:53,290
+your images are fully squooshed.
+
+197
+00:07:53,290 --> 00:07:55,750
+BEN GALBRAITH: All right, so
+the web and Chrome have come
+
+198
+00:07:55,750 --> 00:07:59,050
+a long way these past 10 years.
+
+199
+00:07:59,050 --> 00:08:01,346
+So where do we go from here?
+
+200
+00:08:01,346 --> 00:08:03,220
+We've just spent the
+last few minutes talking
+
+201
+00:08:03,220 --> 00:08:06,220
+about the importance of speed,
+and the enhancements to the web
+
+202
+00:08:06,220 --> 00:08:09,320
+platform that make
+that more possible.
+
+203
+00:08:09,320 --> 00:08:12,460
+And we think this will continue
+to be a major focus for all
+
+204
+00:08:12,460 --> 00:08:15,520
+of us into the future because
+speed is one of the defining
+
+205
+00:08:15,520 --> 00:08:18,220
+features of the web platform.
+
+206
+00:08:18,220 --> 00:08:20,950
+It's what makes it so magical
+to go from a link right
+
+207
+00:08:20,950 --> 00:08:25,665
+into a rich experience,
+seamlessly, without any delay.
+
+208
+00:08:25,665 --> 00:08:27,040
+DION ALMAER: Now
+delivering speed
+
+209
+00:08:27,040 --> 00:08:29,950
+is a partnership between
+the browsers and developers.
+
+210
+00:08:29,950 --> 00:08:33,280
+Because no matter how fast
+and efficient browsers become,
+
+211
+00:08:33,280 --> 00:08:35,110
+a poorly optimized
+site will always
+
+212
+00:08:35,110 --> 00:08:36,669
+ruin the fast
+loading experiences
+
+213
+00:08:36,669 --> 00:08:38,580
+that our users want.
+
+214
+00:08:38,580 --> 00:08:42,179
+And increasingly, JavaScript
+can also become a major factor
+
+215
+00:08:42,179 --> 00:08:43,559
+in slowing down sites.
+
+216
+00:08:43,559 --> 00:08:45,540
+BEN GALBRAITH: It's
+because since 2001, sites
+
+217
+00:08:45,540 --> 00:08:48,180
+use an average eight
+times more JavaScript
+
+218
+00:08:48,180 --> 00:08:49,652
+than they did before.
+
+219
+00:08:49,652 --> 00:08:51,360
+And that's a problem,
+because in addition
+
+220
+00:08:51,360 --> 00:08:53,220
+to having to be
+downloaded, all this code
+
+221
+00:08:53,220 --> 00:08:56,960
+needs to be compiled by
+the browser and executed.
+
+222
+00:08:56,960 --> 00:08:59,070
+And with mobile,
+many of the devices
+
+223
+00:08:59,070 --> 00:09:00,540
+that our users are
+using are slower
+
+224
+00:09:00,540 --> 00:09:02,170
+than they've been before.
+
+225
+00:09:02,170 --> 00:09:05,790
+And so increasingly,
+performance can include the CPU
+
+226
+00:09:05,790 --> 00:09:06,840
+as a bottleneck.
+
+227
+00:09:06,840 --> 00:09:08,340
+DION ALMAER: Now
+we've created tools
+
+228
+00:09:08,340 --> 00:09:10,200
+like Lighthouse,
+PageSpeed Insights,
+
+229
+00:09:10,200 --> 00:09:12,000
+and the Chrome User
+Experience Report
+
+230
+00:09:12,000 --> 00:09:14,850
+that can provide deep insights
+into your site's performance
+
+231
+00:09:14,850 --> 00:09:16,675
+and how it can be improved.
+
+232
+00:09:16,675 --> 00:09:19,050
+BEN GALBRAITH: However, as
+helpful as these tools can be,
+
+233
+00:09:19,050 --> 00:09:21,990
+a pattern we've seen is that a
+site's performance will degrade
+
+234
+00:09:21,990 --> 00:09:25,590
+over time because we're
+constantly adding new features
+
+235
+00:09:25,590 --> 00:09:27,270
+to enhance our site.
+
+236
+00:09:27,270 --> 00:09:30,000
+And these new features
+create pressure for the site
+
+237
+00:09:30,000 --> 00:09:31,590
+to get bigger and bigger.
+
+238
+00:09:31,590 --> 00:09:33,750
+And that includes more
+script an more resources
+
+239
+00:09:33,750 --> 00:09:35,196
+that have to be downloaded.
+
+240
+00:09:35,196 --> 00:09:37,070
+Of course, we're not
+saying that we shouldn't
+
+241
+00:09:37,070 --> 00:09:39,890
+be constantly enhancing our
+sites and adding features,
+
+242
+00:09:39,890 --> 00:09:42,930
+but as we do so, we
+have to take care
+
+243
+00:09:42,930 --> 00:09:46,160
+that as we add these features we
+ensure that our pages continue
+
+244
+00:09:46,160 --> 00:09:47,527
+to load fast.
+
+245
+00:09:47,527 --> 00:09:49,110
+DION ALMAER: So an
+approach that we've
+
+246
+00:09:49,110 --> 00:09:51,090
+seen that's led to
+great results here
+
+247
+00:09:51,090 --> 00:09:54,360
+is the practice of establishing
+a performance budget.
+
+248
+00:09:54,360 --> 00:09:56,370
+And popular tools
+and frameworks,
+
+249
+00:09:56,370 --> 00:09:58,650
+like Angular,
+Preact, and Webpack
+
+250
+00:09:58,650 --> 00:10:02,640
+have built-in support to define
+budgets and enforce them.
+
+251
+00:10:02,640 --> 00:10:04,230
+These budgets can
+be based on the bite
+
+252
+00:10:04,230 --> 00:10:06,090
+size of your
+resources, or they can
+
+253
+00:10:06,090 --> 00:10:08,830
+ensure you hit target
+metrics and scenarios.
+
+254
+00:10:08,830 --> 00:10:10,950
+For example, you can specify
+that your site should
+
+255
+00:10:10,950 --> 00:10:14,130
+load in under five seconds
+on a mid-range smartphone
+
+256
+00:10:14,130 --> 00:10:16,440
+and a high-latency 3G network.
+
+257
+00:10:16,440 --> 00:10:17,940
+BEN GALBRAITH: The
+team at Pinterest
+
+258
+00:10:17,940 --> 00:10:21,150
+have set a great example
+of using a budget to guide
+
+259
+00:10:21,150 --> 00:10:23,081
+their optimizations efforts.
+
+260
+00:10:23,081 --> 00:10:25,330
+We'd love to share a video
+that explains this process.
+
+261
+00:10:25,330 --> 00:10:25,950
+now.
+
+262
+00:10:25,950 --> 00:10:27,063
+Let's roll the video.
+
+263
+00:10:27,063 --> 00:10:28,422
+[VIDEO PLAYBACK]
+
+264
+00:10:28,422 --> 00:10:30,240
+[MUSIC PLAYING]
+
+265
+00:10:30,240 --> 00:10:31,800
+ZACK ARGYLE:
+Pinterest's mission is
+
+266
+00:10:31,800 --> 00:10:35,584
+to help people discover things,
+collect them, organize them,
+
+267
+00:10:35,584 --> 00:10:37,500
+and then find ways to
+apply them in your life.
+
+268
+00:10:37,500 --> 00:10:38,927
+[PAGE TEARING]
+
+269
+00:10:38,927 --> 00:10:41,010
+LUDO ANTONOV: With more
+and more people on the go,
+
+270
+00:10:41,010 --> 00:10:43,770
+the mobile web has become
+central at providing
+
+271
+00:10:43,770 --> 00:10:46,790
+our discovery experience.
+
+272
+00:10:46,790 --> 00:10:49,380
+But our mobile web
+experience in the past
+
+273
+00:10:49,380 --> 00:10:53,020
+was basically an upsell
+for the native app.
+
+274
+00:10:53,020 --> 00:10:55,020
+ZACK ARGYLE: Which brought
+us to the realization
+
+275
+00:10:55,020 --> 00:10:56,790
+that we needed to fix it.
+
+276
+00:10:56,790 --> 00:10:59,340
+LUDO ANTONOV: The technology
+was already in place for us
+
+277
+00:10:59,340 --> 00:11:00,484
+to be able to do so.
+
+278
+00:11:00,484 --> 00:11:02,400
+ZACK ARGYLE: And so we
+brought a team together
+
+279
+00:11:02,400 --> 00:11:04,800
+to rebuild the mobile
+web from scratch.
+
+280
+00:11:04,800 --> 00:11:07,230
+Having a fast mobile web
+was crucial to the success
+
+281
+00:11:07,230 --> 00:11:08,280
+of the project.
+
+282
+00:11:08,280 --> 00:11:12,150
+We made sure that we split out
+what was sent down to the user
+
+283
+00:11:12,150 --> 00:11:13,830
+to be only the crucial
+things to start,
+
+284
+00:11:13,830 --> 00:11:16,830
+and then everything else that
+wasn't immediately important
+
+285
+00:11:16,830 --> 00:11:18,210
+sent down later on.
+
+286
+00:11:18,210 --> 00:11:21,570
+We made sure to test out
+on average devices on 3G,
+
+287
+00:11:21,570 --> 00:11:23,040
+just like our users
+would be using.
+
+288
+00:11:23,040 --> 00:11:25,080
+And we could see the
+dramatic difference
+
+289
+00:11:25,080 --> 00:11:28,200
+that there was on that
+initial time-to-interactivity.
+
+290
+00:11:28,200 --> 00:11:31,680
+By using modern caching best
+practices in Service Worker,
+
+291
+00:11:31,680 --> 00:11:33,480
+even if you're on
+a bad connection
+
+292
+00:11:33,480 --> 00:11:36,570
+or have no connection, we
+were able to preload the user
+
+293
+00:11:36,570 --> 00:11:38,574
+interface for follow-up visits.
+
+294
+00:11:38,574 --> 00:11:39,990
+LUDO ANTONOV: Like
+the native app,
+
+295
+00:11:39,990 --> 00:11:43,210
+our site was optimized
+for touch interactions.
+
+296
+00:11:43,210 --> 00:11:46,230
+This immersive experience
+resulted in mobile web
+
+297
+00:11:46,230 --> 00:11:50,052
+becoming our top platform
+for new sign-ups.
+
+298
+00:11:50,052 --> 00:11:51,510
+ZACK ARGYLE: We
+wanted to make sure
+
+299
+00:11:51,510 --> 00:11:54,600
+that the users
+for our mobile web
+
+300
+00:11:54,600 --> 00:11:57,051
+continued to use the
+product as time goes by.
+
+301
+00:11:57,051 --> 00:11:58,800
+And one of the most
+important technologies
+
+302
+00:11:58,800 --> 00:12:00,674
+that's been added to
+browsers was the ability
+
+303
+00:12:00,674 --> 00:12:02,310
+to add that site to
+your home screen.
+
+304
+00:12:02,310 --> 00:12:08,490
+
+
+305
+00:12:08,490 --> 00:12:11,500
+Pinterest is not just
+about the content,
+
+306
+00:12:11,500 --> 00:12:14,040
+but about what you do with it.
+
+307
+00:12:14,040 --> 00:12:16,430
+LUDO ANTONOV: The browser
+is a discovery platform.
+
+308
+00:12:16,430 --> 00:12:19,500
+So making it easier for pinners
+to use our own discovery
+
+309
+00:12:19,500 --> 00:12:21,760
+service is really a perfect fit.
+
+310
+00:12:21,760 --> 00:12:25,099
+
+
+311
+00:12:25,099 --> 00:12:26,530
+[PLAYBACK ENDS]
+
+312
+00:12:26,530 --> 00:12:27,607
+
+
+313
+00:12:27,607 --> 00:12:28,440
+BEN GALBRAITH: Cool.
+
+314
+00:12:28,440 --> 00:12:31,130
+
+
+315
+00:12:31,130 --> 00:12:32,180
+DION ALMAER: Thank you.
+
+316
+00:12:32,180 --> 00:12:34,942
+Pinterest is a great example
+of doing performance right,
+
+317
+00:12:34,942 --> 00:12:36,650
+and Zack from their
+team is here to share
+
+318
+00:12:36,650 --> 00:12:39,690
+more with us later today.
+
+319
+00:12:39,690 --> 00:12:42,380
+Now let's talk about
+another example, Wayfair.
+
+320
+00:12:42,380 --> 00:12:45,050
+After experiencing some
+performance regressions,
+
+321
+00:12:45,050 --> 00:12:47,060
+they created an
+internal dashboard
+
+322
+00:12:47,060 --> 00:12:50,750
+that provides a simple stoplight
+system for their developers,
+
+323
+00:12:50,750 --> 00:12:53,390
+and keeps performance
+top of mind.
+
+324
+00:12:53,390 --> 00:12:55,100
+Since they implemented
+this system,
+
+325
+00:12:55,100 --> 00:12:57,874
+they've seen consistent speed
+gains across their sites,
+
+326
+00:12:57,874 --> 00:12:59,540
+and their year-over-year
+conversion rate
+
+327
+00:12:59,540 --> 00:13:02,950
+has increased by over 10%.
+
+328
+00:13:02,950 --> 00:13:04,010
+BEN GALBRAITH: OK.
+
+329
+00:13:04,010 --> 00:13:05,860
+While we're talking
+about speed, we'd
+
+330
+00:13:05,860 --> 00:13:08,440
+like to tell you about two
+new web platform features
+
+331
+00:13:08,440 --> 00:13:10,630
+that we're implementing
+in Chrome that we
+
+332
+00:13:10,630 --> 00:13:16,060
+think may lead to more instant
+and seamless web experiences.
+
+333
+00:13:16,060 --> 00:13:18,490
+Web Packaging is
+a new feature that
+
+334
+00:13:18,490 --> 00:13:22,540
+allows developers to sign a web
+page with a special encryption
+
+335
+00:13:22,540 --> 00:13:26,620
+key that proves the
+page's original domain,
+
+336
+00:13:26,620 --> 00:13:28,810
+and creates a sort
+of package that
+
+337
+00:13:28,810 --> 00:13:32,290
+can be served from anywhere, and
+that the browser can securely
+
+338
+00:13:32,290 --> 00:13:37,290
+represent with the
+page's original domain.
+
+339
+00:13:37,290 --> 00:13:38,490
+DION ALMAER: Now Portals--
+
+340
+00:13:38,490 --> 00:13:40,440
+Portals adds a new
+iframe-like element
+
+341
+00:13:40,440 --> 00:13:44,010
+to HTML that allows users
+to seamlessly transition
+
+342
+00:13:44,010 --> 00:13:47,220
+into the Portals content,
+making it a new top-level web
+
+343
+00:13:47,220 --> 00:13:48,900
+page in the process.
+
+344
+00:13:48,900 --> 00:13:50,940
+Taken together,
+these new standards
+
+345
+00:13:50,940 --> 00:13:54,450
+enable the browser to securely
+preload pages, and deliver
+
+346
+00:13:54,450 --> 00:13:57,870
+experiences like this that
+transition to the new site
+
+347
+00:13:57,870 --> 00:13:59,190
+instantly.
+
+348
+00:13:59,190 --> 00:14:00,060
+Let's try it again.
+
+349
+00:14:00,060 --> 00:14:01,840
+BEN GALBRAITH: Sure.
+
+350
+00:14:01,840 --> 00:14:04,300
+Tap, and you're right
+there, instantly.
+
+351
+00:14:04,300 --> 00:14:06,970
+Tomorrow, we'll talk
+through more of the details,
+
+352
+00:14:06,970 --> 00:14:09,310
+and explain how you
+can start experimenting
+
+353
+00:14:09,310 --> 00:14:11,864
+with web packaging right now.
+
+354
+00:14:11,864 --> 00:14:13,780
+We're pretty excited
+about this and the impact
+
+355
+00:14:13,780 --> 00:14:17,500
+that we think it
+can have on the web.
+
+356
+00:14:17,500 --> 00:14:19,900
+Loading fast is
+important, but so is
+
+357
+00:14:19,900 --> 00:14:24,670
+delivering a buttery-smooth
+UI once the page is displayed.
+
+358
+00:14:24,670 --> 00:14:28,900
+Buttery means responding to user
+input-- like taps and typing--
+
+359
+00:14:28,900 --> 00:14:31,300
+instantly, and ensuring
+that the page doesn't
+
+360
+00:14:31,300 --> 00:14:33,610
+jank, or sort of skip
+around as the user
+
+361
+00:14:33,610 --> 00:14:34,929
+scrolls and interacts with it.
+
+362
+00:14:34,929 --> 00:14:36,970
+DION ALMAER: Now traditionally,
+this hasn't maybe
+
+363
+00:14:36,970 --> 00:14:38,540
+been the strong
+suit for the web,
+
+364
+00:14:38,540 --> 00:14:40,960
+but we think that
+things are changing.
+
+365
+00:14:40,960 --> 00:14:43,075
+So today, we're
+releasing Squoosh,
+
+366
+00:14:43,075 --> 00:14:46,690
+and it is an example of how
+responsive complex apps can
+
+367
+00:14:46,690 --> 00:14:48,730
+be on today's web.
+
+368
+00:14:48,730 --> 00:14:52,450
+It demonstrates a really
+fast loading experience using
+
+369
+00:14:52,450 --> 00:14:56,770
+WebAssembly to compress images
+using C and C++ libraries,
+
+370
+00:14:56,770 --> 00:14:59,410
+and employing Web Workers
+to handle long-running tasks
+
+371
+00:14:59,410 --> 00:15:02,110
+in the background,
+enabling a smooth UI,
+
+372
+00:15:02,110 --> 00:15:04,720
+even while the app
+works really hard.
+
+373
+00:15:04,720 --> 00:15:06,500
+Now this is a full PWA.
+
+374
+00:15:06,500 --> 00:15:10,420
+It works across mobile, desktop,
+tablet, and offline, too,
+
+375
+00:15:10,420 --> 00:15:12,150
+thanks to Service Worker.
+
+376
+00:15:12,150 --> 00:15:13,900
+BEN GALBRAITH: Let's
+use Chrome's DevTools
+
+377
+00:15:13,900 --> 00:15:16,060
+to go under the covers
+of Squoosh for a moment
+
+378
+00:15:16,060 --> 00:15:17,500
+and take a look.
+
+379
+00:15:17,500 --> 00:15:20,650
+Here on the screen, we can see
+different browser processes
+
+380
+00:15:20,650 --> 00:15:22,250
+at work in the app.
+
+381
+00:15:22,250 --> 00:15:24,370
+And if we zoom in
+to three of them--
+
+382
+00:15:24,370 --> 00:15:26,710
+the main process
+and the workers--
+
+383
+00:15:26,710 --> 00:15:30,600
+we can see, in the main process,
+all these vertical lines.
+
+384
+00:15:30,600 --> 00:15:33,620
+And each vertical line indicates
+when the main thread's busy,
+
+385
+00:15:33,620 --> 00:15:35,960
+and the app can't
+respond to user input.
+
+386
+00:15:35,960 --> 00:15:38,801
+And you can see here they're
+all generally pretty narrow.
+
+387
+00:15:38,801 --> 00:15:40,300
+And then you can
+see in the workers,
+
+388
+00:15:40,300 --> 00:15:43,270
+we have these really long bars,
+representing these long running
+
+389
+00:15:43,270 --> 00:15:48,580
+tasks that would jank
+the snot out of the UI
+
+390
+00:15:48,580 --> 00:15:50,040
+if they weren't
+in the background.
+
+391
+00:15:50,040 --> 00:15:51,760
+DION ALMAER: Now if Jake
+can get his nerves back,
+
+392
+00:15:51,760 --> 00:15:53,770
+he and Mariko are going
+to join us later and do
+
+393
+00:15:53,770 --> 00:15:57,892
+a session on how they're able
+to build this application.
+
+394
+00:15:57,892 --> 00:16:00,100
+So sometimes there are tasks
+that you can't naturally
+
+395
+00:16:00,100 --> 00:16:01,870
+move off of the main
+thread, such as code
+
+396
+00:16:01,870 --> 00:16:03,730
+that updates the UI.
+
+397
+00:16:03,730 --> 00:16:07,090
+With the recently released
+Offscreen Canvas feature,
+
+398
+00:16:07,090 --> 00:16:10,450
+now in Chrome and behind a
+flag in Firefox and Opera,
+
+399
+00:16:10,450 --> 00:16:13,510
+helps you by letting you paint
+to image surfaces like Canvas
+
+400
+00:16:13,510 --> 00:16:17,470
+and WebGL in a worker, and
+then copy the image buffer back
+
+401
+00:16:17,470 --> 00:16:21,960
+over to the UI in a
+single, fast operation.
+
+402
+00:16:21,960 --> 00:16:24,630
+The video here shows how
+Offscreen Canvas maintains
+
+403
+00:16:24,630 --> 00:16:28,200
+a smooth UI even after
+we artificially add code
+
+404
+00:16:28,200 --> 00:16:31,170
+to make the painting process
+expensive using that jank
+
+405
+00:16:31,170 --> 00:16:32,154
+bottom in the middle.
+
+406
+00:16:32,154 --> 00:16:33,570
+BEN GALBRAITH:
+It's pretty smooth.
+
+407
+00:16:33,570 --> 00:16:36,126
+
+
+408
+00:16:36,126 --> 00:16:37,500
+Tomorrow, we're
+going to tell you
+
+409
+00:16:37,500 --> 00:16:39,840
+about more features that
+are coming to the web
+
+410
+00:16:39,840 --> 00:16:44,790
+to help with smooth, buttery
+UIs, such as new APIs
+
+411
+00:16:44,790 --> 00:16:47,730
+for background code, called
+worklets that make tasks
+
+412
+00:16:47,730 --> 00:16:50,880
+like animation, audio, custom
+painting, and custom layout
+
+413
+00:16:50,880 --> 00:16:54,780
+easier; a new web component
+called a Virtual Scroller that
+
+414
+00:16:54,780 --> 00:16:58,230
+makes it easy to develop
+really smooth scrolling
+
+415
+00:16:58,230 --> 00:17:02,430
+views over large datasets;
+and a Task Scheduler API that
+
+416
+00:17:02,430 --> 00:17:05,099
+gives developers more control
+over how the browser spends
+
+417
+00:17:05,099 --> 00:17:05,794
+its time.
+
+418
+00:17:05,794 --> 00:17:07,710
+DION ALMAER: That's a
+lot, but as Mariko said,
+
+419
+00:17:07,710 --> 00:17:09,270
+you can never add enough butter.
+
+420
+00:17:09,270 --> 00:17:10,270
+BEN GALBRAITH: How true.
+
+421
+00:17:10,270 --> 00:17:11,089
+[DION CHUCKLING]
+
+422
+00:17:11,089 --> 00:17:13,130
+DION ALMAER: So having a
+fast-loading, responsive
+
+423
+00:17:13,130 --> 00:17:17,047
+website is key, but so are the
+things that it actually does.
+
+424
+00:17:17,047 --> 00:17:18,630
+So on that note,
+let's talk about some
+
+425
+00:17:18,630 --> 00:17:21,400
+of the web's latest integrations
+with the underlying device
+
+426
+00:17:21,400 --> 00:17:23,290
+and operating system.
+
+427
+00:17:23,290 --> 00:17:26,310
+BEN GALBRAITH: Let's take the
+Spotify PWA as an example.
+
+428
+00:17:26,310 --> 00:17:29,640
+With it, users can go straight
+from a link right into Spotify
+
+429
+00:17:29,640 --> 00:17:31,220
+without even
+installing anything.
+
+430
+00:17:31,220 --> 00:17:34,400
+And with the web's full support
+for background audio, DRM,
+
+431
+00:17:34,400 --> 00:17:40,020
+and offline, Spotify can provide
+a full-featured web experience.
+
+432
+00:17:40,020 --> 00:17:42,630
+DION ALMAER: And now Chrome
+supports desktop PWAs,
+
+433
+00:17:42,630 --> 00:17:45,420
+letting apps like Spotify
+run in their own windows
+
+434
+00:17:45,420 --> 00:17:49,560
+and be easily installed on
+Chrome OS, Windows, Linux,
+
+435
+00:17:49,560 --> 00:17:51,355
+and soon on the Mac.
+
+436
+00:17:51,355 --> 00:17:53,730
+BEN GALBRAITH: I think desktop
+PWAs are really handy when
+
+437
+00:17:53,730 --> 00:17:55,438
+you've got lots of
+tabs open-- like Dion,
+
+438
+00:17:55,438 --> 00:17:56,784
+as I mentioned earlier--
+
+439
+00:17:56,784 --> 00:17:58,950
+and you want to keep your
+favorite stuff really easy
+
+440
+00:17:58,950 --> 00:18:01,137
+to get to, like
+with the Twitter PWA
+
+441
+00:18:01,137 --> 00:18:02,970
+that we're showing here
+running as a desktop
+
+442
+00:18:02,970 --> 00:18:05,770
+PWA in Chrome Canary on the Mac.
+
+443
+00:18:05,770 --> 00:18:07,470
+And what's really
+cool about Twitter
+
+444
+00:18:07,470 --> 00:18:10,050
+is that they've got
+experimental support that
+
+445
+00:18:10,050 --> 00:18:13,980
+enables their mobile PWA to
+run at desktop screen sizes,
+
+446
+00:18:13,980 --> 00:18:17,760
+as we're showing here, which has
+kind of been the dream of web
+
+447
+00:18:17,760 --> 00:18:20,006
+development for a long time.
+
+448
+00:18:20,006 --> 00:18:23,010
+DION ALMAER: While we're on
+the topic of desktop web apps,
+
+449
+00:18:23,010 --> 00:18:25,200
+we also recently
+implemented new web APIs
+
+450
+00:18:25,200 --> 00:18:29,800
+in Chrome that enable unfettered
+access to input devices.
+
+451
+00:18:29,800 --> 00:18:33,690
+So web apps can receive full
+keyboard input elements,
+
+452
+00:18:33,690 --> 00:18:36,240
+sample games' pads
+at high resolution,
+
+453
+00:18:36,240 --> 00:18:38,670
+and enter immersive
+fullscreen modes.
+
+454
+00:18:38,670 --> 00:18:40,200
+All of this is
+perfect for apps like
+
+455
+00:18:40,200 --> 00:18:43,595
+the recently-announced Google
+Project Stream shown here.
+
+456
+00:18:43,595 --> 00:18:44,970
+BEN GALBRAITH:
+Speaking of media,
+
+457
+00:18:44,970 --> 00:18:46,830
+we've also taken the
+recently-released
+
+458
+00:18:46,830 --> 00:18:48,660
+picture-in-picture
+feature that we
+
+459
+00:18:48,660 --> 00:18:51,660
+have on mobile video over
+to the desktop, which
+
+460
+00:18:51,660 --> 00:18:55,716
+makes web video on desktop more
+of an integrated experience.
+
+461
+00:18:55,716 --> 00:18:57,840
+DION ALMAER: And then
+another important new web API
+
+462
+00:18:57,840 --> 00:19:00,900
+is WebAuthN, which enables
+websites to integrate
+
+463
+00:19:00,900 --> 00:19:03,420
+with biometric sensors
+and other forms
+
+464
+00:19:03,420 --> 00:19:05,400
+of multi-factor authentication.
+
+465
+00:19:05,400 --> 00:19:08,220
+It's currently implemented
+in Firefox, Opera, Chrome,
+
+466
+00:19:08,220 --> 00:19:10,760
+coming soon to Edge, and
+it can make web checkout
+
+467
+00:19:10,760 --> 00:19:14,500
+a seamlessly secure experience.
+
+468
+00:19:14,500 --> 00:19:17,110
+BEN GALBRAITH: Seen here with
+the checkout, and with PayPal.
+
+469
+00:19:17,110 --> 00:19:19,401
+And it displays the
+authentication challenge
+
+470
+00:19:19,401 --> 00:19:20,650
+as integrated with the device.
+
+471
+00:19:20,650 --> 00:19:23,180
+
+
+472
+00:19:23,180 --> 00:19:25,100
+So as the web's
+capabilities increase,
+
+473
+00:19:25,100 --> 00:19:28,520
+it's also important to augment
+the security and the privacy
+
+474
+00:19:28,520 --> 00:19:31,730
+of the platform, and ensure
+that everyone has an opportunity
+
+475
+00:19:31,730 --> 00:19:35,400
+to participate in the
+open digital economy.
+
+476
+00:19:35,400 --> 00:19:37,340
+This is why we've been
+leading the development
+
+477
+00:19:37,340 --> 00:19:39,320
+of advanced new
+privacy techniques,
+
+478
+00:19:39,320 --> 00:19:42,770
+like federated learning and
+secure aggregation, that
+
+479
+00:19:42,770 --> 00:19:45,740
+enable personalized
+digital experiences that
+
+480
+00:19:45,740 --> 00:19:49,700
+also have the strongest
+privacy guarantees.
+
+481
+00:19:49,700 --> 00:19:52,850
+And we've been hard at work
+reviewing the fundamentals
+
+482
+00:19:52,850 --> 00:19:55,100
+of how the web
+works with respect
+
+483
+00:19:55,100 --> 00:19:57,440
+to privacy and personalization.
+
+484
+00:19:57,440 --> 00:20:00,290
+And in the next year, we'll
+be shipping new features
+
+485
+00:20:00,290 --> 00:20:04,310
+into Chrome as well as new
+server-side technologies that
+
+486
+00:20:04,310 --> 00:20:08,000
+help us uphold the highest
+standards of user privacy
+
+487
+00:20:08,000 --> 00:20:11,482
+with regards to data
+collection and usage.
+
+488
+00:20:11,482 --> 00:20:12,940
+DION ALMAER: Now
+as the web evolves
+
+489
+00:20:12,940 --> 00:20:14,356
+and we get new
+capabilities, we're
+
+490
+00:20:14,356 --> 00:20:16,660
+constantly focused
+on interoperability,
+
+491
+00:20:16,660 --> 00:20:19,620
+on how well web apps
+work across browsers.
+
+492
+00:20:19,620 --> 00:20:23,540
+And we know this topic is top
+of mind with developers, too.
+
+493
+00:20:23,540 --> 00:20:25,470
+To this end, we've
+been collaborating
+
+494
+00:20:25,470 --> 00:20:28,590
+with other browsers on an
+open source comprehensive web
+
+495
+00:20:28,590 --> 00:20:30,570
+platform test project.
+
+496
+00:20:30,570 --> 00:20:37,790
+And we're pleased to share
+that the browsers are becoming
+
+497
+00:20:37,790 --> 00:20:41,672
+more interoperable as
+measured by these tests,
+
+498
+00:20:41,672 --> 00:20:43,130
+and we're continuing
+to collaborate
+
+499
+00:20:43,130 --> 00:20:44,840
+with the other browsers
+on reference docs
+
+500
+00:20:44,840 --> 00:20:47,350
+for the web on the
+Mozilla develop network.
+
+501
+00:20:47,350 --> 00:20:49,100
+BEN GALBRAITH: These
+efforts are resulting
+
+502
+00:20:49,100 --> 00:20:52,520
+in a less fragmented developer
+experience for all of us,
+
+503
+00:20:52,520 --> 00:20:55,370
+which frees us to spend our time
+not chasing down compatibility
+
+504
+00:20:55,370 --> 00:20:58,280
+bugs, but on adding more
+features to the platform
+
+505
+00:20:58,280 --> 00:21:00,599
+and performance budgets.
+
+506
+00:21:00,599 --> 00:21:02,390
+We also think it's more
+important than ever
+
+507
+00:21:02,390 --> 00:21:05,360
+for us to make it easier
+to create high-quality web
+
+508
+00:21:05,360 --> 00:21:06,840
+experiences.
+
+509
+00:21:06,840 --> 00:21:09,380
+So to this end, we've been
+working on a new learning
+
+510
+00:21:09,380 --> 00:21:11,120
+website called web.dev.
+
+511
+00:21:11,120 --> 00:21:13,750
+
+
+512
+00:21:13,750 --> 00:21:15,360
+DION ALMAER: On
+web.dev, we start out
+
+513
+00:21:15,360 --> 00:21:17,070
+by explaining the
+principles that we've
+
+514
+00:21:17,070 --> 00:21:20,940
+found lead to top quality sites,
+such as speed, discoverability,
+
+515
+00:21:20,940 --> 00:21:22,350
+and reliability.
+
+516
+00:21:22,350 --> 00:21:24,840
+And we follow these
+up with guides
+
+517
+00:21:24,840 --> 00:21:28,350
+that explain why you should
+care about a given concept.
+
+518
+00:21:28,350 --> 00:21:32,100
+They provide clear tutorials
+and offer plenty of sample code.
+
+519
+00:21:32,100 --> 00:21:35,352
+
+
+520
+00:21:35,352 --> 00:21:37,310
+BEN GALBRAITH: We've also
+partnered with Glitch
+
+521
+00:21:37,310 --> 00:21:39,200
+to embed their
+popular coding tool
+
+522
+00:21:39,200 --> 00:21:41,360
+right into the
+experience, which provides
+
+523
+00:21:41,360 --> 00:21:43,340
+an interactive learning
+environment for getting
+
+524
+00:21:43,340 --> 00:21:47,050
+hands-on, and letting you
+remix and test your code.
+
+525
+00:21:47,050 --> 00:21:51,100
+And we've integrated Lighthouse
+into the web.dev experience,
+
+526
+00:21:51,100 --> 00:21:52,840
+giving you a platform
+that lets you
+
+527
+00:21:52,840 --> 00:21:55,930
+track the scores of
+your websites over time.
+
+528
+00:21:55,930 --> 00:21:59,140
+And if your site isn't quite
+at a perfect score yet,
+
+529
+00:21:59,140 --> 00:22:00,940
+it also gives you
+instructions on how
+
+530
+00:22:00,940 --> 00:22:06,210
+to resolve the specific issues
+that it's found with your site.
+
+531
+00:22:06,210 --> 00:22:07,520
+DION ALMAER: So that's web.dev.
+
+532
+00:22:07,520 --> 00:22:09,978
+We'd love to get your feedback,
+especially while we're here
+
+533
+00:22:09,978 --> 00:22:11,470
+together at CDS.
+
+534
+00:22:11,470 --> 00:22:13,630
+And by the way, if you
+like that .dev domain,
+
+535
+00:22:13,630 --> 00:22:17,210
+check out get.dev for details
+on how you can register one
+
+536
+00:22:17,210 --> 00:22:19,310
+for yourself in the future.
+
+537
+00:22:19,310 --> 00:22:20,570
+BEN GALBRAITH: We also have
+another fun learning project
+
+538
+00:22:20,570 --> 00:22:21,870
+that we want to share with you.
+
+539
+00:22:21,870 --> 00:22:24,080
+We've collaborated
+with Dave Geddes,
+
+540
+00:22:24,080 --> 00:22:28,070
+who's created interactive
+tutorials like Flexbox Zombies
+
+541
+00:22:28,070 --> 00:22:30,680
+and CSS Grid Critters--
+these are real things,
+
+542
+00:22:30,680 --> 00:22:32,300
+and they're really cool--
+
+543
+00:22:32,300 --> 00:22:33,170
+to develop--
+
+544
+00:22:33,170 --> 00:22:36,890
+DION ALMAER: --Service
+Workies, an online adventure
+
+545
+00:22:36,890 --> 00:22:38,720
+that helps you really
+deeply understand
+
+546
+00:22:38,720 --> 00:22:40,790
+Service Worker, soup to nuts.
+
+547
+00:22:40,790 --> 00:22:43,410
+It's a fun, free,
+engaging way to learn.
+
+548
+00:22:43,410 --> 00:22:46,910
+So please head over to
+ServiceWorkies.com to sign up
+
+549
+00:22:46,910 --> 00:22:49,330
+and start the preview
+levels that launch just now.
+
+550
+00:22:49,330 --> 00:22:52,110
+
+
+551
+00:22:52,110 --> 00:22:53,850
+Now we've also got
+plenty of updates
+
+552
+00:22:53,850 --> 00:22:55,350
+to our developer
+tools and libraries
+
+553
+00:22:55,350 --> 00:22:57,520
+that we're going to share
+over the next two days.
+
+554
+00:22:57,520 --> 00:23:00,810
+But there's one new tool that
+we'd like to tell you about.
+
+555
+00:23:00,810 --> 00:23:02,190
+BEN GALBRAITH: We
+call it VisBug,
+
+556
+00:23:02,190 --> 00:23:06,150
+and it puts a new spin on how
+developers and designers can
+
+557
+00:23:06,150 --> 00:23:08,032
+interact with web pages.
+
+558
+00:23:08,032 --> 00:23:09,240
+We'd like to give you a demo.
+
+559
+00:23:09,240 --> 00:23:12,517
+And to do that, let's invite
+Adam Argyle up to the stage.
+
+560
+00:23:12,517 --> 00:23:13,350
+Please welcome Adam.
+
+561
+00:23:13,350 --> 00:23:15,294
+[MUSIC PLAYING, APPLAUSE]
+
+562
+00:23:15,294 --> 00:23:16,750
+ADAM ARGYLE: What's up, guys?
+
+563
+00:23:16,750 --> 00:23:18,850
+Thanks for this opportunity.
+
+564
+00:23:18,850 --> 00:23:20,910
+So, developers, you
+got a lot of tools.
+
+565
+00:23:20,910 --> 00:23:23,340
+And whoa, your keynote
+was amazing so far.
+
+566
+00:23:23,340 --> 00:23:24,350
+You're spitting fire.
+
+567
+00:23:24,350 --> 00:23:26,730
+I'm back there laughing, and
+I'm-- anyway, it's awesome.
+
+568
+00:23:26,730 --> 00:23:29,370
+So I wanted to give some tools
+to people that don't generally
+
+569
+00:23:29,370 --> 00:23:31,140
+feel like they have a whole
+lot of power on the web
+
+570
+00:23:31,140 --> 00:23:32,806
+unless they open up
+the Chrome DevTools.
+
+571
+00:23:32,806 --> 00:23:34,950
+Chrome DevTools, of course,
+are like omni-capable.
+
+572
+00:23:34,950 --> 00:23:35,824
+But oh, that's right.
+
+573
+00:23:35,824 --> 00:23:37,500
+I got my screensaver came on.
+
+574
+00:23:37,500 --> 00:23:39,990
+Let me just take my huge
+password here, because--
+
+575
+00:23:39,990 --> 00:23:40,820
+DION ALMAER: That's
+a cool screensaver.
+
+576
+00:23:40,820 --> 00:23:41,610
+ADAM ARGYLE: Oh, for sure.
+
+577
+00:23:41,610 --> 00:23:42,310
+Gotta love that.
+
+578
+00:23:42,310 --> 00:23:44,476
+OK, so I'm going to hit
+play on this site, because--
+
+579
+00:23:44,476 --> 00:23:46,590
+OK, so I wanted
+more people to be
+
+580
+00:23:46,590 --> 00:23:49,080
+able to contribute to
+good web experiences,
+
+581
+00:23:49,080 --> 00:23:51,280
+and be able to inspect
+and dissect things.
+
+582
+00:23:51,280 --> 00:23:54,210
+And so considered like what
+Zeppelin is as a designer
+
+583
+00:23:54,210 --> 00:23:55,620
+developer handoff.
+
+584
+00:23:55,620 --> 00:23:58,620
+I've created this thing
+called VisBug that essentially
+
+585
+00:23:58,620 --> 00:24:00,039
+gives those tools in reverse.
+
+586
+00:24:00,039 --> 00:24:01,830
+So this first tool here
+is the Guides tool.
+
+587
+00:24:01,830 --> 00:24:04,038
+Have you ever held a piece
+of paper up to your screen
+
+588
+00:24:04,038 --> 00:24:06,740
+and been like, ooh,
+is it lined up?
+
+589
+00:24:06,740 --> 00:24:07,442
+Here you go.
+
+590
+00:24:07,442 --> 00:24:09,150
+There's even, I think,
+a Chrome extension
+
+591
+00:24:09,150 --> 00:24:10,620
+that just does this one thing.
+
+592
+00:24:10,620 --> 00:24:11,580
+And so you can come
+down here, you're like,
+
+593
+00:24:11,580 --> 00:24:13,670
+oh that footer, that
+looks generally aligned.
+
+594
+00:24:13,670 --> 00:24:15,400
+Yeah, let me just
+kind of hover-- yep,
+
+595
+00:24:15,400 --> 00:24:16,934
+yeah, it looks great.
+
+596
+00:24:16,934 --> 00:24:18,100
+This is kind of interesting.
+
+597
+00:24:18,100 --> 00:24:19,808
+Look, I can go into
+a nested hover state,
+
+598
+00:24:19,808 --> 00:24:21,532
+and still check
+what's going on there.
+
+599
+00:24:21,532 --> 00:24:22,740
+So that's just the Grid tool.
+
+600
+00:24:22,740 --> 00:24:23,580
+There's a whole bunch of tools.
+
+601
+00:24:23,580 --> 00:24:25,913
+I'm to do my best to show you
+more what's going on here.
+
+602
+00:24:25,913 --> 00:24:27,429
+This is the Accessibility tool.
+
+603
+00:24:27,429 --> 00:24:29,220
+I really want Accessibility
+to be something
+
+604
+00:24:29,220 --> 00:24:30,480
+that more people are aware of.
+
+605
+00:24:30,480 --> 00:24:32,460
+It's a little-- there's
+just too many steps
+
+606
+00:24:32,460 --> 00:24:33,810
+to find what is there.
+
+607
+00:24:33,810 --> 00:24:35,370
+So this, you just hover now.
+
+608
+00:24:35,370 --> 00:24:36,990
+You just hover for
+color contrasts.
+
+609
+00:24:36,990 --> 00:24:40,064
+You hover for surfacing
+ARIA rules and tap indexes.
+
+610
+00:24:40,064 --> 00:24:42,480
+So basically, the things that
+you're generally looking for
+
+611
+00:24:42,480 --> 00:24:46,080
+are now a hover away instead of
+maybe it's five or six clicks.
+
+612
+00:24:46,080 --> 00:24:49,080
+And the same sort of
+thing is for styles.
+
+613
+00:24:49,080 --> 00:24:50,250
+So you can hover over SVG.
+
+614
+00:24:50,250 --> 00:24:51,480
+You can hover over buttons.
+
+615
+00:24:51,480 --> 00:24:53,460
+Nothing is off-limits
+to Pixelbug.
+
+616
+00:24:53,460 --> 00:24:56,520
+It's kind of punk rock.
+
+617
+00:24:56,520 --> 00:24:58,190
+It's like, hey, is
+there DOM there?
+
+618
+00:24:58,190 --> 00:24:58,980
+I'll look at it.
+
+619
+00:24:58,980 --> 00:25:00,710
+I'll tell you what's there.
+
+620
+00:25:00,710 --> 00:25:01,755
+And so here's what you--
+
+621
+00:25:01,755 --> 00:25:03,630
+and so let me go through
+a couple more tools.
+
+622
+00:25:03,630 --> 00:25:05,400
+I really like the
+hue shift tool.
+
+623
+00:25:05,400 --> 00:25:07,410
+And so if you go download
+this Chrome extension,
+
+624
+00:25:07,410 --> 00:25:08,730
+you just have to
+hover over a tool
+
+625
+00:25:08,730 --> 00:25:09,680
+and it will show
+you how it's used.
+
+626
+00:25:09,680 --> 00:25:12,360
+I'll do my best to walk
+through the keyboard shortcuts
+
+627
+00:25:12,360 --> 00:25:13,030
+that I'm doing.
+
+628
+00:25:13,030 --> 00:25:15,470
+But it's kind of like
+design vim at the moment.
+
+629
+00:25:15,470 --> 00:25:16,909
+Anyway, it's super fun.
+
+630
+00:25:16,909 --> 00:25:19,200
+So what I'm going to do, I'm
+going to select this path.
+
+631
+00:25:19,200 --> 00:25:21,140
+I want to make sure I've
+got my hue shift tool
+
+632
+00:25:21,140 --> 00:25:23,160
+I'm going hit Command-E
+to expand my selection.
+
+633
+00:25:23,160 --> 00:25:24,243
+I'm just going to hold it.
+
+634
+00:25:24,243 --> 00:25:25,020
+Whee.
+
+635
+00:25:25,020 --> 00:25:25,740
+And look at that.
+
+636
+00:25:25,740 --> 00:25:27,540
+So I selected all
+of those path nodes.
+
+637
+00:25:27,540 --> 00:25:29,160
+So the way that
+worked is it expanded
+
+638
+00:25:29,160 --> 00:25:30,930
+based on the node name
+and the class name,
+
+639
+00:25:30,930 --> 00:25:33,180
+and found similar elements
+that were siblings.
+
+640
+00:25:33,180 --> 00:25:35,980
+And I'm just going to
+add some black here.
+
+641
+00:25:35,980 --> 00:25:36,880
+Is that magical.
+
+642
+00:25:36,880 --> 00:25:38,020
+It feels magical.
+
+643
+00:25:38,020 --> 00:25:40,340
+If I hold Control, I can
+make my selections go away.
+
+644
+00:25:40,340 --> 00:25:42,280
+So I could be like,
+ooh, don't you like it?
+
+645
+00:25:42,280 --> 00:25:43,510
+And in this case, I
+think black's wrong.
+
+646
+00:25:43,510 --> 00:25:44,676
+I'm going to add some white.
+
+647
+00:25:44,676 --> 00:25:46,790
+I'm going to hit Shift
+and Right to add some hue.
+
+648
+00:25:46,790 --> 00:25:48,040
+And then I'm going
+to rotate the hue
+
+649
+00:25:48,040 --> 00:25:49,206
+with Command-Shift and Down.
+
+650
+00:25:49,206 --> 00:25:51,830
+So I'm rotating the
+hue by values of 10.
+
+651
+00:25:51,830 --> 00:25:54,010
+And now I can explore
+color palettes.
+
+652
+00:25:54,010 --> 00:25:56,380
+I love this particular tool.
+
+653
+00:25:56,380 --> 00:25:57,970
+It's HSL-based.
+
+654
+00:25:57,970 --> 00:25:58,720
+It's awesome.
+
+655
+00:25:58,720 --> 00:26:00,070
+So another thing I want to
+show you really quick too
+
+656
+00:26:00,070 --> 00:26:01,309
+is the Move tool.
+
+657
+00:26:01,309 --> 00:26:03,100
+You can just move things
+in the DOM around.
+
+658
+00:26:03,100 --> 00:26:05,440
+You click stuff, and you
+move it with the keyboard.
+
+659
+00:26:05,440 --> 00:26:07,080
+Duh, right?
+
+660
+00:26:07,080 --> 00:26:08,419
+Why haven't you had this before?
+
+661
+00:26:08,419 --> 00:26:09,710
+It seems to make so much sense.
+
+662
+00:26:09,710 --> 00:26:11,230
+So I'm just going to kind of
+rearrange it here a little bit.
+
+663
+00:26:11,230 --> 00:26:14,290
+I'm going to hit M for margin,
+and then I hit Shift-Up.
+
+664
+00:26:14,290 --> 00:26:16,720
+So Shift-Up, Shift-Up, Shift-Up.
+
+665
+00:26:16,720 --> 00:26:19,240
+I'm just adding 10 pixels
+of margin to the top.
+
+666
+00:26:19,240 --> 00:26:21,700
+So consider that these little
+quick tasks were things
+
+667
+00:26:21,700 --> 00:26:23,440
+that you had to sort
+of nest and find,
+
+668
+00:26:23,440 --> 00:26:25,240
+and now you can do
+them in the chaos
+
+669
+00:26:25,240 --> 00:26:27,310
+of the browser in production.
+
+670
+00:26:27,310 --> 00:26:30,022
+I wanted the DOM to be
+the source of truth.
+
+671
+00:26:30,022 --> 00:26:31,480
+I wanted a design
+tool that treated
+
+672
+00:26:31,480 --> 00:26:33,130
+the DOM as a source of truth.
+
+673
+00:26:33,130 --> 00:26:36,920
+Anyway, I like this site because
+it's like, ooh, super-flashy,
+
+674
+00:26:36,920 --> 00:26:38,650
+and this tool doesn't care.
+
+675
+00:26:38,650 --> 00:26:42,337
+Let's get a little meta, and
+take a quick look at Squoosh,
+
+676
+00:26:42,337 --> 00:26:43,420
+which was just introduced.
+
+677
+00:26:43,420 --> 00:26:45,190
+It's super-rad.
+
+678
+00:26:45,190 --> 00:26:46,911
+And the first thing
+I want to do is
+
+679
+00:26:46,911 --> 00:26:48,910
+talk about some of the
+additional tools in here.
+
+680
+00:26:48,910 --> 00:26:52,500
+But I want to troll Jake a
+little bit while I'm up here.
+
+681
+00:26:52,500 --> 00:26:55,000
+So what I'm going to do first,
+I'm going to grab this image,
+
+682
+00:26:55,000 --> 00:26:56,950
+and I'm going to
+turn it into myself.
+
+683
+00:26:56,950 --> 00:26:59,065
+So have you ever
+wanted to just swap
+
+684
+00:26:59,065 --> 00:27:01,730
+a pinned image on a web page?
+
+685
+00:27:01,730 --> 00:27:03,970
+It's just drag and drop, right?
+
+686
+00:27:03,970 --> 00:27:05,600
+Why hasn't that been there?
+
+687
+00:27:05,600 --> 00:27:06,850
+A lot of the stuff, I had to--
+
+688
+00:27:06,850 --> 00:27:09,970
+here's another one,
+Double-Click for text editing.
+
+689
+00:27:09,970 --> 00:27:13,570
+Let's just make
+this drag and plop--
+
+690
+00:27:13,570 --> 00:27:15,430
+because again, I'm trolling him.
+
+691
+00:27:15,430 --> 00:27:17,584
+We'll go back here to
+my little inspect tool
+
+692
+00:27:17,584 --> 00:27:19,375
+we'll look at what
+styles he's got in here.
+
+693
+00:27:19,375 --> 00:27:19,740
+Ooh, nice.
+
+694
+00:27:19,740 --> 00:27:20,540
+Some good Flexbox.
+
+695
+00:27:20,540 --> 00:27:21,430
+So I'm going to
+select this image.
+
+696
+00:27:21,430 --> 00:27:22,840
+I'm going to hit
+Command-E again.
+
+697
+00:27:22,840 --> 00:27:25,400
+Here's a fun idea
+I borrowed from XD.
+
+698
+00:27:25,400 --> 00:27:29,080
+So I'm very inspired from
+XD, and Figma, and Zeppelin,
+
+699
+00:27:29,080 --> 00:27:30,580
+and even Developer Tooling, too.
+
+700
+00:27:30,580 --> 00:27:31,370
+So watch this one.
+
+701
+00:27:31,370 --> 00:27:32,210
+I love this one.
+
+702
+00:27:32,210 --> 00:27:33,210
+I'm going to go in here.
+
+703
+00:27:33,210 --> 00:27:34,680
+I'm going to grab two images.
+
+704
+00:27:34,680 --> 00:27:37,700
+I want to grab a picture of me.
+
+705
+00:27:37,700 --> 00:27:39,204
+I wish I had other pictures.
+
+706
+00:27:39,204 --> 00:27:40,870
+Who wants to see my
+face multiple times?
+
+707
+00:27:40,870 --> 00:27:42,770
+Anyway, I want to
+drag in two images.
+
+708
+00:27:42,770 --> 00:27:44,482
+And if you remember we had--
+
+709
+00:27:44,482 --> 00:27:45,190
+oh, hey, come on.
+
+710
+00:27:45,190 --> 00:27:49,730
+Take focus, take
+focus, take focus.
+
+711
+00:27:49,730 --> 00:27:50,230
+Oh, good.
+
+712
+00:27:50,230 --> 00:27:51,250
+I was just impatient.
+
+713
+00:27:51,250 --> 00:27:51,750
+Here you go.
+
+714
+00:27:51,750 --> 00:27:52,300
+And I'm going to hover there.
+
+715
+00:27:52,300 --> 00:27:53,320
+Boom, they ping-pong.
+
+716
+00:27:53,320 --> 00:27:54,884
+[LAUGHTER]
+
+717
+00:27:54,884 --> 00:27:56,550
+It just sort of was
+like, hey, how many?
+
+718
+00:27:56,550 --> 00:27:57,190
+I don't care.
+
+719
+00:27:57,190 --> 00:27:58,000
+And it will just fill it up.
+
+720
+00:27:58,000 --> 00:27:58,751
+It's super-fun.
+
+721
+00:27:58,751 --> 00:28:01,000
+OK, so we're done kind of
+like trolling his home page.
+
+722
+00:28:01,000 --> 00:28:02,749
+Let's actually go do
+something meaningful.
+
+723
+00:28:02,749 --> 00:28:04,300
+He asked me to do
+a design review.
+
+724
+00:28:04,300 --> 00:28:05,650
+OK, so I hid my tools.
+
+725
+00:28:05,650 --> 00:28:08,050
+The site doesn't even
+know I changed it.
+
+726
+00:28:08,050 --> 00:28:11,110
+Let's drag in something fun.
+
+727
+00:28:11,110 --> 00:28:13,180
+I like this Christmas
+eggnog picture.
+
+728
+00:28:13,180 --> 00:28:14,220
+Yeah, this is good.
+
+729
+00:28:14,220 --> 00:28:15,550
+Me and my wife--
+
+730
+00:28:15,550 --> 00:28:17,200
+hello.
+
+731
+00:28:17,200 --> 00:28:19,720
+And so we have this
+very complex website.
+
+732
+00:28:19,720 --> 00:28:21,526
+It's packed with Wasm.
+
+733
+00:28:21,526 --> 00:28:23,650
+And you know, maybe
+conceptually, you're just like,
+
+734
+00:28:23,650 --> 00:28:25,662
+there's no way I could
+kind of help design that.
+
+735
+00:28:25,662 --> 00:28:26,620
+Well of course you can.
+
+736
+00:28:26,620 --> 00:28:27,328
+It's [INAUDIBLE].
+
+737
+00:28:27,328 --> 00:28:28,147
+It doesn't care.
+
+738
+00:28:28,147 --> 00:28:29,230
+So I'm going to expand it.
+
+739
+00:28:29,230 --> 00:28:31,930
+I'm going to get some things
+into a nested state, something
+
+740
+00:28:31,930 --> 00:28:34,190
+that's theoretically
+harder to design with.
+
+741
+00:28:34,190 --> 00:28:36,100
+And I'm going to
+darken this side up.
+
+742
+00:28:36,100 --> 00:28:38,390
+I'm a fan of retro
+wave right now.
+
+743
+00:28:38,390 --> 00:28:40,840
+And I love those like purples,
+pinks, and stuff on dark.
+
+744
+00:28:40,840 --> 00:28:43,140
+Let's do that to the
+site really quick.
+
+745
+00:28:43,140 --> 00:28:44,640
+So I'm going to
+launch [INAUDIBLE],,
+
+746
+00:28:44,640 --> 00:28:46,060
+and we're just going to use
+a couple of features here.
+
+747
+00:28:46,060 --> 00:28:47,620
+So I'm going to hit
+this header because I
+
+748
+00:28:47,620 --> 00:28:48,700
+think these need to
+be a little bit more
+
+749
+00:28:48,700 --> 00:28:50,116
+pronounced with
+some accent color.
+
+750
+00:28:50,116 --> 00:28:52,900
+I'm going to expand my selection
+by clicking a class name.
+
+751
+00:28:52,900 --> 00:28:55,090
+So what's cool is BEM and
+just dynamically generated
+
+752
+00:28:55,090 --> 00:28:55,600
+class names.
+
+753
+00:28:55,600 --> 00:28:57,550
+What they do is they
+create a consistency
+
+754
+00:28:57,550 --> 00:28:58,690
+between related nodes.
+
+755
+00:28:58,690 --> 00:29:00,037
+And so I leveraged those.
+
+756
+00:29:00,037 --> 00:29:01,120
+You just make a selection.
+
+757
+00:29:01,120 --> 00:29:02,852
+And you can hover
+on the classes too,
+
+758
+00:29:02,852 --> 00:29:04,060
+and it will pseudo-highlight.
+
+759
+00:29:04,060 --> 00:29:06,580
+Anyway, this tool is
+so full of features.
+
+760
+00:29:06,580 --> 00:29:08,360
+I'm having a hard
+time talking slow.
+
+761
+00:29:08,360 --> 00:29:10,750
+OK, so anyway I
+got these headers.
+
+762
+00:29:10,750 --> 00:29:12,340
+I just want to spoof these up.
+
+763
+00:29:12,340 --> 00:29:13,540
+So I'm going to get
+rid of their opacity
+
+764
+00:29:13,540 --> 00:29:15,200
+by doing Command-Shift
+Right and Left.
+
+765
+00:29:15,200 --> 00:29:16,390
+You can manage opacity.
+
+766
+00:29:16,390 --> 00:29:18,560
+I'm going to add some
+white by hitting Shift-Up.
+
+767
+00:29:18,560 --> 00:29:21,190
+I'm going to add some hue
+by adding Shift-Right.
+
+768
+00:29:21,190 --> 00:29:24,801
+And I'm going to change the
+hue to (SINGING) hot pink.
+
+769
+00:29:24,801 --> 00:29:25,300
+Right?
+
+770
+00:29:25,300 --> 00:29:25,950
+Super-rad.
+
+771
+00:29:25,950 --> 00:29:27,580
+OK, so then I'm
+going to go in here.
+
+772
+00:29:27,580 --> 00:29:29,087
+And I'm going to darken this up.
+
+773
+00:29:29,087 --> 00:29:30,670
+I like how transparent
+it is, but I've
+
+774
+00:29:30,670 --> 00:29:32,970
+got this darkness vibe.
+
+775
+00:29:32,970 --> 00:29:34,760
+I just-- dark.
+
+776
+00:29:34,760 --> 00:29:36,160
+So let's darken it up, right?
+
+777
+00:29:36,160 --> 00:29:37,650
+OK, and we'll come down here.
+
+778
+00:29:37,650 --> 00:29:40,652
+And you know, this should
+look like magic right now.
+
+779
+00:29:40,652 --> 00:29:41,860
+So I'm just doing Shift-Down.
+
+780
+00:29:41,860 --> 00:29:42,970
+I'm just adding black.
+
+781
+00:29:42,970 --> 00:29:44,928
+Now this particular node,
+he's a little tricky.
+
+782
+00:29:44,928 --> 00:29:46,090
+Look, he's a number input.
+
+783
+00:29:46,090 --> 00:29:49,530
+So you can navigate the
+entire DOM with your keyboard.
+
+784
+00:29:49,530 --> 00:29:50,710
+So I'm going to hit tab.
+
+785
+00:29:50,710 --> 00:29:52,420
+It just tabbed me
+to the next child.
+
+786
+00:29:52,420 --> 00:29:53,140
+Hit Shift-Down.
+
+787
+00:29:53,140 --> 00:29:54,625
+I'm going to black that out.
+
+788
+00:29:54,625 --> 00:29:55,565
+Mm-hmm, that's fine.
+
+789
+00:29:55,565 --> 00:29:58,780
+Then we'll grab this, and I'm
+just going to black that out.
+
+790
+00:29:58,780 --> 00:30:01,370
+And we'll get rid of the tool.
+
+791
+00:30:01,370 --> 00:30:03,030
+And I will send a
+screenshot to Jake,
+
+792
+00:30:03,030 --> 00:30:04,946
+and be like, this is how
+it should look, dude.
+
+793
+00:30:04,946 --> 00:30:07,219
+It should be pink and blue.
+
+794
+00:30:07,219 --> 00:30:08,260
+Come see me in the forum.
+
+795
+00:30:08,260 --> 00:30:09,610
+I've got more stuff to show you.
+
+796
+00:30:09,610 --> 00:30:11,300
+I mean, there is--
+like, it's weird.
+
+797
+00:30:11,300 --> 00:30:12,560
+It does a lot of weird stuff.
+
+798
+00:30:12,560 --> 00:30:14,350
+And it's really fun.
+
+799
+00:30:14,350 --> 00:30:16,250
+Nothing is off-limits
+to this tool.
+
+800
+00:30:16,250 --> 00:30:20,080
+And I hope content writers, web
+designers, just people finally
+
+801
+00:30:20,080 --> 00:30:22,239
+have a tool that helps
+empower them in the DOM.
+
+802
+00:30:22,239 --> 00:30:23,530
+It should feel like a document.
+
+803
+00:30:23,530 --> 00:30:24,550
+It should feel like an artboard.
+
+804
+00:30:24,550 --> 00:30:25,750
+That's the illusion
+I'm trying to go for.
+
+805
+00:30:25,750 --> 00:30:26,440
+So--
+
+806
+00:30:26,440 --> 00:30:26,890
+BEN GALBRAITH: Awesome.
+
+807
+00:30:26,890 --> 00:30:27,797
+ADAM ARGYLE: Thanks, guys.
+
+808
+00:30:27,797 --> 00:30:28,284
+[APPLAUSE]
+
+809
+00:30:28,284 --> 00:30:29,460
+DION ALMAER: Give it for Adam.
+
+810
+00:30:29,460 --> 00:30:29,680
+BEN GALBRAITH: That was awesome.
+
+811
+00:30:29,680 --> 00:30:30,513
+DION ALMAER: Thanks.
+
+812
+00:30:30,513 --> 00:30:31,462
+
+
+813
+00:30:31,462 --> 00:30:32,920
+BEN GALBRAITH: It's
+been a pleasure
+
+814
+00:30:32,920 --> 00:30:35,600
+to reflect with you
+on the past 10 years
+
+815
+00:30:35,600 --> 00:30:36,770
+and what's new for the web.
+
+816
+00:30:36,770 --> 00:30:39,560
+Before we go, we want to give
+a brief mention of Chrome OS.
+
+817
+00:30:39,560 --> 00:30:41,690
+It's a great way to
+engage with the web.
+
+818
+00:30:41,690 --> 00:30:43,810
+And with support for
+Linux and Android apps,
+
+819
+00:30:43,810 --> 00:30:45,740
+it's also ready for
+web development.
+
+820
+00:30:45,740 --> 00:30:50,570
+We're offering a 75% discount on
+the Google Pixelbook to all CDS
+
+821
+00:30:50,570 --> 00:30:53,082
+attendees so you
+can check it out.
+
+822
+00:30:53,082 --> 00:30:55,040
+The vouchers will be
+available tomorrow morning
+
+823
+00:30:55,040 --> 00:30:56,414
+before the first
+session begins--
+
+824
+00:30:56,414 --> 00:30:59,600
+DION ALMAER: --so don't
+party too hard tonight.
+
+825
+00:30:59,600 --> 00:31:02,030
+BEN GALBRAITH: And with
+that, thank you very much
+
+826
+00:31:02,030 --> 00:31:03,750
+for joining us
+here this morning.
+
+827
+00:31:03,750 --> 00:31:05,020
+And let's all work together.
+
+828
+00:31:05,020 --> 00:31:05,620
+[APPLAUSE]
+
+829
+00:31:05,620 --> 00:31:06,520
+Thank you.
+
+830
+00:31:06,520 --> 00:31:10,470
+[MUSIC PLAYING]
+
+831
+00:31:10,470 --> 00:31:16,914

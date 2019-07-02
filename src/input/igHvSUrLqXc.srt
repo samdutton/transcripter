@@ -1,0 +1,2356 @@
+1
+00:00:00,000 --> 00:00:01,928
+[MUSIC PLAYING]
+
+2
+00:00:01,928 --> 00:00:06,750
+
+
+3
+00:00:06,750 --> 00:00:08,260
+JASON CHASE: Good
+morning, everyone.
+
+4
+00:00:08,260 --> 00:00:10,290
+So I lead a Chrome
+team whose mission
+
+5
+00:00:10,290 --> 00:00:12,900
+is to help developers better
+understand and control
+
+6
+00:00:12,900 --> 00:00:14,590
+the web platform.
+
+7
+00:00:14,590 --> 00:00:16,650
+So we've been working
+on feature policy
+
+8
+00:00:16,650 --> 00:00:18,660
+and reporting API,
+which we think
+
+9
+00:00:18,660 --> 00:00:21,784
+can really make your lives
+easier as web developers.
+
+10
+00:00:21,784 --> 00:00:23,700
+Maybe it won't save you
+from speeding tickets,
+
+11
+00:00:23,700 --> 00:00:27,762
+like Nicole said, but
+we'll see what we can do.
+
+12
+00:00:27,762 --> 00:00:29,970
+So we know there's many
+benefits to being on the web.
+
+13
+00:00:29,970 --> 00:00:34,170
+But as a development platform,
+it's far from perfect.
+
+14
+00:00:34,170 --> 00:00:35,940
+On the Chrome team,
+we regularly provide
+
+15
+00:00:35,940 --> 00:00:40,830
+web consults to help people
+address issues with their site.
+
+16
+00:00:40,830 --> 00:00:44,820
+Now, these consults bring
+together developer relations,
+
+17
+00:00:44,820 --> 00:00:47,190
+engineering, and other
+folks to help people
+
+18
+00:00:47,190 --> 00:00:50,340
+deep dive into questions
+or issues with their site.
+
+19
+00:00:50,340 --> 00:00:52,500
+Now, the goal is to provide
+actual recommendations
+
+20
+00:00:52,500 --> 00:00:54,510
+to improve things.
+
+21
+00:00:54,510 --> 00:00:58,500
+Now, as a result, we've
+identified common mistakes that
+
+22
+00:00:58,500 --> 00:01:01,686
+happen over and over again.
+
+23
+00:01:01,686 --> 00:01:03,060
+And-- spoiler
+alert-- performance
+
+24
+00:01:03,060 --> 00:01:04,790
+is a common theme here.
+
+25
+00:01:04,790 --> 00:01:06,900
+And the two big
+performance problems we see
+
+26
+00:01:06,900 --> 00:01:09,674
+are too much script and
+too many image bytes
+
+27
+00:01:09,674 --> 00:01:10,840
+being sent over the network.
+
+28
+00:01:10,840 --> 00:01:13,950
+
+
+29
+00:01:13,950 --> 00:01:16,640
+So you know there's a
+right way to do things.
+
+30
+00:01:16,640 --> 00:01:18,940
+But it's an adventure
+to find that sometimes.
+
+31
+00:01:18,940 --> 00:01:21,740
+And even if you find the
+right way, there's bumps.
+
+32
+00:01:21,740 --> 00:01:23,900
+Or you might slip off the path.
+
+33
+00:01:23,900 --> 00:01:25,700
+So as we've seen in
+other talks, there's
+
+34
+00:01:25,700 --> 00:01:29,300
+a long list of things to
+keep track of and get right.
+
+35
+00:01:29,300 --> 00:01:32,015
+Now, this is hard enough if
+you're an expert developer.
+
+36
+00:01:32,015 --> 00:01:34,265
+But imagine you have a dev
+team with junior developers
+
+37
+00:01:34,265 --> 00:01:36,310
+and you need to keep
+everyone on the same page.
+
+38
+00:01:36,310 --> 00:01:39,400
+
+
+39
+00:01:39,400 --> 00:01:41,567
+So we need help.
+
+40
+00:01:41,567 --> 00:01:43,400
+What if we could make
+web development easier
+
+41
+00:01:43,400 --> 00:01:45,180
+with guardrails?
+
+42
+00:01:45,180 --> 00:01:47,615
+So if you imagine
+guardrails along a path--
+
+43
+00:01:47,615 --> 00:01:51,500
+if you hit a rail, you know
+you're doing something wrong.
+
+44
+00:01:51,500 --> 00:01:54,650
+And the rails stop you
+from leaving the path.
+
+45
+00:01:54,650 --> 00:01:57,840
+Now, this isn't
+necessarily a new idea.
+
+46
+00:01:57,840 --> 00:02:00,680
+But looking at repeated
+mistakes in our web consults,
+
+47
+00:02:00,680 --> 00:02:03,750
+we're thinking about
+different ways to apply this.
+
+48
+00:02:03,750 --> 00:02:07,500
+Concretely, how could we help
+you put guardrails in place
+
+49
+00:02:07,500 --> 00:02:10,530
+for development?
+
+50
+00:02:10,530 --> 00:02:13,170
+So AMP gives us examples--
+
+51
+00:02:13,170 --> 00:02:15,730
+an example of guardrails
+and web development.
+
+52
+00:02:15,730 --> 00:02:18,800
+AMP gives guarantees you're
+not going to veer off course
+
+53
+00:02:18,800 --> 00:02:23,070
+by making it nearly
+impossible to do things wrong.
+
+54
+00:02:23,070 --> 00:02:26,300
+Now, AMP started by providing
+building blocks, tightly
+
+55
+00:02:26,300 --> 00:02:30,125
+constrained, to ensure
+great performance in UX.
+
+56
+00:02:30,125 --> 00:02:32,060
+So this is an
+[INAUDIBLE] approach
+
+57
+00:02:32,060 --> 00:02:35,780
+to carve off good parts
+of the web platform.
+
+58
+00:02:35,780 --> 00:02:39,530
+Now, not everyone can
+or wants to use AMP.
+
+59
+00:02:39,530 --> 00:02:42,410
+So learning from AMP, we thought
+about a more configurable
+
+60
+00:02:42,410 --> 00:02:43,800
+approach.
+
+61
+00:02:43,800 --> 00:02:46,430
+And that's Feature Policy.
+
+62
+00:02:46,430 --> 00:02:47,840
+So we're really
+excited about it.
+
+63
+00:02:47,840 --> 00:02:49,423
+We think it's going
+to be a great tool
+
+64
+00:02:49,423 --> 00:02:51,310
+to help guide you
+towards the well-lit path
+
+65
+00:02:51,310 --> 00:02:54,710
+to web development.
+
+66
+00:02:54,710 --> 00:02:56,750
+Now, with Feature Policy
+you opt into a set
+
+67
+00:02:56,750 --> 00:03:01,070
+of policies for the browser to
+enforce throughout your site.
+
+68
+00:03:01,070 --> 00:03:04,820
+These policies restrict which
+features the site can access--
+
+69
+00:03:04,820 --> 00:03:07,490
+or modify the browser's default
+behavior for certain features.
+
+70
+00:03:07,490 --> 00:03:10,400
+
+
+71
+00:03:10,400 --> 00:03:14,610
+So let's talk through some of
+the common problems we've seen.
+
+72
+00:03:14,610 --> 00:03:17,380
+So images often have
+extra quality or metadata
+
+73
+00:03:17,380 --> 00:03:21,490
+that take up space
+but isn't required.
+
+74
+00:03:21,490 --> 00:03:23,200
+Now, as we've seen
+in other talks,
+
+75
+00:03:23,200 --> 00:03:25,390
+again, there's many
+tools to optimize images.
+
+76
+00:03:25,390 --> 00:03:28,000
+But you have to
+remember to use them.
+
+77
+00:03:28,000 --> 00:03:32,470
+Or you have to integrate them
+into your build pipeline.
+
+78
+00:03:32,470 --> 00:03:34,630
+Now ideally, your
+page should never
+
+79
+00:03:34,630 --> 00:03:37,330
+serve images that are larger
+than the version that's
+
+80
+00:03:37,330 --> 00:03:39,250
+rendered on-screen.
+
+81
+00:03:39,250 --> 00:03:42,040
+Anything larger just
+results in wasted bytes
+
+82
+00:03:42,040 --> 00:03:45,230
+and slows down page load time.
+
+83
+00:03:45,230 --> 00:03:48,350
+So a common example might be
+sending a desktop-size hero
+
+84
+00:03:48,350 --> 00:03:50,120
+image to a mobile device.
+
+85
+00:03:50,120 --> 00:03:52,860
+
+
+86
+00:03:52,860 --> 00:03:55,240
+We've designed policies
+to catch common mistakes
+
+87
+00:03:55,240 --> 00:03:59,150
+of un-optimized or
+oversized images.
+
+88
+00:03:59,150 --> 00:04:01,090
+So we researched
+the impact that we
+
+89
+00:04:01,090 --> 00:04:02,995
+think these policies
+can have on 10,000
+
+90
+00:04:02,995 --> 00:04:05,840
+of the most popular sites.
+
+91
+00:04:05,840 --> 00:04:08,060
+Our analysis shows
+that 10% of sites
+
+92
+00:04:08,060 --> 00:04:11,280
+can save over 500
+kilobytes on average.
+
+93
+00:04:11,280 --> 00:04:15,870
+Now, that can reduce load time
+by up to 10 seconds on a 3G
+
+94
+00:04:15,870 --> 00:04:16,370
+network.
+
+95
+00:04:16,370 --> 00:04:19,470
+
+
+96
+00:04:19,470 --> 00:04:21,529
+So let's take a quick look.
+
+97
+00:04:21,529 --> 00:04:24,500
+So this shows the policies
+being applied to a site.
+
+98
+00:04:24,500 --> 00:04:28,270
+Now on the left, policy
+for un-optimized images
+
+99
+00:04:28,270 --> 00:04:29,940
+is turned off.
+
+100
+00:04:29,940 --> 00:04:33,030
+And you can see, the
+images load at normal.
+
+101
+00:04:33,030 --> 00:04:36,180
+On the right, we've
+turned on the policy.
+
+102
+00:04:36,180 --> 00:04:38,860
+And it's blocked
+one of the images.
+
+103
+00:04:38,860 --> 00:04:43,920
+So we compute a compression
+ratio of bytes to pixels.
+
+104
+00:04:43,920 --> 00:04:46,830
+And if that ratio
+is greater than 0.5,
+
+105
+00:04:46,830 --> 00:04:49,630
+it will block the image and
+will show a placeholder.
+
+106
+00:04:49,630 --> 00:04:51,630
+So the idea is to point
+out the images that
+
+107
+00:04:51,630 --> 00:04:52,838
+need to be corrected.
+
+108
+00:04:52,838 --> 00:04:56,050
+
+
+109
+00:04:56,050 --> 00:04:59,450
+So this site might
+look familiar.
+
+110
+00:04:59,450 --> 00:05:02,260
+At Google, we're big
+believers in dog-fooding.
+
+111
+00:05:02,260 --> 00:05:05,290
+So we went and applied all the
+policies we could to the site.
+
+112
+00:05:05,290 --> 00:05:08,900
+Lo and behold, we found
+out we made a few mistakes.
+
+113
+00:05:08,900 --> 00:05:13,310
+So we applied a
+bunch of policies.
+
+114
+00:05:13,310 --> 00:05:15,790
+But it was actually the
+oversized images policy
+
+115
+00:05:15,790 --> 00:05:18,970
+that caught that we were sending
+some images that were too big.
+
+116
+00:05:18,970 --> 00:05:20,736
+So oops!
+
+117
+00:05:20,736 --> 00:05:22,630
+It just shows that
+even the experts,
+
+118
+00:05:22,630 --> 00:05:26,230
+like our developer relations
+team, can make mistakes.
+
+119
+00:05:26,230 --> 00:05:28,480
+So we really need
+better tooling to help
+
+120
+00:05:28,480 --> 00:05:31,540
+catch these kind of things.
+
+121
+00:05:31,540 --> 00:05:36,550
+So another common problem is
+images without explicit sizes.
+
+122
+00:05:36,550 --> 00:05:40,000
+Now, as we see on the left, this
+can cause your user experience
+
+123
+00:05:40,000 --> 00:05:42,480
+to jump around as
+the browser loads
+
+124
+00:05:42,480 --> 00:05:45,580
+the new images and
+resizes the page.
+
+125
+00:05:45,580 --> 00:05:49,270
+Now, on the right, we've
+applied a policy to catch this.
+
+126
+00:05:49,270 --> 00:05:51,709
+So the browser can set these
+images to a fixed size.
+
+127
+00:05:51,709 --> 00:05:53,500
+And it'll keep your
+user experience stable.
+
+128
+00:05:53,500 --> 00:05:58,060
+
+
+129
+00:05:58,060 --> 00:05:59,910
+So how does this all work?
+
+130
+00:05:59,910 --> 00:06:01,900
+Policies, like I said
+before, are a contract
+
+131
+00:06:01,900 --> 00:06:04,930
+between developer and browser.
+
+132
+00:06:04,930 --> 00:06:06,790
+We use them to
+inform the browser
+
+133
+00:06:06,790 --> 00:06:09,310
+about our intent for our site.
+
+134
+00:06:09,310 --> 00:06:12,540
+It's a set of rules for how
+each page should behave.
+
+135
+00:06:12,540 --> 00:06:14,540
+Now, the browser
+helps keep us honest
+
+136
+00:06:14,540 --> 00:06:16,840
+when our page tries
+to veer off the path,
+
+137
+00:06:16,840 --> 00:06:22,330
+by validating that it's behaving
+according to its stated rules.
+
+138
+00:06:22,330 --> 00:06:25,650
+So if a page or embedded
+third-party content
+
+139
+00:06:25,650 --> 00:06:27,670
+attempts to violate
+any of the rules,
+
+140
+00:06:27,670 --> 00:06:30,100
+the browser will identify
+or block the behavior.
+
+141
+00:06:30,100 --> 00:06:32,910
+And in some cases, it
+may override the behavior
+
+142
+00:06:32,910 --> 00:06:36,420
+to write a better
+user experience.
+
+143
+00:06:36,420 --> 00:06:39,200
+All right, let's take a look
+at how you configure policies.
+
+144
+00:06:39,200 --> 00:06:43,090
+Now, each policy refers
+to a single feature.
+
+145
+00:06:43,090 --> 00:06:44,960
+And then it defines a
+list of origins that
+
+146
+00:06:44,960 --> 00:06:48,390
+are allowed to use the feature.
+
+147
+00:06:48,390 --> 00:06:50,220
+Now, with each
+page response, you
+
+148
+00:06:50,220 --> 00:06:53,874
+can add this Feature
+Policy HTTP header.
+
+149
+00:06:53,874 --> 00:06:55,290
+So in this example
+here, this will
+
+150
+00:06:55,290 --> 00:06:57,870
+catch all oversized images.
+
+151
+00:06:57,870 --> 00:07:01,970
+And this is the one that saved
+our bacon on the CDS site.
+
+152
+00:07:01,970 --> 00:07:03,990
+Now here, the
+"none" keyword means
+
+153
+00:07:03,990 --> 00:07:06,960
+that no origin is allowed
+to use the feature
+
+154
+00:07:06,960 --> 00:07:10,890
+of oversized images, disabling
+it entirely for your site.
+
+155
+00:07:10,890 --> 00:07:13,640
+
+
+156
+00:07:13,640 --> 00:07:15,190
+Now, looking at
+that example, you
+
+157
+00:07:15,190 --> 00:07:18,920
+might wonder why we would say,
+oversized images are a feature.
+
+158
+00:07:18,920 --> 00:07:20,295
+Now, we have
+policies for helping
+
+159
+00:07:20,295 --> 00:07:23,540
+you enforce best practices,
+to ensure good performance
+
+160
+00:07:23,540 --> 00:07:25,520
+and user experience.
+
+161
+00:07:25,520 --> 00:07:27,440
+And the way these
+often work is, we'll
+
+162
+00:07:27,440 --> 00:07:30,080
+define a known bad
+practice as a feature.
+
+163
+00:07:30,080 --> 00:07:33,830
+And then you use the
+policy to prevent it.
+
+164
+00:07:33,830 --> 00:07:37,140
+Now, we do this for
+web-compatible reasons.
+
+165
+00:07:37,140 --> 00:07:39,140
+We don't want to go ahead
+and break the internet
+
+166
+00:07:39,140 --> 00:07:42,440
+by all the sudden turning off
+oversized images for everyone.
+
+167
+00:07:42,440 --> 00:07:45,330
+So we'll allow that
+behavior by default.
+
+168
+00:07:45,330 --> 00:07:47,030
+And then you opt
+in to turn it off.
+
+169
+00:07:47,030 --> 00:07:50,390
+
+
+170
+00:07:50,390 --> 00:07:52,060
+Now, this header
+applies a policy
+
+171
+00:07:52,060 --> 00:07:56,050
+that catches any images
+that are not optimized.
+
+172
+00:07:56,050 --> 00:07:58,140
+Now here, we're making
+an explicit exception
+
+173
+00:07:58,140 --> 00:08:00,360
+for our photo CDN.
+
+174
+00:08:00,360 --> 00:08:03,900
+Now in this case, it might be
+because our users expect really
+
+175
+00:08:03,900 --> 00:08:06,180
+high-detailed glossy pictures.
+
+176
+00:08:06,180 --> 00:08:09,900
+And those don't compress well.
+
+177
+00:08:09,900 --> 00:08:13,500
+Now, in this case, there's
+only one origin listed.
+
+178
+00:08:13,500 --> 00:08:15,480
+And all origins
+will not be allowed.
+
+179
+00:08:15,480 --> 00:08:19,480
+
+
+180
+00:08:19,480 --> 00:08:23,750
+So here's an example that
+puts them all together.
+
+181
+00:08:23,750 --> 00:08:27,040
+So first, we have a policy
+that ensures every image has
+
+182
+00:08:27,040 --> 00:08:28,730
+explicit dimensions.
+
+183
+00:08:28,730 --> 00:08:32,200
+So we saw this earlier,
+preventing your user experience
+
+184
+00:08:32,200 --> 00:08:34,270
+from jumping around.
+
+185
+00:08:34,270 --> 00:08:37,330
+Now second, we have a
+policy to selectively enable
+
+186
+00:08:37,330 --> 00:08:39,750
+the geolocation feature.
+
+187
+00:08:39,750 --> 00:08:41,830
+So now, we're applying
+this to our own origin
+
+188
+00:08:41,830 --> 00:08:44,730
+and to our trusted
+maps provider.
+
+189
+00:08:44,730 --> 00:08:47,370
+The "self" keyword
+here means the origin
+
+190
+00:08:47,370 --> 00:08:49,620
+of the top-level page.
+
+191
+00:08:49,620 --> 00:08:52,160
+So by combining this
+with explicit origins,
+
+192
+00:08:52,160 --> 00:08:56,470
+you have full control over who
+is allowed to use a feature.
+
+193
+00:08:56,470 --> 00:09:00,890
+And then finally, we're allowing
+any origin to use autoplay.
+
+194
+00:09:00,890 --> 00:09:03,320
+And here, you see an
+asterisks keyword.
+
+195
+00:09:03,320 --> 00:09:05,660
+That means essentially everyone.
+
+196
+00:09:05,660 --> 00:09:09,170
+So by default, Chrome
+will only allow autoplay
+
+197
+00:09:09,170 --> 00:09:10,760
+on same-origin iframes.
+
+198
+00:09:10,760 --> 00:09:13,214
+With this policy, we can
+allow cross-origin iframes
+
+199
+00:09:13,214 --> 00:09:13,880
+to play as well.
+
+200
+00:09:13,880 --> 00:09:17,350
+
+
+201
+00:09:17,350 --> 00:09:19,960
+So in that last
+example, we saw features
+
+202
+00:09:19,960 --> 00:09:21,750
+in the more traditional sense--
+
+203
+00:09:21,750 --> 00:09:23,920
+well-known APIs that
+are exposed to the web,
+
+204
+00:09:23,920 --> 00:09:29,010
+like geolocation, camera,
+full-screen, autoplay.
+
+205
+00:09:29,010 --> 00:09:33,230
+So before, we saw policies
+about enforcing best practices.
+
+206
+00:09:33,230 --> 00:09:36,070
+So now, we have policies that
+give you granular control
+
+207
+00:09:36,070 --> 00:09:38,200
+over the features you use.
+
+208
+00:09:38,200 --> 00:09:40,210
+So we've probably all
+seen this example.
+
+209
+00:09:40,210 --> 00:09:40,955
+You go to a site.
+
+210
+00:09:40,955 --> 00:09:42,830
+And before you interact
+with the site at all,
+
+211
+00:09:42,830 --> 00:09:46,480
+you get a pop-up to use
+location or microphone
+
+212
+00:09:46,480 --> 00:09:48,410
+or something like that.
+
+213
+00:09:48,410 --> 00:09:50,860
+So with Feature
+Policy, you can lock
+
+214
+00:09:50,860 --> 00:09:54,370
+this down to either prevent
+the use of the feature at all
+
+215
+00:09:54,370 --> 00:09:57,715
+or really just dole it out to
+specific origins you trust.
+
+216
+00:09:57,715 --> 00:10:02,870
+
+
+217
+00:10:02,870 --> 00:10:05,920
+So we've talked through some
+examples of an HTTP header.
+
+218
+00:10:05,920 --> 00:10:08,560
+You can also use
+an Allow attribute
+
+219
+00:10:08,560 --> 00:10:11,620
+to control Feature
+Policy on iframes.
+
+220
+00:10:11,620 --> 00:10:13,370
+So now, why might
+you want to do this?
+
+221
+00:10:13,370 --> 00:10:17,080
+Well, as we talked about,
+you can be really selective.
+
+222
+00:10:17,080 --> 00:10:20,440
+So maybe you have one frame
+on your site that shows a map.
+
+223
+00:10:20,440 --> 00:10:22,810
+You could use the
+Allow attribute
+
+224
+00:10:22,810 --> 00:10:25,360
+to grant the geolocation
+usage to that frame
+
+225
+00:10:25,360 --> 00:10:26,440
+and on no other frames.
+
+226
+00:10:26,440 --> 00:10:29,020
+
+
+227
+00:10:29,020 --> 00:10:32,720
+Now, in the example we see
+here, this Allow attribute
+
+228
+00:10:32,720 --> 00:10:35,551
+is changing the default
+for the AutoPlay feature.
+
+229
+00:10:35,551 --> 00:10:37,300
+Well, you'll notice,
+if you go to generate
+
+230
+00:10:37,300 --> 00:10:40,000
+and embed on YouTube,
+they're already
+
+231
+00:10:40,000 --> 00:10:41,310
+using this in production today.
+
+232
+00:10:41,310 --> 00:10:45,570
+
+
+233
+00:10:45,570 --> 00:10:47,150
+So we've seen a
+lot of flexibility
+
+234
+00:10:47,150 --> 00:10:50,184
+in how you can configure
+Feature Policy.
+
+235
+00:10:50,184 --> 00:10:52,100
+So we built in some rules
+to make sure they're
+
+236
+00:10:52,100 --> 00:10:54,140
+being applied correctly.
+
+237
+00:10:54,140 --> 00:10:57,500
+So Malte in the keynote
+talked rather enthusiastically
+
+238
+00:10:57,500 --> 00:11:00,590
+about not using sync-xhr HR.
+
+239
+00:11:00,590 --> 00:11:02,210
+And yes, we do have
+a policy for that.
+
+240
+00:11:02,210 --> 00:11:05,190
+And AMP is using
+that in production.
+
+241
+00:11:05,190 --> 00:11:11,600
+So the way the rules apply is,
+first, policies are inherited.
+
+242
+00:11:11,600 --> 00:11:13,190
+So scripts will
+inherit the policy
+
+243
+00:11:13,190 --> 00:11:15,000
+of their containing frame.
+
+244
+00:11:15,000 --> 00:11:18,050
+So this means that, for
+your top-level scripts,
+
+245
+00:11:18,050 --> 00:11:21,660
+they'll inherit the policies
+of the main document.
+
+246
+00:11:21,660 --> 00:11:25,280
+So this means you can apply
+the policies at the top.
+
+247
+00:11:25,280 --> 00:11:27,860
+And they cascade down to
+all nested sub-frames.
+
+248
+00:11:27,860 --> 00:11:29,690
+So in AMP's case, they
+can set the policy
+
+249
+00:11:29,690 --> 00:11:32,180
+to disable sync-xhr
+and know that it
+
+250
+00:11:32,180 --> 00:11:34,460
+will be applied
+to all sub-frames,
+
+251
+00:11:34,460 --> 00:11:36,590
+regardless of how far
+they might be nested.
+
+252
+00:11:36,590 --> 00:11:40,230
+
+
+253
+00:11:40,230 --> 00:11:42,490
+And this applies to
+the iframe attribute--
+
+254
+00:11:42,490 --> 00:11:44,226
+Allow attribute as well.
+
+255
+00:11:44,226 --> 00:11:45,600
+So if you have an
+Allow attribute
+
+256
+00:11:45,600 --> 00:11:48,570
+and you have a header, the
+stricter of the two policies
+
+257
+00:11:48,570 --> 00:11:50,430
+wins.
+
+258
+00:11:50,430 --> 00:11:55,950
+Now, on the other hand, we
+have this one-way toggle.
+
+259
+00:11:55,950 --> 00:11:58,770
+So disabling a feature
+turns it off permanently.
+
+260
+00:11:58,770 --> 00:12:00,510
+So that means,
+again, in AMP's case,
+
+261
+00:12:00,510 --> 00:12:04,210
+they've turned off the feature
+with the sync-xhr policy.
+
+262
+00:12:04,210 --> 00:12:06,300
+And that means no frame,
+nested or otherwise,
+
+263
+00:12:06,300 --> 00:12:07,180
+can turn it back on.
+
+264
+00:12:07,180 --> 00:12:11,620
+
+
+265
+00:12:11,620 --> 00:12:14,740
+Now, for policy
+supporting best practices,
+
+266
+00:12:14,740 --> 00:12:16,600
+it might not be
+feasible for the browser
+
+267
+00:12:16,600 --> 00:12:20,490
+to actually block the bad
+practice before it appears.
+
+268
+00:12:20,490 --> 00:12:23,010
+It can only detect the
+problem, in some cases,
+
+269
+00:12:23,010 --> 00:12:26,446
+and then break your page in
+an obvious way or notify you.
+
+270
+00:12:26,446 --> 00:12:27,820
+The goal, in that
+case, is really
+
+271
+00:12:27,820 --> 00:12:30,660
+to let you know there's
+a problem to fix.
+
+272
+00:12:30,660 --> 00:12:33,870
+Now, we saw this in the
+policy for un-optimized images
+
+273
+00:12:33,870 --> 00:12:35,580
+and oversized images.
+
+274
+00:12:35,580 --> 00:12:37,920
+Now, in other cases,
+the browser can actually
+
+275
+00:12:37,920 --> 00:12:41,820
+block the bad practice, so your
+site continues to behave well.
+
+276
+00:12:41,820 --> 00:12:44,640
+The policy front-sized
+media works this way.
+
+277
+00:12:44,640 --> 00:12:46,710
+So it will apply
+fixed-size to images
+
+278
+00:12:46,710 --> 00:12:49,680
+to prevent the user experience
+from jumping around.
+
+279
+00:12:49,680 --> 00:12:53,320
+
+
+280
+00:12:53,320 --> 00:12:55,510
+So we have dev
+tools in Lighthouse
+
+281
+00:12:55,510 --> 00:12:58,810
+to give you great insight into
+the behavior of your site.
+
+282
+00:12:58,810 --> 00:13:03,130
+So where does Feature Policy fit
+into your development workflow?
+
+283
+00:13:03,130 --> 00:13:06,190
+Feature Policy lets you set
+the policies up-front and then
+
+284
+00:13:06,190 --> 00:13:08,200
+catch problems early
+during development,
+
+285
+00:13:08,200 --> 00:13:11,612
+before anyone writes
+a lot of code.
+
+286
+00:13:11,612 --> 00:13:13,320
+Now, you can build
+policies that defaults
+
+287
+00:13:13,320 --> 00:13:15,390
+for new sites or new pages.
+
+288
+00:13:15,390 --> 00:13:20,240
+And this way, you can enforce
+standards across your dev team.
+
+289
+00:13:20,240 --> 00:13:23,640
+Policies are served with each
+page and validated at runtime.
+
+290
+00:13:23,640 --> 00:13:26,120
+So you can choose to turn
+them on for some users and not
+
+291
+00:13:26,120 --> 00:13:27,940
+others.
+
+292
+00:13:27,940 --> 00:13:30,250
+You can also turn them on
+for some pages in your site
+
+293
+00:13:30,250 --> 00:13:32,080
+and not others, as
+you incrementally
+
+294
+00:13:32,080 --> 00:13:34,630
+improve your site, for example.
+
+295
+00:13:34,630 --> 00:13:37,930
+So at a minimum we recommend
+enabling the policies
+
+296
+00:13:37,930 --> 00:13:39,850
+on your staging server.
+
+297
+00:13:39,850 --> 00:13:42,640
+This can let you catch
+problems that you
+
+298
+00:13:42,640 --> 00:13:44,450
+didn't see during development.
+
+299
+00:13:44,450 --> 00:13:48,010
+For example, you might have
+your images come from a content
+
+300
+00:13:48,010 --> 00:13:49,157
+management system.
+
+301
+00:13:49,157 --> 00:13:51,490
+And they're not available as
+you're developing the site.
+
+302
+00:13:51,490 --> 00:13:53,031
+So this can catch
+problems with that.
+
+303
+00:13:53,031 --> 00:13:55,450
+
+
+304
+00:13:55,450 --> 00:13:57,880
+In addition to
+staging, you can also
+
+305
+00:13:57,880 --> 00:13:59,980
+apply policies in production.
+
+306
+00:13:59,980 --> 00:14:02,110
+You can have your dev
+team, your managers--
+
+307
+00:14:02,110 --> 00:14:03,460
+all the way up to your CEO--
+
+308
+00:14:03,460 --> 00:14:06,430
+use your site with policies
+enabled, so that you can
+
+309
+00:14:06,430 --> 00:14:09,460
+find real issues in the wild.
+
+310
+00:14:09,460 --> 00:14:11,830
+For regular production
+users, you likely
+
+311
+00:14:11,830 --> 00:14:14,530
+won't enable the
+policies if violations
+
+312
+00:14:14,530 --> 00:14:17,480
+will break the user experience.
+
+313
+00:14:17,480 --> 00:14:20,170
+So for example, with
+the image policies,
+
+314
+00:14:20,170 --> 00:14:22,759
+loading un-optimized
+images more slowly
+
+315
+00:14:22,759 --> 00:14:24,550
+is probably a better
+experience than having
+
+316
+00:14:24,550 --> 00:14:27,130
+them missing altogether.
+
+317
+00:14:27,130 --> 00:14:29,980
+You still want to know
+about all these violations,
+
+318
+00:14:29,980 --> 00:14:32,580
+so you can correct them.
+
+319
+00:14:32,580 --> 00:14:34,950
+So we've designed
+report-only mode
+
+320
+00:14:34,950 --> 00:14:38,240
+to give you the
+best of both worlds.
+
+321
+00:14:38,240 --> 00:14:41,230
+So you can configure policies
+similar to the examples
+
+322
+00:14:41,230 --> 00:14:42,310
+we saw before.
+
+323
+00:14:42,310 --> 00:14:44,380
+But you mark them
+as report-only.
+
+324
+00:14:44,380 --> 00:14:47,440
+So you see here,
+internal users--
+
+325
+00:14:47,440 --> 00:14:49,439
+they have the policies enabled.
+
+326
+00:14:49,439 --> 00:14:50,230
+We'll break things.
+
+327
+00:14:50,230 --> 00:14:53,260
+We'll see problems with images
+that need to get corrected.
+
+328
+00:14:53,260 --> 00:14:56,770
+For production users, we have
+them in report-only mode.
+
+329
+00:14:56,770 --> 00:14:59,320
+So the production users
+get the normal experience.
+
+330
+00:14:59,320 --> 00:15:02,000
+But then you can get reports
+about what's gone wrong.
+
+331
+00:15:02,000 --> 00:15:05,120
+
+
+332
+00:15:05,120 --> 00:15:08,870
+So speaking of reporting,
+Feature Policy violations
+
+333
+00:15:08,870 --> 00:15:10,260
+are really just the start.
+
+334
+00:15:10,260 --> 00:15:12,150
+There's lots of other
+info from the wild
+
+335
+00:15:12,150 --> 00:15:15,020
+that'll be really valuable--
+
+336
+00:15:15,020 --> 00:15:17,330
+for example, browser
+interventions.
+
+337
+00:15:17,330 --> 00:15:19,250
+Sometimes, a browser
+needs to intervene
+
+338
+00:15:19,250 --> 00:15:21,480
+to improve the experience
+for the end-user.
+
+339
+00:15:21,480 --> 00:15:25,160
+So an example of
+such a intervention
+
+340
+00:15:25,160 --> 00:15:28,760
+is blocking document.write,
+unlike 2G connections.
+
+341
+00:15:28,760 --> 00:15:33,437
+So there, we've discovered
+that doing a document.write
+
+342
+00:15:33,437 --> 00:15:35,020
+on a really slow
+connection can really
+
+343
+00:15:35,020 --> 00:15:36,740
+impair the user experience.
+
+344
+00:15:36,740 --> 00:15:39,590
+So to protect that,
+we've just blocked it.
+
+345
+00:15:39,590 --> 00:15:41,060
+But that happens in the wild.
+
+346
+00:15:41,060 --> 00:15:42,919
+You don't know about it.
+
+347
+00:15:42,919 --> 00:15:44,460
+You really want to
+find out about it,
+
+348
+00:15:44,460 --> 00:15:45,376
+so you can correct it.
+
+349
+00:15:45,376 --> 00:15:48,270
+
+
+350
+00:15:48,270 --> 00:15:49,360
+Now, what else?
+
+351
+00:15:49,360 --> 00:15:50,950
+So just taking a
+look at this, there's
+
+352
+00:15:50,950 --> 00:15:54,566
+lots of things going on
+in the wild on your site
+
+353
+00:15:54,566 --> 00:15:57,050
+that you'd really
+love to know about.
+
+354
+00:15:57,050 --> 00:16:00,280
+Not a problem-- some of these
+are just console messages,
+
+355
+00:16:00,280 --> 00:16:02,170
+which you can't collect.
+
+356
+00:16:02,170 --> 00:16:04,270
+Now, there's other things
+that have a bespoke API,
+
+357
+00:16:04,270 --> 00:16:05,230
+like window.onerror.
+
+358
+00:16:05,230 --> 00:16:07,450
+So you have to remember
+to go hook up something
+
+359
+00:16:07,450 --> 00:16:09,370
+there to get some errors.
+
+360
+00:16:09,370 --> 00:16:11,680
+And then there's things like
+crashes and network errors
+
+361
+00:16:11,680 --> 00:16:16,410
+that just aren't possible
+to capture from script.
+
+362
+00:16:16,410 --> 00:16:18,690
+So a solution here
+is reporting API.
+
+363
+00:16:18,690 --> 00:16:21,000
+This gives you one place
+to collect all sorts
+
+364
+00:16:21,000 --> 00:16:22,290
+of information from the wild.
+
+365
+00:16:22,290 --> 00:16:25,230
+It's a one-stop shop.
+
+366
+00:16:25,230 --> 00:16:27,870
+It exposes information that
+wasn't available before.
+
+367
+00:16:27,870 --> 00:16:30,810
+We've talked about
+network errors, crashes--
+
+368
+00:16:30,810 --> 00:16:32,790
+now, that's coming soon--
+
+369
+00:16:32,790 --> 00:16:35,160
+Feature Policy violations.
+
+370
+00:16:35,160 --> 00:16:37,810
+Deprecations, interventions,
+and network errors--
+
+371
+00:16:37,810 --> 00:16:42,300
+you can get those today
+with reporting API.
+
+372
+00:16:42,300 --> 00:16:45,380
+There's two ways
+to use reporting.
+
+373
+00:16:45,380 --> 00:16:47,610
+We have the reporting
+observer, which
+
+374
+00:16:47,610 --> 00:16:51,770
+lets you collect reports
+client-side, with a JS API.
+
+375
+00:16:51,770 --> 00:16:53,969
+Now, you can filter
+by report type.
+
+376
+00:16:53,969 --> 00:16:56,010
+Here, we've said, we just
+care about deprecations
+
+377
+00:16:56,010 --> 00:16:58,550
+and Feature Policy violations.
+
+378
+00:16:58,550 --> 00:17:02,040
+And then you can use a callback
+to funnel these reports
+
+379
+00:17:02,040 --> 00:17:04,566
+to your own analytics
+provider or however you'd
+
+380
+00:17:04,566 --> 00:17:05,440
+like to capture them.
+
+381
+00:17:05,440 --> 00:17:08,160
+
+
+382
+00:17:08,160 --> 00:17:10,680
+Now, because it's client-side,
+the available types
+
+383
+00:17:10,680 --> 00:17:12,089
+are limited.
+
+384
+00:17:12,089 --> 00:17:14,460
+But the key feature here
+is it buffers results.
+
+385
+00:17:14,460 --> 00:17:17,220
+So you can set up your reporting
+observer later and still get
+
+386
+00:17:17,220 --> 00:17:19,079
+reports that happened
+earlier in page load.
+
+387
+00:17:19,079 --> 00:17:22,849
+
+
+388
+00:17:22,849 --> 00:17:25,880
+So every report has
+some common fields.
+
+389
+00:17:25,880 --> 00:17:29,200
+So we can see here the type
+of the report and the URL,
+
+390
+00:17:29,200 --> 00:17:31,140
+where the report happened.
+
+391
+00:17:31,140 --> 00:17:34,230
+And then, for each report
+type, there's a specific body.
+
+392
+00:17:34,230 --> 00:17:36,370
+Now, for Feature
+Policy violations,
+
+393
+00:17:36,370 --> 00:17:39,002
+we see it's telling you the
+feature that you were using.
+
+394
+00:17:39,002 --> 00:17:41,460
+And it tells you where in your
+code the violation occurred.
+
+395
+00:17:41,460 --> 00:17:44,230
+
+
+396
+00:17:44,230 --> 00:17:46,300
+Now, the second way
+to use reporting
+
+397
+00:17:46,300 --> 00:17:49,360
+is with the
+report-to-response header.
+
+398
+00:17:49,360 --> 00:17:52,770
+So this lets you configure
+out-of-band delivery reports.
+
+399
+00:17:52,770 --> 00:17:55,230
+The browser will queue
+up reports and send them
+
+400
+00:17:55,230 --> 00:17:57,450
+to the location
+of your choosing,
+
+401
+00:17:57,450 --> 00:18:01,120
+separate from the
+execution of your page.
+
+402
+00:18:01,120 --> 00:18:03,450
+And so here, you can get
+all of the report types
+
+403
+00:18:03,450 --> 00:18:04,290
+that we saw earlier.
+
+404
+00:18:04,290 --> 00:18:06,960
+
+
+405
+00:18:06,960 --> 00:18:08,550
+So you'll see a
+couple fields here.
+
+406
+00:18:08,550 --> 00:18:09,935
+So first, there's Group.
+
+407
+00:18:09,935 --> 00:18:14,600
+And that just lets you name this
+particular set of end points.
+
+408
+00:18:14,600 --> 00:18:17,240
+And then you can refer
+to that group name
+
+409
+00:18:17,240 --> 00:18:20,700
+in other parts of
+your configuration.
+
+410
+00:18:20,700 --> 00:18:25,040
+Now, max_age says how long this
+configuration is valid for.
+
+411
+00:18:25,040 --> 00:18:28,140
+After that, we'll throw
+away this configuration.
+
+412
+00:18:28,140 --> 00:18:31,190
+So this lets you know
+change endpoints over time
+
+413
+00:18:31,190 --> 00:18:33,240
+and gradually
+switch to new ones.
+
+414
+00:18:33,240 --> 00:18:36,170
+And finally, endpoints
+is an array of URLs.
+
+415
+00:18:36,170 --> 00:18:38,450
+So you can configure
+multiple URLs for fallback.
+
+416
+00:18:38,450 --> 00:18:40,550
+So if the browser can't
+reach one endpoint,
+
+417
+00:18:40,550 --> 00:18:41,300
+it'll try another.
+
+418
+00:18:41,300 --> 00:18:45,580
+
+
+419
+00:18:45,580 --> 00:18:49,720
+And so talking about one
+place to configure reporting--
+
+420
+00:18:49,720 --> 00:18:52,240
+CSP, Content
+Security Policy, now
+
+421
+00:18:52,240 --> 00:18:54,600
+integrates with
+the reporting API.
+
+422
+00:18:54,600 --> 00:18:56,835
+So whereas before, you'd
+specify a report URI
+
+423
+00:18:56,835 --> 00:18:58,210
+and you'd give it
+an URL to where
+
+424
+00:18:58,210 --> 00:19:01,390
+you wanted your reports to go--
+
+425
+00:19:01,390 --> 00:19:04,480
+now, you can use the
+report-to directive.
+
+426
+00:19:04,480 --> 00:19:07,120
+And you just point it at one of
+the endpoints you'd previously
+
+427
+00:19:07,120 --> 00:19:08,004
+configured.
+
+428
+00:19:08,004 --> 00:19:09,670
+So if we go back to
+the preview example,
+
+429
+00:19:09,670 --> 00:19:11,200
+you'd send a report-to header.
+
+430
+00:19:11,200 --> 00:19:13,610
+And you'd define a group
+called CSP endpoint.
+
+431
+00:19:13,610 --> 00:19:15,774
+You can have all the URLs
+you need there, the age.
+
+432
+00:19:15,774 --> 00:19:17,440
+And then you just
+refer back to it here.
+
+433
+00:19:17,440 --> 00:19:21,160
+
+
+434
+00:19:21,160 --> 00:19:23,990
+So where can you use this stuff?
+
+435
+00:19:23,990 --> 00:19:27,580
+So both the Feature Policy
+framework and the reporting API
+
+436
+00:19:27,580 --> 00:19:29,410
+are shipped in Chrome.
+
+437
+00:19:29,410 --> 00:19:31,960
+Firefox is implementing
+Feature Policy.
+
+438
+00:19:31,960 --> 00:19:36,070
+And Safari has support for
+the iframe Allow attribute.
+
+439
+00:19:36,070 --> 00:19:38,080
+Now, what's really
+great is you can
+
+440
+00:19:38,080 --> 00:19:40,660
+benefit from using
+these policies now,
+
+441
+00:19:40,660 --> 00:19:44,650
+even though there isn't broad
+support across browsers.
+
+442
+00:19:44,650 --> 00:19:47,190
+If you do some of your
+local testing in Chrome
+
+443
+00:19:47,190 --> 00:19:49,860
+with flags enabled, you can
+apply all these policies
+
+444
+00:19:49,860 --> 00:19:52,765
+and catch problems before
+they reach other environments.
+
+445
+00:19:52,765 --> 00:19:55,560
+
+
+446
+00:19:55,560 --> 00:19:59,245
+So I've talked a lot
+about a few policies,
+
+447
+00:19:59,245 --> 00:20:00,870
+walked through the
+examples, explaining
+
+448
+00:20:00,870 --> 00:20:02,161
+why you might want to use them.
+
+449
+00:20:02,161 --> 00:20:03,790
+But that's really
+just the start.
+
+450
+00:20:03,790 --> 00:20:07,990
+So here's a list of all the
+ones we have available today.
+
+451
+00:20:07,990 --> 00:20:09,990
+Most of the ones around
+granular control-- like,
+
+452
+00:20:09,990 --> 00:20:13,152
+turning on and off
+features, like, geolocation,
+
+453
+00:20:13,152 --> 00:20:14,610
+microphone-- those
+kind of things--
+
+454
+00:20:14,610 --> 00:20:15,693
+those are already shipped.
+
+455
+00:20:15,693 --> 00:20:16,980
+So you can use those now.
+
+456
+00:20:16,980 --> 00:20:20,602
+And we saw that with the
+YouTube example and with AMP.
+
+457
+00:20:20,602 --> 00:20:22,560
+And a lot of the best
+practice policies-- those
+
+458
+00:20:22,560 --> 00:20:23,760
+are behind a flag.
+
+459
+00:20:23,760 --> 00:20:25,890
+And we're also working
+on a bunch more.
+
+460
+00:20:25,890 --> 00:20:29,930
+
+
+461
+00:20:29,930 --> 00:20:32,690
+Now, seeing that long
+list, you go, man,
+
+462
+00:20:32,690 --> 00:20:34,382
+how am I going to
+set up policies?
+
+463
+00:20:34,382 --> 00:20:35,840
+How am I going to
+try them all out?
+
+464
+00:20:35,840 --> 00:20:39,270
+Well, we have a handy
+dev tools extension.
+
+465
+00:20:39,270 --> 00:20:42,200
+So this lets you really easily
+toggle a policy on and off
+
+466
+00:20:42,200 --> 00:20:44,170
+and see the effect
+on your page, so you
+
+467
+00:20:44,170 --> 00:20:45,920
+don't have to configure
+the set-up headers
+
+468
+00:20:45,920 --> 00:20:48,880
+or modify your code
+to allow attributes.
+
+469
+00:20:48,880 --> 00:20:50,940
+You can just try it
+and see what'll happen.
+
+470
+00:20:50,940 --> 00:20:53,316
+So here, we've seen an
+example of using the extension
+
+471
+00:20:53,316 --> 00:20:54,815
+to turn off the
+geolocation feature.
+
+472
+00:20:54,815 --> 00:20:57,550
+
+
+473
+00:20:57,550 --> 00:21:01,300
+Now, this extension
+uses a JavaScript API.
+
+474
+00:21:01,300 --> 00:21:03,610
+So the advantage there
+is, you can feature
+
+475
+00:21:03,610 --> 00:21:06,810
+detect which policies
+are even supported.
+
+476
+00:21:06,810 --> 00:21:08,710
+And you can go one step further.
+
+477
+00:21:08,710 --> 00:21:10,500
+And you can query to
+see which policies
+
+478
+00:21:10,500 --> 00:21:12,100
+are enabled or disabled.
+
+479
+00:21:12,100 --> 00:21:14,400
+So this can allow you
+to code defensively.
+
+480
+00:21:14,400 --> 00:21:17,040
+So for example, if you have
+content that's embedded,
+
+481
+00:21:17,040 --> 00:21:19,460
+you can respond differently
+if you know the features that
+
+482
+00:21:19,460 --> 00:21:20,335
+are available to you.
+
+483
+00:21:20,335 --> 00:21:23,080
+
+
+484
+00:21:23,080 --> 00:21:25,610
+So we really love to hear
+if these policies are
+
+485
+00:21:25,610 --> 00:21:27,090
+useful for you.
+
+486
+00:21:27,090 --> 00:21:29,750
+The ones we're really interested
+in are somewhere around some
+
+487
+00:21:29,750 --> 00:21:31,880
+of the images,
+and even sync-xhr.
+
+488
+00:21:31,880 --> 00:21:35,300
+So we've made it easy for you
+to, hopefully, copy and paste
+
+489
+00:21:35,300 --> 00:21:36,890
+and get a header
+sent real quick.
+
+490
+00:21:36,890 --> 00:21:38,810
+Now, if you have
+ideas for new policies
+
+491
+00:21:38,810 --> 00:21:40,930
+or if you have feedback
+on the existing ones,
+
+492
+00:21:40,930 --> 00:21:44,180
+we'd love to hear from
+you on our GitHub repo.
+
+493
+00:21:44,180 --> 00:21:47,282
+And finally, you can head
+over to FeaturePolicy.rocks.
+
+494
+00:21:47,282 --> 00:21:49,490
+And you'll get more information
+about Feature Policy,
+
+495
+00:21:49,490 --> 00:21:53,540
+about code samples,
+and live demos.
+
+496
+00:21:53,540 --> 00:21:54,320
+Thanks a lot.
+
+497
+00:21:54,320 --> 00:21:55,220
+[APPLAUSE]
+
+498
+00:21:55,220 --> 00:21:58,270
+[MUSIC PLAYING]
+
+499
+00:21:58,270 --> 00:22:05,510

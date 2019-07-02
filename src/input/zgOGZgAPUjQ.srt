@@ -1,0 +1,2669 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:03,776
+[MUSIC PLAYING]
+
+3
+00:00:03,776 --> 00:00:06,450
+
+
+4
+00:00:06,450 --> 00:00:07,950
+THOMAS NATTESTAD:
+My name is Thomas,
+
+5
+00:00:07,950 --> 00:00:09,784
+and I'm the product
+manager for WebAssembly.
+
+6
+00:00:09,784 --> 00:00:12,158
+ALEX DANILO: My name is Alex,
+and I'm a software engineer
+
+7
+00:00:12,158 --> 00:00:12,990
+on Chrome OS.
+
+8
+00:00:12,990 --> 00:00:13,440
+THOMAS NATTESTAD:
+And today we're
+
+9
+00:00:13,440 --> 00:00:15,064
+going to talk to you
+about WebAssembly.
+
+10
+00:00:15,064 --> 00:00:17,100
+We're going to
+start off by briefly
+
+11
+00:00:17,100 --> 00:00:19,867
+describing what WebAssembly is
+and what you can use it for.
+
+12
+00:00:19,867 --> 00:00:22,200
+Then I want to show off some
+of the amazing new features
+
+13
+00:00:22,200 --> 00:00:24,990
+that the WebAssembly team has
+been working on to deliver
+
+14
+00:00:24,990 --> 00:00:26,730
+to you in this last year.
+
+15
+00:00:26,730 --> 00:00:29,517
+Then I'll showcase some of
+the amazing applications
+
+16
+00:00:29,517 --> 00:00:31,350
+that have managed to
+build with WebAssembly,
+
+17
+00:00:31,350 --> 00:00:33,791
+and our shipping and production.
+
+18
+00:00:33,791 --> 00:00:34,290
+All right.
+
+19
+00:00:34,290 --> 00:00:37,830
+So first off, what is
+WebAssembly, actually?
+
+20
+00:00:37,830 --> 00:00:40,680
+WebAssembly is a new
+language for the web,
+
+21
+00:00:40,680 --> 00:00:43,560
+and offers an alternative to
+JavaScript for expressing logic
+
+22
+00:00:43,560 --> 00:00:45,030
+on the web platform.
+
+23
+00:00:45,030 --> 00:00:48,960
+It's important to note, though,
+that WebAssembly is in no way
+
+24
+00:00:48,960 --> 00:00:51,030
+a replacement for JavaScript.
+
+25
+00:00:51,030 --> 00:00:54,720
+Rather, it's designed
+to fill the gaps that
+
+26
+00:00:54,720 --> 00:00:56,520
+exist in JavaScript today.
+
+27
+00:00:56,520 --> 00:00:59,790
+Specifically, WebAssembly
+is designed as a compilation
+
+28
+00:00:59,790 --> 00:01:02,520
+target, meaning that you write
+in higher level languages,
+
+29
+00:01:02,520 --> 00:01:06,720
+such as C++, and then
+compile into WebAssembly.
+
+30
+00:01:06,720 --> 00:01:09,010
+WebAssembly is also
+designed to deliver
+
+31
+00:01:09,010 --> 00:01:11,400
+reliable and maximized
+performance, which
+
+32
+00:01:11,400 --> 00:01:13,500
+is something that can
+be difficult to get out
+
+33
+00:01:13,500 --> 00:01:15,784
+of JavaScript.
+
+34
+00:01:15,784 --> 00:01:17,200
+Most exciting,
+though, is the fact
+
+35
+00:01:17,200 --> 00:01:20,260
+that WebAssembly is now shipping
+in all four major browsers,
+
+36
+00:01:20,260 --> 00:01:23,140
+making it the first new
+language to be fully supported
+
+37
+00:01:23,140 --> 00:01:25,240
+in every major browser
+since JavaScript was
+
+38
+00:01:25,240 --> 00:01:28,160
+created more than 20 years ago.
+
+39
+00:01:28,160 --> 00:01:28,660
+All right.
+
+40
+00:01:28,660 --> 00:01:30,243
+So what can you
+actually do with this?
+
+41
+00:01:30,243 --> 00:01:32,680
+Well, as I already mentioned,
+because WebAssembly offers
+
+42
+00:01:32,680 --> 00:01:34,810
+maximized and
+reliable performance,
+
+43
+00:01:34,810 --> 00:01:36,520
+you can now expand
+the set of things
+
+44
+00:01:36,520 --> 00:01:38,530
+that you can feasibly
+do in the browser.
+
+45
+00:01:38,530 --> 00:01:42,370
+Things like video editing,
+complex application, codecs,
+
+46
+00:01:42,370 --> 00:01:44,620
+digital signal processing,
+and many, many more
+
+47
+00:01:44,620 --> 00:01:47,320
+performance-demanding
+use cases can now
+
+48
+00:01:47,320 --> 00:01:49,800
+be supported on the web.
+
+49
+00:01:49,800 --> 00:01:52,740
+Secondly, WebAssembly
+offers amazing portability.
+
+50
+00:01:52,740 --> 00:01:54,690
+Because you can compile
+from other languages,
+
+51
+00:01:54,690 --> 00:01:57,690
+you can port not only your
+own applications and libraries
+
+52
+00:01:57,690 --> 00:02:01,200
+but also the wealth of
+open-source C++ libraries
+
+53
+00:02:01,200 --> 00:02:04,290
+and applications that
+have been written.
+
+54
+00:02:04,290 --> 00:02:06,600
+Lastly, and potentially most
+exciting to many of you,
+
+55
+00:02:06,600 --> 00:02:08,430
+is the promise for
+more flexibility
+
+56
+00:02:08,430 --> 00:02:09,870
+when writing for the web.
+
+57
+00:02:09,870 --> 00:02:11,790
+Since the web's
+inception, JavaScript
+
+58
+00:02:11,790 --> 00:02:15,450
+has been the only
+fully supported way
+
+59
+00:02:15,450 --> 00:02:18,150
+to execute code on the web,
+and now with WebAssembly you
+
+60
+00:02:18,150 --> 00:02:20,619
+have more choice.
+
+61
+00:02:20,619 --> 00:02:22,910
+All right, so now that we
+all know what WebAssembly is,
+
+62
+00:02:22,910 --> 00:02:25,201
+I want to jump in and show
+off some of the new features
+
+63
+00:02:25,201 --> 00:02:27,350
+that we've been adding
+in just the last year.
+
+64
+00:02:27,350 --> 00:02:29,400
+First off is source maps.
+
+65
+00:02:29,400 --> 00:02:31,867
+You likely all know how
+important source maps are
+
+66
+00:02:31,867 --> 00:02:33,950
+when you're working with
+something like TypeScript
+
+67
+00:02:33,950 --> 00:02:36,230
+or Babel, but it's
+even more important
+
+68
+00:02:36,230 --> 00:02:38,960
+when you're trying to debug
+your WebAssembly code.
+
+69
+00:02:38,960 --> 00:02:40,820
+Source maps let
+you turn something
+
+70
+00:02:40,820 --> 00:02:43,880
+that looks like this into
+something just slightly more
+
+71
+00:02:43,880 --> 00:02:46,040
+friendly, like this.
+
+72
+00:02:46,040 --> 00:02:48,710
+With source maps you can see
+the specific line of code
+
+73
+00:02:48,710 --> 00:02:50,900
+where an error has
+occurred and you can also
+
+74
+00:02:50,900 --> 00:02:53,390
+set breakpoints and have
+the program actually pause
+
+75
+00:02:53,390 --> 00:02:56,150
+at the appropriate moment.
+
+76
+00:02:56,150 --> 00:02:58,880
+One of the big feature requests
+that we've heard from users
+
+77
+00:02:58,880 --> 00:03:02,150
+is for better performance
+when you're starting up
+
+78
+00:03:02,150 --> 00:03:04,400
+your application so that
+your module can actually
+
+79
+00:03:04,400 --> 00:03:05,600
+get going faster.
+
+80
+00:03:05,600 --> 00:03:08,480
+And for that we've created
+streaming compilation.
+
+81
+00:03:08,480 --> 00:03:10,520
+In the past, when you
+wanted to compile a module
+
+82
+00:03:10,520 --> 00:03:12,061
+you had to wait for
+the entire module
+
+83
+00:03:12,061 --> 00:03:14,450
+to be loaded off of the
+network, and only then could
+
+84
+00:03:14,450 --> 00:03:16,850
+you move on and
+actually compile it.
+
+85
+00:03:16,850 --> 00:03:18,470
+Now with streaming
+compilation, you
+
+86
+00:03:18,470 --> 00:03:20,930
+can start compiling each
+piece of your module
+
+87
+00:03:20,930 --> 00:03:22,970
+immediately, even before
+the other parts have
+
+88
+00:03:22,970 --> 00:03:25,390
+finished downloading.
+
+89
+00:03:25,390 --> 00:03:27,140
+To show you what that
+actually looks like,
+
+90
+00:03:27,140 --> 00:03:30,510
+here's a simple example where
+we called a fetch function--
+
+91
+00:03:30,510 --> 00:03:33,940
+or fetch for a WebAssembly
+Fibonacci module,
+
+92
+00:03:33,940 --> 00:03:36,430
+and then we just passed
+that fetch promise directly
+
+93
+00:03:36,430 --> 00:03:39,100
+into WebAssembly.inst
+antiateStreaming,
+
+94
+00:03:39,100 --> 00:03:42,340
+and it takes care of all
+of this underlying bits
+
+95
+00:03:42,340 --> 00:03:46,440
+and pieces for you to
+deliver this experience.
+
+96
+00:03:46,440 --> 00:03:49,020
+We did some profiling at
+different network speeds
+
+97
+00:03:49,020 --> 00:03:50,760
+to see the impact of this.
+
+98
+00:03:50,760 --> 00:03:53,160
+We found that all the
+way up until 50 megabits
+
+99
+00:03:53,160 --> 00:03:55,290
+per second network
+speed, the network
+
+100
+00:03:55,290 --> 00:03:57,210
+was actually the
+primary bottleneck,
+
+101
+00:03:57,210 --> 00:04:00,030
+and that the compilation was
+done as soon as the module was
+
+102
+00:04:00,030 --> 00:04:00,990
+loaded.
+
+103
+00:04:00,990 --> 00:04:04,080
+It wasn't until you hit the
+100 megabits per second speeds
+
+104
+00:04:04,080 --> 00:04:06,750
+that you actually needed
+additional time past the time
+
+105
+00:04:06,750 --> 00:04:08,760
+it took to download the
+module in order to fully
+
+106
+00:04:08,760 --> 00:04:11,510
+compile and get it going.
+
+107
+00:04:11,510 --> 00:04:13,470
+To make startup
+time even faster,
+
+108
+00:04:13,470 --> 00:04:16,519
+the team built and launched
+an entire new compiler
+
+109
+00:04:16,519 --> 00:04:19,160
+that we called the
+Liftoff compiler.
+
+110
+00:04:19,160 --> 00:04:22,310
+This Liftoff compiler takes
+the WebAssembly byte code
+
+111
+00:04:22,310 --> 00:04:25,370
+that comes down off of the wire
+and then starts executing it
+
+112
+00:04:25,370 --> 00:04:26,660
+immediately.
+
+113
+00:04:26,660 --> 00:04:29,750
+The WebAssembly module is
+then taken off the main thread
+
+114
+00:04:29,750 --> 00:04:33,560
+and optimized further by the
+TurboFan optimizing compiler.
+
+115
+00:04:33,560 --> 00:04:36,350
+When TurboFan is done
+optimizing the WebAssembly code,
+
+116
+00:04:36,350 --> 00:04:37,910
+it's then hot
+swapped in directly
+
+117
+00:04:37,910 --> 00:04:42,260
+without any need for
+explicit developer action.
+
+118
+00:04:42,260 --> 00:04:46,280
+Unity did some benchmarking on
+the effects that Liftoff had.
+
+119
+00:04:46,280 --> 00:04:49,200
+On a benchmark where they tried
+to load a very large game,
+
+120
+00:04:49,200 --> 00:04:52,340
+they found that it went from
+taking seven seconds to load
+
+121
+00:04:52,340 --> 00:04:54,230
+the game to less than
+one second, which
+
+122
+00:04:54,230 --> 00:04:56,240
+makes all of the difference
+when you're waiting
+
+123
+00:04:56,240 --> 00:04:58,977
+to get into a game experience.
+
+124
+00:04:58,977 --> 00:05:00,810
+Probably the biggest
+feature that the team's
+
+125
+00:05:00,810 --> 00:05:03,620
+been working on this year
+is WebAssembly threads.
+
+126
+00:05:03,620 --> 00:05:07,220
+WebAssembly threads lets you
+run fast, highly paralyzed code
+
+127
+00:05:07,220 --> 00:05:09,650
+for the first time
+across multiple browsers.
+
+128
+00:05:09,650 --> 00:05:12,680
+It also lets you bring existing
+libraries and applications
+
+129
+00:05:12,680 --> 00:05:16,127
+that use threaded code such
+as Pthreads to the web.
+
+130
+00:05:16,127 --> 00:05:17,960
+This is such a big
+feature that I'm actually
+
+131
+00:05:17,960 --> 00:05:22,244
+going to leave most of the
+explanation to Alex later on.
+
+132
+00:05:22,244 --> 00:05:23,660
+But before I get
+into that, I want
+
+133
+00:05:23,660 --> 00:05:25,877
+to show off some of the
+cool new applications
+
+134
+00:05:25,877 --> 00:05:28,460
+that have already been building
+and launching with WebAssembly
+
+135
+00:05:28,460 --> 00:05:30,320
+this last year.
+
+136
+00:05:30,320 --> 00:05:32,360
+First off is SketchUp.
+
+137
+00:05:32,360 --> 00:05:34,310
+SketchUp is a 3D
+modeling software
+
+138
+00:05:34,310 --> 00:05:36,710
+that you can learn and
+start using really quickly.
+
+139
+00:05:36,710 --> 00:05:38,660
+Unlike traditional
+computer-aided design,
+
+140
+00:05:38,660 --> 00:05:41,780
+most people can learn
+SketchUp almost right away.
+
+141
+00:05:41,780 --> 00:05:43,970
+SketchUp lets people draw
+in perspective and then
+
+142
+00:05:43,970 --> 00:05:46,310
+push-pull things into 3D.
+
+143
+00:05:46,310 --> 00:05:48,890
+In no time, people can draw
+and redesign a living room,
+
+144
+00:05:48,890 --> 00:05:50,660
+plan out a
+do-it-yourself project,
+
+145
+00:05:50,660 --> 00:05:53,326
+or create and export a
+model for 3D printing.
+
+146
+00:05:53,326 --> 00:05:55,700
+This app is a lot of fun and
+you should all check it out,
+
+147
+00:05:55,700 --> 00:05:57,770
+which you can do right
+now instantly, just
+
+148
+00:05:57,770 --> 00:06:00,390
+by going to app.sketchup.com.
+
+149
+00:06:00,390 --> 00:06:02,750
+SketchUp has been around
+for a desktop application,
+
+150
+00:06:02,750 --> 00:06:04,520
+but the team's
+strategy has always
+
+151
+00:06:04,520 --> 00:06:06,710
+been to expand and
+broaden the market
+
+152
+00:06:06,710 --> 00:06:08,600
+of people who can
+use 3D modeling,
+
+153
+00:06:08,600 --> 00:06:11,120
+and by making it
+simple and easy to use
+
+154
+00:06:11,120 --> 00:06:13,900
+and accessible to everyone.
+
+155
+00:06:13,900 --> 00:06:16,510
+Delivering the app over
+the web was a critical step
+
+156
+00:06:16,510 --> 00:06:18,569
+in that strategy,
+and the team knew
+
+157
+00:06:18,569 --> 00:06:20,110
+that they wanted to
+use the same code
+
+158
+00:06:20,110 --> 00:06:22,810
+base as their
+desktop applications,
+
+159
+00:06:22,810 --> 00:06:25,270
+because rewriting their entire
+application in JavaScript
+
+160
+00:06:25,270 --> 00:06:27,400
+was just simply not an option.
+
+161
+00:06:27,400 --> 00:06:31,630
+The team's approach was to use
+the WebAssembly and Emscripten
+
+162
+00:06:31,630 --> 00:06:34,990
+compiler to compile
+their core 3D modeler
+
+163
+00:06:34,990 --> 00:06:37,060
+and bring it to the web.
+
+164
+00:06:37,060 --> 00:06:40,270
+The initial port took two
+engineers only three months
+
+165
+00:06:40,270 --> 00:06:43,120
+to bring to the web, which
+is pretty phenomenal when
+
+166
+00:06:43,120 --> 00:06:45,100
+you realize just how
+drastically it expanded
+
+167
+00:06:45,100 --> 00:06:48,096
+the reach of their application.
+
+168
+00:06:48,096 --> 00:06:49,720
+The early focus for
+SketchUp has always
+
+169
+00:06:49,720 --> 00:06:52,180
+been on the next
+generation of 3D modelers,
+
+170
+00:06:52,180 --> 00:06:53,560
+and today SketchUp
+is already one
+
+171
+00:06:53,560 --> 00:06:56,020
+of the most popular apps on
+the G Suite for education
+
+172
+00:06:56,020 --> 00:06:57,121
+marketplace.
+
+173
+00:06:57,121 --> 00:06:59,620
+At the same time, the app has
+opened up a subscription model
+
+174
+00:06:59,620 --> 00:07:01,940
+for SketchUp, and in
+just over six months,
+
+175
+00:07:01,940 --> 00:07:05,320
+the team has increased its
+paying customer base by 10%.
+
+176
+00:07:05,320 --> 00:07:07,270
+SketchUp has also
+seen consistent growth
+
+177
+00:07:07,270 --> 00:07:09,670
+in session time, returning
+visitor percentage,
+
+178
+00:07:09,670 --> 00:07:12,620
+and active users.
+
+179
+00:07:12,620 --> 00:07:15,170
+Moving on, the next application
+that I want to mention
+
+180
+00:07:15,170 --> 00:07:16,316
+is Google Earth.
+
+181
+00:07:16,316 --> 00:07:18,440
+I'm happy to say that Google
+Earth has successfully
+
+182
+00:07:18,440 --> 00:07:22,160
+gotten their application ported
+to WebAssembly, including
+
+183
+00:07:22,160 --> 00:07:24,722
+the newly added support
+for WebAssembly threads.
+
+184
+00:07:24,722 --> 00:07:26,180
+The best part is
+that they actually
+
+185
+00:07:26,180 --> 00:07:29,660
+got this threaded build working
+in both Chrome and Firefox,
+
+186
+00:07:29,660 --> 00:07:32,180
+making Google Earth
+the first WebAssembly
+
+187
+00:07:32,180 --> 00:07:36,970
+multi-threaded application to
+be running in multiple browsers.
+
+188
+00:07:36,970 --> 00:07:38,500
+Google Earth did
+some benchmarking,
+
+189
+00:07:38,500 --> 00:07:40,510
+comparing their single
+threaded version
+
+190
+00:07:40,510 --> 00:07:42,400
+to their multi-threaded version.
+
+191
+00:07:42,400 --> 00:07:44,350
+They found that the
+frame rate almost
+
+192
+00:07:44,350 --> 00:07:46,630
+doubled when they went to
+their threaded version,
+
+193
+00:07:46,630 --> 00:07:53,250
+and the amount of jank/dropped
+also reduced by more than half.
+
+194
+00:07:53,250 --> 00:07:55,320
+All right, so the
+last big company
+
+195
+00:07:55,320 --> 00:07:58,500
+and launch that I want
+to mention is Soundation.
+
+196
+00:07:58,500 --> 00:08:00,390
+Soundation is a
+web-based music studio
+
+197
+00:08:00,390 --> 00:08:02,070
+that enables anyone
+to make music
+
+198
+00:08:02,070 --> 00:08:05,790
+online with a wide selection
+of instruments, loops, samples,
+
+199
+00:08:05,790 --> 00:08:07,050
+and effects.
+
+200
+00:08:07,050 --> 00:08:09,660
+No additional hardware or
+installation or storage
+
+201
+00:08:09,660 --> 00:08:10,530
+is required.
+
+202
+00:08:10,530 --> 00:08:13,560
+Everything is accessible
+instantly and everywhere.
+
+203
+00:08:13,560 --> 00:08:16,710
+Soundation's mission is to
+facilitate musical creativity
+
+204
+00:08:16,710 --> 00:08:19,380
+in the world, and they
+do this by offering
+
+205
+00:08:19,380 --> 00:08:21,990
+a powerful, accessible,
+and affordable service
+
+206
+00:08:21,990 --> 00:08:24,870
+to the growing demographic
+of casual producers.
+
+207
+00:08:24,870 --> 00:08:27,030
+As an online web app,
+Soundation streamlines
+
+208
+00:08:27,030 --> 00:08:29,760
+the ability for producers
+to connect with peers,
+
+209
+00:08:29,760 --> 00:08:31,950
+get feedback, enter
+competitions, and even get
+
+210
+00:08:31,950 --> 00:08:34,110
+record deals.
+
+211
+00:08:34,110 --> 00:08:36,900
+Soundation is using
+a wide variety
+
+212
+00:08:36,900 --> 00:08:40,450
+of advanced web features to
+deliver this smooth experience.
+
+213
+00:08:40,450 --> 00:08:42,860
+And the first of these
+is audio worklets.
+
+214
+00:08:42,860 --> 00:08:45,450
+Launched in Chrome
+66, the audio worklet
+
+215
+00:08:45,450 --> 00:08:48,450
+brings fast performance and
+extensible audio processing
+
+216
+00:08:48,450 --> 00:08:49,862
+to the web platform.
+
+217
+00:08:49,862 --> 00:08:52,320
+It could be used in conjunction
+with other cutting edge web
+
+218
+00:08:52,320 --> 00:08:56,810
+technologies such as WebAssembly
+and SharedArrayBuffer.
+
+219
+00:08:56,810 --> 00:08:59,150
+Soundation is also one of
+the world's first adopters
+
+220
+00:08:59,150 --> 00:09:01,550
+of WebAssembly threads,
+and they use these threads
+
+221
+00:09:01,550 --> 00:09:05,060
+to achieve fast parellelized
+processing to seamlessly mix
+
+222
+00:09:05,060 --> 00:09:06,661
+songs.
+
+223
+00:09:06,661 --> 00:09:08,410
+So let's have a look
+at their architecture
+
+224
+00:09:08,410 --> 00:09:10,060
+and see if we can
+learn anything.
+
+225
+00:09:10,060 --> 00:09:11,560
+On the JavaScript
+side of the world,
+
+226
+00:09:11,560 --> 00:09:13,420
+they have their application UI.
+
+227
+00:09:13,420 --> 00:09:17,680
+That application UI then talks
+to an audio mixing engine.
+
+228
+00:09:17,680 --> 00:09:19,600
+This audio mixing
+engine then spawns off
+
+229
+00:09:19,600 --> 00:09:22,120
+multiple different worker
+threads in WebAssembly,
+
+230
+00:09:22,120 --> 00:09:23,620
+and each of these
+worker threads can
+
+231
+00:09:23,620 --> 00:09:26,530
+talk to the same piece of
+SharedArrayBuffer memory.
+
+232
+00:09:26,530 --> 00:09:28,360
+This SharedArrayBuffer
+memory is then
+
+233
+00:09:28,360 --> 00:09:31,180
+passed on to the mixing
+threads, which further passes it
+
+234
+00:09:31,180 --> 00:09:35,230
+to the audio worklet, which
+produces the final result.
+
+235
+00:09:35,230 --> 00:09:38,100
+Here's a visualization showing
+the performance improvements
+
+236
+00:09:38,100 --> 00:09:40,830
+on rendering a song as they
+added multiple threads.
+
+237
+00:09:40,830 --> 00:09:43,164
+Adding just a single
+additional thread doubled
+
+238
+00:09:43,164 --> 00:09:44,580
+their performance,
+and by the time
+
+239
+00:09:44,580 --> 00:09:46,496
+they've added five
+threads, they had more than
+
+240
+00:09:46,496 --> 00:09:50,290
+tripled the performance
+of their application.
+
+241
+00:09:50,290 --> 00:09:53,340
+So that's a great visualization
+showing the performance
+
+242
+00:09:53,340 --> 00:09:54,810
+improvements that
+thread can bring,
+
+243
+00:09:54,810 --> 00:09:57,143
+but since this is Soundation,
+I thought we would instead
+
+244
+00:09:57,143 --> 00:09:58,360
+try and listen to it.
+
+245
+00:09:58,360 --> 00:10:01,380
+So here is us trying to
+render a song in Soundation
+
+246
+00:10:01,380 --> 00:10:03,530
+in the single threaded
+version of WebAssembly.
+
+247
+00:10:03,530 --> 00:10:05,310
+And fair warning,
+this is not going
+
+248
+00:10:05,310 --> 00:10:07,197
+to be an entirely
+pleasant experience.
+
+249
+00:10:07,197 --> 00:10:10,536
+[STATICY MUSIC]
+
+250
+00:10:10,536 --> 00:10:11,970
+
+
+251
+00:10:11,970 --> 00:10:14,390
+So as you can imagine,
+this is not the experience
+
+252
+00:10:14,390 --> 00:10:17,090
+that you want when you're trying
+to create beautiful music.
+
+253
+00:10:17,090 --> 00:10:20,360
+But luckily Soundation succeeded
+in launching with WebAssembly
+
+254
+00:10:20,360 --> 00:10:22,340
+threads, and now
+they're able to deliver
+
+255
+00:10:22,340 --> 00:10:26,642
+an experience that sounds
+just a little bit better.
+
+256
+00:10:26,642 --> 00:10:30,050
+[SMOOTH MUSIC]
+
+257
+00:10:30,050 --> 00:10:32,480
+So as you can see, not
+only is this a much more
+
+258
+00:10:32,480 --> 00:10:35,210
+pleasant experience,
+but the CPU also
+
+259
+00:10:35,210 --> 00:10:36,800
+has additional cycle
+for other work.
+
+260
+00:10:36,800 --> 00:10:39,300
+
+
+261
+00:10:39,300 --> 00:10:41,800
+All right, so I want to close
+off my segment by just talking
+
+262
+00:10:41,800 --> 00:10:43,630
+about some of the
+amazing community
+
+263
+00:10:43,630 --> 00:10:47,125
+projects that we've seen
+people working on out there.
+
+264
+00:10:47,125 --> 00:10:49,000
+And the first of these
+that I want to mention
+
+265
+00:10:49,000 --> 00:10:51,125
+is the awesome work that's
+been done by the Mozilla
+
+266
+00:10:51,125 --> 00:10:54,070
+team and the Rust community
+to bring Rust to the web
+
+267
+00:10:54,070 --> 00:10:55,510
+through WebAssembly.
+
+268
+00:10:55,510 --> 00:10:57,820
+They have an awesome set
+of tools and materials
+
+269
+00:10:57,820 --> 00:11:00,040
+to help you get started,
+and you can check those out
+
+270
+00:11:00,040 --> 00:11:03,286
+at rustwasm.github.io.
+
+271
+00:11:03,286 --> 00:11:04,660
+Speaking of
+languages, we've also
+
+272
+00:11:04,660 --> 00:11:06,830
+seen more than 30
+different projects
+
+273
+00:11:06,830 --> 00:11:10,270
+trying to bring other languages
+to the web through WebAssembly.
+
+274
+00:11:10,270 --> 00:11:13,210
+These languages include ones
+like Perl, Python, Ruby,
+
+275
+00:11:13,210 --> 00:11:17,900
+Kotlin, OCaml, Go, PHP,
+and the .NET framework.
+
+276
+00:11:17,900 --> 00:11:20,117
+Many of these languages
+require garbage collection,
+
+277
+00:11:20,117 --> 00:11:21,700
+which isn't currently
+something that's
+
+278
+00:11:21,700 --> 00:11:24,790
+supported in WebAssembly,
+though we are working on it.
+
+279
+00:11:24,790 --> 00:11:27,040
+These languages come to
+the web by actually taking
+
+280
+00:11:27,040 --> 00:11:29,590
+their garbage collection
+system and other runtime bits
+
+281
+00:11:29,590 --> 00:11:32,410
+and compiling that itself
+down to WebAssembly,
+
+282
+00:11:32,410 --> 00:11:36,007
+and then shipping everything
+down to the application page.
+
+283
+00:11:36,007 --> 00:11:37,840
+This is a great strategy
+for getting started
+
+284
+00:11:37,840 --> 00:11:40,270
+and experimenting with some
+of these languages on the web,
+
+285
+00:11:40,270 --> 00:11:42,395
+but because of some of
+their performance and memory
+
+286
+00:11:42,395 --> 00:11:44,560
+characteristics, these
+aren't currently suited
+
+287
+00:11:44,560 --> 00:11:46,480
+for production applications.
+
+288
+00:11:46,480 --> 00:11:50,110
+The fully supported languages
+today are C, C++, and Rust,
+
+289
+00:11:50,110 --> 00:11:53,780
+but everything else should still
+be considered experimental.
+
+290
+00:11:53,780 --> 00:11:56,300
+And there are so many more
+amazing community projects
+
+291
+00:11:56,300 --> 00:11:58,200
+that I don't have
+time to do justice.
+
+292
+00:11:58,200 --> 00:12:01,430
+We've seen people porting
+Gameboy emulators, GNU
+
+293
+00:12:01,430 --> 00:12:04,400
+libraries, digital signal
+processing, and even
+
+294
+00:12:04,400 --> 00:12:08,720
+entire operating system like
+Microsoft Windows 2000 now
+
+295
+00:12:08,720 --> 00:12:10,520
+available in a
+browser tab, which
+
+296
+00:12:10,520 --> 00:12:14,180
+is, if not a exactly
+pleasant experience,
+
+297
+00:12:14,180 --> 00:12:15,560
+definitely interesting.
+
+298
+00:12:15,560 --> 00:12:17,120
+You can check out
+all of these demos
+
+299
+00:12:17,120 --> 00:12:20,660
+and much more at the forum
+where we have multiple demos
+
+300
+00:12:20,660 --> 00:12:22,470
+set up for you to check out.
+
+301
+00:12:22,470 --> 00:12:24,846
+And with that, I want to
+hand it back off to Alex
+
+302
+00:12:24,846 --> 00:12:26,720
+to talk to you more
+about WebAssembly threads
+
+303
+00:12:26,720 --> 00:12:29,004
+and how to use some
+of these features.
+
+304
+00:12:29,004 --> 00:12:33,350
+[APPLAUSE]
+
+305
+00:12:33,350 --> 00:12:34,770
+ALEX DANILO: Thank you, Thomas.
+
+306
+00:12:34,770 --> 00:12:36,889
+One of the kind of big
+things at the conference
+
+307
+00:12:36,889 --> 00:12:38,430
+here, when we talk
+about the browser,
+
+308
+00:12:38,430 --> 00:12:40,230
+we talk about
+using the platform.
+
+309
+00:12:40,230 --> 00:12:43,380
+And quite often people think
+of the platform as the software
+
+310
+00:12:43,380 --> 00:12:45,540
+stack that's inside
+the browser, but I
+
+311
+00:12:45,540 --> 00:12:47,520
+like to think of it a
+little bit different.
+
+312
+00:12:47,520 --> 00:12:49,811
+I like to think about the
+hardware, the platform that's
+
+313
+00:12:49,811 --> 00:12:51,550
+actually in your machine.
+
+314
+00:12:51,550 --> 00:12:54,720
+So here is an artist's
+rendition of the inside
+
+315
+00:12:54,720 --> 00:12:56,300
+of a desktop microprocessor.
+
+316
+00:12:56,300 --> 00:12:57,690
+This is what you
+see today if you
+
+317
+00:12:57,690 --> 00:12:59,020
+take the plastic off the top.
+
+318
+00:12:59,020 --> 00:13:00,780
+So at the top, we
+have the green bit,
+
+319
+00:13:00,780 --> 00:13:03,210
+which interfaces to
+the PCI bus, used
+
+320
+00:13:03,210 --> 00:13:04,740
+to be called the northbridge.
+
+321
+00:13:04,740 --> 00:13:06,870
+The left and right, you
+have memory interfaces.
+
+322
+00:13:06,870 --> 00:13:10,100
+These little yellow boxes are
+integrated memory controllers.
+
+323
+00:13:10,100 --> 00:13:12,070
+And you see all these
+blue tiles here.
+
+324
+00:13:12,070 --> 00:13:14,790
+And what they are is cores.
+
+325
+00:13:14,790 --> 00:13:17,549
+So each of those is a CPU
+core in its own right.
+
+326
+00:13:17,549 --> 00:13:19,590
+So this may be a desktop
+microprocessor, but even
+
+327
+00:13:19,590 --> 00:13:22,440
+in your pocket, if you have an
+iPhone or an advanced Android
+
+328
+00:13:22,440 --> 00:13:24,151
+phone, you'll have
+something like six
+
+329
+00:13:24,151 --> 00:13:25,650
+to eight cores in
+there, ready to be
+
+330
+00:13:25,650 --> 00:13:28,200
+used to do good computing work.
+
+331
+00:13:28,200 --> 00:13:30,460
+So when you write a
+normal web application,
+
+332
+00:13:30,460 --> 00:13:32,572
+you're looking at
+something like this.
+
+333
+00:13:32,572 --> 00:13:34,280
+You have one core
+running and so you have
+
+334
+00:13:34,280 --> 00:13:35,571
+all this silicon doing nothing.
+
+335
+00:13:35,571 --> 00:13:37,649
+So you're not really
+using the platform.
+
+336
+00:13:37,649 --> 00:13:39,690
+Now we've seen people come
+along and do something
+
+337
+00:13:39,690 --> 00:13:42,150
+like spawn a web worker
+to do the hard work,
+
+338
+00:13:42,150 --> 00:13:43,860
+and have the main thread for UI.
+
+339
+00:13:43,860 --> 00:13:46,940
+In that case, you're running
+a double threaded application.
+
+340
+00:13:46,940 --> 00:13:49,380
+And so you're using the
+platform a bit better,
+
+341
+00:13:49,380 --> 00:13:52,200
+but you're not really
+doing everything you could.
+
+342
+00:13:52,200 --> 00:13:54,630
+Now since we have introduced
+WebAssembly threads,
+
+343
+00:13:54,630 --> 00:13:55,990
+you can do stuff like this.
+
+344
+00:13:55,990 --> 00:13:59,290
+You could actually use many
+cores for your application.
+
+345
+00:13:59,290 --> 00:14:01,030
+And as we saw with
+the Soundation demo,
+
+346
+00:14:01,030 --> 00:14:04,210
+there's visible improvement
+in the user experience.
+
+347
+00:14:04,210 --> 00:14:06,210
+So I'd really like
+you to start thinking
+
+348
+00:14:06,210 --> 00:14:08,030
+about how you can
+adapt your application
+
+349
+00:14:08,030 --> 00:14:10,900
+to use all these cores.
+
+350
+00:14:10,900 --> 00:14:12,370
+Now when you create
+a web worker,
+
+351
+00:14:12,370 --> 00:14:14,820
+you have to understand that
+that is a threading primitive
+
+352
+00:14:14,820 --> 00:14:15,930
+and they run concurrently.
+
+353
+00:14:15,930 --> 00:14:18,380
+So you can do
+compute in parallel.
+
+354
+00:14:18,380 --> 00:14:21,140
+And this is a primitive that
+we all know pretty well.
+
+355
+00:14:21,140 --> 00:14:23,410
+But one of the things
+about when we do something
+
+356
+00:14:23,410 --> 00:14:25,370
+like this, if we have
+an app, on the left,
+
+357
+00:14:25,370 --> 00:14:27,220
+we have what we call
+the main thread--
+
+358
+00:14:27,220 --> 00:14:28,960
+we're all familiar
+with the main thread--
+
+359
+00:14:28,960 --> 00:14:32,290
+that interacts and
+talks to the DOM.
+
+360
+00:14:32,290 --> 00:14:34,220
+The worker that we
+generate is what
+
+361
+00:14:34,220 --> 00:14:35,470
+we call the background thread.
+
+362
+00:14:35,470 --> 00:14:37,600
+So it's running in parallel
+but it doesn't actually
+
+363
+00:14:37,600 --> 00:14:39,490
+have the ability
+to call web APIs
+
+364
+00:14:39,490 --> 00:14:42,560
+and interact with the
+DOM and stuff like that.
+
+365
+00:14:42,560 --> 00:14:45,400
+But when you create
+workers, and you create them
+
+366
+00:14:45,400 --> 00:14:49,900
+normally with a JavaScript
+thing, it creates an instance.
+
+367
+00:14:49,900 --> 00:14:53,260
+So these instances kind of
+sit on their own on the side,
+
+368
+00:14:53,260 --> 00:14:55,154
+they're running
+parallel, they don't get
+
+369
+00:14:55,154 --> 00:14:56,320
+to do anything with the DOM.
+
+370
+00:14:56,320 --> 00:14:57,820
+So they kind of run on the side.
+
+371
+00:14:57,820 --> 00:15:01,420
+So if you create one,
+you get V8 hanging off
+
+372
+00:15:01,420 --> 00:15:04,180
+the top of your main thread, and
+you get an instance hanging off
+
+373
+00:15:04,180 --> 00:15:05,140
+your worker.
+
+374
+00:15:05,140 --> 00:15:07,480
+So then if you go and
+create a bunch of workers,
+
+375
+00:15:07,480 --> 00:15:10,150
+you get a bunch
+more V8 instances.
+
+376
+00:15:10,150 --> 00:15:13,152
+Now each of these
+instances consumes memory.
+
+377
+00:15:13,152 --> 00:15:15,610
+So that means that if you start
+spawning lots of JavaScript
+
+378
+00:15:15,610 --> 00:15:19,525
+workers to make your application
+do stuff more complex,
+
+379
+00:15:19,525 --> 00:15:21,400
+it will actually consume
+more and more memory
+
+380
+00:15:21,400 --> 00:15:24,350
+and you might run out on a
+phone, or something like that.
+
+381
+00:15:24,350 --> 00:15:26,860
+But I'll let you in
+on a little secret.
+
+382
+00:15:26,860 --> 00:15:29,420
+They don't talk to each other.
+
+383
+00:15:29,420 --> 00:15:31,210
+So you've got separate
+bits of JavaScript
+
+384
+00:15:31,210 --> 00:15:33,070
+running in all these
+parallel threads,
+
+385
+00:15:33,070 --> 00:15:34,420
+but they don't communicate.
+
+386
+00:15:34,420 --> 00:15:36,040
+They don't have
+any shared state.
+
+387
+00:15:36,040 --> 00:15:39,367
+They're literally another
+copy of V8 sitting in memory.
+
+388
+00:15:39,367 --> 00:15:41,200
+The way these things
+can talk to each other,
+
+389
+00:15:41,200 --> 00:15:42,592
+though, is with postMessage.
+
+390
+00:15:42,592 --> 00:15:45,050
+And postMessage is kind of like
+sending a paper plane over.
+
+391
+00:15:45,050 --> 00:15:47,260
+I'll send it from this
+worker to that one,
+
+392
+00:15:47,260 --> 00:15:49,090
+I'll sit around and
+wait for it to arrive,
+
+393
+00:15:49,090 --> 00:15:50,756
+and there's no
+predictability about when
+
+394
+00:15:50,756 --> 00:15:52,030
+that will be delivered.
+
+395
+00:15:52,030 --> 00:15:54,370
+So it's not a great experience
+for a true multi-threaded
+
+396
+00:15:54,370 --> 00:15:56,426
+application.
+
+397
+00:15:56,426 --> 00:15:58,300
+Now, when the team built
+WebAssembly threads,
+
+398
+00:15:58,300 --> 00:16:01,620
+they implemented something that
+looks a lot more like this.
+
+399
+00:16:01,620 --> 00:16:03,790
+So what happens is, this
+is an example of, say,
+
+400
+00:16:03,790 --> 00:16:05,380
+having three threads.
+
+401
+00:16:05,380 --> 00:16:09,310
+So under the hood, we actually
+spin up the three web workers
+
+402
+00:16:09,310 --> 00:16:12,310
+but the difference here is
+that the WebAssembly module
+
+403
+00:16:12,310 --> 00:16:13,700
+is shared between the workers.
+
+404
+00:16:13,700 --> 00:16:15,310
+So there is one
+copy of the code,
+
+405
+00:16:15,310 --> 00:16:17,650
+so you're not consuming
+nearly as much memory.
+
+406
+00:16:17,650 --> 00:16:19,562
+But more importantly,
+they share state,
+
+407
+00:16:19,562 --> 00:16:21,520
+and the way they share
+state is through a thing
+
+408
+00:16:21,520 --> 00:16:23,282
+called SharedArrayBuffer.
+
+409
+00:16:23,282 --> 00:16:24,740
+So if you're a
+JavaScript engineer,
+
+410
+00:16:24,740 --> 00:16:27,281
+you probably know what a typed
+array is, because you use them
+
+411
+00:16:27,281 --> 00:16:28,030
+day to day.
+
+412
+00:16:28,030 --> 00:16:30,830
+So SharedArrayBuffer is
+basically the exact same thing,
+
+413
+00:16:30,830 --> 00:16:33,250
+except that it can be
+shared across workers.
+
+414
+00:16:33,250 --> 00:16:35,710
+And so what that
+means is the state
+
+415
+00:16:35,710 --> 00:16:38,530
+of the execution of the
+application is visible to any
+
+416
+00:16:38,530 --> 00:16:40,910
+of the workers in parallel.
+
+417
+00:16:40,910 --> 00:16:43,890
+Now if you farm off something
+into a pool of workers
+
+418
+00:16:43,890 --> 00:16:45,640
+and you have it hanging
+off your main app,
+
+419
+00:16:45,640 --> 00:16:47,112
+it will look
+something like this.
+
+420
+00:16:47,112 --> 00:16:49,570
+You'll have your main thread
+for your main application that
+
+421
+00:16:49,570 --> 00:16:52,720
+can talk to the DOM, it
+can use all the web APIs,
+
+422
+00:16:52,720 --> 00:16:54,670
+and it can see the
+SharedArrayBuffer,
+
+423
+00:16:54,670 --> 00:16:56,590
+and that
+SharedArrayBuffer is being
+
+424
+00:16:56,590 --> 00:16:59,290
+manipulated by all the parallel
+threads in the WebAssembly
+
+425
+00:16:59,290 --> 00:17:01,710
+module.
+
+426
+00:17:01,710 --> 00:17:04,390
+OK, but by now you're
+probably thinking,
+
+427
+00:17:04,390 --> 00:17:06,040
+this is all well
+and good, but how
+
+428
+00:17:06,040 --> 00:17:08,270
+do I use this stuff in
+my actual application?
+
+429
+00:17:08,270 --> 00:17:10,480
+So I'll start with a
+very simple example.
+
+430
+00:17:10,480 --> 00:17:13,839
+We'll do an example which is
+just a little Fibonacci program
+
+431
+00:17:13,839 --> 00:17:15,069
+that runs in two threads.
+
+432
+00:17:15,069 --> 00:17:16,780
+So it will look a bit like this.
+
+433
+00:17:16,780 --> 00:17:18,952
+There'll be the main thread,
+the background thread,
+
+434
+00:17:18,952 --> 00:17:20,410
+the WebAssembly
+module, all talking
+
+435
+00:17:20,410 --> 00:17:21,609
+to the SharedArrayBuffer.
+
+436
+00:17:21,609 --> 00:17:23,504
+So we just take
+some source code,
+
+437
+00:17:23,504 --> 00:17:24,920
+which will be
+something like this,
+
+438
+00:17:24,920 --> 00:17:26,545
+which is just a bit of C code.
+
+439
+00:17:26,545 --> 00:17:27,920
+And what we want
+to do is we want
+
+440
+00:17:27,920 --> 00:17:32,290
+to compile that into a form that
+we can use in parallel threads.
+
+441
+00:17:32,290 --> 00:17:35,260
+And the way we do that is with
+the Emscripten tool chain.
+
+442
+00:17:35,260 --> 00:17:37,529
+So it has a compiler
+called EMCC,
+
+443
+00:17:37,529 --> 00:17:39,070
+and there are a
+couple of flags here,
+
+444
+00:17:39,070 --> 00:17:40,490
+though, I want to point out.
+
+445
+00:17:40,490 --> 00:17:43,930
+The first one is
+-s USE_PTHREADS=1.
+
+446
+00:17:43,930 --> 00:17:46,870
+What that does is turn on
+the multi-threading support
+
+447
+00:17:46,870 --> 00:17:49,540
+when you're compiling
+your WebAssembly module.
+
+448
+00:17:49,540 --> 00:17:51,550
+The second flag that's
+interesting is -s
+
+449
+00:17:51,550 --> 00:17:53,710
+PTHREAD_POOL_SIZE=2.
+
+450
+00:17:53,710 --> 00:17:55,510
+What this does is
+tells the compiler
+
+451
+00:17:55,510 --> 00:17:58,960
+that I want to pre-allocate
+two threads for my application.
+
+452
+00:17:58,960 --> 00:18:01,660
+So when I actually start
+the WebAssembly module
+
+453
+00:18:01,660 --> 00:18:05,440
+it will pre-create two threads
+and get going with that.
+
+454
+00:18:05,440 --> 00:18:07,300
+Now this is kind
+of visualization
+
+455
+00:18:07,300 --> 00:18:08,050
+what would happen.
+
+456
+00:18:08,050 --> 00:18:10,210
+If you set PTHREAD
+pool size to two,
+
+457
+00:18:10,210 --> 00:18:13,120
+you get the picture on the
+left, you get two workers,
+
+458
+00:18:13,120 --> 00:18:15,220
+and if you set it to eight
+you get eight workers.
+
+459
+00:18:15,220 --> 00:18:18,280
+And that happens at startup
+time of your web app.
+
+460
+00:18:18,280 --> 00:18:20,650
+Now you may be wondering why
+you care about the number.
+
+461
+00:18:20,650 --> 00:18:24,100
+Well, the thing is that you
+should really try and set it
+
+462
+00:18:24,100 --> 00:18:25,930
+to the maximum
+number of threads.
+
+463
+00:18:25,930 --> 00:18:27,700
+If you say I only
+want two threads,
+
+464
+00:18:27,700 --> 00:18:29,366
+and then suddenly
+your application needs
+
+465
+00:18:29,366 --> 00:18:31,310
+three or four, it's
+a bit of a problem.
+
+466
+00:18:31,310 --> 00:18:33,670
+So what happens is that
+the WebAssembly module
+
+467
+00:18:33,670 --> 00:18:35,560
+has to yield to the
+main thread before it
+
+468
+00:18:35,560 --> 00:18:36,650
+can create that worker.
+
+469
+00:18:36,650 --> 00:18:39,040
+So if you're relying on
+all the threads being
+
+470
+00:18:39,040 --> 00:18:41,882
+there at the startup, you need
+to set the number high enough.
+
+471
+00:18:41,882 --> 00:18:43,840
+But of course, if you
+set that number too high,
+
+472
+00:18:43,840 --> 00:18:44,756
+you're wasting memory.
+
+473
+00:18:44,756 --> 00:18:46,190
+So this is something to tune.
+
+474
+00:18:46,190 --> 00:18:48,494
+So in Soundation's case
+they used five threads
+
+475
+00:18:48,494 --> 00:18:49,910
+and it works really
+well for them.
+
+476
+00:18:49,910 --> 00:18:53,364
+So when you're tuning your apps
+you need to think about it.
+
+477
+00:18:53,364 --> 00:18:55,530
+OK, so if you want to get
+out there and actually try
+
+478
+00:18:55,530 --> 00:18:57,071
+this stuff, which
+I'm sure you're all
+
+479
+00:18:57,071 --> 00:18:59,760
+dying to, if you
+fire up Chrome 70
+
+480
+00:18:59,760 --> 00:19:02,700
+and navigate to Chrome flags and
+search for WebAssembly thread
+
+481
+00:19:02,700 --> 00:19:05,880
+support, change the
+setting here from default
+
+482
+00:19:05,880 --> 00:19:07,680
+to enabled, and at
+that point, you'll
+
+483
+00:19:07,680 --> 00:19:09,020
+have to restart your browser.
+
+484
+00:19:09,020 --> 00:19:12,570
+And then you can start building
+stuff and testing it locally.
+
+485
+00:19:12,570 --> 00:19:15,269
+Now once you've built a
+working WebAssembly thread app,
+
+486
+00:19:15,269 --> 00:19:17,310
+you probably want to deploy
+it out to the public.
+
+487
+00:19:17,310 --> 00:19:20,980
+And the way you do that is by
+getting an origin trial token.
+
+488
+00:19:20,980 --> 00:19:23,460
+So an origin trial token
+is tied to your domain
+
+489
+00:19:23,460 --> 00:19:24,884
+and you get it from us.
+
+490
+00:19:24,884 --> 00:19:26,550
+And you basically--
+it's just a meta tag
+
+491
+00:19:26,550 --> 00:19:27,591
+that you put on the page.
+
+492
+00:19:27,591 --> 00:19:29,850
+And that tells the
+browser, hey, these people
+
+493
+00:19:29,850 --> 00:19:32,156
+are trying WebAssembly
+threads and let's use it.
+
+494
+00:19:32,156 --> 00:19:33,780
+So if you want to go
+ahead and do that,
+
+495
+00:19:33,780 --> 00:19:36,881
+and I encourage you all to do
+so, just go to this short link,
+
+496
+00:19:36,881 --> 00:19:38,505
+and there's a form
+you can fill in, put
+
+497
+00:19:38,505 --> 00:19:42,090
+in your URL, the reason
+you want to use this stuff,
+
+498
+00:19:42,090 --> 00:19:45,930
+and go start building
+something really cool.
+
+499
+00:19:45,930 --> 00:19:49,100
+Now of course, as developers,
+we spend most of our times
+
+500
+00:19:49,100 --> 00:19:52,460
+in DevTools trying to debug
+things, which is how it is.
+
+501
+00:19:52,460 --> 00:19:55,640
+So in Chrome 70 at the moment,
+which is released to stable,
+
+502
+00:19:55,640 --> 00:19:57,406
+you can single
+step instructions.
+
+503
+00:19:57,406 --> 00:19:59,030
+And that is a
+WebAssembly instructions.
+
+504
+00:19:59,030 --> 00:20:00,950
+So it looks a little
+bit like this,
+
+505
+00:20:00,950 --> 00:20:03,560
+like not friendly, as
+Thomas pointed out.
+
+506
+00:20:03,560 --> 00:20:05,376
+So you can see this
+little box up here,
+
+507
+00:20:05,376 --> 00:20:06,750
+which is showing
+you the threads.
+
+508
+00:20:06,750 --> 00:20:09,650
+So this is a two thread
+application running.
+
+509
+00:20:09,650 --> 00:20:13,010
+And this box is the actual
+WebAssembly disassembled code.
+
+510
+00:20:13,010 --> 00:20:16,340
+So it's not the binary, it's a
+text form of the instructions
+
+511
+00:20:16,340 --> 00:20:17,621
+that are in the module.
+
+512
+00:20:17,621 --> 00:20:19,370
+And you can single
+step those and it's all
+
+513
+00:20:19,370 --> 00:20:22,550
+very well and good, but
+realistically, we don't really
+
+514
+00:20:22,550 --> 00:20:24,380
+like that debugging experience.
+
+515
+00:20:24,380 --> 00:20:26,900
+So Chrome 71 brings
+source map support,
+
+516
+00:20:26,900 --> 00:20:28,680
+as Thomas mentioned earlier.
+
+517
+00:20:28,680 --> 00:20:31,520
+So source maps lets you
+change what you saw before
+
+518
+00:20:31,520 --> 00:20:33,950
+into something--
+oop, next slide--
+
+519
+00:20:33,950 --> 00:20:36,060
+something that looks like this.
+
+520
+00:20:36,060 --> 00:20:41,090
+So this is the source code of
+the Fibonacci function sitting
+
+521
+00:20:41,090 --> 00:20:44,270
+in Dev Tools, and you can
+single step over instructions,
+
+522
+00:20:44,270 --> 00:20:47,910
+you can set breakpoints, you
+can do all stuff like that.
+
+523
+00:20:47,910 --> 00:20:50,030
+Now, if you want to
+actually do this yourself
+
+524
+00:20:50,030 --> 00:20:51,770
+and you want to
+generate the source map,
+
+525
+00:20:51,770 --> 00:20:55,340
+you just need to set two flags
+on the EMCC compiler command
+
+526
+00:20:55,340 --> 00:20:55,880
+line.
+
+527
+00:20:55,880 --> 00:20:59,290
+The first is -g, which says
+generate debug symbols,
+
+528
+00:20:59,290 --> 00:21:01,950
+and the second is
+--source-map-base,
+
+529
+00:21:01,950 --> 00:21:04,580
+and that points to a URL
+where it will actually
+
+530
+00:21:04,580 --> 00:21:06,302
+find the source map file.
+
+531
+00:21:06,302 --> 00:21:07,760
+In this case, I'm
+using local host,
+
+532
+00:21:07,760 --> 00:21:12,090
+so I'll be using it
+on my own workstation.
+
+533
+00:21:12,090 --> 00:21:14,600
+OK, so I'll just recap on
+what we've talked about today,
+
+534
+00:21:14,600 --> 00:21:16,940
+just so you can remember
+what we talked about.
+
+535
+00:21:16,940 --> 00:21:18,860
+The first thing is it's
+streaming compilation,
+
+536
+00:21:18,860 --> 00:21:21,170
+which lets the browser
+compile the WebAssembly
+
+537
+00:21:21,170 --> 00:21:23,690
+module as it comes over the
+wire, which is launched now.
+
+538
+00:21:23,690 --> 00:21:26,450
+It's in Chrome 70,
+which speeds things up.
+
+539
+00:21:26,450 --> 00:21:29,010
+The second is Liftoff, which
+is the tiered compiler,
+
+540
+00:21:29,010 --> 00:21:31,970
+so you get the first compile
+really fast so your app starts,
+
+541
+00:21:31,970 --> 00:21:35,190
+and then hot swaps in the
+better code a bit later on.
+
+542
+00:21:35,190 --> 00:21:37,520
+Then we have, of course,
+WebAssembly threads shipping
+
+543
+00:21:37,520 --> 00:21:40,730
+now in Chrome 70, and you can
+use it with an origin trial,
+
+544
+00:21:40,730 --> 00:21:42,230
+so you can ship it
+to your customers
+
+545
+00:21:42,230 --> 00:21:44,570
+and they can use it
+and play with it.
+
+546
+00:21:44,570 --> 00:21:47,090
+And of course, Chrome 71,
+which will be out really soon,
+
+547
+00:21:47,090 --> 00:21:49,040
+contains source
+maps, which means
+
+548
+00:21:49,040 --> 00:21:51,290
+that it's a lot easier
+to debug your code.
+
+549
+00:21:51,290 --> 00:21:52,880
+And so I'd encourage
+all of you people
+
+550
+00:21:52,880 --> 00:21:56,037
+out there to start writing
+using WebAssembly threads,
+
+551
+00:21:56,037 --> 00:21:58,370
+because it unlocks the power
+of the supercomputer that's
+
+552
+00:21:58,370 --> 00:22:01,040
+sitting in your
+pocket right now.
+
+553
+00:22:01,040 --> 00:22:02,120
+Thank you.
+
+554
+00:22:02,120 --> 00:22:05,470
+[MUSIC PLAYING]
+
+555
+00:22:05,470 --> 00:22:12,174

@@ -1,0 +1,3651 @@
+1
+00:00:00,000 --> 00:00:02,485
+[MUSIC PLAYING]
+
+2
+00:00:02,485 --> 00:00:06,834
+
+
+3
+00:00:06,834 --> 00:00:08,500
+TOM GREENAWAY: Good
+afternoon, everyone.
+
+4
+00:00:08,500 --> 00:00:09,360
+I'm Tom Greenaway.
+
+5
+00:00:09,360 --> 00:00:11,959
+And I'm a developer advocate,
+based in Google Sydney.
+
+6
+00:00:11,959 --> 00:00:13,500
+MARTIN SPLITT: And
+I'm Martin Splitt.
+
+7
+00:00:13,500 --> 00:00:15,120
+I work out of the Zurich office.
+
+8
+00:00:15,120 --> 00:00:17,520
+And I'm a webmaster
+trends analyst
+
+9
+00:00:17,520 --> 00:00:20,100
+which is just a fancy name
+of being a developer advocate
+
+10
+00:00:20,100 --> 00:00:22,964
+for search and web ecosystem.
+
+11
+00:00:22,964 --> 00:00:24,380
+TOM GREENAWAY:
+Today, Martin and I
+
+12
+00:00:24,380 --> 00:00:26,790
+are going to tackle this topic--
+
+13
+00:00:26,790 --> 00:00:29,510
+the best practices for ensuring
+a modern JavaScript-powered
+
+14
+00:00:29,510 --> 00:00:31,880
+website is indexable by Search.
+
+15
+00:00:31,880 --> 00:00:34,890
+But what do we really
+mean by this sentence?
+
+16
+00:00:34,890 --> 00:00:37,170
+Well, by best practices, we
+mean what every developer
+
+17
+00:00:37,170 --> 00:00:40,500
+should know-- the techniques,
+knowledge, tools, and approach,
+
+18
+00:00:40,500 --> 00:00:42,120
+and process.
+
+19
+00:00:42,120 --> 00:00:43,980
+And by modern
+JavaScript-powered website--
+
+20
+00:00:43,980 --> 00:00:46,350
+I know it's a bit of a mouthful.
+
+21
+00:00:46,350 --> 00:00:49,350
+It means websites which use
+modern JavaScript frameworks
+
+22
+00:00:49,350 --> 00:00:51,060
+for their front-end
+and probably are
+
+23
+00:00:51,060 --> 00:00:54,960
+rendering their HTML in
+JavaScript on the client side.
+
+24
+00:00:54,960 --> 00:00:56,940
+And they're typically,
+like, single-page apps.
+
+25
+00:00:56,940 --> 00:01:00,790
+But this applies to any website
+that uses front-end JavaScript.
+
+26
+00:01:00,790 --> 00:01:03,060
+And they might be, say,
+powered with Ajax or web
+
+27
+00:01:03,060 --> 00:01:05,260
+sockets for content.
+
+28
+00:01:05,260 --> 00:01:07,870
+And lastly, what do we mean
+by indexable by Search?
+
+29
+00:01:07,870 --> 00:01:12,430
+Well, by indexable, I mean
+the content can be understood.
+
+30
+00:01:12,430 --> 00:01:14,590
+And by Search, we
+mean Google Search.
+
+31
+00:01:14,590 --> 00:01:17,140
+But these rules-- they
+apply to other web-crawlers
+
+32
+00:01:17,140 --> 00:01:21,220
+too such as, say, other
+search engines or social media
+
+33
+00:01:21,220 --> 00:01:21,960
+services.
+
+34
+00:01:21,960 --> 00:01:23,710
+MARTIN SPLITT: Right, like
+Facebook, Twitter, and all
+
+35
+00:01:23,710 --> 00:01:24,760
+the other wonderful ones.
+
+36
+00:01:24,760 --> 00:01:25,050
+TOM GREENAWAY: Exactly.
+
+37
+00:01:25,050 --> 00:01:25,830
+MARTIN SPLITT: Cool.
+
+38
+00:01:25,830 --> 00:01:26,330
+Cool.
+
+39
+00:01:26,330 --> 00:01:28,960
+So now that we know what
+we want to address here,
+
+40
+00:01:28,960 --> 00:01:30,440
+how are we going
+to split this up?
+
+41
+00:01:30,440 --> 00:01:31,570
+How are we going
+to go through this?
+
+42
+00:01:31,570 --> 00:01:34,000
+Well, first things first, I
+think it makes a lot of sense
+
+43
+00:01:34,000 --> 00:01:37,060
+to quickly go over how
+Google Search actually does
+
+44
+00:01:37,060 --> 00:01:39,520
+the indexing and figures
+out what content there
+
+45
+00:01:39,520 --> 00:01:41,050
+is in the web.
+
+46
+00:01:41,050 --> 00:01:43,000
+Then we're going to look
+into something that,
+
+47
+00:01:43,000 --> 00:01:46,270
+as a web developer, I really,
+really wanted all these years--
+
+48
+00:01:46,270 --> 00:01:47,950
+and we got that now--
+
+49
+00:01:47,950 --> 00:01:51,160
+the tools to help you all
+and us to debug the things
+
+50
+00:01:51,160 --> 00:01:52,060
+that we are seeing.
+
+51
+00:01:52,060 --> 00:01:54,700
+And last but not least, we
+don't want to just debug things
+
+52
+00:01:54,700 --> 00:01:55,570
+after they happen.
+
+53
+00:01:55,570 --> 00:01:57,964
+We want to make sure that we
+are getting ahead of that.
+
+54
+00:01:57,964 --> 00:01:59,380
+And basically,
+we're going to talk
+
+55
+00:01:59,380 --> 00:02:00,265
+about a few best practices--
+
+56
+00:02:00,265 --> 00:02:01,598
+TOM GREENAWAY: That makes sense.
+
+57
+00:02:01,598 --> 00:02:03,850
+MARTIN SPLITT: --for
+indexable content.
+
+58
+00:02:03,850 --> 00:02:04,480
+Cool.
+
+59
+00:02:04,480 --> 00:02:05,688
+So with that out of the way--
+
+60
+00:02:05,688 --> 00:02:08,259
+[LAUGHS] it's good
+that I have you here,
+
+61
+00:02:08,259 --> 00:02:10,975
+because I have got something
+to talk to you about.
+
+62
+00:02:10,975 --> 00:02:12,850
+TOM GREENAWAY: OK, that
+sounds a bit intense.
+
+63
+00:02:12,850 --> 00:02:13,750
+What do you--
+
+64
+00:02:13,750 --> 00:02:14,170
+MARTIN SPLITT: Don't worry.
+
+65
+00:02:14,170 --> 00:02:15,086
+It's not that intense.
+
+66
+00:02:15,086 --> 00:02:18,430
+It's just-- how do I put this?
+
+67
+00:02:18,430 --> 00:02:25,200
+I have a friend
+who's called Marvin.
+
+68
+00:02:25,200 --> 00:02:26,480
+Let's call him Marvin.
+
+69
+00:02:26,480 --> 00:02:29,460
+And they are building
+a single-page web app.
+
+70
+00:02:29,460 --> 00:02:30,992
+And they have done that.
+
+71
+00:02:30,992 --> 00:02:32,700
+And they have followed
+most of the things
+
+72
+00:02:32,700 --> 00:02:37,270
+that you do these days,
+like PWA and all that stuff.
+
+73
+00:02:37,270 --> 00:02:38,730
+But they have
+issues getting users
+
+74
+00:02:38,730 --> 00:02:42,090
+to find their content online.
+
+75
+00:02:42,090 --> 00:02:43,140
+TOM GREENAWAY: I see.
+
+76
+00:02:43,140 --> 00:02:44,806
+MARTIN SPLITT: And
+unfortunately, that's
+
+77
+00:02:44,806 --> 00:02:45,810
+not an isolated issue.
+
+78
+00:02:45,810 --> 00:02:46,530
+TOM GREENAWAY: Right, right.
+
+79
+00:02:46,530 --> 00:02:47,700
+So you ran a Twitter poll.
+
+80
+00:02:47,700 --> 00:02:49,550
+And other people are
+encountering this as well.
+
+81
+00:02:49,550 --> 00:02:50,220
+MARTIN SPLITT: Yeah-- yeah.
+
+82
+00:02:50,220 --> 00:02:51,510
+I got a bunch of responses.
+
+83
+00:02:51,510 --> 00:02:53,760
+And it's like, so how can
+I check if my stuff is
+
+84
+00:02:53,760 --> 00:02:54,630
+findable in Search?
+
+85
+00:02:54,630 --> 00:02:57,510
+Or hey, my stuff's not showing
+up, but I don't know why.
+
+86
+00:02:57,510 --> 00:03:01,200
+And I think that needs a
+little bit of a dive-in
+
+87
+00:03:01,200 --> 00:03:03,240
+and an explanation, right?
+
+88
+00:03:03,240 --> 00:03:05,100
+I guess that's a
+good idea to do.
+
+89
+00:03:05,100 --> 00:03:06,600
+TOM GREENAWAY: Well,
+there are a lot
+
+90
+00:03:06,600 --> 00:03:08,910
+of tools available for
+debugging on Google Search.
+
+91
+00:03:08,910 --> 00:03:11,760
+But perhaps, before we get
+into those, how about we just
+
+92
+00:03:11,760 --> 00:03:14,860
+go over how Google Search
+sees and indexes the web.
+
+93
+00:03:14,860 --> 00:03:15,360
+[INAUDIBLE]
+
+94
+00:03:15,360 --> 00:03:16,170
+MARTIN SPLITT: I think
+that's a fair point.
+
+95
+00:03:16,170 --> 00:03:17,642
+That sounds good.
+
+96
+00:03:17,642 --> 00:03:20,100
+TOM GREENAWAY: Well, here's a
+basic diagram of how websites
+
+97
+00:03:20,100 --> 00:03:21,990
+were traditionally indexed.
+
+98
+00:03:21,990 --> 00:03:26,040
+Googlebot, our search crawler,
+found pages, downloaded them,
+
+99
+00:03:26,040 --> 00:03:29,340
+and processed that content, and
+then put them into an index,
+
+100
+00:03:29,340 --> 00:03:31,170
+and then performed
+more crawling,
+
+101
+00:03:31,170 --> 00:03:32,510
+based on the links it found.
+
+102
+00:03:32,510 --> 00:03:33,510
+MARTIN SPLITT: Yeah, OK.
+
+103
+00:03:33,510 --> 00:03:35,340
+But what happens in
+the process step?
+
+104
+00:03:35,340 --> 00:03:37,560
+That seems to be where
+the magic is, right?
+
+105
+00:03:37,560 --> 00:03:40,320
+TOM GREENAWAY: Well, when we
+fetched a web page from a URL
+
+106
+00:03:40,320 --> 00:03:43,200
+and it was a traditional
+website, that web page was
+
+107
+00:03:43,200 --> 00:03:45,450
+complete when it arrived.
+
+108
+00:03:45,450 --> 00:03:49,650
+And we called this the
+rendering of the page
+
+109
+00:03:49,650 --> 00:03:51,355
+or the construction of the HTML.
+
+110
+00:03:51,355 --> 00:03:52,230
+MARTIN SPLITT: Right.
+
+111
+00:03:52,230 --> 00:03:55,050
+So when you say rendering,
+you don't mean stuff
+
+112
+00:03:55,050 --> 00:03:57,210
+like putting the pixels
+under the screen?
+
+113
+00:03:57,210 --> 00:03:59,340
+Or dealing with
+the Dom transitions
+
+114
+00:03:59,340 --> 00:04:00,460
+and animations and stuff?
+
+115
+00:04:00,460 --> 00:04:02,437
+It's just, where does
+the HTML go to construct?
+
+116
+00:04:02,437 --> 00:04:04,770
+Like, server-side rendering
+versus client-side or hybrid
+
+117
+00:04:04,770 --> 00:04:05,250
+rendering.
+
+118
+00:04:05,250 --> 00:04:06,208
+TOM GREENAWAY: Exactly.
+
+119
+00:04:06,208 --> 00:04:08,280
+Traditionally, websites
+were rendered entirely
+
+120
+00:04:08,280 --> 00:04:09,210
+on the server.
+
+121
+00:04:09,210 --> 00:04:10,904
+And then, any
+JavaScript that was used
+
+122
+00:04:10,904 --> 00:04:12,570
+was probably just for
+cosmetic purposes.
+
+123
+00:04:12,570 --> 00:04:13,260
+MARTIN SPLITT: Right.
+
+124
+00:04:13,260 --> 00:04:13,910
+OK.
+
+125
+00:04:13,910 --> 00:04:15,090
+Cool.
+
+126
+00:04:15,090 --> 00:04:16,950
+But now that we have
+figured out that this
+
+127
+00:04:16,950 --> 00:04:19,910
+is about the dealing with
+the constructed HTML,
+
+128
+00:04:19,910 --> 00:04:21,360
+it's no longer that way, right?
+
+129
+00:04:21,360 --> 00:04:23,370
+We have changed our
+web architectures
+
+130
+00:04:23,370 --> 00:04:24,280
+quite substantially.
+
+131
+00:04:24,280 --> 00:04:25,680
+So what happens there today?
+
+132
+00:04:25,680 --> 00:04:26,640
+TOM GREENAWAY: In
+the processing step?
+
+133
+00:04:26,640 --> 00:04:27,360
+MARTIN SPLITT: Yeah!
+
+134
+00:04:27,360 --> 00:04:28,850
+TOM GREENAWAY: Yeah,
+it's a good question.
+
+135
+00:04:28,850 --> 00:04:30,330
+Basically, there's
+now a renderer
+
+136
+00:04:30,330 --> 00:04:31,780
+inside the process step.
+
+137
+00:04:31,780 --> 00:04:34,710
+So more specifically, we
+have a version of Chrome
+
+138
+00:04:34,710 --> 00:04:38,010
+that opens the content of the
+page and runs some JavaScript.
+
+139
+00:04:38,010 --> 00:04:40,740
+And then it spits
+out the final HTML.
+
+140
+00:04:40,740 --> 00:04:43,620
+But we also have a queue as
+well, which is quite important.
+
+141
+00:04:43,620 --> 00:04:47,010
+And that leads into this next
+point, which John Wheeler and I
+
+142
+00:04:47,010 --> 00:04:48,780
+revealed at I/O earlier
+this year, which
+
+143
+00:04:48,780 --> 00:04:50,790
+is that, in a
+nutshell, the rendering
+
+144
+00:04:50,790 --> 00:04:53,280
+of JavaScript-powered
+websites in Google Search
+
+145
+00:04:53,280 --> 00:04:55,800
+is actually deferred
+until Googlebot
+
+146
+00:04:55,800 --> 00:04:58,515
+has the resources available
+to process that content.
+
+147
+00:04:58,515 --> 00:04:59,390
+MARTIN SPLITT: Right.
+
+148
+00:04:59,390 --> 00:05:00,520
+Deferred.
+
+149
+00:05:00,520 --> 00:05:03,570
+So what kind of timeline
+are we talking about?
+
+150
+00:05:03,570 --> 00:05:04,794
+What's the delay?
+
+151
+00:05:04,794 --> 00:05:06,210
+TOM GREENAWAY:
+Well, it could take
+
+152
+00:05:06,210 --> 00:05:09,900
+minutes or maybe an hour or
+maybe even days or up to a week
+
+153
+00:05:09,900 --> 00:05:12,480
+before the render is
+actually completed.
+
+154
+00:05:12,480 --> 00:05:13,554
+MARTIN SPLITT: A week?
+
+155
+00:05:13,554 --> 00:05:14,720
+TOM GREENAWAY: Yeah, I know.
+
+156
+00:05:14,720 --> 00:05:15,640
+MARTIN SPLITT: What?
+
+157
+00:05:15,640 --> 00:05:16,969
+OK, that's-- wow.
+
+158
+00:05:16,969 --> 00:05:18,510
+TOM GREENAWAY: It's
+a bit of a shock.
+
+159
+00:05:18,510 --> 00:05:19,380
+I know.
+
+160
+00:05:19,380 --> 00:05:22,740
+But you have to understand that
+the web is really big, right?
+
+161
+00:05:22,740 --> 00:05:23,680
+It's quite huge.
+
+162
+00:05:23,680 --> 00:05:27,820
+In fact, we found over 130
+trillion documents on the web
+
+163
+00:05:27,820 --> 00:05:28,320
+so far.
+
+164
+00:05:28,320 --> 00:05:29,179
+[WHISTLING]
+
+165
+00:05:29,179 --> 00:05:30,720
+MARTIN SPLITT: OK,
+that's a mouthful.
+
+166
+00:05:30,720 --> 00:05:32,094
+And this number
+is two years old.
+
+167
+00:05:32,094 --> 00:05:33,600
+And I guess the web's growing.
+
+168
+00:05:33,600 --> 00:05:36,990
+So OK, I understand that.
+
+169
+00:05:36,990 --> 00:05:38,040
+Cool.
+
+170
+00:05:38,040 --> 00:05:41,460
+But is there anything
+that we could
+
+171
+00:05:41,460 --> 00:05:43,950
+do to help the
+crawlers a little bit?
+
+172
+00:05:43,950 --> 00:05:47,100
+If I remember correctly, when
+I attended the session at I/O,
+
+173
+00:05:47,100 --> 00:05:49,340
+you said something
+about dynamic rendering.
+
+174
+00:05:49,340 --> 00:05:51,090
+Is that something that
+would come in here?
+
+175
+00:05:51,090 --> 00:05:51,820
+TOM GREENAWAY: Yeah, exactly.
+
+176
+00:05:51,820 --> 00:05:53,700
+So dynamic rendering
+is a technique
+
+177
+00:05:53,700 --> 00:05:56,340
+that allows us to
+short-circuit the rendering
+
+178
+00:05:56,340 --> 00:05:59,550
+pipeline by delivering a
+service-side rendered version
+
+179
+00:05:59,550 --> 00:06:02,220
+of your normally client-side
+rendered web-side
+
+180
+00:06:02,220 --> 00:06:04,350
+by rendering that
+client-side JavaScript
+
+181
+00:06:04,350 --> 00:06:06,960
+on the server with a
+mini-client-side renderer.
+
+182
+00:06:06,960 --> 00:06:10,229
+For example, a headless browser,
+like Puppeteer, could be used.
+
+183
+00:06:10,229 --> 00:06:11,520
+MARTIN SPLITT: Oh, right, yeah.
+
+184
+00:06:11,520 --> 00:06:12,311
+That's pretty cool.
+
+185
+00:06:12,311 --> 00:06:14,045
+So how does that work in detail?
+
+186
+00:06:14,045 --> 00:06:15,420
+TOM GREENAWAY:
+Well, here you can
+
+187
+00:06:15,420 --> 00:06:18,450
+see how a server identifies that
+the device requesting the page
+
+188
+00:06:18,450 --> 00:06:20,110
+is a user browser.
+
+189
+00:06:20,110 --> 00:06:24,134
+And then it serves a payload
+of HTML and JavaScript
+
+190
+00:06:24,134 --> 00:06:25,800
+that gets rendered
+on the client, right?
+
+191
+00:06:25,800 --> 00:06:28,050
+So that's basic stuff.
+
+192
+00:06:28,050 --> 00:06:30,150
+But when a crawler like
+Googlebot makes a request,
+
+193
+00:06:30,150 --> 00:06:32,910
+the server sends a
+different payload.
+
+194
+00:06:32,910 --> 00:06:35,640
+And instead of sending the
+HTML JavaScript directly
+
+195
+00:06:35,640 --> 00:06:37,200
+to the browser--
+
+196
+00:06:37,200 --> 00:06:39,090
+or in this case, the crawler--
+
+197
+00:06:39,090 --> 00:06:41,130
+we send what is normally
+sent to the browser,
+
+198
+00:06:41,130 --> 00:06:44,020
+but we send it to the
+dynamic rendering service.
+
+199
+00:06:44,020 --> 00:06:46,960
+And we run the payload
+through that service.
+
+200
+00:06:46,960 --> 00:06:49,170
+So the dynamic
+renderer then spits out
+
+201
+00:06:49,170 --> 00:06:52,609
+a completely statically rendered
+HTML payload for the crawlers.
+
+202
+00:06:52,609 --> 00:06:53,400
+MARTIN SPLITT: Huh!
+
+203
+00:06:53,400 --> 00:06:54,420
+That's pretty smart.
+
+204
+00:06:54,420 --> 00:06:54,960
+OK.
+
+205
+00:06:54,960 --> 00:06:57,168
+TOM GREENAWAY: And to be
+clear, that dynamic renderer
+
+206
+00:06:57,168 --> 00:06:58,650
+could be an external
+service or it
+
+207
+00:06:58,650 --> 00:07:01,080
+could be running on the same
+web server infrastructure.
+
+208
+00:07:01,080 --> 00:07:01,560
+MARTIN SPLITT: All right.
+
+209
+00:07:01,560 --> 00:07:02,400
+Yeah, that makes sense.
+
+210
+00:07:02,400 --> 00:07:03,233
+TOM GREENAWAY: Yeah.
+
+211
+00:07:03,233 --> 00:07:05,310
+MARTIN SPLITT: I guess,
+for this kind of stuff,
+
+212
+00:07:05,310 --> 00:07:08,850
+you can use tools such as--
+
+213
+00:07:08,850 --> 00:07:10,920
+Puppeteer is one that
+you mentioned already.
+
+214
+00:07:10,920 --> 00:07:11,070
+TOM GREENAWAY: Yeah.
+
+215
+00:07:11,070 --> 00:07:11,580
+MARTIN SPLITT:
+But you could also
+
+216
+00:07:11,580 --> 00:07:14,520
+probably use Rendertron, which
+is a higher-level abstraction.
+
+217
+00:07:14,520 --> 00:07:17,100
+Puppeteer is basically an
+NPM module that you install.
+
+218
+00:07:17,100 --> 00:07:20,220
+And that remote controls
+or programmatically
+
+219
+00:07:20,220 --> 00:07:22,110
+controls a Chrome
+instance that runs
+
+220
+00:07:22,110 --> 00:07:23,730
+headlessly, which is great.
+
+221
+00:07:23,730 --> 00:07:25,750
+But I'd like something
+more high level.
+
+222
+00:07:25,750 --> 00:07:27,450
+And I think Rendertron
+steps in there,
+
+223
+00:07:27,450 --> 00:07:29,790
+where you basically just have
+the server running, which
+
+224
+00:07:29,790 --> 00:07:32,910
+is a Rendertron server that
+uses Puppeteer to steer that.
+
+225
+00:07:32,910 --> 00:07:34,530
+And you give it a URL to render.
+
+226
+00:07:34,530 --> 00:07:37,009
+And you get the rendered
+static HTML back.
+
+227
+00:07:37,009 --> 00:07:37,800
+That's pretty cool.
+
+228
+00:07:37,800 --> 00:07:38,300
+OK.
+
+229
+00:07:38,300 --> 00:07:40,290
+It's fantastic.
+
+230
+00:07:40,290 --> 00:07:42,350
+I guess you can also
+deploy that pretty easily.
+
+231
+00:07:42,350 --> 00:07:43,890
+I think there's
+this thing called
+
+232
+00:07:43,890 --> 00:07:45,510
+Google Cloud Platform
+that's probably
+
+233
+00:07:45,510 --> 00:07:46,659
+pretty easy to deploy too.
+
+234
+00:07:46,659 --> 00:07:49,200
+But I guess you can also deploy
+it pretty much anywhere else,
+
+235
+00:07:49,200 --> 00:07:49,740
+right?
+
+236
+00:07:49,740 --> 00:07:50,910
+TOM GREENAWAY: Do
+you have an example?
+
+237
+00:07:50,910 --> 00:07:52,785
+MARTIN SPLITT: I do have
+an example actually.
+
+238
+00:07:52,785 --> 00:07:56,220
+So there's a NPM module that
+is called the Rendertron
+
+239
+00:07:56,220 --> 00:07:57,460
+middleware.
+
+240
+00:07:57,460 --> 00:08:00,240
+So if you are using, let's
+say, for instance, Express.js,
+
+241
+00:08:00,240 --> 00:08:02,370
+you can use that
+as the middleware.
+
+242
+00:08:02,370 --> 00:08:05,040
+But what you're doing
+here is basically just--
+
+243
+00:08:05,040 --> 00:08:08,100
+first step, you require it.
+
+244
+00:08:08,100 --> 00:08:09,990
+You need to get that
+into your project.
+
+245
+00:08:09,990 --> 00:08:12,360
+And then what you're
+doing is you basically
+
+246
+00:08:12,360 --> 00:08:14,700
+configure it to do the
+right thing for you.
+
+247
+00:08:14,700 --> 00:08:18,750
+In this case, we want to
+specifically jump the rendering
+
+248
+00:08:18,750 --> 00:08:20,610
+pipeline of the Googlebot.
+
+249
+00:08:20,610 --> 00:08:23,730
+Rendertron, by default, doesn't
+do prerendering for Googlebot,
+
+250
+00:08:23,730 --> 00:08:25,930
+because the Googlebot
+does run JavaScript.
+
+251
+00:08:25,930 --> 00:08:28,800
+But we want to get the
+advantage here anyways.
+
+252
+00:08:28,800 --> 00:08:35,280
+So we can just use the
+preconfigured and prebuilt list
+
+253
+00:08:35,280 --> 00:08:37,260
+of render agents that
+they are rendering for
+
+254
+00:08:37,260 --> 00:08:39,330
+and add Googlebot in there.
+
+255
+00:08:39,330 --> 00:08:41,309
+And then once we have
+that configuration ready
+
+256
+00:08:41,309 --> 00:08:43,470
+and have imported
+it, we can go on
+
+257
+00:08:43,470 --> 00:08:46,230
+to actually use it in our
+application middleware stack.
+
+258
+00:08:46,230 --> 00:08:49,860
+So we can basically point it
+to the running server somewhere
+
+259
+00:08:49,860 --> 00:08:54,490
+and say, for all these user
+agent patterns, prerender.
+
+260
+00:08:54,490 --> 00:08:56,410
+By the way, now that
+I have got you here--
+
+261
+00:08:56,410 --> 00:08:59,830
+because you never respond to
+emails timely, which is fine.
+
+262
+00:08:59,830 --> 00:09:01,950
+Neither do I-- no offense.
+
+263
+00:09:01,950 --> 00:09:04,190
+And Chrome Dev Sum
+is a big event.
+
+264
+00:09:04,190 --> 00:09:08,455
+So this rendering does
+cost a bit of resources.
+
+265
+00:09:08,455 --> 00:09:10,240
+So I'm wondering,
+is there any way
+
+266
+00:09:10,240 --> 00:09:12,972
+to figure out what Googlebot--
+like, what does Rendertron
+
+267
+00:09:12,972 --> 00:09:14,680
+really do to figure
+out what's Googlebot?
+
+268
+00:09:14,680 --> 00:09:16,300
+And how can it
+verify that is really
+
+269
+00:09:16,300 --> 00:09:18,806
+is Googlebot and not just
+pretending to be Googlebot?
+
+270
+00:09:18,806 --> 00:09:19,930
+TOM GREENAWAY: Yeah, well--
+
+271
+00:09:19,930 --> 00:09:20,710
+MARTIN SPLITT: [INAUDIBLE]?
+
+272
+00:09:20,710 --> 00:09:22,168
+TOM GREENAWAY:
+--the easiest way is
+
+273
+00:09:22,168 --> 00:09:24,460
+to do user agent sniffing
+for the Googlebot string.
+
+274
+00:09:24,460 --> 00:09:26,477
+And here's an example
+with the mobile user
+
+275
+00:09:26,477 --> 00:09:27,310
+agent for Googlebot.
+
+276
+00:09:27,310 --> 00:09:28,440
+[WHISTLING]
+
+277
+00:09:28,440 --> 00:09:31,600
+But you might want to do
+this for other services
+
+278
+00:09:31,600 --> 00:09:33,850
+as well that you want to
+serve prerendered content to,
+
+279
+00:09:33,850 --> 00:09:35,890
+like social media services.
+
+280
+00:09:35,890 --> 00:09:39,839
+And also, for Googlebot, you can
+do, additionally, a reverse DNS
+
+281
+00:09:39,839 --> 00:09:41,380
+look-up, to confirm
+that it really is
+
+282
+00:09:41,380 --> 00:09:44,012
+coming from the Google servers.
+
+283
+00:09:44,012 --> 00:09:45,970
+And like I said, this is
+the mobile user agent.
+
+284
+00:09:45,970 --> 00:09:49,102
+So you can detect the
+desktop user agent as well.
+
+285
+00:09:49,102 --> 00:09:51,435
+And that URL will give you a
+list of all the different--
+
+286
+00:09:51,435 --> 00:09:52,330
+MARTIN SPLITT: Oh, cool.
+
+287
+00:09:52,330 --> 00:09:52,970
+TOM GREENAWAY: --user agents.
+
+288
+00:09:52,970 --> 00:09:53,650
+MARTIN SPLITT:
+Right, that's nice.
+
+289
+00:09:53,650 --> 00:09:54,040
+That's [INAUDIBLE].
+
+290
+00:09:54,040 --> 00:09:54,910
+TOM GREENAWAY: Which
+reminds me, actually--
+
+291
+00:09:54,910 --> 00:09:55,930
+I should sync with
+John [? Muller ?]
+
+292
+00:09:55,930 --> 00:09:57,940
+and check if there are
+new tools in Search
+
+293
+00:09:57,940 --> 00:09:59,010
+Console for this stuff.
+
+294
+00:09:59,010 --> 00:09:59,770
+Or maybe you can tell me.
+
+295
+00:09:59,770 --> 00:10:02,410
+MARTIN SPLITT: Yeah, I was going
+to say, why did you bring John
+
+296
+00:10:02,410 --> 00:10:02,830
+into this?
+
+297
+00:10:02,830 --> 00:10:03,330
+Come on.
+
+298
+00:10:03,330 --> 00:10:04,240
+TOM GREENAWAY: Sorry.
+
+299
+00:10:04,240 --> 00:10:05,240
+MARTIN SPLITT: I'm here.
+
+300
+00:10:05,240 --> 00:10:07,680
+I'm literally a
+meter away from you.
+
+301
+00:10:07,680 --> 00:10:10,180
+Or I don't know how many miles
+or foot or inches that is.
+
+302
+00:10:10,180 --> 00:10:12,230
+I have no idea.
+
+303
+00:10:12,230 --> 00:10:14,230
+But basically, we have a
+bunch of stuff for you.
+
+304
+00:10:14,230 --> 00:10:16,240
+And I'd like to walk
+you through that.
+
+305
+00:10:16,240 --> 00:10:19,795
+So you know the Google
+Mobile-Friendly Test already?
+
+306
+00:10:19,795 --> 00:10:20,800
+TOM GREENAWAY: Yeah.
+
+307
+00:10:20,800 --> 00:10:23,290
+MARTIN SPLITT: So this
+is kind of useful.
+
+308
+00:10:23,290 --> 00:10:25,529
+It shows you if your
+page is mobile-friendly.
+
+309
+00:10:25,529 --> 00:10:27,070
+It does give you a
+screenshot of what
+
+310
+00:10:27,070 --> 00:10:28,840
+we are seeing in Googlebot.
+
+311
+00:10:28,840 --> 00:10:30,620
+And it's pretty easy to use.
+
+312
+00:10:30,620 --> 00:10:33,070
+You just paste
+your URL in there.
+
+313
+00:10:33,070 --> 00:10:36,370
+But it does more than just that.
+
+314
+00:10:36,370 --> 00:10:43,020
+Because it also gives
+you this, which is what
+
+315
+00:10:43,020 --> 00:10:45,370
+I always wanted to have.
+
+316
+00:10:45,370 --> 00:10:48,600
+And Googlebot does not render
+what you expect it to render.
+
+317
+00:10:48,600 --> 00:10:50,760
+You get the JavaScript
+log messages,
+
+318
+00:10:50,760 --> 00:10:53,197
+as you would get them
+from the Chrome Dev.
+
+319
+00:10:53,197 --> 00:10:54,780
+TOM GREENAWAY: So
+you can really debug
+
+320
+00:10:54,780 --> 00:10:55,560
+the JavaScript in the page.
+
+321
+00:10:55,560 --> 00:10:56,130
+MARTIN SPLITT: You
+can really debug this.
+
+322
+00:10:56,130 --> 00:10:58,080
+And here's my
+favorite-- we had this--
+
+323
+00:10:58,080 --> 00:11:00,570
+is it undefined
+question earlier on?
+
+324
+00:11:00,570 --> 00:11:01,990
+Apparently, it is undefined.
+
+325
+00:11:01,990 --> 00:11:04,430
+And undefined is not a
+function, which is unfortunate.
+
+326
+00:11:04,430 --> 00:11:06,660
+But that happens.
+
+327
+00:11:06,660 --> 00:11:08,916
+Also, do you know about
+the new URL inspection tool
+
+328
+00:11:08,916 --> 00:11:10,290
+that we've got in
+Search Console?
+
+329
+00:11:10,290 --> 00:11:11,130
+TOM GREENAWAY: I don't think so.
+
+330
+00:11:11,130 --> 00:11:11,910
+Can you remind me?
+
+331
+00:11:11,910 --> 00:11:12,993
+MARTIN SPLITT: Yeah, sure.
+
+332
+00:11:12,993 --> 00:11:16,110
+So if you have verified for
+a property in Search Console,
+
+333
+00:11:16,110 --> 00:11:18,930
+you can basically
+paste any of the URLs
+
+334
+00:11:18,930 --> 00:11:20,880
+that are belonging
+to that property
+
+335
+00:11:20,880 --> 00:11:23,707
+into the Search Console
+URL Inspection tool.
+
+336
+00:11:23,707 --> 00:11:26,040
+And you get, like, when we
+crawled it, if it's on Google
+
+337
+00:11:26,040 --> 00:11:26,881
+or not.
+
+338
+00:11:26,881 --> 00:11:28,380
+And you have a bunch
+of information.
+
+339
+00:11:28,380 --> 00:11:30,330
+And you can run
+live tests as well.
+
+340
+00:11:30,330 --> 00:11:33,690
+So this blog post here is--
+
+341
+00:11:33,690 --> 00:11:36,360
+drumroll-- not on the index.
+
+342
+00:11:36,360 --> 00:11:38,730
+But that's fine-- whatever.
+
+343
+00:11:38,730 --> 00:11:39,960
+We also have something else.
+
+344
+00:11:39,960 --> 00:11:41,751
+It's actually a
+pre-announcement that we're
+
+345
+00:11:41,751 --> 00:11:44,920
+going to make at
+Chrome Dev Summit now.
+
+346
+00:11:44,920 --> 00:11:45,840
+TOM GREENAWAY: OK.
+
+347
+00:11:45,840 --> 00:11:48,600
+MARTIN SPLITT: So can we get
+a little bit of a drumroll?
+
+348
+00:11:48,600 --> 00:11:51,607
+So we'll get the
+live code editing
+
+349
+00:11:51,607 --> 00:11:52,690
+feature in Search Console.
+
+350
+00:11:52,690 --> 00:11:53,510
+TOM GREENAWAY: Oh, OK.
+
+351
+00:11:53,510 --> 00:11:54,343
+MARTIN SPLITT: Yeah.
+
+352
+00:11:54,343 --> 00:11:56,914
+TOM GREENAWAY:
+What does that do?
+
+353
+00:11:56,914 --> 00:11:58,080
+MARTIN SPLITT: Fair enough--
+
+354
+00:11:58,080 --> 00:11:58,860
+yeah, OK.
+
+355
+00:11:58,860 --> 00:12:01,320
+So imagine you are
+building a website.
+
+356
+00:12:01,320 --> 00:12:03,210
+Let's say, there's
+an afterparty today.
+
+357
+00:12:03,210 --> 00:12:05,580
+So you built the website
+for the Chrome Dev Summit.
+
+358
+00:12:05,580 --> 00:12:08,307
+And you want to check if
+your structured data works
+
+359
+00:12:08,307 --> 00:12:10,140
+to get highlighted in
+Search results, right?
+
+360
+00:12:10,140 --> 00:12:12,247
+You want to check that
+as quickly as possible.
+
+361
+00:12:12,247 --> 00:12:13,830
+TOM GREENAWAY: Yeah,
+that makes sense.
+
+362
+00:12:13,830 --> 00:12:15,330
+You want to be able
+to iterate quickly.
+
+363
+00:12:15,330 --> 00:12:16,392
+And you don't want to have
+to wait for deployments
+
+364
+00:12:16,392 --> 00:12:17,040
+from your [INAUDIBLE].
+
+365
+00:12:17,040 --> 00:12:18,000
+MARTIN SPLITT: Yeah, exactly.
+
+366
+00:12:18,000 --> 00:12:20,080
+I want a development cycle
+that makes more sense.
+
+367
+00:12:20,080 --> 00:12:21,705
+So what you can do
+is you can plot that
+
+368
+00:12:21,705 --> 00:12:23,130
+into this wonderful tool.
+
+369
+00:12:23,130 --> 00:12:24,490
+And here, we have an example.
+
+370
+00:12:24,490 --> 00:12:27,030
+We are using JavaScript to
+create a script tag that
+
+371
+00:12:27,030 --> 00:12:28,260
+contains the structured data.
+
+372
+00:12:28,260 --> 00:12:30,134
+And we have all our
+wonderful structured data
+
+373
+00:12:30,134 --> 00:12:31,470
+for the event here.
+
+374
+00:12:31,470 --> 00:12:35,230
+And then we can click on
+the little Test Code button.
+
+375
+00:12:35,230 --> 00:12:37,060
+And what it gives us is this.
+
+376
+00:12:37,060 --> 00:12:38,160
+And we're like, yay!
+
+377
+00:12:38,160 --> 00:12:40,040
+Our event is available.
+
+378
+00:12:40,040 --> 00:12:42,160
+And this is a code
+editor over here.
+
+379
+00:12:42,160 --> 00:12:44,370
+And what we see
+over there is, it's
+
+380
+00:12:44,370 --> 00:12:46,461
+missing the performer
+for the afterparty.
+
+381
+00:12:46,461 --> 00:12:47,460
+TOM GREENAWAY: Oh, wait.
+
+382
+00:12:47,460 --> 00:12:48,030
+That's a shame.
+
+383
+00:12:48,030 --> 00:12:49,680
+I think it's meant to
+be the Chrome Dino.
+
+384
+00:12:49,680 --> 00:12:50,670
+MARTIN SPLITT: It's
+the Chrome Dino.
+
+385
+00:12:50,670 --> 00:12:52,407
+So we should add this performer.
+
+386
+00:12:52,407 --> 00:12:54,240
+So what we can do is
+we can go straight back
+
+387
+00:12:54,240 --> 00:12:57,200
+into the Code Editor and
+click the button again.
+
+388
+00:12:57,200 --> 00:13:00,482
+And it live updates, as
+we have retested our code.
+
+389
+00:13:00,482 --> 00:13:02,940
+So we can do all of this in
+the browser in the single tool.
+
+390
+00:13:02,940 --> 00:13:05,850
+And I think that is pretty
+fantastic really, right?
+
+391
+00:13:05,850 --> 00:13:08,060
+That's pretty good stuff
+
+392
+00:13:08,060 --> 00:13:09,690
+TOM GREENAWAY: OK, yeah.
+
+393
+00:13:09,690 --> 00:13:12,700
+That is definitely a neat way of
+testing and trying our code out
+
+394
+00:13:12,700 --> 00:13:13,742
+and iterating quickly.
+
+395
+00:13:13,742 --> 00:13:15,450
+MARTIN SPLITT: Yeah,
+but that's something
+
+396
+00:13:15,450 --> 00:13:17,640
+that Search Console
+generally tries to do, right?
+
+397
+00:13:17,640 --> 00:13:18,480
+TOM GREENAWAY: Mm.
+
+398
+00:13:18,480 --> 00:13:20,521
+MARTIN SPLITT: So you have
+this really nice flow.
+
+399
+00:13:20,521 --> 00:13:23,040
+So let's say, someone in
+your company or agency
+
+400
+00:13:23,040 --> 00:13:25,422
+or wherever has access
+to Search Console.
+
+401
+00:13:25,422 --> 00:13:27,630
+I don't have access to Search
+Console as a developer,
+
+402
+00:13:27,630 --> 00:13:30,540
+normally, because I have so
+much other things to worry
+
+403
+00:13:30,540 --> 00:13:32,340
+about really.
+
+404
+00:13:32,340 --> 00:13:36,660
+And then someone finds an issue
+through one of the reports.
+
+405
+00:13:36,660 --> 00:13:39,840
+So how do they get
+this information to me?
+
+406
+00:13:39,840 --> 00:13:41,640
+Well, one way of doing
+so is, basically,
+
+407
+00:13:41,640 --> 00:13:45,240
+they can just go and see this
+issue from the Reports page,
+
+408
+00:13:45,240 --> 00:13:46,920
+where-- there's a
+bunch of samples here.
+
+409
+00:13:46,920 --> 00:13:49,320
+In this case, the content
+is wider than the screen.
+
+410
+00:13:49,320 --> 00:13:52,470
+And in the second stage of
+this, they can basically
+
+411
+00:13:52,470 --> 00:13:53,550
+just say, all right.
+
+412
+00:13:53,550 --> 00:13:55,650
+So our developers might
+be an external developer.
+
+413
+00:13:55,650 --> 00:13:57,733
+We don't want to give them
+access to all the data.
+
+414
+00:13:57,733 --> 00:13:59,647
+So we share this
+particular issue with them.
+
+415
+00:13:59,647 --> 00:14:00,480
+And they get a link.
+
+416
+00:14:00,480 --> 00:14:02,105
+They don't have to
+sign in or anything.
+
+417
+00:14:02,105 --> 00:14:04,710
+They can just use the
+link that is shared here
+
+418
+00:14:04,710 --> 00:14:06,900
+to see what the
+issue is, get access
+
+419
+00:14:06,900 --> 00:14:09,300
+to the documentation that
+explains what the problem is
+
+420
+00:14:09,300 --> 00:14:10,770
+and how to fix it.
+
+421
+00:14:10,770 --> 00:14:13,330
+And then, last but not least,
+when I, as a developer,
+
+422
+00:14:13,330 --> 00:14:14,760
+then go, I fixed this--
+
+423
+00:14:14,760 --> 00:14:16,762
+I have this under control--
+
+424
+00:14:16,762 --> 00:14:18,220
+we know that that's
+often not true.
+
+425
+00:14:18,220 --> 00:14:22,360
+So what Search Console offers
+us is this Validate Fix button.
+
+426
+00:14:22,360 --> 00:14:24,990
+So if I'm like, Tom, I gotcha.
+
+427
+00:14:24,990 --> 00:14:25,780
+I fixed this.
+
+428
+00:14:25,780 --> 00:14:28,770
+You or I can press
+this button and go,
+
+429
+00:14:28,770 --> 00:14:30,060
+I got you in 10 minutes.
+
+430
+00:14:30,060 --> 00:14:30,600
+TOM GREENAWAY: Yeah, right--
+
+431
+00:14:30,600 --> 00:14:30,900
+OK.
+
+432
+00:14:30,900 --> 00:14:31,200
+MARTIN SPLITT: Right?
+
+433
+00:14:31,200 --> 00:14:33,250
+TOM GREENAWAY: So it really
+establishes a flow [INAUDIBLE]..
+
+434
+00:14:33,250 --> 00:14:34,208
+MARTIN SPLITT: It does.
+
+435
+00:14:34,208 --> 00:14:35,826
+It is really nice
+workflow and works
+
+436
+00:14:35,826 --> 00:14:37,200
+across departments,
+which I think
+
+437
+00:14:37,200 --> 00:14:38,511
+is pretty fantastic as well.
+
+438
+00:14:38,511 --> 00:14:39,010
+Yeah.
+
+439
+00:14:39,010 --> 00:14:39,305
+TOM GREENAWAY: Hm.
+
+440
+00:14:39,305 --> 00:14:40,140
+Yeah, that's nice.
+
+441
+00:14:40,140 --> 00:14:40,710
+MARTIN SPLITT: Oh--
+
+442
+00:14:40,710 --> 00:14:42,126
+TOM GREENAWAY: But
+actually, there
+
+443
+00:14:42,126 --> 00:14:43,700
+is another addition
+to our Dev tool.
+
+444
+00:14:43,700 --> 00:14:44,910
+MARTIN SPLITT: Right,
+you were talking to me
+
+445
+00:14:44,910 --> 00:14:45,470
+about that earlier.
+
+446
+00:14:45,470 --> 00:14:46,810
+TOM GREENAWAY: Yeah, exactly.
+
+447
+00:14:46,810 --> 00:14:49,050
+I'm sure everyone obviously
+knows about Lighthouse.
+
+448
+00:14:49,050 --> 00:14:50,700
+They've been to the forum
+space and they've seen the--
+
+449
+00:14:50,700 --> 00:14:51,040
+MARTIN SPLITT: Yeah, come on.
+
+450
+00:14:51,040 --> 00:14:52,260
+TOM GREENAWAY: --awesome
+statue we've got there.
+
+451
+00:14:52,260 --> 00:14:53,937
+MARTIN SPLITT: Oh,
+it's fantastic.
+
+452
+00:14:53,937 --> 00:14:55,020
+TOM GREENAWAY: But-- yeah.
+
+453
+00:14:55,020 --> 00:14:57,630
+What if I told you that
+there are actually SEO audits
+
+454
+00:14:57,630 --> 00:14:58,890
+inside of Lighthouse?
+
+455
+00:14:58,890 --> 00:14:59,290
+MARTIN SPLITT: Huh!
+
+456
+00:14:59,290 --> 00:15:01,180
+TOM GREENAWAY: In fact, we've
+got a few more coming soon.
+
+457
+00:15:01,180 --> 00:15:01,380
+So--
+
+458
+00:15:01,380 --> 00:15:02,171
+MARTIN SPLITT: Ooh!
+
+459
+00:15:02,171 --> 00:15:05,010
+TOM GREENAWAY: --basically, this
+can automatically detect things
+
+460
+00:15:05,010 --> 00:15:08,580
+like whether your HTTP header
+responses are accurate or not
+
+461
+00:15:08,580 --> 00:15:11,340
+and meta-tags as well-- like,
+that you've got correct title
+
+462
+00:15:11,340 --> 00:15:13,659
+and description tags or that
+you've got hreflang set up
+
+463
+00:15:13,659 --> 00:15:15,700
+correctly, if you're using
+that for a localized--
+
+464
+00:15:15,700 --> 00:15:16,060
+MARTIN SPLITT:
+Internationalization--
+
+465
+00:15:16,060 --> 00:15:16,570
+TOM GREENAWAY:
+--international website.
+
+466
+00:15:16,570 --> 00:15:17,770
+MARTIN SPLITT: Yeah-- woo.
+
+467
+00:15:17,770 --> 00:15:20,280
+TOM GREENAWAY: And also,
+descriptive link texts-- even
+
+468
+00:15:20,280 --> 00:15:20,820
+for anchors.
+
+469
+00:15:20,820 --> 00:15:21,387
+So if--
+
+470
+00:15:21,387 --> 00:15:22,470
+MARTIN SPLITT: Click Here.
+
+471
+00:15:22,470 --> 00:15:23,940
+TOM GREENAWAY: Exactly, you
+want to avoid Click Here,
+
+472
+00:15:23,940 --> 00:15:25,481
+because it doesn't
+really communicate
+
+473
+00:15:25,481 --> 00:15:28,074
+what is actually the thing
+that you're linking to, right?
+
+474
+00:15:28,074 --> 00:15:30,240
+MARTIN SPLITT: Number five
+is going to surprise you.
+
+475
+00:15:30,240 --> 00:15:31,800
+TOM GREENAWAY: And then
+they're like, robots.txt.
+
+476
+00:15:31,800 --> 00:15:33,600
+And then the new
+features we're adding
+
+477
+00:15:33,600 --> 00:15:36,260
+are, like, automatic detection
+of the sides of tab targets
+
+478
+00:15:36,260 --> 00:15:38,100
+and the margin
+around tap targets,
+
+479
+00:15:38,100 --> 00:15:41,102
+to make sure that they're
+nice for users, and also
+
+480
+00:15:41,102 --> 00:15:43,310
+structured data testing, as
+well, which you were just
+
+481
+00:15:43,310 --> 00:15:43,670
+talking about.
+
+482
+00:15:43,670 --> 00:15:44,420
+MARTIN SPLITT: Yeah.
+
+483
+00:15:44,420 --> 00:15:44,740
+Yeah.
+
+484
+00:15:44,740 --> 00:15:45,480
+TOM GREENAWAY: So
+it's really great.
+
+485
+00:15:45,480 --> 00:15:46,550
+MARTIN SPLITT: It's going
+to get more of that.
+
+486
+00:15:46,550 --> 00:15:46,790
+TOM GREENAWAY: Yeah.
+
+487
+00:15:46,790 --> 00:15:47,310
+MARTIN SPLITT: That's fantastic.
+
+488
+00:15:47,310 --> 00:15:49,310
+That's very good to see, yeah.
+
+489
+00:15:49,310 --> 00:15:50,360
+Cool.
+
+490
+00:15:50,360 --> 00:15:52,670
+All right, so I think,
+from the tool side,
+
+491
+00:15:52,670 --> 00:15:55,550
+we have Lighthouse audits.
+
+492
+00:15:55,550 --> 00:15:57,572
+For SEO, we have
+the Search Console.
+
+493
+00:15:57,572 --> 00:15:59,780
+We have the Mobile-friendly
+test and the Rich Results
+
+494
+00:15:59,780 --> 00:16:01,234
+test with editing features.
+
+495
+00:16:01,234 --> 00:16:02,900
+I think we're pretty
+good on that front.
+
+496
+00:16:02,900 --> 00:16:05,390
+But do you have any
+recommendations,
+
+497
+00:16:05,390 --> 00:16:09,349
+in terms of best practices, that
+I should tell my friend Marvin?
+
+498
+00:16:09,349 --> 00:16:11,140
+TOM GREENAWAY: Marvin--
+your friend, right?
+
+499
+00:16:11,140 --> 00:16:12,473
+MARTIN SPLITT: Yeah, my friend--
+
+500
+00:16:12,473 --> 00:16:13,569
+no, I'm serious.
+
+501
+00:16:13,569 --> 00:16:14,610
+This is a friend of mine.
+
+502
+00:16:14,610 --> 00:16:16,084
+It's totally not me.
+
+503
+00:16:16,084 --> 00:16:18,250
+Any best practices that we
+should recommend to them?
+
+504
+00:16:18,250 --> 00:16:18,950
+TOM GREENAWAY: Yeah, yeah.
+
+505
+00:16:18,950 --> 00:16:19,908
+Let's go through a few.
+
+506
+00:16:19,908 --> 00:16:20,960
+MARTIN SPLITT: OK, cool.
+
+507
+00:16:20,960 --> 00:16:23,510
+TOM GREENAWAY: Well, firstly,
+it's important to know--
+
+508
+00:16:23,510 --> 00:16:25,340
+remember how I said
+that Googlebot is
+
+509
+00:16:25,340 --> 00:16:28,190
+running like Chrome nowadays?
+
+510
+00:16:28,190 --> 00:16:29,780
+MARTIN SPLITT:
+That is fantastic.
+
+511
+00:16:29,780 --> 00:16:30,670
+Finally, we have
+a modern brows--
+
+512
+00:16:30,670 --> 00:16:32,480
+TOM GREENAWAY: Yeah-- well,
+actually, wait a second.
+
+513
+00:16:32,480 --> 00:16:33,092
+It is Chrome.
+
+514
+00:16:33,092 --> 00:16:34,800
+But it's not actually
+the latest version.
+
+515
+00:16:34,800 --> 00:16:38,685
+So it actually runs Chrome 41.
+
+516
+00:16:38,685 --> 00:16:39,560
+MARTIN SPLITT: Right.
+
+517
+00:16:39,560 --> 00:16:40,310
+41.
+
+518
+00:16:40,310 --> 00:16:42,412
+It's not even 42,
+the answer to life,
+
+519
+00:16:42,412 --> 00:16:43,620
+the universe, and everything.
+
+520
+00:16:43,620 --> 00:16:44,305
+It's just 41.
+
+521
+00:16:44,305 --> 00:16:46,014
+TOM GREENAWAY: It's
+not quite there yet.
+
+522
+00:16:46,014 --> 00:16:47,180
+But Chrome is working on it.
+
+523
+00:16:47,180 --> 00:16:48,680
+[DEEP SIGH]
+
+524
+00:16:48,680 --> 00:16:51,620
+But seriously though, since
+it's Chrome 41 and Chrome 41
+
+525
+00:16:51,620 --> 00:16:54,830
+was released in 2015, it doesn't
+support all of the latest
+
+526
+00:16:54,830 --> 00:16:56,070
+features of modern browsers.
+
+527
+00:16:56,070 --> 00:16:58,800
+So for example, it doesn't
+actually support ES6.
+
+528
+00:16:58,800 --> 00:17:02,010
+So the latest language
+features aren't available.
+
+529
+00:17:02,010 --> 00:17:03,650
+And while it has
+web components, it's
+
+530
+00:17:03,650 --> 00:17:05,819
+actually version 0 of the spec.
+
+531
+00:17:05,819 --> 00:17:08,124
+And another thing to note
+is that it's actually
+
+532
+00:17:08,124 --> 00:17:10,040
+stateless, which I'll
+explain in a little bit.
+
+533
+00:17:10,040 --> 00:17:10,650
+MARTIN SPLITT: Oh, OK.
+
+534
+00:17:10,650 --> 00:17:10,880
+All right.
+
+535
+00:17:10,880 --> 00:17:12,755
+TOM GREENAWAY: Yeah,
+it's an interesting one.
+
+536
+00:17:12,755 --> 00:17:13,800
+I'll break it down.
+
+537
+00:17:13,800 --> 00:17:17,844
+For example, with this code, how
+many ES6 features can you spot?
+
+538
+00:17:17,844 --> 00:17:20,210
+MARTIN SPLITT: Uh, a few.
+
+539
+00:17:20,210 --> 00:17:21,710
+TOM GREENAWAY:
+That's a good answer.
+
+540
+00:17:21,710 --> 00:17:23,660
+Yeah, OK.
+
+541
+00:17:23,660 --> 00:17:25,190
+More than 0.
+
+542
+00:17:25,190 --> 00:17:26,325
+Yeah, exactly.
+
+543
+00:17:26,325 --> 00:17:27,950
+Now, we might forget
+that some of these
+
+544
+00:17:27,950 --> 00:17:30,920
+are relatively recent features,
+like advanced object literals
+
+545
+00:17:30,920 --> 00:17:33,605
+or const definitions, backwards,
+and variable substitution.
+
+546
+00:17:33,605 --> 00:17:35,030
+MARTIN SPLITT: Yeah,
+you use them every day.
+
+547
+00:17:35,030 --> 00:17:35,270
+Why--
+
+548
+00:17:35,270 --> 00:17:36,200
+TOM GREENAWAY: Yeah, exactly.
+
+549
+00:17:36,200 --> 00:17:36,699
+Yeah.
+
+550
+00:17:36,699 --> 00:17:40,130
+So one way to deal with
+this, if you need a solution,
+
+551
+00:17:40,130 --> 00:17:41,810
+is to use something
+like Babel, which
+
+552
+00:17:41,810 --> 00:17:47,120
+allows you to transpile ES6
+code down to ES5 automatically.
+
+553
+00:17:47,120 --> 00:17:50,300
+And you can easily compile a
+set of files or a directory
+
+554
+00:17:50,300 --> 00:17:52,910
+and compile it into a
+single file for serving.
+
+555
+00:17:52,910 --> 00:17:55,972
+And using presets, you can
+also detect a minimum browser
+
+556
+00:17:55,972 --> 00:17:57,430
+version and use
+that as a baseline.
+
+557
+00:17:57,430 --> 00:17:57,750
+MARTIN SPLITT: Oh, right.
+
+558
+00:17:57,750 --> 00:18:00,410
+TOM GREENAWAY: So you can
+ensure that, like, ES6 features
+
+559
+00:18:00,410 --> 00:18:03,050
+and ES6 code go to browsers
+that can support it.
+
+560
+00:18:03,050 --> 00:18:05,866
+And then browsers that can't
+get the ES5 transpiled code.
+
+561
+00:18:05,866 --> 00:18:07,490
+MARTIN SPLITT: Right,
+that makes sense.
+
+562
+00:18:07,490 --> 00:18:07,990
+OK.
+
+563
+00:18:07,990 --> 00:18:09,614
+TOM GREENAWAY: And
+now, while Chrome 41
+
+564
+00:18:09,614 --> 00:18:11,510
+does have web
+components, it's actually
+
+565
+00:18:11,510 --> 00:18:14,790
+an older version of the spec
+than you're probably used to.
+
+566
+00:18:14,790 --> 00:18:17,570
+So after Chrome 41
+shipped, several features,
+
+567
+00:18:17,570 --> 00:18:19,970
+such as Custom
+Elements and Shadow DOM
+
+568
+00:18:19,970 --> 00:18:23,140
+actually had some changes
+made to their specs.
+
+569
+00:18:23,140 --> 00:18:27,020
+So depending on exactly which
+features you use in version 0,
+
+570
+00:18:27,020 --> 00:18:28,705
+it might be very
+simple to migrate.
+
+571
+00:18:28,705 --> 00:18:30,080
+Or it might get
+more complicated.
+
+572
+00:18:30,080 --> 00:18:31,580
+But the most important
+thing is to be aware
+
+573
+00:18:31,580 --> 00:18:32,610
+that there are differences.
+
+574
+00:18:32,610 --> 00:18:33,750
+MARTIN SPLITT: Yeah,
+there's differences in this.
+
+575
+00:18:33,750 --> 00:18:34,255
+Yeah, OK.
+
+576
+00:18:34,255 --> 00:18:35,963
+TOM GREENAWAY: And
+lastly, this shouldn't
+
+577
+00:18:35,963 --> 00:18:37,700
+come as too much of a surprise.
+
+578
+00:18:37,700 --> 00:18:39,889
+Googlebot basically doesn't
+really have any memory.
+
+579
+00:18:39,889 --> 00:18:40,680
+MARTIN SPLITT: Huh!
+
+580
+00:18:40,680 --> 00:18:43,221
+TOM GREENAWAY: And what I mean
+by that is that, every time it
+
+581
+00:18:43,221 --> 00:18:44,750
+accesses a web page
+or side origin,
+
+582
+00:18:44,750 --> 00:18:47,750
+it just always acts like
+it's the first time it's ever
+
+583
+00:18:47,750 --> 00:18:50,165
+encountered that website.
+
+584
+00:18:50,165 --> 00:18:52,290
+And to achieve that, we
+turn off a bunch of things.
+
+585
+00:18:52,290 --> 00:18:53,998
+So we don't have
+service workers running.
+
+586
+00:18:53,998 --> 00:18:56,437
+So we don't have a
+service worker cache.
+
+587
+00:18:56,437 --> 00:18:58,520
+And we don't have local
+storage or session storage
+
+588
+00:18:58,520 --> 00:18:59,250
+and so forth.
+
+589
+00:18:59,250 --> 00:18:59,750
+So--
+
+590
+00:18:59,750 --> 00:19:01,000
+MARTIN SPLITT: It makes sense.
+
+591
+00:19:01,000 --> 00:19:03,750
+If you click on a search result,
+that's like coming to that page
+
+592
+00:19:03,750 --> 00:19:04,410
+the first time.
+
+593
+00:19:04,410 --> 00:19:04,910
+So we want to make sure--
+
+594
+00:19:04,910 --> 00:19:07,005
+TOM GREENAWAY: Yeah, what is
+the first-time user experience--
+
+595
+00:19:07,005 --> 00:19:07,550
+MARTIN SPLITT: Yeah,
+true [INAUDIBLE]..
+
+596
+00:19:07,550 --> 00:19:08,180
+TOM GREENAWAY: --when
+you encounter it?
+
+597
+00:19:08,180 --> 00:19:09,390
+MARTIN SPLITT: Makes sense.
+
+598
+00:19:09,390 --> 00:19:09,800
+TOM GREENAWAY:
+So, Martin, do you
+
+599
+00:19:09,800 --> 00:19:11,750
+have any suggestions for
+how we can substitute
+
+600
+00:19:11,750 --> 00:19:13,110
+for some of these things?
+
+601
+00:19:13,110 --> 00:19:14,485
+MARTIN SPLITT: So
+I think, if you
+
+602
+00:19:14,485 --> 00:19:17,990
+look at things like
+the web components
+
+603
+00:19:17,990 --> 00:19:20,540
+and a few of these features,
+like intersection, observe,
+
+604
+00:19:20,540 --> 00:19:23,240
+and all these things, I guess
+polyfills is a good way,
+
+605
+00:19:23,240 --> 00:19:25,112
+once you've already
+done your homework
+
+606
+00:19:25,112 --> 00:19:26,570
+and did the
+progressive enhancement
+
+607
+00:19:26,570 --> 00:19:29,660
+or graceful
+degradation at least.
+
+608
+00:19:29,660 --> 00:19:31,910
+But the problem with
+polyfills, I feel at least,
+
+609
+00:19:31,910 --> 00:19:35,680
+is that there is a bit of a risk
+to ship dead code to people--
+
+610
+00:19:35,680 --> 00:19:38,330
+like, give them a bunch of
+stuff over the network which,
+
+611
+00:19:38,330 --> 00:19:40,910
+depending on where they are
+and what plan they're on,
+
+612
+00:19:40,910 --> 00:19:44,075
+might be actually pretty
+expensive and time-consuming.
+
+613
+00:19:44,075 --> 00:19:45,200
+So you want to reduce that.
+
+614
+00:19:45,200 --> 00:19:48,690
+And actually, I really like
+this library called Polyfill.io.
+
+615
+00:19:48,690 --> 00:19:52,280
+So Polyfill.io basically
+sniffs on the user
+
+616
+00:19:52,280 --> 00:19:56,610
+agent of the person requesting
+or the browser requesting it.
+
+617
+00:19:56,610 --> 00:19:58,640
+So if the crawler comes
+by and there's like,
+
+618
+00:19:58,640 --> 00:20:01,340
+ooh, this is a Googlebot
+crawler, Chrome 41--
+
+619
+00:20:01,340 --> 00:20:04,260
+so I give them a bunch of
+stuff that the normal user
+
+620
+00:20:04,260 --> 00:20:07,950
+on a more recent Chrome or
+Firefox or Edge or whatever
+
+621
+00:20:07,950 --> 00:20:09,000
+doesn't need.
+
+622
+00:20:09,000 --> 00:20:11,900
+So basically, it tries to give
+you the right amount of code
+
+623
+00:20:11,900 --> 00:20:13,410
+that you need to make this work.
+
+624
+00:20:13,410 --> 00:20:15,060
+So that's pretty
+fantastic, I think.
+
+625
+00:20:15,060 --> 00:20:15,920
+TOM GREENAWAY: Yeah,
+it's kind of cool.
+
+626
+00:20:15,920 --> 00:20:16,753
+MARTIN SPLITT: Yeah.
+
+627
+00:20:16,753 --> 00:20:18,980
+Is there any place where
+I can figure out more
+
+628
+00:20:18,980 --> 00:20:21,320
+about these feature issues,
+where, like, features
+
+629
+00:20:21,320 --> 00:20:24,157
+are missing in Chrome 41 that
+are there in the modern one?
+
+630
+00:20:24,157 --> 00:20:25,490
+TOM GREENAWAY: Yeah, definitely.
+
+631
+00:20:25,490 --> 00:20:26,906
+If you check out
+caniuse.com, it's
+
+632
+00:20:26,906 --> 00:20:28,573
+a great resource for
+this sort of thing,
+
+633
+00:20:28,573 --> 00:20:30,280
+because you can check,
+like, the features
+
+634
+00:20:30,280 --> 00:20:31,340
+across various browsers.
+
+635
+00:20:31,340 --> 00:20:33,805
+You can also specify specific
+browser versions as well.
+
+636
+00:20:33,805 --> 00:20:34,180
+MARTIN SPLITT: Ah!
+
+637
+00:20:34,180 --> 00:20:34,790
+TOM GREENAWAY: So
+you can say, hey,
+
+638
+00:20:34,790 --> 00:20:36,644
+what's different in
+Chrome 41 specifically?
+
+639
+00:20:36,644 --> 00:20:38,310
+MARTIN SPLITT: Cool,
+that's pretty nice.
+
+640
+00:20:38,310 --> 00:20:39,976
+TOM GREENAWAY: And
+also, the golden rule
+
+641
+00:20:39,976 --> 00:20:43,326
+of any indexability and building
+a website for search crawlers
+
+642
+00:20:43,326 --> 00:20:44,700
+and that kind of
+thing is to just
+
+643
+00:20:44,700 --> 00:20:46,230
+make sure you test really
+frequently as well.
+
+644
+00:20:46,230 --> 00:20:46,920
+MARTIN SPLITT:
+Yeah, fair enough.
+
+645
+00:20:46,920 --> 00:20:47,420
+Yeah.
+
+646
+00:20:47,420 --> 00:20:48,450
+Test, test, test.
+
+647
+00:20:48,450 --> 00:20:49,280
+Fair enough.
+
+648
+00:20:49,280 --> 00:20:50,020
+Cool.
+
+649
+00:20:50,020 --> 00:20:54,880
+So going back to dynamic
+rendering for just a second
+
+650
+00:20:54,880 --> 00:20:58,830
+and the tools discussion-- so
+if I test my stuff and I figure
+
+651
+00:20:58,830 --> 00:21:01,770
+out, oh no, this feature is
+really tricky to work around
+
+652
+00:21:01,770 --> 00:21:03,676
+and I want to not
+change my code--
+
+653
+00:21:03,676 --> 00:21:05,550
+I guess I can use dynamic
+rendering for that.
+
+654
+00:21:05,550 --> 00:21:06,842
+But I guess there's trade-offs.
+
+655
+00:21:06,842 --> 00:21:09,133
+And there's situations where
+I shouldn't be doing that.
+
+656
+00:21:09,133 --> 00:21:11,580
+So what are the sites that
+should, generally speaking,
+
+657
+00:21:11,580 --> 00:21:12,777
+look into dynamic rendering?
+
+658
+00:21:12,777 --> 00:21:15,360
+TOM GREENAWAY: Well, because the
+rendering queue can introduce
+
+659
+00:21:15,360 --> 00:21:18,511
+some delay, if your site has
+lots of frequently changing
+
+660
+00:21:18,511 --> 00:21:20,760
+content-- like a news publisher
+or something like that
+
+661
+00:21:20,760 --> 00:21:23,176
+and you've got, maybe, breaking
+news and articles that are
+
+662
+00:21:23,176 --> 00:21:25,620
+coming out and changing
+very frequently--
+
+663
+00:21:25,620 --> 00:21:28,650
+you probably might want to look
+into using dynamic rendering
+
+664
+00:21:28,650 --> 00:21:30,870
+to overcome those delays.
+
+665
+00:21:30,870 --> 00:21:33,690
+And if your pages use features
+that aren't available in Chrome
+
+666
+00:21:33,690 --> 00:21:36,520
+41 and it's not possible to
+work around those limitations,
+
+667
+00:21:36,520 --> 00:21:39,060
+maybe, in the short-term,
+then using dynamic rendering
+
+668
+00:21:39,060 --> 00:21:43,260
+is a useful workaround until
+either Googlebot catches up
+
+669
+00:21:43,260 --> 00:21:45,570
+or you have the
+time to adapt that
+
+670
+00:21:45,570 --> 00:21:46,706
+in your own implementation.
+
+671
+00:21:46,706 --> 00:21:48,330
+MARTIN SPLITT: Right,
+that makes sense.
+
+672
+00:21:48,330 --> 00:21:49,996
+TOM GREENAWAY: And
+also, while Googlebot
+
+673
+00:21:49,996 --> 00:21:52,180
+is supporting JavaScript,
+other crawlers might not.
+
+674
+00:21:52,180 --> 00:21:55,360
+So for example, if your site is
+using social media interactions
+
+675
+00:21:55,360 --> 00:21:57,630
+a lot, those crawlers tend
+to not run JavaScript.
+
+676
+00:21:57,630 --> 00:22:01,920
+So if I share a link and I'm
+sharing it on social media
+
+677
+00:22:01,920 --> 00:22:05,400
+but I want a nice preview
+card to be created,
+
+678
+00:22:05,400 --> 00:22:07,107
+it probably wants
+to try and access
+
+679
+00:22:07,107 --> 00:22:09,690
+the image and the title and the
+meta-description, or something
+
+680
+00:22:09,690 --> 00:22:11,009
+like that.
+
+681
+00:22:11,009 --> 00:22:13,050
+So if you're actually
+using client-side rendering
+
+682
+00:22:13,050 --> 00:22:15,075
+for those things,
+then you might get,
+
+683
+00:22:15,075 --> 00:22:17,810
+just, the variable templates
+[INAUDIBLE] in the content.
+
+684
+00:22:17,810 --> 00:22:18,860
+MARTIN SPLITT: Ah, you use
+an image, and it doesn't--
+
+685
+00:22:18,860 --> 00:22:20,550
+TOM GREENAWAY: Yeah-- in the
+preview, which would be bad.
+
+686
+00:22:20,550 --> 00:22:21,310
+[RASPBERRY SOUND]
+
+687
+00:22:21,310 --> 00:22:23,310
+So in order to get better
+representations there,
+
+688
+00:22:23,310 --> 00:22:26,780
+you can also serve a dynamically
+rendered version page.
+
+689
+00:22:26,780 --> 00:22:27,809
+MARTIN SPLITT: Cool.
+
+690
+00:22:27,809 --> 00:22:28,600
+Sounds pretty good.
+
+691
+00:22:28,600 --> 00:22:30,390
+TOM GREENAWAY: But
+ultimately, dynamic
+
+692
+00:22:30,390 --> 00:22:32,040
+rendering-- it's a
+powerful technique.
+
+693
+00:22:32,040 --> 00:22:32,870
+But it's still a workaround.
+
+694
+00:22:32,870 --> 00:22:33,116
+MARTIN SPLITT: Yes!
+
+695
+00:22:33,116 --> 00:22:33,490
+It's a workaround.
+
+696
+00:22:33,490 --> 00:22:35,031
+TOM GREENAWAY: So
+Martin, do you have
+
+697
+00:22:35,031 --> 00:22:38,610
+any ideas on if we've got plans
+to improve this on the Google
+
+698
+00:22:38,610 --> 00:22:39,497
+side?
+
+699
+00:22:39,497 --> 00:22:40,330
+MARTIN SPLITT: Yeah.
+
+700
+00:22:40,330 --> 00:22:41,413
+Way to put me on the spot.
+
+701
+00:22:41,413 --> 00:22:43,950
+So I don't like to
+make predictions
+
+702
+00:22:43,950 --> 00:22:44,920
+on that kind of stuff.
+
+703
+00:22:44,920 --> 00:22:49,440
+But definitely, the way that
+our infrastructure is set up,
+
+704
+00:22:49,440 --> 00:22:52,110
+there is a bit of a gap
+between when we actually
+
+705
+00:22:52,110 --> 00:22:54,900
+execute the JavaScript and
+do the rendering and then
+
+706
+00:22:54,900 --> 00:22:57,090
+the indexing bits
+and the crawling.
+
+707
+00:22:57,090 --> 00:23:00,030
+So we try to bring these
+closer together, which
+
+708
+00:23:00,030 --> 00:23:01,710
+is an interesting
+technical challenge.
+
+709
+00:23:01,710 --> 00:23:03,600
+And then, at the
+same time, we are
+
+710
+00:23:03,600 --> 00:23:05,670
+trying to catch up with Chrome.
+
+711
+00:23:05,670 --> 00:23:07,607
+But we don't want
+to just catch up,
+
+712
+00:23:07,607 --> 00:23:09,690
+because then we're going
+to have the same frickin'
+
+713
+00:23:09,690 --> 00:23:10,856
+conversation in a few years.
+
+714
+00:23:10,856 --> 00:23:12,774
+Like, oh yeah, Chrome's
+running version 70.
+
+715
+00:23:12,774 --> 00:23:14,190
+And everyone's
+like, oh, when does
+
+716
+00:23:14,190 --> 00:23:16,710
+it get into three-digits land?
+
+717
+00:23:16,710 --> 00:23:19,980
+So we basically
+work on a process
+
+718
+00:23:19,980 --> 00:23:21,980
+that we're, hopefully,
+going to start very soon.
+
+719
+00:23:21,980 --> 00:23:23,580
+So I make no promises on when.
+
+720
+00:23:23,580 --> 00:23:27,240
+But we are working on
+figuring out a process to stay
+
+721
+00:23:27,240 --> 00:23:30,450
+up-to-date with Chrome, so
+that Googlebot does run with
+
+722
+00:23:30,450 --> 00:23:32,220
+the Chrome release schedule--
+
+723
+00:23:32,220 --> 00:23:32,730
+so that we are basically--
+
+724
+00:23:32,730 --> 00:23:33,270
+TOM GREENAWAY: That
+would be awesome.
+
+725
+00:23:33,270 --> 00:23:34,830
+MARTIN SPLITT: --giving you
+an Evergreen-- yeah, right?
+
+726
+00:23:34,830 --> 00:23:36,730
+That would be fantastic
+if we could do that.
+
+727
+00:23:36,730 --> 00:23:37,230
+Yeah.
+
+728
+00:23:37,230 --> 00:23:38,840
+TOM GREENAWAY: And also
+to shorten the [INAUDIBLE]
+
+729
+00:23:38,840 --> 00:23:39,060
+as well.
+
+730
+00:23:39,060 --> 00:23:39,960
+MARTIN SPLITT: Yeah, exactly.
+
+731
+00:23:39,960 --> 00:23:41,730
+That goes hand-in-hand
+really, because we
+
+732
+00:23:41,730 --> 00:23:44,022
+have to touch the rendering
+infrastructure anyway.
+
+733
+00:23:44,022 --> 00:23:45,480
+So we might as well
+do both things.
+
+734
+00:23:45,480 --> 00:23:48,501
+But I think we might get an
+update quicker than we get
+
+735
+00:23:48,501 --> 00:23:49,750
+the two things together, but--
+
+736
+00:23:49,750 --> 00:23:50,580
+TOM GREENAWAY: OK, cool.
+
+737
+00:23:50,580 --> 00:23:51,704
+MARTIN SPLITT: --we'll see.
+
+738
+00:23:51,704 --> 00:23:52,680
+TOM GREENAWAY: Yeah.
+
+739
+00:23:52,680 --> 00:23:53,230
+MARTIN SPLITT: Cool.
+
+740
+00:23:53,230 --> 00:23:53,830
+All right.
+
+741
+00:23:53,830 --> 00:23:56,230
+So thank you so much
+for all that talks
+
+742
+00:23:56,230 --> 00:23:58,300
+about how the indexing
+works and bits and pieces.
+
+743
+00:23:58,300 --> 00:23:59,260
+That was pretty fantastic.
+
+744
+00:23:59,260 --> 00:24:00,620
+I learned a bunch of new stuff.
+
+745
+00:24:00,620 --> 00:24:02,530
+TOM GREENAWAY: Yeah, and I hope
+this helps with Marvin as well.
+
+746
+00:24:02,530 --> 00:24:03,700
+MARTIN SPLITT: Marvin
+is going to love
+
+747
+00:24:03,700 --> 00:24:04,824
+what I'm going to tell him.
+
+748
+00:24:04,824 --> 00:24:05,500
+I'm sure.
+
+749
+00:24:05,500 --> 00:24:05,760
+I--
+
+750
+00:24:05,760 --> 00:24:06,460
+TOM GREENAWAY: OK, yeah.
+
+751
+00:24:06,460 --> 00:24:08,001
+Well, thanks for
+showing me all those
+
+752
+00:24:08,001 --> 00:24:09,360
+Search Console tools as well.
+
+753
+00:24:09,360 --> 00:24:09,430
+MARTIN SPLITT: Oh, yeah!
+
+754
+00:24:09,430 --> 00:24:09,660
+They are--
+
+755
+00:24:09,660 --> 00:24:09,830
+TOM GREENAWAY: They look great.
+
+756
+00:24:09,830 --> 00:24:10,440
+MARTIN SPLITT: --pretty fun.
+
+757
+00:24:10,440 --> 00:24:10,960
+Yeah.
+
+758
+00:24:10,960 --> 00:24:13,460
+TOM GREENAWAY: And if developers
+need more support and help,
+
+759
+00:24:13,460 --> 00:24:15,385
+like Marvin, can they
+go somewhere else?
+
+760
+00:24:15,385 --> 00:24:17,260
+MARTIN SPLITT: Yeah, so
+I tried to get Marvin
+
+761
+00:24:17,260 --> 00:24:19,750
+to go to our documentation,
+because the documentation is
+
+762
+00:24:19,750 --> 00:24:20,751
+expanding quite quickly.
+
+763
+00:24:20,751 --> 00:24:22,875
+And we have a bunch of core
+documentation coming up
+
+764
+00:24:22,875 --> 00:24:24,430
+and good documentation
+already there.
+
+765
+00:24:24,430 --> 00:24:26,020
+We have Webmaster Hangouts.
+
+766
+00:24:26,020 --> 00:24:29,350
+So you can pop by and
+talk to us over a Hangout
+
+767
+00:24:29,350 --> 00:24:31,490
+and ask us questions
+there as well.
+
+768
+00:24:31,490 --> 00:24:32,240
+They are recorded.
+
+769
+00:24:32,240 --> 00:24:34,090
+So if you want to go back
+to one that has happened
+
+770
+00:24:34,090 --> 00:24:35,200
+and there was an
+interesting question,
+
+771
+00:24:35,200 --> 00:24:36,670
+you can find it there as well.
+
+772
+00:24:36,670 --> 00:24:39,010
+We have what's called
+the webmaster forum.
+
+773
+00:24:39,010 --> 00:24:40,570
+A bunch of fantastic
+people are there
+
+774
+00:24:40,570 --> 00:24:42,550
+called product
+experts, who are also
+
+775
+00:24:42,550 --> 00:24:45,700
+helping if there is anything
+coming up with Search.
+
+776
+00:24:45,700 --> 00:24:49,930
+And last but not least, if
+you've been to the forum space
+
+777
+00:24:49,930 --> 00:24:52,061
+before, we have a
+Search Console booth
+
+778
+00:24:52,061 --> 00:24:53,560
+where you can try
+our Search Console
+
+779
+00:24:53,560 --> 00:24:54,830
+and get stickers and stuff.
+
+780
+00:24:54,830 --> 00:24:57,250
+So definitely check
+that one out tomorrow.
+
+781
+00:24:57,250 --> 00:24:58,960
+So yeah, that's a
+bunch of resources.
+
+782
+00:24:58,960 --> 00:24:59,590
+TOM GREENAWAY: Awesome.
+
+783
+00:24:59,590 --> 00:24:59,840
+MARTIN SPLITT: Yeah.
+
+784
+00:24:59,840 --> 00:25:00,673
+TOM GREENAWAY: Cool.
+
+785
+00:25:00,673 --> 00:25:01,197
+Well, yeah.
+
+786
+00:25:01,197 --> 00:25:01,905
+Thanks, everyone.
+
+787
+00:25:01,905 --> 00:25:02,180
+MARTIN SPLITT: Yeah, cool.
+
+788
+00:25:02,180 --> 00:25:03,730
+Thank you very much for
+staying with us for a moment.
+
+789
+00:25:03,730 --> 00:25:04,630
+[APPLAUSE]
+
+790
+00:25:04,630 --> 00:25:07,380
+[MUSIC PLAYING]
+
+791
+00:25:07,380 --> 00:25:14,242

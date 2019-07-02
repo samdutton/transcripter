@@ -1,0 +1,3160 @@
+1
+00:00:00,000 --> 00:00:04,840
+[MUSIC PLAYING]
+
+2
+00:00:04,840 --> 00:00:06,765
+
+
+3
+00:00:06,765 --> 00:00:08,640
+JUSTIN FAGNANI: So my
+name is Justin Fagnani.
+
+4
+00:00:08,640 --> 00:00:11,370
+And I work in Chrome on things
+like Web Components, polymer,
+
+5
+00:00:11,370 --> 00:00:12,477
+and lit-html.
+
+6
+00:00:12,477 --> 00:00:15,060
+And right now, I'm going to talk
+about the virtue of laziness.
+
+7
+00:00:15,060 --> 00:00:18,120
+
+
+8
+00:00:18,120 --> 00:00:19,670
+Next slide.
+
+9
+00:00:19,670 --> 00:00:21,160
+Advance.
+
+10
+00:00:21,160 --> 00:00:23,207
+Today is the day.
+
+11
+00:00:23,207 --> 00:00:23,790
+That happened.
+
+12
+00:00:23,790 --> 00:00:25,320
+Yeah, OK.
+
+13
+00:00:25,320 --> 00:00:29,670
+So we're going to look at how
+to do less, be lazy, and take
+
+14
+00:00:29,670 --> 00:00:33,480
+breaks, and end up with a
+better web application for it.
+
+15
+00:00:33,480 --> 00:00:35,490
+And when I say
+better, I'm really
+
+16
+00:00:35,490 --> 00:00:38,130
+talking about four
+overlapping goals here.
+
+17
+00:00:38,130 --> 00:00:40,310
+We want to deliver
+great user experiences.
+
+18
+00:00:40,310 --> 00:00:42,690
+And we want our apps to be
+fast and to respond quickly
+
+19
+00:00:42,690 --> 00:00:44,580
+to input and changes.
+
+20
+00:00:44,580 --> 00:00:46,080
+And more than just
+making fast apps
+
+21
+00:00:46,080 --> 00:00:48,120
+or making it possible
+to build fast apps,
+
+22
+00:00:48,120 --> 00:00:50,250
+we want to make
+this easy, so easy
+
+23
+00:00:50,250 --> 00:00:52,440
+hopefully that it's the
+default. Because this
+
+24
+00:00:52,440 --> 00:00:54,900
+is going to make our users
+happy, our developers happy.
+
+25
+00:00:54,900 --> 00:00:57,450
+And happy developers will
+make better user experiences
+
+26
+00:00:57,450 --> 00:00:59,470
+in the long run.
+
+27
+00:00:59,470 --> 00:01:02,307
+So with these four
+general goals in mind,
+
+28
+00:01:02,307 --> 00:01:04,140
+I'm going to walk through
+several techniques
+
+29
+00:01:04,140 --> 00:01:06,970
+for leveraging asynchronous
+programming for building better
+
+30
+00:01:06,970 --> 00:01:08,310
+UIs.
+
+31
+00:01:08,310 --> 00:01:09,960
+So we're going to
+look at batching work
+
+32
+00:01:09,960 --> 00:01:12,540
+for better performance
+and developer experience,
+
+33
+00:01:12,540 --> 00:01:15,840
+keeping our UIs responsive
+with non-blocking rendering,
+
+34
+00:01:15,840 --> 00:01:18,630
+managing async state
+for a better user
+
+35
+00:01:18,630 --> 00:01:22,290
+experience and developer
+experience, and then finally,
+
+36
+00:01:22,290 --> 00:01:25,530
+coordinating async UIs once we
+have all this asynchronicity
+
+37
+00:01:25,530 --> 00:01:27,394
+throughout our application.
+
+38
+00:01:27,394 --> 00:01:29,810
+And this makes for a handy
+little talk outline right here.
+
+39
+00:01:29,810 --> 00:01:31,380
+So I'm going to
+give some background
+
+40
+00:01:31,380 --> 00:01:33,670
+and then jump right into it.
+
+41
+00:01:33,670 --> 00:01:35,010
+But first, a quick note.
+
+42
+00:01:35,010 --> 00:01:36,390
+This is day two
+of the Dev Summit
+
+43
+00:01:36,390 --> 00:01:39,900
+so it's a little more
+future forward looking.
+
+44
+00:01:39,900 --> 00:01:43,440
+And the stuff I've made here,
+the demos and helper code
+
+45
+00:01:43,440 --> 00:01:45,390
+is a little bit experimental.
+
+46
+00:01:45,390 --> 00:01:48,200
+But it's only using
+current browser features,
+
+47
+00:01:48,200 --> 00:01:52,140
+and so all of these
+techniques still work today.
+
+48
+00:01:52,140 --> 00:01:54,630
+So now for a little background.
+
+49
+00:01:54,630 --> 00:01:57,300
+I mentioned that I work on
+web components and lit-html,
+
+50
+00:01:57,300 --> 00:02:00,150
+so we're going to use
+these things as the basis
+
+51
+00:02:00,150 --> 00:02:03,270
+for the demos in the talk.
+
+52
+00:02:03,270 --> 00:02:05,820
+So if you haven't used
+web components before,
+
+53
+00:02:05,820 --> 00:02:10,169
+Web Components lets you define
+your own HTML element tags.
+
+54
+00:02:10,169 --> 00:02:12,810
+So it really refers
+to two specs here,
+
+55
+00:02:12,810 --> 00:02:15,052
+custom elements and Shadow DOM.
+
+56
+00:02:15,052 --> 00:02:17,010
+And combined, they let
+you define your own tags
+
+57
+00:02:17,010 --> 00:02:19,622
+with custom
+implementation and UI.
+
+58
+00:02:19,622 --> 00:02:21,330
+So to create a custom
+element, you simply
+
+59
+00:02:21,330 --> 00:02:24,480
+extend from HTML element,
+a built in class,
+
+60
+00:02:24,480 --> 00:02:26,730
+you add your
+implementation, and then you
+
+61
+00:02:26,730 --> 00:02:28,620
+register your class
+with a specific tag
+
+62
+00:02:28,620 --> 00:02:29,652
+name with the browser.
+
+63
+00:02:29,652 --> 00:02:31,860
+And from there, you can use
+this element and that tag
+
+64
+00:02:31,860 --> 00:02:35,340
+name anywhere you can use HTML,
+so in your main page document,
+
+65
+00:02:35,340 --> 00:02:38,580
+inner HTML, document
+create element,
+
+66
+00:02:38,580 --> 00:02:41,520
+even in other frameworks.
+
+67
+00:02:41,520 --> 00:02:44,670
+So next, lit-html,
+lit-html is a way
+
+68
+00:02:44,670 --> 00:02:48,560
+to write declarative HTML
+templates in JavaScript.
+
+69
+00:02:48,560 --> 00:02:51,330
+And we use tagged template
+literals to write them.
+
+70
+00:02:51,330 --> 00:02:54,280
+This is a feature
+that came out in ES 6.
+
+71
+00:02:54,280 --> 00:02:57,000
+And these are strings that are
+denoted with backticks instead
+
+72
+00:02:57,000 --> 00:03:00,551
+of quotes, and they can have a
+template tag in front of them.
+
+73
+00:03:00,551 --> 00:03:02,800
+And we're going to use the
+lit-html template tag here,
+
+74
+00:03:02,800 --> 00:03:05,133
+which is just going to allow
+us to process this template
+
+75
+00:03:05,133 --> 00:03:06,515
+to make it more efficient.
+
+76
+00:03:06,515 --> 00:03:08,890
+And then inside of our template,
+we can have expressions.
+
+77
+00:03:08,890 --> 00:03:11,277
+And these are just plain
+JavaScript expressions.
+
+78
+00:03:11,277 --> 00:03:13,860
+Once you have a template, if you
+want to render it to the DOM,
+
+79
+00:03:13,860 --> 00:03:16,830
+you simply pass it to the
+lit-html render function
+
+80
+00:03:16,830 --> 00:03:18,540
+and give it a node to render to.
+
+81
+00:03:18,540 --> 00:03:21,182
+And it's going to make
+that DOM appear there.
+
+82
+00:03:21,182 --> 00:03:23,640
+And the nice thing is that if
+you call this render function
+
+83
+00:03:23,640 --> 00:03:26,390
+multiple times at the same
+template but different data,
+
+84
+00:03:26,390 --> 00:03:29,250
+lit-html is going to
+take care to only update
+
+85
+00:03:29,250 --> 00:03:30,600
+the expressions that changed.
+
+86
+00:03:30,600 --> 00:03:34,767
+It will never update the rest
+of the DOM in the template.
+
+87
+00:03:34,767 --> 00:03:36,600
+And then finally, if
+you take web components
+
+88
+00:03:36,600 --> 00:03:38,380
+and lit-html and
+combine them together,
+
+89
+00:03:38,380 --> 00:03:40,300
+you end up with LitElement.
+
+90
+00:03:40,300 --> 00:03:44,264
+So LitElement is a convenient
+way to write web components.
+
+91
+00:03:44,264 --> 00:03:46,680
+Because this is day two and a
+little more forward looking,
+
+92
+00:03:46,680 --> 00:03:49,290
+I'm using some future
+JavaScript features here
+
+93
+00:03:49,290 --> 00:03:51,860
+like decorators
+and class fields.
+
+94
+00:03:51,860 --> 00:03:54,550
+And LitElement really
+gives you two features.
+
+95
+00:03:54,550 --> 00:03:57,520
+One is the ability to declare
+observable properties.
+
+96
+00:03:57,520 --> 00:03:59,820
+So these decorators
+here are going
+
+97
+00:03:59,820 --> 00:04:02,797
+to create getters and setters
+instead of a field here.
+
+98
+00:04:02,797 --> 00:04:04,380
+And the setters are
+going to recognize
+
+99
+00:04:04,380 --> 00:04:06,546
+when this property changes
+and then tell the element
+
+100
+00:04:06,546 --> 00:04:08,310
+that it needs to update.
+
+101
+00:04:08,310 --> 00:04:09,720
+The other feature
+is that it lets
+
+102
+00:04:09,720 --> 00:04:13,650
+you write a render method that
+returns a lit-html result.
+
+103
+00:04:13,650 --> 00:04:16,070
+And so when the element knows
+that it needs to update,
+
+104
+00:04:16,070 --> 00:04:18,319
+it's going to call this
+render method, take the result
+
+105
+00:04:18,319 --> 00:04:21,465
+and render it to the shadow
+root of this custom element.
+
+106
+00:04:21,465 --> 00:04:23,590
+And then finally, we give
+you a little helper here,
+
+107
+00:04:23,590 --> 00:04:26,639
+so you can use a decorator
+to register the element.
+
+108
+00:04:26,639 --> 00:04:28,680
+So once you do that, and
+you create your element,
+
+109
+00:04:28,680 --> 00:04:31,080
+then you can use it
+anywhere you would HTML,
+
+110
+00:04:31,080 --> 00:04:34,004
+and it will render
+as you expect.
+
+111
+00:04:34,004 --> 00:04:35,670
+So that brings us to
+our first technique
+
+112
+00:04:35,670 --> 00:04:38,040
+here, which is batching work.
+
+113
+00:04:38,040 --> 00:04:40,350
+And if we go back to
+our element definition,
+
+114
+00:04:40,350 --> 00:04:43,800
+you'll see that in
+the render method here
+
+115
+00:04:43,800 --> 00:04:46,620
+this is called for us
+automatically by the LitElement
+
+116
+00:04:46,620 --> 00:04:48,000
+base class.
+
+117
+00:04:48,000 --> 00:04:49,860
+But the question
+that comes up here
+
+118
+00:04:49,860 --> 00:04:52,010
+is, when is this method called?
+
+119
+00:04:52,010 --> 00:04:55,800
+So to look at that, let's take
+a look at a little example here.
+
+120
+00:04:55,800 --> 00:04:58,140
+We're going to use this
+element imperatively,
+
+121
+00:04:58,140 --> 00:05:00,980
+but this also applies if
+you used it in the main HTML
+
+122
+00:05:00,980 --> 00:05:02,620
+or if you used it
+with a framework.
+
+123
+00:05:02,620 --> 00:05:04,590
+So we're going to create
+an element instance,
+
+124
+00:05:04,590 --> 00:05:06,600
+and then we're going
+to set a property.
+
+125
+00:05:06,600 --> 00:05:10,420
+So the question is,
+should we render now?
+
+126
+00:05:10,420 --> 00:05:11,254
+We could render now.
+
+127
+00:05:11,254 --> 00:05:12,836
+But we don't know
+that we're not going
+
+128
+00:05:12,836 --> 00:05:14,560
+to set another
+property right after we
+
+129
+00:05:14,560 --> 00:05:16,880
+set this property here.
+
+130
+00:05:16,880 --> 00:05:19,180
+And if we did render
+after every property set,
+
+131
+00:05:19,180 --> 00:05:21,370
+we would be rendering
+multiple times potentially
+
+132
+00:05:21,370 --> 00:05:23,519
+for every element as
+we update the data.
+
+133
+00:05:23,519 --> 00:05:24,560
+We don't want to do that.
+
+134
+00:05:24,560 --> 00:05:27,650
+So instead, we're going
+to enqueue a task.
+
+135
+00:05:27,650 --> 00:05:29,110
+And then, in the
+future, that task
+
+136
+00:05:29,110 --> 00:05:31,629
+is going to run and actually
+render that element.
+
+137
+00:05:31,629 --> 00:05:33,670
+And so that we know when
+the element has rendered
+
+138
+00:05:33,670 --> 00:05:37,840
+and when it's complete, we
+add this promise hanging off
+
+139
+00:05:37,840 --> 00:05:39,912
+the element here
+called update complete.
+
+140
+00:05:39,912 --> 00:05:42,370
+And this is going to resolve
+when the element has rendered.
+
+141
+00:05:42,370 --> 00:05:44,078
+And if you wait for
+it, you know that you
+
+142
+00:05:44,078 --> 00:05:46,306
+have a fully rendered element.
+
+143
+00:05:46,306 --> 00:05:47,680
+And the way that
+this works is we
+
+144
+00:05:47,680 --> 00:05:49,960
+have an asynchronous
+update pipeline
+
+145
+00:05:49,960 --> 00:05:51,650
+under the hood in the element.
+
+146
+00:05:51,650 --> 00:05:53,590
+So when a setter is
+called for a property,
+
+147
+00:05:53,590 --> 00:05:56,080
+it's going to call this
+request update method.
+
+148
+00:05:56,080 --> 00:05:57,982
+That's going to
+schedule an update task,
+
+149
+00:05:57,982 --> 00:05:59,440
+but it's only going
+to schedule one
+
+150
+00:05:59,440 --> 00:06:00,737
+if there isn't one existing.
+
+151
+00:06:00,737 --> 00:06:03,070
+If there is one, we're just
+going to use that same task,
+
+152
+00:06:03,070 --> 00:06:04,535
+and that's how we
+get the batching.
+
+153
+00:06:04,535 --> 00:06:06,910
+When that task runs, it's
+going to call the update method
+
+154
+00:06:06,910 --> 00:06:07,810
+on the element.
+
+155
+00:06:07,810 --> 00:06:12,560
+And that's where the actual work
+is done to render to the DOM.
+
+156
+00:06:12,560 --> 00:06:13,920
+So we do this for two reasons.
+
+157
+00:06:13,920 --> 00:06:15,800
+One is performance,
+like I mentioned.
+
+158
+00:06:15,800 --> 00:06:17,820
+And the other is
+developer ergonomics.
+
+159
+00:06:17,820 --> 00:06:19,820
+So if we go back to
+the template here,
+
+160
+00:06:19,820 --> 00:06:21,320
+we see that this
+template renders
+
+161
+00:06:21,320 --> 00:06:23,684
+two different properties
+in the same template.
+
+162
+00:06:23,684 --> 00:06:25,850
+And it's much easier to
+reason about these templates
+
+163
+00:06:25,850 --> 00:06:28,310
+if we don't have to worry
+about the order in which
+
+164
+00:06:28,310 --> 00:06:30,860
+these properties are set or
+whether or not they've both
+
+165
+00:06:30,860 --> 00:06:32,300
+been set together or not.
+
+166
+00:06:32,300 --> 00:06:34,490
+So we'd like to take
+all the changes that
+
+167
+00:06:34,490 --> 00:06:37,010
+are incoming for an element,
+batch them together, and then
+
+168
+00:06:37,010 --> 00:06:39,218
+let you write a simple
+declarative template to render
+
+169
+00:06:39,218 --> 00:06:41,212
+your element.
+
+170
+00:06:41,212 --> 00:06:42,920
+And so an interesting
+implication of this
+
+171
+00:06:42,920 --> 00:06:46,670
+is that LitElement
+rendering is always async.
+
+172
+00:06:46,670 --> 00:06:49,730
+You never opt into being
+async, and you can't opt out
+
+173
+00:06:49,730 --> 00:06:51,812
+to being synchronous.
+
+174
+00:06:51,812 --> 00:06:53,270
+And when we explain
+this to people,
+
+175
+00:06:53,270 --> 00:06:57,110
+sometimes, we get a question,
+won't the UI partially update?
+
+176
+00:06:57,110 --> 00:06:58,560
+And the answer is no.
+
+177
+00:06:58,560 --> 00:07:01,200
+And I built a little animation
+here to try to show this.
+
+178
+00:07:01,200 --> 00:07:03,154
+So here, we have a
+tree of elements.
+
+179
+00:07:03,154 --> 00:07:04,820
+Let's assume these
+are all lit elements,
+
+180
+00:07:04,820 --> 00:07:08,545
+and they're passing data
+down the tree via properties.
+
+181
+00:07:08,545 --> 00:07:09,920
+And so that's our
+component tree.
+
+182
+00:07:09,920 --> 00:07:12,200
+And then right here, we
+have the microtask queue.
+
+183
+00:07:12,200 --> 00:07:14,450
+So hopefully in other talks
+they've talked about this.
+
+184
+00:07:14,450 --> 00:07:16,940
+We have a queue of
+microtasks that the browser
+
+185
+00:07:16,940 --> 00:07:20,570
+runs through to completion
+before it will paint or handle
+
+186
+00:07:20,570 --> 00:07:22,130
+user input.
+
+187
+00:07:22,130 --> 00:07:25,170
+The yellow box here is
+our current microtask.
+
+188
+00:07:25,170 --> 00:07:26,870
+And so if we have
+some code that runs
+
+189
+00:07:26,870 --> 00:07:28,670
+that's going to set
+a property on A,
+
+190
+00:07:28,670 --> 00:07:31,935
+that's going to cause its
+microtask to be enqueued.
+
+191
+00:07:31,935 --> 00:07:34,310
+And then when A gets to run,
+it might set some properties
+
+192
+00:07:34,310 --> 00:07:37,160
+on B and C. So their tasks
+are going to be enqueued.
+
+193
+00:07:37,160 --> 00:07:39,020
+And B is going to set
+some properties on D
+
+194
+00:07:39,020 --> 00:07:42,560
+and E. C is going to set
+some on F and so forth.
+
+195
+00:07:42,560 --> 00:07:46,640
+And we get to run through this
+entire queue until it's empty.
+
+196
+00:07:46,640 --> 00:07:50,160
+Once it's empty, then
+the browser can paint.
+
+197
+00:07:50,160 --> 00:07:53,300
+And to show this with
+a demo, I made a demo
+
+198
+00:07:53,300 --> 00:07:55,337
+here of a tree of elements.
+
+199
+00:07:55,337 --> 00:07:57,170
+And each one takes an
+artificially long time
+
+200
+00:07:57,170 --> 00:07:58,200
+to render.
+
+201
+00:07:58,200 --> 00:08:01,591
+And so normally,
+you might expect,
+
+202
+00:08:01,591 --> 00:08:03,590
+if you don't know how the
+microtask queue works,
+
+203
+00:08:03,590 --> 00:08:05,680
+that these might
+paint in individually.
+
+204
+00:08:05,680 --> 00:08:08,810
+And we'll see here that if we
+click the render button here,
+
+205
+00:08:08,810 --> 00:08:10,490
+that they all snap in at once.
+
+206
+00:08:10,490 --> 00:08:12,380
+So even though each one
+takes 50 milliseconds
+
+207
+00:08:12,380 --> 00:08:14,900
+and the whole thing
+takes 750 milliseconds,
+
+208
+00:08:14,900 --> 00:08:17,470
+we don't see the
+intermediate states.
+
+209
+00:08:17,470 --> 00:08:20,690
+And this is great if your UI
+is painting fast, if it's not
+
+210
+00:08:20,690 --> 00:08:23,270
+taking 750 milliseconds.
+
+211
+00:08:23,270 --> 00:08:25,790
+But if you have a
+very complex tree
+
+212
+00:08:25,790 --> 00:08:27,860
+and UI is rendering
+slowly, then we've
+
+213
+00:08:27,860 --> 00:08:30,840
+just introduced jank,
+which we don't want.
+
+214
+00:08:30,840 --> 00:08:32,750
+So this brings us to
+the next technique,
+
+215
+00:08:32,750 --> 00:08:37,340
+which is non-blocking rendering
+to keep a responsive UI.
+
+216
+00:08:37,340 --> 00:08:39,640
+So we just saw that we
+can have async rendering,
+
+217
+00:08:39,640 --> 00:08:41,123
+but still block paint and input.
+
+218
+00:08:41,123 --> 00:08:42,789
+And we know we can
+have complex UIs that
+
+219
+00:08:42,789 --> 00:08:44,034
+take a long time to render.
+
+220
+00:08:44,034 --> 00:08:46,450
+And we know we need to render
+in less than 10 milliseconds
+
+221
+00:08:46,450 --> 00:08:50,537
+to keep our 60 frame
+per second target.
+
+222
+00:08:50,537 --> 00:08:52,120
+And one way to look
+at this is that we
+
+223
+00:08:52,120 --> 00:08:55,360
+have all these microtasks
+here in the blue rectangles,
+
+224
+00:08:55,360 --> 00:08:57,460
+and they fill out
+a complete task.
+
+225
+00:08:57,460 --> 00:08:59,350
+And this task blocks rendering.
+
+226
+00:08:59,350 --> 00:09:02,910
+And as long as the complete
+task fits within our 10
+
+227
+00:09:02,910 --> 00:09:04,750
+millisecond budget, we're fine.
+
+228
+00:09:04,750 --> 00:09:05,570
+Right?
+
+229
+00:09:05,570 --> 00:09:07,670
+But as soon as the task
+exceeds the budget,
+
+230
+00:09:07,670 --> 00:09:09,010
+we're going to introduce jank.
+
+231
+00:09:09,010 --> 00:09:11,752
+So our technique here
+is to break this up.
+
+232
+00:09:11,752 --> 00:09:13,960
+So that instead of having
+a whole bunch of microtasks
+
+233
+00:09:13,960 --> 00:09:18,250
+in one long task, we just give
+a task per component to render.
+
+234
+00:09:18,250 --> 00:09:21,050
+And now, these will hopefully
+fit in under 10 milliseconds.
+
+235
+00:09:21,050 --> 00:09:23,480
+And we will get smooth updates.
+
+236
+00:09:23,480 --> 00:09:25,540
+So the way we're going
+to do this is we're
+
+237
+00:09:25,540 --> 00:09:28,360
+going to tap into this
+asynchronous update pipeline
+
+238
+00:09:28,360 --> 00:09:29,770
+that LitElement has.
+
+239
+00:09:29,770 --> 00:09:32,120
+And we're going to customize
+the schedule update task
+
+240
+00:09:32,120 --> 00:09:33,890
+step right here.
+
+241
+00:09:33,890 --> 00:09:36,340
+So that brings us to our
+first experimental helper
+
+242
+00:09:36,340 --> 00:09:39,940
+that we're calling for
+the moment LazyLitElement.
+
+243
+00:09:39,940 --> 00:09:43,360
+The way this works is that
+under the hood in LitElement,
+
+244
+00:09:43,360 --> 00:09:45,460
+there's a method
+called scheduleUpdate.
+
+245
+00:09:45,460 --> 00:09:48,280
+And by default, this thing
+just waits for a microtask,
+
+246
+00:09:48,280 --> 00:09:49,930
+and then it calls
+validate, which
+
+247
+00:09:49,930 --> 00:09:52,132
+does the work of rendering.
+
+248
+00:09:52,132 --> 00:09:53,590
+And so what we do
+in LazyLitElement
+
+249
+00:09:53,590 --> 00:09:54,490
+is we override this.
+
+250
+00:09:54,490 --> 00:09:56,590
+And instead of waiting
+for a microtask,
+
+251
+00:09:56,590 --> 00:09:59,807
+we wait for a promise that's
+resolved on setTimeout timing.
+
+252
+00:09:59,807 --> 00:10:01,390
+It's a very simple
+thing to do, but it
+
+253
+00:10:01,390 --> 00:10:05,355
+lets the browser paint and
+handle input before we render.
+
+254
+00:10:05,355 --> 00:10:06,980
+So now if we go back
+to this demo here,
+
+255
+00:10:06,980 --> 00:10:09,590
+we can turn on lazy rendering.
+
+256
+00:10:09,590 --> 00:10:12,620
+And now, everything is going
+to render on setTimeout timing.
+
+257
+00:10:12,620 --> 00:10:15,470
+And you can see that we paint
+the intermediate steps here
+
+258
+00:10:15,470 --> 00:10:16,460
+as we go.
+
+259
+00:10:16,460 --> 00:10:19,310
+And so we've reduced
+jank by showing
+
+260
+00:10:19,310 --> 00:10:21,770
+some intermediate state.
+
+261
+00:10:21,770 --> 00:10:23,270
+And so a lot of
+frameworks have been
+
+262
+00:10:23,270 --> 00:10:26,510
+working on asynchronous
+rendering over the years,
+
+263
+00:10:26,510 --> 00:10:29,120
+and especially React recently.
+
+264
+00:10:29,120 --> 00:10:31,250
+And they have created a
+demo that I quite like,
+
+265
+00:10:31,250 --> 00:10:34,040
+which is a Sierpinski
+triangle demo.
+
+266
+00:10:34,040 --> 00:10:36,560
+And the way this works is
+that you have a large tree
+
+267
+00:10:36,560 --> 00:10:37,502
+of components here.
+
+268
+00:10:37,502 --> 00:10:38,960
+And each one of
+these has also been
+
+269
+00:10:38,960 --> 00:10:41,627
+written to take an artificially
+long amount of time,
+
+270
+00:10:41,627 --> 00:10:42,710
+and they all have a label.
+
+271
+00:10:42,710 --> 00:10:45,346
+And this label represents
+data flowing down the tree.
+
+272
+00:10:45,346 --> 00:10:47,220
+So to update the label
+on all the components,
+
+273
+00:10:47,220 --> 00:10:49,220
+it's going to take a
+little bit of time.
+
+274
+00:10:49,220 --> 00:10:50,960
+And while we're
+updating the label,
+
+275
+00:10:50,960 --> 00:10:52,910
+we're going to animate
+the size of the tree.
+
+276
+00:10:52,910 --> 00:10:54,980
+And we want this
+animation to be smooth,
+
+277
+00:10:54,980 --> 00:10:56,390
+and it's driven from JavaScript.
+
+278
+00:10:56,390 --> 00:10:58,730
+So if we take a long
+time to update the tree,
+
+279
+00:10:58,730 --> 00:11:00,470
+we're going to get jank.
+
+280
+00:11:00,470 --> 00:11:02,527
+This is a nice demo
+because it highlights
+
+281
+00:11:02,527 --> 00:11:04,610
+some subtleties that you
+need to take care of when
+
+282
+00:11:04,610 --> 00:11:06,240
+doing asynchronous rendering.
+
+283
+00:11:06,240 --> 00:11:08,270
+So we have an expensive
+subtree to render.
+
+284
+00:11:08,270 --> 00:11:11,242
+We want this continuous script
+driven animation to be smooth.
+
+285
+00:11:11,242 --> 00:11:13,700
+And then on top of that, we
+have these high priority inputs
+
+286
+00:11:13,700 --> 00:11:15,710
+that we also want to handle.
+
+287
+00:11:15,710 --> 00:11:18,080
+So I implemented this
+here with regular Element
+
+288
+00:11:18,080 --> 00:11:20,000
+that uses the microtask queue.
+
+289
+00:11:20,000 --> 00:11:23,210
+And you can see that as the
+triangle updates in size,
+
+290
+00:11:23,210 --> 00:11:25,240
+we get some jank in
+the middle there.
+
+291
+00:11:25,240 --> 00:11:26,910
+And we want to avoid that.
+
+292
+00:11:26,910 --> 00:11:29,120
+So it's very simple to
+re implement this just
+
+293
+00:11:29,120 --> 00:11:31,430
+by changing the base
+class to LazyLitElement.
+
+294
+00:11:31,430 --> 00:11:34,910
+And now you can see that we
+get a smooth animation even
+
+295
+00:11:34,910 --> 00:11:37,886
+as we update the labels here.
+
+296
+00:11:37,886 --> 00:11:40,260
+But next, I mentioned we want
+to have these high priority
+
+297
+00:11:40,260 --> 00:11:41,220
+inputs.
+
+298
+00:11:41,220 --> 00:11:44,250
+So this brings us to the
+idea of urgent updates.
+
+299
+00:11:44,250 --> 00:11:46,464
+If you defer rendering,
+it's possible
+
+300
+00:11:46,464 --> 00:11:47,880
+that you have
+situations where you
+
+301
+00:11:47,880 --> 00:11:50,046
+want to render sooner than
+you've scheduled yourself
+
+302
+00:11:50,046 --> 00:11:51,730
+to be rendered.
+
+303
+00:11:51,730 --> 00:11:54,600
+And so with these urgent
+updates what we've done
+
+304
+00:11:54,600 --> 00:11:56,660
+is we've created
+in LazyLitElement,
+
+305
+00:11:56,660 --> 00:11:59,220
+we don't just override the
+schedule update method.
+
+306
+00:11:59,220 --> 00:12:02,300
+We add a new method on here
+called requestUrgentUpdate.
+
+307
+00:12:02,300 --> 00:12:05,490
+And that's going to be
+called and make your element
+
+308
+00:12:05,490 --> 00:12:07,974
+render sooner.
+
+309
+00:12:07,974 --> 00:12:09,390
+It's a very simple
+implementation.
+
+310
+00:12:09,390 --> 00:12:11,848
+I wanted to show it, because
+it's a little bit interesting.
+
+311
+00:12:11,848 --> 00:12:14,100
+So instead of waiting for a
+promise that resolves with
+
+312
+00:12:14,100 --> 00:12:18,880
+setTimeout-- we still do
+that, but we also store--
+
+313
+00:12:18,880 --> 00:12:20,930
+Let me go back here.
+
+314
+00:12:20,930 --> 00:12:21,430
+Maybe not.
+
+315
+00:12:21,430 --> 00:12:21,929
+OK.
+
+316
+00:12:21,929 --> 00:12:26,050
+Well, we restore
+the resolve function
+
+317
+00:12:26,050 --> 00:12:30,820
+on the instance of the element
+when we schedule an update.
+
+318
+00:12:30,820 --> 00:12:35,270
+And then we can go back and we
+can call that resolve function,
+
+319
+00:12:35,270 --> 00:12:37,249
+which will cause our
+promise to resolve earlier
+
+320
+00:12:37,249 --> 00:12:38,290
+than it was scheduled to.
+
+321
+00:12:38,290 --> 00:12:40,637
+So in essence, we're
+jumping from the task queue
+
+322
+00:12:40,637 --> 00:12:42,470
+over to the microtask
+queue, and we're going
+
+323
+00:12:42,470 --> 00:12:43,720
+to render as soon as possible.
+
+324
+00:12:43,720 --> 00:12:46,760
+
+
+325
+00:12:46,760 --> 00:12:48,350
+OK, so this is how
+you would use it.
+
+326
+00:12:48,350 --> 00:12:49,960
+So we have a partial
+implementation
+
+327
+00:12:49,960 --> 00:12:52,890
+of our DotElement here.
+
+328
+00:12:52,890 --> 00:12:54,550
+And these are some
+event callbacks
+
+329
+00:12:54,550 --> 00:12:57,655
+that might be called from on
+mouse over and on mouse out.
+
+330
+00:12:57,655 --> 00:13:00,280
+And they're simply going to set
+the state that our rendering is
+
+331
+00:13:00,280 --> 00:13:02,050
+based on, and then
+they're going to call
+
+332
+00:13:02,050 --> 00:13:06,500
+requestUrgentUpdate to kick
+us to the faster timing.
+
+333
+00:13:06,500 --> 00:13:09,577
+And so once we do that,
+you can see that we
+
+334
+00:13:09,577 --> 00:13:10,660
+have our smooth animation.
+
+335
+00:13:10,660 --> 00:13:11,830
+Our labels update.
+
+336
+00:13:11,830 --> 00:13:13,450
+And we get a fast
+hover over effect
+
+337
+00:13:13,450 --> 00:13:17,990
+here by calling
+requestUrgentUpdate.
+
+338
+00:13:17,990 --> 00:13:20,030
+And let me talk real
+quick about scheduling.
+
+339
+00:13:20,030 --> 00:13:23,210
+So in that demo there I
+did a very simple thing.
+
+340
+00:13:23,210 --> 00:13:24,800
+I said instead of
+using a microtask,
+
+341
+00:13:24,800 --> 00:13:27,290
+we're going to use a full task.
+
+342
+00:13:27,290 --> 00:13:29,296
+And I actually didn't
+expect that to work
+
+343
+00:13:29,296 --> 00:13:30,920
+as well as it did
+when I made the demo,
+
+344
+00:13:30,920 --> 00:13:32,390
+but it did work very well.
+
+345
+00:13:32,390 --> 00:13:34,760
+The browser ends up
+doing a very good job
+
+346
+00:13:34,760 --> 00:13:37,430
+of executing as
+many tasks as it can
+
+347
+00:13:37,430 --> 00:13:39,634
+before it has to paint a frame.
+
+348
+00:13:39,634 --> 00:13:42,050
+But it's pretty naive, and it
+leaves off a lot of features
+
+349
+00:13:42,050 --> 00:13:44,810
+that we would like, like
+different priority queues,
+
+350
+00:13:44,810 --> 00:13:47,990
+the ability to cancel work,
+the ability to coordinate
+
+351
+00:13:47,990 --> 00:13:51,320
+long chains of tasks that
+are all related together.
+
+352
+00:13:51,320 --> 00:13:53,660
+So that schedule update
+method is exactly where
+
+353
+00:13:53,660 --> 00:13:57,390
+we would like to plug into a
+native platform scheduler API,
+
+354
+00:13:57,390 --> 00:14:00,170
+like Shubhie and Jason
+talked about earlier.
+
+355
+00:14:00,170 --> 00:14:02,310
+So the important point is
+that with web components,
+
+356
+00:14:02,310 --> 00:14:05,660
+we don't have a overarching
+framework that can coordinate
+
+357
+00:14:05,660 --> 00:14:07,430
+and schedule our
+components for us,
+
+358
+00:14:07,430 --> 00:14:09,980
+and we might get components
+from different vendors.
+
+359
+00:14:09,980 --> 00:14:12,740
+So being able to plug
+into a global platform
+
+360
+00:14:12,740 --> 00:14:15,510
+vendored API for scheduling is
+going to help us tremendously
+
+361
+00:14:15,510 --> 00:14:16,010
+here.
+
+362
+00:14:16,010 --> 00:14:20,230
+
+
+363
+00:14:20,230 --> 00:14:21,220
+OK, there we go.
+
+364
+00:14:21,220 --> 00:14:24,350
+Let's move on to talking
+about managing async state.
+
+365
+00:14:24,350 --> 00:14:27,870
+So far we've talked about being
+asynchronous on a per component
+
+366
+00:14:27,870 --> 00:14:29,580
+level, so yielding
+to the browser
+
+367
+00:14:29,580 --> 00:14:32,370
+and letting it paint
+in between components.
+
+368
+00:14:32,370 --> 00:14:33,990
+But sometimes, we
+need to manage data
+
+369
+00:14:33,990 --> 00:14:35,820
+that itself is asynchronous.
+
+370
+00:14:35,820 --> 00:14:38,246
+And lit-html rendering
+is synchronous by nature.
+
+371
+00:14:38,246 --> 00:14:40,120
+When you give the render
+function a template,
+
+372
+00:14:40,120 --> 00:14:42,867
+it's going to do all the work
+immediately to render that.
+
+373
+00:14:42,867 --> 00:14:45,450
+So what do we do if we want to
+render asynchronous data inside
+
+374
+00:14:45,450 --> 00:14:48,100
+of a synchronous template?
+
+375
+00:14:48,100 --> 00:14:50,650
+So we can look at how we
+handle data normally here.
+
+376
+00:14:50,650 --> 00:14:53,760
+And if we have a string
+and just a plain reference
+
+377
+00:14:53,760 --> 00:14:56,401
+to that string, it's
+pretty easy to use.
+
+378
+00:14:56,401 --> 00:14:58,650
+We just use it as a template,
+and we get the rendering
+
+379
+00:14:58,650 --> 00:15:01,210
+that we wanted.
+
+380
+00:15:01,210 --> 00:15:05,950
+And if we change this instead
+to load off the network,
+
+381
+00:15:05,950 --> 00:15:09,280
+it turns out that lit-html
+handles promises already.
+
+382
+00:15:09,280 --> 00:15:11,722
+And so what we'll get
+is a blank screen here.
+
+383
+00:15:11,722 --> 00:15:13,180
+And then when the
+promise resolves,
+
+384
+00:15:13,180 --> 00:15:14,860
+we'll render hello world.
+
+385
+00:15:14,860 --> 00:15:15,890
+So this is kind of nice.
+
+386
+00:15:15,890 --> 00:15:17,306
+We get some behavior
+that we might
+
+387
+00:15:17,306 --> 00:15:19,970
+expect right out of the box.
+
+388
+00:15:19,970 --> 00:15:22,600
+But we might not want
+to render a blank screen
+
+389
+00:15:22,600 --> 00:15:24,170
+as our initial state.
+
+390
+00:15:24,170 --> 00:15:26,820
+So this brings us to
+the idea of directives,
+
+391
+00:15:26,820 --> 00:15:29,509
+and these are functions that
+are a little bit special
+
+392
+00:15:29,509 --> 00:15:31,300
+and they're able to
+customize how templates
+
+393
+00:15:31,300 --> 00:15:33,209
+are rendered by lit-html.
+
+394
+00:15:33,209 --> 00:15:34,750
+And one of the more
+useful directives
+
+395
+00:15:34,750 --> 00:15:37,950
+that lit-html ships
+with is called until.
+
+396
+00:15:37,950 --> 00:15:40,120
+What until does is
+it takes a promise
+
+397
+00:15:40,120 --> 00:15:42,790
+and it will render the result of
+that promise when it resolves,
+
+398
+00:15:42,790 --> 00:15:45,370
+but it will render a placeholder
+until that promise does
+
+399
+00:15:45,370 --> 00:15:46,960
+resolve.
+
+400
+00:15:46,960 --> 00:15:48,920
+So we can use that here.
+
+401
+00:15:48,920 --> 00:15:50,710
+And you see that
+in the template,
+
+402
+00:15:50,710 --> 00:15:54,460
+we call the until directive
+with our promise in the loading
+
+403
+00:15:54,460 --> 00:15:55,180
+place holder.
+
+404
+00:15:55,180 --> 00:15:56,680
+And that's going to show first.
+
+405
+00:15:56,680 --> 00:15:58,270
+And then when it
+resolves, we're going
+
+406
+00:15:58,270 --> 00:16:01,069
+to render our content there.
+
+407
+00:16:01,069 --> 00:16:02,860
+So this example is a
+little bit too simple,
+
+408
+00:16:02,860 --> 00:16:05,443
+because it assumes that we have
+this promise available already
+
+409
+00:16:05,443 --> 00:16:06,670
+that we want to use.
+
+410
+00:16:06,670 --> 00:16:09,160
+And a lot of times,
+instead, we want
+
+411
+00:16:09,160 --> 00:16:12,040
+to run some tasks when
+we need to render.
+
+412
+00:16:12,040 --> 00:16:13,900
+And we might have
+some operation that's
+
+413
+00:16:13,900 --> 00:16:16,370
+dependent on some instant state.
+
+414
+00:16:16,370 --> 00:16:18,280
+So in this version
+of the example here,
+
+415
+00:16:18,280 --> 00:16:19,810
+we have a file name property.
+
+416
+00:16:19,810 --> 00:16:22,880
+And we want to fetch some
+data based on that file name.
+
+417
+00:16:22,880 --> 00:16:24,840
+Now we might be
+tempted to call fetch
+
+418
+00:16:24,840 --> 00:16:27,040
+in line with the
+template, so that we'll
+
+419
+00:16:27,040 --> 00:16:30,320
+fetch the correct file
+and then render it.
+
+420
+00:16:30,320 --> 00:16:34,540
+And this does work, but it has
+a problem where every time you
+
+421
+00:16:34,540 --> 00:16:36,730
+render this template,
+we're going to call fetch.
+
+422
+00:16:36,730 --> 00:16:38,313
+And we might be
+rendering the template
+
+423
+00:16:38,313 --> 00:16:40,110
+because some other
+properties change.
+
+424
+00:16:40,110 --> 00:16:42,193
+And in this case, we're
+going to flood the network
+
+425
+00:16:42,193 --> 00:16:43,810
+with lots of fetch requests.
+
+426
+00:16:43,810 --> 00:16:46,720
+And we also might show
+an alternating loading
+
+427
+00:16:46,720 --> 00:16:50,550
+and resolved state in our UI.
+
+428
+00:16:50,550 --> 00:16:52,900
+But it's almost the
+mental model that we want.
+
+429
+00:16:52,900 --> 00:16:54,190
+Right?
+
+430
+00:16:54,190 --> 00:16:56,350
+So what we really
+want to do is we
+
+431
+00:16:56,350 --> 00:17:00,790
+want to be able to run a task
+that's dependent on some data
+
+432
+00:17:00,790 --> 00:17:02,330
+only when that data changes.
+
+433
+00:17:02,330 --> 00:17:04,690
+So that brings us to the
+next experimental helper
+
+434
+00:17:04,690 --> 00:17:07,900
+here that we call runAsync.
+
+435
+00:17:07,900 --> 00:17:10,660
+And what runAsync does is it
+performs an async operation,
+
+436
+00:17:10,660 --> 00:17:13,369
+but only when the data
+it depends on changes.
+
+437
+00:17:13,369 --> 00:17:16,175
+And it's actually a
+directive factory.
+
+438
+00:17:16,175 --> 00:17:17,800
+So the way it works
+is that you give it
+
+439
+00:17:17,800 --> 00:17:20,140
+in async function
+that takes some data
+
+440
+00:17:20,140 --> 00:17:22,150
+and produces a result,
+and it returns to you
+
+441
+00:17:22,150 --> 00:17:25,880
+a directive that you can use
+inside your lit-html template.
+
+442
+00:17:25,880 --> 00:17:30,370
+So if we want to reproduce the
+previous example here using
+
+443
+00:17:30,370 --> 00:17:33,970
+this fetch, we can just create
+a fetch content directive
+
+444
+00:17:33,970 --> 00:17:36,980
+by passing runAsync a function
+that takes a file name
+
+445
+00:17:36,980 --> 00:17:40,089
+and calls fetch for us.
+
+446
+00:17:40,089 --> 00:17:41,630
+And when we go to
+use it, we can just
+
+447
+00:17:41,630 --> 00:17:43,130
+use it inside of our template.
+
+448
+00:17:43,130 --> 00:17:45,650
+And we pass it the
+file name here,
+
+449
+00:17:45,650 --> 00:17:47,690
+and then we pass it
+another template that's
+
+450
+00:17:47,690 --> 00:17:50,270
+going to render when
+we have successfully
+
+451
+00:17:50,270 --> 00:17:52,350
+resolved that promise.
+
+452
+00:17:52,350 --> 00:17:56,780
+So this lets us get part of
+the way to our goal here.
+
+453
+00:17:56,780 --> 00:17:58,910
+We can render some
+asynchronous data,
+
+454
+00:17:58,910 --> 00:18:00,710
+but it turns out that
+asynchronous data
+
+455
+00:18:00,710 --> 00:18:03,740
+can be in a number
+of different states.
+
+456
+00:18:03,740 --> 00:18:07,220
+For any async operation, you
+can be in initial state, which
+
+457
+00:18:07,220 --> 00:18:08,510
+means you haven't started it.
+
+458
+00:18:08,510 --> 00:18:09,950
+You can be pending.
+
+459
+00:18:09,950 --> 00:18:13,260
+It can have successfully
+completed or ended in failure.
+
+460
+00:18:13,260 --> 00:18:15,230
+And so it really helps
+us if we model and think
+
+461
+00:18:15,230 --> 00:18:17,630
+about all of these
+states explicitly,
+
+462
+00:18:17,630 --> 00:18:19,377
+so that we make
+sure we handle them.
+
+463
+00:18:19,377 --> 00:18:20,960
+We can see that our
+directive actually
+
+464
+00:18:20,960 --> 00:18:24,140
+takes templates for all
+of the different states
+
+465
+00:18:24,140 --> 00:18:25,130
+that our UI can be in.
+
+466
+00:18:25,130 --> 00:18:28,040
+So we have a success
+template, a pending template,
+
+467
+00:18:28,040 --> 00:18:31,150
+a initial state template,
+and an error template.
+
+468
+00:18:31,150 --> 00:18:33,300
+And to make this a little
+bit more realistic,
+
+469
+00:18:33,300 --> 00:18:37,350
+I made a demo that searches
+the NPM package repository.
+
+470
+00:18:37,350 --> 00:18:38,960
+And this is a
+basic search as you
+
+471
+00:18:38,960 --> 00:18:41,510
+type live search result demo.
+
+472
+00:18:41,510 --> 00:18:42,650
+And it has a simple UI.
+
+473
+00:18:42,650 --> 00:18:45,720
+We just have a search box and
+a results panel down here.
+
+474
+00:18:45,720 --> 00:18:49,130
+OK, so we're going to build this
+demo in two parts, hopefully.
+
+475
+00:18:49,130 --> 00:18:51,710
+So first, we're going to define
+a searchPackages directive
+
+476
+00:18:51,710 --> 00:18:53,630
+using runAsync.
+
+477
+00:18:53,630 --> 00:18:55,520
+And so here's our
+initial starting point
+
+478
+00:18:55,520 --> 00:18:56,870
+for this directive.
+
+479
+00:18:56,870 --> 00:18:59,390
+Our async task
+function here is going
+
+480
+00:18:59,390 --> 00:19:03,950
+to generate a URL for
+the NPM search service
+
+481
+00:19:03,950 --> 00:19:06,979
+here and then get the
+results by fetching it.
+
+482
+00:19:06,979 --> 00:19:09,020
+And then here, we're going
+to handle the response
+
+483
+00:19:09,020 --> 00:19:10,880
+and just do a little
+bit of due diligence
+
+484
+00:19:10,880 --> 00:19:14,300
+and make sure that we have a
+200 response and return that.
+
+485
+00:19:14,300 --> 00:19:18,470
+Otherwise, we throw the
+message we got back.
+
+486
+00:19:18,470 --> 00:19:22,280
+And I wanted to make
+this task able to trigger
+
+487
+00:19:22,280 --> 00:19:24,340
+that initial state template.
+
+488
+00:19:24,340 --> 00:19:28,980
+And the way we do
+that in runAsync, we
+
+489
+00:19:28,980 --> 00:19:30,500
+throw an initial state error.
+
+490
+00:19:30,500 --> 00:19:31,940
+So here, I'm just going
+to check to make sure we
+
+491
+00:19:31,940 --> 00:19:33,190
+have a query we can execute.
+
+492
+00:19:33,190 --> 00:19:34,940
+And if not, I'm going
+to throw this error.
+
+493
+00:19:34,940 --> 00:19:39,470
+And runAsync is going to render
+the initial state template.
+
+494
+00:19:39,470 --> 00:19:41,360
+And then it turns out
+that the NPM registry
+
+495
+00:19:41,360 --> 00:19:43,820
+is a little difficult to
+get it to trigger an error.
+
+496
+00:19:43,820 --> 00:19:45,870
+Usually, it just
+returns empty results.
+
+497
+00:19:45,870 --> 00:19:48,440
+So to be able to show
+the error state template,
+
+498
+00:19:48,440 --> 00:19:50,480
+I just do some prevalidation
+here of the query
+
+499
+00:19:50,480 --> 00:19:53,090
+and make sure we don't start
+with the dot or underscore.
+
+500
+00:19:53,090 --> 00:19:56,330
+And then finally, to make this
+even more realistic, if you're
+
+501
+00:19:56,330 --> 00:19:58,462
+doing a search as
+you type UI, you're
+
+502
+00:19:58,462 --> 00:20:00,920
+going to have a lot of requests
+that you initiate where you
+
+503
+00:20:00,920 --> 00:20:03,320
+don't care about the
+results, because you've
+
+504
+00:20:03,320 --> 00:20:07,180
+typed in a different query by
+the time the result gets back.
+
+505
+00:20:07,180 --> 00:20:08,930
+So the fetch API is
+able to take something
+
+506
+00:20:08,930 --> 00:20:11,840
+called an abort signal, so
+that we can cancel the request.
+
+507
+00:20:11,840 --> 00:20:14,780
+And so runAsync will generate
+an abort signal for you.
+
+508
+00:20:14,780 --> 00:20:17,180
+And then you get it in
+this options argument here
+
+509
+00:20:17,180 --> 00:20:20,600
+and you can forward this
+on to the fetch API.
+
+510
+00:20:20,600 --> 00:20:23,390
+And so this is our entire
+searchPackages directive
+
+511
+00:20:23,390 --> 00:20:26,040
+here built with runAsync.
+
+512
+00:20:26,040 --> 00:20:28,250
+And so next, we
+just need to use it.
+
+513
+00:20:28,250 --> 00:20:30,660
+Here's a little
+snippet of the demo UI.
+
+514
+00:20:30,660 --> 00:20:33,660
+We have an input
+element here, which
+
+515
+00:20:33,660 --> 00:20:37,260
+just simply displays the query
+and updates the query on input.
+
+516
+00:20:37,260 --> 00:20:41,430
+And then down here, we use
+the searchPackages directive.
+
+517
+00:20:41,430 --> 00:20:43,364
+And so we use it by
+passing it to query.
+
+518
+00:20:43,364 --> 00:20:45,030
+And then, we give it
+a success template.
+
+519
+00:20:45,030 --> 00:20:46,613
+Here, we just iterate
+over the results
+
+520
+00:20:46,613 --> 00:20:48,400
+and display little cards.
+
+521
+00:20:48,400 --> 00:20:51,150
+And then we give it
+the pending, initial,
+
+522
+00:20:51,150 --> 00:20:54,690
+and error state templates here.
+
+523
+00:20:54,690 --> 00:20:57,085
+And so when we go
+to use this demo,
+
+524
+00:20:57,085 --> 00:20:59,460
+we see that we have the initial
+state template rendering.
+
+525
+00:20:59,460 --> 00:21:00,360
+Sorry that's small.
+
+526
+00:21:00,360 --> 00:21:02,340
+It says enter a search term.
+
+527
+00:21:02,340 --> 00:21:04,750
+When we type, it
+turns into loading.
+
+528
+00:21:04,750 --> 00:21:07,110
+And then we get
+our results back.
+
+529
+00:21:07,110 --> 00:21:09,480
+And if we were to go back
+and enter a query that
+
+530
+00:21:09,480 --> 00:21:11,282
+starts with an
+invalid character,
+
+531
+00:21:11,282 --> 00:21:13,740
+you're going to see the error
+template there, and that even
+
+532
+00:21:13,740 --> 00:21:15,840
+updates as you type.
+
+533
+00:21:15,840 --> 00:21:17,850
+And if you realize
+your mistake, and go in
+
+534
+00:21:17,850 --> 00:21:19,570
+and type in a new
+term, you're going
+
+535
+00:21:19,570 --> 00:21:23,880
+to get all the
+intermediate async state
+
+536
+00:21:23,880 --> 00:21:25,270
+templates as you type.
+
+537
+00:21:25,270 --> 00:21:26,820
+So that's the demo,
+and you really
+
+538
+00:21:26,820 --> 00:21:28,528
+did see most of the
+implementation there.
+
+539
+00:21:28,528 --> 00:21:31,470
+So it was quite easy to
+do with that directive.
+
+540
+00:21:31,470 --> 00:21:32,970
+And the key takeaway
+here is that we
+
+541
+00:21:32,970 --> 00:21:36,870
+want to explicitly model our
+asynchronous operation state.
+
+542
+00:21:36,870 --> 00:21:40,020
+If we do that, we're more sure
+to take care of all the states
+
+543
+00:21:40,020 --> 00:21:41,220
+that we can be in.
+
+544
+00:21:41,220 --> 00:21:42,790
+And if we build a
+UI for each state,
+
+545
+00:21:42,790 --> 00:21:44,460
+then we're going
+to accurately let
+
+546
+00:21:44,460 --> 00:21:47,010
+our users know what is going
+on with the application.
+
+547
+00:21:47,010 --> 00:21:50,620
+And they're going to have
+a better user experience.
+
+548
+00:21:50,620 --> 00:21:53,100
+OK, so finally, once
+we have an application
+
+549
+00:21:53,100 --> 00:21:56,300
+and a UI built up of all
+these asynchronous components,
+
+550
+00:21:56,300 --> 00:21:58,000
+we might need to
+coordinate them.
+
+551
+00:21:58,000 --> 00:21:58,500
+Right?
+
+552
+00:21:58,500 --> 00:22:03,580
+So if you have a lot of
+async children in your page,
+
+553
+00:22:03,580 --> 00:22:06,630
+how do we ensure a
+consistent UI if you want to?
+
+554
+00:22:06,630 --> 00:22:10,230
+Or how do we avoid
+a sea of spinners?
+
+555
+00:22:10,230 --> 00:22:14,610
+And so to demonstrate the
+sea of spinners problem,
+
+556
+00:22:14,610 --> 00:22:17,040
+I added to the demo
+a little feature here
+
+557
+00:22:17,040 --> 00:22:19,270
+where when you
+search, the cards are
+
+558
+00:22:19,270 --> 00:22:21,270
+going to do their own
+query to bring up the disk
+
+559
+00:22:21,270 --> 00:22:23,195
+tag of your NPM packages.
+
+560
+00:22:23,195 --> 00:22:25,320
+And you can see there that
+we saw a lot of spinners
+
+561
+00:22:25,320 --> 00:22:28,556
+on the page, and this
+can be a distracting UI.
+
+562
+00:22:28,556 --> 00:22:30,180
+So we want to give
+developers an option
+
+563
+00:22:30,180 --> 00:22:32,947
+to not have to deal with
+the sea of spinners.
+
+564
+00:22:32,947 --> 00:22:34,530
+And the way we're
+going to handle this
+
+565
+00:22:34,530 --> 00:22:36,738
+is that we're going to
+coordinate the components here
+
+566
+00:22:36,738 --> 00:22:37,840
+with events.
+
+567
+00:22:37,840 --> 00:22:39,256
+So what we're going
+to do is we're
+
+568
+00:22:39,256 --> 00:22:41,250
+going to fire a
+promise carrying event.
+
+569
+00:22:41,250 --> 00:22:43,780
+And that promise is going to
+resolve when some work is done.
+
+570
+00:22:43,780 --> 00:22:46,260
+So an async child component
+creates a promise,
+
+571
+00:22:46,260 --> 00:22:49,267
+fires this event, and
+then resolves the promise.
+
+572
+00:22:49,267 --> 00:22:50,850
+And so that's going
+to look like this.
+
+573
+00:22:50,850 --> 00:22:53,300
+A is going to be our
+container up there.
+
+574
+00:22:53,300 --> 00:22:54,927
+And E and F are
+our async children.
+
+575
+00:22:54,927 --> 00:22:56,760
+And they're going to
+fire this pending state
+
+576
+00:22:56,760 --> 00:22:59,490
+event that holds a promise.
+
+577
+00:22:59,490 --> 00:23:01,320
+The container is going
+to handle the event
+
+578
+00:23:01,320 --> 00:23:02,437
+and wait for that promise.
+
+579
+00:23:02,437 --> 00:23:04,270
+And then the children
+when the work is done,
+
+580
+00:23:04,270 --> 00:23:05,811
+they're going to
+resolve the promise.
+
+581
+00:23:05,811 --> 00:23:09,510
+And finally, when all the
+promises have settled,
+
+582
+00:23:09,510 --> 00:23:11,580
+we're going to update the UI.
+
+583
+00:23:11,580 --> 00:23:15,960
+So that brings us to our
+last experimental prototype
+
+584
+00:23:15,960 --> 00:23:17,960
+here called PendingContainer.
+
+585
+00:23:17,960 --> 00:23:22,410
+And PendingContainer takes care
+of all this plumbing for you.
+
+586
+00:23:22,410 --> 00:23:24,390
+And it's a class mix in,
+so you can apply this
+
+587
+00:23:24,390 --> 00:23:26,550
+to a superclass like LitElement.
+
+588
+00:23:26,550 --> 00:23:29,310
+And this has two features too.
+
+589
+00:23:29,310 --> 00:23:31,934
+We have the has pending
+children property.
+
+590
+00:23:31,934 --> 00:23:33,600
+So this indicates
+whether or not there's
+
+591
+00:23:33,600 --> 00:23:35,550
+async work happening below you.
+
+592
+00:23:35,550 --> 00:23:37,050
+And when this
+property changes, it's
+
+593
+00:23:37,050 --> 00:23:39,324
+going to cause a
+rerender of the element.
+
+594
+00:23:39,324 --> 00:23:40,740
+And then we have
+an event listener
+
+595
+00:23:40,740 --> 00:23:43,200
+that listens for the
+pending state event
+
+596
+00:23:43,200 --> 00:23:44,580
+and then triggers
+the bookkeeping
+
+597
+00:23:44,580 --> 00:23:48,840
+so that we know if we have any
+extra work pending below us.
+
+598
+00:23:48,840 --> 00:23:50,700
+And to use it, you can
+just apply this mix
+
+599
+00:23:50,700 --> 00:23:54,090
+in to the superclass
+here, to LitElement.
+
+600
+00:23:54,090 --> 00:23:56,070
+And once you do that,
+you get available
+
+601
+00:23:56,070 --> 00:23:57,690
+the has pending
+children property that
+
+602
+00:23:57,690 --> 00:23:59,830
+can be used in your template.
+
+603
+00:23:59,830 --> 00:24:02,220
+And so now we're going
+to add a spinner,
+
+604
+00:24:02,220 --> 00:24:05,100
+and this is a top level
+spinner, to the UI that's
+
+605
+00:24:05,100 --> 00:24:07,080
+triggered based
+on whether or not
+
+606
+00:24:07,080 --> 00:24:08,740
+there's any pending children.
+
+607
+00:24:08,740 --> 00:24:10,610
+And so the runAsync
+helper is going
+
+608
+00:24:10,610 --> 00:24:11,850
+to fire these events for us.
+
+609
+00:24:11,850 --> 00:24:14,760
+And this container mix in
+is going to capture them.
+
+610
+00:24:14,760 --> 00:24:16,260
+And so what we're
+going for here is
+
+611
+00:24:16,260 --> 00:24:19,460
+a UI where we have a spinner--
+
+612
+00:24:19,460 --> 00:24:21,960
+and it happened again.
+
+613
+00:24:21,960 --> 00:24:22,460
+There we go.
+
+614
+00:24:22,460 --> 00:24:23,120
+OK.
+
+615
+00:24:23,120 --> 00:24:25,740
+Might just be a
+faulty button here.
+
+616
+00:24:25,740 --> 00:24:28,530
+So what we want to add here is
+a spinner at the top of the UI
+
+617
+00:24:28,530 --> 00:24:31,760
+that's going to be going
+whenever there are pending
+
+618
+00:24:31,760 --> 00:24:33,860
+search results coming
+back from the server,
+
+619
+00:24:33,860 --> 00:24:36,360
+or we have children
+that need to update.
+
+620
+00:24:36,360 --> 00:24:38,512
+So now you see we get
+the spinner as we type.
+
+621
+00:24:38,512 --> 00:24:40,220
+We don't get the
+spinner on the children,
+
+622
+00:24:40,220 --> 00:24:43,050
+but we can see the top level
+spinner is still going.
+
+623
+00:24:43,050 --> 00:24:45,836
+And then the results come
+in and the spinner stops.
+
+624
+00:24:45,836 --> 00:24:47,460
+And so that's the UI
+we were going for,
+
+625
+00:24:47,460 --> 00:24:49,340
+and it was pretty
+straightforward to build
+
+626
+00:24:49,340 --> 00:24:52,160
+with these directives.
+
+627
+00:24:52,160 --> 00:24:53,834
+So when you have
+an asynchronous UI,
+
+628
+00:24:53,834 --> 00:24:55,250
+there's a lot of
+different options
+
+629
+00:24:55,250 --> 00:24:57,480
+that you have for
+how to handle this.
+
+630
+00:24:57,480 --> 00:25:01,610
+You could try to block the UI
+while you have pending work.
+
+631
+00:25:01,610 --> 00:25:04,070
+You could show the raw
+incremental updates.
+
+632
+00:25:04,070 --> 00:25:06,140
+You could have individual
+spinners on your page,
+
+633
+00:25:06,140 --> 00:25:08,510
+or you could try to replace
+that all with top level
+
+634
+00:25:08,510 --> 00:25:10,670
+placeholders and spinners.
+
+635
+00:25:10,670 --> 00:25:14,904
+So what you want to do
+depends on the UX and the UI
+
+636
+00:25:14,904 --> 00:25:16,070
+that you're trying to build.
+
+637
+00:25:16,070 --> 00:25:19,460
+But the key here is to provide
+the plumbing and the framework
+
+638
+00:25:19,460 --> 00:25:21,860
+and the nice API so
+that you can build
+
+639
+00:25:21,860 --> 00:25:24,690
+whatever you choose to build.
+
+640
+00:25:24,690 --> 00:25:26,510
+And that went two
+slides forward.
+
+641
+00:25:26,510 --> 00:25:29,960
+All right, well,
+this is my wrap up.
+
+642
+00:25:29,960 --> 00:25:32,480
+So we're very excited about
+some additional work that's
+
+643
+00:25:32,480 --> 00:25:33,830
+going to be done in this area.
+
+644
+00:25:33,830 --> 00:25:36,080
+So Jason and Shubhie talked
+about the native scheduler
+
+645
+00:25:36,080 --> 00:25:38,900
+API, which we're
+extremely excited about.
+
+646
+00:25:38,900 --> 00:25:40,490
+Display locking
+is a new proposal
+
+647
+00:25:40,490 --> 00:25:41,390
+where you're going
+to be able to lock
+
+648
+00:25:41,390 --> 00:25:43,223
+an entire portion of
+your screen so that you
+
+649
+00:25:43,223 --> 00:25:45,080
+can update it
+incrementally and then
+
+650
+00:25:45,080 --> 00:25:46,605
+flip it to the new version.
+
+651
+00:25:46,605 --> 00:25:48,230
+And Greg talked about
+virtual scroller,
+
+652
+00:25:48,230 --> 00:25:51,324
+which is going to let us handle
+large amounts of data as well.
+
+653
+00:25:51,324 --> 00:25:53,990
+And then on our end, we're going
+to be working on more libraries
+
+654
+00:25:53,990 --> 00:25:56,000
+and examples of how to
+do things like lazy load
+
+655
+00:25:56,000 --> 00:25:59,522
+components, background
+rendering, and viewport base
+
+656
+00:25:59,522 --> 00:26:01,730
+visibility rendering, so
+that things only render when
+
+657
+00:26:01,730 --> 00:26:04,270
+they show up on the screen.
+
+658
+00:26:04,270 --> 00:26:05,270
+I have a few links here.
+
+659
+00:26:05,270 --> 00:26:08,300
+These will probably be easier
+to get to from the video.
+
+660
+00:26:08,300 --> 00:26:11,240
+And then I'm going to be
+over in the Ask Chrome area
+
+661
+00:26:11,240 --> 00:26:14,750
+doing Q&A after this, if you'd
+like to ask any questions.
+
+662
+00:26:14,750 --> 00:26:16,490
+OK, thank you.
+
+663
+00:26:16,490 --> 00:26:20,140
+[MUSIC PLAYING]
+
+664
+00:26:20,140 --> 00:26:26,456

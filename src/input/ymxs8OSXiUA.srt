@@ -1,0 +1,2298 @@
+1
+00:00:00,000 --> 00:00:02,440
+[MUSIC PLAYING]
+
+2
+00:00:02,440 --> 00:00:07,142
+
+
+3
+00:00:07,142 --> 00:00:09,600
+ELIZABETH SWEENY: Well, we are
+excited because nobody likes
+
+4
+00:00:09,600 --> 00:00:11,940
+to wait, and we want to
+talk to you about all
+
+5
+00:00:11,940 --> 00:00:14,670
+of the optimizations
+and measurement tools
+
+6
+00:00:14,670 --> 00:00:18,000
+that we have been working
+on and can provide to you.
+
+7
+00:00:18,000 --> 00:00:22,530
+And we're going to
+start with going over
+
+8
+00:00:22,530 --> 00:00:25,110
+an overview of user metrics,
+kind of what we care about
+
+9
+00:00:25,110 --> 00:00:27,450
+and why, then looking at
+the latest developments
+
+10
+00:00:27,450 --> 00:00:30,690
+in Lighthouse, the Chrome
+UX Report, or CrUX,
+
+11
+00:00:30,690 --> 00:00:32,729
+and talk about how
+we're unifying tooling
+
+12
+00:00:32,729 --> 00:00:34,290
+across the board.
+
+13
+00:00:34,290 --> 00:00:37,910
+PAUL IRISH: All right, so when
+it comes to web performance,
+
+14
+00:00:37,910 --> 00:00:39,720
+one thing you could
+say is you can't
+
+15
+00:00:39,720 --> 00:00:41,740
+improve what you don't measure.
+
+16
+00:00:41,740 --> 00:00:43,740
+ELIZABETH SWEENY: This
+was Peter Drucker, right?
+
+17
+00:00:43,740 --> 00:00:44,844
+He was a management guy?
+
+18
+00:00:44,844 --> 00:00:46,260
+PAUL IRISH: This
+is actually true.
+
+19
+00:00:46,260 --> 00:00:49,750
+Peter Drucker-- really,
+really well known kind
+
+20
+00:00:49,750 --> 00:00:52,722
+of business management guru.
+
+21
+00:00:52,722 --> 00:00:54,180
+To be honest, I
+think he might have
+
+22
+00:00:54,180 --> 00:00:56,520
+been a front-end
+developer, as well,
+
+23
+00:00:56,520 --> 00:00:58,810
+but this is just
+absolutely true.
+
+24
+00:00:58,810 --> 00:01:02,670
+If you want to make something
+better, step one is measure it.
+
+25
+00:01:02,670 --> 00:01:05,840
+And let's get into that
+with web performance.
+
+26
+00:01:05,840 --> 00:01:08,910
+To measure, we need to
+look at some metrics.
+
+27
+00:01:08,910 --> 00:01:10,920
+And it's really
+important to make sure
+
+28
+00:01:10,920 --> 00:01:14,621
+that your metrics are user
+centric and really focused
+
+29
+00:01:14,621 --> 00:01:15,120
+on the user.
+
+30
+00:01:15,120 --> 00:01:19,110
+We heard a little bit ago about
+pending wait time and some
+
+31
+00:01:19,110 --> 00:01:20,880
+of those custom
+metrics, but we'd
+
+32
+00:01:20,880 --> 00:01:22,530
+like to have metrics
+that really focus
+
+33
+00:01:22,530 --> 00:01:25,037
+on how the user experience is.
+
+34
+00:01:25,037 --> 00:01:27,120
+So let's take a page load,
+break it down, and look
+
+35
+00:01:27,120 --> 00:01:29,340
+at a few key metrics in here.
+
+36
+00:01:29,340 --> 00:01:31,530
+So a little film strip here.
+
+37
+00:01:31,530 --> 00:01:33,610
+We're loading a
+search result page.
+
+38
+00:01:33,610 --> 00:01:36,510
+And so we just have a little
+progression of a few images,
+
+39
+00:01:36,510 --> 00:01:40,380
+getting to our final result or
+where the page is done loading.
+
+40
+00:01:40,380 --> 00:01:43,710
+Now, underneath the things
+that we see visually
+
+41
+00:01:43,710 --> 00:01:45,230
+is a few things happening.
+
+42
+00:01:45,230 --> 00:01:49,150
+There's the main thread
+and network requests,
+
+43
+00:01:49,150 --> 00:01:50,650
+and these are really
+important, too,
+
+44
+00:01:50,650 --> 00:01:53,490
+because it actually weighs
+in a lot on the actual user
+
+45
+00:01:53,490 --> 00:01:54,231
+experience.
+
+46
+00:01:54,231 --> 00:01:56,730
+So I want to point a few things
+out here, the first of which
+
+47
+00:01:56,730 --> 00:01:58,175
+is this point right here.
+
+48
+00:01:58,175 --> 00:02:00,930
+This is the first time that
+text shows up on the page.
+
+49
+00:02:00,930 --> 00:02:02,490
+It's first time the
+content is there.
+
+50
+00:02:02,490 --> 00:02:06,660
+So we call this, the
+duration from the navigation
+
+51
+00:02:06,660 --> 00:02:11,360
+to the point at which text shows
+up, the first contentful paint.
+
+52
+00:02:11,360 --> 00:02:13,540
+Easy enough-- I think
+we know this one.
+
+53
+00:02:13,540 --> 00:02:15,060
+A little bit later
+though, you can
+
+54
+00:02:15,060 --> 00:02:18,780
+see right after the main thread
+kind of quiets down a bit,
+
+55
+00:02:18,780 --> 00:02:21,900
+this right here is
+important moment.
+
+56
+00:02:21,900 --> 00:02:23,910
+All the long tasks in the
+main thread have done,
+
+57
+00:02:23,910 --> 00:02:27,960
+so the main thread has kind
+of quieted down and allowed
+
+58
+00:02:27,960 --> 00:02:30,810
+the page to now be
+responsive to users
+
+59
+00:02:30,810 --> 00:02:32,850
+once they choose to
+interact with it.
+
+60
+00:02:32,850 --> 00:02:34,680
+Also, the network
+is quiet, so we
+
+61
+00:02:34,680 --> 00:02:39,750
+know there's no one big
+massive script hanging out
+
+62
+00:02:39,750 --> 00:02:41,910
+ready to run and take up
+time in the main thread.
+
+63
+00:02:41,910 --> 00:02:44,520
+So the duration from
+navigation to this point,
+
+64
+00:02:44,520 --> 00:02:46,700
+we call this time
+to interactive.
+
+65
+00:02:46,700 --> 00:02:48,450
+All right, and there's
+one more key metric
+
+66
+00:02:48,450 --> 00:02:49,950
+I want to cover real quick.
+
+67
+00:02:49,950 --> 00:02:55,710
+Now, in this page load,
+a user could really
+
+68
+00:02:55,710 --> 00:02:57,840
+touch the screen at any point.
+
+69
+00:02:57,840 --> 00:03:00,090
+They could interact with
+it here once there's
+
+70
+00:03:00,090 --> 00:03:03,750
+a paint on screen or
+a little bit later,
+
+71
+00:03:03,750 --> 00:03:06,540
+but let's just say for
+the purposes of this,
+
+72
+00:03:06,540 --> 00:03:08,600
+they tap the screen
+at this point.
+
+73
+00:03:08,600 --> 00:03:11,640
+Now, the thing is, if they
+tap the screen at this point,
+
+74
+00:03:11,640 --> 00:03:13,920
+take a look at what's
+happening on the main thread--
+
+75
+00:03:13,920 --> 00:03:14,620
+a lot of things.
+
+76
+00:03:14,620 --> 00:03:17,960
+We're in the middle
+of a big long task.
+
+77
+00:03:17,960 --> 00:03:19,710
+And that means the
+page is not going to be
+
+78
+00:03:19,710 --> 00:03:22,090
+able to respond to the user.
+
+79
+00:03:22,090 --> 00:03:24,960
+So we have to wait a little
+bit until the page can actually
+
+80
+00:03:24,960 --> 00:03:25,950
+respond.
+
+81
+00:03:25,950 --> 00:03:28,980
+So this duration, the
+time from the input
+
+82
+00:03:28,980 --> 00:03:31,870
+until the end of the long
+task that we're dealing with,
+
+83
+00:03:31,870 --> 00:03:34,774
+we call this the
+first input delay.
+
+84
+00:03:34,774 --> 00:03:36,190
+This is an important
+metric, and I
+
+85
+00:03:36,190 --> 00:03:39,880
+want to spend a little
+bit more time on it.
+
+86
+00:03:39,880 --> 00:03:42,330
+If this is a main
+thread, well, it's
+
+87
+00:03:42,330 --> 00:03:44,400
+a very open and
+available main thread.
+
+88
+00:03:44,400 --> 00:03:46,150
+Really, nothing happening.
+
+89
+00:03:46,150 --> 00:03:50,670
+So let's say if the user
+had some input, well, piece
+
+90
+00:03:50,670 --> 00:03:53,370
+of cake, we can just
+reply to it immediately.
+
+91
+00:03:53,370 --> 00:03:56,070
+Your event handler is going to
+run, touch, start, or click,
+
+92
+00:03:56,070 --> 00:03:57,736
+or you're going to
+do style, and layout,
+
+93
+00:03:57,736 --> 00:03:59,250
+and paint, and ship a frame.
+
+94
+00:03:59,250 --> 00:04:00,541
+They're going to see something.
+
+95
+00:04:00,541 --> 00:04:03,610
+So if, let's say, they're
+tapping on the Menu icon
+
+96
+00:04:03,610 --> 00:04:06,790
+and then the menu slides
+out, so we're good.
+
+97
+00:04:06,790 --> 00:04:11,730
+But if there is one task
+sitting on the main thread,
+
+98
+00:04:11,730 --> 00:04:13,740
+well, we're just
+going to have to wait.
+
+99
+00:04:13,740 --> 00:04:17,279
+So we always, yes, we'll be
+doing the event handling,
+
+100
+00:04:17,279 --> 00:04:20,820
+but this time between when
+the inputs's first received
+
+101
+00:04:20,820 --> 00:04:25,140
+and when the events
+will be dispatched,
+
+102
+00:04:25,140 --> 00:04:26,910
+that is the input delay.
+
+103
+00:04:26,910 --> 00:04:30,240
+First input delay is just
+the first input of the page.
+
+104
+00:04:30,240 --> 00:04:32,490
+It's just the first time
+that a user touches the page.
+
+105
+00:04:32,490 --> 00:04:35,520
+And the important thing here
+is that first input delay
+
+106
+00:04:35,520 --> 00:04:39,000
+is a field metric.
+
+107
+00:04:39,000 --> 00:04:43,300
+It really only makes sense
+to gather in the field.
+
+108
+00:04:43,300 --> 00:04:46,410
+Time to interactive is a great
+and really powerful metric,
+
+109
+00:04:46,410 --> 00:04:49,230
+but it makes sense mostly in
+the lab, in a lab scenario.
+
+110
+00:04:49,230 --> 00:04:52,470
+And we've recognized this, that
+basically time to interactive
+
+111
+00:04:52,470 --> 00:04:55,470
+out in the field where real
+users are tapping on the screen
+
+112
+00:04:55,470 --> 00:04:58,350
+as the page is loading,
+it really kind of messes
+
+113
+00:04:58,350 --> 00:05:00,550
+with this metric.
+
+114
+00:05:00,550 --> 00:05:02,400
+So there's a few
+metrics on the screen
+
+115
+00:05:02,400 --> 00:05:05,580
+here basically just
+outlining which
+
+116
+00:05:05,580 --> 00:05:07,806
+makes sense to
+gather in the lab,
+
+117
+00:05:07,806 --> 00:05:09,930
+and then some that are only
+exclusive in the field.
+
+118
+00:05:09,930 --> 00:05:14,670
+So I want to point out TTI and
+First Input Delay or FID are
+
+119
+00:05:14,670 --> 00:05:16,140
+our interactivity metrics--
+
+120
+00:05:16,140 --> 00:05:20,730
+really key for understanding
+how available the main thread is
+
+121
+00:05:20,730 --> 00:05:22,140
+to the user.
+
+122
+00:05:22,140 --> 00:05:24,450
+ELIZABETH SWEENY: OK,
+so all of these metrics
+
+123
+00:05:24,450 --> 00:05:26,460
+are awesome, obviously,
+but where can
+
+124
+00:05:26,460 --> 00:05:27,630
+we actually find them?
+
+125
+00:05:27,630 --> 00:05:29,040
+So all three of
+these metrics are
+
+126
+00:05:29,040 --> 00:05:31,350
+readily available in their
+respective lab and field
+
+127
+00:05:31,350 --> 00:05:32,340
+environments.
+
+128
+00:05:32,340 --> 00:05:34,710
+So as Paul was
+saying, because FCP
+
+129
+00:05:34,710 --> 00:05:37,260
+can be measured in both
+the lab and in the field
+
+130
+00:05:37,260 --> 00:05:39,610
+with real users, it's
+available across the board.
+
+131
+00:05:39,610 --> 00:05:42,210
+So that's in Lighthouse, in
+the Chrome User Experience
+
+132
+00:05:42,210 --> 00:05:46,060
+Report or CrUX, and
+there's a web perf API.
+
+133
+00:05:46,060 --> 00:05:48,150
+TTI is only
+available in the lab,
+
+134
+00:05:48,150 --> 00:05:50,910
+and so can only be accessed
+via Lighthouse and Page Speed
+
+135
+00:05:50,910 --> 00:05:52,260
+Insights.
+
+136
+00:05:52,260 --> 00:05:55,250
+Now, FID requires real
+user input to measure,
+
+137
+00:05:55,250 --> 00:05:57,270
+so it's available in CrUX.
+
+138
+00:05:57,270 --> 00:05:59,490
+And FID is exciting
+because it's actually
+
+139
+00:05:59,490 --> 00:06:02,820
+going to be coming to
+Chrome in Q4 or early Q1
+
+140
+00:06:02,820 --> 00:06:04,260
+as a web perf API.
+
+141
+00:06:04,260 --> 00:06:07,821
+So it should be
+able to give you a--
+
+142
+00:06:07,821 --> 00:06:09,570
+you can view it in a
+Performance Observer,
+
+143
+00:06:09,570 --> 00:06:11,852
+just as you get FCP today,
+which is kind of cool.
+
+144
+00:06:11,852 --> 00:06:12,810
+PAUL IRISH: Super cool.
+
+145
+00:06:12,810 --> 00:06:13,120
+ELIZABETH SWEENY: Yeah.
+
+146
+00:06:13,120 --> 00:06:15,840
+PAUL IRISH: Yeah, excited about
+standardization of this stuff.
+
+147
+00:06:15,840 --> 00:06:17,612
+It's really exciting.
+
+148
+00:06:17,612 --> 00:06:19,320
+ELIZABETH SWEENY: So
+for those of you who
+
+149
+00:06:19,320 --> 00:06:22,320
+aren't familiar with Lighthouse,
+and we know that it's awesome
+
+150
+00:06:22,320 --> 00:06:24,300
+and a lot of people
+know, but Lighthouse
+
+151
+00:06:24,300 --> 00:06:26,910
+is an open source automated
+tool for improving
+
+152
+00:06:26,910 --> 00:06:28,320
+the quality of web pages.
+
+153
+00:06:28,320 --> 00:06:30,910
+So you can run it
+against any web page,
+
+154
+00:06:30,910 --> 00:06:33,900
+and that's either public or
+requiring authentication,
+
+155
+00:06:33,900 --> 00:06:36,730
+and it has audits for
+performance, accessibility,
+
+156
+00:06:36,730 --> 00:06:39,422
+PWA, and more.
+
+157
+00:06:39,422 --> 00:06:41,130
+I'm excited to tell
+you about some things
+
+158
+00:06:41,130 --> 00:06:42,713
+that we've been doing
+with Lighthouse.
+
+159
+00:06:42,713 --> 00:06:46,110
+So one of those things
+is a PWA refactor.
+
+160
+00:06:46,110 --> 00:06:48,510
+So currently, there
+is a broad spectrum
+
+161
+00:06:48,510 --> 00:06:51,570
+of PWA definitions
+in the wild that
+
+162
+00:06:51,570 --> 00:06:54,420
+can make it difficult to
+identify whether or not,
+
+163
+00:06:54,420 --> 00:06:56,970
+definitively, you are a PWA.
+
+164
+00:06:56,970 --> 00:06:59,730
+And while our PWA checklist
+is absolutely wonderful,
+
+165
+00:06:59,730 --> 00:07:03,840
+and it gives you no helpful
+guidance towards what a PWA is,
+
+166
+00:07:03,840 --> 00:07:07,830
+we want a machine verifiable
+way to say yes or no.
+
+167
+00:07:07,830 --> 00:07:10,770
+So today, we're launching
+the new Lighthouse UI
+
+168
+00:07:10,770 --> 00:07:16,260
+with a more binary badging
+system for the PWA category.
+
+169
+00:07:16,260 --> 00:07:20,010
+And the badge groupings
+reflect that we want everybody
+
+170
+00:07:20,010 --> 00:07:22,260
+to be able to achieve the
+fast and reliable badge.
+
+171
+00:07:22,260 --> 00:07:24,570
+All experiences should
+be that whether or not
+
+172
+00:07:24,570 --> 00:07:25,890
+you're installable or not.
+
+173
+00:07:25,890 --> 00:07:30,180
+In order to actually become a
+full PWA and get that badge,
+
+174
+00:07:30,180 --> 00:07:35,262
+you have to successfully fulfill
+all audits in the categories.
+
+175
+00:07:35,262 --> 00:07:35,970
+PAUL IRISH: Yeah.
+
+176
+00:07:35,970 --> 00:07:38,106
+There's a few more things
+that we've been doing.
+
+177
+00:07:38,106 --> 00:07:43,200
+And in the new 4.0,
+4.0 alpha that's
+
+178
+00:07:43,200 --> 00:07:46,239
+coming out in Lighthouse,
+there's a few nice changes
+
+179
+00:07:46,239 --> 00:07:46,780
+that we made.
+
+180
+00:07:46,780 --> 00:07:47,970
+So one of the things that
+we've been working on
+
+181
+00:07:47,970 --> 00:07:49,553
+is reducing the
+amount of time that it
+
+182
+00:07:49,553 --> 00:07:51,320
+takes to run Lighthouse.
+
+183
+00:07:51,320 --> 00:07:53,550
+Nobody wants to sit around
+waiting for a long time.
+
+184
+00:07:53,550 --> 00:07:55,710
+So we're happy to report
+that the median runtime
+
+185
+00:07:55,710 --> 00:07:58,740
+of all Lighthouse runs that
+we're aware of has dropped down
+
+186
+00:07:58,740 --> 00:08:01,170
+about 50%, and up
+the 90th percentile,
+
+187
+00:08:01,170 --> 00:08:03,294
+we've also dropped
+this down about 66%.
+
+188
+00:08:03,294 --> 00:08:04,710
+So we're really
+jazzed about this.
+
+189
+00:08:04,710 --> 00:08:06,510
+We want to make
+sure that it's not
+
+190
+00:08:06,510 --> 00:08:10,910
+a long wait for you to get the
+insights that are available.
+
+191
+00:08:10,910 --> 00:08:13,200
+A few more changes--
+
+192
+00:08:13,200 --> 00:08:17,100
+we've changed how scores
+are kind of represented.
+
+193
+00:08:17,100 --> 00:08:19,800
+So if you've seen kind of at
+the top of a Lighthouse report
+
+194
+00:08:19,800 --> 00:08:23,130
+these score gauges,
+right beneath them
+
+195
+00:08:23,130 --> 00:08:25,230
+is this little scale, right?
+
+196
+00:08:25,230 --> 00:08:29,040
+So this is just how the numeric
+scale is mapped to a color.
+
+197
+00:08:29,040 --> 00:08:30,444
+We made a change here.
+
+198
+00:08:30,444 --> 00:08:31,860
+And I just want
+to point out, none
+
+199
+00:08:31,860 --> 00:08:35,010
+of the numerical scores
+and those calculations
+
+200
+00:08:35,010 --> 00:08:36,600
+have changed in this new update.
+
+201
+00:08:36,600 --> 00:08:40,840
+It's just deciding
+which color is applied.
+
+202
+00:08:40,840 --> 00:08:43,620
+So this is basically the change.
+
+203
+00:08:43,620 --> 00:08:48,660
+We've just adjusted how the
+various numerical scores
+
+204
+00:08:48,660 --> 00:08:49,610
+map to these colors.
+
+205
+00:08:49,610 --> 00:08:50,790
+ELIZABETH SWEENY: Yeah,
+so basically, we're
+
+206
+00:08:50,790 --> 00:08:53,040
+raising the bar about
+what our expectations are
+
+207
+00:08:53,040 --> 00:08:54,019
+for a performance site.
+
+208
+00:08:54,019 --> 00:08:56,310
+But if you're in the green,
+you should feel really good
+
+209
+00:08:56,310 --> 00:08:57,310
+about it.
+
+210
+00:08:57,310 --> 00:08:58,860
+PAUL IRISH: Yeah, it's good.
+
+211
+00:08:58,860 --> 00:08:59,670
+I know a lot of--
+
+212
+00:08:59,670 --> 00:09:02,820
+yeah, it's nice
+to go for the 100.
+
+213
+00:09:02,820 --> 00:09:04,770
+I love the 100.
+
+214
+00:09:04,770 --> 00:09:06,050
+I'm excited about it.
+
+215
+00:09:06,050 --> 00:09:08,834
+But, yeah, if you're in
+the green, you're good,
+
+216
+00:09:08,834 --> 00:09:10,250
+so I just want to
+make that clear.
+
+217
+00:09:10,250 --> 00:09:12,400
+All right, sweet.
+
+218
+00:09:12,400 --> 00:09:16,272
+Now, there's a few more changes,
+and this one about throttling--
+
+219
+00:09:16,272 --> 00:09:19,560
+when it comes the throttling,
+a good mobile-throttling preset
+
+220
+00:09:19,560 --> 00:09:23,880
+shouldn't necessarily map
+to the particular conditions
+
+221
+00:09:23,880 --> 00:09:27,620
+of a telecommunications
+system and its specification.
+
+222
+00:09:27,620 --> 00:09:31,770
+A good preset maps to
+what real users feel.
+
+223
+00:09:31,770 --> 00:09:33,390
+And so really,
+what we want to do
+
+224
+00:09:33,390 --> 00:09:35,910
+is we want to capture the
+latency and throughput
+
+225
+00:09:35,910 --> 00:09:39,090
+at the 80th percentile,
+the frustrating experiences
+
+226
+00:09:39,090 --> 00:09:43,160
+that you oftentimes experience.
+
+227
+00:09:43,160 --> 00:09:48,600
+And we want to keep pace
+with this measurement
+
+228
+00:09:48,600 --> 00:09:52,650
+as our global telecommunications
+infrastructure gets upgraded.
+
+229
+00:09:52,650 --> 00:09:55,320
+A lot of people are
+moving from 3G to 4G,
+
+230
+00:09:55,320 --> 00:09:57,980
+and we want to make sure
+that we capture that.
+
+231
+00:09:57,980 --> 00:10:02,910
+And so we're making a change,
+but actually not in the latency
+
+232
+00:10:02,910 --> 00:10:04,120
+and throughput numbers.
+
+233
+00:10:04,120 --> 00:10:06,010
+This is actually just
+a labeling change.
+
+234
+00:10:06,010 --> 00:10:09,810
+So wherever you
+see fast 3G today,
+
+235
+00:10:09,810 --> 00:10:12,120
+you'll be seeing slow 4G.
+
+236
+00:10:12,120 --> 00:10:15,540
+And it's actually because the
+preset that we use actually
+
+237
+00:10:15,540 --> 00:10:19,630
+captures a 4G experience
+more than a 3G experience.
+
+238
+00:10:19,630 --> 00:10:23,100
+So just FYI, same stuff--
+
+239
+00:10:23,100 --> 00:10:23,780
+different now.
+
+240
+00:10:23,780 --> 00:10:26,340
+It's all good.
+
+241
+00:10:26,340 --> 00:10:27,120
+What's next?
+
+242
+00:10:27,120 --> 00:10:30,000
+Oh, yeah, so there's a
+few other things going on
+
+243
+00:10:30,000 --> 00:10:32,610
+with Lighthouse, really nice
+projects making use of it.
+
+244
+00:10:32,610 --> 00:10:34,860
+First up, check out
+some of the projects
+
+245
+00:10:34,860 --> 00:10:37,020
+on GitHub taking
+advantage of Lighthouse,
+
+246
+00:10:37,020 --> 00:10:38,427
+some of the dependent projects.
+
+247
+00:10:38,427 --> 00:10:39,510
+Really cool stuff in here.
+
+248
+00:10:39,510 --> 00:10:42,210
+A lot happening in
+the recent months.
+
+249
+00:10:42,210 --> 00:10:47,070
+Many projects building systems
+around using Lighthouse
+
+250
+00:10:47,070 --> 00:10:48,930
+in a continuous
+integration experience
+
+251
+00:10:48,930 --> 00:10:51,570
+so that on every commit,
+you run Lighthouse, store
+
+252
+00:10:51,570 --> 00:10:52,890
+all that data, get graphs--
+
+253
+00:10:52,890 --> 00:10:56,594
+some really cool stuff happening
+in here, so take a look.
+
+254
+00:10:56,594 --> 00:10:58,260
+Lighthouse is also
+available in a number
+
+255
+00:10:58,260 --> 00:11:01,660
+of different commercial
+products as well.
+
+256
+00:11:01,660 --> 00:11:05,340
+First is Calibre--
+fantastic stuff here.
+
+257
+00:11:05,340 --> 00:11:07,240
+Treo is another one.
+
+258
+00:11:07,240 --> 00:11:11,460
+I think this is my
+site, which is doing OK.
+
+259
+00:11:11,460 --> 00:11:14,580
+Accessibility actually
+does need some work,
+
+260
+00:11:14,580 --> 00:11:16,040
+but there's some nice stuff.
+
+261
+00:11:16,040 --> 00:11:17,520
+And the last is
+SpeedCurve, which
+
+262
+00:11:17,520 --> 00:11:20,400
+actually just added
+support for Lighthouse
+
+263
+00:11:20,400 --> 00:11:21,370
+just a few months ago.
+
+264
+00:11:21,370 --> 00:11:23,280
+So we're excited
+to see Lighthouse
+
+265
+00:11:23,280 --> 00:11:26,667
+becoming part of the production
+monitoring kind of ecosystem.
+
+266
+00:11:26,667 --> 00:11:28,500
+ELIZABETH SWEENY: And
+even internally, we're
+
+267
+00:11:28,500 --> 00:11:30,910
+excited to see where
+Lighthouse is being integrated.
+
+268
+00:11:30,910 --> 00:11:33,840
+So one of those examples, as
+was announced in the keynote,
+
+269
+00:11:33,840 --> 00:11:36,300
+is the new site web.dev.
+
+270
+00:11:36,300 --> 00:11:39,480
+And it's exciting
+to be integrating it
+
+271
+00:11:39,480 --> 00:11:42,540
+with really prescriptive,
+actionable guidance.
+
+272
+00:11:42,540 --> 00:11:45,420
+And you can run
+Lighthouse with any URL,
+
+273
+00:11:45,420 --> 00:11:48,990
+and it will provide you with
+a prioritized to-do list
+
+274
+00:11:48,990 --> 00:11:51,690
+with that guidance
+and interactive code
+
+275
+00:11:51,690 --> 00:11:55,140
+labs for the specific things
+that you need to work on.
+
+276
+00:11:55,140 --> 00:11:58,230
+What's so exciting about this
+is that for the first time,
+
+277
+00:11:58,230 --> 00:12:02,698
+tooling is directly integrated
+with the documentation.
+
+278
+00:12:02,698 --> 00:12:04,410
+PAUL IRISH: Yeah,
+that's pretty hot.
+
+279
+00:12:04,410 --> 00:12:06,540
+ELIZABETH SWEENY: And we
+wanted to also call out
+
+280
+00:12:06,540 --> 00:12:09,000
+another wonderful
+partner who has done
+
+281
+00:12:09,000 --> 00:12:11,070
+a good job of using Lighthouse.
+
+282
+00:12:11,070 --> 00:12:16,020
+So Squarespace was able to use
+Lighthouse as an out-of-the-box
+
+283
+00:12:16,020 --> 00:12:18,090
+auditing and reporting
+system to build on top of.
+
+284
+00:12:18,090 --> 00:12:20,700
+And it allowed them to
+improve their 50th percentile
+
+285
+00:12:20,700 --> 00:12:23,820
+and 95th percentile TTI
+by over three times,
+
+286
+00:12:23,820 --> 00:12:25,680
+so we were super
+excited by that.
+
+287
+00:12:25,680 --> 00:12:28,200
+They used it to generate
+traces and dig that deep
+
+288
+00:12:28,200 --> 00:12:30,600
+into specific problems
+as they happened,
+
+289
+00:12:30,600 --> 00:12:34,920
+as opposed to post progression.
+
+290
+00:12:34,920 --> 00:12:38,370
+So now, we are going to talk
+a little bit about the Chrome
+
+291
+00:12:38,370 --> 00:12:40,320
+User Experience
+Report, or as it says,
+
+292
+00:12:40,320 --> 00:12:43,920
+CrUX, as I've already
+said, I think, three times.
+
+293
+00:12:43,920 --> 00:12:46,500
+CrUX actually provides
+user experience metrics
+
+294
+00:12:46,500 --> 00:12:51,030
+for how real world Chrome users
+experience popular destinations
+
+295
+00:12:51,030 --> 00:12:51,880
+on the web.
+
+296
+00:12:51,880 --> 00:12:54,210
+So it's a data set that
+is powered by real user
+
+297
+00:12:54,210 --> 00:12:58,890
+measurement by key user
+metrics across the public web,
+
+298
+00:12:58,890 --> 00:13:02,842
+and it's aggregated anonymously
+from users who have opted in.
+
+299
+00:13:02,842 --> 00:13:04,800
+We're excited to talk
+about some of the updates
+
+300
+00:13:04,800 --> 00:13:06,487
+that we've done here.
+
+301
+00:13:06,487 --> 00:13:08,070
+One of the things,
+and it was actually
+
+302
+00:13:08,070 --> 00:13:11,350
+featured in [? Aanchal's ?] talk
+earlier, is regional analysis.
+
+303
+00:13:11,350 --> 00:13:13,890
+So we heard loud and
+clear from developers
+
+304
+00:13:13,890 --> 00:13:16,140
+that we needed to be
+able to break down
+
+305
+00:13:16,140 --> 00:13:18,450
+this data set in a
+country specific way,
+
+306
+00:13:18,450 --> 00:13:19,590
+and now you can do that.
+
+307
+00:13:19,590 --> 00:13:22,800
+So via BigQuery, which is
+where you can interact and play
+
+308
+00:13:22,800 --> 00:13:26,400
+with this data set you can
+now get separate country
+
+309
+00:13:26,400 --> 00:13:29,135
+specific data sets
+to pull it apart.
+
+310
+00:13:29,135 --> 00:13:30,510
+PAUL IRISH: And,
+yeah, so this is
+
+311
+00:13:30,510 --> 00:13:32,260
+just-- this is how
+you've been interacting
+
+312
+00:13:32,260 --> 00:13:36,600
+with Chrome UX Report in the
+past is working with BigQuery.
+
+313
+00:13:36,600 --> 00:13:39,440
+But I heard that there's like
+a nice, new, shiny thing?
+
+314
+00:13:39,440 --> 00:13:40,580
+ELIZABETH SWEENY: Yeah.
+
+315
+00:13:40,580 --> 00:13:42,480
+You can get it way easier now.
+
+316
+00:13:42,480 --> 00:13:45,150
+So the brand new
+CrUX dashboard, which
+
+317
+00:13:45,150 --> 00:13:46,980
+was announced just
+a bit ago, it allows
+
+318
+00:13:46,980 --> 00:13:50,070
+you to understand how an
+origin's performance evolves
+
+319
+00:13:50,070 --> 00:13:51,340
+over time.
+
+320
+00:13:51,340 --> 00:13:53,010
+And so it's built
+on Data Studio.
+
+321
+00:13:53,010 --> 00:13:55,440
+It's much more
+easily accessible,
+
+322
+00:13:55,440 --> 00:13:58,740
+and it can be easily
+customized and shared
+
+323
+00:13:58,740 --> 00:14:00,200
+with everyone on your team.
+
+324
+00:14:00,200 --> 00:14:02,370
+And it doesn't require you
+to write your own script
+
+325
+00:14:02,370 --> 00:14:04,230
+on BigQuery to access it.
+
+326
+00:14:04,230 --> 00:14:06,480
+And it's automatically synced
+with all the latest data
+
+327
+00:14:06,480 --> 00:14:09,430
+sets, so you're good to go.
+
+328
+00:14:09,430 --> 00:14:11,730
+Also, to ensure consistency
+across all of our tooling,
+
+329
+00:14:11,730 --> 00:14:14,040
+as we've mentioned,
+that's a huge goal for us,
+
+330
+00:14:14,040 --> 00:14:20,160
+FID is now launched as an
+experimental metric in CrUX.
+
+331
+00:14:20,160 --> 00:14:23,550
+So when we announced last
+year, the data set only
+
+332
+00:14:23,550 --> 00:14:28,510
+had 10,000 origins, and now
+we are at over 4 million.
+
+333
+00:14:28,510 --> 00:14:32,460
+And if you are excited
+to see your websites--
+
+334
+00:14:32,460 --> 00:14:35,500
+PAUL IRISH: I am excited to see
+paulirish.com in this data set.
+
+335
+00:14:35,500 --> 00:14:35,780
+ELIZABETH SWEENY: Yeah.
+
+336
+00:14:35,780 --> 00:14:37,300
+PAUL IRISH: Because it's
+not, and it would be great.
+
+337
+00:14:37,300 --> 00:14:39,050
+ELIZABETH SWEENY: Yeah,
+we're working hard
+
+338
+00:14:39,050 --> 00:14:41,080
+to improve it, and
+expand quickly,
+
+339
+00:14:41,080 --> 00:14:42,570
+and so if you're
+excited, check in
+
+340
+00:14:42,570 --> 00:14:44,570
+soon because we are
+working hard to move fast.
+
+341
+00:14:44,570 --> 00:14:46,490
+PAUL IRISH: Awesome.
+
+342
+00:14:46,490 --> 00:14:50,310
+All right, so one of the things
+that's really important to us
+
+343
+00:14:50,310 --> 00:14:56,060
+is to have a unified story
+between our performance tools.
+
+344
+00:14:56,060 --> 00:14:58,740
+So, OK, so hand raising time.
+
+345
+00:14:58,740 --> 00:15:00,908
+Raise your hand if
+you've used Lighthouse.
+
+346
+00:15:00,908 --> 00:15:02,700
+All right, yes.
+
+347
+00:15:02,700 --> 00:15:05,760
+Raise your hand if you've
+used Page Speed Insights.
+
+348
+00:15:05,760 --> 00:15:07,500
+Yes, of course.
+
+349
+00:15:07,500 --> 00:15:09,540
+Raise your hand
+if you've noticed
+
+350
+00:15:09,540 --> 00:15:11,910
+that what you're seeing
+in Lighthouse and Page
+
+351
+00:15:11,910 --> 00:15:13,380
+Speed Insights
+doesn't necessarily
+
+352
+00:15:13,380 --> 00:15:15,930
+be telling the same story.
+
+353
+00:15:15,930 --> 00:15:18,100
+Yeah, I'm there with you too.
+
+354
+00:15:18,100 --> 00:15:20,970
+Now, we saw this was
+a bit of an issue,
+
+355
+00:15:20,970 --> 00:15:25,620
+and we wanted to improve it
+because we don't want advice
+
+356
+00:15:25,620 --> 00:15:27,810
+from two different tools
+that Google provides
+
+357
+00:15:27,810 --> 00:15:30,100
+that is kind of conflicting.
+
+358
+00:15:30,100 --> 00:15:32,310
+So we've been working
+hard and collaborating
+
+359
+00:15:32,310 --> 00:15:34,870
+with the Search team on this.
+
+360
+00:15:34,870 --> 00:15:37,500
+And so today, we're
+excited to announce
+
+361
+00:15:37,500 --> 00:15:40,080
+that there's a brand new
+next generation of Page Speed
+
+362
+00:15:40,080 --> 00:15:44,224
+Insights now powered
+by Lighthouse.
+
+363
+00:15:44,224 --> 00:15:45,640
+And this is really
+exciting stuff.
+
+364
+00:15:45,640 --> 00:15:47,834
+So now, if you use
+Page Speed Insights,
+
+365
+00:15:47,834 --> 00:15:50,250
+all of the data that you've
+been seeing in Lighthouse when
+
+366
+00:15:50,250 --> 00:15:53,400
+it comes to performance
+is now in the report.
+
+367
+00:15:53,400 --> 00:15:56,490
+All of the metrics, and
+[? op trees, ?] and diagnostics
+
+368
+00:15:56,490 --> 00:15:57,840
+all right there.
+
+369
+00:15:57,840 --> 00:16:01,170
+You also see the top
+score that you have been
+
+370
+00:16:01,170 --> 00:16:02,550
+seeing in Page Speed Insights.
+
+371
+00:16:02,550 --> 00:16:05,770
+That score is the Lighthouse
+performance category score,
+
+372
+00:16:05,770 --> 00:16:08,740
+so kind of speaking
+the same language.
+
+373
+00:16:08,740 --> 00:16:12,060
+And still, if you've really
+enjoyed kind of the Chrome UX
+
+374
+00:16:12,060 --> 00:16:15,990
+Report data that has
+been available inside
+
+375
+00:16:15,990 --> 00:16:18,330
+of Page Speed Insights,
+that's there too.
+
+376
+00:16:18,330 --> 00:16:21,580
+I'm going to play a quick little
+screencast of how this looks.
+
+377
+00:16:21,580 --> 00:16:25,310
+So let's take a
+look at Chrome.com
+
+378
+00:16:25,310 --> 00:16:27,170
+in Page Speed Insights.
+
+379
+00:16:27,170 --> 00:16:28,840
+We're going.
+
+380
+00:16:28,840 --> 00:16:30,060
+Come on.
+
+381
+00:16:30,060 --> 00:16:30,990
+Yeah.
+
+382
+00:16:30,990 --> 00:16:32,700
+Great, good, awesome.
+
+383
+00:16:32,700 --> 00:16:33,610
+This is in real time.
+
+384
+00:16:33,610 --> 00:16:35,550
+I did not speed
+anything up, so we've
+
+385
+00:16:35,550 --> 00:16:37,560
+got to wait for the latency.
+
+386
+00:16:37,560 --> 00:16:39,019
+So, yeah, so here's--
+
+387
+00:16:39,019 --> 00:16:40,560
+this should look
+very fairly familiar
+
+388
+00:16:40,560 --> 00:16:42,510
+if you've used Lighthouse.
+
+389
+00:16:42,510 --> 00:16:44,850
+But up at the top,
+we have field data.
+
+390
+00:16:44,850 --> 00:16:46,770
+And by default,
+paid speed on sites
+
+391
+00:16:46,770 --> 00:16:51,840
+runs both analysis on mobile
+and desktop at the same time,
+
+392
+00:16:51,840 --> 00:16:54,620
+delivers you the
+results simultaneously.
+
+393
+00:16:54,620 --> 00:16:56,830
+So you can check that out.
+
+394
+00:16:56,830 --> 00:17:00,130
+So this is live today,
+so go check it out.
+
+395
+00:17:00,130 --> 00:17:00,990
+Take a look.
+
+396
+00:17:00,990 --> 00:17:04,927
+Give us your feedback I'm
+excited to have this out there.
+
+397
+00:17:04,927 --> 00:17:05,510
+AUDIENCE: Woo!
+
+398
+00:17:05,510 --> 00:17:06,579
+PAUL IRISH: All right, thanks.
+
+399
+00:17:06,579 --> 00:17:08,250
+Oh, yeah, I mean, you
+can clap if you want.
+
+400
+00:17:08,250 --> 00:17:09,083
+I mean, that's cool.
+
+401
+00:17:09,083 --> 00:17:11,310
+[APPLAUSE]
+
+402
+00:17:11,310 --> 00:17:13,569
+
+
+403
+00:17:13,569 --> 00:17:17,500
+All right, and if you've
+ever actually opened up--
+
+404
+00:17:17,500 --> 00:17:19,204
+I don't know.
+
+405
+00:17:19,204 --> 00:17:21,700
+I have a tendency of opening
+up the dev tools on basically
+
+406
+00:17:21,700 --> 00:17:23,129
+every site that I do.
+
+407
+00:17:23,129 --> 00:17:25,630
+You know, it's just a habit.
+
+408
+00:17:25,630 --> 00:17:28,719
+So I opened up the dev tools
+on Page Speed Insights, and lo
+
+409
+00:17:28,719 --> 00:17:31,780
+and behold, it's just
+a thin web app that
+
+410
+00:17:31,780 --> 00:17:34,585
+makes a call to an
+API, a RESTful API,
+
+411
+00:17:34,585 --> 00:17:38,650
+and it's actually the
+Page Speed Insights API.
+
+412
+00:17:38,650 --> 00:17:42,670
+So we were like, well,
+this kind of means
+
+413
+00:17:42,670 --> 00:17:44,170
+that in order to
+do this, then we're
+
+414
+00:17:44,170 --> 00:17:45,836
+going to have to have
+all the Lighthouse
+
+415
+00:17:45,836 --> 00:17:48,192
+data available over the API.
+
+416
+00:17:48,192 --> 00:17:49,150
+So that's what we have.
+
+417
+00:17:49,150 --> 00:17:53,770
+The new Page Speed API V5, we
+consider it the Lighthouse API
+
+418
+00:17:53,770 --> 00:17:55,150
+V1.
+
+419
+00:17:55,150 --> 00:17:58,660
+All the same Lighthouse data,
+including all categories, not
+
+420
+00:17:58,660 --> 00:18:00,940
+just performance,
+but all of them.
+
+421
+00:18:00,940 --> 00:18:02,315
+And all the work
+is done for you.
+
+422
+00:18:02,315 --> 00:18:06,260
+No waiting for your own Chrome
+to reload and do the analysis.
+
+423
+00:18:06,260 --> 00:18:08,660
+So we'll do the work for you.
+
+424
+00:18:08,660 --> 00:18:16,300
+And the Chrome UX Report data,
+that summary is still in--
+
+425
+00:18:16,300 --> 00:18:18,250
+it's added into the response.
+
+426
+00:18:18,250 --> 00:18:20,950
+That's the word.
+
+427
+00:18:20,950 --> 00:18:23,800
+Basic usage-- I don't know if
+you'd use it from fetch client
+
+428
+00:18:23,800 --> 00:18:27,760
+side, but if you did, it would
+look something like this.
+
+429
+00:18:27,760 --> 00:18:28,870
+Well, just pass the URL.
+
+430
+00:18:28,870 --> 00:18:30,870
+There's a few other
+parameters customize things.
+
+431
+00:18:30,870 --> 00:18:33,730
+Get back the result.
+Looks a little like this.
+
+432
+00:18:33,730 --> 00:18:36,670
+There's a Lighthouse result full
+of the exact same Lighthouse
+
+433
+00:18:36,670 --> 00:18:40,510
+data that you'd be getting
+by running Lighthouse
+
+434
+00:18:40,510 --> 00:18:41,640
+anywhere else.
+
+435
+00:18:41,640 --> 00:18:44,020
+And inside that loading
+experience property,
+
+436
+00:18:44,020 --> 00:18:46,630
+that is the Chrome
+UX Report stuff.
+
+437
+00:18:46,630 --> 00:18:49,270
+So really cool, check it out.
+
+438
+00:18:49,270 --> 00:18:54,820
+Details and documentations,
+reference guides here--
+
+439
+00:18:54,820 --> 00:18:58,180
+Page Speed Insights V5.
+
+440
+00:18:58,180 --> 00:18:58,705
+All right.
+
+441
+00:18:58,705 --> 00:19:00,580
+ELIZABETH SWEENY: And
+so this is really cool.
+
+442
+00:19:00,580 --> 00:19:01,090
+PAUL IRISH: It's really cool.
+
+443
+00:19:01,090 --> 00:19:03,520
+ELIZABETH SWEENY: Yeah, it
+means all unified analysis,
+
+444
+00:19:03,520 --> 00:19:04,300
+and it's the same.
+
+445
+00:19:04,300 --> 00:19:06,280
+So when you're measuring,
+you're optimizing.
+
+446
+00:19:06,280 --> 00:19:07,660
+You're monitoring.
+
+447
+00:19:07,660 --> 00:19:10,570
+If you want to start making
+changes and testing things out,
+
+448
+00:19:10,570 --> 00:19:12,560
+there's a place for
+you to go for that.
+
+449
+00:19:12,560 --> 00:19:15,970
+So that's great, and we have
+all of these things aligned,
+
+450
+00:19:15,970 --> 00:19:17,942
+but where do you go for what?
+
+451
+00:19:17,942 --> 00:19:19,150
+And when should you go there?
+
+452
+00:19:19,150 --> 00:19:24,940
+
+
+453
+00:19:24,940 --> 00:19:27,070
+If you need a snapshot
+of a page's performance,
+
+454
+00:19:27,070 --> 00:19:29,350
+as Paul said earlier,
+Page Speed Insights
+
+455
+00:19:29,350 --> 00:19:31,960
+is a good default to go
+to because it provides you
+
+456
+00:19:31,960 --> 00:19:35,530
+with both the field and the lab
+and gives you a good benchmark.
+
+457
+00:19:35,530 --> 00:19:38,200
+If you want to make
+changes, test, and iterate,
+
+458
+00:19:38,200 --> 00:19:40,390
+and really have
+that fast feedback,
+
+459
+00:19:40,390 --> 00:19:42,820
+then the Chrome extension,
+the audits panel,
+
+460
+00:19:42,820 --> 00:19:45,220
+or operating within the
+command line interface
+
+461
+00:19:45,220 --> 00:19:47,750
+is going to be a
+good place to go.
+
+462
+00:19:47,750 --> 00:19:51,340
+And finally, if you want to set
+up production monitoring or set
+
+463
+00:19:51,340 --> 00:19:54,590
+budgets, then the API is
+going to be fantastic.
+
+464
+00:19:54,590 --> 00:19:57,070
+But across the entire
+development lifecycle,
+
+465
+00:19:57,070 --> 00:19:59,860
+you now are completely
+powered by Lighthouse, which
+
+466
+00:19:59,860 --> 00:20:01,940
+we're super excited about.
+
+467
+00:20:01,940 --> 00:20:03,370
+PAUL IRISH: Yeah.
+
+468
+00:20:03,370 --> 00:20:06,550
+So to wrap up, well,
+I guess if there's
+
+469
+00:20:06,550 --> 00:20:10,150
+one thing or four things that
+you take away from this--
+
+470
+00:20:10,150 --> 00:20:13,780
+first up, measure
+well, measure often.
+
+471
+00:20:13,780 --> 00:20:15,610
+You can't approve what
+you don't measure.
+
+472
+00:20:15,610 --> 00:20:18,140
+ELIZABETH SWEENY: Yep.
+
+473
+00:20:18,140 --> 00:20:20,210
+You can now use the
+Page Speed Insights
+
+474
+00:20:20,210 --> 00:20:23,990
+for quick Lighthouse analysis.
+
+475
+00:20:23,990 --> 00:20:26,810
+PAUL IRISH: The CrUX
+real world data really
+
+476
+00:20:26,810 --> 00:20:30,410
+helps round out
+your view of what's
+
+477
+00:20:30,410 --> 00:20:33,170
+happening with your users
+and really understand
+
+478
+00:20:33,170 --> 00:20:35,780
+different percentiles
+where users are
+
+479
+00:20:35,780 --> 00:20:37,940
+feeling pain and frustration.
+
+480
+00:20:37,940 --> 00:20:40,280
+ELIZABETH SWEENY: And finally,
+to evaluate performance
+
+481
+00:20:40,280 --> 00:20:43,585
+at every stage, which is
+really important to us,
+
+482
+00:20:43,585 --> 00:20:47,260
+you can now check out
+the API, so go use it.
+
+483
+00:20:47,260 --> 00:20:48,990
+PAUL IRISH: All right,
+I think that's it.
+
+484
+00:20:48,990 --> 00:20:49,760
+Thank you guys very much.
+
+485
+00:20:49,760 --> 00:20:50,926
+ELIZABETH SWEENY: Thank you.
+
+486
+00:20:50,926 --> 00:20:53,110
+[MUSIC PLAYING]
+
+487
+00:20:53,110 --> 00:21:00,703

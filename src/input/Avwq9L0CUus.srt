@@ -1,0 +1,137 @@
+1
+00:00:00,000 --> 00:00:03,776
+[MUSIC PLAYING]
+
+2
+00:00:03,776 --> 00:00:05,200
+SPEAKER 1: I think that's on.
+
+3
+00:00:05,200 --> 00:00:08,480
+Google have asked me if I'll do
+a behind-the-scenes of Chrome
+
+4
+00:00:08,480 --> 00:00:08,980
+Dev Summit.
+
+5
+00:00:08,980 --> 00:00:12,300
+And they've sent me this bag.
+
+6
+00:00:12,300 --> 00:00:13,990
+I guess it's some
+kind of camera.
+
+7
+00:00:13,990 --> 00:00:14,620
+Oh yes.
+
+8
+00:00:14,620 --> 00:00:18,295
+Let's go to Chrome Dev Summit.
+
+9
+00:00:18,295 --> 00:00:48,212
+[MUSIC PLAYING]
+
+10
+00:00:48,212 --> 00:00:50,670
+SPEAKER 2: Hello, I'm Timothy
+Jordan for The Developer Show
+
+11
+00:00:50,670 --> 00:00:54,330
+here at the Chrome Dev
+Summit at the Yerba Buena
+
+12
+00:00:54,330 --> 00:00:55,200
+Center of the Arts.
+
+13
+00:00:55,200 --> 00:00:56,340
+SPEAKER 1: Timothy Jordan.
+
+14
+00:00:56,340 --> 00:00:56,930
+SPEAKER 2: Hey, Paul.
+
+15
+00:00:56,930 --> 00:00:57,120
+SPEAKER 1: Hey.
+
+16
+00:00:57,120 --> 00:00:58,050
+SPEAKER 2: How are you doing?
+
+17
+00:00:58,050 --> 00:00:58,440
+SPEAKER 1: I'm good.
+
+18
+00:00:58,440 --> 00:01:00,720
+I'm doing a behind-the-scenes
+video for Chrome.
+
+19
+00:01:00,720 --> 00:01:04,480
+SPEAKER 2: I'm doing a top five
+recap video for the Chrome Dev
+
+20
+00:01:04,480 --> 00:01:04,980
+Summit.
+
+21
+00:01:04,980 --> 00:01:06,890
+Notice the camera.
+
+22
+00:01:06,890 --> 00:01:08,580
+SPEAKER 1: Awkward.
+
+23
+00:01:08,580 --> 00:01:09,540
+I'm running late.
+
+24
+00:01:09,540 --> 00:01:10,995
+I'm supposed to be on stage.
+
+25
+00:01:10,995 --> 00:01:12,870
+Do you know where the
+stage actually is here?
+
+26
+00:01:12,870 --> 00:01:15,480
+
+
+27
+00:01:15,480 --> 00:01:17,322
+SPEAKER 2: No, Paul, I do not.
+
+28
+00:01:17,322 --> 00:01:18,030
+SPEAKER 1: Go in.
+
+29
+00:01:18,030 --> 00:01:21,630
+
+
+30
+00:01:21,630 --> 00:01:23,430
+[CHEERING]
+
+31
+00:01:23,430 --> 00:01:25,830
+
+
+32
+00:01:25,830 --> 00:01:29,180
+[MUSIC PLAYING]
+
+33
+00:01:29,180 --> 00:01:35,433

@@ -1,0 +1,2521 @@
+1
+00:00:00,000 --> 00:00:01,872
+[MUSIC PLAYING]
+
+2
+00:00:01,872 --> 00:00:07,020
+
+
+3
+00:00:07,020 --> 00:00:09,120
+DAN DASCALESCU: I'm
+here with Stephen Barber
+
+4
+00:00:09,120 --> 00:00:10,507
+who's an engineer on Chrome OS.
+
+5
+00:00:10,507 --> 00:00:11,590
+So good evening, everyone.
+
+6
+00:00:11,590 --> 00:00:12,980
+I'm Dan Dascalescu.
+
+7
+00:00:12,980 --> 00:00:15,190
+I'm a developer
+advocate at Google,
+
+8
+00:00:15,190 --> 00:00:17,490
+and tonight, we'd like
+to talk to you about why
+
+9
+00:00:17,490 --> 00:00:21,870
+Chrome OS is an awesome choice
+as a web developer platform.
+
+10
+00:00:21,870 --> 00:00:24,240
+And there are two main
+reasons for why you
+
+11
+00:00:24,240 --> 00:00:26,010
+should develop on Chrome OS.
+
+12
+00:00:26,010 --> 00:00:29,790
+The first is that Chrome OS is
+an unprecedented convergence
+
+13
+00:00:29,790 --> 00:00:31,290
+of technology stacks.
+
+14
+00:00:31,290 --> 00:00:33,120
+It brings together
+web applications
+
+15
+00:00:33,120 --> 00:00:36,690
+because it's an OS that
+has a browser as its UI,
+
+16
+00:00:36,690 --> 00:00:38,924
+but it can also
+run Android apps,
+
+17
+00:00:38,924 --> 00:00:40,340
+and with full
+Google Play support,
+
+18
+00:00:40,340 --> 00:00:42,048
+you can install Android
+browsers that you
+
+19
+00:00:42,048 --> 00:00:43,970
+can test your web apps on.
+
+20
+00:00:43,970 --> 00:00:47,040
+And starting with Chrome
+69, you can install Linux
+
+21
+00:00:47,040 --> 00:00:49,500
+and you can run your familiar
+development to a workflow
+
+22
+00:00:49,500 --> 00:00:51,720
+there.
+
+23
+00:00:51,720 --> 00:00:54,660
+And this is a sneak preview
+of what's coming in the talk.
+
+24
+00:00:54,660 --> 00:00:57,840
+You can see here a terminal,
+an ID, a couple of browsers,
+
+25
+00:00:57,840 --> 00:01:01,260
+and, of course, a PWA.
+
+26
+00:01:01,260 --> 00:01:04,019
+So the second reason why you
+should develop on Chrome OS
+
+27
+00:01:04,019 --> 00:01:06,150
+and target Chrome
+OS is that it powers
+
+28
+00:01:06,150 --> 00:01:08,500
+a very wide variety of devices.
+
+29
+00:01:08,500 --> 00:01:11,670
+You might have seen Chrome
+OS laptops or Chromebooks
+
+30
+00:01:11,670 --> 00:01:14,790
+from a variety of
+manufacturers, and also, you
+
+31
+00:01:14,790 --> 00:01:17,130
+might have seen some
+convertibles, again,
+
+32
+00:01:17,130 --> 00:01:20,640
+from various manufacturers,
+and those all-in-ones,
+
+33
+00:01:20,640 --> 00:01:22,650
+like the LG Chromebase.
+
+34
+00:01:22,650 --> 00:01:25,710
+And the small form factor PCs--
+
+35
+00:01:25,710 --> 00:01:29,730
+this is the Chromebox,
+which was built by Samsung--
+
+36
+00:01:29,730 --> 00:01:30,480
+2012.
+
+37
+00:01:30,480 --> 00:01:34,500
+And then HP, Asus, and other
+manufacturers followed suit.
+
+38
+00:01:34,500 --> 00:01:38,670
+And this is the
+mini form factor PC.
+
+39
+00:01:38,670 --> 00:01:39,810
+It weighs 3 ounces.
+
+40
+00:01:39,810 --> 00:01:42,637
+You plug it into the
+HDMI port of a display,
+
+41
+00:01:42,637 --> 00:01:44,220
+and it turns that
+one into a computer.
+
+42
+00:01:44,220 --> 00:01:49,200
+You can attach a mouse or a
+keyboard via USB or Bluetooth.
+
+43
+00:01:49,200 --> 00:01:51,576
+And then there
+are mega displays.
+
+44
+00:01:51,576 --> 00:01:52,950
+This is the
+Chromebox Commercial.
+
+45
+00:01:52,950 --> 00:01:56,610
+It powers digital signage
+or kiosk displays.
+
+46
+00:01:56,610 --> 00:01:58,530
+And this summer, we
+saw the first tablet
+
+47
+00:01:58,530 --> 00:02:00,270
+powered by Chrome OS.
+
+48
+00:02:00,270 --> 00:02:02,400
+This is the Acer Chrome Tab 10.
+
+49
+00:02:02,400 --> 00:02:05,968
+And of course, Google has
+our own lineage of devices.
+
+50
+00:02:05,968 --> 00:02:08,009
+This is the Pixelbook,
+the flagship device, which
+
+51
+00:02:08,009 --> 00:02:10,320
+is at 75% off for you guys.
+
+52
+00:02:10,320 --> 00:02:13,210
+
+
+53
+00:02:13,210 --> 00:02:14,970
+Yeah.
+
+54
+00:02:14,970 --> 00:02:17,790
+And our latest offering,
+the Pixel Slate,
+
+55
+00:02:17,790 --> 00:02:21,250
+which was announced last month.
+
+56
+00:02:21,250 --> 00:02:23,450
+So in one slide, why
+target Chrome OS?
+
+57
+00:02:23,450 --> 00:02:25,890
+Because of a large and
+increasing market share,
+
+58
+00:02:25,890 --> 00:02:30,120
+you probably heard that we
+have a very extensive presence
+
+59
+00:02:30,120 --> 00:02:31,050
+in the EDU space.
+
+60
+00:02:31,050 --> 00:02:33,510
+Chromebooks are
+very popular there.
+
+61
+00:02:33,510 --> 00:02:35,070
+Then if you optimize
+for Chrome OS,
+
+62
+00:02:35,070 --> 00:02:38,340
+you'll actually target a variety
+of these convertible form
+
+63
+00:02:38,340 --> 00:02:41,910
+factors-- devices
+that have or have not
+
+64
+00:02:41,910 --> 00:02:46,180
+got a keyboard or a mouse or a
+stylus or even a touch screen.
+
+65
+00:02:46,180 --> 00:02:49,920
+So this could also future
+proof you from devices
+
+66
+00:02:49,920 --> 00:02:52,060
+that haven't been invented yet.
+
+67
+00:02:52,060 --> 00:02:54,090
+Though after I put
+this slide together,
+
+68
+00:02:54,090 --> 00:02:57,720
+Samsung actually released
+a foldable screen phone
+
+69
+00:02:57,720 --> 00:02:59,310
+that becomes a tablet.
+
+70
+00:02:59,310 --> 00:03:01,020
+So the future is here already.
+
+71
+00:03:01,020 --> 00:03:03,610
+
+
+72
+00:03:03,610 --> 00:03:06,660
+So again, in one slide,
+the reason is diversity.
+
+73
+00:03:06,660 --> 00:03:08,940
+You can develop apps
+on Linux and test them
+
+74
+00:03:08,940 --> 00:03:12,630
+on a variety of Android
+and Linux browsers.
+
+75
+00:03:12,630 --> 00:03:14,724
+So Chrome OS brings together
+your own development
+
+76
+00:03:14,724 --> 00:03:16,140
+workflow-- the one
+you're familiar
+
+77
+00:03:16,140 --> 00:03:18,340
+with-- your own
+development tools,
+
+78
+00:03:18,340 --> 00:03:20,700
+a variety of form factors,
+from mobile to tablet
+
+79
+00:03:20,700 --> 00:03:27,160
+to convertible to desktop, and
+browsers on Android and Linux.
+
+80
+00:03:27,160 --> 00:03:28,950
+And there are quite
+a few of them--
+
+81
+00:03:28,950 --> 00:03:32,340
+Edge and Samsung Internet
+work on the Pixel Slate.
+
+82
+00:03:32,340 --> 00:03:35,190
+The others should be able to
+be installed on Google Pixel,
+
+83
+00:03:35,190 --> 00:03:36,780
+as well.
+
+84
+00:03:36,780 --> 00:03:41,920
+And this is Edge and UC
+browser and Firefox running
+
+85
+00:03:41,920 --> 00:03:44,130
+on the same Chrome OS machine.
+
+86
+00:03:44,130 --> 00:03:47,380
+Then you can install
+some desktop browsers,
+
+87
+00:03:47,380 --> 00:03:49,680
+so you can test, in
+full desktop, Firefox,
+
+88
+00:03:49,680 --> 00:03:53,080
+if you install the
+Linux version of it.
+
+89
+00:03:53,080 --> 00:03:55,910
+This is Firefox and
+this is Epiphany, a.k.a.
+
+90
+00:03:55,910 --> 00:03:57,240
+GNOME Web.
+
+91
+00:03:57,240 --> 00:04:01,370
+And you can also install Docker,
+which, I've heard, many of you
+
+92
+00:04:01,370 --> 00:04:03,820
+are interested during the forum.
+
+93
+00:04:03,820 --> 00:04:05,380
+This is unofficial
+support for it,
+
+94
+00:04:05,380 --> 00:04:07,680
+but there is a thread
+on Reddit if you
+
+95
+00:04:07,680 --> 00:04:13,450
+search for Docker now working
+in the [INAUDIBLE] sub-reddit.
+
+96
+00:04:13,450 --> 00:04:15,710
+You'll find this thread.
+
+97
+00:04:15,710 --> 00:04:18,700
+Try at your own risk,
+but it does work.
+
+98
+00:04:18,700 --> 00:04:19,709
+So how does it work?
+
+99
+00:04:19,709 --> 00:04:22,050
+How does Chrome
+OS manage to stick
+
+100
+00:04:22,050 --> 00:04:25,710
+to its principles, which
+are speed, simplicity,
+
+101
+00:04:25,710 --> 00:04:26,950
+and security?
+
+102
+00:04:26,950 --> 00:04:29,280
+How can it run all
+these different web apps
+
+103
+00:04:29,280 --> 00:04:33,420
+and Android apps from Play
+and Linux apps like GIMP
+
+104
+00:04:33,420 --> 00:04:36,600
+while staying fast,
+simple, and secure?
+
+105
+00:04:36,600 --> 00:04:39,330
+This boils down to the
+containers architecture,
+
+106
+00:04:39,330 --> 00:04:42,456
+which I'll let Steve
+tell you more about.
+
+107
+00:04:42,456 --> 00:04:44,040
+STEPHEN BARBER: Thanks, Dan.
+
+108
+00:04:44,040 --> 00:04:47,480
+So when we were bringing
+Linux apps to Chrome OS,
+
+109
+00:04:47,480 --> 00:04:50,760
+it was really important that we
+maintain all of the things that
+
+110
+00:04:50,760 --> 00:04:53,250
+make Chrome OS Chrome OS.
+
+111
+00:04:53,250 --> 00:04:55,290
+So simplicity was first.
+
+112
+00:04:55,290 --> 00:04:58,050
+It shouldn't feel like
+you're running a separate OS,
+
+113
+00:04:58,050 --> 00:05:01,280
+but instead, have the
+Linux terminal and GUI app
+
+114
+00:05:01,280 --> 00:05:04,870
+seamlessly blend in with
+Chrome and Android apps.
+
+115
+00:05:04,870 --> 00:05:08,260
+And we've managed to do this
+while keeping things fast.
+
+116
+00:05:08,260 --> 00:05:12,600
+So Android and Linux support
+don't do any emulation.
+
+117
+00:05:12,600 --> 00:05:15,240
+By using lightweight containers
+and hardware virtualization
+
+118
+00:05:15,240 --> 00:05:18,540
+support, your code
+will run natively.
+
+119
+00:05:18,540 --> 00:05:19,980
+And of course,
+security is always
+
+120
+00:05:19,980 --> 00:05:21,480
+on the mind for Chrome OS.
+
+121
+00:05:21,480 --> 00:05:24,660
+So Crostini uses both
+virtualization and containers
+
+122
+00:05:24,660 --> 00:05:26,280
+to provide security in depth.
+
+123
+00:05:26,280 --> 00:05:29,870
+
+
+124
+00:05:29,870 --> 00:05:31,910
+So to expand a bit
+on security, we're
+
+125
+00:05:31,910 --> 00:05:34,070
+starting from a
+secure foundation
+
+126
+00:05:34,070 --> 00:05:36,900
+and we're working our way
+up with features from there.
+
+127
+00:05:36,900 --> 00:05:39,050
+So right now, Linux
+is pretty isolated
+
+128
+00:05:39,050 --> 00:05:41,690
+from the rest of Chrome OS, but
+we're working on the ability
+
+129
+00:05:41,690 --> 00:05:45,080
+to share files and
+folders with it,
+
+130
+00:05:45,080 --> 00:05:47,720
+and soon, we'll be adding
+support for Google Drive,
+
+131
+00:05:47,720 --> 00:05:48,334
+as well.
+
+132
+00:05:48,334 --> 00:05:50,750
+So you'll be able to keep all
+of your dot files, projects,
+
+133
+00:05:50,750 --> 00:05:55,350
+and other important
+work safe in the cloud.
+
+134
+00:05:55,350 --> 00:05:57,759
+So let's take a look
+under the hood real quick.
+
+135
+00:05:57,759 --> 00:06:00,050
+The first time you launch a
+Linux app after logging in,
+
+136
+00:06:00,050 --> 00:06:03,390
+it will start up a
+lightweight VM and container.
+
+137
+00:06:03,390 --> 00:06:07,100
+So this VM is actually providing
+the outer security boundary
+
+138
+00:06:07,100 --> 00:06:09,930
+and gives you a
+real Linux kernel.
+
+139
+00:06:09,930 --> 00:06:12,270
+And it's actually
+a minimal version
+
+140
+00:06:12,270 --> 00:06:16,610
+of Chrome OS that was designed
+specifically to run containers.
+
+141
+00:06:16,610 --> 00:06:20,310
+And the container inside is
+where you do all of your work.
+
+142
+00:06:20,310 --> 00:06:22,035
+This container is very
+tightly integrated
+
+143
+00:06:22,035 --> 00:06:23,160
+with the rest of Chrome OS.
+
+144
+00:06:23,160 --> 00:06:26,190
+So things like launcher
+icons and graphical apps
+
+145
+00:06:26,190 --> 00:06:29,514
+work just like any other
+Chrome OS or Android app.
+
+146
+00:06:29,514 --> 00:06:31,180
+And the most important
+thing, of course,
+
+147
+00:06:31,180 --> 00:06:32,415
+is that you get a terminal.
+
+148
+00:06:32,415 --> 00:06:34,925
+
+
+149
+00:06:34,925 --> 00:06:37,330
+So how does it actually feel?
+
+150
+00:06:37,330 --> 00:06:38,430
+What's it like?
+
+151
+00:06:38,430 --> 00:06:42,760
+And the answer should be,
+like most other Linux systems.
+
+152
+00:06:42,760 --> 00:06:46,570
+So Crostini is based
+right now on Debian stable
+
+153
+00:06:46,570 --> 00:06:49,630
+because a lot of developers
+are familiar with apped package
+
+154
+00:06:49,630 --> 00:06:53,950
+management and
+Debian-based systems.
+
+155
+00:06:53,950 --> 00:06:58,630
+And for now, we're starting
+out targeting web developers
+
+156
+00:06:58,630 --> 00:07:01,330
+because Chrome OS
+is a web-based OS,
+
+157
+00:07:01,330 --> 00:07:03,220
+and we think it's
+appropriate that you
+
+158
+00:07:03,220 --> 00:07:08,230
+should be able to develop
+web apps on a web-based OS.
+
+159
+00:07:08,230 --> 00:07:11,080
+So to do this, we provide some
+nice integration features.
+
+160
+00:07:11,080 --> 00:07:13,060
+Right now, we'll
+do port forwarding.
+
+161
+00:07:13,060 --> 00:07:16,030
+It doesn't seem like
+you're running a container.
+
+162
+00:07:16,030 --> 00:07:19,190
+You get local hosts
+to connect to,
+
+163
+00:07:19,190 --> 00:07:23,431
+and that's treated as a secure
+origin, just like it should be.
+
+164
+00:07:23,431 --> 00:07:25,180
+But if you do want to
+treat your container
+
+165
+00:07:25,180 --> 00:07:26,680
+like a separate system, you can.
+
+166
+00:07:26,680 --> 00:07:32,240
+And we provide a
+penguin.linux.test DNS alias.
+
+167
+00:07:32,240 --> 00:07:34,160
+And we do want to
+support more developer
+
+168
+00:07:34,160 --> 00:07:35,940
+workflows than just the web.
+
+169
+00:07:35,940 --> 00:07:39,650
+So we will be adding
+USB, GPU, audio support,
+
+170
+00:07:39,650 --> 00:07:42,380
+file systems and user
+space, and better file
+
+171
+00:07:42,380 --> 00:07:44,630
+sharing in upcoming releases.
+
+172
+00:07:44,630 --> 00:07:47,180
+And now, Dan will talk a bit
+more about using Chromebooks
+
+173
+00:07:47,180 --> 00:07:48,679
+for web development
+and show us what
+
+174
+00:07:48,679 --> 00:07:50,005
+Crostini looks like in action.
+
+175
+00:07:50,005 --> 00:07:51,380
+DAN DASCALESCU:
+Thank you, Steve.
+
+176
+00:07:51,380 --> 00:07:54,470
+
+
+177
+00:07:54,470 --> 00:07:56,249
+So we know how it works.
+
+178
+00:07:56,249 --> 00:07:57,290
+We know why it's awesome.
+
+179
+00:07:57,290 --> 00:08:02,390
+Let's see how to actually use
+it for developing web apps.
+
+180
+00:08:02,390 --> 00:08:06,050
+The goal is to let developers
+do everything they need locally,
+
+181
+00:08:06,050 --> 00:08:08,150
+and the Crostini support
+is still in development,
+
+182
+00:08:08,150 --> 00:08:11,120
+but most things
+work as expected.
+
+183
+00:08:11,120 --> 00:08:14,750
+You can run editors, IDs,
+databases like Mongo or MySQL,
+
+184
+00:08:14,750 --> 00:08:17,270
+local servers, and
+pretty much anything
+
+185
+00:08:17,270 --> 00:08:20,270
+you can install with apt.
+
+186
+00:08:20,270 --> 00:08:24,050
+To setup Crostini, search
+for Linux in Settings,
+
+187
+00:08:24,050 --> 00:08:25,670
+and then you'll
+see this dialogue.
+
+188
+00:08:25,670 --> 00:08:28,156
+Once you tap Install, in
+about a minute or two,
+
+189
+00:08:28,156 --> 00:08:29,780
+depending on your
+network speed, you'll
+
+190
+00:08:29,780 --> 00:08:32,840
+have Linux installed
+on your Chromebook.
+
+191
+00:08:32,840 --> 00:08:34,679
+And this is a terminal.
+
+192
+00:08:34,679 --> 00:08:35,620
+So we have a terminal.
+
+193
+00:08:35,620 --> 00:08:36,120
+Woo-hoo.
+
+194
+00:08:36,120 --> 00:08:39,919
+Let's build a desktop web
+app for Pixelbooks, right?
+
+195
+00:08:39,919 --> 00:08:42,980
+A bit about how these
+apps are usually built.
+
+196
+00:08:42,980 --> 00:08:44,690
+A lot of development
+of desktop dev apps
+
+197
+00:08:44,690 --> 00:08:46,970
+is done with Electron
+or Node-Webkit.
+
+198
+00:08:46,970 --> 00:08:48,920
+But the problem with
+that is Electron
+
+199
+00:08:48,920 --> 00:08:50,490
+means Chromium plus Node.
+
+200
+00:08:50,490 --> 00:08:53,180
+So you ship a rendering
+stack along with your app.
+
+201
+00:08:53,180 --> 00:08:57,710
+And that might be useful if
+you have needs for low level
+
+202
+00:08:57,710 --> 00:08:59,540
+access, but consider
+Carlo, which
+
+203
+00:08:59,540 --> 00:09:03,740
+is a Google project that is
+essentially a helpful Node app
+
+204
+00:09:03,740 --> 00:09:04,615
+framework.
+
+205
+00:09:04,615 --> 00:09:08,750
+It provides applications with
+Chrome rendering capabilities.
+
+206
+00:09:08,750 --> 00:09:11,745
+So with Carlo, you don't have to
+ship Chromium or any rendering
+
+207
+00:09:11,745 --> 00:09:12,620
+engine with your app.
+
+208
+00:09:12,620 --> 00:09:15,470
+It uses a locally detected
+instance of Chrome
+
+209
+00:09:15,470 --> 00:09:17,570
+and it connects to
+your process pipe,
+
+210
+00:09:17,570 --> 00:09:19,520
+and then exposes the
+high level API for you
+
+211
+00:09:19,520 --> 00:09:24,140
+to render in Chrome
+from your Node script.
+
+212
+00:09:24,140 --> 00:09:27,170
+But if you don't need all
+these low level OS features,
+
+213
+00:09:27,170 --> 00:09:28,650
+you can do something
+even simpler,
+
+214
+00:09:28,650 --> 00:09:32,090
+which is to build a
+progressive web app.
+
+215
+00:09:32,090 --> 00:09:33,990
+This is what Spotify has done.
+
+216
+00:09:33,990 --> 00:09:37,340
+You can see here that I'm
+going to open the Spotify
+
+217
+00:09:37,340 --> 00:09:40,380
+[INAUDIBLE] tab and click
+that Install App button.
+
+218
+00:09:40,380 --> 00:09:42,470
+And once I accept
+the install prompt,
+
+219
+00:09:42,470 --> 00:09:45,940
+the tab becomes a PWA
+without a URL bar,
+
+220
+00:09:45,940 --> 00:09:48,620
+and it has its own
+buttons, like Close.
+
+221
+00:09:48,620 --> 00:09:51,140
+And you can find
+it in the shelf.
+
+222
+00:09:51,140 --> 00:09:53,400
+You can launch it from there.
+
+223
+00:09:53,400 --> 00:09:56,180
+And once you launch it, there
+is no more Install App button
+
+224
+00:09:56,180 --> 00:09:58,900
+because it's an installed
+progressive web app.
+
+225
+00:09:58,900 --> 00:10:01,940
+And it's also accessible
+from the shelf.
+
+226
+00:10:01,940 --> 00:10:04,130
+So these system level
+integration features
+
+227
+00:10:04,130 --> 00:10:06,920
+are provided by
+Chrome, and they are
+
+228
+00:10:06,920 --> 00:10:09,770
+available on Chrome
+OS since Chrome 67,
+
+229
+00:10:09,770 --> 00:10:11,600
+which is ancient by now.
+
+230
+00:10:11,600 --> 00:10:14,300
+And on Linux, on Windows,
+starting with Chrome 70,
+
+231
+00:10:14,300 --> 00:10:15,710
+the current version stable.
+
+232
+00:10:15,710 --> 00:10:17,873
+And on Mac with
+Chrome 72, or if you
+
+233
+00:10:17,873 --> 00:10:21,770
+want to give it a sneak peak,
+check the Enable Desktop PWAs
+
+234
+00:10:21,770 --> 00:10:24,320
+flag.
+
+235
+00:10:24,320 --> 00:10:26,540
+This is thanks to
+service worker support,
+
+236
+00:10:26,540 --> 00:10:29,330
+which has been implemented
+by all major browsers,
+
+237
+00:10:29,330 --> 00:10:31,910
+and they are also working
+on advanced features,
+
+238
+00:10:31,910 --> 00:10:34,220
+such as [INAUDIBLE] request.
+
+239
+00:10:34,220 --> 00:10:35,920
+Firefox is working on that.
+
+240
+00:10:35,920 --> 00:10:38,930
+It has special [INAUDIBLE]
+and at the home screen now.
+
+241
+00:10:38,930 --> 00:10:41,960
+And Safari is also working
+on authentication APIs.
+
+242
+00:10:41,960 --> 00:10:45,420
+
+
+243
+00:10:45,420 --> 00:10:46,140
+So OK.
+
+244
+00:10:46,140 --> 00:10:46,950
+We've talked a lot.
+
+245
+00:10:46,950 --> 00:10:51,027
+Let's try and do a demo and
+see if anything blows up.
+
+246
+00:10:51,027 --> 00:10:52,860
+So I've set up Crostini
+already because that
+
+247
+00:10:52,860 --> 00:10:54,985
+will take two minutes,
+which I don't want to waste.
+
+248
+00:10:54,985 --> 00:10:57,930
+We're going to install
+Node, which I have already--
+
+249
+00:10:57,930 --> 00:10:59,376
+VS Code NPM.
+
+250
+00:10:59,376 --> 00:11:00,750
+And then we'll
+check our Squoosh.
+
+251
+00:11:00,750 --> 00:11:03,030
+You might have seen it in
+one of the earlier talks.
+
+252
+00:11:03,030 --> 00:11:04,915
+It's an image compression app.
+
+253
+00:11:04,915 --> 00:11:06,540
+We'll open that in
+VS Code to check out
+
+254
+00:11:06,540 --> 00:11:09,570
+the code around the web server,
+and the most interesting part
+
+255
+00:11:09,570 --> 00:11:12,000
+is we're going to open Squoosh
+from an Android browser
+
+256
+00:11:12,000 --> 00:11:14,520
+on the very same device.
+
+257
+00:11:14,520 --> 00:11:16,690
+And if things work,
+we're also going
+
+258
+00:11:16,690 --> 00:11:19,460
+to do some remote debugging.
+
+259
+00:11:19,460 --> 00:11:21,980
+So these are the
+instructions to install Node.
+
+260
+00:11:21,980 --> 00:11:24,800
+I've already run them
+because it takes a bit.
+
+261
+00:11:24,800 --> 00:11:29,540
+And I've switched to
+the demonstration.
+
+262
+00:11:29,540 --> 00:11:31,400
+I'm going to run
+the NPM install.
+
+263
+00:11:31,400 --> 00:11:32,920
+NPM build does take awhile.
+
+264
+00:11:32,920 --> 00:11:37,420
+Then, NPM start to start the
+web server for the Squoosh app.
+
+265
+00:11:37,420 --> 00:11:39,890
+And you see that it tells
+you it runs at 8080.
+
+266
+00:11:39,890 --> 00:11:43,350
+It bounds to all
+local addresses.
+
+267
+00:11:43,350 --> 00:11:46,640
+So let's run Chromium for Linux.
+
+268
+00:11:46,640 --> 00:11:49,820
+This runs in the
+Linux container.
+
+269
+00:11:49,820 --> 00:11:52,850
+And once Squoosh has started,
+which seems to be the case,
+
+270
+00:11:52,850 --> 00:11:55,880
+let's go to a local host 8080.
+
+271
+00:11:55,880 --> 00:11:58,030
+And there is Squoosh.
+
+272
+00:11:58,030 --> 00:12:00,620
+I'm not sure why it said failed.
+
+273
+00:12:00,620 --> 00:12:02,240
+But it certainly works.
+
+274
+00:12:02,240 --> 00:12:05,549
+You can open images or not.
+
+275
+00:12:05,549 --> 00:12:06,840
+This is a live demo, after all.
+
+276
+00:12:06,840 --> 00:12:10,291
+[LAUGHTER]
+
+277
+00:12:10,291 --> 00:12:12,760
+
+
+278
+00:12:12,760 --> 00:12:15,070
+The point here is
+that you have access
+
+279
+00:12:15,070 --> 00:12:17,770
+to a local host from
+the Linux container,
+
+280
+00:12:17,770 --> 00:12:23,645
+and now, let's try running
+Chrome Dev from Play.
+
+281
+00:12:23,645 --> 00:12:25,020
+And then choosing
+Chrome Dev here
+
+282
+00:12:25,020 --> 00:12:28,760
+to be able to
+distinguish the icons.
+
+283
+00:12:28,760 --> 00:12:30,379
+It looks like we
+need to update it.
+
+284
+00:12:30,379 --> 00:12:32,170
+Hopefully, the update
+won't break anything.
+
+285
+00:12:32,170 --> 00:12:37,330
+[LAUGHTER]
+
+286
+00:12:37,330 --> 00:12:40,361
+So I'm going to launch it before
+it gets a chance to update.
+
+287
+00:12:40,361 --> 00:12:40,860
+Now--
+
+288
+00:12:40,860 --> 00:12:42,756
+[LAUGHTER]
+
+289
+00:12:42,756 --> 00:12:45,600
+
+
+290
+00:12:45,600 --> 00:12:47,940
+Local host here will not work.
+
+291
+00:12:47,940 --> 00:12:48,990
+That's a known issue.
+
+292
+00:12:48,990 --> 00:12:52,090
+Steve is working on it.
+
+293
+00:12:52,090 --> 00:12:53,960
+We need to get--
+
+294
+00:12:53,960 --> 00:12:56,580
+didn't mean to put you
+on the spot, Steve.
+
+295
+00:12:56,580 --> 00:13:01,020
+We need to get the IP address
+of the Android container, which
+
+296
+00:13:01,020 --> 00:13:02,160
+is this one.
+
+297
+00:13:02,160 --> 00:13:04,650
+There is this command,
+IP Address Show,
+
+298
+00:13:04,650 --> 00:13:06,580
+which has a long ass output.
+
+299
+00:13:06,580 --> 00:13:11,730
+So I'm going to just
+copy that and paste it
+
+300
+00:13:11,730 --> 00:13:17,271
+in Chrome Dev, which I
+thought I launched somewhere.
+
+301
+00:13:17,271 --> 00:13:19,390
+STEPHEN BARBER: It quit
+because it updated.
+
+302
+00:13:19,390 --> 00:13:20,330
+DAN DASCALESCU: OK.
+
+303
+00:13:20,330 --> 00:13:21,913
+Well, I hope it
+didn't break anything.
+
+304
+00:13:21,913 --> 00:13:25,430
+
+
+305
+00:13:25,430 --> 00:13:27,440
+Colon.
+
+306
+00:13:27,440 --> 00:13:28,854
+Whoa.
+
+307
+00:13:28,854 --> 00:13:30,842
+[APPLAUSE]
+
+308
+00:13:30,842 --> 00:13:34,820
+
+
+309
+00:13:34,820 --> 00:13:36,890
+So this is Squoosh
+running in Chrome,
+
+310
+00:13:36,890 --> 00:13:38,960
+and now, let's try something
+even more dangerous.
+
+311
+00:13:38,960 --> 00:13:43,595
+Let's try to remote
+debug it with Chromium.
+
+312
+00:13:43,595 --> 00:13:44,470
+On the same machine--
+
+313
+00:13:44,470 --> 00:13:45,620
+I know it's called
+remote debugging,
+
+314
+00:13:45,620 --> 00:13:47,370
+but it's on the same
+machine because these
+
+315
+00:13:47,370 --> 00:13:49,230
+are different containers.
+
+316
+00:13:49,230 --> 00:13:53,490
+So to do that, we need to put
+a device in developer mode,
+
+317
+00:13:53,490 --> 00:13:55,620
+and then enable it
+to be debugging here,
+
+318
+00:13:55,620 --> 00:13:56,660
+which I've done.
+
+319
+00:13:56,660 --> 00:13:59,270
+And then we need to
+run this command.
+
+320
+00:13:59,270 --> 00:14:03,320
+That fixed IP is actually
+documented on our Android setup
+
+321
+00:14:03,320 --> 00:14:04,530
+page.
+
+322
+00:14:04,530 --> 00:14:08,900
+It's the IP of our container,
+and we set up an ADB bridge
+
+323
+00:14:08,900 --> 00:14:09,900
+to it.
+
+324
+00:14:09,900 --> 00:14:14,220
+So now, if things
+are on my side,
+
+325
+00:14:14,220 --> 00:14:19,340
+we'll be able to go
+to Chrome Inspect
+
+326
+00:14:19,340 --> 00:14:21,200
+and see a number of
+remote targets here.
+
+327
+00:14:21,200 --> 00:14:25,117
+And we actually see two of them,
+so let's open the Squoosh one,
+
+328
+00:14:25,117 --> 00:14:26,075
+and I'll click Inspect.
+
+329
+00:14:26,075 --> 00:14:28,860
+
+
+330
+00:14:28,860 --> 00:14:33,512
+And this appears to work
+surprisingly well, for a demo.
+
+331
+00:14:33,512 --> 00:14:35,220
+So I'm going to
+resize the window
+
+332
+00:14:35,220 --> 00:14:37,477
+and try something
+really spectacular.
+
+333
+00:14:37,477 --> 00:14:38,310
+I'm going to scroll.
+
+334
+00:14:38,310 --> 00:14:41,250
+
+
+335
+00:14:41,250 --> 00:14:44,070
+So this is live,
+not an animated GIF.
+
+336
+00:14:44,070 --> 00:14:47,310
+This is actually
+remote debugging,
+
+337
+00:14:47,310 --> 00:14:51,600
+and whatever I'm doing here,
+whether this app works or not,
+
+338
+00:14:51,600 --> 00:14:56,400
+you can actually remote debug
+it with Chromium or Linux,
+
+339
+00:14:56,400 --> 00:15:00,340
+debugging an Android browser
+running your progressive web
+
+340
+00:15:00,340 --> 00:15:00,840
+app.
+
+341
+00:15:00,840 --> 00:15:01,715
+Does that make sense?
+
+342
+00:15:01,715 --> 00:15:06,030
+
+
+343
+00:15:06,030 --> 00:15:07,757
+This is what I wanted
+to show, and let's
+
+344
+00:15:07,757 --> 00:15:08,715
+get back to the slides.
+
+345
+00:15:08,715 --> 00:15:13,507
+
+
+346
+00:15:13,507 --> 00:15:15,590
+So these are the instructions
+for installing Node.
+
+347
+00:15:15,590 --> 00:15:17,090
+There's nothing special here.
+
+348
+00:15:17,090 --> 00:15:20,390
+You follow what Node
+publishes on their GitHub,
+
+349
+00:15:20,390 --> 00:15:22,190
+then you check out
+Squoosh using Git.
+
+350
+00:15:22,190 --> 00:15:25,470
+Again, your usual
+development workflow.
+
+351
+00:15:25,470 --> 00:15:26,840
+And oh, something else.
+
+352
+00:15:26,840 --> 00:15:30,050
+Maybe Steve wants to show this.
+
+353
+00:15:30,050 --> 00:15:33,470
+We can run VS Code to
+check out the code,
+
+354
+00:15:33,470 --> 00:15:36,480
+so until we switch to
+the demo, this screenshot
+
+355
+00:15:36,480 --> 00:15:39,050
+shows what we actually
+are going to do.
+
+356
+00:15:39,050 --> 00:15:39,880
+But great.
+
+357
+00:15:39,880 --> 00:15:41,090
+And I'll do it live now.
+
+358
+00:15:41,090 --> 00:15:44,030
+So Steve is going to double
+tap that after he copies it
+
+359
+00:15:44,030 --> 00:15:45,860
+to the Linux container.
+
+360
+00:15:45,860 --> 00:15:50,240
+And in the Linux container,
+if you double tap a dev file,
+
+361
+00:15:50,240 --> 00:15:53,200
+you are prompted to
+install it as a Linux app.
+
+362
+00:15:53,200 --> 00:15:55,780
+So Chrome OS supports
+that out of the box,
+
+363
+00:15:55,780 --> 00:15:58,210
+and once the
+installation completes,
+
+364
+00:15:58,210 --> 00:16:02,140
+you should be able to see
+visual code in the launcher.
+
+365
+00:16:02,140 --> 00:16:04,030
+And even that installation
+prompt will say
+
+366
+00:16:04,030 --> 00:16:06,380
+Find Visual Code
+in the Launcher.
+
+367
+00:16:06,380 --> 00:16:08,040
+And this is not
+network dependent,
+
+368
+00:16:08,040 --> 00:16:11,192
+so we should be as fast as
+it was when we rehearsed.
+
+369
+00:16:11,192 --> 00:16:14,055
+
+
+370
+00:16:14,055 --> 00:16:17,210
+Though 58% is not terribly fast.
+
+371
+00:16:17,210 --> 00:16:18,150
+OK, 91.
+
+372
+00:16:18,150 --> 00:16:18,765
+Cool.
+
+373
+00:16:18,765 --> 00:16:20,857
+So show us some code, Steve.
+
+374
+00:16:20,857 --> 00:16:21,940
+STEPHEN BARBER: All right.
+
+375
+00:16:21,940 --> 00:16:25,470
+Wait one second or two seconds.
+
+376
+00:16:25,470 --> 00:16:29,910
+
+
+377
+00:16:29,910 --> 00:16:30,670
+There it is.
+
+378
+00:16:30,670 --> 00:16:31,780
+Had to search.
+
+379
+00:16:31,780 --> 00:16:35,150
+And here we go.
+
+380
+00:16:35,150 --> 00:16:36,162
+VS Code.
+
+381
+00:16:36,162 --> 00:16:38,130
+[APPLAUSE]
+
+382
+00:16:38,130 --> 00:16:43,545
+
+
+383
+00:16:43,545 --> 00:16:44,420
+DAN DASCALESCU: Yeah.
+
+384
+00:16:44,420 --> 00:16:45,170
+I have a manifest.
+
+385
+00:16:45,170 --> 00:16:48,290
+That's why it's a progressive
+app-- has a start URL.
+
+386
+00:16:48,290 --> 00:16:52,940
+OK, so let's switch back to the
+slides for some best practices
+
+387
+00:16:52,940 --> 00:16:53,841
+for--
+
+388
+00:16:53,841 --> 00:16:54,340
+oh, no.
+
+389
+00:16:54,340 --> 00:16:56,200
+Let's actually look
+at this once more.
+
+390
+00:16:56,200 --> 00:17:02,710
+It's really cool, right, how you
+can drag those in sync, yeah?
+
+391
+00:17:02,710 --> 00:17:03,980
+I had to brag about that.
+
+392
+00:17:03,980 --> 00:17:06,369
+So the way to set this
+up is not trivial,
+
+393
+00:17:06,369 --> 00:17:09,750
+which is why I posted the
+Medium post this morning
+
+394
+00:17:09,750 --> 00:17:11,680
+with complete instructions.
+
+395
+00:17:11,680 --> 00:17:15,940
+There's about 17 steps
+you need to follow.
+
+396
+00:17:15,940 --> 00:17:22,030
+So check out the
+bit.li/cros-remote-debug
+
+397
+00:17:22,030 --> 00:17:24,079
+or take a picture of this slide.
+
+398
+00:17:24,079 --> 00:17:26,859
+OK, I see the phones
+down, so next.
+
+399
+00:17:26,859 --> 00:17:29,590
+How to actually optimize
+PWAs for Chrome OS,
+
+400
+00:17:29,590 --> 00:17:32,080
+which is not really a topic.
+
+401
+00:17:32,080 --> 00:17:33,460
+It's more of a non-topic.
+
+402
+00:17:33,460 --> 00:17:36,760
+You shouldn't detect that
+you're running on Chrome OS.
+
+403
+00:17:36,760 --> 00:17:39,012
+You should use Lighthouse
+as you use for any PWA.
+
+404
+00:17:39,012 --> 00:17:40,720
+So if you only have
+five minutes to spend
+
+405
+00:17:40,720 --> 00:17:42,100
+on optimizing your
+app, check out
+
+406
+00:17:42,100 --> 00:17:44,170
+Lighthouse, the auditing
+tool that will give you
+
+407
+00:17:44,170 --> 00:17:47,260
+a checklist of what to do.
+
+408
+00:17:47,260 --> 00:17:49,360
+And make sure that
+your app installs.
+
+409
+00:17:49,360 --> 00:17:52,130
+This is one bit that might
+be different on Chrome OS.
+
+410
+00:17:52,130 --> 00:17:55,060
+Unlike on older versions
+of Chrome on mobile,
+
+411
+00:17:55,060 --> 00:17:57,670
+your users will not be prompted
+automatically at the bottom
+
+412
+00:17:57,670 --> 00:17:58,690
+to install the app.
+
+413
+00:17:58,690 --> 00:18:00,790
+You need to catch the
+beforeinstallprompt,
+
+414
+00:18:00,790 --> 00:18:04,780
+and then save that prompt
+and call the prompt method.
+
+415
+00:18:04,780 --> 00:18:07,360
+And this is the code to do that,
+so you add an event listener
+
+416
+00:18:07,360 --> 00:18:10,420
+for beforeinstallprompt,
+then you prevent default
+
+417
+00:18:10,420 --> 00:18:12,860
+for all the browsers,
+save the prompt
+
+418
+00:18:12,860 --> 00:18:17,170
+in this deferred variable, and
+then show your install button.
+
+419
+00:18:17,170 --> 00:18:19,960
+So here, we just set
+a display to block.
+
+420
+00:18:19,960 --> 00:18:22,840
+And then in the click listener
+for that install button,
+
+421
+00:18:22,840 --> 00:18:25,270
+you hide it, call
+the prompt method
+
+422
+00:18:25,270 --> 00:18:27,730
+from that saved
+variable, and then
+
+423
+00:18:27,730 --> 00:18:30,550
+you check the user
+choice property,
+
+424
+00:18:30,550 --> 00:18:32,590
+and particularly,
+the outcome field
+
+425
+00:18:32,590 --> 00:18:36,580
+to see if the user has
+accepted your installation.
+
+426
+00:18:36,580 --> 00:18:37,080
+OK.
+
+427
+00:18:37,080 --> 00:18:41,230
+So as I said earlier, the
+answer to this question is no.
+
+428
+00:18:41,230 --> 00:18:43,510
+You have your app
+installed on the Chrome OS,
+
+429
+00:18:43,510 --> 00:18:45,310
+but you should not do
+browser [INAUDIBLE]
+
+430
+00:18:45,310 --> 00:18:47,770
+but do, instead,
+feature detection.
+
+431
+00:18:47,770 --> 00:18:51,490
+And the reason is there is a
+wide variety of input devices
+
+432
+00:18:51,490 --> 00:18:55,090
+and form factors that
+Chrome OS can run on.
+
+433
+00:18:55,090 --> 00:18:57,250
+So you might have a touch
+screen or you might not.
+
+434
+00:18:57,250 --> 00:18:59,650
+Some lower end devices
+don't have a touch screen.
+
+435
+00:18:59,650 --> 00:19:03,970
+There might be a trackpad or it
+might be the Acer Tab 10 tablet
+
+436
+00:19:03,970 --> 00:19:06,137
+that I mentioned earlier.
+
+437
+00:19:06,137 --> 00:19:07,220
+There might be a keyboard.
+
+438
+00:19:07,220 --> 00:19:09,250
+So if your app can use
+keyboard shortcuts,
+
+439
+00:19:09,250 --> 00:19:11,770
+it's good to add
+support for them.
+
+440
+00:19:11,770 --> 00:19:14,530
+There may be a mouse,
+so add support for that
+
+441
+00:19:14,530 --> 00:19:15,340
+if it makes sense.
+
+442
+00:19:15,340 --> 00:19:20,110
+There might also be a stylus,
+useful for drawing apps.
+
+443
+00:19:20,110 --> 00:19:23,020
+Also make sure to build
+responsive and take advantage
+
+444
+00:19:23,020 --> 00:19:24,640
+of all the screen real estate.
+
+445
+00:19:24,640 --> 00:19:27,160
+This is an example
+of an app that
+
+446
+00:19:27,160 --> 00:19:29,850
+supports a large or
+wide display, rather,
+
+447
+00:19:29,850 --> 00:19:32,740
+and displays a number of
+days in the weather forecast.
+
+448
+00:19:32,740 --> 00:19:35,770
+But also, if it's resized
+for phone-size screen,
+
+449
+00:19:35,770 --> 00:19:37,640
+it shows less information.
+
+450
+00:19:37,640 --> 00:19:40,600
+And you can even support
+a rolled up state
+
+451
+00:19:40,600 --> 00:19:42,970
+if the user just wants
+to glance at the weather
+
+452
+00:19:42,970 --> 00:19:45,700
+continuously if they have OCD.
+
+453
+00:19:45,700 --> 00:19:47,919
+But for a media player--
+
+454
+00:19:47,919 --> 00:19:49,460
+that would be a more
+useful example--
+
+455
+00:19:49,460 --> 00:19:53,170
+you can have previous
+and next controls.
+
+456
+00:19:53,170 --> 00:19:56,240
+I actually have OCD
+and I do that often.
+
+457
+00:19:56,240 --> 00:19:59,830
+And this is an example
+from Starbucks.
+
+458
+00:19:59,830 --> 00:20:01,900
+They found that
+building responsive
+
+459
+00:20:01,900 --> 00:20:05,680
+pays off because users would
+actually order on the desktop
+
+460
+00:20:05,680 --> 00:20:10,420
+and use their mobile device
+to pick up their order.
+
+461
+00:20:10,420 --> 00:20:13,240
+So build responsive.
+
+462
+00:20:13,240 --> 00:20:16,270
+It also pays off to optimize
+your forms because nobody
+
+463
+00:20:16,270 --> 00:20:17,840
+likes to fill in the forms.
+
+464
+00:20:17,840 --> 00:20:21,940
+And to have some guidance--
+g.co/AmazingWebForms.
+
+465
+00:20:21,940 --> 00:20:23,520
+That's an amazing URL.
+
+466
+00:20:23,520 --> 00:20:27,250
+And if you want to handle
+touch in an optimized fashion,
+
+467
+00:20:27,250 --> 00:20:30,230
+check out g.co/WebTouch.
+
+468
+00:20:30,230 --> 00:20:32,350
+There are also pointer
+events, and these
+
+469
+00:20:32,350 --> 00:20:36,370
+are a unifying model for
+all sorts of pointer input--
+
+470
+00:20:36,370 --> 00:20:38,830
+touch, trackpad, mouse, stylus.
+
+471
+00:20:38,830 --> 00:20:41,220
+And you have a
+lot of events that
+
+472
+00:20:41,220 --> 00:20:43,800
+are supported in the
+Chrome, Firefox, Opera, IE,
+
+473
+00:20:43,800 --> 00:20:47,110
+Edge, and Samsung,
+such as pointer move.
+
+474
+00:20:47,110 --> 00:20:50,620
+You just need to add
+a listener for it or--
+
+475
+00:20:50,620 --> 00:20:51,370
+sorry.
+
+476
+00:20:51,370 --> 00:20:55,360
+You have pointer enter,
+pointer down, pointer up,
+
+477
+00:20:55,360 --> 00:20:56,950
+cancel out, leave, and so on.
+
+478
+00:20:56,950 --> 00:21:00,780
+More at the g.co/PointerEvents.
+
+479
+00:21:00,780 --> 00:21:04,060
+And this is an example of
+a code that distinguishes
+
+480
+00:21:04,060 --> 00:21:06,340
+between the pointing device--
+
+481
+00:21:06,340 --> 00:21:09,730
+you can check if there is mouse
+or touch or pen or something
+
+482
+00:21:09,730 --> 00:21:14,140
+that has not yet been
+supported by the browser.
+
+483
+00:21:14,140 --> 00:21:18,680
+OK, so what's going to
+happen in the future?
+
+484
+00:21:18,680 --> 00:21:21,810
+We are working on improving
+the desktop PWA support.
+
+485
+00:21:21,810 --> 00:21:24,100
+One improvement is
+keyboard shortcuts.
+
+486
+00:21:24,100 --> 00:21:26,135
+Another one is badging
+for the launch icon.
+
+487
+00:21:26,135 --> 00:21:28,260
+So we don't have to notify
+the user for everything.
+
+488
+00:21:28,260 --> 00:21:30,970
+You can display a
+number of notifications,
+
+489
+00:21:30,970 --> 00:21:34,060
+just like for
+Android and iOS apps.
+
+490
+00:21:34,060 --> 00:21:35,830
+And then also, link
+capturing, which
+
+491
+00:21:35,830 --> 00:21:37,310
+would make Twitter very happy.
+
+492
+00:21:37,310 --> 00:21:39,880
+They have a great PWA, but
+when you click on a link,
+
+493
+00:21:39,880 --> 00:21:41,950
+it's not captured yet.
+
+494
+00:21:41,950 --> 00:21:44,081
+So in the future, we
+hope to enable this,
+
+495
+00:21:44,081 --> 00:21:46,580
+such that when you click on a
+link that your app can handle,
+
+496
+00:21:46,580 --> 00:21:49,070
+your app will actually
+open and handle that link.
+
+497
+00:21:49,070 --> 00:21:51,800
+And for that, you need to
+define the scope parameter
+
+498
+00:21:51,800 --> 00:21:53,480
+in the manifest.
+
+499
+00:21:53,480 --> 00:21:56,180
+And the scope parameter
+is used to determine
+
+500
+00:21:56,180 --> 00:21:58,460
+when your user has
+left your web app
+
+501
+00:21:58,460 --> 00:22:00,980
+and needs to be
+bounced in a tab.
+
+502
+00:22:00,980 --> 00:22:03,500
+
+
+503
+00:22:03,500 --> 00:22:05,960
+We are also working on
+low-latency canvas contexts,
+
+504
+00:22:05,960 --> 00:22:08,730
+which are introduced
+in Chrome 71 Beta.
+
+505
+00:22:08,730 --> 00:22:13,400
+And these are very useful
+for highly interactive apps.
+
+506
+00:22:13,400 --> 00:22:17,840
+They use OpenGLES for
+rastering, and how it works
+
+507
+00:22:17,840 --> 00:22:23,040
+is that your pixels get written
+to the front buffer directly.
+
+508
+00:22:23,040 --> 00:22:26,240
+So this bypasses several steps
+of the rendering process,
+
+509
+00:22:26,240 --> 00:22:28,700
+and Chrome writes there
+in that piece of memory
+
+510
+00:22:28,700 --> 00:22:31,610
+that is used by
+the Linux rendering
+
+511
+00:22:31,610 --> 00:22:35,130
+subsystem and the scanned
+[INAUDIBLE] screen.
+
+512
+00:22:35,130 --> 00:22:37,880
+So this low-latency context
+runs the risk of tearing,
+
+513
+00:22:37,880 --> 00:22:39,770
+but if you don't
+interact with a DOM,
+
+514
+00:22:39,770 --> 00:22:42,650
+such as in a game or other
+highly interactive app,
+
+515
+00:22:42,650 --> 00:22:46,830
+it's useful to use it.
+
+516
+00:22:46,830 --> 00:22:49,900
+This is an example of how to
+set up a low-latency canvas
+
+517
+00:22:49,900 --> 00:22:50,470
+context.
+
+518
+00:22:50,470 --> 00:22:53,170
+You pass the latency
+parameter true,
+
+519
+00:22:53,170 --> 00:22:58,790
+and also, it needs to be
+opaque, so you pass alpha false.
+
+520
+00:22:58,790 --> 00:23:00,650
+And this is the last slide.
+
+521
+00:23:00,650 --> 00:23:03,110
+I had no idea what
+to put on it, but I
+
+522
+00:23:03,110 --> 00:23:06,110
+figured that I should
+add that Chromebooks
+
+523
+00:23:06,110 --> 00:23:07,730
+are these convergence
+machines that
+
+524
+00:23:07,730 --> 00:23:10,760
+run Linux, Android,
+and Google Play
+
+525
+00:23:10,760 --> 00:23:12,740
+natively without emulation.
+
+526
+00:23:12,740 --> 00:23:14,450
+So they run very fast.
+
+527
+00:23:14,450 --> 00:23:16,730
+You should totally take
+advantage of the 75%
+
+528
+00:23:16,730 --> 00:23:21,160
+off discount, and please do
+explore Chromebooks and give us
+
+529
+00:23:21,160 --> 00:23:21,660
+feedback.
+
+530
+00:23:21,660 --> 00:23:22,790
+We love feedback.
+
+531
+00:23:22,790 --> 00:23:25,230
+We have the Chromium
+OS dev group--
+
+532
+00:23:25,230 --> 00:23:26,210
+the Google Group.
+
+533
+00:23:26,210 --> 00:23:30,126
+And also, the
+sub-reddit, Crostini.
+
+534
+00:23:30,126 --> 00:23:32,050
+If you find issues,
+please check if they've
+
+535
+00:23:32,050 --> 00:23:34,200
+been reported at crbug.com.
+
+536
+00:23:34,200 --> 00:23:37,700
+Otherwise, file them
+using Shift-Alt-I,
+
+537
+00:23:37,700 --> 00:23:39,860
+and add the Crostini tag.
+
+538
+00:23:39,860 --> 00:23:44,060
+And we are Dan and
+Steve, and thank you.
+
+539
+00:23:44,060 --> 00:23:46,510
+[MUSIC PLAYING]
+
+540
+00:23:46,510 --> 00:23:54,644

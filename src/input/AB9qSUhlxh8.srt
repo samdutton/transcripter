@@ -1,0 +1,3519 @@
+1
+00:00:00,000 --> 00:00:06,748
+[MUSIC PLAYING]
+
+2
+00:00:06,748 --> 00:00:08,225
+ADAM ARGYLE: I'm Adam Argyle.
+
+3
+00:00:08,225 --> 00:00:09,910
+JASON MILLER: I'm Jason Miller.
+
+4
+00:00:09,910 --> 00:00:12,280
+We're here to talk to
+you about Smooth Moves.
+
+5
+00:00:12,280 --> 00:00:16,120
+When we were thinking of what
+to talk about at CDS this year,
+
+6
+00:00:16,120 --> 00:00:18,640
+we wanted to demonstrate
+some techniques
+
+7
+00:00:18,640 --> 00:00:22,135
+for optimizing performance
+of existing applications.
+
+8
+00:00:22,135 --> 00:00:23,830
+So we were trying
+to think of what's
+
+9
+00:00:23,830 --> 00:00:27,355
+an app that Google doesn't have,
+something not in our portfolio.
+
+10
+00:00:27,355 --> 00:00:29,230
+It took us a while to
+come up with something,
+
+11
+00:00:29,230 --> 00:00:31,420
+but I think we kind of
+hit the nail on the head.
+
+12
+00:00:31,420 --> 00:00:33,586
+ADAM ARGYLE: A chat app,
+they don't have a chat app.
+
+13
+00:00:33,586 --> 00:00:36,220
+JASON MILLER: No, it's French.
+
+14
+00:00:36,220 --> 00:00:39,310
+This is an app for cats.
+
+15
+00:00:39,310 --> 00:00:42,590
+Sorry, I knew this slide
+would be really confusing.
+
+16
+00:00:42,590 --> 00:00:45,820
+So it's a chat app.
+
+17
+00:00:45,820 --> 00:00:48,580
+We've been working on an app
+that actually facilitates
+
+18
+00:00:48,580 --> 00:00:49,750
+communication between cats.
+
+19
+00:00:49,750 --> 00:00:50,500
+ADAM ARGYLE: Meow.
+
+20
+00:00:50,500 --> 00:00:52,780
+JASON MILLER: We
+know cats are working
+
+21
+00:00:52,780 --> 00:00:55,810
+on this uprising
+against humans of sorts,
+
+22
+00:00:55,810 --> 00:00:58,360
+and we figured that's
+sort like an opportunity
+
+23
+00:00:58,360 --> 00:00:59,890
+for an app that
+helps out with this,
+
+24
+00:00:59,890 --> 00:01:01,190
+with the planning and whatnot.
+
+25
+00:01:01,190 --> 00:01:03,850
+ADAM ARGYLE: Yeah, so this
+is what our app looks like.
+
+26
+00:01:03,850 --> 00:01:07,090
+The design is sort of a mix a
+typical material stuff and take
+
+27
+00:01:07,090 --> 00:01:09,680
+some inspiration from Android
+messages, among others.
+
+28
+00:01:09,680 --> 00:01:12,620
+And we wanted the UI to be
+realistically complex and well
+
+29
+00:01:12,620 --> 00:01:14,620
+designed, so that it would
+be challenging enough
+
+30
+00:01:14,620 --> 00:01:17,500
+for the browser and we could
+measure our optimizations.
+
+31
+00:01:17,500 --> 00:01:21,340
+And obviously, the text that's
+in there, that's cat ipsom.
+
+32
+00:01:21,340 --> 00:01:22,232
+I don't speak feline.
+
+33
+00:01:22,232 --> 00:01:23,440
+I don't know what's going on.
+
+34
+00:01:23,440 --> 00:01:25,120
+JASON MILLER: I do, but
+I refuse to make a demo.
+
+35
+00:01:25,120 --> 00:01:27,330
+ADAM ARGYLE: So next, we turned
+on the performance monitor,
+
+36
+00:01:27,330 --> 00:01:28,690
+because it looked
+good on my machine.
+
+37
+00:01:28,690 --> 00:01:30,030
+We're like, let's measure it.
+
+38
+00:01:30,030 --> 00:01:32,310
+It seems to look like
+everything's decent enough.
+
+39
+00:01:32,310 --> 00:01:33,101
+JASON MILLER: Yeah.
+
+40
+00:01:33,101 --> 00:01:36,220
+So, we saw a bit
+of jank and some
+
+41
+00:01:36,220 --> 00:01:40,990
+of the early user feedback we
+got was that the app felt slow.
+
+42
+00:01:40,990 --> 00:01:42,910
+We applied a bunch
+of the techniques
+
+43
+00:01:42,910 --> 00:01:45,850
+that Katie and Hussein
+talked about in their talk
+
+44
+00:01:45,850 --> 00:01:47,940
+earlier today.
+
+45
+00:01:47,940 --> 00:01:50,240
+But it wasn't cutting it.
+
+46
+00:01:50,240 --> 00:01:51,700
+And there was
+something else wrong.
+
+47
+00:01:51,700 --> 00:01:54,190
+So we decided to load the
+video up on a Nexus 5.
+
+48
+00:01:54,190 --> 00:01:56,890
+It's really useful to have a
+device like this sitting around
+
+49
+00:01:56,890 --> 00:01:58,260
+as you develop for the web.
+
+50
+00:01:58,260 --> 00:02:00,130
+As developers, we often
+have the privilege
+
+51
+00:02:00,130 --> 00:02:02,460
+of fast devices on
+fast connections.
+
+52
+00:02:02,460 --> 00:02:04,750
+And that can kind of
+trick us into thinking
+
+53
+00:02:04,750 --> 00:02:07,060
+that we're meeting
+our performance goals,
+
+54
+00:02:07,060 --> 00:02:09,259
+when we're actually not
+out in the real world.
+
+55
+00:02:09,259 --> 00:02:13,360
+So watching the video, you
+can see it's far from smooth.
+
+56
+00:02:13,360 --> 00:02:15,820
+ADAM ARGYLE: Many types
+of jank are present.
+
+57
+00:02:15,820 --> 00:02:18,070
+JASON MILLER: So
+smooth, it's a word
+
+58
+00:02:18,070 --> 00:02:21,080
+we hear a lot when we're
+talking about user interface.
+
+59
+00:02:21,080 --> 00:02:21,670
+ADAM ARGYLE: It's
+true, and it can
+
+60
+00:02:21,670 --> 00:02:23,140
+be difficult to
+describe since it's
+
+61
+00:02:23,140 --> 00:02:24,910
+sort of an invisible metric.
+
+62
+00:02:24,910 --> 00:02:27,370
+If your app is smooth, no
+one really notices anything
+
+63
+00:02:27,370 --> 00:02:27,950
+is wrong.
+
+64
+00:02:27,950 --> 00:02:28,783
+JASON MILLER: Right.
+
+65
+00:02:28,783 --> 00:02:30,670
+ADAM ARGYLE: So then,
+what does that really
+
+66
+00:02:30,670 --> 00:02:31,882
+mean that smooth is.
+
+67
+00:02:31,882 --> 00:02:33,340
+We thought smooth
+could destructure
+
+68
+00:02:33,340 --> 00:02:34,810
+into these attributes
+really well.
+
+69
+00:02:34,810 --> 00:02:35,946
+So let's break them down.
+
+70
+00:02:35,946 --> 00:02:37,541
+JASON MILLER: Cool.
+
+71
+00:02:37,541 --> 00:02:39,040
+ADAM ARGYLE:
+Smoothness is something
+
+72
+00:02:39,040 --> 00:02:42,010
+we believe happens when
+the user feels connected
+
+73
+00:02:42,010 --> 00:02:44,320
+to the app that they're
+using, like they're directly
+
+74
+00:02:44,320 --> 00:02:46,810
+controlling it, a sort
+of physical connection
+
+75
+00:02:46,810 --> 00:02:47,711
+to the interface.
+
+76
+00:02:47,711 --> 00:02:49,960
+When the application doesn't
+respond quickly to input,
+
+77
+00:02:49,960 --> 00:02:53,230
+it breaks this connection, and
+we feel distanced from the task
+
+78
+00:02:53,230 --> 00:02:53,890
+at hand.
+
+79
+00:02:53,890 --> 00:02:56,970
+It's best when it
+feels like magic paper.
+
+80
+00:02:56,970 --> 00:02:58,510
+JASON MILLER: Right.
+
+81
+00:02:58,510 --> 00:03:02,230
+Yeah, so when an application
+animates irregularly,
+
+82
+00:03:02,230 --> 00:03:04,300
+it actually distracts
+us, by breaking something
+
+83
+00:03:04,300 --> 00:03:05,825
+called the illusion of motion.
+
+84
+00:03:05,825 --> 00:03:08,200
+You can see the illustration
+of what I'm talking about up
+
+85
+00:03:08,200 --> 00:03:10,360
+here on the right.
+
+86
+00:03:10,360 --> 00:03:14,570
+The eye responds to light
+changes at 10 times per second.
+
+87
+00:03:14,570 --> 00:03:18,250
+So if we show the eye a sequence
+of 10 images per second,
+
+88
+00:03:18,250 --> 00:03:21,340
+we can actually still see
+each individual frame.
+
+89
+00:03:21,340 --> 00:03:22,390
+ADAM ARGYLE: Yeah.
+
+90
+00:03:22,390 --> 00:03:24,306
+JASON MILLER: So the
+brain doesn't necessarily
+
+91
+00:03:24,306 --> 00:03:26,150
+interpret that as motion.
+
+92
+00:03:26,150 --> 00:03:28,540
+If we increase this to
+20 frames per second,
+
+93
+00:03:28,540 --> 00:03:32,009
+somewhere in and around
+the red orb there,
+
+94
+00:03:32,009 --> 00:03:33,550
+we start to interpret
+this as motion,
+
+95
+00:03:33,550 --> 00:03:36,100
+because we've exceeded two times
+the number of light changes
+
+96
+00:03:36,100 --> 00:03:37,120
+we can detect.
+
+97
+00:03:37,120 --> 00:03:39,061
+And this effect
+increases as we approach
+
+98
+00:03:39,061 --> 00:03:41,560
+60 frames per second, where we
+start to see some diminishing
+
+99
+00:03:41,560 --> 00:03:42,440
+returns.
+
+100
+00:03:42,440 --> 00:03:43,240
+ADAM ARGYLE: Yep.
+
+101
+00:03:43,240 --> 00:03:44,830
+JASON MILLER:
+Basically, smoothness
+
+102
+00:03:44,830 --> 00:03:48,850
+relates to the human
+perception of performance.
+
+103
+00:03:48,850 --> 00:03:52,120
+It's a measure of the
+question, is this application
+
+104
+00:03:52,120 --> 00:03:53,680
+keeping up with me?
+
+105
+00:03:53,680 --> 00:03:55,120
+ADAM ARGYLE: Or
+does this app feel
+
+106
+00:03:55,120 --> 00:03:56,800
+like it's helping me
+get something done,
+
+107
+00:03:56,800 --> 00:03:59,062
+or is it getting in my way?
+
+108
+00:03:59,062 --> 00:04:01,270
+The way the user feels when
+interacting with software
+
+109
+00:04:01,270 --> 00:04:03,010
+is really important.
+
+110
+00:04:03,010 --> 00:04:05,690
+Because we've all been
+in situations like this.
+
+111
+00:04:05,690 --> 00:04:09,069
+I mean, he was obviously
+trying to send a tweet.
+
+112
+00:04:09,069 --> 00:04:10,360
+And it just wasn't working out.
+
+113
+00:04:10,360 --> 00:04:12,485
+JASON MILLER: He probably should
+have used some newer hardware.
+
+114
+00:04:12,485 --> 00:04:14,612
+ADAM ARGYLE: Yeah, well,
+he's breaking it now.
+
+115
+00:04:14,612 --> 00:04:16,820
+JASON MILLER: So this is
+backed up by statistics too.
+
+116
+00:04:16,820 --> 00:04:20,470
+In a 2017 study,
+46% of people who
+
+117
+00:04:20,470 --> 00:04:22,660
+had an interruptive
+mobile experience
+
+118
+00:04:22,660 --> 00:04:25,940
+said they wouldn't purchase from
+that brand again in the future.
+
+119
+00:04:25,940 --> 00:04:29,140
+And in that same study, they
+found that 79% of people
+
+120
+00:04:29,140 --> 00:04:31,720
+said they're more likely
+to revisit or share
+
+121
+00:04:31,720 --> 00:04:34,015
+a mobile site that
+was easy to use.
+
+122
+00:04:34,015 --> 00:04:36,435
+ADAM ARGYLE: And another
+metric, and it's a good one,
+
+123
+00:04:36,435 --> 00:04:39,510
+100% of Adams say they
+doubt a thing's reliability
+
+124
+00:04:39,510 --> 00:04:41,650
+if it hiccups while
+performing its task.
+
+125
+00:04:41,650 --> 00:04:42,890
+Maybe you agree.
+
+126
+00:04:42,890 --> 00:04:44,560
+JASON MILLER: Right.
+
+127
+00:04:44,560 --> 00:04:47,320
+So anytime we talk about the
+perception of performance,
+
+128
+00:04:47,320 --> 00:04:50,810
+it's useful to frame things
+using the RAIL model.
+
+129
+00:04:50,810 --> 00:04:52,660
+RAIL provides a
+set of goals that
+
+130
+00:04:52,660 --> 00:04:55,000
+cover the four ways we
+all perceive performance
+
+131
+00:04:55,000 --> 00:04:57,320
+and speed when using software.
+
+132
+00:04:57,320 --> 00:04:59,440
+Those are Response,
+which is reacting
+
+133
+00:04:59,440 --> 00:05:02,230
+to events in 100 milliseconds,
+Animation, which is producing
+
+134
+00:05:02,230 --> 00:05:06,280
+frames in 16 milliseconds, Idol,
+which is maximizing idle time,
+
+135
+00:05:06,280 --> 00:05:09,260
+and Load, which is loading
+in under one second.
+
+136
+00:05:09,260 --> 00:05:12,550
+And these are based off of like
+a few years, a few decades,
+
+137
+00:05:12,550 --> 00:05:13,810
+actually, worth of research.
+
+138
+00:05:13,810 --> 00:05:15,080
+So they're very
+unlikely to change.
+
+139
+00:05:15,080 --> 00:05:17,496
+ADAM ARGYLE: And you know what
+this slide looks like to me
+
+140
+00:05:17,496 --> 00:05:19,314
+is click, run, swipe, and load.
+
+141
+00:05:19,314 --> 00:05:21,730
+JASON MILLER: Yeah, we could
+have used a different acronym
+
+142
+00:05:21,730 --> 00:05:22,522
+there, I guess.
+
+143
+00:05:22,522 --> 00:05:23,730
+ADAM ARGYLE: We'll get there.
+
+144
+00:05:23,730 --> 00:05:26,510
+JASON MILLER: Cool,
+so there's times
+
+145
+00:05:26,510 --> 00:05:29,540
+that we have to
+hit for all these.
+
+146
+00:05:29,540 --> 00:05:32,240
+ADAM ARGYLE: And we believe
+responding to user input
+
+147
+00:05:32,240 --> 00:05:35,150
+quickly is the first and
+arguably most important thing
+
+148
+00:05:35,150 --> 00:05:38,780
+to do in your app for it to feel
+or appear smooth and snappy.
+
+149
+00:05:38,780 --> 00:05:40,970
+JASON MILLER: Right, even
+sticking to RAIL's goals
+
+150
+00:05:40,970 --> 00:05:43,649
+though, idle work can
+potentially delay input
+
+151
+00:05:43,649 --> 00:05:45,440
+by up to 50 milliseconds,
+which we're going
+
+152
+00:05:45,440 --> 00:05:46,523
+to hear about in a second.
+
+153
+00:05:46,523 --> 00:05:50,600
+But we recommend responding
+to input in 50 milliseconds
+
+154
+00:05:50,600 --> 00:05:53,060
+in order to have the combined
+time never exceed 100.
+
+155
+00:05:53,060 --> 00:05:55,268
+That's why you'll see the
+difference between the goal
+
+156
+00:05:55,268 --> 00:05:56,900
+and the guideline.
+
+157
+00:05:56,900 --> 00:05:58,250
+Animation has a similar story.
+
+158
+00:05:58,250 --> 00:05:59,666
+So there's more
+than just our code
+
+159
+00:05:59,666 --> 00:06:02,559
+that has to run in order to
+get a frame on the screen.
+
+160
+00:06:02,559 --> 00:06:04,850
+To account for a reasonable
+amount of browser rendering
+
+161
+00:06:04,850 --> 00:06:07,220
+overhead, we recommend
+shooting for 10 milliseconds
+
+162
+00:06:07,220 --> 00:06:09,532
+of your JavaScript time
+to produce that frame,
+
+163
+00:06:09,532 --> 00:06:11,115
+leaving six left
+over for the browser.
+
+164
+00:06:11,115 --> 00:06:12,490
+ADAM ARGYLE:
+Browser are so cool.
+
+165
+00:06:12,490 --> 00:06:14,750
+We're talking about six
+milliseconds, 10 milliseconds,
+
+166
+00:06:14,750 --> 00:06:16,625
+who could do anything
+in that amount of time?
+
+167
+00:06:16,625 --> 00:06:18,220
+And the browser's
+doing crazy stuff.
+
+168
+00:06:18,220 --> 00:06:19,053
+JASON MILLER: Right.
+
+169
+00:06:19,053 --> 00:06:20,430
+ADAM ARGYLE: It's so rad.
+
+170
+00:06:20,430 --> 00:06:21,680
+JASON MILLER: So in order to--
+
+171
+00:06:21,680 --> 00:06:24,750
+in addition to deferring
+as much work as possible,
+
+172
+00:06:24,750 --> 00:06:27,470
+it's also good to defer your
+working 50 millisecond chunks.
+
+173
+00:06:27,470 --> 00:06:31,270
+This is where that response
+metric gets its differentiation
+
+174
+00:06:31,270 --> 00:06:31,770
+from.
+
+175
+00:06:31,770 --> 00:06:35,300
+So if you have 50 millisecond
+blocking idle tasks,
+
+176
+00:06:35,300 --> 00:06:36,980
+there's a chance
+that any one of those
+
+177
+00:06:36,980 --> 00:06:39,980
+could cause input to be queued
+for 50 milliseconds, which
+
+178
+00:06:39,980 --> 00:06:41,750
+means if you need
+to respond in 100,
+
+179
+00:06:41,750 --> 00:06:43,460
+you only have 50
+milliseconds left.
+
+180
+00:06:43,460 --> 00:06:45,160
+So that's where that
+metric comes from.
+
+181
+00:06:45,160 --> 00:06:47,285
+ADAM ARGYLE: And the load
+goals, based on research,
+
+182
+00:06:47,285 --> 00:06:50,330
+is showing that we
+generally lose focus
+
+183
+00:06:50,330 --> 00:06:51,800
+after about one second.
+
+184
+00:06:51,800 --> 00:06:53,420
+We start to feel
+a bit disconnected
+
+185
+00:06:53,420 --> 00:06:54,840
+from the activity we're doing.
+
+186
+00:06:54,840 --> 00:06:57,530
+And then at 10 seconds,
+we become frustrated,
+
+187
+00:06:57,530 --> 00:06:59,540
+we go grab a
+sledgehammer, and probably
+
+188
+00:06:59,540 --> 00:07:00,652
+light something on fire.
+
+189
+00:07:00,652 --> 00:07:02,610
+JASON MILLER: That's how
+that picture happened.
+
+190
+00:07:02,610 --> 00:07:05,420
+So RAIL's guideline
+for load is kind
+
+191
+00:07:05,420 --> 00:07:07,460
+of right in the middle
+of those two numbers.
+
+192
+00:07:07,460 --> 00:07:08,926
+We set it up five seconds.
+
+193
+00:07:08,926 --> 00:07:10,550
+And this is a good
+metric for something
+
+194
+00:07:10,550 --> 00:07:12,133
+like a page load,
+where you're waiting
+
+195
+00:07:12,133 --> 00:07:15,830
+for a decent amount of
+new content to come in,
+
+196
+00:07:15,830 --> 00:07:18,080
+even a whole screen's
+worth of content.
+
+197
+00:07:18,080 --> 00:07:20,540
+For little interactions,
+though, like the sending button
+
+198
+00:07:20,540 --> 00:07:22,250
+in our chat app,
+it's actually best
+
+199
+00:07:22,250 --> 00:07:23,937
+to shoot for that
+one second goal.
+
+200
+00:07:23,937 --> 00:07:25,520
+There's only a small
+amount of content
+
+201
+00:07:25,520 --> 00:07:26,760
+being changed on screen.
+
+202
+00:07:26,760 --> 00:07:29,162
+So it's not as
+perceivable to the user.
+
+203
+00:07:29,162 --> 00:07:32,452
+ADAM ARGYLE: Yep,
+and with RAIL we
+
+204
+00:07:32,452 --> 00:07:34,160
+have a nice mental
+model for figuring out
+
+205
+00:07:34,160 --> 00:07:35,610
+why the app feels slow.
+
+206
+00:07:35,610 --> 00:07:37,970
+And it helps us set
+a useful challenge.
+
+207
+00:07:37,970 --> 00:07:40,277
+And you'll notice on each
+slide, as we continue here,
+
+208
+00:07:40,277 --> 00:07:42,110
+there'll be a little
+badge in the top right.
+
+209
+00:07:42,110 --> 00:07:43,820
+It's have an R, an
+A, an I, and an L,
+
+210
+00:07:43,820 --> 00:07:45,320
+add it'll pertain
+to the RAIL model.
+
+211
+00:07:45,320 --> 00:07:46,153
+JASON MILLER: Right.
+
+212
+00:07:46,153 --> 00:07:48,620
+So, we're pretty confident that
+we can meet RAIL guidelines
+
+213
+00:07:48,620 --> 00:07:54,564
+on a $1,500 laptop, or maybe
+some other very popular laptop.
+
+214
+00:07:54,564 --> 00:07:56,480
+ADAM ARGYLE: Yeah, that's
+a cush laptop there.
+
+215
+00:07:56,480 --> 00:07:58,771
+Kind of looks like it's on
+John Snow's bed or something
+
+216
+00:07:58,771 --> 00:07:59,426
+like that.
+
+217
+00:07:59,426 --> 00:08:01,676
+JASON MILLER: Yeah, I've
+never seen "Game of Thrones."
+
+218
+00:08:01,676 --> 00:08:04,057
+I assume that's a reference
+to "Game of Thrones."
+
+219
+00:08:04,057 --> 00:08:05,390
+So we could do it on the laptop.
+
+220
+00:08:05,390 --> 00:08:09,660
+But can we meet our guidelines
+on a sub $100 phone?
+
+221
+00:08:09,660 --> 00:08:12,020
+ADAM ARGYLE: Uh, duh,
+the web is awesome.
+
+222
+00:08:12,020 --> 00:08:14,990
+JASON MILLER: Yes,
+so we want our apps
+
+223
+00:08:14,990 --> 00:08:16,370
+to be smooth everywhere.
+
+224
+00:08:16,370 --> 00:08:18,114
+And what we need to
+do to ensure that is
+
+225
+00:08:18,114 --> 00:08:20,030
+to optimize for the
+lowest common denominator.
+
+226
+00:08:20,030 --> 00:08:23,894
+We need to be 60 frames per
+second on low-end hardware.
+
+227
+00:08:23,894 --> 00:08:26,310
+ADAM ARGYLE: So before we
+embark on a challenge like this,
+
+228
+00:08:26,310 --> 00:08:28,880
+though, we need to be able to
+measure whether we're meeting
+
+229
+00:08:28,880 --> 00:08:29,980
+those guidelines or not.
+
+230
+00:08:29,980 --> 00:08:30,950
+JASON MILLER: Right.
+
+231
+00:08:30,950 --> 00:08:33,620
+So all the tools that we
+have available to measure
+
+232
+00:08:33,620 --> 00:08:35,240
+these things, live
+in Chrome DevTools.
+
+233
+00:08:35,240 --> 00:08:36,110
+ADAM ARGYLE: DevTools.
+
+234
+00:08:36,110 --> 00:08:36,943
+JASON MILLER: Right.
+
+235
+00:08:36,943 --> 00:08:38,929
+We have seen a bunch
+of them earlier today.
+
+236
+00:08:38,929 --> 00:08:41,120
+In Paul, Elizabeth's TALK
+they talked specifically
+
+237
+00:08:41,120 --> 00:08:42,539
+about DevTools.
+
+238
+00:08:42,539 --> 00:08:45,080
+We're actually going to show a
+couple of features in DevTools
+
+239
+00:08:45,080 --> 00:08:46,788
+that are maybe a little
+bit less commonly
+
+240
+00:08:46,788 --> 00:08:51,410
+used, some of them potentially
+even lost to the sands of time.
+
+241
+00:08:51,410 --> 00:08:52,369
+So let's get into them.
+
+242
+00:08:52,369 --> 00:08:53,826
+ADAM ARGYLE: The
+first tool is down
+
+243
+00:08:53,826 --> 00:08:56,370
+in the drawer, which you can
+pull up using the Escape key.
+
+244
+00:08:56,370 --> 00:08:58,037
+It's the rendering panel.
+
+245
+00:08:58,037 --> 00:08:59,620
+It lets you visualize
+important things
+
+246
+00:08:59,620 --> 00:09:01,911
+that we're going to get into
+today, like painting layer
+
+247
+00:09:01,911 --> 00:09:03,890
+borders and live SPF meter.
+
+248
+00:09:03,890 --> 00:09:05,550
+JASON MILLER: Right.
+
+249
+00:09:05,550 --> 00:09:07,220
+The second useful
+tool is up in three
+
+250
+00:09:07,220 --> 00:09:08,630
+dot menu in the upper right.
+
+251
+00:09:08,630 --> 00:09:09,830
+It's called Layers.
+
+252
+00:09:09,830 --> 00:09:12,735
+It shows a real time view of the
+layers that make up your page.
+
+253
+00:09:12,735 --> 00:09:14,860
+We're going to deep dive
+into this in a little bit.
+
+254
+00:09:14,860 --> 00:09:15,650
+ADAM ARGYLE: [INAUDIBLE]
+
+255
+00:09:15,650 --> 00:09:17,941
+JASON MILLER: But it's useful
+to remember that DevTools
+
+256
+00:09:17,941 --> 00:09:19,010
+has you covered here.
+
+257
+00:09:19,010 --> 00:09:21,140
+ADAM ARGYLE: The next tool's
+back down in the drawer again.
+
+258
+00:09:21,140 --> 00:09:22,556
+It's the graphs
+we showed earlier,
+
+259
+00:09:22,556 --> 00:09:24,020
+called the Performance Monitor.
+
+260
+00:09:24,020 --> 00:09:26,030
+And here you can
+monitor various aspects
+
+261
+00:09:26,030 --> 00:09:28,550
+of your app's performance,
+chart it over time.
+
+262
+00:09:28,550 --> 00:09:31,280
+Plus, it looks so
+good on a dark theme.
+
+263
+00:09:31,280 --> 00:09:32,572
+I just love that.
+
+264
+00:09:32,572 --> 00:09:34,030
+It's pretty useful
+to find hiccups.
+
+265
+00:09:34,030 --> 00:09:35,184
+JASON MILLER: Right.
+
+266
+00:09:35,184 --> 00:09:36,350
+Finally, there's Lighthouse.
+
+267
+00:09:36,350 --> 00:09:38,400
+And we've seen a
+couple of times today
+
+268
+00:09:38,400 --> 00:09:40,660
+this used for tracking
+load performance metrics.
+
+269
+00:09:40,660 --> 00:09:42,860
+But you could actually
+find it slightly useful
+
+270
+00:09:42,860 --> 00:09:46,580
+to find runtime metrics in
+Lighthouse, particularly
+
+271
+00:09:46,580 --> 00:09:47,770
+for input response delays.
+
+272
+00:09:47,770 --> 00:09:51,432
+So Lighthouse doesn't track
+for very long after page load.
+
+273
+00:09:51,432 --> 00:09:52,640
+But it does for a little bit.
+
+274
+00:09:52,640 --> 00:09:54,800
+And this might be exactly
+the kind of heads-up
+
+275
+00:09:54,800 --> 00:09:56,390
+you need to figure
+out that there
+
+276
+00:09:56,390 --> 00:09:59,010
+are some optimizations left
+for you to do on your website.
+
+277
+00:09:59,010 --> 00:10:02,480
+ADAM ARGYLE: Cool, all
+right, it's business time.
+
+278
+00:10:02,480 --> 00:10:04,850
+We're equipped with some
+tools and strategies on how
+
+279
+00:10:04,850 --> 00:10:06,680
+to investigate performance.
+
+280
+00:10:06,680 --> 00:10:07,730
+Let's dive in.
+
+281
+00:10:07,730 --> 00:10:09,030
+JASON MILLER: Let's dive in.
+
+282
+00:10:09,030 --> 00:10:11,900
+So we came up with three
+types of optimizations
+
+283
+00:10:11,900 --> 00:10:15,230
+that we hope will help address
+common performance issues.
+
+284
+00:10:15,230 --> 00:10:18,230
+We have efficient animations,
+reading and then writing,
+
+285
+00:10:18,230 --> 00:10:20,480
+and then sort of a
+grab bag of things
+
+286
+00:10:20,480 --> 00:10:22,730
+that we're calling lazy winds.
+
+287
+00:10:22,730 --> 00:10:24,760
+So that's sort of a mix.
+
+288
+00:10:24,760 --> 00:10:27,110
+So we'll start off with
+efficient animations.
+
+289
+00:10:27,110 --> 00:10:29,060
+Animating things
+effectively in the browser
+
+290
+00:10:29,060 --> 00:10:32,270
+really requires a somewhat
+deep understanding
+
+291
+00:10:32,270 --> 00:10:34,190
+of how browsers render.
+
+292
+00:10:34,190 --> 00:10:37,100
+Let's say we want to
+build like the chat UI
+
+293
+00:10:37,100 --> 00:10:38,425
+that we showed in the intro.
+
+294
+00:10:38,425 --> 00:10:39,300
+ADAM ARGYLE: Chat UI.
+
+295
+00:10:39,300 --> 00:10:41,270
+JASON MILLER:
+Right, chat, sorry.
+
+296
+00:10:41,270 --> 00:10:44,300
+We want to write some HTML, give
+it a bunch of fancy styling,
+
+297
+00:10:44,300 --> 00:10:46,490
+and then arbitrary
+magic happens and you
+
+298
+00:10:46,490 --> 00:10:47,992
+have pixels on a screen.
+
+299
+00:10:47,992 --> 00:10:49,700
+That level of
+understanding is not enough
+
+300
+00:10:49,700 --> 00:10:51,560
+for us to be able
+to optimize here.
+
+301
+00:10:51,560 --> 00:10:52,640
+So let's dig into it.
+
+302
+00:10:52,640 --> 00:10:54,800
+We start off with some HTML.
+
+303
+00:10:54,800 --> 00:10:57,765
+This all gets passed and
+turned into a tree structure
+
+304
+00:10:57,765 --> 00:10:58,640
+that we call the Dom.
+
+305
+00:10:58,640 --> 00:11:01,010
+You're familiar with the Dom.
+
+306
+00:11:01,010 --> 00:11:02,630
+And this sort of
+preps us to the point
+
+307
+00:11:02,630 --> 00:11:06,360
+where we're ready to render,
+which is a four-step process.
+
+308
+00:11:06,360 --> 00:11:08,315
+The first step is
+style calculation.
+
+309
+00:11:08,315 --> 00:11:10,940
+So the browser needs to compute
+all the styles for the elements
+
+310
+00:11:10,940 --> 00:11:14,570
+that you see, which is resolving
+things to their final values,
+
+311
+00:11:14,570 --> 00:11:17,257
+resolving CSS custom properties,
+inherited values, et cetera.
+
+312
+00:11:17,257 --> 00:11:19,340
+And it does this by going
+through all the elements
+
+313
+00:11:19,340 --> 00:11:23,090
+and figuring out which CSS
+properties apply to them.
+
+314
+00:11:23,090 --> 00:11:25,400
+With those values
+calculated, we can figure out
+
+315
+00:11:25,400 --> 00:11:28,475
+the positions of where all those
+elements are on the screen.
+
+316
+00:11:28,475 --> 00:11:31,100
+So you see those are represented
+as boxes up here on the right.
+
+317
+00:11:31,100 --> 00:11:34,410
+The cost of this calculation
+step varies quite a bit.
+
+318
+00:11:34,410 --> 00:11:36,142
+Some types of layouts
+are multi-packs,
+
+319
+00:11:36,142 --> 00:11:37,850
+which means that they
+need to be laid out
+
+320
+00:11:37,850 --> 00:11:40,550
+multiple times before they're
+in their final resting state.
+
+321
+00:11:40,550 --> 00:11:44,090
+And other types, like position
+absolute, are just static.
+
+322
+00:11:44,090 --> 00:11:46,520
+So they only need
+to be one pass.
+
+323
+00:11:46,520 --> 00:11:48,890
+So that computed layout
+has enough information
+
+324
+00:11:48,890 --> 00:11:52,260
+to break things up into pieces
+that we call paint layers.
+
+325
+00:11:52,260 --> 00:11:55,190
+Here in the painting process,
+we walk through all the paint
+
+326
+00:11:55,190 --> 00:11:57,170
+layers and we convert
+the layered information
+
+327
+00:11:57,170 --> 00:11:59,730
+that we had into Draw commands.
+
+328
+00:11:59,730 --> 00:12:02,090
+And these sort of look
+like the 2D canvas API,
+
+329
+00:12:02,090 --> 00:12:04,180
+if you've used that.
+
+330
+00:12:04,180 --> 00:12:06,380
+So Chrome takes these
+and it sends them over
+
+331
+00:12:06,380 --> 00:12:08,930
+to its graphics layer,
+which is called Skia.
+
+332
+00:12:08,930 --> 00:12:11,090
+And those get
+rasterized and sent back
+
+333
+00:12:11,090 --> 00:12:12,350
+as image representations.
+
+334
+00:12:12,350 --> 00:12:15,140
+ADAM ARGYLE: Wait a second,
+Chrome, they're skias?
+
+335
+00:12:15,140 --> 00:12:17,360
+I thought they
+were snowboarders.
+
+336
+00:12:17,360 --> 00:12:18,820
+JASON MILLER: No, all skias.
+
+337
+00:12:18,820 --> 00:12:21,950
+OK so, with the paint
+layers rasterized,
+
+338
+00:12:21,950 --> 00:12:23,810
+the last step is
+to composite them.
+
+339
+00:12:23,810 --> 00:12:26,480
+So this step takes all the
+rasterized essentially images
+
+340
+00:12:26,480 --> 00:12:28,940
+at this point and lays them
+out on top of each other
+
+341
+00:12:28,940 --> 00:12:31,709
+in order to make things
+look like the final page.
+
+342
+00:12:31,709 --> 00:12:33,500
+So what you get is the
+result on the right,
+
+343
+00:12:33,500 --> 00:12:35,630
+which is what we wanted.
+
+344
+00:12:35,630 --> 00:12:37,400
+This whole process
+applies anytime
+
+345
+00:12:37,400 --> 00:12:40,220
+you have page updates that
+are triggered by JavaScript
+
+346
+00:12:40,220 --> 00:12:42,080
+manipulating the Dom.
+
+347
+00:12:42,080 --> 00:12:44,720
+So let's say we want to
+update the left property
+
+348
+00:12:44,720 --> 00:12:47,540
+of a div, left
+position of a div.
+
+349
+00:12:47,540 --> 00:12:50,630
+The browser is going to
+have to recalculate styles.
+
+350
+00:12:50,630 --> 00:12:53,240
+It's going to have to redo
+the layout, because they have
+
+351
+00:12:53,240 --> 00:12:58,190
+changed, paint all the
+paint layers that changed,
+
+352
+00:12:58,190 --> 00:13:01,280
+and then composite them together
+to form the resulting page.
+
+353
+00:13:01,280 --> 00:13:02,240
+Yeah, lot of work.
+
+354
+00:13:02,240 --> 00:13:03,860
+ADAM ARGYLE: A lot of work.
+
+355
+00:13:03,860 --> 00:13:06,170
+JASON MILLER: And then if we
+set the transform property
+
+356
+00:13:06,170 --> 00:13:09,170
+for some contrast,
+transform opacity
+
+357
+00:13:09,170 --> 00:13:12,870
+and filter are all what's
+called compositable properties.
+
+358
+00:13:12,870 --> 00:13:15,230
+So modifying these doesn't
+actually trigger layout
+
+359
+00:13:15,230 --> 00:13:17,280
+and can often bypass paint.
+
+360
+00:13:17,280 --> 00:13:19,990
+So you go straight from style
+recalculation to compositing.
+
+361
+00:13:19,990 --> 00:13:20,990
+ADAM ARGYLE: [INAUDIBLE]
+
+362
+00:13:20,990 --> 00:13:23,060
+JASON MILLER: Yeah,
+so a lot less work.
+
+363
+00:13:23,060 --> 00:13:25,880
+These things, they get
+really important when
+
+364
+00:13:25,880 --> 00:13:27,080
+you're animating.
+
+365
+00:13:27,080 --> 00:13:30,890
+On every frame we are now
+potentially computing layout,
+
+366
+00:13:30,890 --> 00:13:34,350
+if you set something
+like width or left.
+
+367
+00:13:34,350 --> 00:13:36,620
+And this is a lot of work
+for the browser to do.
+
+368
+00:13:36,620 --> 00:13:39,380
+This is going to be
+a low frame rate.
+
+369
+00:13:39,380 --> 00:13:41,090
+Animating something
+like color, layout
+
+370
+00:13:41,090 --> 00:13:42,110
+isn't required
+because you're not
+
+371
+00:13:42,110 --> 00:13:44,430
+changing the bounds of the
+position of the element.
+
+372
+00:13:44,430 --> 00:13:46,970
+So on each frame, you're
+recalculating styles, painting,
+
+373
+00:13:46,970 --> 00:13:47,690
+and compositing.
+
+374
+00:13:47,690 --> 00:13:49,020
+You skip the layout step.
+
+375
+00:13:49,020 --> 00:13:50,000
+A little better.
+
+376
+00:13:50,000 --> 00:13:51,750
+This used to be a
+performance concern.
+
+377
+00:13:51,750 --> 00:13:53,480
+But in modern
+graphics pipelines,
+
+378
+00:13:53,480 --> 00:13:55,730
+it's actually pretty fast.
+
+379
+00:13:55,730 --> 00:13:57,950
+Finally, animating
+compositable properties,
+
+380
+00:13:57,950 --> 00:14:00,792
+like transform
+opacity, all that work
+
+381
+00:14:00,792 --> 00:14:02,000
+is handled by the compositor.
+
+382
+00:14:02,000 --> 00:14:04,640
+So this is really good
+for things like responding
+
+383
+00:14:04,640 --> 00:14:05,562
+to pan gestures.
+
+384
+00:14:05,562 --> 00:14:07,520
+Because it's important
+to keep that pipeline as
+
+385
+00:14:07,520 --> 00:14:08,557
+short as possible.
+
+386
+00:14:08,557 --> 00:14:10,140
+The one thing to
+keep in mind, though,
+
+387
+00:14:10,140 --> 00:14:13,131
+is that compositing is not free.
+
+388
+00:14:13,131 --> 00:14:14,880
+If you're on resource
+constrained devices,
+
+389
+00:14:14,880 --> 00:14:17,552
+you really need to watch
+your composited layer count.
+
+390
+00:14:17,552 --> 00:14:19,760
+If it gets too high, you
+can hit memory [INAUDIBLE]..
+
+391
+00:14:19,760 --> 00:14:23,505
+ADAM ARGYLE: You pretty
+much have jank permanently.
+
+392
+00:14:23,505 --> 00:14:25,880
+JASON MILLER: So we had a send
+button in our application,
+
+393
+00:14:25,880 --> 00:14:27,505
+and depending on
+whether it was enabled
+
+394
+00:14:27,505 --> 00:14:29,960
+or disabled, whether there
+was text in the text field
+
+395
+00:14:29,960 --> 00:14:33,080
+beside it, it would have a
+large or a small box shadow
+
+396
+00:14:33,080 --> 00:14:34,560
+and change its color.
+
+397
+00:14:34,560 --> 00:14:38,446
+So originally, we just did a CSS
+transition on the box shadow.
+
+398
+00:14:38,446 --> 00:14:40,070
+Box shadows are
+paint-based animations,
+
+399
+00:14:40,070 --> 00:14:42,962
+because they physically
+cannot affect layout.
+
+400
+00:14:42,962 --> 00:14:45,170
+And that meant that on every
+frame, what we had to do
+
+401
+00:14:45,170 --> 00:14:47,900
+was send a bunch of new
+commands over to Skia,
+
+402
+00:14:47,900 --> 00:14:49,285
+like we saw in those demos.
+
+403
+00:14:49,285 --> 00:14:50,660
+So here's an
+example of what that
+
+404
+00:14:50,660 --> 00:14:52,580
+might look like in a
+three-frame animation.
+
+405
+00:14:52,580 --> 00:14:54,871
+And you see it's pretty much
+repeating the same process
+
+406
+00:14:54,871 --> 00:14:56,970
+each time with new variables.
+
+407
+00:14:56,970 --> 00:14:59,270
+We tried switching this
+to a composite animation.
+
+408
+00:14:59,270 --> 00:15:01,820
+And the way we did that was
+we duplicated the button
+
+409
+00:15:01,820 --> 00:15:04,050
+using a pseudo element.
+
+410
+00:15:04,050 --> 00:15:06,070
+And then the foreground
+was the element
+
+411
+00:15:06,070 --> 00:15:08,570
+and the background was a pseudo
+element with the same shape,
+
+412
+00:15:08,570 --> 00:15:10,680
+but a box shadow applied to it.
+
+413
+00:15:10,680 --> 00:15:13,640
+And then all we have to do is
+change the opacity of the box
+
+414
+00:15:13,640 --> 00:15:16,550
+shadow pseudo element
+behind the button,
+
+415
+00:15:16,550 --> 00:15:19,130
+and we can get any of the
+frames of the animation we
+
+416
+00:15:19,130 --> 00:15:24,782
+want between 0 and 100 using
+just composited animations.
+
+417
+00:15:24,782 --> 00:15:27,240
+So any frame can be constructed
+from just those two paints.
+
+418
+00:15:27,240 --> 00:15:28,489
+We do not need to repaint.
+
+419
+00:15:28,489 --> 00:15:29,780
+You can see this in action too.
+
+420
+00:15:29,780 --> 00:15:30,550
+So looking at DevTools--
+
+421
+00:15:30,550 --> 00:15:31,110
+ADAM ARGYLE: I love this GIF.
+
+422
+00:15:31,110 --> 00:15:31,750
+It's so cool.
+
+423
+00:15:31,750 --> 00:15:33,090
+JASON MILLER: Yeah, we've
+got a paint-based animation
+
+424
+00:15:33,090 --> 00:15:33,590
+on the top.
+
+425
+00:15:33,590 --> 00:15:34,770
+That's just box shadow.
+
+426
+00:15:34,770 --> 00:15:37,865
+The center one is animating the
+opacity of a shadow element.
+
+427
+00:15:37,865 --> 00:15:39,990
+And then the bottom one is
+sort of the penultimate,
+
+428
+00:15:39,990 --> 00:15:43,290
+this is animating
+the transform's scale
+
+429
+00:15:43,290 --> 00:15:44,280
+of the shadow.
+
+430
+00:15:44,280 --> 00:15:45,750
+ADAM ARGYLE: Hey, why the
+middle one paint at the end
+
+431
+00:15:45,750 --> 00:15:46,560
+and at the end.
+
+432
+00:15:46,560 --> 00:15:47,610
+JASON MILLER: Yeah, so
+paints at the beginning,
+
+433
+00:15:47,610 --> 00:15:48,460
+paints at the end.
+
+434
+00:15:48,460 --> 00:15:51,464
+This is when it's being
+promoted and then demoted
+
+435
+00:15:51,464 --> 00:15:52,380
+to a composited layer.
+
+436
+00:15:52,380 --> 00:15:53,110
+ADAM ARGYLE: That was so quick.
+
+437
+00:15:53,110 --> 00:15:54,350
+It was barely promoted.
+
+438
+00:15:54,350 --> 00:15:54,780
+JASON MILLER: Right.
+
+439
+00:15:54,780 --> 00:15:55,500
+ADAM ARGYLE: That's a bummer.
+
+440
+00:15:55,500 --> 00:15:57,270
+JASON MILLER: So we
+did this experiment.
+
+441
+00:15:57,270 --> 00:15:59,989
+The profiler told us that
+this was a good idea.
+
+442
+00:15:59,989 --> 00:16:02,280
+Obviously, there's a lot less
+main thread work going on
+
+443
+00:16:02,280 --> 00:16:03,488
+in the second two animations.
+
+444
+00:16:03,488 --> 00:16:05,130
+These are in order.
+
+445
+00:16:05,130 --> 00:16:07,500
+And so this might be
+something we would want to do.
+
+446
+00:16:07,500 --> 00:16:10,500
+Except if we're targeting
+really low-end mobile devices,
+
+447
+00:16:10,500 --> 00:16:13,380
+where they might not
+have the best GPUs.
+
+448
+00:16:13,380 --> 00:16:15,870
+The reason why this is
+good is because GPUs
+
+449
+00:16:15,870 --> 00:16:19,860
+are really good at
+transforming composited layers.
+
+450
+00:16:19,860 --> 00:16:22,570
+It's important to remember that
+this is not a silver bullet,
+
+451
+00:16:22,570 --> 00:16:23,100
+though.
+
+452
+00:16:23,100 --> 00:16:25,410
+You always want to make
+sure that you profile,
+
+453
+00:16:25,410 --> 00:16:28,680
+and that your performance
+improvements on desktop
+
+454
+00:16:28,680 --> 00:16:30,840
+don't become problems on mobile.
+
+455
+00:16:30,840 --> 00:16:32,230
+ADAM ARGYLE: Measure.
+
+456
+00:16:32,230 --> 00:16:33,060
+JASON MILLER: And
+please, we don't
+
+457
+00:16:33,060 --> 00:16:34,684
+have context for this
+particular slide,
+
+458
+00:16:34,684 --> 00:16:37,057
+but please don't
+animate max height.
+
+459
+00:16:37,057 --> 00:16:39,390
+This is something that feels
+really easy and really good
+
+460
+00:16:39,390 --> 00:16:42,510
+when you do it, but it can
+be really, really brutal
+
+461
+00:16:42,510 --> 00:16:44,030
+down the line for performance.
+
+462
+00:16:44,030 --> 00:16:45,900
+ADAM ARGYLE: I also don't
+think that's what people even
+
+463
+00:16:45,900 --> 00:16:46,470
+wanted to do.
+
+464
+00:16:46,470 --> 00:16:47,280
+It's like you
+didn't want to take
+
+465
+00:16:47,280 --> 00:16:49,050
+something that was
+squishy and all warped
+
+466
+00:16:49,050 --> 00:16:50,100
+and make it unwarped.
+
+467
+00:16:50,100 --> 00:16:52,392
+I think you really wanted to
+reveal the element, right?
+
+468
+00:16:52,392 --> 00:16:54,891
+JASON MILLER: And I think when
+we were doing our performance
+
+469
+00:16:54,891 --> 00:16:57,630
+optimizations, we just
+switched our max height
+
+470
+00:16:57,630 --> 00:16:59,234
+animation to be slide in.
+
+471
+00:16:59,234 --> 00:17:00,150
+ADAM ARGYLE: Slide in.
+
+472
+00:17:00,150 --> 00:17:00,710
+JASON MILLER: We just
+used [INAUDIBLE]..
+
+473
+00:17:00,710 --> 00:17:02,760
+ADAM ARGYLE: Better anyway.
+
+474
+00:17:02,760 --> 00:17:05,605
+JASON MILLER: OK, so we talked
+about efficient animations.
+
+475
+00:17:05,605 --> 00:17:07,480
+But there's another
+whole aspect of rendering
+
+476
+00:17:07,480 --> 00:17:09,438
+that's really important
+if you want to hit that
+
+477
+00:17:09,438 --> 00:17:11,010
+60 frames per second target.
+
+478
+00:17:11,010 --> 00:17:14,310
+And that's this idea of
+reading and then writing.
+
+479
+00:17:14,310 --> 00:17:16,710
+To understand this, we
+need to take a trip down
+
+480
+00:17:16,710 --> 00:17:19,412
+to the rendering assembly line.
+
+481
+00:17:19,412 --> 00:17:20,376
+ADAM ARGYLE: Yeah.
+
+482
+00:17:20,376 --> 00:17:21,750
+JASON MILLER: So
+ideally, when we
+
+483
+00:17:21,750 --> 00:17:24,250
+look at an app in the
+performance tab of DevTools,
+
+484
+00:17:24,250 --> 00:17:26,190
+we see little chunks
+of this sequence.
+
+485
+00:17:26,190 --> 00:17:28,200
+And these are the frames.
+
+486
+00:17:28,200 --> 00:17:31,077
+In an ideal situation,
+there's a lot of whitespace
+
+487
+00:17:31,077 --> 00:17:32,910
+in between these, which
+means that you don't
+
+488
+00:17:32,910 --> 00:17:34,118
+have a lot of idle time work.
+
+489
+00:17:34,118 --> 00:17:36,300
+Your app is sort of
+main thread jank free.
+
+490
+00:17:36,300 --> 00:17:38,880
+ADAM ARGYLE: This looks
+like Jake Archibald's socks.
+
+491
+00:17:38,880 --> 00:17:42,280
+JASON MILLER: I think those are
+the color profile we went with.
+
+492
+00:17:42,280 --> 00:17:45,210
+Yeah, so we peeked at the
+anatomy of a frame earlier.
+
+493
+00:17:45,210 --> 00:17:49,051
+We have style recalculation,
+layout, paint, compositing.
+
+494
+00:17:49,051 --> 00:17:50,550
+We didn't really
+dig into the script
+
+495
+00:17:50,550 --> 00:17:52,320
+portion, that
+initial portion that
+
+496
+00:17:52,320 --> 00:17:53,550
+leads off this whole thing.
+
+497
+00:17:53,550 --> 00:17:55,800
+And as it turns out,
+it's really important.
+
+498
+00:17:55,800 --> 00:17:59,020
+Not all scripts
+are created equal.
+
+499
+00:17:59,020 --> 00:18:01,470
+So our interaction with the
+Dom affects every other step
+
+500
+00:18:01,470 --> 00:18:03,090
+in the rendering process.
+
+501
+00:18:03,090 --> 00:18:05,100
+And we can split
+out the two types
+
+502
+00:18:05,100 --> 00:18:07,270
+of scripting into two groups.
+
+503
+00:18:07,270 --> 00:18:09,024
+We have read and then write.
+
+504
+00:18:09,024 --> 00:18:11,190
+On the left, you can see
+some examples of properties
+
+505
+00:18:11,190 --> 00:18:12,926
+that are Dom layout reads.
+
+506
+00:18:12,926 --> 00:18:14,800
+Some of these are pretty
+obvious, offset top,
+
+507
+00:18:14,800 --> 00:18:16,925
+obviously if you want to
+know where the element is,
+
+508
+00:18:16,925 --> 00:18:18,260
+you need to lay it out.
+
+509
+00:18:18,260 --> 00:18:20,350
+Some of these are not
+so obvious though.
+
+510
+00:18:20,350 --> 00:18:22,589
+Inner text inserts,
+it's a string.
+
+511
+00:18:22,589 --> 00:18:23,880
+It's kind of like text content.
+
+512
+00:18:23,880 --> 00:18:26,520
+But there's new lines
+in it based on layout.
+
+513
+00:18:26,520 --> 00:18:29,580
+If you have paragraphs or
+elements with display block,
+
+514
+00:18:29,580 --> 00:18:31,070
+the string has new lines in it.
+
+515
+00:18:31,070 --> 00:18:33,780
+And it's impossible to return
+that string without calculating
+
+516
+00:18:33,780 --> 00:18:35,160
+layout first.
+
+517
+00:18:35,160 --> 00:18:36,930
+If you're using inner
+text in your app,
+
+518
+00:18:36,930 --> 00:18:39,180
+and you're not using it
+specifically for that feature,
+
+519
+00:18:39,180 --> 00:18:42,311
+I would strongly recommend
+going with text content.
+
+520
+00:18:42,311 --> 00:18:44,310
+On the right is maybe a
+little bit more obvious.
+
+521
+00:18:44,310 --> 00:18:47,580
+If you change CSS layout, add
+elements, mutate the Dom tree
+
+522
+00:18:47,580 --> 00:18:49,330
+structure, you're going
+to trigger layout.
+
+523
+00:18:49,330 --> 00:18:51,496
+ADAM ARGYLE: I wish it was
+as simple as like getters
+
+524
+00:18:51,496 --> 00:18:53,038
+on the left and
+setters on the right.
+
+525
+00:18:53,038 --> 00:18:53,829
+JASON MILLER: Yeah.
+
+526
+00:18:53,829 --> 00:18:54,630
+ADAM ARGYLE: Yeah.
+
+527
+00:18:54,630 --> 00:18:56,980
+JASON MILLER: So let's say we
+have a timeline like before,
+
+528
+00:18:56,980 --> 00:18:58,470
+but this time there's
+two bits of script that
+
+529
+00:18:58,470 --> 00:18:59,280
+are going to run.
+
+530
+00:18:59,280 --> 00:19:02,730
+The first sets the width
+of an element to 10 pixels.
+
+531
+00:19:02,730 --> 00:19:04,800
+The second script, maybe
+it's a different script,
+
+532
+00:19:04,800 --> 00:19:08,010
+asks how much space is
+left aside beside fu--
+
+533
+00:19:08,010 --> 00:19:10,152
+how much space is
+left beside that div?
+
+534
+00:19:10,152 --> 00:19:11,610
+And in order to do
+this, it's going
+
+535
+00:19:11,610 --> 00:19:13,350
+use the offset width property.
+
+536
+00:19:13,350 --> 00:19:15,120
+This is where things fall apart.
+
+537
+00:19:15,120 --> 00:19:18,970
+We hadn't had a chance to
+calculate style and layout.
+
+538
+00:19:18,970 --> 00:19:22,264
+So we have to do that
+synchronicity now,
+
+539
+00:19:22,264 --> 00:19:23,430
+which is going to be forced.
+
+540
+00:19:23,430 --> 00:19:26,220
+So we have to block the main
+thread, do all that work,
+
+541
+00:19:26,220 --> 00:19:28,839
+and then come back to the script
+that asked for that width.
+
+542
+00:19:28,839 --> 00:19:30,630
+And the worst part is,
+that script actually
+
+543
+00:19:30,630 --> 00:19:32,730
+did this to
+conditionally then set
+
+544
+00:19:32,730 --> 00:19:34,860
+the width of fu,
+which invalidates
+
+545
+00:19:34,860 --> 00:19:37,140
+the layout and the style
+calculations we did,
+
+546
+00:19:37,140 --> 00:19:39,707
+which means that they
+have to happen again.
+
+547
+00:19:39,707 --> 00:19:41,040
+ADAM ARGYLE: I smell code smell.
+
+548
+00:19:41,040 --> 00:19:42,540
+JASON MILLER: Right.
+
+549
+00:19:42,540 --> 00:19:44,170
+So this is a problem.
+
+550
+00:19:44,170 --> 00:19:45,525
+And this is really common.
+
+551
+00:19:45,525 --> 00:19:47,400
+You might be tempted to
+use request animation
+
+552
+00:19:47,400 --> 00:19:48,300
+frame to fix this.
+
+553
+00:19:48,300 --> 00:19:50,540
+That's actually often
+a good strategy.
+
+554
+00:19:50,540 --> 00:19:51,790
+Let's see how that would work.
+
+555
+00:19:51,790 --> 00:19:53,970
+So request animation
+frame callbacks fire
+
+556
+00:19:53,970 --> 00:19:57,290
+just before the browser does
+all of its rendering work.
+
+557
+00:19:57,290 --> 00:19:59,610
+And let's say we might read
+some values synchronously
+
+558
+00:19:59,610 --> 00:20:01,120
+in the script block on the left.
+
+559
+00:20:01,120 --> 00:20:03,120
+And then cue an
+animation frame callback
+
+560
+00:20:03,120 --> 00:20:05,760
+where we do our Dom right,
+[INAUDIBLE] read and then
+
+561
+00:20:05,760 --> 00:20:07,569
+write, using this raf callback.
+
+562
+00:20:07,569 --> 00:20:10,110
+For really well-behaved code,
+this is actually an awesome way
+
+563
+00:20:10,110 --> 00:20:13,260
+to give the browser more
+control over and insight
+
+564
+00:20:13,260 --> 00:20:15,270
+into your rendering code.
+
+565
+00:20:15,270 --> 00:20:16,590
+ADAM ARGYLE: It's like polite.
+
+566
+00:20:16,590 --> 00:20:17,756
+You're like hey, [INAUDIBLE]
+
+567
+00:20:17,756 --> 00:20:18,840
+JASON MILLER: Right.
+
+568
+00:20:18,840 --> 00:20:23,350
+So if you pop open the profiler
+on an arbitrary website,
+
+569
+00:20:23,350 --> 00:20:25,870
+you might find this
+technique in play, where
+
+570
+00:20:25,870 --> 00:20:27,940
+it's not actually panning out.
+
+571
+00:20:27,940 --> 00:20:29,890
+And the reason for
+that is deferring
+
+572
+00:20:29,890 --> 00:20:32,650
+reads using request animation
+frame doesn't really
+
+573
+00:20:32,650 --> 00:20:34,130
+fix this problem.
+
+574
+00:20:34,130 --> 00:20:37,630
+It's still going to trigger
+forced synchronous layout
+
+575
+00:20:37,630 --> 00:20:40,315
+inside of the raf callback,
+which can sometimes be worse.
+
+576
+00:20:40,315 --> 00:20:41,440
+ADAM ARGYLE: That's tricky.
+
+577
+00:20:41,440 --> 00:20:42,856
+JASON MILLER: Yeah,
+so we're going
+
+578
+00:20:42,856 --> 00:20:45,592
+to end up in the same
+situation we had before.
+
+579
+00:20:45,592 --> 00:20:47,800
+So reading properties that
+require layout information
+
+580
+00:20:47,800 --> 00:20:49,840
+before modifying layout
+is an important thing
+
+581
+00:20:49,840 --> 00:20:53,870
+to keep in mind when
+interacting with the Dom.
+
+582
+00:20:53,870 --> 00:20:57,620
+This brings us to our variety
+portion of the show, which
+
+583
+00:20:57,620 --> 00:20:59,902
+we have called lazy wins.
+
+584
+00:20:59,902 --> 00:21:01,610
+ADAM ARGYLE: All right,
+and so earlier we
+
+585
+00:21:01,610 --> 00:21:04,370
+were talking about smooth, and
+it was described as connected,
+
+586
+00:21:04,370 --> 00:21:06,160
+silky, and asynchronous.
+
+587
+00:21:06,160 --> 00:21:08,690
+I feel like this crowd is
+savvy about the topic of synch
+
+588
+00:21:08,690 --> 00:21:12,920
+versus asynch and how to be
+polite to threads or a thread.
+
+589
+00:21:12,920 --> 00:21:15,860
+But it's not often enough that
+we are considerate of our users
+
+590
+00:21:15,860 --> 00:21:16,790
+thread.
+
+591
+00:21:16,790 --> 00:21:19,560
+They're often pressed for
+time and resources as well.
+
+592
+00:21:19,560 --> 00:21:22,250
+So we should do our best to keep
+their thread free of locking.
+
+593
+00:21:22,250 --> 00:21:25,280
+Our first version had
+synchronous interactions,
+
+594
+00:21:25,280 --> 00:21:26,600
+just like the animation here.
+
+595
+00:21:26,600 --> 00:21:28,760
+It's kind of painful
+to watch, right.
+
+596
+00:21:28,760 --> 00:21:29,749
+You're like, hey--
+
+597
+00:21:29,749 --> 00:21:31,040
+JASON MILLER: I hope it's done.
+
+598
+00:21:31,040 --> 00:21:34,697
+
+
+599
+00:21:34,697 --> 00:21:36,530
+ADAM ARGYLE: So here's
+a demo of us sending.
+
+600
+00:21:36,530 --> 00:21:37,460
+It's called rough moves.
+
+601
+00:21:37,460 --> 00:21:38,180
+You'll like that.
+
+602
+00:21:38,180 --> 00:21:41,720
+Notice how this one, we have
+a new message or thought,
+
+603
+00:21:41,720 --> 00:21:44,460
+can't be started until the
+previous one is finished.
+
+604
+00:21:44,460 --> 00:21:46,430
+And it's not too bad when
+you send one message,
+
+605
+00:21:46,430 --> 00:21:47,929
+but when you're
+sending many, you're
+
+606
+00:21:47,929 --> 00:21:49,400
+going to be super disruptive.
+
+607
+00:21:49,400 --> 00:21:50,990
+The user interaction
+implementation
+
+608
+00:21:50,990 --> 00:21:52,700
+was easier for the
+engineers because they
+
+609
+00:21:52,700 --> 00:21:54,741
+could handle the flow
+being synchronous about it.
+
+610
+00:21:54,741 --> 00:21:58,140
+It's sort of like
+less work for me.
+
+611
+00:21:58,140 --> 00:22:00,230
+But we redid it.
+
+612
+00:22:00,230 --> 00:22:03,126
+And so here's the same thought
+process being typed out.
+
+613
+00:22:03,126 --> 00:22:04,500
+And these messages
+are being sent
+
+614
+00:22:04,500 --> 00:22:07,410
+using asynchronous, almost
+sort of known as optimistic
+
+615
+00:22:07,410 --> 00:22:08,290
+interactions.
+
+616
+00:22:08,290 --> 00:22:09,540
+And the user is never blocked.
+
+617
+00:22:09,540 --> 00:22:10,956
+They're free to
+express themselves
+
+618
+00:22:10,956 --> 00:22:13,102
+at the rate at which they
+desire and are capable.
+
+619
+00:22:13,102 --> 00:22:15,060
+And this can increase
+the perceived performance
+
+620
+00:22:15,060 --> 00:22:16,643
+of your application
+because it doesn't
+
+621
+00:22:16,643 --> 00:22:20,700
+appear to stall or think too
+hard about certain tasks.
+
+622
+00:22:20,700 --> 00:22:22,290
+Measuring smoothness
+as a UX metric
+
+623
+00:22:22,290 --> 00:22:24,810
+can be a difficult thing
+to quantify or qualify,
+
+624
+00:22:24,810 --> 00:22:28,110
+but luckily the experts at
+Google have devised a fantastic
+
+625
+00:22:28,110 --> 00:22:30,092
+framework for evaluating
+the quality a UX,
+
+626
+00:22:30,092 --> 00:22:31,800
+and therefore, its
+perceived performance.
+
+627
+00:22:31,800 --> 00:22:33,010
+It is called Heart.
+
+628
+00:22:33,010 --> 00:22:34,050
+And I wanted to
+throw this in there,
+
+629
+00:22:34,050 --> 00:22:35,800
+because it's the sort
+of mix of lazy wins,
+
+630
+00:22:35,800 --> 00:22:38,400
+because it can help you
+measure the impact of your UI
+
+631
+00:22:38,400 --> 00:22:39,722
+interaction paradigms.
+
+632
+00:22:39,722 --> 00:22:40,990
+JASON MILLER: Cool.
+
+633
+00:22:40,990 --> 00:22:43,590
+So one quick way to improve
+your application's performance,
+
+634
+00:22:43,590 --> 00:22:45,720
+is to just find a
+browser primitive
+
+635
+00:22:45,720 --> 00:22:47,280
+that is more efficient
+than something
+
+636
+00:22:47,280 --> 00:22:49,289
+manual you're doing today.
+
+637
+00:22:49,289 --> 00:22:51,330
+A great example of this
+would be position sticky.
+
+638
+00:22:51,330 --> 00:22:53,880
+The manual implementation
+of position sticky
+
+639
+00:22:53,880 --> 00:22:55,980
+requires querying for
+layout information
+
+640
+00:22:55,980 --> 00:22:58,920
+while you're scrolling,
+in the scroll handler.
+
+641
+00:22:58,920 --> 00:23:00,210
+This is really expensive.
+
+642
+00:23:00,210 --> 00:23:02,126
+This triggers all the
+bad performance problems
+
+643
+00:23:02,126 --> 00:23:03,780
+we saw before.
+
+644
+00:23:03,780 --> 00:23:06,600
+Another one would be to
+leverage native scrolling,
+
+645
+00:23:06,600 --> 00:23:08,740
+by swapping out your custom
+scroll implementation,
+
+646
+00:23:08,740 --> 00:23:11,430
+scroll smoothing implementation,
+for scroll interview
+
+647
+00:23:11,430 --> 00:23:12,450
+with behavior smooth.
+
+648
+00:23:12,450 --> 00:23:14,061
+This is relatively new.
+
+649
+00:23:14,061 --> 00:23:15,060
+This feature is awesome.
+
+650
+00:23:15,060 --> 00:23:17,440
+It made building our
+chat UI really easy.
+
+651
+00:23:17,440 --> 00:23:19,860
+The only thing that we had to
+do, we were firing at a lot,
+
+652
+00:23:19,860 --> 00:23:22,575
+so we actually de-balanced it,
+using request idle callback.
+
+653
+00:23:22,575 --> 00:23:25,200
+So we only scroll into view once
+the main thread's settled down
+
+654
+00:23:25,200 --> 00:23:26,460
+and messages have
+stopped being fetched.
+
+655
+00:23:26,460 --> 00:23:27,690
+ADAM ARGYLE: That was
+a really slick one too.
+
+656
+00:23:27,690 --> 00:23:28,950
+Because on an old device--
+
+657
+00:23:28,950 --> 00:23:31,530
+we had a test where we
+hammered messages in there.
+
+658
+00:23:31,530 --> 00:23:33,830
+We sent like 30 of them over
+the span of three seconds.
+
+659
+00:23:33,830 --> 00:23:36,240
+And an older device
+was able to not be
+
+660
+00:23:36,240 --> 00:23:39,014
+overwhelmed because we
+were nice about asking
+
+661
+00:23:39,014 --> 00:23:39,930
+when to smooth scroll.
+
+662
+00:23:39,930 --> 00:23:40,320
+JASON MILLER: Right.
+
+663
+00:23:40,320 --> 00:23:42,580
+ADAM ARGYLE: So the
+messages would pour in it
+
+664
+00:23:42,580 --> 00:23:44,070
+and then smooth
+down to the bottom.
+
+665
+00:23:44,070 --> 00:23:44,860
+JASON MILLER: It'll wait.
+
+666
+00:23:44,860 --> 00:23:46,230
+ADAM ARGYLE: It'll wait,
+and on a nice machine,
+
+667
+00:23:46,230 --> 00:23:48,646
+they just poured right in,
+because it was powerful enough.
+
+668
+00:23:48,646 --> 00:23:49,350
+It was easy.
+
+669
+00:23:49,350 --> 00:23:51,300
+JASON MILLER: OK, so
+just like scrolling,
+
+670
+00:23:51,300 --> 00:23:53,010
+panning is a gesture
+where we expect
+
+671
+00:23:53,010 --> 00:23:55,847
+to feel like we're physically
+pushing content around
+
+672
+00:23:55,847 --> 00:23:56,430
+on the screen.
+
+673
+00:23:56,430 --> 00:23:58,471
+We want to have that
+connection between our thumb
+
+674
+00:23:58,471 --> 00:23:59,190
+and the pixels.
+
+675
+00:23:59,190 --> 00:24:02,070
+In a well-built custom
+panning implementation,
+
+676
+00:24:02,070 --> 00:24:05,340
+touch input received by the
+browser is sent to the page,
+
+677
+00:24:05,340 --> 00:24:07,140
+and then the JavaScript
+input handling code
+
+678
+00:24:07,140 --> 00:24:09,660
+responds by updating probably
+the transform property
+
+679
+00:24:09,660 --> 00:24:12,450
+on an element, and then that is
+rendered by sending that back
+
+680
+00:24:12,450 --> 00:24:16,012
+to the compositor, which
+results in pixels on the screen.
+
+681
+00:24:16,012 --> 00:24:17,470
+So this actually
+works pretty well.
+
+682
+00:24:17,470 --> 00:24:18,960
+But we can do better.
+
+683
+00:24:18,960 --> 00:24:22,265
+In browser scrolling,
+optimal browser scrolling,
+
+684
+00:24:22,265 --> 00:24:24,390
+we don't have to wait for
+JavaScript event handlers
+
+685
+00:24:24,390 --> 00:24:25,110
+to complete.
+
+686
+00:24:25,110 --> 00:24:28,170
+We could just directly translate
+that layer on the compositor.
+
+687
+00:24:28,170 --> 00:24:30,859
+Events will eventually
+get sent over to the page,
+
+688
+00:24:30,859 --> 00:24:33,150
+but in an ideal setup where
+passive event listeners are
+
+689
+00:24:33,150 --> 00:24:35,131
+being used, they could
+be fire and forget.
+
+690
+00:24:35,131 --> 00:24:37,380
+And this is going to get
+your shortest time to pixels.
+
+691
+00:24:37,380 --> 00:24:39,120
+So here's an example
+of that manual kind
+
+692
+00:24:39,120 --> 00:24:41,050
+of panning, the first kind.
+
+693
+00:24:41,050 --> 00:24:42,202
+It's a simple carousel.
+
+694
+00:24:42,202 --> 00:24:43,410
+These are my pets by the way.
+
+695
+00:24:43,410 --> 00:24:46,020
+My wife required
+that I said that.
+
+696
+00:24:46,020 --> 00:24:47,500
+So it's using pointer events.
+
+697
+00:24:47,500 --> 00:24:50,054
+And it sets a transform
+property on the layer.
+
+698
+00:24:50,054 --> 00:24:51,720
+There's some problems
+with this, though.
+
+699
+00:24:51,720 --> 00:24:54,780
+So we're getting composited
+animation, which is good,
+
+700
+00:24:54,780 --> 00:24:56,871
+but the implementation
+is non-trivial.
+
+701
+00:24:56,871 --> 00:24:58,620
+Especially if you want
+to integrate really
+
+702
+00:24:58,620 --> 00:25:01,860
+well with the browsers own page
+scrolling, if you're panning,
+
+703
+00:25:01,860 --> 00:25:04,685
+and the person's thumb starts
+to move more up than left
+
+704
+00:25:04,685 --> 00:25:06,810
+or right, you really need
+to cancel that animation.
+
+705
+00:25:06,810 --> 00:25:08,787
+ADAM ARGYLE: Get that
+uncanny scrolly valley.
+
+706
+00:25:08,787 --> 00:25:09,870
+JASON MILLER: Yeah, right.
+
+707
+00:25:09,870 --> 00:25:11,970
+So another option
+here would be to use
+
+708
+00:25:11,970 --> 00:25:13,860
+something called scroll snaps.
+
+709
+00:25:13,860 --> 00:25:15,660
+So this is really elegant.
+
+710
+00:25:15,660 --> 00:25:18,820
+Basically, instead of all
+the manual implementation,
+
+711
+00:25:18,820 --> 00:25:21,090
+you just put two CSS
+properties on that carousel.
+
+712
+00:25:21,090 --> 00:25:22,770
+The first is scroll snap type.
+
+713
+00:25:22,770 --> 00:25:26,160
+We just said we want to do it
+in the x-axis and always snap.
+
+714
+00:25:26,160 --> 00:25:27,792
+And the second is
+scroll snap align,
+
+715
+00:25:27,792 --> 00:25:30,250
+which just tells it to snap to
+the beginning of each image.
+
+716
+00:25:30,250 --> 00:25:31,124
+ADAM ARGYLE: So cool.
+
+717
+00:25:31,124 --> 00:25:33,150
+JASON MILLER: And what
+this looks like is this.
+
+718
+00:25:33,150 --> 00:25:36,700
+So this requires a lot
+less code to implement.
+
+719
+00:25:36,700 --> 00:25:38,340
+It's still composited,
+but this one
+
+720
+00:25:38,340 --> 00:25:40,380
+doesn't rely on the
+main thread at all,
+
+721
+00:25:40,380 --> 00:25:42,150
+and it feels natural
+on each platform.
+
+722
+00:25:42,150 --> 00:25:45,000
+Because the easing, rather than
+being manually implemented,
+
+723
+00:25:45,000 --> 00:25:46,360
+is just the platform's
+native scroll easing.
+
+724
+00:25:46,360 --> 00:25:48,060
+ADAM ARGYLE: Yeah, you get the
+bounce at the end for free.
+
+725
+00:25:48,060 --> 00:25:49,120
+You get to throw it.
+
+726
+00:25:49,120 --> 00:25:51,090
+I mean, the whole nine.
+
+727
+00:25:51,090 --> 00:25:53,550
+JASON MILLER: So to
+sum things up, make
+
+728
+00:25:53,550 --> 00:25:55,530
+sure you're keeping
+the browser's rendering
+
+729
+00:25:55,530 --> 00:25:57,980
+pipeline in mind
+when you're animating
+
+730
+00:25:57,980 --> 00:26:01,710
+and always try to
+avoid animating layout.
+
+731
+00:26:01,710 --> 00:26:04,080
+Sync up your Dom
+access so you read
+
+732
+00:26:04,080 --> 00:26:07,260
+properties that require layout
+information before mutating
+
+733
+00:26:07,260 --> 00:26:09,790
+the Dom and causing layout.
+
+734
+00:26:09,790 --> 00:26:12,150
+ADAM ARGYLE: And consider
+using optimistic interactions,
+
+735
+00:26:12,150 --> 00:26:13,650
+because they can
+sometimes be better
+
+736
+00:26:13,650 --> 00:26:15,899
+than optimizing
+rendering, especially
+
+737
+00:26:15,899 --> 00:26:17,190
+if you're just getting started.
+
+738
+00:26:17,190 --> 00:26:18,023
+JASON MILLER: Right.
+
+739
+00:26:18,023 --> 00:26:20,340
+And finally, take
+advantage of places
+
+740
+00:26:20,340 --> 00:26:23,520
+where you can offload the most
+performance critical work,
+
+741
+00:26:23,520 --> 00:26:25,230
+and rendering to the browser.
+
+742
+00:26:25,230 --> 00:26:27,990
+If you can leverage something
+like scroll snapping
+
+743
+00:26:27,990 --> 00:26:30,570
+or position sticky to
+implement your designs,
+
+744
+00:26:30,570 --> 00:26:33,162
+that might be the biggest
+performance win of all.
+
+745
+00:26:33,162 --> 00:26:34,370
+ADAM ARGYLE: It's a lazy win.
+
+746
+00:26:34,370 --> 00:26:35,580
+JASON MILLER: Right, cool.
+
+747
+00:26:35,580 --> 00:26:36,600
+So thanks everybody.
+
+748
+00:26:36,600 --> 00:26:37,350
+Thank you.
+
+749
+00:26:37,350 --> 00:26:39,500
+[MUSIC PLAYING]
+
+750
+00:26:39,500 --> 00:26:48,259
