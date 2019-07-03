@@ -12,10 +12,8 @@
  */
 
 const fs = require('fs');
-const mz = require('mz/fs');
 const recursive = require('recursive-readdir');
-
-const {JSDOM} = require('jsdom');
+const subtitle = require('subtitle');
 
 const ERROR_LOG = 'error-log.txt';
 const VERSION = '1.0 beta';
@@ -77,16 +75,29 @@ recursive(inputDirectory).then((filepaths) => {
 }).catch((error) =>
   displayError(`Error reading from ${inputDirectory}:`, error));
 
+// For each SRT file in ${inputDirectory}, i.e. each transcript:
+// • get the video ID
+// • fix minor textual glitches
+// • create an array of captions using subtitle.parse()
+//
 function processSrtFile(filepath) {
   let srtFileText = fs.readFileSync(filepath, 'utf8').trim();
+  const videoId = filepath.match(/\/(.+).srt/)[1];
+  const video = {
+    id: videoId,
+  };
   srtFileText = tweakSrtFileText(srtFileText);
-  console.log(srtFileText);
+  // Parse the SRT file to create an array of captions.
+  let captions = subtitle.parse(srtFileText);
+  captions = captions.filter(filterCaption);
+  captions = captions.map(tweakCaption);
+  console.log('captions', captions);
   if (--numFilesToProcess === 0) {
     console.timeEnd(`Time to process ${numFiles} transcripts`);
   }
 }
 
-// Get rid of minor glitches in captions.
+// Fix minor glitches in caption text.
 function tweakSrtFileText(srtFileText) {
   return srtFileText.
     replace(/>>> /gm, 'Audience member: ').
@@ -103,6 +114,17 @@ function tweakSrtFileText(srtFileText) {
     replace(/-- /gm, ' — ').
     replace(/--\n/gm, ' —\n').
     replace(/ - /gm, ' — ');
+}
+
+// Remove captions without text (i.e. where noone spoke).
+function filterCaption(caption) {
+  return caption.text;
+}
+
+// Remove line breaks in caption text.
+function tweakCaption(caption) {
+  caption.text = caption.text.replace(/\n/, ' ');
+  return caption;
 }
 
 // Correct and capitalize speaker names (Fred Nerk not FRED NERK).
