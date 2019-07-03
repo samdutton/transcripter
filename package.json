@@ -26,11 +26,17 @@
   "homepage": "https://github.com/samdutton/transcripter#readme",
   "dependencies": {
     "eslint": "latest",
+    "eslint-config-google": "latest",
     "grunt": "latest",
     "grunt-cli": "latest",
     "grunt-eslint": "latest",
     "grunt-stylelint": "latest",
+    "html-validator": "latest",
+    "htmlhint": "latest",
+    "jsdom": "latest",
+    "recursive-readdir": "latest",
     "stylelint": "latest",
+    "stylelint-config-standard": "latest",
     "yargs": "latest"
   }
 }
