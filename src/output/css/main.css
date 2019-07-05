@@ -1,8 +1,3 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  padding: 2em;
-}
-
 a {
   color: #7af;
 }
@@ -15,13 +10,18 @@ a.video {
   padding: 0 0 2em 0;
 }
 
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 20px;
+}
+
 div#google_translate_element {
   margin: 0 0 1em 0;
 }
 
 div#container {
   margin: auto;
-  max-width: 42em;
+  max-width: 800px;
   width: 100%;
 }
 
@@ -37,6 +37,15 @@ h2 {
   color: #666;
   font-family: 'Google Sans', sans-serif;
   font-size: 1.2em;
+}
+
+iframe {
+  border: none;
+  height: calc((100vw - 40px) * 9 / 16);
+  margin: 0 0 20px 0;
+  max-height: calc(800px * 9 / 16);
+  max-width: 800px;
+  width: calc(100vw - 40px);
 }
 
 p {
