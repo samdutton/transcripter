@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<! — 
+Copyright 2018 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ — >
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="author" content="//google.com">
+<meta name="description" content="Chrome Dev Summit">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YP2tMBhyU0I</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+<div id="container">
+
+<section>
+<span data-start="0">[MUSIC PLAYING]</span> </section>
+
+<section><span data-start="6834"><span class="speaker">Tom Greenaway</span>: Good afternoon, everyone.</span> <span data-start="8500">I'm Tom Greenaway.</span> <span data-start="9360">And I'm a developer advocate, based in Google Sydney.</span> </section>
+
+<section><span data-start="11959"><span class="speaker">Martin Splitt</span>: And I'm Martin Splitt.</span> <span data-start="13500">I work out of the Zurich office.</span> <span data-start="15120">And I'm a webmaster trends analyst</span> <span data-start="17520">which is just a fancy name of being a developer advocate</span> <span data-start="20100">for search and web ecosystem.</span> </section>
+
+<section><span data-start="22964"><span class="speaker">Tom Greenaway</span>: Today, Martin and I</span> <span data-start="24380">are going to tackle this topic — </span> <span data-start="26790">the best practices for ensuring a modern JavaScript-powered</span> <span data-start="29510">website is indexable by Search.</span> <span data-start="31880">But what do we really mean by this sentence?</span> <span data-start="34890">Well, by best practices, we mean what every developer</span> <span data-start="37170">should know —  the techniques, knowledge, tools, and approach,</span> <span data-start="40500">and process.</span> <span data-start="42120">And by modern JavaScript-powered website — </span> <span data-start="43980">I know it's a bit of a mouthful.</span> <span data-start="46350">It means websites which use modern JavaScript frameworks</span> <span data-start="49350">for their front-end and probably are</span> <span data-start="51060">rendering their HTML in JavaScript on the client side.</span> <span data-start="54960">And they're typically, like, single-page apps.</span> <span data-start="56940">But this applies to any website that uses front-end JavaScript.</span> <span data-start="60790">And they might be, say, powered with Ajax or web</span> <span data-start="63060">sockets for content.</span> <span data-start="65260">And lastly, what do we mean by indexable by Search?</span> <span data-start="67870">Well, by indexable, I mean the content can be understood.</span> <span data-start="72430">And by Search, we mean Google Search.</span> <span data-start="74590">But these rules —  they apply to other web-crawlers</span> <span data-start="77140">too such as, say, other search engines or social media</span> <span data-start="81220">services.</span> </section>
+
+<section><span data-start="81960"><span class="speaker">Martin Splitt</span>: Right, like Facebook, Twitter, and all</span> <span data-start="83710">the other wonderful ones.</span> </section>
+
+<section><span data-start="84760"><span class="speaker">Tom Greenaway</span>: Exactly.</span> </section>
+
+<section><span data-start="85050"><span class="speaker">Martin Splitt</span>: Cool.</span> <span data-start="85830">Cool.</span> <span data-start="86330">So now that we know what we want to address here,</span> <span data-start="88960">how are we going to split this up?</span> <span data-start="90440">How are we going to go through this?</span> <span data-start="91570">Well, first things first, I think it makes a lot of sense</span> <span data-start="94000">to quickly go over how Google Search actually does</span> <span data-start="97060">the indexing and figures out what content there</span> <span data-start="99520">is in the web.</span> <span data-start="101050">Then we're going to look into something that,</span> <span data-start="103000">as a web developer, I really, really wanted all these years — </span> <span data-start="106270">and we got that now — </span> <span data-start="107950">the tools to help you all and us to debug the things</span> <span data-start="111160">that we are seeing.</span> <span data-start="112060">And last but not least, we don't want to just debug things</span> <span data-start="114700">after they happen.</span> <span data-start="115570">We want to make sure that we are getting ahead of that.</span> <span data-start="117964">And basically, we're going to talk</span> <span data-start="119380">about a few best practices — </span> </section>
+
+<section><span data-start="120265"><span class="speaker">Tom Greenaway</span>: That makes sense.</span> </section>
+
+<section><span data-start="121598"><span class="speaker">Martin Splitt</span>:  — for indexable content.</span> <span data-start="123850">Cool.</span> <span data-start="124480">So with that out of the way — </span> <span data-start="125688">[LAUGHS] it's good that I have you here,</span> <span data-start="128259">because I have got something to talk to you about.</span> </section>
+
+<section><span data-start="130975"><span class="speaker">Tom Greenaway</span>: OK, that sounds a bit intense.</span> <span data-start="132850">What do you — </span> </section>
+
+<section><span data-start="133750"><span class="speaker">Martin Splitt</span>: Don't worry.</span> <span data-start="134170">It's not that intense.</span> <span data-start="135086">It's just —  how do I put this?</span> <span data-start="138430">I have a friend who's called Marvin.</span> <span data-start="145200">Let's call him Marvin.</span> <span data-start="146480">And they are building a single-page web app.</span> <span data-start="149460">And they have done that.</span> <span data-start="150992">And they have followed most of the things</span> <span data-start="152700">that you do these days, like PWA and all that stuff.</span> <span data-start="157270">But they have issues getting users</span> <span data-start="158730">to find their content online.</span> </section>
+
+<section><span data-start="162090"><span class="speaker">Tom Greenaway</span>: I see.</span> </section>
+
+<section><span data-start="163140"><span class="speaker">Martin Splitt</span>: And unfortunately, that's</span> <span data-start="164806">not an isolated issue.</span> </section>
+
+<section><span data-start="165810"><span class="speaker">Tom Greenaway</span>: Right, right.</span> <span data-start="166530">So you ran a Twitter poll.</span> <span data-start="167700">And other people are encountering this as well.</span> </section>
+
+<section><span data-start="169550"><span class="speaker">Martin Splitt</span>: Yeah —  yeah.</span> <span data-start="170220">I got a bunch of responses.</span> <span data-start="171510">And it's like, so how can I check if my stuff is</span> <span data-start="173760">findable in Search?</span> <span data-start="174630">Or hey, my stuff's not showing up, but I don't know why.</span> <span data-start="177510">And I think that needs a little bit of a dive-in</span> <span data-start="181200">and an explanation, right?</span> <span data-start="183240">I guess that's a good idea to do.</span> </section>
+
+<section><span data-start="185100"><span class="speaker">Tom Greenaway</span>: Well, there are a lot</span> <span data-start="186600">of tools available for debugging on Google Search.</span> <span data-start="188910">But perhaps, before we get into those, how about we just</span> <span data-start="191760">go over how Google Search sees and indexes the web.</span> <span data-start="194860">[INAUDIBLE]</span> </section>
+
+<section><span data-start="195360"><span class="speaker">Martin Splitt</span>: I think that's a fair point.</span> <span data-start="196170">That sounds good.</span> </section>
+
+<section><span data-start="197642"><span class="speaker">Tom Greenaway</span>: Well, here's a basic diagram of how websites</span> <span data-start="200100">were traditionally indexed.</span> <span data-start="201990">Googlebot, our search crawler, found pages, downloaded them,</span> <span data-start="206040">and processed that content, and then put them into an index,</span> <span data-start="209340">and then performed more crawling,</span> <span data-start="211170">based on the links it found.</span> </section>
+
+<section><span data-start="212510"><span class="speaker">Martin Splitt</span>: Yeah, OK.</span> <span data-start="213510">But what happens in the process step?</span> <span data-start="215340">That seems to be where the magic is, right?</span> </section>
+
+<section><span data-start="217560"><span class="speaker">Tom Greenaway</span>: Well, when we fetched a web page from a URL</span> <span data-start="220320">and it was a traditional website, that web page was</span> <span data-start="223200">complete when it arrived.</span> <span data-start="225450">And we called this the rendering of the page</span> <span data-start="229650">or the construction of the HTML.</span> </section>
+
+<section><span data-start="231355"><span class="speaker">Martin Splitt</span>: Right.</span> <span data-start="232230">So when you say rendering, you don't mean stuff</span> <span data-start="235050">like putting the pixels under the screen?</span> <span data-start="237210">Or dealing with the Dom transitions</span> <span data-start="239340">and animations and stuff?</span> <span data-start="240460">It's just, where does the HTML go to construct?</span> <span data-start="242437">Like, server-side rendering versus client-side or hybrid</span> <span data-start="244770">rendering.</span> </section>
+
+<section><span data-start="245250"><span class="speaker">Tom Greenaway</span>: Exactly.</span> <span data-start="246208">Traditionally, websites were rendered entirely</span> <span data-start="248280">on the server.</span> <span data-start="249210">And then, any JavaScript that was used</span> <span data-start="250904">was probably just for cosmetic purposes.</span> </section>
+
+<section><span data-start="252570"><span class="speaker">Martin Splitt</span>: Right.</span> <span data-start="253260">OK.</span> <span data-start="253910">Cool.</span> <span data-start="255090">But now that we have figured out that this</span> <span data-start="256950">is about the dealing with the constructed HTML,</span> <span data-start="259910">it's no longer that way, right?</span> <span data-start="261360">We have changed our web architectures</span> <span data-start="263370">quite substantially.</span> <span data-start="264280">So what happens there today?</span> </section>
+
+<section><span data-start="265680"><span class="speaker">Tom Greenaway</span>: In the processing step?</span> </section>
+
+<section><span data-start="266640"><span class="speaker">Martin Splitt</span>: Yeah!</span> </section>
+
+<section><span data-start="267360"><span class="speaker">Tom Greenaway</span>: Yeah, it's a good question.</span> <span data-start="268850">Basically, there's now a renderer</span> <span data-start="270330">inside the process step.</span> <span data-start="271780">So more specifically, we have a version of Chrome</span> <span data-start="274710">that opens the content of the page and runs some JavaScript.</span> <span data-start="278010">And then it spits out the final HTML.</span> <span data-start="280740">But we also have a queue as well, which is quite important.</span> <span data-start="283620">And that leads into this next point, which John Wheeler and I</span> <span data-start="287010">revealed at I/O earlier this year, which</span> <span data-start="288780">is that, in a nutshell, the rendering</span> <span data-start="290790">of JavaScript-powered websites in Google Search</span> <span data-start="293280">is actually deferred until Googlebot</span> <span data-start="295800">has the resources available to process that content.</span> </section>
+
+<section><span data-start="298515"><span class="speaker">Martin Splitt</span>: Right.</span> <span data-start="299390">Deferred.</span> <span data-start="300520">So what kind of timeline are we talking about?</span> <span data-start="303570">What's the delay?</span> </section>
+
+<section><span data-start="304794"><span class="speaker">Tom Greenaway</span>: Well, it could take</span> <span data-start="306210">minutes or maybe an hour or maybe even days or up to a week</span> <span data-start="309900">before the render is actually completed.</span> </section>
+
+<section><span data-start="312480"><span class="speaker">Martin Splitt</span>: A week?</span> </section>
+
+<section><span data-start="313554"><span class="speaker">Tom Greenaway</span>: Yeah, I know.</span> </section>
+
+<section><span data-start="314720"><span class="speaker">Martin Splitt</span>: What?</span> <span data-start="315640">OK, that's —  wow.</span> </section>
+
+<section><span data-start="316969"><span class="speaker">Tom Greenaway</span>: It's a bit of a shock.</span> <span data-start="318510">I know.</span> <span data-start="319380">But you have to understand that the web is really big, right?</span> <span data-start="322740">It's quite huge.</span> <span data-start="323680">In fact, we found over 130 trillion documents on the web</span> <span data-start="327820">so far.</span> <span data-start="328320">[WHISTLING]</span> </section>
+
+<section><span data-start="329179"><span class="speaker">Martin Splitt</span>: OK, that's a mouthful.</span> <span data-start="330720">And this number is two years old.</span> <span data-start="332094">And I guess the web's growing.</span> <span data-start="333600">So OK, I understand that.</span> <span data-start="336990">Cool.</span> <span data-start="338040">But is there anything that we could</span> <span data-start="341460">do to help the crawlers a little bit?</span> <span data-start="343950">If I remember correctly, when I attended the session at I/O,</span> <span data-start="347100">you said something about dynamic rendering.</span> <span data-start="349340">Is that something that would come in here?</span> </section>
+
+<section><span data-start="351090"><span class="speaker">Tom Greenaway</span>: Yeah, exactly.</span> <span data-start="351820">So dynamic rendering is a technique</span> <span data-start="353700">that allows us to short-circuit the rendering</span> <span data-start="356340">pipeline by delivering a service-side rendered version</span> <span data-start="359550">of your normally client-side rendered web-side</span> <span data-start="362220">by rendering that client-side JavaScript</span> <span data-start="364350">on the server with a mini-client-side renderer.</span> <span data-start="366960">For example, a headless browser, like Puppeteer, could be used.</span> </section>
+
+<section><span data-start="370229"><span class="speaker">Martin Splitt</span>: Oh, right, yeah.</span> <span data-start="371520">That's pretty cool.</span> <span data-start="372311">So how does that work in detail?</span> </section>
+
+<section><span data-start="374045"><span class="speaker">Tom Greenaway</span>: Well, here you can</span> <span data-start="375420">see how a server identifies that the device requesting the page</span> <span data-start="378450">is a user browser.</span> <span data-start="380110">And then it serves a payload of HTML and JavaScript</span> <span data-start="384134">that gets rendered on the client, right?</span> <span data-start="385800">So that's basic stuff.</span> <span data-start="388050">But when a crawler like Googlebot makes a request,</span> <span data-start="390150">the server sends a different payload.</span> <span data-start="392910">And instead of sending the HTML JavaScript directly</span> <span data-start="395640">to the browser — </span> <span data-start="397200">or in this case, the crawler — </span> <span data-start="399090">we send what is normally sent to the browser,</span> <span data-start="401130">but we send it to the dynamic rendering service.</span> <span data-start="404020">And we run the payload through that service.</span> <span data-start="406960">So the dynamic renderer then spits out</span> <span data-start="409170">a completely statically rendered HTML payload for the crawlers.</span> </section>
+
+<section><span data-start="412609"><span class="speaker">Martin Splitt</span>: Huh!</span> <span data-start="413400">That's pretty smart.</span> <span data-start="414420">OK.</span> </section>
+
+<section><span data-start="414960"><span class="speaker">Tom Greenaway</span>: And to be clear, that dynamic renderer</span> <span data-start="417168">could be an external service or it</span> <span data-start="418650">could be running on the same web server infrastructure.</span> </section>
+
+<section><span data-start="421080"><span class="speaker">Martin Splitt</span>: All right.</span> <span data-start="421560">Yeah, that makes sense.</span> </section>
+
+<section><span data-start="422400"><span class="speaker">Tom Greenaway</span>: Yeah.</span> </section>
+
+<section><span data-start="423233"><span class="speaker">Martin Splitt</span>: I guess, for this kind of stuff,</span> <span data-start="425310">you can use tools such as — </span> <span data-start="428850">Puppeteer is one that you mentioned already.</span> </section>
+
+<section><span data-start="430920"><span class="speaker">Tom Greenaway</span>: Yeah.</span> </section>
+
+<section><span data-start="431070"><span class="speaker">Martin Splitt</span>: But you could also</span> <span data-start="431580">probably use Rendertron, which is a higher-level abstraction.</span> <span data-start="434520">Puppeteer is basically an NPM module that you install.</span> <span data-start="437100">And that remote controls or programmatically</span> <span data-start="440220">controls a Chrome instance that runs</span> <span data-start="442110">headlessly, which is great.</span> <span data-start="443730">But I'd like something more high level.</span> <span data-start="445750">And I think Rendertron steps in there,</span> <span data-start="447450">where you basically just have the server running, which</span> <span data-start="449790">is a Rendertron server that uses Puppeteer to steer that.</span> <span data-start="452910">And you give it a URL to render.</span> <span data-start="454530">And you get the rendered static HTML back.</span> <span data-start="457009">That's pretty cool.</span> <span data-start="457800">OK.</span> <span data-start="458300">It's fantastic.</span> <span data-start="460290">I guess you can also deploy that pretty easily.</span> <span data-start="462350">I think there's this thing called</span> <span data-start="463890">Google Cloud Platform that's probably</span> <span data-start="465510">pretty easy to deploy too.</span> <span data-start="466659">But I guess you can also deploy it pretty much anywhere else,</span> <span data-start="469200">right?</span> </section>
+
+<section><span data-start="469740"><span class="speaker">Tom Greenaway</span>: Do you have an example?</span> </section>
+
+<section><span data-start="470910"><span class="speaker">Martin Splitt</span>: I do have an example actually.</span> <span data-start="472785">So there's a NPM module that is called the Rendertron</span> <span data-start="476220">middleware.</span> <span data-start="477460">So if you are using, let's say, for instance, Express.js,</span> <span data-start="480240">you can use that as the middleware.</span> <span data-start="482370">But what you're doing here is basically just — </span> <span data-start="485040">first step, you require it.</span> <span data-start="488100">You need to get that into your project.</span> <span data-start="489990">And then what you're doing is you basically</span> <span data-start="492360">configure it to do the right thing for you.</span> <span data-start="494700">In this case, we want to specifically jump the rendering</span> <span data-start="498750">pipeline of the Googlebot.</span> <span data-start="500610">Rendertron, by default, doesn't do prerendering for Googlebot,</span> <span data-start="503730">because the Googlebot does run JavaScript.</span> <span data-start="505930">But we want to get the advantage here anyways.</span> <span data-start="508800">So we can just use the preconfigured and prebuilt list</span> <span data-start="515280">of render agents that they are rendering for</span> <span data-start="517260">and add Googlebot in there.</span> <span data-start="519330">And then once we have that configuration ready</span> <span data-start="521309">and have imported it, we can go on</span> <span data-start="523470">to actually use it in our application middleware stack.</span> <span data-start="526230">So we can basically point it to the running server somewhere</span> <span data-start="529860">and say, for all these user agent patterns, prerender.</span> <span data-start="534490">By the way, now that I have got you here — </span> <span data-start="536410">because you never respond to emails timely, which is fine.</span> <span data-start="539830">Neither do I —  no offense.</span> <span data-start="541950">And Chrome Dev Sum is a big event.</span> <span data-start="544190">So this rendering does cost a bit of resources.</span> <span data-start="548455">So I'm wondering, is there any way</span> <span data-start="550240">to figure out what Googlebot —  like, what does Rendertron</span> <span data-start="552972">really do to figure out what's Googlebot?</span> <span data-start="554680">And how can it verify that is really</span> <span data-start="556300">is Googlebot and not just pretending to be Googlebot?</span> </section>
+
+<section><span data-start="558806"><span class="speaker">Tom Greenaway</span>: Yeah, well — </span> </section>
+
+<section><span data-start="559930"><span class="speaker">Martin Splitt</span>: [INAUDIBLE]?</span> </section>
+
+<section><span data-start="560710"><span class="speaker">Tom Greenaway</span>:  — the easiest way is</span> <span data-start="562168">to do user agent sniffing for the Googlebot string.</span> <span data-start="564460">And here's an example with the mobile user</span> <span data-start="566477">agent for Googlebot.</span> <span data-start="567310">[WHISTLING]</span> <span data-start="568440">But you might want to do this for other services</span> <span data-start="571600">as well that you want to serve prerendered content to,</span> <span data-start="573850">like social media services.</span> <span data-start="575890">And also, for Googlebot, you can do, additionally, a reverse DNS</span> <span data-start="579839">look-up, to confirm that it really is</span> <span data-start="581380">coming from the Google servers.</span> <span data-start="584012">And like I said, this is the mobile user agent.</span> <span data-start="585970">So you can detect the desktop user agent as well.</span> <span data-start="589102">And that URL will give you a list of all the different — </span> </section>
+
+<section><span data-start="591435"><span class="speaker">Martin Splitt</span>: Oh, cool.</span> </section>
+
+<section><span data-start="592330"><span class="speaker">Tom Greenaway</span>:  — user agents.</span> </section>
+
+<section><span data-start="592970"><span class="speaker">Martin Splitt</span>: Right, that's nice.</span> <span data-start="593650">That's [INAUDIBLE].</span> </section>
+
+<section><span data-start="594040"><span class="speaker">Tom Greenaway</span>: Which reminds me, actually — </span> <span data-start="594910">I should sync with John [? Muller ?]</span> <span data-start="595930">and check if there are new tools in Search</span> <span data-start="597940">Console for this stuff.</span> <span data-start="599010">Or maybe you can tell me.</span> </section>
+
+<section><span data-start="599770"><span class="speaker">Martin Splitt</span>: Yeah, I was going to say, why did you bring John</span> <span data-start="602410">into this?</span> <span data-start="602830">Come on.</span> </section>
+
+<section><span data-start="603330"><span class="speaker">Tom Greenaway</span>: Sorry.</span> </section>
+
+<section><span data-start="604240"><span class="speaker">Martin Splitt</span>: I'm here.</span> <span data-start="605240">I'm literally a meter away from you.</span> <span data-start="607680">Or I don't know how many miles or foot or inches that is.</span> <span data-start="610180">I have no idea.</span> <span data-start="612230">But basically, we have a bunch of stuff for you.</span> <span data-start="614230">And I'd like to walk you through that.</span> <span data-start="616240">So you know the Google Mobile-Friendly Test already?</span> </section>
+
+<section><span data-start="619795"><span class="speaker">Tom Greenaway</span>: Yeah.</span> </section>
+
+<section><span data-start="620800"><span class="speaker">Martin Splitt</span>: So this is kind of useful.</span> <span data-start="623290">It shows you if your page is mobile-friendly.</span> <span data-start="625529">It does give you a screenshot of what</span> <span data-start="627070">we are seeing in Googlebot.</span> <span data-start="628840">And it's pretty easy to use.</span> <span data-start="630620">You just paste your URL in there.</span> <span data-start="633070">But it does more than just that.</span> <span data-start="636370">Because it also gives you this, which is what</span> <span data-start="643020">I always wanted to have.</span> <span data-start="645370">And Googlebot does not render what you expect it to render.</span> <span data-start="648600">You get the JavaScript log messages,</span> <span data-start="650760">as you would get them from the Chrome Dev.</span> </section>
+
+<section><span data-start="653197"><span class="speaker">Tom Greenaway</span>: So you can really debug</span> <span data-start="654780">the JavaScript in the page.</span> </section>
+
+<section><span data-start="655560"><span class="speaker">Martin Splitt</span>: You can really debug this.</span> <span data-start="656130">And here's my favorite —  we had this — </span> <span data-start="658080">is it undefined question earlier on?</span> <span data-start="660570">Apparently, it is undefined.</span> <span data-start="661990">And undefined is not a function, which is unfortunate.</span> <span data-start="664430">But that happens.</span> <span data-start="666660">Also, do you know about the new URL inspection tool</span> <span data-start="668916">that we've got in Search Console?</span> </section>
+
+<section><span data-start="670290"><span class="speaker">Tom Greenaway</span>: I don't think so.</span> <span data-start="671130">Can you remind me?</span> </section>
+
+<section><span data-start="671910"><span class="speaker">Martin Splitt</span>: Yeah, sure.</span> <span data-start="672993">So if you have verified for a property in Search Console,</span> <span data-start="676110">you can basically paste any of the URLs</span> <span data-start="678930">that are belonging to that property</span> <span data-start="680880">into the Search Console URL Inspection tool.</span> <span data-start="683707">And you get, like, when we crawled it, if it's on Google</span> <span data-start="686040">or not.</span> <span data-start="686881">And you have a bunch of information.</span> <span data-start="688380">And you can run live tests as well.</span> <span data-start="690330">So this blog post here is — </span> <span data-start="693690">drumroll —  not on the index.</span> <span data-start="696360">But that's fine —  whatever.</span> <span data-start="698730">We also have something else.</span> <span data-start="699960">It's actually a pre-announcement that we're</span> <span data-start="701751">going to make at Chrome Dev Summit now.</span> </section>
+
+<section><span data-start="704920"><span class="speaker">Tom Greenaway</span>: OK.</span> </section>
+
+<section><span data-start="705840"><span class="speaker">Martin Splitt</span>: So can we get a little bit of a drumroll?</span> <span data-start="708600">So we'll get the live code editing</span> <span data-start="711607">feature in Search Console.</span> </section>
+
+<section><span data-start="712690"><span class="speaker">Tom Greenaway</span>: Oh, OK.</span> </section>
+
+<section><span data-start="713510"><span class="speaker">Martin Splitt</span>: Yeah.</span> </section>
+
+<section><span data-start="714343"><span class="speaker">Tom Greenaway</span>: What does that do?</span> </section>
+
+<section><span data-start="716914"><span class="speaker">Martin Splitt</span>: Fair enough — </span> <span data-start="718080">yeah, OK.</span> <span data-start="718860">So imagine you are building a website.</span> <span data-start="721320">Let's say, there's an afterparty today.</span> <span data-start="723210">So you built the website for the Chrome Dev Summit.</span> <span data-start="725580">And you want to check if your structured data works</span> <span data-start="728307">to get highlighted in Search results, right?</span> <span data-start="730140">You want to check that as quickly as possible.</span> </section>
+
+<section><span data-start="732247"><span class="speaker">Tom Greenaway</span>: Yeah, that makes sense.</span> <span data-start="733830">You want to be able to iterate quickly.</span> <span data-start="735330">And you don't want to have to wait for deployments</span> <span data-start="736392">from your [INAUDIBLE].</span> </section>
+
+<section><span data-start="737040"><span class="speaker">Martin Splitt</span>: Yeah, exactly.</span> <span data-start="738000">I want a development cycle that makes more sense.</span> <span data-start="740080">So what you can do is you can plot that</span> <span data-start="741705">into this wonderful tool.</span> <span data-start="743130">And here, we have an example.</span> <span data-start="744490">We are using JavaScript to create a script tag that</span> <span data-start="747030">contains the structured data.</span> <span data-start="748260">And we have all our wonderful structured data</span> <span data-start="750134">for the event here.</span> <span data-start="751470">And then we can click on the little Test Code button.</span> <span data-start="755230">And what it gives us is this.</span> <span data-start="757060">And we're like, yay!</span> <span data-start="758160">Our event is available.</span> <span data-start="760040">And this is a code editor over here.</span> <span data-start="762160">And what we see over there is, it's</span> <span data-start="764370">missing the performer for the afterparty.</span> </section>
+
+<section><span data-start="766461"><span class="speaker">Tom Greenaway</span>: Oh, wait.</span> <span data-start="767460">That's a shame.</span> <span data-start="768030">I think it's meant to be the Chrome Dino.</span> </section>
+
+<section><span data-start="769680"><span class="speaker">Martin Splitt</span>: It's the Chrome Dino.</span> <span data-start="770670">So we should add this performer.</span> <span data-start="772407">So what we can do is we can go straight back</span> <span data-start="774240">into the Code Editor and click the button again.</span> <span data-start="777200">And it live updates, as we have retested our code.</span> <span data-start="780482">So we can do all of this in the browser in the single tool.</span> <span data-start="782940">And I think that is pretty fantastic really, right?</span> <span data-start="785850">That's pretty good stuff</span> </section>
+
+<section><span data-start="788060"><span class="speaker">Tom Greenaway</span>: OK, yeah.</span> <span data-start="789690">That is definitely a neat way of testing and trying our code out</span> <span data-start="792700">and iterating quickly.</span> </section>
+
+<section><span data-start="793742"><span class="speaker">Martin Splitt</span>: Yeah, but that's something</span> <span data-start="795450">that Search Console generally tries to do, right?</span> </section>
+
+<section><span data-start="797640"><span class="speaker">Tom Greenaway</span>: Mm.</span> </section>
+
+<section><span data-start="798480"><span class="speaker">Martin Splitt</span>: So you have this really nice flow.</span> <span data-start="800521">So let's say, someone in your company or agency</span> <span data-start="803040">or wherever has access to Search Console.</span> <span data-start="805422">I don't have access to Search Console as a developer,</span> <span data-start="807630">normally, because I have so much other things to worry</span> <span data-start="810540">about really.</span> <span data-start="812340">And then someone finds an issue through one of the reports.</span> <span data-start="816660">So how do they get this information to me?</span> <span data-start="819840">Well, one way of doing so is, basically,</span> <span data-start="821640">they can just go and see this issue from the Reports page,</span> <span data-start="825240">where —  there's a bunch of samples here.</span> <span data-start="826920">In this case, the content is wider than the screen.</span> <span data-start="829320">And in the second stage of this, they can basically</span> <span data-start="832470">just say, all right.</span> <span data-start="833550">So our developers might be an external developer.</span> <span data-start="835650">We don't want to give them access to all the data.</span> <span data-start="837733">So we share this particular issue with them.</span> <span data-start="839647">And they get a link.</span> <span data-start="840480">They don't have to sign in or anything.</span> <span data-start="842105">They can just use the link that is shared here</span> <span data-start="844710">to see what the issue is, get access</span> <span data-start="846900">to the documentation that explains what the problem is</span> <span data-start="849300">and how to fix it.</span> <span data-start="850770">And then, last but not least, when I, as a developer,</span> <span data-start="853330">then go, I fixed this — </span> <span data-start="854760">I have this under control — </span> <span data-start="856762">we know that that's often not true.</span> <span data-start="858220">So what Search Console offers us is this Validate Fix button.</span> <span data-start="862360">So if I'm like, Tom, I gotcha.</span> <span data-start="864990">I fixed this.</span> <span data-start="865780">You or I can press this button and go,</span> <span data-start="868770">I got you in 10 minutes.</span> </section>
+
+<section><span data-start="870060"><span class="speaker">Tom Greenaway</span>: Yeah, right — </span> <span data-start="870600">OK.</span> </section>
+
+<section><span data-start="870900"><span class="speaker">Martin Splitt</span>: Right?</span> </section>
+
+<section><span data-start="871200"><span class="speaker">Tom Greenaway</span>: So it really establishes a flow [INAUDIBLE]..</span> </section>
+
+<section><span data-start="873250"><span class="speaker">Martin Splitt</span>: It does.</span> <span data-start="874208">It is really nice workflow and works</span> <span data-start="875826">across departments, which I think</span> <span data-start="877200">is pretty fantastic as well.</span> <span data-start="878511">Yeah.</span> </section>
+
+<section><span data-start="879010"><span class="speaker">Tom Greenaway</span>: Hm.</span> <span data-start="879305">Yeah, that's nice.</span> </section>
+
+<section><span data-start="880140"><span class="speaker">Martin Splitt</span>: Oh — </span> </section>
+
+<section><span data-start="880710"><span class="speaker">Tom Greenaway</span>: But actually, there</span> <span data-start="882126">is another addition to our Dev tool.</span> </section>
+
+<section><span data-start="883700"><span class="speaker">Martin Splitt</span>: Right, you were talking to me</span> <span data-start="884910">about that earlier.</span> </section>
+
+<section><span data-start="885470"><span class="speaker">Tom Greenaway</span>: Yeah, exactly.</span> <span data-start="886810">I'm sure everyone obviously knows about Lighthouse.</span> <span data-start="889050">They've been to the forum space and they've seen the — </span> </section>
+
+<section><span data-start="890700"><span class="speaker">Martin Splitt</span>: Yeah, come on.</span> </section>
+
+<section><span data-start="891040"><span class="speaker">Tom Greenaway</span>:  — awesome statue we've got there.</span> </section>
+
+<section><span data-start="892260"><span class="speaker">Martin Splitt</span>: Oh, it's fantastic.</span> </section>
+
+<section><span data-start="893937"><span class="speaker">Tom Greenaway</span>: But —  yeah.</span> <span data-start="895020">What if I told you that there are actually SEO audits</span> <span data-start="897630">inside of Lighthouse?</span> </section>
+
+<section><span data-start="898890"><span class="speaker">Martin Splitt</span>: Huh!</span> </section>
+
+<section><span data-start="899290"><span class="speaker">Tom Greenaway</span>: In fact, we've got a few more coming soon.</span> <span data-start="901180">So — </span> </section>
+
+<section><span data-start="901380"><span class="speaker">Martin Splitt</span>: Ooh!</span> </section>
+
+<section><span data-start="902171"><span class="speaker">Tom Greenaway</span>:  — basically, this can automatically detect things</span> <span data-start="905010">like whether your HTTP header responses are accurate or not</span> <span data-start="908580">and meta-tags as well —  like, that you've got correct title</span> <span data-start="911340">and description tags or that you've got hreflang set up</span> <span data-start="913659">correctly, if you're using that for a localized — </span> </section>
+
+<section><span data-start="915700"><span class="speaker">Martin Splitt</span>: Internationalization — </span> </section>
+
+<section><span data-start="916060"><span class="speaker">Tom Greenaway</span>:  — international website.</span> </section>
+
+<section><span data-start="916570"><span class="speaker">Martin Splitt</span>: Yeah —  woo.</span> </section>
+
+<section><span data-start="917770"><span class="speaker">Tom Greenaway</span>: And also, descriptive link texts —  even</span> <span data-start="920280">for anchors.</span> <span data-start="920820">So if — </span> </section>
+
+<section><span data-start="921387"><span class="speaker">Martin Splitt</span>: Click Here.</span> </section>
+
+<section><span data-start="922470"><span class="speaker">Tom Greenaway</span>: Exactly, you want to avoid Click Here,</span> <span data-start="923940">because it doesn't really communicate</span> <span data-start="925481">what is actually the thing that you're linking to, right?</span> </section>
+
+<section><span data-start="928074"><span class="speaker">Martin Splitt</span>: Number five is going to surprise you.</span> </section>
+
+<section><span data-start="930240"><span class="speaker">Tom Greenaway</span>: And then they're like, robots.txt.</span> <span data-start="931800">And then the new features we're adding</span> <span data-start="933600">are, like, automatic detection of the sides of tab targets</span> <span data-start="936260">and the margin around tap targets,</span> <span data-start="938100">to make sure that they're nice for users, and also</span> <span data-start="941102">structured data testing, as well, which you were just</span> <span data-start="943310">talking about.</span> </section>
+
+<section><span data-start="943670"><span class="speaker">Martin Splitt</span>: Yeah.</span> <span data-start="944420">Yeah.</span> </section>
+
+<section><span data-start="944740"><span class="speaker">Tom Greenaway</span>: So it's really great.</span> </section>
+
+<section><span data-start="945480"><span class="speaker">Martin Splitt</span>: It's going to get more of that.</span> </section>
+
+<section><span data-start="946550"><span class="speaker">Tom Greenaway</span>: Yeah.</span> </section>
+
+<section><span data-start="946790"><span class="speaker">Martin Splitt</span>: That's fantastic.</span> <span data-start="947310">That's very good to see, yeah.</span> <span data-start="949310">Cool.</span> <span data-start="950360">All right, so I think, from the tool side,</span> <span data-start="952670">we have Lighthouse audits.</span> <span data-start="955550">For SEO, we have the Search Console.</span> <span data-start="957572">We have the Mobile-friendly test and the Rich Results</span> <span data-start="959780">test with editing features.</span> <span data-start="961234">I think we're pretty good on that front.</span> <span data-start="962900">But do you have any recommendations,</span> <span data-start="965390">in terms of best practices, that I should tell my friend Marvin?</span> </section>
+
+<section><span data-start="969349"><span class="speaker">Tom Greenaway</span>: Marvin —  your friend, right?</span> </section>
+
+<section><span data-start="971140"><span class="speaker">Martin Splitt</span>: Yeah, my friend — </span> <span data-start="972473">no, I'm serious.</span> <span data-start="973569">This is a friend of mine.</span> <span data-start="974610">It's totally not me.</span> <span data-start="976084">Any best practices that we should recommend to them?</span> </section>
+
+<section><span data-start="978250"><span class="speaker">Tom Greenaway</span>: Yeah, yeah.</span> <span data-start="978950">Let's go through a few.</span> </section>
+
+<section><span data-start="979908"><span class="speaker">Martin Splitt</span>: OK, cool.</span> </section>
+
+<section><span data-start="980960"><span class="speaker">Tom Greenaway</span>: Well, firstly, it's important to know — </span> <span data-start="983510">remember how I said that Googlebot is</span> <span data-start="985340">running like Chrome nowadays?</span> </section>
+
+<section><span data-start="988190"><span class="speaker">Martin Splitt</span>: That is fantastic.</span> <span data-start="989780">Finally, we have a modern brows — </span> </section>
+
+<section><span data-start="990670"><span class="speaker">Tom Greenaway</span>: Yeah —  well, actually, wait a second.</span> <span data-start="992480">It is Chrome.</span> <span data-start="993092">But it's not actually the latest version.</span> <span data-start="994800">So it actually runs Chrome 41.</span> </section>
+
+<section><span data-start="998685"><span class="speaker">Martin Splitt</span>: Right.</span> <span data-start="999560">41.</span> <span data-start="1000310">It's not even 42, the answer to life,</span> <span data-start="1002412">the universe, and everything.</span> <span data-start="1003620">It's just 41.</span> </section>
+
+<section><span data-start="1004305"><span class="speaker">Tom Greenaway</span>: It's not quite there yet.</span> <span data-start="1006014">But Chrome is working on it.</span> <span data-start="1007180">[DEEP SIGH]</span> <span data-start="1008680">But seriously though, since it's Chrome 41 and Chrome 41</span> <span data-start="1011620">was released in 2015, it doesn't support all of the latest</span> <span data-start="1014830">features of modern browsers.</span> <span data-start="1016070">So for example, it doesn't actually support ES6.</span> <span data-start="1018800">So the latest language features aren't available.</span> <span data-start="1022010">And while it has web components, it's</span> <span data-start="1023650">actually version 0 of the spec.</span> <span data-start="1025819">And another thing to note is that it's actually</span> <span data-start="1028124">stateless, which I'll explain in a little bit.</span> </section>
+
+<section><span data-start="1030040"><span class="speaker">Martin Splitt</span>: Oh, OK.</span> <span data-start="1030650">All right.</span> </section>
+
+<section><span data-start="1030880"><span class="speaker">Tom Greenaway</span>: Yeah, it's an interesting one.</span> <span data-start="1032755">I'll break it down.</span> <span data-start="1033800">For example, with this code, how many ES6 features can you spot?</span> </section>
+
+<section><span data-start="1037844"><span class="speaker">Martin Splitt</span>: Uh, a few.</span> </section>
+
+<section><span data-start="1040210"><span class="speaker">Tom Greenaway</span>: That's a good answer.</span> <span data-start="1041710">Yeah, OK.</span> <span data-start="1043660">More than 0.</span> <span data-start="1045190">Yeah, exactly.</span> <span data-start="1046325">Now, we might forget that some of these</span> <span data-start="1047950">are relatively recent features, like advanced object literals</span> <span data-start="1050920">or const definitions, backwards, and variable substitution.</span> </section>
+
+<section><span data-start="1053605"><span class="speaker">Martin Splitt</span>: Yeah, you use them every day.</span> <span data-start="1055030">Why — </span> </section>
+
+<section><span data-start="1055270"><span class="speaker">Tom Greenaway</span>: Yeah, exactly.</span> <span data-start="1056200">Yeah.</span> <span data-start="1056699">So one way to deal with this, if you need a solution,</span> <span data-start="1060130">is to use something like Babel, which</span> <span data-start="1061810">allows you to transpile ES6 code down to ES5 automatically.</span> <span data-start="1067120">And you can easily compile a set of files or a directory</span> <span data-start="1070300">and compile it into a single file for serving.</span> <span data-start="1072910">And using presets, you can also detect a minimum browser</span> <span data-start="1075972">version and use that as a baseline.</span> </section>
+
+<section><span data-start="1077430"><span class="speaker">Martin Splitt</span>: Oh, right.</span> </section>
+
+<section><span data-start="1077750"><span class="speaker">Tom Greenaway</span>: So you can ensure that, like, ES6 features</span> <span data-start="1080410">and ES6 code go to browsers that can support it.</span> <span data-start="1083050">And then browsers that can't get the ES5 transpiled code.</span> </section>
+
+<section><span data-start="1085866"><span class="speaker">Martin Splitt</span>: Right, that makes sense.</span> <span data-start="1087490">OK.</span> </section>
+
+<section><span data-start="1087990"><span class="speaker">Tom Greenaway</span>: And now, while Chrome 41</span> <span data-start="1089614">does have web components, it's actually</span> <span data-start="1091510">an older version of the spec than you're probably used to.</span> <span data-start="1094790">So after Chrome 41 shipped, several features,</span> <span data-start="1097570">such as Custom Elements and Shadow DOM</span> <span data-start="1099970">actually had some changes made to their specs.</span> <span data-start="1103140">So depending on exactly which features you use in version 0,</span> <span data-start="1107020">it might be very simple to migrate.</span> <span data-start="1108705">Or it might get more complicated.</span> <span data-start="1110080">But the most important thing is to be aware</span> <span data-start="1111580">that there are differences.</span> </section>
+
+<section><span data-start="1112610"><span class="speaker">Martin Splitt</span>: Yeah, there's differences in this.</span> <span data-start="1113750">Yeah, OK.</span> </section>
+
+<section><span data-start="1114255"><span class="speaker">Tom Greenaway</span>: And lastly, this shouldn't</span> <span data-start="1115963">come as too much of a surprise.</span> <span data-start="1117700">Googlebot basically doesn't really have any memory.</span> </section>
+
+<section><span data-start="1119889"><span class="speaker">Martin Splitt</span>: Huh!</span> </section>
+
+<section><span data-start="1120680"><span class="speaker">Tom Greenaway</span>: And what I mean by that is that, every time it</span> <span data-start="1123221">accesses a web page or side origin,</span> <span data-start="1124750">it just always acts like it's the first time it's ever</span> <span data-start="1127750">encountered that website.</span> <span data-start="1130165">And to achieve that, we turn off a bunch of things.</span> <span data-start="1132290">So we don't have service workers running.</span> <span data-start="1133998">So we don't have a service worker cache.</span> <span data-start="1136437">And we don't have local storage or session storage</span> <span data-start="1138520">and so forth.</span> <span data-start="1139250">So — </span> </section>
+
+<section><span data-start="1139750"><span class="speaker">Martin Splitt</span>: It makes sense.</span> <span data-start="1141000">If you click on a search result, that's like coming to that page</span> <span data-start="1143750">the first time.</span> <span data-start="1144410">So we want to make sure — </span> </section>
+
+<section><span data-start="1144910"><span class="speaker">Tom Greenaway</span>: Yeah, what is the first-time user experience — </span> </section>
+
+<section><span data-start="1147005"><span class="speaker">Martin Splitt</span>: Yeah, true [INAUDIBLE]..</span> </section>
+
+<section><span data-start="1147550"><span class="speaker">Tom Greenaway</span>:  — when you encounter it?</span> </section>
+
+<section><span data-start="1148180"><span class="speaker">Martin Splitt</span>: Makes sense.</span> </section>
+
+<section><span data-start="1149390"><span class="speaker">Tom Greenaway</span>: So, Martin, do you</span> <span data-start="1149800">have any suggestions for how we can substitute</span> <span data-start="1151750">for some of these things?</span> </section>
+
+<section><span data-start="1153110"><span class="speaker">Martin Splitt</span>: So I think, if you</span> <span data-start="1154485">look at things like the web components</span> <span data-start="1157990">and a few of these features, like intersection, observe,</span> <span data-start="1160540">and all these things, I guess polyfills is a good way,</span> <span data-start="1163240">once you've already done your homework</span> <span data-start="1165112">and did the progressive enhancement</span> <span data-start="1166570">or graceful degradation at least.</span> <span data-start="1169660">But the problem with polyfills, I feel at least,</span> <span data-start="1171910">is that there is a bit of a risk to ship dead code to people — </span> <span data-start="1175680">like, give them a bunch of stuff over the network which,</span> <span data-start="1178330">depending on where they are and what plan they're on,</span> <span data-start="1180910">might be actually pretty expensive and time-consuming.</span> <span data-start="1184075">So you want to reduce that.</span> <span data-start="1185200">And actually, I really like this library called Polyfill.io.</span> <span data-start="1188690">So Polyfill.io basically sniffs on the user</span> <span data-start="1192280">agent of the person requesting or the browser requesting it.</span> <span data-start="1196610">So if the crawler comes by and there's like,</span> <span data-start="1198640">ooh, this is a Googlebot crawler, Chrome 41 — </span> <span data-start="1201340">so I give them a bunch of stuff that the normal user</span> <span data-start="1204260">on a more recent Chrome or Firefox or Edge or whatever</span> <span data-start="1207950">doesn't need.</span> <span data-start="1209000">So basically, it tries to give you the right amount of code</span> <span data-start="1211900">that you need to make this work.</span> <span data-start="1213410">So that's pretty fantastic, I think.</span> </section>
+
+<section><span data-start="1215060"><span class="speaker">Tom Greenaway</span>: Yeah, it's kind of cool.</span> </section>
+
+<section><span data-start="1215920"><span class="speaker">Martin Splitt</span>: Yeah.</span> <span data-start="1216753">Is there any place where I can figure out more</span> <span data-start="1218980">about these feature issues, where, like, features</span> <span data-start="1221320">are missing in Chrome 41 that are there in the modern one?</span> </section>
+
+<section><span data-start="1224157"><span class="speaker">Tom Greenaway</span>: Yeah, definitely.</span> <span data-start="1225490">If you check out caniuse.com, it's</span> <span data-start="1226906">a great resource for this sort of thing,</span> <span data-start="1228573">because you can check, like, the features</span> <span data-start="1230280">across various browsers.</span> <span data-start="1231340">You can also specify specific browser versions as well.</span> </section>
+
+<section><span data-start="1233805"><span class="speaker">Martin Splitt</span>: Ah!</span> </section>
+
+<section><span data-start="1234180"><span class="speaker">Tom Greenaway</span>: So you can say, hey,</span> <span data-start="1234790">what's different in Chrome 41 specifically?</span> </section>
+
+<section><span data-start="1236644"><span class="speaker">Martin Splitt</span>: Cool, that's pretty nice.</span> </section>
+
+<section><span data-start="1238310"><span class="speaker">Tom Greenaway</span>: And also, the golden rule</span> <span data-start="1239976">of any indexability and building a website for search crawlers</span> <span data-start="1243326">and that kind of thing is to just</span> <span data-start="1244700">make sure you test really frequently as well.</span> </section>
+
+<section><span data-start="1246230"><span class="speaker">Martin Splitt</span>: Yeah, fair enough.</span> <span data-start="1246920">Yeah.</span> <span data-start="1247420">Test, test, test.</span> <span data-start="1248450">Fair enough.</span> <span data-start="1249280">Cool.</span> <span data-start="1250020">So going back to dynamic rendering for just a second</span> <span data-start="1254880">and the tools discussion —  so if I test my stuff and I figure</span> <span data-start="1258830">out, oh no, this feature is really tricky to work around</span> <span data-start="1261770">and I want to not change my code — </span> <span data-start="1263676">I guess I can use dynamic rendering for that.</span> <span data-start="1265550">But I guess there's trade-offs.</span> <span data-start="1266842">And there's situations where I shouldn't be doing that.</span> <span data-start="1269133">So what are the sites that should, generally speaking,</span> <span data-start="1271580">look into dynamic rendering?</span> </section>
+
+<section><span data-start="1272777"><span class="speaker">Tom Greenaway</span>: Well, because the rendering queue can introduce</span> <span data-start="1275360">some delay, if your site has lots of frequently changing</span> <span data-start="1278511">content —  like a news publisher or something like that</span> <span data-start="1280760">and you've got, maybe, breaking news and articles that are</span> <span data-start="1283176">coming out and changing very frequently — </span> <span data-start="1285620">you probably might want to look into using dynamic rendering</span> <span data-start="1288650">to overcome those delays.</span> <span data-start="1290870">And if your pages use features that aren't available in Chrome</span> <span data-start="1293690">41 and it's not possible to work around those limitations,</span> <span data-start="1296520">maybe, in the short-term, then using dynamic rendering</span> <span data-start="1299060">is a useful workaround until either Googlebot catches up</span> <span data-start="1303260">or you have the time to adapt that</span> <span data-start="1305570">in your own implementation.</span> </section>
+
+<section><span data-start="1306706"><span class="speaker">Martin Splitt</span>: Right, that makes sense.</span> </section>
+
+<section><span data-start="1308330"><span class="speaker">Tom Greenaway</span>: And also, while Googlebot</span> <span data-start="1309996">is supporting JavaScript, other crawlers might not.</span> <span data-start="1312180">So for example, if your site is using social media interactions</span> <span data-start="1315360">a lot, those crawlers tend to not run JavaScript.</span> <span data-start="1317630">So if I share a link and I'm sharing it on social media</span> <span data-start="1321920">but I want a nice preview card to be created,</span> <span data-start="1325400">it probably wants to try and access</span> <span data-start="1327107">the image and the title and the meta-description, or something</span> <span data-start="1329690">like that.</span> <span data-start="1331009">So if you're actually using client-side rendering</span> <span data-start="1333050">for those things, then you might get,</span> <span data-start="1335075">just, the variable templates [INAUDIBLE] in the content.</span> </section>
+
+<section><span data-start="1337810"><span class="speaker">Martin Splitt</span>: Ah, you use an image, and it doesn't — </span> </section>
+
+<section><span data-start="1338860"><span class="speaker">Tom Greenaway</span>: Yeah —  in the preview, which would be bad.</span> <span data-start="1340550">[RASPBERRY SOUND]</span> <span data-start="1341310">So in order to get better representations there,</span> <span data-start="1343310">you can also serve a dynamically rendered version page.</span> </section>
+
+<section><span data-start="1346780"><span class="speaker">Martin Splitt</span>: Cool.</span> <span data-start="1347809">Sounds pretty good.</span> </section>
+
+<section><span data-start="1348600"><span class="speaker">Tom Greenaway</span>: But ultimately, dynamic</span> <span data-start="1350390">rendering —  it's a powerful technique.</span> <span data-start="1352040">But it's still a workaround.</span> </section>
+
+<section><span data-start="1352870"><span class="speaker">Martin Splitt</span>: Yes!</span> <span data-start="1353116">It's a workaround.</span> </section>
+
+<section><span data-start="1353490"><span class="speaker">Tom Greenaway</span>: So Martin, do you have</span> <span data-start="1355031">any ideas on if we've got plans to improve this on the Google</span> <span data-start="1358610">side?</span> </section>
+
+<section><span data-start="1359497"><span class="speaker">Martin Splitt</span>: Yeah.</span> <span data-start="1360330">Way to put me on the spot.</span> <span data-start="1361413">So I don't like to make predictions</span> <span data-start="1363950">on that kind of stuff.</span> <span data-start="1364920">But definitely, the way that our infrastructure is set up,</span> <span data-start="1369440">there is a bit of a gap between when we actually</span> <span data-start="1372110">execute the JavaScript and do the rendering and then</span> <span data-start="1374900">the indexing bits and the crawling.</span> <span data-start="1377090">So we try to bring these closer together, which</span> <span data-start="1380030">is an interesting technical challenge.</span> <span data-start="1381710">And then, at the same time, we are</span> <span data-start="1383600">trying to catch up with Chrome.</span> <span data-start="1385670">But we don't want to just catch up,</span> <span data-start="1387607">because then we're going to have the same frickin'</span> <span data-start="1389690">conversation in a few years.</span> <span data-start="1390856">Like, oh yeah, Chrome's running version 70.</span> <span data-start="1392774">And everyone's like, oh, when does</span> <span data-start="1394190">it get into three-digits land?</span> <span data-start="1396710">So we basically work on a process</span> <span data-start="1399980">that we're, hopefully, going to start very soon.</span> <span data-start="1401980">So I make no promises on when.</span> <span data-start="1403580">But we are working on figuring out a process to stay</span> <span data-start="1407240">up-to-date with Chrome, so that Googlebot does run with</span> <span data-start="1410450">the Chrome release schedule — </span> <span data-start="1412220">so that we are basically — </span> </section>
+
+<section><span data-start="1412730"><span class="speaker">Tom Greenaway</span>: That would be awesome.</span> </section>
+
+<section><span data-start="1413270"><span class="speaker">Martin Splitt</span>:  — giving you an Evergreen —  yeah, right?</span> <span data-start="1414830">That would be fantastic if we could do that.</span> <span data-start="1416730">Yeah.</span> </section>
+
+<section><span data-start="1417230"><span class="speaker">Tom Greenaway</span>: And also to shorten the [INAUDIBLE]</span> <span data-start="1418840">as well.</span> </section>
+
+<section><span data-start="1419060"><span class="speaker">Martin Splitt</span>: Yeah, exactly.</span> <span data-start="1419960">That goes hand-in-hand really, because we</span> <span data-start="1421730">have to touch the rendering infrastructure anyway.</span> <span data-start="1424022">So we might as well do both things.</span> <span data-start="1425480">But I think we might get an update quicker than we get</span> <span data-start="1428501">the two things together, but — </span> </section>
+
+<section><span data-start="1429750"><span class="speaker">Tom Greenaway</span>: OK, cool.</span> </section>
+
+<section><span data-start="1430580"><span class="speaker">Martin Splitt</span>:  — we'll see.</span> </section>
+
+<section><span data-start="1431704"><span class="speaker">Tom Greenaway</span>: Yeah.</span> </section>
+
+<section><span data-start="1432680"><span class="speaker">Martin Splitt</span>: Cool.</span> <span data-start="1433230">All right.</span> <span data-start="1433830">So thank you so much for all that talks</span> <span data-start="1436230">about how the indexing works and bits and pieces.</span> <span data-start="1438300">That was pretty fantastic.</span> <span data-start="1439260">I learned a bunch of new stuff.</span> </section>
+
+<section><span data-start="1440620"><span class="speaker">Tom Greenaway</span>: Yeah, and I hope this helps with Marvin as well.</span> </section>
+
+<section><span data-start="1442530"><span class="speaker">Martin Splitt</span>: Marvin is going to love</span> <span data-start="1443700">what I'm going to tell him.</span> <span data-start="1444824">I'm sure.</span> <span data-start="1445500">I — </span> </section>
+
+<section><span data-start="1445760"><span class="speaker">Tom Greenaway</span>: OK, yeah.</span> <span data-start="1446460">Well, thanks for showing me all those</span> <span data-start="1448001">Search Console tools as well.</span> </section>
+
+<section><span data-start="1449360"><span class="speaker">Martin Splitt</span>: Oh, yeah!</span> <span data-start="1449430">They are — </span> </section>
+
+<section><span data-start="1449660"><span class="speaker">Tom Greenaway</span>: They look great.</span> </section>
+
+<section><span data-start="1449830"><span class="speaker">Martin Splitt</span>:  — pretty fun.</span> <span data-start="1450440">Yeah.</span> </section>
+
+<section><span data-start="1450960"><span class="speaker">Tom Greenaway</span>: And if developers need more support and help,</span> <span data-start="1453460">like Marvin, can they go somewhere else?</span> </section>
+
+<section><span data-start="1455385"><span class="speaker">Martin Splitt</span>: Yeah, so I tried to get Marvin</span> <span data-start="1457260">to go to our documentation, because the documentation is</span> <span data-start="1459750">expanding quite quickly.</span> <span data-start="1460751">And we have a bunch of core documentation coming up</span> <span data-start="1462875">and good documentation already there.</span> <span data-start="1464430">We have Webmaster Hangouts.</span> <span data-start="1466020">So you can pop by and talk to us over a Hangout</span> <span data-start="1469350">and ask us questions there as well.</span> <span data-start="1471490">They are recorded.</span> <span data-start="1472240">So if you want to go back to one that has happened</span> <span data-start="1474090">and there was an interesting question,</span> <span data-start="1475200">you can find it there as well.</span> <span data-start="1476670">We have what's called the webmaster forum.</span> <span data-start="1479010">A bunch of fantastic people are there</span> <span data-start="1480570">called product experts, who are also</span> <span data-start="1482550">helping if there is anything coming up with Search.</span> <span data-start="1485700">And last but not least, if you've been to the forum space</span> <span data-start="1489930">before, we have a Search Console booth</span> <span data-start="1492061">where you can try our Search Console</span> <span data-start="1493560">and get stickers and stuff.</span> <span data-start="1494830">So definitely check that one out tomorrow.</span> <span data-start="1497250">So yeah, that's a bunch of resources.</span> </section>
+
+<section><span data-start="1498960"><span class="speaker">Tom Greenaway</span>: Awesome.</span> </section>
+
+<section><span data-start="1499590"><span class="speaker">Martin Splitt</span>: Yeah.</span> </section>
+
+<section><span data-start="1499840"><span class="speaker">Tom Greenaway</span>: Cool.</span> <span data-start="1500673">Well, yeah.</span> <span data-start="1501197">Thanks, everyone.</span> </section>
+
+<section><span data-start="1501905"><span class="speaker">Martin Splitt</span>: Yeah, cool.</span> <span data-start="1502180">Thank you very much for staying with us for a moment.</span> <span data-start="1503730">[APPLAUSE]</span> <span data-start="1504630">[MUSIC PLAYING]</span> </section>
+
+</div>
+
+</body>
+
+</html>

@@ -37,7 +37,8 @@
     "recursive-readdir": "latest",
     "stylelint": "latest",
     "stylelint-config-standard": "latest",
-    "subtitle": "^2.0.3",
+    "subtitle": "latest",
+    "validator": "latest",
     "yargs": "latest"
   }
 }

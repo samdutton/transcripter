@@ -14,17 +14,37 @@
 const fs = require('fs');
 const recursive = require('recursive-readdir');
 const subtitle = require('subtitle');
+const validator = require('html-validator');
+const VALIDATOR_IGNORE = [
+  'Error: Bogus comment.',
+  'Warning: Section lacks heading. Consider using "h2"-"h6" elements to ' +
+    'add identifying headings to all sections.'];
 
 const ERROR_LOG = 'error-log.txt';
 const VERSION = '1.0 beta';
 
-let appendOutput = false;
+// Get the boilerplate text fragments for the top and bottom
+// of a standalone HTML page.
+const HTML_TOP = fs.readFileSync('./html-fragments/top.html', 'utf8');
+const HTML_BOTTOM = fs.readFileSync('./html-fragments/bottom.html', 'utf8');
+
+// Used to put each speaker in a span.speaker.
+// This is done after the caption text is put in a span,
+// hence the > before the match
+const SPEAKER_REGEX = /^([A-Z1-9 \-]+): */;
+
+// let appendOutput = false;
 let numErrors = 0;
 let numFiles = 0;
 let numFilesToProcess = 0;
+let numFilesToWrite = 0;
+// const speakers = new Set();
 
-let inputDirectory = 'input';
-let outputDirectory = 'output';
+const DO_VALIDATION = true;
+// const IS_STANDALONE = false;
+let INPUT_DIR = 'input';
+let OUTPUT_DIR = 'output';
+
 
 const argv = require('yargs')
   .alias('a', 'append')
@@ -32,8 +52,8 @@ const argv = require('yargs')
   .alias('i', 'input')
   .alias('o', 'output')
   .describe('a', 'Append output to existing files in output directory')
-  .describe('i', `Input directory, default is ${inputDirectory}`)
-  .describe('o', `Output file, default is ${outputDirectory}`)
+  .describe('i', `Input directory, default is ${INPUT_DIR}`)
+  .describe('o', `Output file, default is ${OUTPUT_DIR}`)
   .help('h')
   .argv;
 
@@ -42,11 +62,11 @@ if (argv.a) {
 }
 
 if (argv.i) {
-  inputDirectory = argv.i;
+  INPUT_DIR = argv.i;
 }
 
 if (argv.o) {
-  outputDirectory = argv.o;
+  OUTPUT_DIR = argv.o;
 }
 
 if (argv.v) {
@@ -55,51 +75,77 @@ if (argv.v) {
 }
 
 // Parse each SRT file in the input directory
-recursive(inputDirectory).then((filepaths) => {
+recursive(INPUT_DIR).then((filepaths) => {
   filepaths = filepaths.filter((filename) => {
     // Filename is <YouTube ID>.srt
     if (!filename.match(/[a-zA-Z0-9_-]{11}.srt/)) {
       const message =
-        `Input directory ${inputDirectory} contains stray file ${filename}`;
+        `Input directory ${INPUT_DIR} contains stray file ${filename}`;
       displayError(message);
       logError(message);
     } else {
       return true;
     }
   });
-  numFiles = numFilesToProcess = filepaths.length;
+  numFiles = numFilesToProcess = numFilesToWrite =
+    filepaths.length;
   console.time(`Time to process ${numFiles} transcripts`);
   for (const filepath of filepaths) {
     processSrtFile(filepath);
   }
 }).catch((error) =>
-  displayError(`Error reading from ${inputDirectory}:`, error));
+  displayError(`Error reading from ${INPUT_DIR}:`, error));
 
-// For each SRT file in ${inputDirectory}, i.e. each transcript:
+// For each SRT file in ${INPUT_DIR}, i.e. each transcript:
 // • get the video ID
 // • fix minor textual glitches
 // • create an array of captions using subtitle.parse()
 //
 function processSrtFile(filepath) {
+  // Synchronously is fast enough...
   let srtFileText = fs.readFileSync(filepath, 'utf8').trim();
+  // console.log(filepath);
   const videoId = filepath.match(/\/(.+).srt/)[1];
-  const video = {
-    id: videoId,
-  };
-  srtFileText = tweakSrtFileText(srtFileText);
-  // Parse the SRT file to create an array of captions.
+  // console.log(srtFileText);
+  // Parse the SRT file to create an array of captions using the
+  // subtitle module: npmjs.com/package/subtitle#parsesrt-string---array.
   let captions = subtitle.parse(srtFileText);
-  captions = captions.filter(filterCaption);
-  captions = captions.map(tweakCaption);
-  console.log('captions', captions);
+  // console.log(captions);
+  // Remove empty captions.
+  captions = captions.filter((caption) => {
+    return caption.text;
+  });
+  processCaptions(videoId, captions);
   if (--numFilesToProcess === 0) {
     console.timeEnd(`Time to process ${numFiles} transcripts`);
+    console.log(`Started writing and validating ${numFiles} HTML files...`);
+    console.time(`Time to write and validate ${numFiles} HTML files ` +
+        `to \x1b[97m${OUTPUT_DIR}\x1b[0m directory`);
   }
 }
 
+function processCaptions(videoId, captions) {
+  let html = HTML_TOP.replace('${title}', videoId);
+  console.log(`Processing ${captions.length} captions ` +
+    `for \x1b[97m${OUTPUT_DIR}/${videoId}.html\x1b[0m`);
+  for (const caption of captions) {
+    // Put caption text in an HTML span.
+    caption.text = formatCaptionText(caption);
+    // A bit hacky... New section for each change of speaker.
+    // The top and bottom HTML fragments start and finish this.
+    if (caption.text.includes('class="speaker"')) {
+      caption.text = '</section>\n\n<section>' + caption.text;
+    }
+    html += caption.text;
+  }
+  html += HTML_BOTTOM;
+  html = tweakCaptionText(html);
+  validateThenWrite(videoId, html);
+}
+
 // Fix minor glitches in caption text.
-function tweakSrtFileText(srtFileText) {
-  return srtFileText.
+function tweakCaptionText(html) {
+  return html.
     replace(/>>> /gm, 'Audience member: ').
     replace(/&gt;&gt; ?/gm, '').
     replace(/&amp;gt;&amp;gt; ?/gm, '').
@@ -111,29 +157,74 @@ function tweakSrtFileText(srtFileText) {
     replace(/&amp;#39;/gm, '\'').
     replace(/&quot;/gm, '\'').
     replace(/&amp;quot;/gm, '\'').
-    replace(/-- /gm, ' — ').
-    replace(/--\n/gm, ' —\n').
+    replace(/--/gm, ' — ').
     replace(/ - /gm, ' — ');
 }
 
-// Remove captions without text (i.e. where noone spoke).
-function filterCaption(caption) {
+// Format caption as HTML:
+// • remove line breaks in caption text
+// • put speaker names in a span.speaker
+// • put whole caption in a span with data-start attribute
+function formatCaptionText(caption) {
+  caption.text = caption.text
+    .replace(/\n/, ' ')
+    // Put each speaker name in a span.speaker.
+    .replace(SPEAKER_REGEX, (match, p1) => {
+      return `<span class="speaker">${formatName(p1)}</span>: `;
+    });
+  // NB space at end of every caption (these aren't in SRT).
+  caption.text =
+    `<span data-start="${caption.start}">${caption.text}</span> `;
   return caption.text;
-}
-
-// Remove line breaks in caption text.
-function tweakCaption(caption) {
-  caption.text = caption.text.replace(/\n/, ' ');
-  return caption;
 }
 
 // Correct and capitalize speaker names (Fred Nerk not FRED NERK).
 // This is much more of a problem for the older transcripts.
-function tweakName(name) {
-  name = capitalize(name);
-  return name
+function formatName(name) {
+  return capitalize(name)
     .replace('Francois', 'François')
     .replace('Hemperius', 'Hempenius');
+}
+
+// Check that a file contains valid HTML
+// unless validation is not wanted
+function validateThenWrite(videoId, html) {
+  const filepath = `${OUTPUT_DIR}/${videoId}.html`;
+  if (!DO_VALIDATION) {
+    writeFile(filepath, html);
+    return;
+  }
+  const options = {
+    data: html,
+    format: 'text',
+    ignore: VALIDATOR_IGNORE,
+    // Alternative validator:
+    // validator: 'https://html5.validator.nu'
+  };
+  validator(options).then((data) => {
+    if (data.includes('Error')) {
+      displayError(`Validation error for ${filepath}`, data);
+    } else {
+      // console.log(`Validated ${filepath}`);
+      writeFile(filepath, html);
+    }
+  }).catch((error) => {
+    displayError(`Error validating ${videoId}.html:`, error);
+  });
+}
+
+function writeFile(filepath, html) {
+  fs.writeFile(filepath, html, (error) => {
+    if (error) {
+      displayError(`Error writing ${filepath}:`, error);
+    } else {
+      // console.log(`Created ${filepath}`);
+    }
+  });
+  if (--numFilesToWrite === 0) {
+    console.timeEnd(`Time to write and validate ${numFiles} HTML files ` +
+        `to \x1b[97m${OUTPUT_DIR}\x1b[0m directory`);
+  }
 }
 
 function split(para, MAXLENGTH) {
@@ -228,8 +319,8 @@ function addParagraphTags(item) {
 // From stackoverflow.com/questions/17200640/javascript-capitalize-
 // first-letter-of-each-word-in-a-string-only-if-lengh-2?rq=1
 function capitalize(string) {
-  return string.toLowerCase()
-    .replace(/\b[a-z](?=[a-z]+)/g, function(letter) {
+  return string.toLowerCase().replace(/\b[a-z](?=[a-z]+)/g,
+    function(letter) {
       return letter.toUpperCase();
     });
 }
