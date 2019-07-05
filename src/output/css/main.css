@@ -39,9 +39,9 @@ h2 {
 }
 
 iframe {
-  border-bottom: 20px solid white;
+  outline: 20px solid white;
   height: calc(100vw * 9 / 16);
-  margin: 0 0 20px 0;
+  margin: 0 0 40px 0;
   max-height: calc(100vw * 9 / 16);
   position: sticky;
   top: 0;

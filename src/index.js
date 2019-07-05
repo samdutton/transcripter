@@ -205,7 +205,7 @@ function validateThenWrite(videoId, html) {
     if (data.includes('Error')) {
       displayError(`Validation error for ${filepath}`, data);
     } else {
-      // console.log(`Validated ${filepath}`);
+      console.log(`Validated ${filepath}`);
       writeFile(filepath, html);
     }
   }).catch((error) => {
@@ -218,7 +218,7 @@ function writeFile(filepath, html) {
     if (error) {
       displayError(`Error writing ${filepath}:`, error);
     } else {
-      // console.log(`Created ${filepath}`);
+      console.log(`Created ${filepath}`);
     }
   });
   if (--numFilesToWrite === 0) {
