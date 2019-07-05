@@ -28,7 +28,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 let player;
 /* eslint-disable */
 function onYouTubeIframeAPIReady() {
-/* eslint-enable */
+  console.log('>>> onYouTubeIframeAPIReady');
+  /* eslint-enable */
   player = new YT.Player(IFRAME_ID, {
     events: {
       'onReady': onPlayerReady,
