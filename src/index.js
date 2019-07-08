@@ -16,6 +16,9 @@ const recursive = require('recursive-readdir');
 const subtitle = require('subtitle');
 const validator = require('html-validator');
 const VALIDATOR_IGNORE = [
+  'Error: Bad value “https://www.youtube.com/embed/${videoId}?enablejsapi=1” ' +
+    'for attribute “src” on element “iframe”: Illegal character in path ' +
+    'segment: “{” is not allowed.',
   'Error: Bogus comment.',
   'Warning: Section lacks heading. Consider using "h2"-"h6" elements to ' +
     'add identifying headings to all sections.'];
@@ -98,7 +101,7 @@ recursive(INPUT_DIR).then((filepaths) => {
   });
   numFiles = numFilesToProcess = numFilesToWrite =
     filepaths.length;
-  console.time(`Time to process ${numFiles} transcripts`);
+  console.time(`\nTime to process ${numFiles} transcripts`);
   for (const filepath of filepaths) {
     processSrtFile(filepath);
   }
@@ -127,9 +130,9 @@ function processSrtFile(filepath) {
   });
   processCaptions(videoId, captions);
   if (--numFilesToProcess === 0) {
-    console.timeEnd(`Time to process ${numFiles} transcripts`);
-    console.log(`Started writing and validating ${numFiles} HTML files...`);
-    console.time(`Time to write and validate ${numFiles} HTML files ` +
+    console.timeEnd(`\nTime to process ${numFiles} transcripts`);
+    // console.log(`\nStarted writing and validating ${numFiles} HTML files...`);
+    console.time(`\nTime to write and validate ${numFiles} HTML files ` +
         `to \x1b[97m${OUTPUT_DIR}\x1b[0m directory`);
     if (CREATE_INDEX) {
       createIndex();
@@ -138,7 +141,8 @@ function processSrtFile(filepath) {
 }
 
 function processCaptions(videoId, captions) {
-  let html = HTML_TOP.replace('${title}', videoId);
+  // ${videoId} is used as a placeholder in the top.html
+  let html = HTML_TOP.replace(/\${videoId}/g, videoId);
   console.log(`Processing ${captions.length} captions ` +
     `for \x1b[97m${OUTPUT_DIR}/${videoId}.html\x1b[0m`);
   for (const caption of captions) {
@@ -163,8 +167,8 @@ function createIndex() {
   }
   const indexFilePath = `${OUTPUT_DIR}/index.html`;
   writeFile(indexFilePath, html);
-  console.log(`Created index page \x1b[97m$${indexFilePath}\x1b[0m$ ` +
-    `for HTML output.`);
+  console.log(`\nCreated index page \x1b[97m${indexFilePath}\x1b[0m ` +
+    `for HTML output.\n`);
 }
 
 // Fix minor glitches in caption text.
@@ -240,8 +244,11 @@ function validateThenWrite(videoId, html) {
 function writeOutput(filepath, html) {
   writeFile(filepath, html);
   if (--numFilesToWrite === 0) {
-    console.timeEnd(`Time to write and validate ${numFiles} HTML files ` +
-        `to \x1b[97m${OUTPUT_DIR}\x1b[0m directory`);
+    setTimeout(()=> {
+      console.timeEnd(`\nTime to write and validate ${numFiles} HTML files ` +
+          `to \x1b[97m${OUTPUT_DIR}\x1b[0m directory`);
+      console.log('\n');
+    }, 500);
   }
 }
 
