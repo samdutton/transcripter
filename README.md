@@ -30,6 +30,7 @@ Check for errors in _error-log.txt_.
 
 ```
 -a, --append  Append output to existing files in output directory
+-c, --index   Create index page linking to HTML output
 -h, --help    Show help
 -i, --input   Input directory, default is [_input_](src/input)
 -o, --output  Output directory, default is [_output_](src/output)

@@ -20,6 +20,7 @@ const VALIDATOR_IGNORE = [
   'Warning: Section lacks heading. Consider using "h2"-"h6" elements to ' +
     'add identifying headings to all sections.'];
 
+const CREATE_INDEX = true;
 const ERROR_LOG = 'error-log.txt';
 const VERSION = '1.0 beta';
 
@@ -33,12 +34,13 @@ const HTML_BOTTOM = fs.readFileSync('./html-fragments/bottom.html', 'utf8');
 // hence the > before the match
 const SPEAKER_REGEX = /^([A-Z1-9 \-]+): */;
 
-// let appendOutput = false;
+let appendOutput = false;
 let numErrors = 0;
 let numFiles = 0;
 let numFilesToProcess = 0;
 let numFilesToWrite = 0;
 // const speakers = new Set();
+let videoIds = [];
 
 const DO_VALIDATION = true;
 // const IS_STANDALONE = false;
@@ -48,10 +50,13 @@ let OUTPUT_DIR = 'output';
 
 const argv = require('yargs')
   .alias('a', 'append')
+  .alias('c', 'index')
   .alias('h', 'help')
   .alias('i', 'input')
   .alias('o', 'output')
   .describe('a', 'Append output to existing files in output directory')
+  .describe('c', `Create index page linking to HTML output, ` +
+    `default is ${CREATE_INDEX}`)
   .describe('i', `Input directory, default is ${INPUT_DIR}`)
   .describe('o', `Output file, default is ${OUTPUT_DIR}`)
   .help('h')
@@ -59,6 +64,10 @@ const argv = require('yargs')
 
 if (argv.a) {
   appendOutput = true;
+}
+
+if (argv.c) {
+  CREATE_INDEX = argv.c;
 }
 
 if (argv.i) {
@@ -103,9 +112,10 @@ recursive(INPUT_DIR).then((filepaths) => {
 //
 function processSrtFile(filepath) {
   // Synchronously is fast enough...
-  let srtFileText = fs.readFileSync(filepath, 'utf8').trim();
+  const srtFileText = fs.readFileSync(filepath, 'utf8').trim();
   // console.log(filepath);
   const videoId = filepath.match(/\/(.+).srt/)[1];
+  videoIds.push(videoId);
   // console.log(srtFileText);
   // Parse the SRT file to create an array of captions using the
   // subtitle module: npmjs.com/package/subtitle#parsesrt-string---array.
@@ -121,6 +131,9 @@ function processSrtFile(filepath) {
     console.log(`Started writing and validating ${numFiles} HTML files...`);
     console.time(`Time to write and validate ${numFiles} HTML files ` +
         `to \x1b[97m${OUTPUT_DIR}\x1b[0m directory`);
+    if (CREATE_INDEX) {
+      createIndex();
+    }
   }
 }
 
@@ -141,6 +154,17 @@ function processCaptions(videoId, captions) {
   html += HTML_BOTTOM;
   html = tweakCaptionText(html);
   validateThenWrite(videoId, html);
+}
+
+function createIndex() {
+  let html = '';
+  for (const videoId of videoIds) {
+    html += `<p><a href="${videoId}.html">${videoId}</a><p>\n`;
+  }
+  const indexFilePath = `${OUTPUT_DIR}/index.html`;
+  writeFile(indexFilePath, html);
+  console.log(`Created index page \x1b[97m$${indexFilePath}\x1b[0m$ ` +
+    `for HTML output.`);
 }
 
 // Fix minor glitches in caption text.
@@ -191,7 +215,7 @@ function formatName(name) {
 function validateThenWrite(videoId, html) {
   const filepath = `${OUTPUT_DIR}/${videoId}.html`;
   if (!DO_VALIDATION) {
-    writeFile(filepath, html);
+    writeOutput(filepath, html);
     return;
   }
   const options = {
@@ -205,26 +229,30 @@ function validateThenWrite(videoId, html) {
     if (data.includes('Error')) {
       displayError(`Validation error for ${filepath}`, data);
     } else {
-      console.log(`Validated ${filepath}`);
-      writeFile(filepath, html);
+      console.log(`Validated \x1b[97m${filepath}\x1b[0m`);
+      writeOutput(filepath, html);
     }
   }).catch((error) => {
-    displayError(`Error validating ${videoId}.html:`, error);
+    displayError(`Error validating ${filepath}.html:`, error);
   });
 }
 
-function writeFile(filepath, html) {
-  fs.writeFile(filepath, html, (error) => {
-    if (error) {
-      displayError(`Error writing ${filepath}:`, error);
-    } else {
-      console.log(`Created ${filepath}`);
-    }
-  });
+function writeOutput(filepath, html) {
+  writeFile(filepath, html);
   if (--numFilesToWrite === 0) {
     console.timeEnd(`Time to write and validate ${numFiles} HTML files ` +
         `to \x1b[97m${OUTPUT_DIR}\x1b[0m directory`);
   }
+}
+
+function writeFile(filepath, data) {
+  fs.writeFile(filepath, data, (error) => {
+    if (error) {
+      displayError(`Error writing ${filepath}:`, error);
+    } else {
+      console.log(`Created \x1b[97m${filepath}\x1b[0m`);
+    }
+  });
 }
 
 function split(para, MAXLENGTH) {
