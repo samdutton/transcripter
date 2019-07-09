@@ -48,7 +48,8 @@ let videoIds = [];
 const DO_VALIDATION = true;
 // const IS_STANDALONE = false;
 let INPUT_DIR = 'input';
-let OUTPUT_DIR = 'output';
+// Using ../docs enables integration with GitHub Pages.
+let OUTPUT_DIR = '../docs';
 
 
 const argv = require('yargs')
