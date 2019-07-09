@@ -56,6 +56,7 @@ iframe {
   max-height: calc(800px * 9 / 16);
   max-width: 800px;
   outline: 20px solid white;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   width: calc(100vw);
