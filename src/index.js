@@ -162,7 +162,15 @@ function processCaptions(videoId, captions) {
 }
 
 function createIndex() {
-  let html = '<html lang="en">';
+  let html =
+    `<html lang="en">
+    <style>
+    body {
+      font-family: Google Sans, sans-serif;
+      margin: 40px;
+      text-align: center;
+    }
+    </style>`;
   for (const videoId of videoIds) {
     html += `<p><a href="${videoId}.html">${videoId}</a><p>\n`;
   }
