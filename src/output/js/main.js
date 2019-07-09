@@ -20,57 +20,92 @@ limitations under the License.
 
 const IFRAME_ID = 'youtube';
 
+// Interval between checks when transcript
+// focus follows video playback.
+const POLLING_INTERVAL = 100;
+
+let currentSpan = null;
+const iframe = document.getElementById(IFRAME_ID);
+let player;
+let pollingTimerId;
+
+// used in addSpanHandlers();
+const spans = document.querySelectorAll('span[data-start]');
+
 const tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
 const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-let player;
 /* eslint-disable */
 function onYouTubeIframeAPIReady() {
-  console.log('>>> onYouTubeIframeAPIReady');
+  // console.log('>>> onYouTubeIframeAPIReady');
   /* eslint-enable */
   player = new YT.Player(IFRAME_ID, {
     events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange,
-    }});
+      'onReady': handlePlayerReady,
+      'onStateChange': handlePlayerStateChange,
+    },
+    // videoId: '25aCD5XL1Jk',
+    // host: window.location.host,
+  });
 }
 
-function onPlayerReady(event) {
-  console.log('>>> ready', event);
+function handlePlayerReady(event) {
+  // player.time = 0;
+  // console.log('>>> ready', event);
+  addSpanHandlers();
 }
 
-function onPlayerStateChange(event) {
-  console.log('>>> stateChange', event);
+function handlePlayerStateChange(event) {
+  // console.log('>>> handlePlayerStateChange', event.data);
+  if (event.data === YT.PlayerState.PLAYING) {
+    startPolling();
+    // console.log('>>> stateChange playing', event.data);
+  } else if (event.data === YT.PlayerState.PAUSED ||
+      event.data === YT.PlayerState.ENDED) {
+    stopPolling();
+    // console.log('>>> stateChange paused', event.data);
+  }
 }
 
-// function onPlayerStateChange() {
-//   //...
-// }]
+function addSpanHandlers() {
+  for (const span of spans) {
+    const start = span.getAttribute('data-start');
+    span.onclick = () => {
+      player.seekTo(start, true);
+      player.playVideo();
+    };
+  }
+}
 
-// function initPolling(video) {
-//   const player = video.player;
-//   const startTimes = video.startTimes;
-//   setInterval(function() {
-//     const currentTime = player.getCurrentTime();
-//     if (video.currentTime === currentTime) {
-//       return;
-//     }
-//     video.currentTime = currentTime;
-//     for (const i = 0; i !== startTimes.length; ++i) {
-//       if (startTimes[i] <= currentTime && startTimes[i + 1] > currentTime) {
-//         if (video.currentSpan) {
-//           video.currentSpan.classList.remove('current');
-//         }
-//         const transcript = document.getElementById('transcript_' + video.id);
-//         const selector = 'span[data-start="' + startTimes[i] + '"]';
-//         video.currentSpan = transcript.querySelector(selector);
-//         video.currentSpan.classList.add('current');
-//       }
-//     }
-//   }, 100);
-// }
+function startPolling() {
+  pollingTimerId = setInterval(focusCaption, POLLING_INTERVAL);
+}
+
+function stopPolling() {
+  clearInterval(pollingTimerId);
+}
+
+function focusCaption() {
+  console.log(">>>", iframe.offsetHeight);
+  const currentTime = player.getCurrentTime();
+  if (currentSpan) {
+    currentSpan.classList.remove('current');
+  }
+  for (const span of spans) {
+    if (span.dataset.start < currentTime && span.dataset.end > currentTime) {
+      span.classList.add('current');
+      span.scrollIntoView({block: 'start'});
+      currentSpan = span;
+      // Need to account for sticky iframe height
+      // + the iframe CSS outline + a few more pixels
+      scrollBy(0, -(iframe.offsetHeight + 40));
+      break;
+    }
+  }
+}
+
 
 // function addTranscriptClickHandler(span) {
 //   const start = span.getAttribute('data-start');

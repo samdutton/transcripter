@@ -161,7 +161,7 @@ function processCaptions(videoId, captions) {
 }
 
 function createIndex() {
-  let html = '';
+  let html = '<html lang="en">';
   for (const videoId of videoIds) {
     html += `<p><a href="${videoId}.html">${videoId}</a><p>\n`;
   }
@@ -200,9 +200,10 @@ function formatCaptionText(caption) {
     .replace(SPEAKER_REGEX, (match, p1) => {
       return `<span class="speaker">${formatName(p1)}</span>: `;
     });
-  // NB space at end of every caption (these aren't in SRT).
-  caption.text =
-    `<span data-start="${caption.start}">${caption.text}</span> `;
+  // NB: add space at end of every caption (these aren't in the SRT).
+  // SRT timings are in milliseconds; YouTube uses seconds.
+  caption.text = `<span data-start="${caption.start / 1000}" ` +
+      `data-end="${caption.end / 1000}">${caption.text}</span> `;
   return caption.text;
 }
 

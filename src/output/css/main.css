@@ -50,6 +50,12 @@ iframe {
   width: calc(100vw);
 }
 
+img#fin {
+  display: block;
+  margin: 40px auto;
+  width: 150px;
+}
+
 p {
   color: #444;
   font-weight: 200;
@@ -105,6 +111,7 @@ span[data-start].current {
     max-height: calc(800px * 9 / 16);
     max-width: 800px;
     */
+    top: 20px;
     width: calc(100vw - 40px);
   }
 }
