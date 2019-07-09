@@ -164,9 +164,11 @@ function processCaptions(videoId, captions) {
 function createIndex() {
   let html =
     `<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
     body {
       font-family: Google Sans, sans-serif;
+      line-height: 2em;
       margin: 40px;
       text-align: center;
     }
