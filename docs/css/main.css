@@ -50,16 +50,19 @@ h2 {
 }
 
 iframe {
+  background-color: #ccc;
+  border: none;
+  border-bottom: 20px solid white;
   display: block;
   height: calc(100vw * 9 / 16);
-  margin: 0 auto 40px auto;
+  margin: 0 auto 20px auto;
   max-height: calc(800px * 9 / 16);
   max-width: 800px;
-  outline: 20px solid white;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   width: calc(100vw);
+  z-index: 1;
 }
 
 img#fin {
@@ -136,6 +139,7 @@ span[data-start].current {
     max-height: calc(800px * 9 / 16);
     max-width: 800px;
     */
+    outline: 20px solid white;
     top: 20px;
     width: calc(100vw - 40px);
   }

@@ -1,16 +1,1 @@
-
-
-// If required, delete existing output and error data.
-if (!appendOutput) {
-  fs.writeFile(outputFile, '', () => {
-  //  console.log('Deleted old output data');
-  });
-}
-fs.writeFile(ERROR_LOG, '', () => {
-//  console.log('Deleted old error data');
-});
-
-// Get page data from CSV file inputFile and run an audit for each page.
-// Each line in inputFile begins with a URL followed (optionally) by other CSV data.
-// For example: https://johnlewis.com,John Lewis,homepage
-const inputFileText = fs.readFileSync(inputFile, 'utf8').trim();
+CSS Variables

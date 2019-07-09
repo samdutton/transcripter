@@ -32,6 +32,28 @@ let pollingTimerId;
 // used in addSpanHandlers();
 const spans = document.querySelectorAll('span[data-start]');
 
+const captionScrollCheckbox = document.getElementById('captionScroll');
+captionScrollCheckbox.onchange = (event) => {
+  if (event.target.checked) {
+    startPolling();
+  } else {
+    stopPolling();
+  }
+}
+window.onwheel = () => {
+  stopPolling();
+  captionScrollCheckbox.checked = false;
+}
+
+const videoStickyCheckbox = document.getElementById('videoSticky');
+videoStickyCheckbox.onchange = (event) => {
+  if (event.target.checked) {
+    iframe.style.position = 'sticky';
+  } else {
+    iframe.style.position = 'unset';
+  }
+}
+
 const tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
 const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -59,7 +81,7 @@ function handlePlayerReady(event) {
 
 function handlePlayerStateChange(event) {
   // console.log('>>> handlePlayerStateChange', event.data);
-  if (event.data === YT.PlayerState.PLAYING) {
+  if (event.data === YT.PlayerState.PLAYING && captionScrollCheckbox.checked) {
     startPolling();
     // console.log('>>> stateChange playing', event.data);
   } else if (event.data === YT.PlayerState.PAUSED ||
@@ -80,7 +102,9 @@ function addSpanHandlers() {
 }
 
 function startPolling() {
-  pollingTimerId = setInterval(focusCaption, POLLING_INTERVAL);
+  if (captionScrollCheckbox.checked) {
+    pollingTimerId = setInterval(focusCaption, POLLING_INTERVAL);
+  }
 }
 
 function stopPolling() {
@@ -88,7 +112,6 @@ function stopPolling() {
 }
 
 function focusCaption() {
-  console.log(">>>", iframe.offsetHeight);
   const currentTime = player.getCurrentTime();
   if (currentSpan) {
     currentSpan.classList.remove('current');
@@ -96,11 +119,15 @@ function focusCaption() {
   for (const span of spans) {
     if (span.dataset.start < currentTime && span.dataset.end > currentTime) {
       span.classList.add('current');
-      span.scrollIntoView({block: 'start'});
       currentSpan = span;
-      // Need to account for sticky iframe height
-      // + the iframe CSS outline + a few more pixels
-      scrollBy(0, -(iframe.offsetHeight + 40));
+      if (videoStickyCheckbox.checked) {
+        // Need to account for sticky iframe height
+        // + the iframe CSS outline + page margin
+        span.scrollIntoView({block: 'start'});
+        scrollBy(0, -(iframe.offsetHeight + 40));
+      } else {
+        span.scrollIntoView({block: 'center'});
+      }
       break;
     }
   }
