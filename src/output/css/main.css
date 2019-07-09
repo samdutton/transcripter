@@ -15,13 +15,24 @@ body {
   margin: 0;
 }
 
-div#google_translate_element {
-  margin: 0 0 1em 0;
-}
-
 div#container {
   margin: 0 20px;
   max-width: 800px;
+}
+
+div#options {
+  border-bottom: 1px solid #ccc;
+  margin: 0 0 20px 0;
+  padding: 0 0 20px 0;
+}
+
+div#options > div {
+  margin: 0 0 15px 0;
+}
+
+div#options > div#google-translate {
+  margin: 0 0 30px 0;
+  height: 36px;
 }
 
 h1 {
@@ -54,6 +65,19 @@ img#fin {
   display: block;
   margin: 40px auto;
   width: 150px;
+}
+
+#options input {
+  font-size: 20px;
+  margin: 0 7px 0 0;
+  position: relative;
+  top: -1px;
+}
+
+#options label {
+  color: #000;
+  font-weight: 300;
+  margin: 0 40px 0 0;
 }
 
 p {
@@ -114,14 +138,13 @@ span[data-start].current {
     top: 20px;
     width: calc(100vw - 40px);
   }
+
+  #options input {
+    top: -2px;
+  }
 }
 
-/* Google Translate */
-
-div#google-translate {
-  height: 36px;
-  margin: 0 0 40px 0;
-}
+/* Google Translate internals */
 
 .goog-te-gadget-simple {
   border-bottom: 1px solid #ccc !important;
