@@ -41,7 +41,7 @@ captionScrollCheckbox.onchange = (event) => {
   }
 }
 window.onwheel = () => {
-  stopPolling();
+//  stopPolling();
   captionScrollCheckbox.checked = false;
 }
 
@@ -80,34 +80,38 @@ function handlePlayerReady(event) {
 }
 
 function handlePlayerStateChange(event) {
-  // console.log('>>> handlePlayerStateChange', event.data);
-  if (event.data === YT.PlayerState.PLAYING && captionScrollCheckbox.checked) {
+  console.log('>>> handlePlayerStateChange', event.data);
+  if (event.data === YT.PlayerState.PLAYING) {
     startPolling();
-    // console.log('>>> stateChange playing', event.data);
   } else if (event.data === YT.PlayerState.PAUSED ||
       event.data === YT.PlayerState.ENDED) {
     stopPolling();
-    // console.log('>>> stateChange paused', event.data);
   }
 }
 
 function addSpanHandlers() {
   for (const span of spans) {
-    const start = span.getAttribute('data-start');
     span.onclick = () => {
-      player.seekTo(start, true);
+      if (currentSpan) {
+        currentSpan.classList.remove('current');
+      }
+      currentSpan = span;
+      span.classList.add('current');
+      const start = span.getAttribute('data-start');
+      // Second parameter is allowSeekAhead.
+      player.seekTo(start/*, true */);
       player.playVideo();
     };
   }
 }
 
 function startPolling() {
-  if (captionScrollCheckbox.checked) {
-    pollingTimerId = setInterval(focusCaption, POLLING_INTERVAL);
-  }
+  console.log('>>> start polling');
+  pollingTimerId = setInterval(focusCaption, POLLING_INTERVAL);
 }
 
 function stopPolling() {
+  console.log('>>> stop polling');
   clearInterval(pollingTimerId);
 }
 
@@ -117,29 +121,31 @@ function focusCaption() {
     currentSpan.classList.remove('current');
   }
   for (const span of spans) {
+    // Find currentSpan — could be optimized.
     if (span.dataset.start < currentTime && span.dataset.end > currentTime) {
       span.classList.add('current');
       currentSpan = span;
-      if (videoStickyCheckbox.checked) {
-        // Need to account for sticky iframe height
-        // + the iframe CSS outline + page margin
-        span.scrollIntoView({block: 'start'});
-        scrollBy(0, -(iframe.offsetHeight + 40));
-      } else {
-        span.scrollIntoView({block: 'center'});
+      if (captionScrollCheckbox.checked) {
+        ensureVisible(span);
       }
       break;
     }
   }
 }
 
-
-// function addTranscriptClickHandler(span) {
-//   const start = span.getAttribute('data-start');
-//   span.title = start;
-//   span.onclick = function() {
-//     videos[videoId].player.seekTo(Math.round(start));
-//     // tellPlayer(iframe, 'seekTo', [start]);
-//     // tellPlayer(iframe, 'playVideo');
-//   };
-// }
+function ensureVisible(span) {
+  console.log('ensureVisible', span.textContent);
+  // If videoStickyCheckbox is checked, it's necessary to account for the
+  // iframe height the iframe CSS outline height and page margin
+  // if (videoStickyCheckbox.checked) {
+  //   // Non-standard method only supported by Chrome and Safari.
+    if (span.scrollIntoViewIfNeeded) {
+      span.scrollIntoViewIfNeeded(true);
+    } else {
+      span.scrollIntoView({block: 'start'});
+    }
+    scrollBy(0, -(iframe.offsetHeight + 40));
+  // } else {
+  //   span.scrollIntoView({block: 'center'});
+  // }
+}

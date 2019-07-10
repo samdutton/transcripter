@@ -168,7 +168,6 @@ function createIndex() {
     <style>
     body {
       font-family: Google Sans, sans-serif;
-      line-height: 2em;
       margin: 40px;
       text-align: center;
     }
