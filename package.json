@@ -32,7 +32,6 @@
     "grunt-eslint": "latest",
     "grunt-stylelint": "latest",
     "html-validator": "latest",
-    "htmlhint": "latest",
     "jsdom": "latest",
     "recursive-readdir": "latest",
     "rimraf": "latest",
