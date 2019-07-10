@@ -25,7 +25,6 @@ const IFRAME_ID = 'youtube';
 const POLLING_INTERVAL = 100;
 
 let currentSpan = null;
-const documentElement = document.documentElement;
 const iframe = document.getElementById(IFRAME_ID);
 let player;
 let pollingTimerId;
@@ -81,7 +80,7 @@ function handlePlayerReady(event) {
 }
 
 function handlePlayerStateChange(event) {
-  console.log('>>> handlePlayerStateChange', event.data);
+  // console.log('>>> handlePlayerStateChange', event.data);
   if (event.data === YT.PlayerState.PLAYING) {
     startPolling();
   } else if (event.data === YT.PlayerState.PAUSED ||
@@ -135,20 +134,22 @@ function focusCaption() {
 }
 
 function ensureVisible(span) {
-  console.log(span.textContent);
   // If videoStickyCheckbox is checked, it's necessary to account for
   // iframe height + iframe CSS outline height + page margin.
+  const iframeOffset = iframe.offsetHeight + 40;
+  if (inView(span, iframeOffset)) {
+    return;
+  }
   if (videoStickyCheckbox.checked) {
-      span.scrollIntoView({block: 'start'});
-      scrollBy(0, -(iframe.offsetHeight + 40));
+    span.scrollIntoView({block: 'start'});
+    scrollBy(0, -iframeOffset);
   } else {
     span.scrollIntoView({block: 'center'});
   }
 }
 
-function inView(element) {
-  const r = element.getBoundingClientRect();
-  return r.bottom >= 0  && r.right >= 0  &&
-    r.top <= documentElement.clientHeight
-    r.left <= documentElement.clientWidth;
+function inView(span, iframeOffset) {
+  const r = span.getBoundingClientRect();
+  return r.top >= iframeOffset &&
+      r.bottom < document.documentElement.clientHeight;
 }
