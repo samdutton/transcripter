@@ -33,18 +33,21 @@ let pollingTimerId;
 const spans = document.querySelectorAll('span[data-start]');
 
 const captionScrollCheckbox = document.getElementById('captionScroll');
-captionScrollCheckbox.onchange = (event) => {
-  if (event.target.checked) {
-    startPolling();
-  } else {
-    stopPolling();
-  }
-}
-window.onwheel = () => {
-//  stopPolling();
-  captionScrollCheckbox.checked = false;
-}
+// captionScrollCheckbox.onchange = (event) => {
+//   if (event.target.checked) {
+//     startPolling();
+//   } else {
+//     stopPolling();
+//   }
+// }
 
+// If the user scrolls manually, turn off automatic scrolling.
+window.onwheel = window.ontouchmove = () => {
+  captionScrollCheckbox.checked = false;
+};
+
+// Select whether the iframe position is sticky, or scrolls with the page.
+// The initial state is `sticky`.
 const videoStickyCheckbox = document.getElementById('videoSticky');
 videoStickyCheckbox.onchange = (event) => {
   if (event.target.checked) {
@@ -52,8 +55,9 @@ videoStickyCheckbox.onchange = (event) => {
   } else {
     iframe.style.position = 'unset';
   }
-}
+};
 
+// Get the YouTube API script.
 const tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
 const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -61,8 +65,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 /* eslint-disable */
 function onYouTubeIframeAPIReady() {
-  // console.log('>>> onYouTubeIframeAPIReady');
   /* eslint-enable */
+  // console.log('>>> onYouTubeIframeAPIReady');
   player = new YT.Player(IFRAME_ID, {
     events: {
       'onReady': handlePlayerReady,
@@ -74,11 +78,11 @@ function onYouTubeIframeAPIReady() {
 }
 
 function handlePlayerReady(event) {
-  // player.time = 0;
   // console.log('>>> ready', event);
   addSpanHandlers();
 }
 
+// Start polling when the video starts playing, and vice versa.
 function handlePlayerStateChange(event) {
   // console.log('>>> handlePlayerStateChange', event.data);
   if (event.data === YT.PlayerState.PLAYING) {
@@ -89,6 +93,7 @@ function handlePlayerStateChange(event) {
   }
 }
 
+// Set the current time of the video when you click on a span.
 function addSpanHandlers() {
   for (const span of spans) {
     span.onclick = () => {
@@ -106,22 +111,21 @@ function addSpanHandlers() {
 }
 
 function startPolling() {
-  console.log('>>> start polling');
   pollingTimerId = setInterval(focusCaption, POLLING_INTERVAL);
 }
 
 function stopPolling() {
-  console.log('>>> stop polling');
   clearInterval(pollingTimerId);
 }
 
+// Set visual focus on the current caption.
 function focusCaption() {
   const currentTime = player.getCurrentTime();
   if (currentSpan) {
     currentSpan.classList.remove('current');
   }
   for (const span of spans) {
-    // Find currentSpan — could be optimized.
+    // Find currentSpan — could be optimized.
     if (span.dataset.start < currentTime && span.dataset.end > currentTime) {
       span.classList.add('current');
       currentSpan = span;
@@ -133,6 +137,7 @@ function focusCaption() {
   }
 }
 
+// If necessary, scroll the current span into view.
 function ensureVisible(span) {
   // If videoStickyCheckbox is checked, it's necessary to account for
   // iframe height + iframe CSS outline height + page margin.
