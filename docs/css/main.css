@@ -15,12 +15,12 @@ div#container {
 
 div#options {
   border-bottom: 1px solid #ccc;
-  margin: 0 0 20px 0;
+  margin: 0 0 25px 0;
   padding: 0 0 20px 0;
 }
 
 div#options > div {
-  margin: 0 0 15px 0;
+  margin: 0 0 20px 0;
 }
 
 div#options > div#google-translate {
