@@ -1,4 +1,4 @@
-# Create readable transcripts from Google developer YouTube captions
+# Create readable transcripts from YouTube captions
 
 This is a Node application that processes caption files from Google, Android
 and Chrome Developer channels to create readable transcripts.
