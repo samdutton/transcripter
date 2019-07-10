@@ -1,24 +1,27 @@
 # Create readable transcripts from Google developer YouTube captions
 
-This is a Node application that processes caption files from Google, Android and Chrome Developer channels to create readable transcripts.
+This is a Node application that processes caption files from Google, Android
+and Chrome Developer channels to create readable transcripts.
 
-It could easily be adapted to work with caption files from other playlists.
+The code could easily be adapted to work with caption files from other playlists.
+
+Try it out at [bit.ly/transcripter](https://bit.ly/transcripter).
 
 ---
 
 ## Installation and usage
 
 1. Clone or download the code.
-2. Add `.srt` caption files to the [_input_](src/input) directory.
+2. Add your SRT caption files to the [_input_](src/input) directory.
 3. From a terminal `cd` to the `src` directory and run `node index.js`,
 optionally setting flags (see below).
 4. Progress updates and errors will be logged to the console.
-5. When conversion is complete, view the results in the [_output_](src/output)
+5. When conversion is complete, view the results in the [_output_](docs)
 directory.
 
 ### Input and output
 
-* When you clone the repo, the [_input_](src/input) and [_output_](src/output)
+* When you clone the repo, the [_input_](src/input) and [_output_](docs)
 directories contain sample files.
 * You can customize _input_ and _output_ directories — see flags below.
 
@@ -38,7 +41,7 @@ Check for errors in _error-log.txt_.
 
 ## Feedback, feature requests and bug reports
 
-- Please [file an issue](https://github.com/samdutton/multihouse/issues/new)
+- Please [file an issue](https://github.com/samdutton/transcripter/issues/new)
 including input files where relevant.
 - See [`TODO`](TODO) for work in progress.
 
@@ -46,10 +49,10 @@ including input files where relevant.
 
 ### Google Translate widget
 
-This is [no longer supported](https://translate.google.com/intl/en/about/website).
-The language selection popup is not laid out responsively.
+This widget is [no longer supported](https://translate.google.com/intl/en/about/website)
+and the language selection popup is not laid out responsively.
 
-Probably best to remove.
+Probably best to remove unless the layout can be hacked (others have tried!)
 
 ---
 
