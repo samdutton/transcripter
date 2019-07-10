@@ -104,7 +104,8 @@ function addSpanHandlers() {
       span.classList.add('current');
       const start = span.getAttribute('data-start');
       // Second parameter is allowSeekAhead.
-      player.seekTo(start/*, true */);
+      player.seekTo(start, true);
+      // Will not work until user has manually initiated playback.
       player.playVideo();
     };
   }
