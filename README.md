@@ -16,10 +16,13 @@ Try it out at [bit.ly/transcripter](https://bit.ly/transcripter).
 3. From a terminal `cd` to the `src` directory and run `node index.js`,
 optionally setting flags (see below).
 4. Progress updates and errors will be logged to the console.
-5. When conversion is complete, view the results in the [_output_](docs)
-directory.
+5. When conversion is complete, view the results from
+[index.html](docs/index.html) in the [_output_](docs) directory, the directory
+used for GitHub Pages. This directory includes a [CSS file](docs/css/main.css)
+and a [JavaScript file](docs/js/main.js) to style the transcripts and
+enable interaction.
 
-### Input and output
+### Input and output directories
 
 * When you clone the repo, the [_input_](src/input) and [_output_](docs)
 directories contain sample files.
