@@ -25,6 +25,7 @@ const IFRAME_ID = 'youtube';
 const POLLING_INTERVAL = 100;
 
 let currentSpan = null;
+const documentElement = document.documentElement;
 const iframe = document.getElementById(IFRAME_ID);
 let player;
 let pollingTimerId;
@@ -134,18 +135,20 @@ function focusCaption() {
 }
 
 function ensureVisible(span) {
-  console.log('ensureVisible', span.textContent);
-  // If videoStickyCheckbox is checked, it's necessary to account for the
-  // iframe height the iframe CSS outline height and page margin
-  // if (videoStickyCheckbox.checked) {
-  //   // Non-standard method only supported by Chrome and Safari.
-    if (span.scrollIntoViewIfNeeded) {
-      span.scrollIntoViewIfNeeded(true);
-    } else {
+  console.log(span.textContent);
+  // If videoStickyCheckbox is checked, it's necessary to account for
+  // iframe height + iframe CSS outline height + page margin.
+  if (videoStickyCheckbox.checked) {
       span.scrollIntoView({block: 'start'});
-    }
-    scrollBy(0, -(iframe.offsetHeight + 40));
-  // } else {
-  //   span.scrollIntoView({block: 'center'});
-  // }
+      scrollBy(0, -(iframe.offsetHeight + 40));
+  } else {
+    span.scrollIntoView({block: 'center'});
+  }
+}
+
+function inView(element) {
+  const r = element.getBoundingClientRect();
+  return r.bottom >= 0  && r.right >= 0  &&
+    r.top <= documentElement.clientHeight
+    r.left <= documentElement.clientWidth;
 }
