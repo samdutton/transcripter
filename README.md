@@ -44,7 +44,12 @@ including input files where relevant.
 
 ## Known issues
 
+### Google Translate widget
 
+This is [no longer supported](https://translate.google.com/intl/en/about/website).
+The language selection popup is not laid out responsively.
+
+Probably best to remove.
 
 ---
 
