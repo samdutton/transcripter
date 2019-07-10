@@ -13,8 +13,10 @@
 
 const fs = require('fs');
 const recursive = require('recursive-readdir');
+const rimraf = require('rimraf');
 const subtitle = require('subtitle');
 const validator = require('html-validator');
+
 const VALIDATOR_IGNORE = [
   'Error: Bad value “https://www.youtube.com/embed/${videoId}?enablejsapi=1” ' +
     'for attribute “src” on element “iframe”: Illegal character in path ' +
@@ -43,7 +45,7 @@ let numFiles = 0;
 let numFilesToProcess = 0;
 let numFilesToWrite = 0;
 // const speakers = new Set();
-let videoIds = [];
+const videoIds = [];
 
 const DO_VALIDATION = true;
 // const IS_STANDALONE = false;
@@ -228,6 +230,14 @@ function formatName(name) {
 // Check that a file contains valid HTML
 // unless validation is not wanted
 function validateThenWrite(videoId, html) {
+  if (!appendOutput) {
+    // Remove HTML files from the output directory.
+    rimraf(`${OUTPUT_DIR}/*.html`, (error) => {
+      if (error) {
+        displayError('Error running rimraf:', error);
+      }
+    });
+  }
   const filepath = `${OUTPUT_DIR}/${videoId}.html`;
   if (!DO_VALIDATION) {
     writeOutput(filepath, html);
@@ -258,6 +268,9 @@ function writeOutput(filepath, html) {
     setTimeout(()=> {
       console.timeEnd(`\nTime to write and validate ${numFiles} HTML files ` +
           `to \x1b[97m${OUTPUT_DIR}\x1b[0m directory`);
+      if (numErrors) {
+        console.log(`${numErrors} errors: see \x1b[97m${ERROR_LOG}\x1b[0m`);
+      }
       console.log('\n');
     }, 500);
   }
@@ -271,93 +284,6 @@ function writeFile(filepath, data) {
       console.log(`Created \x1b[97m${filepath}\x1b[0m`);
     }
   });
-}
-
-function split(para, MAXLENGTH) {
-  // Split after the end of each sentence.
-  // Each sentence ends with a full stop and space followed by a
-  // span closing tag.
-  const sentences = para.replace(/\. <\/span>/g, '. </span>%^&*').split('%^&*');
-  const paras = [];
-  const tempPara = '';
-  while (sentences.length > 0) {
-    tempPara += sentences.shift() + ' ';
-    if (tempPara.length > MAXLENGTH) {
-      MAXLENGTH = 1000 + Math.floor(Math.random() * 2000); // reset
-      paras.push(tempPara);
-      tempPara = '';
-    }
-  }
-  paras.push(tempPara); // the last one, not over-length
-  return paras;
-}
-
-function addParagraphTags(item) {
-  // Add speaker class to paragraphs that introduces a speaker.
-  // if (item.indexOf('<span class=\"speaker\">') !== -1) {
-  if (item.indexOf('<span class') !== -1) {
-    return '<p class="speaker">' + item.trim() + '</p>';
-  } else {
-    return '<p>' + item.trim() + '</p>';
-  }
-}
-
-function buildTranscript(transcript) {
-  // For each new speaker, start a new paragraph.
-  // Add @$* string to enable paragraphs to be split into an array below.
-  // A bit of a hack, but works OK.
-  transcript = transcript.replace(/><span([^\/]+)<span class="speaker">/gm,
-    '>@£$<span$1<span class="speaker">');
-
-  // Split into array of paragraphs.
-  // If there are no speaker spans, the array will have one long paragraph.
-  const paras = transcript.split('@£$');
-
-  // Randomly split long paragraphs into shorter paragraphs
-  // to make them more readable. Better than nothing...
-  const okParas = [];
-  for (const i = 0; i !== paras.length; ++i) {
-    const para = paras[i];
-    const MAXLENGTH = 1000 + Math.floor(Math.random() * 2000);
-    if (para.length < MAXLENGTH) {
-      okParas.push(para);
-    } else {
-      okParas = okParas.concat(split(para, MAXLENGTH));
-    }
-  }
-  return okParas.map(addParagraphTags).join('');
-}
-
-function split(para, MAXLENGTH) {
-  // Split after the end of each sentence.
-  // Each sentence ends with a full stop and space followed by a
-  // span closing tag.
-  const sentences =
-    para.replace(/\. <\/span>/g, '. </span>%^&*').split('%^&*');
-  const paras = [];
-  const tempPara = '';
-  while (sentences.length > 0) {
-    tempPara += sentences.shift() + ' ';
-    if (tempPara.length > MAXLENGTH) {
-      // Reset.
-      MAXLENGTH = 1000 + Math.floor(Math.random() * 2000);
-      paras.push(tempPara);
-      tempPara = '';
-    }
-  }
-  // The last one, not over-length.
-  paras.push(tempPara);
-  return paras;
-}
-
-function addParagraphTags(item) {
-  // Add speaker class to paragraphs that introduces a speaker.
-  // if (item.indexOf('<span class=\"speaker\">') !== -1) {
-  if (item.indexOf('<span class') !== -1) {
-    return '<p class="speaker">' + item.trim() + '</p>';
-  } else {
-    return '<p>' + item.trim() + '</p>';
-  }
 }
 
 //  Utility functions

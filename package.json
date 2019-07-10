@@ -35,6 +35,7 @@
     "htmlhint": "latest",
     "jsdom": "latest",
     "recursive-readdir": "latest",
+    "rimraf": "latest",
     "stylelint": "latest",
     "stylelint-config-standard": "latest",
     "subtitle": "latest",
