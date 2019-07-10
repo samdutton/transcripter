@@ -78,15 +78,11 @@ img#fin {
 }
 
 p {
-  color: #444;
-  font-weight: 200;
-  line-height: 1.7em;
   margin: 0;
   text-indent: 1.5em;
 }
 
-p.speaker {
-  margin: 1em 0 0 0;
+p:first-child {
   text-indent: 0;
 }
 

@@ -68,8 +68,13 @@ const argv = require('yargs')
   .help('h')
   .argv;
 
-if (argv.a) {
-  appendOutput = true;
+// If not appending output, remove HTML files from the output directory.
+if (!argv.a) {
+  rimraf(`${OUTPUT_DIR}/*.html`, (error) => {
+    if (error) {
+      displayError('Error running rimraf:', error);
+    }
+  });
 }
 
 if (argv.c) {
@@ -143,26 +148,6 @@ function processSrtFile(filepath) {
   }
 }
 
-function processCaptions(videoId, captions) {
-  // ${videoId} is used as a placeholder in the top.html
-  let html = HTML_TOP.replace(/\${videoId}/g, videoId);
-  console.log(`Processing ${captions.length} captions ` +
-    `for \x1b[97m${OUTPUT_DIR}/${videoId}.html\x1b[0m`);
-  for (const caption of captions) {
-    // Put caption text in an HTML span.
-    caption.text = formatCaptionText(caption);
-    // A bit hacky... New section for each change of speaker.
-    // The top and bottom HTML fragments start and finish this.
-    if (caption.text.includes('class="speaker"')) {
-      caption.text = '</section>\n\n<section>' + caption.text;
-    }
-    html += caption.text;
-  }
-  html += HTML_BOTTOM;
-  html = tweakCaptionText(html);
-  validateThenWrite(videoId, html);
-}
-
 function createIndex() {
   let html =
     `<html lang="en">
@@ -183,8 +168,39 @@ function createIndex() {
     `for HTML output.\n`);
 }
 
+function processCaptions(videoId, captions) {
+  // ${videoId} is used as a placeholder in the top.html
+  let html = HTML_TOP.replace(/\${videoId}/g, videoId);
+  console.log(`Processing ${captions.length} captions ` +
+    `for \x1b[97m${OUTPUT_DIR}/${videoId}.html\x1b[0m`);
+  let numSpans = 0;
+  // Randomly set the maximum number of spans allowed in a paragraph.
+  let max = getRandom(3, 15);
+  for (const caption of captions) {
+    // For readability, break up long speeches into paragraphs.
+    // Attempt to break only at end of sentences.
+    // Sentences almost always start at the beginning of captions.
+    if (++numSpans > max && caption.text.match(/^[A-Z]/)) {
+      html += '</p>\n<p>';
+      numSpans = 0;
+      max = getRandom(3, 15);
+    }
+    // Put caption text in an HTML span.
+    caption.text = formatCaptionText(caption);
+    // A bit hacky... New section for each change of speaker.
+    // The top and bottom HTML fragments start and finish this.
+    if (caption.text.includes('class="speaker"')) {
+      caption.text = '</p></section>\n\n<section><p>' + caption.text;
+    }
+    html += caption.text;
+  }
+  html += HTML_BOTTOM;
+  html = fixTextGlitches(html);
+  validateThenWrite(videoId, html);
+}
+
 // Fix minor glitches in caption text.
-function tweakCaptionText(html) {
+function fixTextGlitches(html) {
   return html.
     replace(/>>> /gm, 'Audience member: ').
     replace(/&gt;&gt; ?/gm, '').
@@ -230,14 +246,6 @@ function formatName(name) {
 // Check that a file contains valid HTML
 // unless validation is not wanted
 function validateThenWrite(videoId, html) {
-  if (!appendOutput) {
-    // Remove HTML files from the output directory.
-    rimraf(`${OUTPUT_DIR}/*.html`, (error) => {
-      if (error) {
-        displayError('Error running rimraf:', error);
-      }
-    });
-  }
   const filepath = `${OUTPUT_DIR}/${videoId}.html`;
   if (!DO_VALIDATION) {
     writeOutput(filepath, html);
@@ -301,6 +309,13 @@ function displayError(...args) {
   const color = '\x1b[31m'; // red
   const reset = '\x1b[0m'; // reset color
   console.error(color, '>>> Error:', reset, ...args);
+}
+
+// Thank you https://developer.mozilla.org.
+function getRandom(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function logError(error) {
