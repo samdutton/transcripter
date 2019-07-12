@@ -1,338 +1,458 @@
-<!DOCTYPE html>
-
-<! — 
-Copyright 2018 Google LLC
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-  https://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
- — >
-
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="author" content="//google.com">
-<meta name="description" content="Chrome Dev Summit">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vg60lf92EkM</title>
-<link rel="stylesheet" href="css/main.css">
-</head>
-
-<body>
-
-<iframe id="youtube" src="https://www.youtube.com/embed/Vg60lf92EkM?enablejsapi=1"></iframe>
-
-<div id="container">
-
-<div id="options">
-  <div id="google-translate"></div>
-  <div>
-    <input type="checkbox" id="videoSticky" checked>
-    <label for="videoSticky">Video position sticky</label>
-  </div>
-  <div>
-    <input type="checkbox" id="captionScroll" checked>
-    <label for="captionScroll">Keep current caption visible</label>
-  </div>
-</div>
-
 <section>
-<p><span data-start="0" data-end="3.325">[MUSIC PLAYING]</span> </p></section>
-
-<section><p><span data-start="5.7" data-end="8.61"><span class="speaker">Paul Lewis</span>: So I was on the way to the office this morning,</span> <span data-start="8.61" data-end="11.76">and I realized it is very much like web dev, rush hour.</span> </p></section>
-
-<section><p><span data-start="11.76" data-end="12.36"><span class="speaker">Surma</span>: OK.</span> </p></section>
-
-<section><p><span data-start="12.36" data-end="13.86"><span class="speaker">Paul Lewis</span>: Rush hour is like all the traffic.</span> <span data-start="13.86" data-end="16.379">Everyone is trying to get to the office at 9:00 AM, right?</span> </p>
-<p><span data-start="16.379" data-end="18.635">So all these people are in their cars, and on trains,</span> <span data-start="18.635" data-end="19.26">and everything.</span> <span data-start="19.26" data-end="20.718">Everyone's just rushing, and nobody</span> <span data-start="20.718" data-end="22.54">can move for anybody else.</span> <span data-start="22.54" data-end="25.929">And I think that's like web because — </span> </p></section>
-
-<section><p><span data-start="25.929" data-end="27.72"><span class="speaker">Surma</span>: Yes, please explain this a bit more?</span> </p></section>
-
-<section><p><span data-start="27.72" data-end="28.26"><span class="speaker">Paul Lewis</span>: Yes.</span> <span data-start="28.26" data-end="29.7">Because you've got the main thread.</span> <span data-start="29.7" data-end="30.75">You've got this one thread.</span> </p>
-<p><span data-start="30.75" data-end="32.833">And on that main thread, you've got all these work</span> <span data-start="32.833" data-end="35.49">styles, JavaScript, layout, paint, composite,</span> <span data-start="35.49" data-end="36.3">your framework.</span> <span data-start="36.3" data-end="38.43">Everything is running, and everybody's</span> <span data-start="38.43" data-end="41.064">competing for this one resource, the road or, in this case,</span> <span data-start="41.064" data-end="41.73">the main thread.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="41.73" data-end="45.45"><span class="speaker">Surma</span>: Oh, so Mr. Framework has a car, Mr. Paint has a car,</span> <span data-start="45.45" data-end="46.802">Mr. Business Logic has a car.</span> <span data-start="46.802" data-end="48.51">And they all just want to go on the road,</span> <span data-start="48.51" data-end="49.47">but it's already full.</span> </p></section>
-
-<section><p><span data-start="49.47" data-end="50.04"><span class="speaker">Paul Lewis</span>: Exactly.</span> <span data-start="50.04" data-end="51.66">And everybody's in the same boat where</span> <span data-start="51.66" data-end="55.43">everybody gets the angry tweets and sees all this performance</span> <span data-start="55.43" data-end="55.93">advice.</span> </p>
-<p><span data-start="55.93" data-end="58.346">And nobody knows what to do because all this stuff is just</span> <span data-start="58.346" data-end="59.91">constrained into this one place — </span> <span data-start="59.91" data-end="60.919">rush hour.</span> <span data-start="60.919" data-end="62.46">As we described in that video, that's</span> <span data-start="62.46" data-end="67.47">kind of how we feel when we look at the web at large.</span> <span data-start="67.47" data-end="71.19">We look at it, and we go, all this code should be here.</span> <span data-start="71.19" data-end="74.01">But it just feels like the traffic is the problem.</span> <span data-start="74.01" data-end="77.79">There's just too much going through the main thread.</span> </p></section>
-
-<section><p><span data-start="77.79" data-end="81.21"><span class="speaker">Surma</span>: And traditionally, the main thread is full.</span> <span data-start="81.21" data-end="82.65">It's overworked and underpaid.</span> <span data-start="82.65" data-end="84.39">You would say, cool, I'd use threads.</span> <span data-start="84.39" data-end="85.77">On any other platform, you could do that.</span> <span data-start="85.77" data-end="87.78">Just spin up a thread, put some code there, run it there,</span> <span data-start="87.78" data-end="88.446">call a function.</span> <span data-start="88.446" data-end="88.95">Hooray!</span> <span data-start="88.95" data-end="89.96">Everyone's happy.</span> </p>
-<p><span data-start="89.96" data-end="92.73">But it turns out JavaScript and the web is special.</span> <span data-start="92.73" data-end="95.985">And it is inherently single threaded, so you can't do that.</span> </p></section>
-
-<section><p><span data-start="95.985" data-end="97.11"><span class="speaker">Paul Lewis</span>: Right, exactly.</span> <span data-start="97.11" data-end="100.94">Every thread is kind of its own little universe, isn't it?</span> </p>
-<p><span data-start="100.94" data-end="103.142">Like we heard, it's a [INAUDIBLE],, right?</span> <span data-start="103.142" data-end="105.6">And so you can't just go, just call this on another thread,</span> <span data-start="105.6" data-end="108.76">but you've got some shared stuff that you can work on.</span> <span data-start="108.76" data-end="110.706">So that's a challenge.</span> <span data-start="110.706" data-end="112.08">And then it gets more interesting</span> <span data-start="112.08" data-end="114.26">because say, for example, you're trying to build — </span> <span data-start="114.26" data-end="117.2">I don't know —  a chess game just for argument's sake.</span> <span data-start="117.2" data-end="118.53">And you've got a chess engine.</span> <span data-start="118.53" data-end="120.06">And the chess engine — </span> <span data-start="120.06" data-end="121.57">it takes a few hundred milliseconds</span> <span data-start="121.57" data-end="123.84">to calculate a move.</span> </p></section>
-
-<section><p><span data-start="123.84" data-end="125.707"><span class="speaker">Surma</span>: It gets exponentially difficult.</span> </p></section>
-
-<section><p><span data-start="125.707" data-end="127.29"><span class="speaker">Paul Lewis</span>: And you build it with DOM.</span> <span data-start="127.29" data-end="130.889">And then some bright spark goes, do you know what we should do?</span> <span data-start="130.889" data-end="132.15">3D.</span> <span data-start="132.15" data-end="134.377">And you're, like, [LAUGHS] I was already</span> <span data-start="134.377" data-end="135.71">behind on my [INAUDIBLE] budget.</span> </p>
-<p><span data-start="135.71" data-end="137.959">If you could just not do the 60-frames-a-second thing,</span> <span data-start="137.959" data-end="138.79">that'll be great.</span> <span data-start="138.79" data-end="142.51">And some even brighter spark says, how about VR?</span> </p></section>
-
-<section><p><span data-start="142.51" data-end="143.01"><span class="speaker">Surma</span>: Yeah.</span> <span data-start="143.01" data-end="144.469">I want to stand on the chess board.</span> </p></section>
-
-<section><p><span data-start="144.469" data-end="146.801"><span class="speaker">Paul Lewis</span>: Yeah, I want to be, like, right in the game.</span> <span data-start="146.801" data-end="149.295">And you're thinking, um, there was already rush hour.</span> </p></section>
-
-<section><p><span data-start="149.295" data-end="151.17"><span class="speaker">Surma</span>: Turns out frame rate —  quite important</span> <span data-start="151.17" data-end="152.04">when it comes to VR.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="152.04" data-end="153.706"><span class="speaker">Paul Lewis</span>: Yeah, and it could be voice.</span> <span data-start="153.706" data-end="155.64">There are so many things that it could be.</span> </p></section>
-
-<section><p><span data-start="155.64" data-end="158"><span class="speaker">Surma</span>: So this becomes increasingly unlikely for you</span> <span data-start="158" data-end="159.63">to be able to do this successfully on the web</span> <span data-start="159.63" data-end="160.17">currently.</span> </p></section>
-
-<section><p><span data-start="160.17" data-end="161.02"><span class="speaker">Paul Lewis</span>: Right.</span> </p>
-<p><span data-start="161.02" data-end="165.18">And so this is the question that we have been thinking through</span> <span data-start="165.18" data-end="166.83">for the last little while.</span> <span data-start="166.83" data-end="170.64">Is there anything we can do, anything we can suggest,</span> <span data-start="170.64" data-end="173.65">think of to help?</span> </p></section>
-
-<section><p><span data-start="173.65" data-end="174.79"><span class="speaker">Surma</span>: We have two birds.</span> <span data-start="174.79" data-end="175.9">We're looking for a stone.</span> </p></section>
-
-<section><p><span data-start="175.9" data-end="176.733"><span class="speaker">Paul Lewis</span>: Exactly.</span> <span data-start="176.733" data-end="177.435">And — </span> <span data-start="177.435" data-end="178.62">[LAUGHTER]</span> </p></section>
-
-<section><p><span data-start="178.62" data-end="179.76"><span class="speaker">Surma</span>: Ah, that went well.</span> </p></section>
-
-<section><p><span data-start="182.19" data-end="182.815"><span class="speaker">Paul Lewis</span>: OK.</span> <span data-start="185.68" data-end="188.18">Wow, I really need to think of what I was going to say next.</span> <span data-start="188.18" data-end="189">OK, this.</span> </p></section>
-
-<section><p><span data-start="189" data-end="190.595"><span class="speaker">Surma</span>: Actor model.</span> <span data-start="190.595" data-end="192.2">So we kind of stumbled over this.</span> <span data-start="192.2" data-end="195.8">The actor model is, as it says right here, about 45 years old.</span> </p>
-<p><span data-start="195.8" data-end="199.28">And it's been made popular by Erlang</span> <span data-start="199.28" data-end="201.43">and then continued with Elixir and Pony.</span> <span data-start="201.43" data-end="203.6">It's languages that use the actor model to this day</span> <span data-start="203.6" data-end="205.21">and successfully so.</span> <span data-start="205.21" data-end="207.38">And we realized that it's actually</span> <span data-start="207.38" data-end="208.892">a really good fit for the web.</span> </p></section>
-
-<section><p><span data-start="208.892" data-end="209.6"><span class="speaker">Paul Lewis</span>: Yeah.</span> </p>
-<p><span data-start="209.6" data-end="213.08">Because what it does is it makes a feature</span> <span data-start="213.08" data-end="215.629">of that single-threadedness of JavaScript.</span> <span data-start="215.629" data-end="217.67">But we like to explain —  if you've come across it</span> <span data-start="217.67" data-end="218.47">before, great.</span> <span data-start="218.47" data-end="220.22">If you've not come across the actor model,</span> <span data-start="220.22" data-end="222.094">we like to explain it in a very specific way.</span> <span data-start="222.094" data-end="223.5">So check this one out.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="223.5" data-end="224.93"><span class="speaker">Surma</span>: So when we did Supercharge,</span> <span data-start="224.93" data-end="226.43">you saw us on screen.</span> <span data-start="226.43" data-end="229.61">But behind the cameras, we had an entire crew.</span> <span data-start="229.61" data-end="231.83">And that means we had one person working the camera.</span> <span data-start="231.83" data-end="234.81">We had one person worrying about if our audio was good.</span> <span data-start="234.81" data-end="235.97">We had a director.</span> <span data-start="235.97" data-end="238.31">And each of these people were solely responsible</span> <span data-start="238.31" data-end="240.39">for that specific device.</span> </p></section>
-
-<section><p><span data-start="240.39" data-end="243.74"><span class="speaker">Paul Lewis</span>: And instead of going over and pressing one person's</span> <span data-start="243.74" data-end="246.124">buttons or just messing with settings,</span> <span data-start="246.124" data-end="248.54">those people actually have to communicate with one another</span> <span data-start="248.54" data-end="249.373">to get the job done.</span> <span data-start="249.373" data-end="251.31">It you like, there are actors in the system,</span> <span data-start="251.31" data-end="253.28">but they've got to send messages to one another</span> <span data-start="253.28" data-end="255.11">and communicate and collaborate in order</span> <span data-start="255.11" data-end="258.38">to get the final thing working.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="258.38" data-end="260.163"><span class="speaker">Surma</span>: So that's kind of where — </span> <span data-start="260.163" data-end="261.579">more video, more production value.</span> <span data-start="261.579" data-end="262.61">It's good, right?</span> <span data-start="262.61" data-end="265.55">So that's where we see a mentality that</span> <span data-start="265.55" data-end="267">fits the web really well.</span> </p>
-<p><span data-start="267" data-end="268.79">And you start thinking about, where</span> <span data-start="268.79" data-end="271.64">can you draw a line for individual pieces</span> <span data-start="271.64" data-end="273.69">of responsibility in your app.</span> <span data-start="273.69" data-end="275.72">And instead of thinking about classes and how</span> <span data-start="275.72" data-end="277.97">you call the method on the other class,</span> <span data-start="277.97" data-end="279.86">you can now think about these actors</span> <span data-start="279.86" data-end="282.38">and how you can send the right message to request something</span> <span data-start="282.38" data-end="282.99">to happen.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="282.99" data-end="283.16"><span class="speaker">Paul Lewis</span>: Right.</span> <span data-start="283.16" data-end="284.82">There are these areas of ownership.</span> <span data-start="284.82" data-end="287.6">So let's think about, how, at a conceptual level,</span> <span data-start="287.6" data-end="289.699">how would you think this through?</span> <span data-start="289.699" data-end="291.24">What would it look like a little bit?</span> <span data-start="291.24" data-end="291.74">OK.</span> <span data-start="291.74" data-end="295.63">So imagine you have an actor, and it's job</span> <span data-start="295.63" data-end="297.602">is to run your user interface.</span> <span data-start="297.602" data-end="298.81">That's its area of ownership.</span> <span data-start="298.81" data-end="299.92">That's what it does.</span> <span data-start="299.92" data-end="302.18">That's its job and only that.</span> </p>
-<p><span data-start="302.18" data-end="304.42">You might also have another actor</span> <span data-start="304.42" data-end="307.33">whose job is to handle state for your application</span> <span data-start="307.33" data-end="310.99">and yet another one who handles the storage.</span> <span data-start="310.99" data-end="313.63">Now, imagine in your app a typical interaction</span> <span data-start="313.63" data-end="316.33">would be something like favoriting an item.</span> <span data-start="316.33" data-end="318.28">The user interface, when the user taps on it,</span> <span data-start="318.28" data-end="320.17">it will send a message over to the state</span> <span data-start="320.17" data-end="322.96">that says this was favorited.</span> <span data-start="322.96" data-end="324.874">In turn, the actor handling the state</span> <span data-start="324.874" data-end="326.29">will send a message to the storage</span> <span data-start="326.29" data-end="329.92">to say we need to remember that they favorited this item.</span> </p>
-<p><span data-start="329.92" data-end="331.63">Now we could also, at this point,</span> <span data-start="331.63" data-end="333.999">introduce a new actor into this story,</span> <span data-start="333.999" data-end="335.29">something that could broadcast.</span> <span data-start="335.29" data-end="338.689">Because when the state changes, typically, what we'd want to do</span> <span data-start="338.689" data-end="340.48">is, we'd want to send that both to the user</span> <span data-start="340.48" data-end="344.75">interface and the storage to be reflected in both, I suppose,</span> <span data-start="344.75" data-end="345.25">really.</span> </p></section>
-
-<section><p><span data-start="345.25" data-end="346.147"><span class="speaker">Surma</span>: Yes.</span> <span data-start="346.147" data-end="347.98">And you can kind of see here, that it really</span> <span data-start="347.98" data-end="350.906">is a separation of concerns.</span> </p>
-<p><span data-start="350.906" data-end="354.18">Ah, the click, there you go.</span> <span data-start="354.18" data-end="356.54">[INAUDIBLE] transition —  do recommend.</span> <span data-start="356.54" data-end="358.595">It really helps you to think about your app</span> <span data-start="358.595" data-end="360.47">in a different way, helping you to figure out</span> <span data-start="360.47" data-end="363.41">where does new code go, which module can you switch out</span> <span data-start="363.41" data-end="365.51">to fix a problem that you're having?</span> <span data-start="365.51" data-end="368.03">It's a really good way to structure the app in this way.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="368.03" data-end="368.51"><span class="speaker">Paul Lewis</span>: Yeah, absolutely.</span> <span data-start="368.51" data-end="370.1">And we use to separation of concerns</span> <span data-start="370.1" data-end="372.5">when we talk about HTML, JavaScript, and CSS,</span> <span data-start="372.5" data-end="376.11">or when we talk about components in a modern framework.</span> <span data-start="376.11" data-end="379.539">So it's another version of that same story I suppose.</span> </p></section>
-
-<section><p><span data-start="379.539" data-end="381.08"><span class="speaker">Surma</span>: Another benefit that you get — </span> <span data-start="381.08" data-end="383.48">and we have heard about this problem a couple of times,</span> </p>
-<p><span data-start="383.48" data-end="384.86">I think yesterday and today — </span> <span data-start="384.86" data-end="387.29">is that we often see big chunks of monolithic</span> <span data-start="387.29" data-end="388.76">JavaScript just run — </span> <span data-start="388.76" data-end="390.65">frameworks updating the virtual DOM, and then</span> <span data-start="390.65" data-end="392.24">the DOM, or something like that.</span> </p>
-<p><span data-start="392.24" data-end="395.33">And with this pattern, you introduce a natural breaking</span> <span data-start="395.33" data-end="398.25">point where you give the browser a chance to ship a frame.</span> <span data-start="398.25" data-end="399.86">Because every time you send a message,</span> <span data-start="399.86" data-end="402.41">there is a point where you say, OK, browser</span> <span data-start="402.41" data-end="405.26">can intervene and ship a frame if we are out of frame budget.</span> </p></section>
-
-<section><p><span data-start="405.26" data-end="406.73"><span class="speaker">Paul Lewis</span>: Exactly.</span> <span data-start="406.73" data-end="410.69">Now, a little side effect a positive one of this</span> <span data-start="410.69" data-end="412.254">is location independence.</span> <span data-start="412.254" data-end="413.42">And we'll come back to this.</span> <span data-start="413.42" data-end="414.95">This is a sort of repeating refrain</span> <span data-start="414.95" data-end="416.908">that we're going to get into a little bit more.</span> </p>
-<p><span data-start="416.908" data-end="420.525">But think about actors as, they're not all the same.</span> <span data-start="420.525" data-end="421.9">They have different requirements.</span> <span data-start="421.9" data-end="425.27">Some actors will not need to have access to the main thread,</span> <span data-start="425.27" data-end="428.03">for example, because of the kind of work they do.</span> <span data-start="428.03" data-end="429.98">And as such, we might be able to run them</span> <span data-start="429.98" data-end="432.354">in different locations, i.e., not on the main thread.</span> </p>
-<p><span data-start="432.354" data-end="433.77">As I say, we'll come back to that.</span> <span data-start="433.77" data-end="435.59">But the idea here is maybe we just</span> <span data-start="435.59" data-end="438.117">bought ourselves a little capacity for rush hour.</span> </p></section>
-
-<section><p><span data-start="438.117" data-end="439.7"><span class="speaker">Surma</span>: Because as long as the messages</span> <span data-start="439.7" data-end="441.86">get delivered to the actor, the actor</span> <span data-start="441.86" data-end="444.39">will then do the same work as it did before and will</span> <span data-start="444.39" data-end="445.64">respond with the same message.</span> <span data-start="445.64" data-end="447.95">So the entire app keeps behaving the same way,</span> <span data-start="447.95" data-end="449.15">no matter where it runs.</span> <span data-start="449.15" data-end="453.06">And because of that location independence,</span> <span data-start="453.06" data-end="456.17">we can lower the likelihood of long work</span> <span data-start="456.17" data-end="458.397">impacting the main thread and making your app janky.</span> </p></section>
-
-<section><p><span data-start="458.397" data-end="459.23"><span class="speaker">Paul Lewis</span>: Exactly.</span> <span data-start="459.23" data-end="461.63">So conceptually, that is what it is.</span> <span data-start="461.63" data-end="465.47">But I like seeing code.</span> <span data-start="465.47" data-end="467.82">I think code helps.</span> </p>
-<p><span data-start="467.82" data-end="471.12">And so we're not launching a product.</span> <span data-start="471.12" data-end="474.26">We're not launching a framework, or even a library.</span> <span data-start="474.26" data-end="477.18">We just wanted to have a chat with you about architectures.</span> <span data-start="477.18" data-end="480.22">And we've been using some actor-based stuff</span> <span data-start="480.22" data-end="482.48">for the last little while with our colleague Tim.</span> </p>
-<p><span data-start="482.48" data-end="484.07">And the three of us have just been putting some code</span> <span data-start="484.07" data-end="484.38">together.</span> <span data-start="484.38" data-end="485.13">So what we're going to do is, we're just</span> <span data-start="485.13" data-end="487.16">going to show you a little bit of the code</span> <span data-start="487.16" data-end="488.09">that we've been using.</span> <span data-start="488.09" data-end="490.762">We've been using it to build some of our apps.</span> </p></section>
-
-<section><p><span data-start="490.762" data-end="492.387"><span class="speaker">Surma</span>: And we'll share that at the end.</span> <span data-start="492.387" data-end="493.803">You're very welcome to try it out.</span> <span data-start="493.803" data-end="495.93">And you're also very welcome to write your own.</span> <span data-start="495.93" data-end="498.2">We don't really care if we use our version or someone else's</span> <span data-start="498.2" data-end="498.7">version.</span> <span data-start="498.7" data-end="500.87">It's more about the concept, about the architecture.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="500.87" data-end="501.702"><span class="speaker">Paul Lewis</span>: Absolutely.</span> <span data-start="501.702" data-end="504.076">But with this in mind, let's talk about a particular app,</span> <span data-start="504.076" data-end="506.585">something like a stopwatch app, which you would start,</span> <span data-start="506.585" data-end="508.957">it would count up in seconds — </span> <span data-start="508.957" data-end="510.29">pause, play, that kind of thing.</span> <span data-start="510.29" data-end="515.74">And then you might reset the time if you're done.</span> </p>
-<p><span data-start="515.74" data-end="519.57">So in our code, we have this Actor base class.</span> <span data-start="519.57" data-end="522.659">And that top function up there, hookup, is the first thing</span> <span data-start="522.659" data-end="523.659">that you'd need to know.</span> <span data-start="523.659" data-end="526.36">And the job of hookup is to kind of register</span> <span data-start="526.36" data-end="528.74">an actor in the system so that we can talk to it later,</span> <span data-start="528.74" data-end="531.37">so we can send it messages later on.</span> <span data-start="531.37" data-end="533.02">Because ultimately, we won't know where</span> <span data-start="533.02" data-end="534.5">this actor is in the system.</span> <span data-start="534.5" data-end="537.94">And so we just need almost like a registry, I suppose,</span> <span data-start="537.94" data-end="540.6">where we can say, I'm going to tell you there's an actor,</span> <span data-start="540.6" data-end="542.02">and it's found under this name.</span> </p></section>
-
-<section><p><span data-start="542.02" data-end="543.52"><span class="speaker">Surma</span>: It's basically the equivalent</span> <span data-start="543.52" data-end="545.32">of what you might know from custom elements.</span> </p>
-<p><span data-start="545.32" data-end="546.861">There's custom elements that. define.</span> <span data-start="546.861" data-end="550.33">And you say, this custom element is now known under this name.</span> <span data-start="550.33" data-end="553.709">And this does the exact same thing but for actors.</span> </p></section>
-
-<section><p><span data-start="553.709" data-end="556"><span class="speaker">Paul Lewis</span>: So then we have our two actors, a Clock one</span> <span data-start="556" data-end="557.59">and a UI one.</span> </p>
-<p><span data-start="557.59" data-end="560.77">And then in the bootstrap, we instantiate both our UI</span> <span data-start="560.77" data-end="562.96">and hook it up, so it's available under UI</span> <span data-start="562.96" data-end="564.46">as a string name.</span> <span data-start="564.46" data-end="568.552">And then we do the same with the clock like so.</span> <span data-start="568.552" data-end="571.01">So now, we can talk about how you might implement something</span> <span data-start="571.01" data-end="573.62">like the clock itself.</span> </p>
-<p><span data-start="573.62" data-end="575.9">And in our case, when you've got something like this,</span> <span data-start="575.9" data-end="578.6">it's almost like a pure data actor.</span> <span data-start="578.6" data-end="582.05">It doesn't have any need to go near the DOM.</span> <span data-start="582.05" data-end="583.7">It just wants to tick, and pause,</span> <span data-start="583.7" data-end="584.51">and all those kinds of things.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="584.51" data-end="586.176"><span class="speaker">Surma</span>: I mean, what do you need, really.</span> <span data-start="586.176" data-end="588.87">You need a set interval, and that's pretty much it.</span> </p></section>
-
-<section><p><span data-start="588.87" data-end="589.89"><span class="speaker">Paul Lewis</span>: So time out?</span> </p></section>
-
-<section><p><span data-start="589.89" data-end="590.545"><span class="speaker">Surma</span>: Sure.</span> </p></section>
-
-<section><p><span data-start="590.545" data-end="592.31"><span class="speaker">Paul Lewis</span>: I have a thing against set interval.</span> <span data-start="592.31" data-end="593.062">It's a long story.</span> <span data-start="593.062" data-end="594.77">Come find me after, and I'll explain why.</span> <span data-start="594.77" data-end="596.93">Anyway, imagine this then.</span> <span data-start="596.93" data-end="599.06">We're going to model this as a state machine.</span> <span data-start="602.61" data-end="603.83">We start with a paused state.</span> </p>
-<p><span data-start="603.83" data-end="605.94">Our clock is paused.</span> <span data-start="605.94" data-end="609.02">We can transition to a running state.</span> <span data-start="609.02" data-end="611.4">Every second, we'll tick, and we'll go to the tick state.</span> <span data-start="611.4" data-end="613.4">And that will take us back to the running state.</span> <span data-start="613.4" data-end="615.92">And you can imagine being in this tick, running, tick,</span> <span data-start="615.92" data-end="617.704">running state like in a clock.</span> </p></section>
-
-<section><p><span data-start="617.704" data-end="618.62"><span class="speaker">Surma</span>: Like ping-pong.</span> </p></section>
-
-<section><p><span data-start="618.62" data-end="620.6"><span class="speaker">Paul Lewis</span>: Like a clock, Indeed.</span> <span data-start="620.6" data-end="622.92">We could pause, and we could reset.</span> <span data-start="622.92" data-end="624.737">And when we reset, we go back to that.</span> </p></section>
-
-<section><p><span data-start="624.737" data-end="626.57"><span class="speaker">Surma</span>: And that's a really nice pattern here</span> <span data-start="626.57" data-end="629.07">that plays along well with the message passing of the actor</span> <span data-start="629.07" data-end="629.57">model.</span> <span data-start="629.57" data-end="631.4">Because all of these triggers, as they</span> <span data-start="631.4" data-end="634.25">are called, in the state machine world could just be a message.</span> </p>
-<p><span data-start="634.25" data-end="637.22">You send a message to this state machine, it's being ingested,</span> <span data-start="637.22" data-end="638.93">and then a transition happens.</span> </p></section>
-
-<section><p><span data-start="638.93" data-end="640.534"><span class="speaker">Paul Lewis</span>: Absolutely.</span> </p></section>
-
-<section><p><span data-start="640.534" data-end="642.2"><span class="speaker">Surma</span>: So we found, actually, that there</span> <span data-start="642.2" data-end="644.48">are a lot of implementations for state machines</span> <span data-start="644.48" data-end="646.85">out there in the wild, and that's not very unexpected.</span> <span data-start="646.85" data-end="648.59">And we have kind of been using xstate,</span> <span data-start="648.59" data-end="650.502">which is written by David from Microsoft,</span> <span data-start="650.502" data-end="651.71">and it's working really well.</span> <span data-start="651.71" data-end="654.364">It allows you to declare your state machine as a JSON object.</span> <span data-start="654.364" data-end="656.03">So you just declare your states and then</span> <span data-start="656.03" data-end="657.38">what the transitions are.</span> </p>
-<p><span data-start="657.38" data-end="660.68">And then you just pass this to this machine constructor,</span> <span data-start="660.68" data-end="661.94">and you get a state machine.</span> </p></section>
-
-<section><p><span data-start="661.94" data-end="665.87"><span class="speaker">Paul Lewis</span>: So our clock extends the Actor base class,</span> <span data-start="665.87" data-end="668.157">and what we do is we instantiate our state Machine.</span> <span data-start="668.157" data-end="669.74">We say, go to the initial state, which</span> <span data-start="669.74" data-end="672.54">happens to that paused state.</span> <span data-start="672.54" data-end="676.35">And then later on, imagine that we receive a message.</span> <span data-start="676.35" data-end="678.96">And our Actor base class has this onMessage callback,</span> <span data-start="678.96" data-end="680.46">which is, I got a message.</span> </p>
-<p><span data-start="680.46" data-end="682.287">What do I do?</span> <span data-start="682.287" data-end="684.12">In this case, we would assume that the state</span> <span data-start="684.12" data-end="686.25">would be changing inside of our state machine.</span> <span data-start="686.25" data-end="688.44">So we use the state machine transition</span> <span data-start="688.44" data-end="691.07">to get from wherever it was to wherever it needs to be.</span> <span data-start="691.07" data-end="694.554">So the message is basically driving the clock.</span> <span data-start="694.554" data-end="696.47">And we'll inspect what the new state value is.</span> <span data-start="696.47" data-end="698.34">So if we find that our clock is running,</span> <span data-start="698.34" data-end="702">we'll set a tick time out for one second.</span> <span data-start="702" data-end="704.22">If we tick, we increment our tick count.</span> <span data-start="704.22" data-end="707.71">And then the clock will send itself a message.</span> <span data-start="707.71" data-end="710.04">Now, it could call its own functions.</span> <span data-start="710.04" data-end="712.68">But we tend to be a little bit — </span> <span data-start="712.68" data-end="713.857">we like it fair.</span> <span data-start="713.857" data-end="716.19">And so what we do is we make sure the clock sends itself</span> <span data-start="716.19" data-end="717.773">a message like every other actor would</span> <span data-start="717.773" data-end="719.03">have to send it a message.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="719.03" data-end="720.18"><span class="speaker">Surma</span>: And you can add it like a message queue that</span> <span data-start="720.18" data-end="721.221">buffers all the messages.</span> <span data-start="721.221" data-end="723.45">And the actor goes through one message, processes,</span> <span data-start="723.45" data-end="724.83">then it goes to the next message.</span> <span data-start="724.83" data-end="726.75">And so if you just call your own function,</span> <span data-start="726.75" data-end="728.47">it would kind of be cutting that line.</span> <span data-start="728.47" data-end="729.6">So if you want to keep it fair, you</span> <span data-start="729.6" data-end="731.52">would just queue your app message at the end</span> <span data-start="731.52" data-end="733.02">and wait like a good human.</span> </p></section>
-
-<section><p><span data-start="733.02" data-end="734.86"><span class="speaker">Paul Lewis</span>: Exactly, or a computer.</span> </p></section>
-
-<section><p><span data-start="734.86" data-end="736.76"><span class="speaker">Surma</span>: Sure.</span> </p></section>
-
-<section><p><span data-start="736.76" data-end="738.45"><span class="speaker">Paul Lewis</span>: Cancel the tick if you're</span> <span data-start="738.45" data-end="740.31">paused if there's one pending.</span> </p>
-<p><span data-start="740.31" data-end="742.33">When we reset, we'll reset the tick count.</span> <span data-start="742.33" data-end="747.03">And again, the clock will send itself a message to pause.</span> <span data-start="747.03" data-end="749.67">And now, let's talk about sending messages.</span> <span data-start="749.67" data-end="750.58">That's next, yes.</span> <span data-start="750.58" data-end="752.635">So the clock, is going to have to send a state</span> <span data-start="752.635" data-end="754.26">update to the user interface so that it</span> <span data-start="754.26" data-end="758.38">can reflect the time going up and so on, and so forth.</span> </p>
-<p><span data-start="758.38" data-end="760.08">And this is the opposite to the hookup.</span> <span data-start="760.08" data-end="762.41">This is lookup, which is also in — </span> </p></section>
-
-<section><p><span data-start="762.41" data-end="764.66"><span class="speaker">Surma</span>: Hookup, lookup, hookup, lookup, hookup, lookup.</span> </p></section>
-
-<section><p><span data-start="764.66" data-end="767.31"><span class="speaker">Paul Lewis</span>: I lose him for hours at a time when he does this.</span> <span data-start="767.31" data-end="768.55">OK, hookup and lookup.</span> <span data-start="768.55" data-end="772.384">So we look up the UI, and then we can send it a message.</span> </p></section>
-
-<section><p><span data-start="772.384" data-end="774.3"><span class="speaker">Surma</span>: And that's very important to note here.</span> <span data-start="774.3" data-end="776.79">The handle, this UI variable that we have there,</span> <span data-start="776.79" data-end="778.96">it is not the actor instance.</span> <span data-start="778.96" data-end="782.4">You can't go in and change a member variable of that class.</span> <span data-start="782.4" data-end="785.544">It is just an object with a send method and only that method.</span> <span data-start="785.544" data-end="786.96">Because that's the only way you're</span> <span data-start="786.96" data-end="789.477">allowed to interact with any of the other actors.</span> </p></section>
-
-<section><p><span data-start="789.477" data-end="790.31"><span class="speaker">Paul Lewis</span>: Exactly.</span> <span data-start="790.31" data-end="792.93">And so in this case, we're going to send the UI a message.</span> </p>
-<p><span data-start="792.93" data-end="794.43">And the message is going to say what</span> <span data-start="794.43" data-end="798.03">the time is and whether or not the clock is running.</span> <span data-start="798.03" data-end="800.44">We found that TypeScript is really helpful at this point,</span> <span data-start="800.44" data-end="802.65">because those messages need to be well-formed,</span> <span data-start="802.65" data-end="803.65">and well-understood.</span> </p>
-<p><span data-start="803.65" data-end="805.233">And there needs to be a data contract.</span> <span data-start="805.233" data-end="807.33">And we've just found, from practical experience,</span> <span data-start="807.33" data-end="808.98">that TypeScript is a really good way of saying,</span> <span data-start="808.98" data-end="810.31">this object looks like this.</span> <span data-start="810.31" data-end="811.05">This is a number.</span> <span data-start="811.05" data-end="811.822">This is a string.</span> <span data-start="811.822" data-end="813.78">This is another object, and so on and so forth.</span> <span data-start="813.78" data-end="816.97">So just take that as what it is, really.</span> </p></section>
-
-<section><p><span data-start="816.97" data-end="817.97"><span class="speaker">Surma</span>: A recommendation.</span> </p></section>
-
-<section><p><span data-start="817.97" data-end="818.77"><span class="speaker">Paul Lewis</span>: Yeah, a recommendation.</span> </p>
-<p><span data-start="818.77" data-end="820.11">We found that useful.</span> <span data-start="820.11" data-end="822.43">Let's talk about the UI a little bit.</span> <span data-start="822.43" data-end="825.401">Interestingly, you can bring your own framework.</span> </p></section>
-
-<section><p><span data-start="825.401" data-end="825.9"><span class="speaker">Surma</span>: Yeah.</span> <span data-start="825.9" data-end="828.58">In this model, we don't really care what kind of framework</span> <span data-start="828.58" data-end="829.08">you use.</span> <span data-start="829.08" data-end="831.75">You can use React, you can use Vue, you can use Lit,</span> <span data-start="831.75" data-end="835.11">you can use Svelte —  whatever you feel comfortable with</span> <span data-start="835.11" data-end="837.24">or whatever makes sense in your scenario.</span> <span data-start="837.24" data-end="841.29">The interesting shift here is that the UI framework is not</span> <span data-start="841.29" data-end="843.39">your base platform, not your entry point any more.</span> <span data-start="843.39" data-end="845.56">The center of the universe has kind of moved.</span> </p></section>
-
-<section><p><span data-start="845.56" data-end="846.88"><span class="speaker">Paul Lewis</span>: It's that bootstrap that we showed</span> <span data-start="846.88" data-end="847.588">[? at the top. ?]</span> </p>
-<p></p></section>
-
-<section><p><span data-start="847.588" data-end="849.45"><span class="speaker">Surma</span>: UI is just one participant of many</span> <span data-start="849.45" data-end="850.477">in the system of actors.</span> </p></section>
-
-<section><p><span data-start="850.477" data-end="852.81"><span class="speaker">Paul Lewis</span>: And if you find that it's not behaving well,</span> <span data-start="852.81" data-end="854.779">for whatever reason, you can swap it out.</span> <span data-start="854.779" data-end="856.32">The only thing it has to do is listen</span> <span data-start="856.32" data-end="859.827">to messages of a particular type, which is kind of cool.</span> <span data-start="859.827" data-end="861.66">In our case, then we're going to use Preact.</span> <span data-start="861.66" data-end="863.1">It works just great.</span> <span data-start="863.1" data-end="864.765">So we're going to import preact.</span> <span data-start="864.765" data-end="867.15">Our UI extends the Actor class.</span> </p>
-<p><span data-start="867.15" data-end="868.83">And when it receives a message, we're</span> <span data-start="868.83" data-end="872.26">going to have it render using Preact to, in this case,</span> <span data-start="872.26" data-end="874.952">the document body.</span> </p></section>
-
-<section><p><span data-start="874.952" data-end="875.91"><span class="speaker">Surma</span>: Same again here.</span> <span data-start="875.91" data-end="877.464">We need to send messages back.</span> </p></section>
-
-<section><p><span data-start="877.464" data-end="878.422"><span class="speaker">Paul Lewis</span>: Absolutely.</span> <span data-start="878.422" data-end="882.01">And to do that, it is a case of, on the UI side,</span> <span data-start="882.01" data-end="884.437">we find our clock actor, we do a lookup on it,</span> <span data-start="884.437" data-end="886.27">and we will send it a message, in this case,</span> <span data-start="886.27" data-end="888.88">for this particular example, sending it a message to start.</span> <span data-start="888.88" data-end="892.79">There'll be one for stop, or reset, and so on.</span> <span data-start="892.79" data-end="894.57">Now, we get to talk about that location</span> <span data-start="894.57" data-end="897.24">independence a teeny bit more.</span> <span data-start="897.24" data-end="899.94">Because one of the questions that Surma, Tim, and I ask</span> <span data-start="899.94" data-end="901.95">ourselves when we're making our actors is,</span> <span data-start="901.95" data-end="906.49">does this actor need access to the main thread?</span> </p>
-<p><span data-start="906.49" data-end="909.839">And this is kind of to do with the rush hour thing.</span> <span data-start="909.839" data-end="911.38">Our general rule of thumb —  and there</span> <span data-start="911.38" data-end="913.27">are some caveats we'll mention in a moment.</span> <span data-start="913.27" data-end="916.21">But out general rule of thumb is that a UI actor is the one that</span> <span data-start="916.21" data-end="917.237">really needs the DOM.</span> <span data-start="917.237" data-end="918.82">And therefore, it's the one that ought</span> <span data-start="918.82" data-end="922.014">to be on the main thread wherever possible.</span> <span data-start="922.014" data-end="922.93">There is an exception.</span> <span data-start="922.93" data-end="924.76">The exception here is that certain APIs — </span> <span data-start="924.76" data-end="927.43">those for media security, device capabilities, and identity — </span> <span data-start="927.43" data-end="930.28">are only available on the main thread today.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="930.28" data-end="931.43"><span class="speaker">Surma</span>: We think it's a bug.</span> <span data-start="931.43" data-end="933.388">And we've been talking to some Chrome engineers</span> <span data-start="933.388" data-end="934.84">about exposing these kind of APIs</span> <span data-start="934.84" data-end="936.422">in a worker and somewhere else.</span> <span data-start="936.422" data-end="938.38">But that's just not the world we live in today.</span> <span data-start="938.38" data-end="941.462">So for now, that's a restriction.</span> </p></section>
-
-<section><p><span data-start="941.462" data-end="942.67"><span class="speaker">Paul Lewis</span>: Tools not rules — </span> <span data-start="942.67" data-end="946.42">so you might be thinking, ah, I should move all my actors away</span> <span data-start="946.42" data-end="947.5">from the main thread.</span> <span data-start="947.5" data-end="948.714">We'll get to that.</span> <span data-start="948.714" data-end="951.13">But the thing is, if you've got a really chatty actor that</span> <span data-start="951.13" data-end="953.05">needs to talk to the UI actor, you</span> <span data-start="953.05" data-end="956.53">might want to leave it alongside the UI actor on the method.</span> <span data-start="956.53" data-end="958.42">Because as Jason and Shubhie were talking</span> <span data-start="958.42" data-end="961.84">about earlier, that there's a cost to the thread hop,</span> <span data-start="961.84" data-end="966.19">and that might be more expensive than just sending a message</span> <span data-start="966.19" data-end="970.12">and just keeping the actor alongside the UI actor, OK?</span> </p>
-<p></p></section>
-
-<section><p><span data-start="970.12" data-end="972.55"><span class="speaker">Surma</span>: So basically, if you want to do that, just measure</span> <span data-start="972.55" data-end="973.6">and see what the impact is.</span> </p></section>
-
-<section><p><span data-start="973.6" data-end="974.433"><span class="speaker">Paul Lewis</span>: Exactly.</span> <span data-start="974.433" data-end="977.95">So the location independence —  for all that notwithstanding,</span> <span data-start="977.95" data-end="979.72">imagine we were back here where we</span> <span data-start="979.72" data-end="982.492">started with our four actors.</span> </p>
-<p><span data-start="982.492" data-end="984.7">And they're all on the main thread, which is probably</span> <span data-start="984.7" data-end="987.73">where we put them by default. We're sort of saying,</span> <span data-start="987.73" data-end="990.36">you might want to look at it more like this.</span> <span data-start="990.36" data-end="993.97">And you might be thinking, why do they say, not main thread?</span> </p>
-<p><span data-start="993.97" data-end="996.67">Surely, they just meant Web Workers.</span> <span data-start="996.67" data-end="1000.57">And we kind of did because, in most cases, when</span> <span data-start="1000.57" data-end="1002.91">we build these apps, web workers do feature heavily.</span> <span data-start="1002.91" data-end="1006.42">We do move quite a lot of our actors to web workers,</span> <span data-start="1006.42" data-end="1008.94">especially if they're non-chatty.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="1008.94" data-end="1011.28"><span class="speaker">Surma</span>: But not quite.</span> <span data-start="1011.28" data-end="1013.14">So we actually think, or have tried,</span> <span data-start="1013.14" data-end="1015.75">that it's sometimes very, very useful to run an actor,</span> <span data-start="1015.75" data-end="1017.785">for example, on the server side.</span> <span data-start="1017.785" data-end="1019.41">And this is kind of an interesting jump</span> <span data-start="1019.41" data-end="1022.59">to make because it allows you to incorporate</span> <span data-start="1022.59" data-end="1024.3">your back end into the architecture</span> <span data-start="1024.3" data-end="1025.8">of your entire app.</span> </p>
-<p><span data-start="1025.8" data-end="1027.724">It is just another actor in the system.</span> <span data-start="1027.724" data-end="1029.099">And as a matter of fact, the game</span> <span data-start="1029.099" data-end="1030.29">that you've been playing all day — </span> <span data-start="1030.29" data-end="1031.68">and it totally had no bugs at all</span> <span data-start="1031.68" data-end="1034.65">whatsoever —  is actually written in this model.</span> <span data-start="1034.65" data-end="1037.079">So every player that is playing is an actor.</span> </p>
-<p><span data-start="1037.079" data-end="1041.26">The admin panel that the MCs use to control the app is an actor.</span> <span data-start="1041.26" data-end="1043.569">The presentation view —  just another actor.</span> <span data-start="1043.569" data-end="1045.18">And then the Firebase Storage — </span> <span data-start="1045.18" data-end="1047.367">a shared actor that's running on the server side.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="1047.367" data-end="1049.2"><span class="speaker">Paul Lewis</span>: Now interestingly, the mechanism</span> <span data-start="1049.2" data-end="1051.834">by which they chat using the hookup and lookup</span> <span data-start="1051.834" data-end="1052.5">can be anything.</span> <span data-start="1052.5" data-end="1053.249">It could be Fetch.</span> <span data-start="1053.249" data-end="1054.47">It could be a WebSocket.</span> <span data-start="1054.47" data-end="1055.83">And it really doesn't matter.</span> </p></section>
-
-<section><p><span data-start="1055.83" data-end="1056.76"><span class="speaker">Surma</span>: Your Firebase database.</span> </p></section>
-
-<section><p><span data-start="1056.76" data-end="1057.468"><span class="speaker">Paul Lewis</span>: Yeah.</span> </p>
-<p><span data-start="1057.468" data-end="1059.25">So long as talk, these actors can talk,</span> <span data-start="1059.25" data-end="1062.1">and they've got a way of sending messages to one another,</span> <span data-start="1062.1" data-end="1063.31">you're all set.</span> <span data-start="1063.31" data-end="1066.15">So back to our original question.</span> <span data-start="1066.15" data-end="1068.67">Did we actually help with rush hour?</span> <span data-start="1068.67" data-end="1070.35">Would this actually help?</span> <span data-start="1070.35" data-end="1071.347">Well, let's review.</span> </p></section>
-
-<section><p><span data-start="1071.347" data-end="1072.93"><span class="speaker">Surma</span>: So one thing that we definitely</span> <span data-start="1072.93" data-end="1076.92">did achieve is that we are making it less likely to have</span> <span data-start="1076.92" data-end="1080.22">big chunks of uninterruptable JavaScript and more</span> <span data-start="1080.22" data-end="1082.92">little chunks where the browser can stop it in between</span> <span data-start="1082.92" data-end="1083.98">and ship a frame.</span> <span data-start="1083.98" data-end="1086.28">So that's definitely one advantage that we have.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="1086.28" data-end="1087.87"><span class="speaker">Paul Lewis</span>: The location independence,</span> <span data-start="1087.87" data-end="1091.375">hopefully, some of our actors can be run successfully away</span> <span data-start="1091.375" data-end="1092.25">from the main thread.</span> <span data-start="1092.25" data-end="1095.19">Hopefully, it's like fewer cars on the road at rush hour.</span> <span data-start="1095.19" data-end="1097.86">That's good for everybody typically.</span> </p></section>
-
-<section><p><span data-start="1097.86" data-end="1099.93"><span class="speaker">Surma</span>: And as a result, a lot of work</span> <span data-start="1099.93" data-end="1101.67">that can happen in an unexpected way,</span> <span data-start="1101.67" data-end="1104.55">if you're processing a big API response to something,</span> <span data-start="1104.55" data-end="1107.13">that can happen in the worker and not affect your main thread</span> <span data-start="1107.13" data-end="1109.382">from going into jank mode.</span> </p></section>
-
-<section><p><span data-start="1109.382" data-end="1111.09"><span class="speaker">Paul Lewis</span>: There are some other benefits</span> <span data-start="1111.09" data-end="1113.926">that Surma, Tim, and I have noticed as well working</span> <span data-start="1113.926" data-end="1115.05">in this particular pattern.</span> <span data-start="1115.05" data-end="1117.54">One is better testing.</span> <span data-start="1117.54" data-end="1122.28">With that kind of area of ownership,</span> <span data-start="1122.28" data-end="1124.722">it's easier to look at an actor and go,</span> <span data-start="1124.722" data-end="1126.18">oh, well I know what you should do.</span> </p>
-<p><span data-start="1126.18" data-end="1128.489">And you've got an onMessage that I can call,</span> <span data-start="1128.489" data-end="1130.53">and I can make sure that you do the right things.</span> <span data-start="1130.53" data-end="1132.76">So the testing seems to become a little bit easier.</span> </p></section>
-
-<section><p><span data-start="1132.76" data-end="1133.26"><span class="speaker">Surma</span>: Yeah.</span> <span data-start="1133.26" data-end="1135.51">Off on the other side, you can mock another actor</span> <span data-start="1135.51" data-end="1137.97">by just implementing the messages that that actor needs</span> <span data-start="1137.97" data-end="1139.68">to receive and not do the actual work,</span> <span data-start="1139.68" data-end="1142.165">but just send prerecorded messages back.</span> </p></section>
-
-<section><p><span data-start="1142.165" data-end="1143.79"><span class="speaker">Paul Lewis</span>: You have a clear separation</span> <span data-start="1143.79" data-end="1148.38">of concerns, which again, it helps you</span> <span data-start="1148.38" data-end="1152.16">in terms of maybe dividing the work with your teammates</span> <span data-start="1152.16" data-end="1154.67">or even just deciding for yourself</span> <span data-start="1154.67" data-end="1157.02">which actor needs to be responsible for this part</span> <span data-start="1157.02" data-end="1158.617">of the system?</span> </p>
-<p></p></section>
-
-<section><p><span data-start="1158.617" data-end="1160.2"><span class="speaker">Surma</span>: And you get the code splitting.</span> <span data-start="1160.2" data-end="1163.95">Because you have actors that can be hooked up to the system</span> <span data-start="1163.95" data-end="1165.66">at any point in time, really, it allows</span> <span data-start="1165.66" data-end="1167.86">you to split them up and load them lazily.</span> <span data-start="1167.86" data-end="1169.693">You can just import them when you need them.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="1169.693" data-end="1170.43"><span class="speaker">Paul Lewis</span>: Yeah.</span> <span data-start="1170.43" data-end="1172.86">That's good.</span> <span data-start="1172.86" data-end="1174.21">And bring your own framework.</span> <span data-start="1174.21" data-end="1180.3">If you want to use a particular library or framework, you can.</span> <span data-start="1180.3" data-end="1181.712">There's not a prescriptive way.</span> <span data-start="1181.712" data-end="1183.67">If you want to use the [? one ?] thing, use it.</span> <span data-start="1183.67" data-end="1184.73">Great.</span> <span data-start="1184.73" data-end="1188.43">Now, there are some considerations in this world,</span> <span data-start="1188.43" data-end="1190.11">in this setup that we described.</span> </p>
-<p><span data-start="1190.11" data-end="1192.3">One is actor performance challenges.</span> <span data-start="1192.3" data-end="1194.4">If you imagine your UI actor, imagine</span> <span data-start="1194.4" data-end="1199.17">it decides to run along and just be not very yieldy.</span> <span data-start="1199.17" data-end="1200.38">You still have that problem.</span> <span data-start="1200.38" data-end="1202.47">It's no different to a process or an application</span> <span data-start="1202.47" data-end="1205.8">in an operating system deciding it's going to hog the CPU.</span> <span data-start="1205.8" data-end="1208.84">This is not going to go away.</span> <span data-start="1208.84" data-end="1210.36">But we do think that the Scheduler</span> <span data-start="1210.36" data-end="1213.84">API that Jason and Shubhie mentioned in the previous talk</span> <span data-start="1213.84" data-end="1215.61">is a huge part of this story.</span> <span data-start="1215.61" data-end="1217.8">Because it's a great way for individual actors</span> <span data-start="1217.8" data-end="1221.47">to start breaking their work up into smaller chunks.</span> <span data-start="1221.47" data-end="1222.97">You may also be sitting there going,</span> <span data-start="1222.97" data-end="1226.46">I'm not sure I could actorize my blog.</span> <span data-start="1226.46" data-end="1227.81">And we would agree.</span> </p>
-<p><span data-start="1227.81" data-end="1229.9">It's not necessarily for all use cases.</span> <span data-start="1229.9" data-end="1231.64">This works really well when you've</span> <span data-start="1231.64" data-end="1234.46">got apps and in particular apps where you think, actually,</span> <span data-start="1234.46" data-end="1235.27">I can ring fence.</span> <span data-start="1235.27" data-end="1238.21">I can mark off particular parts of this application.</span> <span data-start="1238.21" data-end="1240.07">And I can have some kind of owner for it.</span> <span data-start="1240.07" data-end="1242.2">That's where it works really well.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="1242.2" data-end="1245.19"><span class="speaker">Surma</span>: And there's definitely a different mental model to this.</span> <span data-start="1245.19" data-end="1247.33">As I said, it kind of shifts the center</span> <span data-start="1247.33" data-end="1249.55">of the universe away from the UI framework</span> <span data-start="1249.55" data-end="1252.722">into many center pieces —  all the actors are just</span> <span data-start="1252.722" data-end="1253.305">communicating.</span> <span data-start="1253.305" data-end="1256.9">So it definitely took us a time to build an intuition</span> <span data-start="1256.9" data-end="1258.22">for where do we draw the line?</span> <span data-start="1258.22" data-end="1259.21">What becomes an actor?</span> <span data-start="1259.21" data-end="1261.52">What is just part of an already existing actor?</span> <span data-start="1261.52" data-end="1263.14">What kind of messages should we send?</span> </p>
-<p><span data-start="1263.14" data-end="1265.69">How granular should this entire set up be?</span> <span data-start="1265.69" data-end="1267.981">So if it seems weird at first, if you're</span> <span data-start="1267.981" data-end="1270.355">playing around with this, that is kind of to be expected.</span> <span data-start="1270.355" data-end="1274.66">It's a very different way of architecting a web app.</span> </p></section>
-
-<section><p><span data-start="1274.66" data-end="1277.75"><span class="speaker">Paul Lewis</span>: So that was the rush hour bit.</span> <span data-start="1277.75" data-end="1281.177">That future-facing stuff like the VR, AR, and so on — </span> <span data-start="1281.177" data-end="1282.76">well, we have some thoughts there too.</span> <span data-start="1282.76" data-end="1283.554">Watch this.</span> <span data-start="1283.554" data-end="1285.22">So you were talking about actors before.</span> <span data-start="1285.22" data-end="1287.08">And I want to talk about cameras.</span> <span data-start="1287.08" data-end="1288.37">And the reason I want to talk about cameras</span> <span data-start="1288.37" data-end="1290.33">is because it all plays into that story, right?</span> <span data-start="1290.33" data-end="1292.538">So if can, have one of these lenses before I drop it,</span> <span data-start="1292.538" data-end="1294.7">because I don't want to.</span> </p>
-<p><span data-start="1294.7" data-end="1297.46">Your modern camera has two bits — </span> <span data-start="1297.46" data-end="1300.04">the camera body, which is the thing that</span> <span data-start="1300.04" data-end="1302.28">holds the state when you're shooting in JPEG or RAW — </span> </p></section>
-
-<section><p><span data-start="1302.28" data-end="1302.44"><span class="speaker">Surma</span>: Yeah.</span> <span data-start="1302.44" data-end="1303.33">It's like the business logic.</span> <span data-start="1303.33" data-end="1305.2">It knows how to take the picture and how to store it</span> <span data-start="1305.2" data-end="1306.08">and it does all that.</span> </p></section>
-
-<section><p><span data-start="1306.08" data-end="1306.58"><span class="speaker">Paul Lewis</span>: Yeah.</span> <span data-start="1306.58" data-end="1308.53">Whether you're shooting video, or taking photos with it,</span> <span data-start="1308.53" data-end="1310.22">or whether you are autofocus or manual</span> <span data-start="1310.22" data-end="1311.29">focus —  you get the idea.</span> <span data-start="1311.29" data-end="1313.66">Similar to like a web app, that's</span> <span data-start="1313.66" data-end="1314.92">the state of what's going on.</span> </p>
-<p><span data-start="1314.92" data-end="1318.11">But you've got different lenses for different tasks.</span> <span data-start="1318.11" data-end="1321.1">So that one would be something like a portrait lens.</span> <span data-start="1321.1" data-end="1323.11">This one might be a wide-angle — </span> <span data-start="1323.11" data-end="1324.647">take something of a landscape.</span> </p></section>
-
-<section><p><span data-start="1324.647" data-end="1327.23"><span class="speaker">Surma</span>: As long as we make sure that the mounts are compatible,</span> <span data-start="1327.23" data-end="1328.73">which I guess, in actor world, means</span> <span data-start="1328.73" data-end="1330.994">that they speak with the same messages to each other.</span> </p></section>
-
-<section><p><span data-start="1330.994" data-end="1331.66"><span class="speaker">Paul Lewis</span>: Yes.</span> <span data-start="1331.66" data-end="1334.12">So the messages that they send are really important.</span> <span data-start="1334.12" data-end="1336.7">They're standardized, right?</span> <span data-start="1336.7" data-end="1339.17">And everybody kind of plays to that same data contract.</span> <span data-start="1339.17" data-end="1341.08">Other than that, you can do what you like.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="1341.08" data-end="1342.01"><span class="speaker">Surma</span>: Plug it in.</span> </p></section>
-
-<section><p><span data-start="1342.01" data-end="1343.442"><span class="speaker">Paul Lewis</span>: Off you go.</span> </p></section>
-
-<section><p><span data-start="1343.442" data-end="1344.65"><span class="speaker">Surma</span>: Last video, I promise.</span> </p></section>
-
-<section><p><span data-start="1344.65" data-end="1345.358"><span class="speaker">Paul Lewis</span>: Yeah.</span> </p>
-<p><span data-start="1345.358" data-end="1347.39">So camera lenses —  why camera lenses?</span> <span data-start="1347.39" data-end="1351.08">How does that apply to this story?</span> <span data-start="1351.08" data-end="1352.77">When we talked about this earlier,</span> <span data-start="1352.77" data-end="1355.667">I think very naturally, we would have all thought of the DOM.</span> <span data-start="1355.667" data-end="1357.5">We would have thought of, in the chess game,</span> <span data-start="1357.5" data-end="1360.35">we would have thought of this version.</span> <span data-start="1360.35" data-end="1363.369">But there's the freedom that you get from a UI actor</span> <span data-start="1363.369" data-end="1365.41">that, as long as it can speak the right messages,</span> <span data-start="1365.41" data-end="1367.76">it can be implemented in different technologies.</span> <span data-start="1367.76" data-end="1371.77">So you could have a different actor that does 3D.</span> </p>
-<p><span data-start="1371.77" data-end="1372.79">And now you get that.</span> <span data-start="1372.79" data-end="1376.09">It just has to send the same messages as the standard DOM</span> <span data-start="1376.09" data-end="1376.96">version.</span> <span data-start="1376.96" data-end="1380.17">Or maybe one full XR, similarly, it</span> <span data-start="1380.17" data-end="1381.6">needs to be able to do that — </span> <span data-start="1381.6" data-end="1382.84">send the right messages.</span> <span data-start="1382.84" data-end="1385.93">And perhaps something like Voice as well — </span> <span data-start="1385.93" data-end="1387.479">similar kind of story.</span> </p>
-<p><span data-start="1387.479" data-end="1389.02">So as a byproduct of the actor model,</span> <span data-start="1389.02" data-end="1392.71">we've all of a sudden got these different swappable UI</span> <span data-start="1392.71" data-end="1395.002">actors that we can take with us wherever we need to go.</span> <span data-start="1395.002" data-end="1396.418">And you might say, well, actually,</span> <span data-start="1396.418" data-end="1398.83">all I need in this particular app is the XR and Voice.</span> </p>
-<p><span data-start="1398.83" data-end="1401.442">Or maybe I want DOM and Voice.</span> </p></section>
-
-<section><p><span data-start="1401.442" data-end="1403.15"><span class="speaker">Surma</span>: And you could even imagine a setup</span> <span data-start="1403.15" data-end="1406.84">where you have a DOM actor with lots of effects and visuals</span> <span data-start="1406.84" data-end="1410.41">and one DOM actor implements the same app, but with a much</span> <span data-start="1410.41" data-end="1414.25">less intense memory consumption version, like a low-end version</span> <span data-start="1414.25" data-end="1415.15">of your website.</span> </p>
-<p><span data-start="1415.15" data-end="1417.52">And once you detect that the device we're running on</span> <span data-start="1417.52" data-end="1419.317">is actually kind of struggling to keep up.</span> <span data-start="1419.317" data-end="1421.15">You can actually switch it out in the middle</span> <span data-start="1421.15" data-end="1424.097">of the app and downgrade to the lower visual version.</span> </p></section>
-
-<section><p><span data-start="1424.097" data-end="1426.43"><span class="speaker">Paul Lewis</span>: Or one would say reduced motion or something</span> <span data-start="1426.43" data-end="1427.6">like that.</span> <span data-start="1427.6" data-end="1429.1">And technically, this will be called</span> <span data-start="1429.1" data-end="1430.75">multi-view or multi-modal, which is</span> <span data-start="1430.75" data-end="1432.791">a very fancy way of saying there are lots of ways</span> <span data-start="1432.791" data-end="1434.14">to interact with your web app.</span> </p>
-<p><span data-start="1434.14" data-end="1436.92">And as a byproduct, within the actor model,</span> <span data-start="1436.92" data-end="1439.311">it enables you to do that pretty well.</span> <span data-start="1439.311" data-end="1441.31">So if you're interested in looking at the hookup</span> <span data-start="1441.31" data-end="1442.799">and lookup of the Actor base class</span> <span data-start="1442.799" data-end="1444.34">that we mentioned earlier, this would</span> <span data-start="1444.34" data-end="1447.17">be the place to go if you want to take a snap at that.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="1447.17" data-end="1449.53"><span class="speaker">Surma</span>: This is actually, not only the Actor base class,</span> <span data-start="1449.53" data-end="1450.952">but it's actually a boiler plate.</span> <span data-start="1450.952" data-end="1451.91">So it gets you started.</span> <span data-start="1451.91" data-end="1454.16">There's rollup configured where you can just build it,</span> <span data-start="1454.16" data-end="1455.952">does the code splitting, the lazy loading.</span> <span data-start="1455.952" data-end="1457.66">It should get you started really quickly,</span> <span data-start="1457.66" data-end="1459.37">so you can start writing actors and get</span> <span data-start="1459.37" data-end="1460.615">a feel for how it feels.</span> </p>
-<p></p></section>
-
-<section><p><span data-start="1460.615" data-end="1461.74"><span class="speaker">Paul Lewis</span>: Let's be clear.</span> <span data-start="1461.74" data-end="1462.4">It's experimental.</span> <span data-start="1462.4" data-end="1464.066">It's just the stomping ground that we've</span> <span data-start="1464.066" data-end="1465.89">been using for the last little while.</span> <span data-start="1465.89" data-end="1468.223">And we'd love you to take a look and have a chat with us</span> <span data-start="1468.223" data-end="1470.364">and just tell us what you think.</span> <span data-start="1470.364" data-end="1472.78">So in summary, we're actually quite excited that something</span> <span data-start="1472.78" data-end="1476.08">from 45 years ago has kind of come full circle,</span> <span data-start="1476.08" data-end="1479.516">and it seems to be the thing — </span> </p></section>
-
-<section><p><span data-start="1479.516" data-end="1481.14"><span class="speaker">Surma</span>: It's been hiding in plain sight.</span> </p></section>
-
-<section><p><span data-start="1481.14" data-end="1481.848"><span class="speaker">Paul Lewis</span>: Yeah.</span> <span data-start="1481.848" data-end="1483.975">And from some of the places in computing,</span> <span data-start="1483.975" data-end="1486.1">we've kind of brought it over, not in a purist way.</span> </p>
-<p><span data-start="1486.1" data-end="1488.154">We have our own take on these things.</span> <span data-start="1488.154" data-end="1489.82">But it respects that single-threadedness</span> <span data-start="1489.82" data-end="1491.02">of JavaScript.</span> <span data-start="1491.02" data-end="1492.97">It seems to help with rush hour.</span> </p>
-<p><span data-start="1492.97" data-end="1495.46">And it also seems to enable us to go multi-modal, which</span> <span data-start="1495.46" data-end="1497.11">is really kind of exciting.</span> <span data-start="1497.11" data-end="1499.446">And on that note, thanks.</span> </p></section>
-
-<section><p><span data-start="1499.446" data-end="1500.57"><span class="speaker">Surma</span>: Thank you very much.</span> <span data-start="1500.57" data-end="1503.92">[MUSIC PLAYING]</span> 
-</p>
+<p><span data-start="0" data-end="3.325">[MUSIC PLAYING]</span> </p>
 </section>
 
-</div>
+<section>
+<p><span data-start="5.7" data-end="8.61"><span class="speaker">Paul Lewis</span>: So I was on the way to the office this morning,</span> <span data-start="8.61" data-end="11.76">and I realized it is very much like web dev, rush hour.</span> </p>
+</section>
 
-<img alt="The End" id="fin" src="images/fin.jpg">
+<section>
+<p><span data-start="11.76" data-end="12.36"><span class="speaker">Surma</span>: OK.</span> </p>
+<p></p>
+</section>
 
-<script>
-/*eslint-disable */
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    }, 'google-translate');
-}
-/* eslint-enable */
-</script>
+<section>
+<p><span data-start="12.36" data-end="13.86"><span class="speaker">Paul Lewis</span>: Rush hour is like all the traffic.</span> <span data-start="13.86" data-end="16.379">Everyone is trying to get to the office at 9:00 AM, right?</span> <span data-start="16.379" data-end="18.635">So all these people are in their cars, and on trains,</span> <span data-start="18.635" data-end="19.26">and everything.</span> <span data-start="19.26" data-end="20.718">Everyone's just rushing, and nobody</span> <span data-start="20.718" data-end="22.54">can move for anybody else.</span> </p>
+<p><span data-start="22.54" data-end="25.929">And I think that's like web because — </span> </p>
+</section>
 
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<section>
+<p><span data-start="25.929" data-end="27.72"><span class="speaker">Surma</span>: Yes, please explain this a bit more?</span> </p>
+</section>
 
-<script src="js/main.js"></script>
+<section>
+<p><span data-start="27.72" data-end="28.26"><span class="speaker">Paul Lewis</span>: Yes.</span> <span data-start="28.26" data-end="29.7">Because you've got the main thread.</span> <span data-start="29.7" data-end="30.75">You've got this one thread.</span> <span data-start="30.75" data-end="32.833">And on that main thread, you've got all these work</span> <span data-start="32.833" data-end="35.49">styles, JavaScript, layout, paint, composite,</span> <span data-start="35.49" data-end="36.3">your framework.</span> </p>
+<p><span data-start="36.3" data-end="38.43">Everything is running, and everybody's</span> <span data-start="38.43" data-end="41.064">competing for this one resource, the road or, in this case,</span> <span data-start="41.064" data-end="41.73">the main thread.</span> </p>
+</section>
 
-</body>
+<section>
+<p><span data-start="41.73" data-end="45.45"><span class="speaker">Surma</span>: Oh, so Mr. Framework has a car, Mr. Paint has a car,</span> <span data-start="45.45" data-end="46.802">Mr. Business Logic has a car.</span> <span data-start="46.802" data-end="48.51">And they all just want to go on the road,</span> <span data-start="48.51" data-end="49.47">but it's already full.</span> </p>
+<p></p>
+</section>
 
-</html>
+<section>
+<p><span data-start="49.47" data-end="50.04"><span class="speaker">Paul Lewis</span>: Exactly.</span> <span data-start="50.04" data-end="51.66">And everybody's in the same boat where</span> <span data-start="51.66" data-end="55.43">everybody gets the angry tweets and sees all this performance</span> <span data-start="55.43" data-end="55.93">advice.</span> <span data-start="55.93" data-end="58.346">And nobody knows what to do because all this stuff is just</span> <span data-start="58.346" data-end="59.91">constrained into this one place — </span> <span data-start="59.91" data-end="60.919">rush hour.</span> <span data-start="60.919" data-end="62.46">As we described in that video, that's</span> <span data-start="62.46" data-end="67.47">kind of how we feel when we look at the web at large.</span> </p>
+<p><span data-start="67.47" data-end="71.19">We look at it, and we go, all this code should be here.</span> <span data-start="71.19" data-end="74.01">But it just feels like the traffic is the problem.</span> <span data-start="74.01" data-end="77.79">There's just too much going through the main thread.</span> </p>
+</section>
+
+<section>
+<p><span data-start="77.79" data-end="81.21"><span class="speaker">Surma</span>: And traditionally, the main thread is full.</span> <span data-start="81.21" data-end="82.65">It's overworked and underpaid.</span> </p>
+<p><span data-start="82.65" data-end="84.39">You would say, cool, I'd use threads.</span> <span data-start="84.39" data-end="85.77">On any other platform, you could do that.</span> <span data-start="85.77" data-end="87.78">Just spin up a thread, put some code there, run it there,</span> <span data-start="87.78" data-end="88.446">call a function.</span> </p>
+<p><span data-start="88.446" data-end="88.95">Hooray!</span> <span data-start="88.95" data-end="89.96">Everyone's happy.</span> <span data-start="89.96" data-end="92.73">But it turns out JavaScript and the web is special.</span> <span data-start="92.73" data-end="95.985">And it is inherently single threaded, so you can't do that.</span> </p>
+</section>
+
+<section>
+<p><span data-start="95.985" data-end="97.11"><span class="speaker">Paul Lewis</span>: Right, exactly.</span> <span data-start="97.11" data-end="100.94">Every thread is kind of its own little universe, isn't it?</span> <span data-start="100.94" data-end="103.142">Like we heard, it's a [INAUDIBLE],, right?</span> <span data-start="103.142" data-end="105.6">And so you can't just go, just call this on another thread,</span> <span data-start="105.6" data-end="108.76">but you've got some shared stuff that you can work on.</span> <span data-start="108.76" data-end="110.706">So that's a challenge.</span> <span data-start="110.706" data-end="112.08">And then it gets more interesting</span> <span data-start="112.08" data-end="114.26">because say, for example, you're trying to build — </span> </p>
+<p><span data-start="114.26" data-end="117.2">I don't know —  a chess game just for argument's sake.</span> <span data-start="117.2" data-end="118.53">And you've got a chess engine.</span> <span data-start="118.53" data-end="120.06">And the chess engine — </span> <span data-start="120.06" data-end="121.57">it takes a few hundred milliseconds</span> <span data-start="121.57" data-end="123.84">to calculate a move.</span> </p>
+</section>
+
+<section>
+<p><span data-start="123.84" data-end="125.707"><span class="speaker">Surma</span>: It gets exponentially difficult.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="125.707" data-end="127.29"><span class="speaker">Paul Lewis</span>: And you build it with DOM.</span> <span data-start="127.29" data-end="130.889">And then some bright spark goes, do you know what we should do?</span> <span data-start="130.889" data-end="132.15">3D.</span> <span data-start="132.15" data-end="134.377">And you're, like, [LAUGHS] I was already</span> <span data-start="134.377" data-end="135.71">behind on my [INAUDIBLE] budget.</span> <span data-start="135.71" data-end="137.959">If you could just not do the 60-frames-a-second thing,</span> <span data-start="137.959" data-end="138.79">that'll be great.</span> <span data-start="138.79" data-end="142.51">And some even brighter spark says, how about VR?</span> </p>
+</section>
+
+<section>
+<p><span data-start="142.51" data-end="143.01"><span class="speaker">Surma</span>: Yeah.</span> <span data-start="143.01" data-end="144.469">I want to stand on the chess board.</span> </p>
+</section>
+
+<section>
+<p><span data-start="144.469" data-end="146.801"><span class="speaker">Paul Lewis</span>: Yeah, I want to be, like, right in the game.</span> </p>
+<p><span data-start="146.801" data-end="149.295">And you're thinking, um, there was already rush hour.</span> </p>
+</section>
+
+<section>
+<p><span data-start="149.295" data-end="151.17"><span class="speaker">Surma</span>: Turns out frame rate —  quite important</span> <span data-start="151.17" data-end="152.04">when it comes to VR.</span> </p>
+</section>
+
+<section>
+<p><span data-start="152.04" data-end="153.706"><span class="speaker">Paul Lewis</span>: Yeah, and it could be voice.</span> <span data-start="153.706" data-end="155.64">There are so many things that it could be.</span> </p>
+</section>
+
+<section>
+<p><span data-start="155.64" data-end="158"><span class="speaker">Surma</span>: So this becomes increasingly unlikely for you</span> <span data-start="158" data-end="159.63">to be able to do this successfully on the web</span> <span data-start="159.63" data-end="160.17">currently.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="160.17" data-end="161.02"><span class="speaker">Paul Lewis</span>: Right.</span> <span data-start="161.02" data-end="165.18">And so this is the question that we have been thinking through</span> <span data-start="165.18" data-end="166.83">for the last little while.</span> <span data-start="166.83" data-end="170.64">Is there anything we can do, anything we can suggest,</span> <span data-start="170.64" data-end="173.65">think of to help?</span> </p>
+</section>
+
+<section>
+<p><span data-start="173.65" data-end="174.79"><span class="speaker">Surma</span>: We have two birds.</span> <span data-start="174.79" data-end="175.9">We're looking for a stone.</span> </p>
+</section>
+
+<section>
+<p><span data-start="175.9" data-end="176.733"><span class="speaker">Paul Lewis</span>: Exactly.</span> </p>
+<p><span data-start="176.733" data-end="177.435">And — </span> <span data-start="177.435" data-end="178.62">[LAUGHTER]</span> </p>
+</section>
+
+<section>
+<p><span data-start="178.62" data-end="179.76"><span class="speaker">Surma</span>: Ah, that went well.</span> </p>
+</section>
+
+<section>
+<p><span data-start="182.19" data-end="182.815"><span class="speaker">Paul Lewis</span>: OK.</span> <span data-start="185.68" data-end="188.18">Wow, I really need to think of what I was going to say next.</span> <span data-start="188.18" data-end="189">OK, this.</span> </p>
+</section>
+
+<section>
+<p><span data-start="189" data-end="190.595"><span class="speaker">Surma</span>: Actor model.</span> </p>
+<p><span data-start="190.595" data-end="192.2">So we kind of stumbled over this.</span> <span data-start="192.2" data-end="195.8">The actor model is, as it says right here, about 45 years old.</span> <span data-start="195.8" data-end="199.28">And it's been made popular by Erlang</span> <span data-start="199.28" data-end="201.43">and then continued with Elixir and Pony.</span> </p>
+<p><span data-start="201.43" data-end="203.6">It's languages that use the actor model to this day</span> <span data-start="203.6" data-end="205.21">and successfully so.</span> <span data-start="205.21" data-end="207.38">And we realized that it's actually</span> <span data-start="207.38" data-end="208.892">a really good fit for the web.</span> </p>
+</section>
+
+<section>
+<p><span data-start="208.892" data-end="209.6"><span class="speaker">Paul Lewis</span>: Yeah.</span> </p>
+<p><span data-start="209.6" data-end="213.08">Because what it does is it makes a feature</span> <span data-start="213.08" data-end="215.629">of that single-threadedness of JavaScript.</span> <span data-start="215.629" data-end="217.67">But we like to explain —  if you've come across it</span> <span data-start="217.67" data-end="218.47">before, great.</span> <span data-start="218.47" data-end="220.22">If you've not come across the actor model,</span> <span data-start="220.22" data-end="222.094">we like to explain it in a very specific way.</span> <span data-start="222.094" data-end="223.5">So check this one out.</span> </p>
+</section>
+
+<section>
+<p><span data-start="223.5" data-end="224.93"><span class="speaker">Surma</span>: So when we did Supercharge,</span> <span data-start="224.93" data-end="226.43">you saw us on screen.</span> <span data-start="226.43" data-end="229.61">But behind the cameras, we had an entire crew.</span> </p>
+<p><span data-start="229.61" data-end="231.83">And that means we had one person working the camera.</span> <span data-start="231.83" data-end="234.81">We had one person worrying about if our audio was good.</span> <span data-start="234.81" data-end="235.97">We had a director.</span> <span data-start="235.97" data-end="238.31">And each of these people were solely responsible</span> <span data-start="238.31" data-end="240.39">for that specific device.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="240.39" data-end="243.74"><span class="speaker">Paul Lewis</span>: And instead of going over and pressing one person's</span> <span data-start="243.74" data-end="246.124">buttons or just messing with settings,</span> <span data-start="246.124" data-end="248.54">those people actually have to communicate with one another</span> <span data-start="248.54" data-end="249.373">to get the job done.</span> <span data-start="249.373" data-end="251.31">It you like, there are actors in the system,</span> <span data-start="251.31" data-end="253.28">but they've got to send messages to one another</span> <span data-start="253.28" data-end="255.11">and communicate and collaborate in order</span> <span data-start="255.11" data-end="258.38">to get the final thing working.</span> </p>
+</section>
+
+<section>
+<p><span data-start="258.38" data-end="260.163"><span class="speaker">Surma</span>: So that's kind of where — </span> <span data-start="260.163" data-end="261.579">more video, more production value.</span> <span data-start="261.579" data-end="262.61">It's good, right?</span> <span data-start="262.61" data-end="265.55">So that's where we see a mentality that</span> <span data-start="265.55" data-end="267">fits the web really well.</span> </p>
+<p><span data-start="267" data-end="268.79">And you start thinking about, where</span> <span data-start="268.79" data-end="271.64">can you draw a line for individual pieces</span> <span data-start="271.64" data-end="273.69">of responsibility in your app.</span> <span data-start="273.69" data-end="275.72">And instead of thinking about classes and how</span> <span data-start="275.72" data-end="277.97">you call the method on the other class,</span> <span data-start="277.97" data-end="279.86">you can now think about these actors</span> <span data-start="279.86" data-end="282.38">and how you can send the right message to request something</span> <span data-start="282.38" data-end="282.99">to happen.</span> </p>
+</section>
+
+<section>
+<p><span data-start="282.99" data-end="283.16"><span class="speaker">Paul Lewis</span>: Right.</span> <span data-start="283.16" data-end="284.82">There are these areas of ownership.</span> <span data-start="284.82" data-end="287.6">So let's think about, how, at a conceptual level,</span> <span data-start="287.6" data-end="289.699">how would you think this through?</span> <span data-start="289.699" data-end="291.24">What would it look like a little bit?</span> </p>
+<p><span data-start="291.24" data-end="291.74">OK.</span> <span data-start="291.74" data-end="295.63">So imagine you have an actor, and it's job</span> <span data-start="295.63" data-end="297.602">is to run your user interface.</span> <span data-start="297.602" data-end="298.81">That's its area of ownership.</span> <span data-start="298.81" data-end="299.92">That's what it does.</span> <span data-start="299.92" data-end="302.18">That's its job and only that.</span> <span data-start="302.18" data-end="304.42">You might also have another actor</span> <span data-start="304.42" data-end="307.33">whose job is to handle state for your application</span> <span data-start="307.33" data-end="310.99">and yet another one who handles the storage.</span> </p>
+<p><span data-start="310.99" data-end="313.63">Now, imagine in your app a typical interaction</span> <span data-start="313.63" data-end="316.33">would be something like favoriting an item.</span> <span data-start="316.33" data-end="318.28">The user interface, when the user taps on it,</span> <span data-start="318.28" data-end="320.17">it will send a message over to the state</span> <span data-start="320.17" data-end="322.96">that says this was favorited.</span> </p>
+<p><span data-start="322.96" data-end="324.874">In turn, the actor handling the state</span> <span data-start="324.874" data-end="326.29">will send a message to the storage</span> <span data-start="326.29" data-end="329.92">to say we need to remember that they favorited this item.</span> <span data-start="329.92" data-end="331.63">Now we could also, at this point,</span> <span data-start="331.63" data-end="333.999">introduce a new actor into this story,</span> <span data-start="333.999" data-end="335.29">something that could broadcast.</span> <span data-start="335.29" data-end="338.689">Because when the state changes, typically, what we'd want to do</span> <span data-start="338.689" data-end="340.48">is, we'd want to send that both to the user</span> <span data-start="340.48" data-end="344.75">interface and the storage to be reflected in both, I suppose,</span> <span data-start="344.75" data-end="345.25">really.</span> </p>
+</section>
+
+<section>
+<p><span data-start="345.25" data-end="346.147"><span class="speaker">Surma</span>: Yes.</span> <span data-start="346.147" data-end="347.98">And you can kind of see here, that it really</span> <span data-start="347.98" data-end="350.906">is a separation of concerns.</span> <span data-start="350.906" data-end="354.18">Ah, the click, there you go.</span> <span data-start="354.18" data-end="356.54">[INAUDIBLE] transition —  do recommend.</span> </p>
+<p><span data-start="356.54" data-end="358.595">It really helps you to think about your app</span> <span data-start="358.595" data-end="360.47">in a different way, helping you to figure out</span> <span data-start="360.47" data-end="363.41">where does new code go, which module can you switch out</span> <span data-start="363.41" data-end="365.51">to fix a problem that you're having?</span> <span data-start="365.51" data-end="368.03">It's a really good way to structure the app in this way.</span> </p>
+</section>
+
+<section>
+<p><span data-start="368.03" data-end="368.51"><span class="speaker">Paul Lewis</span>: Yeah, absolutely.</span> </p>
+<p><span data-start="368.51" data-end="370.1">And we use to separation of concerns</span> <span data-start="370.1" data-end="372.5">when we talk about HTML, JavaScript, and CSS,</span> <span data-start="372.5" data-end="376.11">or when we talk about components in a modern framework.</span> <span data-start="376.11" data-end="379.539">So it's another version of that same story I suppose.</span> </p>
+</section>
+
+<section>
+<p><span data-start="379.539" data-end="381.08"><span class="speaker">Surma</span>: Another benefit that you get — </span> <span data-start="381.08" data-end="383.48">and we have heard about this problem a couple of times,</span> <span data-start="383.48" data-end="384.86">I think yesterday and today — </span> <span data-start="384.86" data-end="387.29">is that we often see big chunks of monolithic</span> </p>
+<p><span data-start="387.29" data-end="388.76">JavaScript just run — </span> <span data-start="388.76" data-end="390.65">frameworks updating the virtual DOM, and then</span> <span data-start="390.65" data-end="392.24">the DOM, or something like that.</span> <span data-start="392.24" data-end="395.33">And with this pattern, you introduce a natural breaking</span> <span data-start="395.33" data-end="398.25">point where you give the browser a chance to ship a frame.</span> <span data-start="398.25" data-end="399.86">Because every time you send a message,</span> <span data-start="399.86" data-end="402.41">there is a point where you say, OK, browser</span> <span data-start="402.41" data-end="405.26">can intervene and ship a frame if we are out of frame budget.</span> </p>
+</section>
+
+<section>
+<p><span data-start="405.26" data-end="406.73"><span class="speaker">Paul Lewis</span>: Exactly.</span> <span data-start="406.73" data-end="410.69">Now, a little side effect a positive one of this</span> <span data-start="410.69" data-end="412.254">is location independence.</span> </p>
+<p><span data-start="412.254" data-end="413.42">And we'll come back to this.</span> <span data-start="413.42" data-end="414.95">This is a sort of repeating refrain</span> <span data-start="414.95" data-end="416.908">that we're going to get into a little bit more.</span> <span data-start="416.908" data-end="420.525">But think about actors as, they're not all the same.</span> <span data-start="420.525" data-end="421.9">They have different requirements.</span> <span data-start="421.9" data-end="425.27">Some actors will not need to have access to the main thread,</span> <span data-start="425.27" data-end="428.03">for example, because of the kind of work they do.</span> <span data-start="428.03" data-end="429.98">And as such, we might be able to run them</span> <span data-start="429.98" data-end="432.354">in different locations, i.e., not on the main thread.</span> <span data-start="432.354" data-end="433.77">As I say, we'll come back to that.</span> <span data-start="433.77" data-end="435.59">But the idea here is maybe we just</span> <span data-start="435.59" data-end="438.117">bought ourselves a little capacity for rush hour.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="438.117" data-end="439.7"><span class="speaker">Surma</span>: Because as long as the messages</span> <span data-start="439.7" data-end="441.86">get delivered to the actor, the actor</span> <span data-start="441.86" data-end="444.39">will then do the same work as it did before and will</span> <span data-start="444.39" data-end="445.64">respond with the same message.</span> <span data-start="445.64" data-end="447.95">So the entire app keeps behaving the same way,</span> <span data-start="447.95" data-end="449.15">no matter where it runs.</span> <span data-start="449.15" data-end="453.06">And because of that location independence,</span> <span data-start="453.06" data-end="456.17">we can lower the likelihood of long work</span> <span data-start="456.17" data-end="458.397">impacting the main thread and making your app janky.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="458.397" data-end="459.23"><span class="speaker">Paul Lewis</span>: Exactly.</span> <span data-start="459.23" data-end="461.63">So conceptually, that is what it is.</span> <span data-start="461.63" data-end="465.47">But I like seeing code.</span> <span data-start="465.47" data-end="467.82">I think code helps.</span> <span data-start="467.82" data-end="471.12">And so we're not launching a product.</span> <span data-start="471.12" data-end="474.26">We're not launching a framework, or even a library.</span> <span data-start="474.26" data-end="477.18">We just wanted to have a chat with you about architectures.</span> <span data-start="477.18" data-end="480.22">And we've been using some actor-based stuff</span> <span data-start="480.22" data-end="482.48">for the last little while with our colleague Tim.</span> </p>
+<p><span data-start="482.48" data-end="484.07">And the three of us have just been putting some code</span> <span data-start="484.07" data-end="484.38">together.</span> <span data-start="484.38" data-end="485.13">So what we're going to do is, we're just</span> <span data-start="485.13" data-end="487.16">going to show you a little bit of the code</span> <span data-start="487.16" data-end="488.09">that we've been using.</span> <span data-start="488.09" data-end="490.762">We've been using it to build some of our apps.</span> </p>
+</section>
+
+<section>
+<p><span data-start="490.762" data-end="492.387"><span class="speaker">Surma</span>: And we'll share that at the end.</span> <span data-start="492.387" data-end="493.803">You're very welcome to try it out.</span> <span data-start="493.803" data-end="495.93">And you're also very welcome to write your own.</span> <span data-start="495.93" data-end="498.2">We don't really care if we use our version or someone else's</span> <span data-start="498.2" data-end="498.7">version.</span> </p>
+<p><span data-start="498.7" data-end="500.87">It's more about the concept, about the architecture.</span> </p>
+</section>
+
+<section>
+<p><span data-start="500.87" data-end="501.702"><span class="speaker">Paul Lewis</span>: Absolutely.</span> <span data-start="501.702" data-end="504.076">But with this in mind, let's talk about a particular app,</span> <span data-start="504.076" data-end="506.585">something like a stopwatch app, which you would start,</span> <span data-start="506.585" data-end="508.957">it would count up in seconds — </span> <span data-start="508.957" data-end="510.29">pause, play, that kind of thing.</span> <span data-start="510.29" data-end="515.74">And then you might reset the time if you're done.</span> <span data-start="515.74" data-end="519.57">So in our code, we have this Actor base class.</span> <span data-start="519.57" data-end="522.659">And that top function up there, hookup, is the first thing</span> <span data-start="522.659" data-end="523.659">that you'd need to know.</span> <span data-start="523.659" data-end="526.36">And the job of hookup is to kind of register</span> <span data-start="526.36" data-end="528.74">an actor in the system so that we can talk to it later,</span> <span data-start="528.74" data-end="531.37">so we can send it messages later on.</span> </p>
+<p><span data-start="531.37" data-end="533.02">Because ultimately, we won't know where</span> <span data-start="533.02" data-end="534.5">this actor is in the system.</span> <span data-start="534.5" data-end="537.94">And so we just need almost like a registry, I suppose,</span> <span data-start="537.94" data-end="540.6">where we can say, I'm going to tell you there's an actor,</span> <span data-start="540.6" data-end="542.02">and it's found under this name.</span> </p>
+</section>
+
+<section>
+<p><span data-start="542.02" data-end="543.52"><span class="speaker">Surma</span>: It's basically the equivalent</span> <span data-start="543.52" data-end="545.32">of what you might know from custom elements.</span> <span data-start="545.32" data-end="546.861">There's custom elements that. define.</span> <span data-start="546.861" data-end="550.33">And you say, this custom element is now known under this name.</span> <span data-start="550.33" data-end="553.709">And this does the exact same thing but for actors.</span> </p>
+</section>
+
+<section>
+<p><span data-start="553.709" data-end="556"><span class="speaker">Paul Lewis</span>: So then we have our two actors, a Clock one</span> <span data-start="556" data-end="557.59">and a UI one.</span> <span data-start="557.59" data-end="560.77">And then in the bootstrap, we instantiate both our UI</span> <span data-start="560.77" data-end="562.96">and hook it up, so it's available under UI</span> <span data-start="562.96" data-end="564.46">as a string name.</span> <span data-start="564.46" data-end="568.552">And then we do the same with the clock like so.</span> </p>
+<p><span data-start="568.552" data-end="571.01">So now, we can talk about how you might implement something</span> <span data-start="571.01" data-end="573.62">like the clock itself.</span> <span data-start="573.62" data-end="575.9">And in our case, when you've got something like this,</span> <span data-start="575.9" data-end="578.6">it's almost like a pure data actor.</span> <span data-start="578.6" data-end="582.05">It doesn't have any need to go near the DOM.</span> </p>
+<p><span data-start="582.05" data-end="583.7">It just wants to tick, and pause,</span> <span data-start="583.7" data-end="584.51">and all those kinds of things.</span> </p>
+</section>
+
+<section>
+<p><span data-start="584.51" data-end="586.176"><span class="speaker">Surma</span>: I mean, what do you need, really.</span> <span data-start="586.176" data-end="588.87">You need a set interval, and that's pretty much it.</span> </p>
+</section>
+
+<section>
+<p><span data-start="588.87" data-end="589.89"><span class="speaker">Paul Lewis</span>: So time out?</span> </p>
+</section>
+
+<section>
+<p><span data-start="589.89" data-end="590.545"><span class="speaker">Surma</span>: Sure.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="590.545" data-end="592.31"><span class="speaker">Paul Lewis</span>: I have a thing against set interval.</span> <span data-start="592.31" data-end="593.062">It's a long story.</span> <span data-start="593.062" data-end="594.77">Come find me after, and I'll explain why.</span> <span data-start="594.77" data-end="596.93">Anyway, imagine this then.</span> <span data-start="596.93" data-end="599.06">We're going to model this as a state machine.</span> <span data-start="602.61" data-end="603.83">We start with a paused state.</span> <span data-start="603.83" data-end="605.94">Our clock is paused.</span> <span data-start="605.94" data-end="609.02">We can transition to a running state.</span> </p>
+<p><span data-start="609.02" data-end="611.4">Every second, we'll tick, and we'll go to the tick state.</span> <span data-start="611.4" data-end="613.4">And that will take us back to the running state.</span> <span data-start="613.4" data-end="615.92">And you can imagine being in this tick, running, tick,</span> <span data-start="615.92" data-end="617.704">running state like in a clock.</span> </p>
+</section>
+
+<section>
+<p><span data-start="617.704" data-end="618.62"><span class="speaker">Surma</span>: Like ping-pong.</span> </p>
+</section>
+
+<section>
+<p><span data-start="618.62" data-end="620.6"><span class="speaker">Paul Lewis</span>: Like a clock, Indeed.</span> <span data-start="620.6" data-end="622.92">We could pause, and we could reset.</span> <span data-start="622.92" data-end="624.737">And when we reset, we go back to that.</span> </p>
+</section>
+
+<section>
+<p><span data-start="624.737" data-end="626.57"><span class="speaker">Surma</span>: And that's a really nice pattern here</span> <span data-start="626.57" data-end="629.07">that plays along well with the message passing of the actor</span> <span data-start="629.07" data-end="629.57">model.</span> <span data-start="629.57" data-end="631.4">Because all of these triggers, as they</span> <span data-start="631.4" data-end="634.25">are called, in the state machine world could just be a message.</span> <span data-start="634.25" data-end="637.22">You send a message to this state machine, it's being ingested,</span> <span data-start="637.22" data-end="638.93">and then a transition happens.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="638.93" data-end="640.534"><span class="speaker">Paul Lewis</span>: Absolutely.</span> </p>
+</section>
+
+<section>
+<p><span data-start="640.534" data-end="642.2"><span class="speaker">Surma</span>: So we found, actually, that there</span> <span data-start="642.2" data-end="644.48">are a lot of implementations for state machines</span> <span data-start="644.48" data-end="646.85">out there in the wild, and that's not very unexpected.</span> <span data-start="646.85" data-end="648.59">And we have kind of been using xstate,</span> <span data-start="648.59" data-end="650.502">which is written by David from Microsoft,</span> <span data-start="650.502" data-end="651.71">and it's working really well.</span> <span data-start="651.71" data-end="654.364">It allows you to declare your state machine as a JSON object.</span> <span data-start="654.364" data-end="656.03">So you just declare your states and then</span> <span data-start="656.03" data-end="657.38">what the transitions are.</span> <span data-start="657.38" data-end="660.68">And then you just pass this to this machine constructor,</span> <span data-start="660.68" data-end="661.94">and you get a state machine.</span> </p>
+</section>
+
+<section>
+<p><span data-start="661.94" data-end="665.87"><span class="speaker">Paul Lewis</span>: So our clock extends the Actor base class,</span> <span data-start="665.87" data-end="668.157">and what we do is we instantiate our state Machine.</span> </p>
+<p><span data-start="668.157" data-end="669.74">We say, go to the initial state, which</span> <span data-start="669.74" data-end="672.54">happens to that paused state.</span> <span data-start="672.54" data-end="676.35">And then later on, imagine that we receive a message.</span> <span data-start="676.35" data-end="678.96">And our Actor base class has this onMessage callback,</span> <span data-start="678.96" data-end="680.46">which is, I got a message.</span> <span data-start="680.46" data-end="682.287">What do I do?</span> <span data-start="682.287" data-end="684.12">In this case, we would assume that the state</span> <span data-start="684.12" data-end="686.25">would be changing inside of our state machine.</span> </p>
+<p><span data-start="686.25" data-end="688.44">So we use the state machine transition</span> <span data-start="688.44" data-end="691.07">to get from wherever it was to wherever it needs to be.</span> <span data-start="691.07" data-end="694.554">So the message is basically driving the clock.</span> <span data-start="694.554" data-end="696.47">And we'll inspect what the new state value is.</span> <span data-start="696.47" data-end="698.34">So if we find that our clock is running,</span> <span data-start="698.34" data-end="702">we'll set a tick time out for one second.</span> <span data-start="702" data-end="704.22">If we tick, we increment our tick count.</span> <span data-start="704.22" data-end="707.71">And then the clock will send itself a message.</span> <span data-start="707.71" data-end="710.04">Now, it could call its own functions.</span> <span data-start="710.04" data-end="712.68">But we tend to be a little bit — </span> <span data-start="712.68" data-end="713.857">we like it fair.</span> </p>
+<p><span data-start="713.857" data-end="716.19">And so what we do is we make sure the clock sends itself</span> <span data-start="716.19" data-end="717.773">a message like every other actor would</span> <span data-start="717.773" data-end="719.03">have to send it a message.</span> </p>
+</section>
+
+<section>
+<p><span data-start="719.03" data-end="720.18"><span class="speaker">Surma</span>: And you can add it like a message queue that</span> <span data-start="720.18" data-end="721.221">buffers all the messages.</span> <span data-start="721.221" data-end="723.45">And the actor goes through one message, processes,</span> <span data-start="723.45" data-end="724.83">then it goes to the next message.</span> <span data-start="724.83" data-end="726.75">And so if you just call your own function,</span> <span data-start="726.75" data-end="728.47">it would kind of be cutting that line.</span> <span data-start="728.47" data-end="729.6">So if you want to keep it fair, you</span> <span data-start="729.6" data-end="731.52">would just queue your app message at the end</span> <span data-start="731.52" data-end="733.02">and wait like a good human.</span> </p>
+</section>
+
+<section>
+<p><span data-start="733.02" data-end="734.86"><span class="speaker">Paul Lewis</span>: Exactly, or a computer.</span> </p>
+</section>
+
+<section>
+<p><span data-start="734.86" data-end="736.76"><span class="speaker">Surma</span>: Sure.</span> </p>
+</section>
+
+<section>
+<p><span data-start="736.76" data-end="738.45"><span class="speaker">Paul Lewis</span>: Cancel the tick if you're</span> <span data-start="738.45" data-end="740.31">paused if there's one pending.</span> </p>
+<p><span data-start="740.31" data-end="742.33">When we reset, we'll reset the tick count.</span> <span data-start="742.33" data-end="747.03">And again, the clock will send itself a message to pause.</span> <span data-start="747.03" data-end="749.67">And now, let's talk about sending messages.</span> <span data-start="749.67" data-end="750.58">That's next, yes.</span> <span data-start="750.58" data-end="752.635">So the clock, is going to have to send a state</span> <span data-start="752.635" data-end="754.26">update to the user interface so that it</span> <span data-start="754.26" data-end="758.38">can reflect the time going up and so on, and so forth.</span> <span data-start="758.38" data-end="760.08">And this is the opposite to the hookup.</span> <span data-start="760.08" data-end="762.41">This is lookup, which is also in — </span> </p>
+</section>
+
+<section>
+<p><span data-start="762.41" data-end="764.66"><span class="speaker">Surma</span>: Hookup, lookup, hookup, lookup, hookup, lookup.</span> </p>
+</section>
+
+<section>
+<p><span data-start="764.66" data-end="767.31"><span class="speaker">Paul Lewis</span>: I lose him for hours at a time when he does this.</span> <span data-start="767.31" data-end="768.55">OK, hookup and lookup.</span> <span data-start="768.55" data-end="772.384">So we look up the UI, and then we can send it a message.</span> </p>
+</section>
+
+<section>
+<p><span data-start="772.384" data-end="774.3"><span class="speaker">Surma</span>: And that's very important to note here.</span> <span data-start="774.3" data-end="776.79">The handle, this UI variable that we have there,</span> <span data-start="776.79" data-end="778.96">it is not the actor instance.</span> </p>
+<p><span data-start="778.96" data-end="782.4">You can't go in and change a member variable of that class.</span> <span data-start="782.4" data-end="785.544">It is just an object with a send method and only that method.</span> <span data-start="785.544" data-end="786.96">Because that's the only way you're</span> <span data-start="786.96" data-end="789.477">allowed to interact with any of the other actors.</span> </p>
+</section>
+
+<section>
+<p><span data-start="789.477" data-end="790.31"><span class="speaker">Paul Lewis</span>: Exactly.</span> <span data-start="790.31" data-end="792.93">And so in this case, we're going to send the UI a message.</span> <span data-start="792.93" data-end="794.43">And the message is going to say what</span> <span data-start="794.43" data-end="798.03">the time is and whether or not the clock is running.</span> <span data-start="798.03" data-end="800.44">We found that TypeScript is really helpful at this point,</span> <span data-start="800.44" data-end="802.65">because those messages need to be well-formed,</span> <span data-start="802.65" data-end="803.65">and well-understood.</span> </p>
+<p><span data-start="803.65" data-end="805.233">And there needs to be a data contract.</span> <span data-start="805.233" data-end="807.33">And we've just found, from practical experience,</span> <span data-start="807.33" data-end="808.98">that TypeScript is a really good way of saying,</span> <span data-start="808.98" data-end="810.31">this object looks like this.</span> <span data-start="810.31" data-end="811.05">This is a number.</span> <span data-start="811.05" data-end="811.822">This is a string.</span> </p>
+<p><span data-start="811.822" data-end="813.78">This is another object, and so on and so forth.</span> <span data-start="813.78" data-end="816.97">So just take that as what it is, really.</span> </p>
+</section>
+
+<section>
+<p><span data-start="816.97" data-end="817.97"><span class="speaker">Surma</span>: A recommendation.</span> </p>
+</section>
+
+<section>
+<p><span data-start="817.97" data-end="818.77"><span class="speaker">Paul Lewis</span>: Yeah, a recommendation.</span> <span data-start="818.77" data-end="820.11">We found that useful.</span> </p>
+<p><span data-start="820.11" data-end="822.43">Let's talk about the UI a little bit.</span> <span data-start="822.43" data-end="825.401">Interestingly, you can bring your own framework.</span> </p>
+</section>
+
+<section>
+<p><span data-start="825.401" data-end="825.9"><span class="speaker">Surma</span>: Yeah.</span> <span data-start="825.9" data-end="828.58">In this model, we don't really care what kind of framework</span> <span data-start="828.58" data-end="829.08">you use.</span> <span data-start="829.08" data-end="831.75">You can use React, you can use Vue, you can use Lit,</span> <span data-start="831.75" data-end="835.11">you can use Svelte —  whatever you feel comfortable with</span> <span data-start="835.11" data-end="837.24">or whatever makes sense in your scenario.</span> <span data-start="837.24" data-end="841.29">The interesting shift here is that the UI framework is not</span> <span data-start="841.29" data-end="843.39">your base platform, not your entry point any more.</span> <span data-start="843.39" data-end="845.56">The center of the universe has kind of moved.</span> </p>
+</section>
+
+<section>
+<p><span data-start="845.56" data-end="846.88"><span class="speaker">Paul Lewis</span>: It's that bootstrap that we showed</span> <span data-start="846.88" data-end="847.588">[? at the top. ?]</span> </p>
+</section>
+
+<section>
+<p><span data-start="847.588" data-end="849.45"><span class="speaker">Surma</span>: UI is just one participant of many</span> <span data-start="849.45" data-end="850.477">in the system of actors.</span> </p>
+</section>
+
+<section>
+<p><span data-start="850.477" data-end="852.81"><span class="speaker">Paul Lewis</span>: And if you find that it's not behaving well,</span> <span data-start="852.81" data-end="854.779">for whatever reason, you can swap it out.</span> </p>
+<p><span data-start="854.779" data-end="856.32">The only thing it has to do is listen</span> <span data-start="856.32" data-end="859.827">to messages of a particular type, which is kind of cool.</span> <span data-start="859.827" data-end="861.66">In our case, then we're going to use Preact.</span> <span data-start="861.66" data-end="863.1">It works just great.</span> <span data-start="863.1" data-end="864.765">So we're going to import preact.</span> </p>
+<p><span data-start="864.765" data-end="867.15">Our UI extends the Actor class.</span> <span data-start="867.15" data-end="868.83">And when it receives a message, we're</span> <span data-start="868.83" data-end="872.26">going to have it render using Preact to, in this case,</span> <span data-start="872.26" data-end="874.952">the document body.</span> </p>
+</section>
+
+<section>
+<p><span data-start="874.952" data-end="875.91"><span class="speaker">Surma</span>: Same again here.</span> </p>
+<p><span data-start="875.91" data-end="877.464">We need to send messages back.</span> </p>
+</section>
+
+<section>
+<p><span data-start="877.464" data-end="878.422"><span class="speaker">Paul Lewis</span>: Absolutely.</span> <span data-start="878.422" data-end="882.01">And to do that, it is a case of, on the UI side,</span> <span data-start="882.01" data-end="884.437">we find our clock actor, we do a lookup on it,</span> <span data-start="884.437" data-end="886.27">and we will send it a message, in this case,</span> <span data-start="886.27" data-end="888.88">for this particular example, sending it a message to start.</span> </p>
+<p><span data-start="888.88" data-end="892.79">There'll be one for stop, or reset, and so on.</span> <span data-start="892.79" data-end="894.57">Now, we get to talk about that location</span> <span data-start="894.57" data-end="897.24">independence a teeny bit more.</span> <span data-start="897.24" data-end="899.94">Because one of the questions that Surma, Tim, and I ask</span> <span data-start="899.94" data-end="901.95">ourselves when we're making our actors is,</span> <span data-start="901.95" data-end="906.49">does this actor need access to the main thread?</span> </p>
+<p><span data-start="906.49" data-end="909.839">And this is kind of to do with the rush hour thing.</span> <span data-start="909.839" data-end="911.38">Our general rule of thumb —  and there</span> <span data-start="911.38" data-end="913.27">are some caveats we'll mention in a moment.</span> <span data-start="913.27" data-end="916.21">But out general rule of thumb is that a UI actor is the one that</span> <span data-start="916.21" data-end="917.237">really needs the DOM.</span> <span data-start="917.237" data-end="918.82">And therefore, it's the one that ought</span> <span data-start="918.82" data-end="922.014">to be on the main thread wherever possible.</span> </p>
+<p><span data-start="922.014" data-end="922.93">There is an exception.</span> <span data-start="922.93" data-end="924.76">The exception here is that certain APIs — </span> <span data-start="924.76" data-end="927.43">those for media security, device capabilities, and identity — </span> <span data-start="927.43" data-end="930.28">are only available on the main thread today.</span> </p>
+</section>
+
+<section>
+<p><span data-start="930.28" data-end="931.43"><span class="speaker">Surma</span>: We think it's a bug.</span> <span data-start="931.43" data-end="933.388">And we've been talking to some Chrome engineers</span> <span data-start="933.388" data-end="934.84">about exposing these kind of APIs</span> <span data-start="934.84" data-end="936.422">in a worker and somewhere else.</span> <span data-start="936.422" data-end="938.38">But that's just not the world we live in today.</span> <span data-start="938.38" data-end="941.462">So for now, that's a restriction.</span> </p>
+</section>
+
+<section>
+<p><span data-start="941.462" data-end="942.67"><span class="speaker">Paul Lewis</span>: Tools not rules — </span> <span data-start="942.67" data-end="946.42">so you might be thinking, ah, I should move all my actors away</span> <span data-start="946.42" data-end="947.5">from the main thread.</span> <span data-start="947.5" data-end="948.714">We'll get to that.</span> <span data-start="948.714" data-end="951.13">But the thing is, if you've got a really chatty actor that</span> <span data-start="951.13" data-end="953.05">needs to talk to the UI actor, you</span> <span data-start="953.05" data-end="956.53">might want to leave it alongside the UI actor on the method.</span> </p>
+<p><span data-start="956.53" data-end="958.42">Because as Jason and Shubhie were talking</span> <span data-start="958.42" data-end="961.84">about earlier, that there's a cost to the thread hop,</span> <span data-start="961.84" data-end="966.19">and that might be more expensive than just sending a message</span> <span data-start="966.19" data-end="970.12">and just keeping the actor alongside the UI actor, OK?</span> </p>
+</section>
+
+<section>
+<p><span data-start="970.12" data-end="972.55"><span class="speaker">Surma</span>: So basically, if you want to do that, just measure</span> <span data-start="972.55" data-end="973.6">and see what the impact is.</span> </p>
+</section>
+
+<section>
+<p><span data-start="973.6" data-end="974.433"><span class="speaker">Paul Lewis</span>: Exactly.</span> <span data-start="974.433" data-end="977.95">So the location independence —  for all that notwithstanding,</span> <span data-start="977.95" data-end="979.72">imagine we were back here where we</span> <span data-start="979.72" data-end="982.492">started with our four actors.</span> <span data-start="982.492" data-end="984.7">And they're all on the main thread, which is probably</span> <span data-start="984.7" data-end="987.73">where we put them by default. We're sort of saying,</span> <span data-start="987.73" data-end="990.36">you might want to look at it more like this.</span> </p>
+<p><span data-start="990.36" data-end="993.97">And you might be thinking, why do they say, not main thread?</span> <span data-start="993.97" data-end="996.67">Surely, they just meant Web Workers.</span> <span data-start="996.67" data-end="1000.57">And we kind of did because, in most cases, when</span> <span data-start="1000.57" data-end="1002.91">we build these apps, web workers do feature heavily.</span> <span data-start="1002.91" data-end="1006.42">We do move quite a lot of our actors to web workers,</span> <span data-start="1006.42" data-end="1008.94">especially if they're non-chatty.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="1008.94" data-end="1011.28"><span class="speaker">Surma</span>: But not quite.</span> <span data-start="1011.28" data-end="1013.14">So we actually think, or have tried,</span> <span data-start="1013.14" data-end="1015.75">that it's sometimes very, very useful to run an actor,</span> <span data-start="1015.75" data-end="1017.785">for example, on the server side.</span> <span data-start="1017.785" data-end="1019.41">And this is kind of an interesting jump</span> <span data-start="1019.41" data-end="1022.59">to make because it allows you to incorporate</span> <span data-start="1022.59" data-end="1024.3">your back end into the architecture</span> <span data-start="1024.3" data-end="1025.8">of your entire app.</span> </p>
+<p><span data-start="1025.8" data-end="1027.724">It is just another actor in the system.</span> <span data-start="1027.724" data-end="1029.099">And as a matter of fact, the game</span> <span data-start="1029.099" data-end="1030.29">that you've been playing all day — </span> <span data-start="1030.29" data-end="1031.68">and it totally had no bugs at all</span> <span data-start="1031.68" data-end="1034.65">whatsoever —  is actually written in this model.</span> </p>
+<p><span data-start="1034.65" data-end="1037.079">So every player that is playing is an actor.</span> <span data-start="1037.079" data-end="1041.26">The admin panel that the MCs use to control the app is an actor.</span> <span data-start="1041.26" data-end="1043.569">The presentation view —  just another actor.</span> <span data-start="1043.569" data-end="1045.18">And then the Firebase Storage — </span> <span data-start="1045.18" data-end="1047.367">a shared actor that's running on the server side.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1047.367" data-end="1049.2"><span class="speaker">Paul Lewis</span>: Now interestingly, the mechanism</span> <span data-start="1049.2" data-end="1051.834">by which they chat using the hookup and lookup</span> <span data-start="1051.834" data-end="1052.5">can be anything.</span> <span data-start="1052.5" data-end="1053.249">It could be Fetch.</span> <span data-start="1053.249" data-end="1054.47">It could be a WebSocket.</span> <span data-start="1054.47" data-end="1055.83">And it really doesn't matter.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1055.83" data-end="1056.76"><span class="speaker">Surma</span>: Your Firebase database.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="1056.76" data-end="1057.468"><span class="speaker">Paul Lewis</span>: Yeah.</span> <span data-start="1057.468" data-end="1059.25">So long as talk, these actors can talk,</span> <span data-start="1059.25" data-end="1062.1">and they've got a way of sending messages to one another,</span> <span data-start="1062.1" data-end="1063.31">you're all set.</span> <span data-start="1063.31" data-end="1066.15">So back to our original question.</span> <span data-start="1066.15" data-end="1068.67">Did we actually help with rush hour?</span> <span data-start="1068.67" data-end="1070.35">Would this actually help?</span> <span data-start="1070.35" data-end="1071.347">Well, let's review.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1071.347" data-end="1072.93"><span class="speaker">Surma</span>: So one thing that we definitely</span> <span data-start="1072.93" data-end="1076.92">did achieve is that we are making it less likely to have</span> <span data-start="1076.92" data-end="1080.22">big chunks of uninterruptable JavaScript and more</span> <span data-start="1080.22" data-end="1082.92">little chunks where the browser can stop it in between</span> <span data-start="1082.92" data-end="1083.98">and ship a frame.</span> </p>
+<p><span data-start="1083.98" data-end="1086.28">So that's definitely one advantage that we have.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1086.28" data-end="1087.87"><span class="speaker">Paul Lewis</span>: The location independence,</span> <span data-start="1087.87" data-end="1091.375">hopefully, some of our actors can be run successfully away</span> <span data-start="1091.375" data-end="1092.25">from the main thread.</span> <span data-start="1092.25" data-end="1095.19">Hopefully, it's like fewer cars on the road at rush hour.</span> <span data-start="1095.19" data-end="1097.86">That's good for everybody typically.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1097.86" data-end="1099.93"><span class="speaker">Surma</span>: And as a result, a lot of work</span> <span data-start="1099.93" data-end="1101.67">that can happen in an unexpected way,</span> <span data-start="1101.67" data-end="1104.55">if you're processing a big API response to something,</span> <span data-start="1104.55" data-end="1107.13">that can happen in the worker and not affect your main thread</span> <span data-start="1107.13" data-end="1109.382">from going into jank mode.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1109.382" data-end="1111.09"><span class="speaker">Paul Lewis</span>: There are some other benefits</span> <span data-start="1111.09" data-end="1113.926">that Surma, Tim, and I have noticed as well working</span> <span data-start="1113.926" data-end="1115.05">in this particular pattern.</span> </p>
+<p><span data-start="1115.05" data-end="1117.54">One is better testing.</span> <span data-start="1117.54" data-end="1122.28">With that kind of area of ownership,</span> <span data-start="1122.28" data-end="1124.722">it's easier to look at an actor and go,</span> <span data-start="1124.722" data-end="1126.18">oh, well I know what you should do.</span> <span data-start="1126.18" data-end="1128.489">And you've got an onMessage that I can call,</span> <span data-start="1128.489" data-end="1130.53">and I can make sure that you do the right things.</span> <span data-start="1130.53" data-end="1132.76">So the testing seems to become a little bit easier.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="1132.76" data-end="1133.26"><span class="speaker">Surma</span>: Yeah.</span> <span data-start="1133.26" data-end="1135.51">Off on the other side, you can mock another actor</span> <span data-start="1135.51" data-end="1137.97">by just implementing the messages that that actor needs</span> <span data-start="1137.97" data-end="1139.68">to receive and not do the actual work,</span> <span data-start="1139.68" data-end="1142.165">but just send prerecorded messages back.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1142.165" data-end="1143.79"><span class="speaker">Paul Lewis</span>: You have a clear separation</span> <span data-start="1143.79" data-end="1148.38">of concerns, which again, it helps you</span> <span data-start="1148.38" data-end="1152.16">in terms of maybe dividing the work with your teammates</span> <span data-start="1152.16" data-end="1154.67">or even just deciding for yourself</span> <span data-start="1154.67" data-end="1157.02">which actor needs to be responsible for this part</span> <span data-start="1157.02" data-end="1158.617">of the system?</span> </p>
+</section>
+
+<section>
+<p><span data-start="1158.617" data-end="1160.2"><span class="speaker">Surma</span>: And you get the code splitting.</span> <span data-start="1160.2" data-end="1163.95">Because you have actors that can be hooked up to the system</span> <span data-start="1163.95" data-end="1165.66">at any point in time, really, it allows</span> <span data-start="1165.66" data-end="1167.86">you to split them up and load them lazily.</span> <span data-start="1167.86" data-end="1169.693">You can just import them when you need them.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="1169.693" data-end="1170.43"><span class="speaker">Paul Lewis</span>: Yeah.</span> <span data-start="1170.43" data-end="1172.86">That's good.</span> <span data-start="1172.86" data-end="1174.21">And bring your own framework.</span> <span data-start="1174.21" data-end="1180.3">If you want to use a particular library or framework, you can.</span> <span data-start="1180.3" data-end="1181.712">There's not a prescriptive way.</span> <span data-start="1181.712" data-end="1183.67">If you want to use the [? one ?] thing, use it.</span> <span data-start="1183.67" data-end="1184.73">Great.</span> <span data-start="1184.73" data-end="1188.43">Now, there are some considerations in this world,</span> <span data-start="1188.43" data-end="1190.11">in this setup that we described.</span> <span data-start="1190.11" data-end="1192.3">One is actor performance challenges.</span> <span data-start="1192.3" data-end="1194.4">If you imagine your UI actor, imagine</span> <span data-start="1194.4" data-end="1199.17">it decides to run along and just be not very yieldy.</span> <span data-start="1199.17" data-end="1200.38">You still have that problem.</span> <span data-start="1200.38" data-end="1202.47">It's no different to a process or an application</span> <span data-start="1202.47" data-end="1205.8">in an operating system deciding it's going to hog the CPU.</span> </p>
+<p><span data-start="1205.8" data-end="1208.84">This is not going to go away.</span> <span data-start="1208.84" data-end="1210.36">But we do think that the Scheduler</span> <span data-start="1210.36" data-end="1213.84">API that Jason and Shubhie mentioned in the previous talk</span> <span data-start="1213.84" data-end="1215.61">is a huge part of this story.</span> <span data-start="1215.61" data-end="1217.8">Because it's a great way for individual actors</span> <span data-start="1217.8" data-end="1221.47">to start breaking their work up into smaller chunks.</span> <span data-start="1221.47" data-end="1222.97">You may also be sitting there going,</span> <span data-start="1222.97" data-end="1226.46">I'm not sure I could actorize my blog.</span> <span data-start="1226.46" data-end="1227.81">And we would agree.</span> <span data-start="1227.81" data-end="1229.9">It's not necessarily for all use cases.</span> <span data-start="1229.9" data-end="1231.64">This works really well when you've</span> <span data-start="1231.64" data-end="1234.46">got apps and in particular apps where you think, actually,</span> <span data-start="1234.46" data-end="1235.27">I can ring fence.</span> <span data-start="1235.27" data-end="1238.21">I can mark off particular parts of this application.</span> <span data-start="1238.21" data-end="1240.07">And I can have some kind of owner for it.</span> <span data-start="1240.07" data-end="1242.2">That's where it works really well.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="1242.2" data-end="1245.19"><span class="speaker">Surma</span>: And there's definitely a different mental model to this.</span> <span data-start="1245.19" data-end="1247.33">As I said, it kind of shifts the center</span> <span data-start="1247.33" data-end="1249.55">of the universe away from the UI framework</span> <span data-start="1249.55" data-end="1252.722">into many center pieces —  all the actors are just</span> <span data-start="1252.722" data-end="1253.305">communicating.</span> <span data-start="1253.305" data-end="1256.9">So it definitely took us a time to build an intuition</span> <span data-start="1256.9" data-end="1258.22">for where do we draw the line?</span> <span data-start="1258.22" data-end="1259.21">What becomes an actor?</span> </p>
+<p><span data-start="1259.21" data-end="1261.52">What is just part of an already existing actor?</span> <span data-start="1261.52" data-end="1263.14">What kind of messages should we send?</span> <span data-start="1263.14" data-end="1265.69">How granular should this entire set up be?</span> <span data-start="1265.69" data-end="1267.981">So if it seems weird at first, if you're</span> <span data-start="1267.981" data-end="1270.355">playing around with this, that is kind of to be expected.</span> <span data-start="1270.355" data-end="1274.66">It's a very different way of architecting a web app.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1274.66" data-end="1277.75"><span class="speaker">Paul Lewis</span>: So that was the rush hour bit.</span> <span data-start="1277.75" data-end="1281.177">That future-facing stuff like the VR, AR, and so on — </span> <span data-start="1281.177" data-end="1282.76">well, we have some thoughts there too.</span> <span data-start="1282.76" data-end="1283.554">Watch this.</span> </p>
+<p><span data-start="1283.554" data-end="1285.22">So you were talking about actors before.</span> <span data-start="1285.22" data-end="1287.08">And I want to talk about cameras.</span> <span data-start="1287.08" data-end="1288.37">And the reason I want to talk about cameras</span> <span data-start="1288.37" data-end="1290.33">is because it all plays into that story, right?</span> <span data-start="1290.33" data-end="1292.538">So if can, have one of these lenses before I drop it,</span> <span data-start="1292.538" data-end="1294.7">because I don't want to.</span> <span data-start="1294.7" data-end="1297.46">Your modern camera has two bits — </span> <span data-start="1297.46" data-end="1300.04">the camera body, which is the thing that</span> <span data-start="1300.04" data-end="1302.28">holds the state when you're shooting in JPEG or RAW — </span> </p>
+</section>
+
+<section>
+<p><span data-start="1302.28" data-end="1302.44"><span class="speaker">Surma</span>: Yeah.</span> <span data-start="1302.44" data-end="1303.33">It's like the business logic.</span> <span data-start="1303.33" data-end="1305.2">It knows how to take the picture and how to store it</span> <span data-start="1305.2" data-end="1306.08">and it does all that.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1306.08" data-end="1306.58"><span class="speaker">Paul Lewis</span>: Yeah.</span> <span data-start="1306.58" data-end="1308.53">Whether you're shooting video, or taking photos with it,</span> <span data-start="1308.53" data-end="1310.22">or whether you are autofocus or manual</span> <span data-start="1310.22" data-end="1311.29">focus —  you get the idea.</span> </p>
+<p><span data-start="1311.29" data-end="1313.66">Similar to like a web app, that's</span> <span data-start="1313.66" data-end="1314.92">the state of what's going on.</span> <span data-start="1314.92" data-end="1318.11">But you've got different lenses for different tasks.</span> <span data-start="1318.11" data-end="1321.1">So that one would be something like a portrait lens.</span> <span data-start="1321.1" data-end="1323.11">This one might be a wide-angle — </span> <span data-start="1323.11" data-end="1324.647">take something of a landscape.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1324.647" data-end="1327.23"><span class="speaker">Surma</span>: As long as we make sure that the mounts are compatible,</span> <span data-start="1327.23" data-end="1328.73">which I guess, in actor world, means</span> <span data-start="1328.73" data-end="1330.994">that they speak with the same messages to each other.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1330.994" data-end="1331.66"><span class="speaker">Paul Lewis</span>: Yes.</span> </p>
+<p><span data-start="1331.66" data-end="1334.12">So the messages that they send are really important.</span> <span data-start="1334.12" data-end="1336.7">They're standardized, right?</span> <span data-start="1336.7" data-end="1339.17">And everybody kind of plays to that same data contract.</span> <span data-start="1339.17" data-end="1341.08">Other than that, you can do what you like.</span> </p>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="1341.08" data-end="1342.01"><span class="speaker">Surma</span>: Plug it in.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1342.01" data-end="1343.442"><span class="speaker">Paul Lewis</span>: Off you go.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1343.442" data-end="1344.65"><span class="speaker">Surma</span>: Last video, I promise.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1344.65" data-end="1345.358"><span class="speaker">Paul Lewis</span>: Yeah.</span> <span data-start="1345.358" data-end="1347.39">So camera lenses —  why camera lenses?</span> <span data-start="1347.39" data-end="1351.08">How does that apply to this story?</span> <span data-start="1351.08" data-end="1352.77">When we talked about this earlier,</span> <span data-start="1352.77" data-end="1355.667">I think very naturally, we would have all thought of the DOM.</span> <span data-start="1355.667" data-end="1357.5">We would have thought of, in the chess game,</span> <span data-start="1357.5" data-end="1360.35">we would have thought of this version.</span> </p>
+<p><span data-start="1360.35" data-end="1363.369">But there's the freedom that you get from a UI actor</span> <span data-start="1363.369" data-end="1365.41">that, as long as it can speak the right messages,</span> <span data-start="1365.41" data-end="1367.76">it can be implemented in different technologies.</span> <span data-start="1367.76" data-end="1371.77">So you could have a different actor that does 3D.</span> <span data-start="1371.77" data-end="1372.79">And now you get that.</span> <span data-start="1372.79" data-end="1376.09">It just has to send the same messages as the standard DOM</span> <span data-start="1376.09" data-end="1376.96">version.</span> <span data-start="1376.96" data-end="1380.17">Or maybe one full XR, similarly, it</span> <span data-start="1380.17" data-end="1381.6">needs to be able to do that — </span> <span data-start="1381.6" data-end="1382.84">send the right messages.</span> <span data-start="1382.84" data-end="1385.93">And perhaps something like Voice as well — </span> <span data-start="1385.93" data-end="1387.479">similar kind of story.</span> <span data-start="1387.479" data-end="1389.02">So as a byproduct of the actor model,</span> <span data-start="1389.02" data-end="1392.71">we've all of a sudden got these different swappable UI</span> <span data-start="1392.71" data-end="1395.002">actors that we can take with us wherever we need to go.</span> </p>
+<p><span data-start="1395.002" data-end="1396.418">And you might say, well, actually,</span> <span data-start="1396.418" data-end="1398.83">all I need in this particular app is the XR and Voice.</span> <span data-start="1398.83" data-end="1401.442">Or maybe I want DOM and Voice.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1401.442" data-end="1403.15"><span class="speaker">Surma</span>: And you could even imagine a setup</span> <span data-start="1403.15" data-end="1406.84">where you have a DOM actor with lots of effects and visuals</span> <span data-start="1406.84" data-end="1410.41">and one DOM actor implements the same app, but with a much</span> <span data-start="1410.41" data-end="1414.25">less intense memory consumption version, like a low-end version</span> <span data-start="1414.25" data-end="1415.15">of your website.</span> <span data-start="1415.15" data-end="1417.52">And once you detect that the device we're running on</span> <span data-start="1417.52" data-end="1419.317">is actually kind of struggling to keep up.</span> <span data-start="1419.317" data-end="1421.15">You can actually switch it out in the middle</span> <span data-start="1421.15" data-end="1424.097">of the app and downgrade to the lower visual version.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1424.097" data-end="1426.43"><span class="speaker">Paul Lewis</span>: Or one would say reduced motion or something</span> <span data-start="1426.43" data-end="1427.6">like that.</span> </p>
+<p><span data-start="1427.6" data-end="1429.1">And technically, this will be called</span> <span data-start="1429.1" data-end="1430.75">multi-view or multi-modal, which is</span> <span data-start="1430.75" data-end="1432.791">a very fancy way of saying there are lots of ways</span> <span data-start="1432.791" data-end="1434.14">to interact with your web app.</span> <span data-start="1434.14" data-end="1436.92">And as a byproduct, within the actor model,</span> <span data-start="1436.92" data-end="1439.311">it enables you to do that pretty well.</span> <span data-start="1439.311" data-end="1441.31">So if you're interested in looking at the hookup</span> <span data-start="1441.31" data-end="1442.799">and lookup of the Actor base class</span> <span data-start="1442.799" data-end="1444.34">that we mentioned earlier, this would</span> <span data-start="1444.34" data-end="1447.17">be the place to go if you want to take a snap at that.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1447.17" data-end="1449.53"><span class="speaker">Surma</span>: This is actually, not only the Actor base class,</span> <span data-start="1449.53" data-end="1450.952">but it's actually a boiler plate.</span> <span data-start="1450.952" data-end="1451.91">So it gets you started.</span> <span data-start="1451.91" data-end="1454.16">There's rollup configured where you can just build it,</span> <span data-start="1454.16" data-end="1455.952">does the code splitting, the lazy loading.</span> </p>
+<p><span data-start="1455.952" data-end="1457.66">It should get you started really quickly,</span> <span data-start="1457.66" data-end="1459.37">so you can start writing actors and get</span> <span data-start="1459.37" data-end="1460.615">a feel for how it feels.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1460.615" data-end="1461.74"><span class="speaker">Paul Lewis</span>: Let's be clear.</span> <span data-start="1461.74" data-end="1462.4">It's experimental.</span> <span data-start="1462.4" data-end="1464.066">It's just the stomping ground that we've</span> <span data-start="1464.066" data-end="1465.89">been using for the last little while.</span> <span data-start="1465.89" data-end="1468.223">And we'd love you to take a look and have a chat with us</span> <span data-start="1468.223" data-end="1470.364">and just tell us what you think.</span> <span data-start="1470.364" data-end="1472.78">So in summary, we're actually quite excited that something</span> <span data-start="1472.78" data-end="1476.08">from 45 years ago has kind of come full circle,</span> <span data-start="1476.08" data-end="1479.516">and it seems to be the thing — </span> </p>
+</section>
+
+<section>
+<p><span data-start="1479.516" data-end="1481.14"><span class="speaker">Surma</span>: It's been hiding in plain sight.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1481.14" data-end="1481.848"><span class="speaker">Paul Lewis</span>: Yeah.</span> <span data-start="1481.848" data-end="1483.975">And from some of the places in computing,</span> <span data-start="1483.975" data-end="1486.1">we've kind of brought it over, not in a purist way.</span> </p>
+<p><span data-start="1486.1" data-end="1488.154">We have our own take on these things.</span> <span data-start="1488.154" data-end="1489.82">But it respects that single-threadedness</span> <span data-start="1489.82" data-end="1491.02">of JavaScript.</span> <span data-start="1491.02" data-end="1492.97">It seems to help with rush hour.</span> <span data-start="1492.97" data-end="1495.46">And it also seems to enable us to go multi-modal, which</span> <span data-start="1495.46" data-end="1497.11">is really kind of exciting.</span> <span data-start="1497.11" data-end="1499.446">And on that note, thanks.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1499.446" data-end="1500.57"><span class="speaker">Surma</span>: Thank you very much.</span> <span data-start="1500.57" data-end="1503.92">[MUSIC PLAYING]</span> </p>
+</section>

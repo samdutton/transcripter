@@ -31,13 +31,15 @@
     "grunt-cli": "latest",
     "grunt-eslint": "latest",
     "grunt-stylelint": "latest",
-    "html-validator": "latest",
+    "html-validator": "^4.0.3",
+    "htmlhint": "^0.11.0",
     "jsdom": "latest",
+    "recursive": "latest",
     "recursive-readdir": "latest",
     "rimraf": "latest",
     "stylelint": "latest",
     "stylelint-config-standard": "latest",
-    "subtitle": "latest",
+    "subtitle": "^2.0.3",
     "validator": "latest",
     "yargs": "latest"
   }

@@ -17,11 +17,17 @@ const rimraf = require('rimraf');
 const subtitle = require('subtitle');
 const validator = require('html-validator');
 
+// Errors for validator to ignore.
+// <head> errors are mostly to allow validation with FRAGMENT_ONLY
 const VALIDATOR_IGNORE = [
   'Error: Bad value “https://www.youtube.com/embed/${videoId}?enablejsapi=1” ' +
     'for attribute “src” on element “iframe”: Illegal character in path ' +
     'segment: “{” is not allowed.',
   'Error: Bogus comment.',
+  'Error: Element “head” is missing a required instance of child element “title”.',
+  'Error: Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”.',
+  'Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”.',
+  'Error: Stray doctype.',
   'Warning: Section lacks heading. Consider using "h2"-"h6" elements to ' +
     'add identifying headings to all sections.'];
 
@@ -39,7 +45,6 @@ const HTML_BOTTOM = fs.readFileSync('./html-fragments/bottom.html', 'utf8');
 // hence the > before the match
 const SPEAKER_REGEX = /^([A-Z1-9 \-]+): */;
 
-let appendOutput = false;
 let numErrors = 0;
 let numFiles = 0;
 let numFilesToProcess = 0;
@@ -48,7 +53,7 @@ let numFilesToWrite = 0;
 const videoIds = [];
 
 const DO_VALIDATION = true;
-// const IS_STANDALONE = false;
+let FRAGMENT_ONLY = false;
 let INPUT_DIR = 'input';
 // Using ../docs enables integration with GitHub Pages.
 let OUTPUT_DIR = '../docs';
@@ -57,28 +62,35 @@ let OUTPUT_DIR = '../docs';
 const argv = require('yargs')
   .alias('a', 'append')
   .alias('c', 'index')
+  .alias('f', 'fragment')
   .alias('h', 'help')
   .alias('i', 'input')
   .alias('o', 'output')
   .describe('a', 'Append output to existing files in output directory')
   .describe('c', `Create index page linking to HTML output, ` +
     `default is ${CREATE_INDEX}`)
+  .describe('f', 'Create HTML fragment only, without adding top.html and ' +
+    'bottom.html')
   .describe('i', `Input directory, default is ${INPUT_DIR}`)
   .describe('o', `Output file, default is ${OUTPUT_DIR}`)
   .help('h')
   .argv;
 
-// If not appending output, remove HTML files from the output directory.
+// If not appending output, remove all HTML files from the output directory.
 if (!argv.a) {
   rimraf(`${OUTPUT_DIR}/*.html`, (error) => {
     if (error) {
-      displayError('Error running rimraf:', error);
+      displayError('Error removing HTML files from ${OUTPUT_DIR}:', error);
     }
   });
 }
 
 if (argv.c) {
   CREATE_INDEX = argv.c;
+}
+
+if (argv.f) {
+  FRAGMENT_ONLY = argv.f;
 }
 
 if (argv.i) {
@@ -169,8 +181,12 @@ function createIndex() {
 }
 
 function processCaptions(videoId, captions) {
-  // ${videoId} is used as a placeholder in the top.html
-  let html = HTML_TOP.replace(/\${videoId}/g, videoId);
+  let html ='';
+  if (!FRAGMENT_ONLY) {
+    // ${videoId} is used as a placeholder in the top.html
+    html += HTML_TOP.replace(/\${videoId}/g, videoId);
+  }
+  html += '<section>\n<p>';
   console.log(`Processing ${captions.length} captions ` +
     `for \x1b[97m${OUTPUT_DIR}/${videoId}.html\x1b[0m`);
   let numSpans = 0;
@@ -190,11 +206,14 @@ function processCaptions(videoId, captions) {
     // A bit hacky... New section for each change of speaker.
     // The top and bottom HTML fragments start and finish this.
     if (caption.text.includes('class="speaker"')) {
-      caption.text = '</p></section>\n\n<section><p>' + caption.text;
+      caption.text = '</p>\n</section>\n\n<section>\n<p>' + caption.text;
     }
     html += caption.text;
   }
-  html += HTML_BOTTOM;
+  html += '</p>\n</section>';
+  if (!FRAGMENT_ONLY) {
+    html += HTML_BOTTOM;
+  }
   html = fixTextGlitches(html);
   validateThenWrite(videoId, html);
 }

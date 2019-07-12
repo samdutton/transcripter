@@ -35,11 +35,12 @@ Check for errors in _error-log.txt_.
 ## Command line options
 
 ```
--a, --append  Append output to existing files in output directory
--c, --index   Create index page linking to HTML output
--h, --help    Show help
--i, --input   Input directory, default is [_input_](src/input)
--o, --output  Output directory, default is [_output_](src/output)
+-a, --append   Append output to existing files in output directory
+-c, --index    Create index page linking to HTML output
+-f, --fragment Create HTML content fragments only, without top and bottom HTML
+-h, --help     Show help
+-i, --input    Input directory, default is [_input_](src/input)
+-o, --output   Output directory, default is [_output_](src/output)
 ```
 
 ## Feedback, feature requests and bug reports
@@ -55,7 +56,7 @@ including input files where relevant.
 This widget is [no longer supported](https://translate.google.com/intl/en/about/website)
 and the language selection popup is not laid out responsively.
 
-Probably best to remove unless the layout can be hacked (others have tried!)
+Probably best to remove unless the layout can be fixed (others have tried!)
 
 ---
 
