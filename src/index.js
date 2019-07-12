@@ -81,8 +81,10 @@ if (!argv.a) {
   rimraf(`${OUTPUT_DIR}/*.html`, (error) => {
     if (error) {
       displayError('Error removing HTML files from ${OUTPUT_DIR}:', error);
+      return;
     }
   });
+  console.log(`Deleted old files from ${OUTPUT_DIR}/*.html`);
 }
 
 if (argv.c) {
