@@ -41,6 +41,7 @@ Check for errors in _error-log.txt_.
 -h, --help     Show help
 -i, --input    Input directory, default is [_input_](src/input)
 -o, --output   Output directory, default is [_output_](src/output)
+-s, --search   Create search index
 ```
 
 ## Feedback, feature requests and bug reports
