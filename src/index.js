@@ -63,9 +63,10 @@ let FRAGMENT_ONLY = false;
 let INPUT_DIR = 'input';
 // Use ../docs for integration with GitHub Pages.
 let OUTPUT_DIR = '../docs';
-const TRANSCRIPT_DIR = `${OUTPUT_DIR}/transcripts/`;
-const SEARCH_INDEX_FILEPATH = `${OUTPUT_DIR}/data/index.json`;
-const SPEAKERS_DATA_FILEPATH = `${OUTPUT_DIR}/data/speakers.json`;
+const SEARCH_DIR = `${OUTPUT_DIR}/search`;
+const TRANSCRIPT_DIR = `${OUTPUT_DIR}/transcripts`;
+const SEARCH_INDEX_FILEPATH = `${SEARCH_DIR}/data/index.json`;
+const SPEAKERS_DATA_FILEPATH = `${SEARCH_DIR}/data/speakers.json`;
 
 const argv = require('yargs')
   .alias('a', 'append')
@@ -183,7 +184,17 @@ function processSrtFile(filepath) {
       createTranscriptIndex();
     }
     if (CREATE_SEARCH_INDEX) {
-      // const results = searchIndex.search('service');
+      // const results = searchIndex.search('search');
+      // console.log('>>> Search results:', results);
+      // const serialized = searchIndex.export();
+      // const otherIndex = new FlexSearch({
+      //   doc: {
+      //     id: 'id',
+      //     field: ['t'],
+      //   },
+      // });
+      // otherIndex.import(serialized);
+      // const results = searchIndex.search('search');
       // console.log('>>> Search results:', results);
       writeFile(SEARCH_INDEX_FILEPATH, searchIndex.export());
       console.log(`Wrote searchIndex to ${SEARCH_INDEX_FILEPATH}, ` +
@@ -200,6 +211,7 @@ function createTranscriptIndex() {
   let html =
     `<html lang="en">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/icons/icon192.png">
     <style>
     body {
       font-family: Google Sans, sans-serif;
