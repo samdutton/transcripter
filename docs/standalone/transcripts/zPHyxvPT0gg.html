@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<!--
+Copyright 2018 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="//google.com">
+  <meta name="description" content="Chrome Dev Summit">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>zPHyxvPT0gg</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+
+<iframe id="youtube" src="https://www.youtube.com/embed/zPHyxvPT0gg?enablejsapi=1"></iframe>
+
+<div id="container">
+
+<div id="options">
+  <div id="google-translate"></div>
+  <div>
+    <input type="checkbox" id="videoSticky" checked>
+    <label for="videoSticky">Video position sticky</label>
+  </div>
+  <div>
+    <input type="checkbox" id="captionScroll" checked>
+    <label for="captionScroll">Keep current caption visible</label>
+  </div>
+</div>
+
+<section>
+<p><span data-start="0" data-end="3.776">[MUSIC PLAYING]</span> </p>
+</section>
+
+<section>
+<p><span data-start="7.087" data-end="8.92"><span class="speaker">Ben Galbraith</span>: Welcome to Chrome Dev Summit.</span> <span data-start="8.92" data-end="10.12">I'm Ben Galbraith.</span> <span data-start="10.12" data-end="12.615">I lead product for the Chrome platform teams.</span> </p>
+</section>
+
+<section>
+<p><span data-start="12.615" data-end="13.99"><span class="speaker">Dion Almaer</span>: And I'm Dior Almaer,</span> <span data-start="13.99" data-end="16.282">and I lead product for our developer ecosystem efforts.</span> </p>
+</section>
+
+<section>
+<p><span data-start="16.282" data-end="17.989"><span class="speaker">Ben Galbraith</span>: Thanks for joining us here</span> <span data-start="17.989" data-end="21.006">at the Yerba Buena Center for the Arts here in San Francisco.</span> <span data-start="21.006" data-end="22.63">And a special shout-out to those of you</span> <span data-start="22.63" data-end="23.755">watching on the livestream.</span> </p>
+</section>
+
+<section>
+<p><span data-start="23.755" data-end="25.296"><span class="speaker">Dion Almaer</span>: We look forward all year</span> <span data-start="25.296" data-end="27.25">to this opportunity to gather with developers</span> <span data-start="27.25" data-end="30.58">from around the world to celebrate the web platform.</span> <span data-start="30.58" data-end="33.53">And of course, it's an opportunity for the Chrome team</span> <span data-start="33.53" data-end="36.01">and others here at Google to provide updates</span> <span data-start="36.01" data-end="40.13">on our latest work and get feedback from the community.</span> </p>
+</section>
+
+<section>
+<p><span data-start="40.13" data-end="42.4"><span class="speaker">Ben Galbraith</span>: 2018 marks 10 years</span> <span data-start="42.4" data-end="44.68">since the launch of Chrome, but it also</span> <span data-start="44.68" data-end="46.93">marks Android's 10-year anniversary,</span> <span data-start="46.93" data-end="51.35">and 20 years since Google was founded, back in 1998.</span> </p>
+<p><span data-start="51.35" data-end="53.62">So this is a really big year for us,</span> <span data-start="53.62" data-end="57.49">and it's got us reflecting on these past 10 years.</span> <span data-start="57.49" data-end="60.04">Back in 2008, Dion and I were at Mozilla</span> <span data-start="60.04" data-end="62.92">working on developer tools when we received probably</span> <span data-start="62.92" data-end="65.5">the most unique product announcement we'd ever seen,</span> <span data-start="65.5" data-end="69.13">the Chrome comic, which walked through Chrome's new features,</span> <span data-start="69.13" data-end="72.55">like the Omnibox, and architectural innovations</span> <span data-start="72.55" data-end="75.01">like the multi-process architecture,</span> <span data-start="75.01" data-end="77.584">and the high-performance V8 JavaScript runtime.</span> </p>
+</section>
+
+<section>
+<p><span data-start="77.584" data-end="79"><span class="speaker">Dion Almaer</span>: And years later, it's</span> <span data-start="79" data-end="82.72">really fun to note the V8 was reused by Node.js</span> <span data-start="82.72" data-end="85.87">and plenty of other open source projects out there.</span> </p>
+</section>
+
+<section>
+<p><span data-start="85.87" data-end="88.21"><span class="speaker">Ben Galbraith</span>: Chrome launched in this time,</span> <span data-start="88.21" data-end="90.01">in the midst of a web renaissance,</span> <span data-start="90.01" data-end="92.65">back in the Ajax movement that saw developers</span> <span data-start="92.65" data-end="96.04">pushing the boundaries of what was possible on the web,</span> <span data-start="96.04" data-end="98.39">doing things that we just hadn't seen before.</span> <span data-start="98.39" data-end="100.39">And it's amazing to see just how far the web has</span> <span data-start="100.39" data-end="103.93">come in these 10 years, with publishers like Huffington</span> <span data-start="103.93" data-end="107.29">Post transforming the typical documents of the web</span> <span data-start="107.29" data-end="109.81">into rich, interactive experiences — </span> </p>
+</section>
+
+<section>
+<p><span data-start="109.81" data-end="111.82"><span class="speaker">Dion Almaer</span>:  — and Google Maps, an early pioneer</span> <span data-start="111.82" data-end="115.21">of that Ajax era, had gone from maps of tiled images</span> <span data-start="115.21" data-end="119.83">to a street-to-space continuum combining 360-degree photos,</span> <span data-start="119.83" data-end="123.56">vector maps, 3D models, and satellite imagery,</span> <span data-start="123.56" data-end="125.119">all just in the browser.</span> </p>
+</section>
+
+<section>
+<p><span data-start="125.119" data-end="127.66"><span class="speaker">Ben Galbraith</span>: And productivity apps have come into their own</span> <span data-start="127.66" data-end="131.71">on the platform, with pro tools like the incomparable AutoCAD</span> <span data-start="131.71" data-end="133.732">and the collaborative design platform, Figma.</span> <span data-start="133.732" data-end="135.19">And because they're on the web, you</span> <span data-start="135.19" data-end="137.23">can get right into these things.</span> <span data-start="137.23" data-end="139.03">And when you're done being productive,</span> <span data-start="139.03" data-end="141.25">you can pop into high-quality games like Crossy Road</span> <span data-start="141.25" data-end="143.29">for, you know, just a minute —  just a couple.</span> <span data-start="143.29" data-end="145.822">Just a quick minute.</span> <span data-start="145.822" data-end="147.316">[LAUGHTER]</span> </p>
+</section>
+
+<section>
+<p><span data-start="148.162" data-end="149.62"><span class="speaker">Dion Almaer</span>: And Chrome has changed</span> <span data-start="149.62" data-end="151.33">quite a bit over this time, and more</span> <span data-start="151.33" data-end="154.151">than just these subtle changes to the logo.</span> </p>
+</section>
+
+<section>
+<p><span data-start="154.151" data-end="155.65"><span class="speaker">Ben Galbraith</span>: Earlier this year, we</span> <span data-start="155.65" data-end="157.93">highlighted Chrome's new refreshed design,</span> <span data-start="157.93" data-end="161.11">and updated usability enhancements such as better tab</span> <span data-start="161.11" data-end="163.96">treatment for people like Dion that have 500 tabs</span> <span data-start="163.96" data-end="165.042">open at a time.</span> </p>
+</section>
+
+<section>
+<p><span data-start="165.042" data-end="166"><span class="speaker">Dion Almaer</span>: It's true.</span> <span data-start="166" data-end="166.96">[CHUCKLING]</span> </p>
+</section>
+
+<section>
+<p><span data-start="166.96" data-end="170.71"><span class="speaker">Ben Galbraith</span>: And also a smarter Omnibox and auto-fill</span> <span data-start="170.71" data-end="171.49">features.</span> <span data-start="171.49" data-end="173.68">But the most important update was clearly — </span> </p>
+</section>
+
+<section>
+<p><span data-start="173.68" data-end="175.96"><span class="speaker">Dion Almaer</span>:  — the birthday mode and the Dino game,</span> <span data-start="175.96" data-end="179.33">which run for the entire month of September.</span> <span data-start="179.33" data-end="182.385">Do you know this is played over 270 million times a month?</span> </p>
+</section>
+
+<section>
+<p><span data-start="182.385" data-end="183.76"><span class="speaker">Ben Galbraith</span>: That's incredible.</span> </p>
+</section>
+
+<section>
+<p><span data-start="183.76" data-end="184.885"><span class="speaker">Dion Almaer</span>: It kind of is.</span> <span data-start="184.885" data-end="185.5">[CHUCKLING]</span> </p>
+</section>
+
+<section>
+<p><span data-start="185.5" data-end="187.18"><span class="speaker">Ben Galbraith</span>: But here at CDS, it's</span> <span data-start="187.18" data-end="188.876">really the platform-related features</span> <span data-start="188.876" data-end="190">that we want to talk about.</span> <span data-start="190" data-end="192.17">So let's highlight a few.</span> </p>
+</section>
+
+<section>
+<p><span data-start="192.17" data-end="193.78"><span class="speaker">Dion Almaer</span>: So back in 2008, Chrome</span> <span data-start="193.78" data-end="196.49">launched with process isolation, an architecture that</span> <span data-start="196.49" data-end="199.72">put each tab in its own operating system process,</span> <span data-start="199.72" data-end="203.26">making Chrome exceptionally stable, but also exceptionally</span> <span data-start="203.26" data-end="204.4">secure.</span> <span data-start="204.4" data-end="206.86">The process boundary acts as a line of defense in the event</span> <span data-start="206.86" data-end="209.23">malicious code is able to exploit a bug</span> <span data-start="209.23" data-end="211.81">and attempt to read data from another tab.</span> <span data-start="211.81" data-end="213.73">Over the past 10 years, this model</span> <span data-start="213.73" data-end="215.68">has become the industry standard.</span> </p>
+</section>
+
+<section>
+<p><span data-start="215.68" data-end="217.84"><span class="speaker">Ben Galbraith</span>: This year, desktop Chrome browsers</span> <span data-start="217.84" data-end="221.89">took this model further with the launch of Site Isolation.</span> <span data-start="221.89" data-end="225.49">So now, Chrome ensures that even within a single tab,</span> <span data-start="225.49" data-end="228.71">content from different Domains is isolated.</span> <span data-start="228.71" data-end="230.59">So in this example, in the iframe,</span> <span data-start="230.59" data-end="233.77">this news site is using a display ad,</span> <span data-start="233.77" data-end="235.6">and it's running in a different process</span> <span data-start="235.6" data-end="237.52">than the rest of the page.</span> <span data-start="237.52" data-end="239.65">We've wanted to extend process isolation this way</span> <span data-start="239.65" data-end="242.5">for some time, and we think it's an important protection</span> <span data-start="242.5" data-end="244.019">for the web.</span> </p>
+</section>
+
+<section>
+<p><span data-start="244.019" data-end="246.31"><span class="speaker">Dion Almaer</span>: Now we've also been continuing our efforts</span> <span data-start="246.31" data-end="250.84">to encourage developers to use HTTPS for all web traffic.</span> <span data-start="250.84" data-end="252.93">This ensures that the content of a site</span> <span data-start="252.93" data-end="255.43">isn't maliciously modified while in transit,</span> <span data-start="255.43" data-end="259.07">and also that user data is transferred securely.</span> </p>
+</section>
+
+<section>
+<p><span data-start="259.07" data-end="260.57"><span class="speaker">Ben Galbraith</span>: In the latest Chrome,</span> <span data-start="260.57" data-end="264.98">we mark pages as not secure when they're served from HTTP.</span> <span data-start="264.98" data-end="267.62">And when the user begins to interact with form fields,</span> <span data-start="267.62" data-end="272.2">we further emphasize the point with a stronger warning.</span> </p>
+</section>
+
+<section>
+<p><span data-start="272.2" data-end="275.14"><span class="speaker">Dion Almaer</span>: The HTTPS movement is a collaborative effort,</span> <span data-start="275.14" data-end="277.27">with organizations like Let's Encrypt</span> <span data-start="277.27" data-end="279.82">playing a big role in lowering the barriers to upgrading</span> <span data-start="279.82" data-end="280.75">sites.</span> <span data-start="280.75" data-end="282.13">And it's working.</span> <span data-start="282.13" data-end="285.52">In Chrome itself, we're seeing big shifts to HTTPS.</span> <span data-start="285.52" data-end="290.47">And over 80% of the top 100 sites are now all HTTPS.</span> <span data-start="290.47" data-end="292.48">We think this is actually a major accomplishment</span> <span data-start="292.48" data-end="295.669">because the web is such a massive ecosystem.</span> </p>
+</section>
+
+<section>
+<p><span data-start="295.669" data-end="296.71"><span class="speaker">Ben Galbraith</span>: All right.</span> <span data-start="296.71" data-end="298.39">In addition to security and stability,</span> <span data-start="298.39" data-end="301.39">speed was a big theme for Chrome at launch.</span> <span data-start="301.39" data-end="305.32">And V8 is a big part of that story.</span> <span data-start="305.32" data-end="308.2">The team recently posted a retrospective highlighting</span> <span data-start="308.2" data-end="310.66">its improvements over this period, including</span> <span data-start="310.66" data-end="313.66">significant gains in JavaScript execution speed,</span> <span data-start="313.66" data-end="318.13">and a 100x decrease in garbage collection jank.</span> <span data-start="318.13" data-end="320.92">And the team is looking forward to the next 10</span> <span data-start="320.92" data-end="323.95">years of improvements by optimizing V8 for the latest</span> <span data-start="323.95" data-end="327.73">JavaScript language features, like promises and async/await,</span> <span data-start="327.73" data-end="330.31">supporting the Node.js server-side community,</span> <span data-start="330.31" data-end="332.83">and being responsive to the needs of the framework</span> <span data-start="332.83" data-end="334.36">ecosystem.</span> </p>
+</section>
+
+<section>
+<p><span data-start="334.36" data-end="336.77"><span class="speaker">Dion Almaer</span>: There's a fun recent example of this — </span> <span data-start="336.77" data-end="340.18">how the team rapidly responded to JavaScript inefficiencies</span> <span data-start="340.18" data-end="343.27">related to the react framework's recently announced hooks</span> <span data-start="343.27" data-end="345.46">feature, finding ways to make this feature</span> <span data-start="345.46" data-end="349">work much faster on V8.</span> <span data-start="349" data-end="351.94">Now V8 has also expanded to support WebAssembly,</span> <span data-start="351.94" data-end="354.46">also called Wasm, a cross-browser standard</span> <span data-start="354.46" data-end="357.55">for executing low-level code, like C and C++,</span> <span data-start="357.55" data-end="359.544">at very high speed.</span> <span data-start="359.544" data-end="361.96">Earlier this year, the team launched the new Wasm compiler</span> <span data-start="361.96" data-end="364.93">called Liftoff, and the popular Unity game engine</span> <span data-start="364.93" data-end="368.56">found that it resulted in a 10x reduction in the load time</span> <span data-start="368.56" data-end="370.6">for their Wasm code.</span> </p>
+</section>
+
+<section>
+<p><span data-start="370.6" data-end="372.28"><span class="speaker">Ben Galbraith</span>: And WebAssembly threads</span> <span data-start="372.28" data-end="374.44">are now available in a Chrome origin</span> <span data-start="374.44" data-end="377.53">trial, which opens the door for more complex code</span> <span data-start="377.53" data-end="379.275">to come to the web.</span> </p>
+</section>
+
+<section>
+<p><span data-start="379.275" data-end="380.65"><span class="speaker">Dion Almaer</span>: Now it's been really</span> <span data-start="380.65" data-end="383.23">fun to see the community explode the power of WebAssembly,</span> <span data-start="383.23" data-end="387.34">both through new creations and by bringing old code bases — </span> </p>
+</section>
+
+<section>
+<p><span data-start="387.34" data-end="389.965"><span class="speaker">Ben Galbraith</span>: Actually, I think I prefer the term vintage code</span> <span data-start="389.965" data-end="390.464">bases.</span> </p>
+</section>
+
+<section>
+<p><span data-start="390.464" data-end="392.8"><span class="speaker">Dion Almaer</span>: Vintage —  vintage, high-quality code bases</span> <span data-start="392.8" data-end="394">to the web.</span> <span data-start="394" data-end="395.83">This tweet was one of my favorites, kind</span> <span data-start="395.83" data-end="398.32">of a in inception moment, because now I</span> <span data-start="398.32" data-end="402.787">think you can run IE on Windows 95 on Chrome on Android.</span> </p>
+</section>
+
+<section>
+<p><span data-start="402.787" data-end="403.87"><span class="speaker">Ben Galbraith</span>: It's crazy.</span> <span data-start="403.87" data-end="404.2">[LAUGHTER]</span> </p>
+</section>
+
+<section>
+<p><span data-start="404.2" data-end="406.06"><span class="speaker">Dion Almaer</span>: What a world that we live in.</span> </p>
+</section>
+
+<section>
+<p><span data-start="406.06" data-end="406.6"><span class="speaker">Ben Galbraith</span>: It's hard to believe,</span> <span data-start="406.6" data-end="408.558">but back when Chrome launched, video on the web</span> <span data-start="408.558" data-end="409.24">wasn't a thing.</span> <span data-start="409.24" data-end="410.98">We had to use plugins.</span> <span data-start="410.98" data-end="415">And now, of course, HTML video is ubiquitous.</span> <span data-start="415" data-end="418.7">This year, Chrome landed support for AV1,</span> <span data-start="418.7" data-end="421.6">which is the next generation media codec, completely</span> <span data-start="421.6" data-end="425.56">royalty-free, that provides a 30% bitrate reduction,</span> <span data-start="425.56" data-end="430">even over each HEVC, which makes streaming video on the web</span> <span data-start="430" data-end="432.37">faster as this becomes adopted.</span> <span data-start="432.37" data-end="435.58">And because AV1 has major industry backing,</span> <span data-start="435.58" data-end="439.894">we can expect to see it receive significant adoption over time.</span> </p>
+</section>
+
+<section>
+<p><span data-start="439.894" data-end="442.06"><span class="speaker">Dion Almaer</span>: Now one constant over the past 10 years</span> <span data-start="442.06" data-end="444.68">is the importance of optimizing images.</span> <span data-start="444.68" data-end="446.8">This is sort of like flossing for the internet — </span> <span data-start="446.8" data-end="449.32">vital for your site's health, yet plenty of us</span> <span data-start="449.32" data-end="450.85">don't really seem to do it enough.</span> <span data-start="450.85" data-end="452.47">And as a Brit, trust me on that one.</span> <span data-start="452.47" data-end="453.71">[BEN CHUCKLING]</span> <span data-start="453.71" data-end="455.47">Now a few years ago, Chrome added support</span> <span data-start="455.47" data-end="457.21">for WebP, a new image format that</span> <span data-start="457.21" data-end="460.66">results in an average 30% savings over other formats</span> <span data-start="460.66" data-end="462.644">like PNG, JPEG, and GIF.</span> </p>
+</section>
+
+<section>
+<p><span data-start="462.644" data-end="463.56"><span class="speaker">Ben Galbraith</span>: "Jiff."</span> </p>
+</section>
+
+<section>
+<p><span data-start="463.56" data-end="464.56"><span class="speaker">Dion Almaer</span>: What was that?</span> </p>
+</section>
+
+<section>
+<p><span data-start="464.56" data-end="464.67"><span class="speaker">Ben Galbraith</span>: No.</span> </p>
+</section>
+
+<section>
+<p><span data-start="464.67" data-end="465.31"><span class="speaker">Dion Almaer</span>: Oh, sorry.</span> </p>
+</section>
+
+<section>
+<p><span data-start="465.31" data-end="465.84"><span class="speaker">Ben Galbraith</span>: I didn't talk.</span> <span data-start="465.84" data-end="466.62">[LAUGHTER]</span> </p>
+</section>
+
+<section>
+<p><span data-start="466.62" data-end="468.453"><span class="speaker">Dion Almaer</span>: And this year, Edge and Firefox</span> <span data-start="468.453" data-end="470.47">ship support for WebP, so make sure</span> <span data-start="470.47" data-end="473.29">your images are fully squooshed.</span> </p>
+</section>
+
+<section>
+<p><span data-start="473.29" data-end="475.75"><span class="speaker">Ben Galbraith</span>: All right, so the web and Chrome have come</span> <span data-start="475.75" data-end="479.05">a long way these past 10 years.</span> <span data-start="479.05" data-end="481.346">So where do we go from here?</span> <span data-start="481.346" data-end="483.22">We've just spent the last few minutes talking</span> <span data-start="483.22" data-end="486.22">about the importance of speed, and the enhancements to the web</span> <span data-start="486.22" data-end="489.32">platform that make that more possible.</span> <span data-start="489.32" data-end="492.46">And we think this will continue to be a major focus for all</span> <span data-start="492.46" data-end="495.52">of us into the future because speed is one of the defining</span> <span data-start="495.52" data-end="498.22">features of the web platform.</span> <span data-start="498.22" data-end="500.95">It's what makes it so magical to go from a link right</span> <span data-start="500.95" data-end="505.665">into a rich experience, seamlessly, without any delay.</span> </p>
+</section>
+
+<section>
+<p><span data-start="505.665" data-end="507.04"><span class="speaker">Dion Almaer</span>: Now delivering speed</span> <span data-start="507.04" data-end="509.95">is a partnership between the browsers and developers.</span> <span data-start="509.95" data-end="513.28">Because no matter how fast and efficient browsers become,</span> <span data-start="513.28" data-end="515.11">a poorly optimized site will always</span> <span data-start="515.11" data-end="516.669">ruin the fast loading experiences</span> <span data-start="516.669" data-end="518.58">that our users want.</span> <span data-start="518.58" data-end="522.179">And increasingly, JavaScript can also become a major factor</span> <span data-start="522.179" data-end="523.559">in slowing down sites.</span> </p>
+</section>
+
+<section>
+<p><span data-start="523.559" data-end="525.54"><span class="speaker">Ben Galbraith</span>: It's because since 2001, sites</span> <span data-start="525.54" data-end="528.18">use an average eight times more JavaScript</span> <span data-start="528.18" data-end="529.652">than they did before.</span> <span data-start="529.652" data-end="531.36">And that's a problem, because in addition</span> <span data-start="531.36" data-end="533.22">to having to be downloaded, all this code</span> <span data-start="533.22" data-end="536.96">needs to be compiled by the browser and executed.</span> <span data-start="536.96" data-end="539.07">And with mobile, many of the devices</span> <span data-start="539.07" data-end="540.54">that our users are using are slower</span> <span data-start="540.54" data-end="542.17">than they've been before.</span> <span data-start="542.17" data-end="545.79">And so increasingly, performance can include the CPU</span> <span data-start="545.79" data-end="546.84">as a bottleneck.</span> </p>
+</section>
+
+<section>
+<p><span data-start="546.84" data-end="548.34"><span class="speaker">Dion Almaer</span>: Now we've created tools</span> <span data-start="548.34" data-end="550.2">like Lighthouse, PageSpeed Insights,</span> <span data-start="550.2" data-end="552">and the Chrome User Experience Report</span> <span data-start="552" data-end="554.85">that can provide deep insights into your site's performance</span> <span data-start="554.85" data-end="556.675">and how it can be improved.</span> </p>
+</section>
+
+<section>
+<p><span data-start="556.675" data-end="559.05"><span class="speaker">Ben Galbraith</span>: However, as helpful as these tools can be,</span> <span data-start="559.05" data-end="561.99">a pattern we've seen is that a site's performance will degrade</span> <span data-start="561.99" data-end="565.59">over time because we're constantly adding new features</span> <span data-start="565.59" data-end="567.27">to enhance our site.</span> <span data-start="567.27" data-end="570">And these new features create pressure for the site</span> <span data-start="570" data-end="571.59">to get bigger and bigger.</span> <span data-start="571.59" data-end="573.75">And that includes more script an more resources</span> <span data-start="573.75" data-end="575.196">that have to be downloaded.</span> <span data-start="575.196" data-end="577.07">Of course, we're not saying that we shouldn't</span> <span data-start="577.07" data-end="579.89">be constantly enhancing our sites and adding features,</span> <span data-start="579.89" data-end="582.93">but as we do so, we have to take care</span> <span data-start="582.93" data-end="586.16">that as we add these features we ensure that our pages continue</span> <span data-start="586.16" data-end="587.527">to load fast.</span> </p>
+</section>
+
+<section>
+<p><span data-start="587.527" data-end="589.11"><span class="speaker">Dion Almaer</span>: So an approach that we've</span> <span data-start="589.11" data-end="591.09">seen that's led to great results here</span> <span data-start="591.09" data-end="594.36">is the practice of establishing a performance budget.</span> <span data-start="594.36" data-end="596.37">And popular tools and frameworks,</span> <span data-start="596.37" data-end="598.65">like Angular, Preact, and Webpack</span> <span data-start="598.65" data-end="602.64">have built-in support to define budgets and enforce them.</span> <span data-start="602.64" data-end="604.23">These budgets can be based on the bite</span> <span data-start="604.23" data-end="606.09">size of your resources, or they can</span> <span data-start="606.09" data-end="608.83">ensure you hit target metrics and scenarios.</span> <span data-start="608.83" data-end="610.95">For example, you can specify that your site should</span> <span data-start="610.95" data-end="614.13">load in under five seconds on a mid-range smartphone</span> <span data-start="614.13" data-end="616.44">and a high-latency 3G network.</span> </p>
+</section>
+
+<section>
+<p><span data-start="616.44" data-end="617.94"><span class="speaker">Ben Galbraith</span>: The team at Pinterest</span> <span data-start="617.94" data-end="621.15">have set a great example of using a budget to guide</span> <span data-start="621.15" data-end="623.081">their optimizations efforts.</span> <span data-start="623.081" data-end="625.33">We'd love to share a video that explains this process.</span> <span data-start="625.33" data-end="625.95">now.</span> <span data-start="625.95" data-end="627.063">Let's roll the video.</span> <span data-start="627.063" data-end="628.422">[VIDEO PLAYBACK]</span> <span data-start="628.422" data-end="630.24">[MUSIC PLAYING]</span> </p>
+</section>
+
+<section>
+<p><span data-start="630.24" data-end="631.8"><span class="speaker">Zack Argyle</span>: Pinterest's mission is</span> <span data-start="631.8" data-end="635.584">to help people discover things, collect them, organize them,</span> <span data-start="635.584" data-end="637.5">and then find ways to apply them in your life.</span> <span data-start="637.5" data-end="638.927">[PAGE TEARING]</span> </p>
+</section>
+
+<section>
+<p><span data-start="638.927" data-end="641.01"><span class="speaker">Ludo Antonov</span>: With more and more people on the go,</span> <span data-start="641.01" data-end="643.77">the mobile web has become central at providing</span> <span data-start="643.77" data-end="646.79">our discovery experience.</span> <span data-start="646.79" data-end="649.38">But our mobile web experience in the past</span> <span data-start="649.38" data-end="653.02">was basically an upsell for the native app.</span> </p>
+</section>
+
+<section>
+<p><span data-start="653.02" data-end="655.02"><span class="speaker">Zack Argyle</span>: Which brought us to the realization</span> <span data-start="655.02" data-end="656.79">that we needed to fix it.</span> </p>
+</section>
+
+<section>
+<p><span data-start="656.79" data-end="659.34"><span class="speaker">Ludo Antonov</span>: The technology was already in place for us</span> <span data-start="659.34" data-end="660.484">to be able to do so.</span> </p>
+</section>
+
+<section>
+<p><span data-start="660.484" data-end="662.4"><span class="speaker">Zack Argyle</span>: And so we brought a team together</span> <span data-start="662.4" data-end="664.8">to rebuild the mobile web from scratch.</span> <span data-start="664.8" data-end="667.23">Having a fast mobile web was crucial to the success</span> <span data-start="667.23" data-end="668.28">of the project.</span> <span data-start="668.28" data-end="672.15">We made sure that we split out what was sent down to the user</span> <span data-start="672.15" data-end="673.83">to be only the crucial things to start,</span> <span data-start="673.83" data-end="676.83">and then everything else that wasn't immediately important</span> <span data-start="676.83" data-end="678.21">sent down later on.</span> <span data-start="678.21" data-end="681.57">We made sure to test out on average devices on 3G,</span> <span data-start="681.57" data-end="683.04">just like our users would be using.</span> <span data-start="683.04" data-end="685.08">And we could see the dramatic difference</span> <span data-start="685.08" data-end="688.2">that there was on that initial time-to-interactivity.</span> <span data-start="688.2" data-end="691.68">By using modern caching best practices in Service Worker,</span> <span data-start="691.68" data-end="693.48">even if you're on a bad connection</span> <span data-start="693.48" data-end="696.57">or have no connection, we were able to preload the user</span> <span data-start="696.57" data-end="698.574">interface for follow-up visits.</span> </p>
+</section>
+
+<section>
+<p><span data-start="698.574" data-end="699.99"><span class="speaker">Ludo Antonov</span>: Like the native app,</span> <span data-start="699.99" data-end="703.21">our site was optimized for touch interactions.</span> <span data-start="703.21" data-end="706.23">This immersive experience resulted in mobile web</span> <span data-start="706.23" data-end="710.052">becoming our top platform for new sign-ups.</span> </p>
+</section>
+
+<section>
+<p><span data-start="710.052" data-end="711.51"><span class="speaker">Zack Argyle</span>: We wanted to make sure</span> <span data-start="711.51" data-end="714.6">that the users for our mobile web</span> <span data-start="714.6" data-end="717.051">continued to use the product as time goes by.</span> <span data-start="717.051" data-end="718.8">And one of the most important technologies</span> <span data-start="718.8" data-end="720.674">that's been added to browsers was the ability</span> <span data-start="720.674" data-end="722.31">to add that site to your home screen.</span> <span data-start="728.49" data-end="731.5">Pinterest is not just about the content,</span> <span data-start="731.5" data-end="734.04">but about what you do with it.</span> </p>
+</section>
+
+<section>
+<p><span data-start="734.04" data-end="736.43"><span class="speaker">Ludo Antonov</span>: The browser is a discovery platform.</span> <span data-start="736.43" data-end="739.5">So making it easier for pinners to use our own discovery</span> <span data-start="739.5" data-end="741.76">service is really a perfect fit.</span> <span data-start="745.099" data-end="746.53">[PLAYBACK ENDS]</span> </p>
+</section>
+
+<section>
+<p><span data-start="747.607" data-end="748.44"><span class="speaker">Ben Galbraith</span>: Cool.</span> </p>
+</section>
+
+<section>
+<p><span data-start="751.13" data-end="752.18"><span class="speaker">Dion Almaer</span>: Thank you.</span> <span data-start="752.18" data-end="754.942">Pinterest is a great example of doing performance right,</span> <span data-start="754.942" data-end="756.65">and Zack from their team is here to share</span> <span data-start="756.65" data-end="759.69">more with us later today.</span> <span data-start="759.69" data-end="762.38">Now let's talk about another example, Wayfair.</span> <span data-start="762.38" data-end="765.05">After experiencing some performance regressions,</span> <span data-start="765.05" data-end="767.06">they created an internal dashboard</span> <span data-start="767.06" data-end="770.75">that provides a simple stoplight system for their developers,</span> <span data-start="770.75" data-end="773.39">and keeps performance top of mind.</span> <span data-start="773.39" data-end="775.1">Since they implemented this system,</span> <span data-start="775.1" data-end="777.874">they've seen consistent speed gains across their sites,</span> <span data-start="777.874" data-end="779.54">and their year-over-year conversion rate</span> <span data-start="779.54" data-end="782.95">has increased by over 10%.</span> </p>
+</section>
+
+<section>
+<p><span data-start="782.95" data-end="784.01"><span class="speaker">Ben Galbraith</span>: OK.</span> <span data-start="784.01" data-end="785.86">While we're talking about speed, we'd</span> <span data-start="785.86" data-end="788.44">like to tell you about two new web platform features</span> <span data-start="788.44" data-end="790.63">that we're implementing in Chrome that we</span> <span data-start="790.63" data-end="796.06">think may lead to more instant and seamless web experiences.</span> <span data-start="796.06" data-end="798.49">Web Packaging is a new feature that</span> <span data-start="798.49" data-end="802.54">allows developers to sign a web page with a special encryption</span> <span data-start="802.54" data-end="806.62">key that proves the page's original domain,</span> <span data-start="806.62" data-end="808.81">and creates a sort of package that</span> <span data-start="808.81" data-end="812.29">can be served from anywhere, and that the browser can securely</span> <span data-start="812.29" data-end="817.29">represent with the page's original domain.</span> </p>
+</section>
+
+<section>
+<p><span data-start="817.29" data-end="818.49"><span class="speaker">Dion Almaer</span>: Now Portals — </span> <span data-start="818.49" data-end="820.44">Portals adds a new iframe-like element</span> <span data-start="820.44" data-end="824.01">to HTML that allows users to seamlessly transition</span> <span data-start="824.01" data-end="827.22">into the Portals content, making it a new top-level web</span> <span data-start="827.22" data-end="828.9">page in the process.</span> <span data-start="828.9" data-end="830.94">Taken together, these new standards</span> <span data-start="830.94" data-end="834.45">enable the browser to securely preload pages, and deliver</span> <span data-start="834.45" data-end="837.87">experiences like this that transition to the new site</span> <span data-start="837.87" data-end="839.19">instantly.</span> <span data-start="839.19" data-end="840.06">Let's try it again.</span> </p>
+</section>
+
+<section>
+<p><span data-start="840.06" data-end="841.84"><span class="speaker">Ben Galbraith</span>: Sure.</span> <span data-start="841.84" data-end="844.3">Tap, and you're right there, instantly.</span> <span data-start="844.3" data-end="846.97">Tomorrow, we'll talk through more of the details,</span> <span data-start="846.97" data-end="849.31">and explain how you can start experimenting</span> <span data-start="849.31" data-end="851.864">with web packaging right now.</span> <span data-start="851.864" data-end="853.78">We're pretty excited about this and the impact</span> <span data-start="853.78" data-end="857.5">that we think it can have on the web.</span> <span data-start="857.5" data-end="859.9">Loading fast is important, but so is</span> <span data-start="859.9" data-end="864.67">delivering a buttery-smooth UI once the page is displayed.</span> <span data-start="864.67" data-end="868.9">Buttery means responding to user input —  like taps and typing — </span> <span data-start="868.9" data-end="871.3">instantly, and ensuring that the page doesn't</span> <span data-start="871.3" data-end="873.61">jank, or sort of skip around as the user</span> <span data-start="873.61" data-end="874.929">scrolls and interacts with it.</span> </p>
+</section>
+
+<section>
+<p><span data-start="874.929" data-end="876.97"><span class="speaker">Dion Almaer</span>: Now traditionally, this hasn't maybe</span> <span data-start="876.97" data-end="878.54">been the strong suit for the web,</span> <span data-start="878.54" data-end="880.96">but we think that things are changing.</span> <span data-start="880.96" data-end="883.075">So today, we're releasing Squoosh,</span> <span data-start="883.075" data-end="886.69">and it is an example of how responsive complex apps can</span> <span data-start="886.69" data-end="888.73">be on today's web.</span> <span data-start="888.73" data-end="892.45">It demonstrates a really fast loading experience using</span> <span data-start="892.45" data-end="896.77">WebAssembly to compress images using C and C++ libraries,</span> <span data-start="896.77" data-end="899.41">and employing Web Workers to handle long-running tasks</span> <span data-start="899.41" data-end="902.11">in the background, enabling a smooth UI,</span> <span data-start="902.11" data-end="904.72">even while the app works really hard.</span> <span data-start="904.72" data-end="906.5">Now this is a full PWA.</span> <span data-start="906.5" data-end="910.42">It works across mobile, desktop, tablet, and offline, too,</span> <span data-start="910.42" data-end="912.15">thanks to Service Worker.</span> </p>
+</section>
+
+<section>
+<p><span data-start="912.15" data-end="913.9"><span class="speaker">Ben Galbraith</span>: Let's use Chrome's DevTools</span> <span data-start="913.9" data-end="916.06">to go under the covers of Squoosh for a moment</span> <span data-start="916.06" data-end="917.5">and take a look.</span> <span data-start="917.5" data-end="920.65">Here on the screen, we can see different browser processes</span> <span data-start="920.65" data-end="922.25">at work in the app.</span> <span data-start="922.25" data-end="924.37">And if we zoom in to three of them — </span> <span data-start="924.37" data-end="926.71">the main process and the workers — </span> <span data-start="926.71" data-end="930.6">we can see, in the main process, all these vertical lines.</span> <span data-start="930.6" data-end="933.62">And each vertical line indicates when the main thread's busy,</span> <span data-start="933.62" data-end="935.96">and the app can't respond to user input.</span> <span data-start="935.96" data-end="938.801">And you can see here they're all generally pretty narrow.</span> <span data-start="938.801" data-end="940.3">And then you can see in the workers,</span> <span data-start="940.3" data-end="943.27">we have these really long bars, representing these long running</span> <span data-start="943.27" data-end="948.58">tasks that would jank the snot out of the UI</span> <span data-start="948.58" data-end="950.04">if they weren't in the background.</span> </p>
+</section>
+
+<section>
+<p><span data-start="950.04" data-end="951.76"><span class="speaker">Dion Almaer</span>: Now if Jake can get his nerves back,</span> <span data-start="951.76" data-end="953.77">he and Mariko are going to join us later and do</span> <span data-start="953.77" data-end="957.892">a session on how they're able to build this application.</span> <span data-start="957.892" data-end="960.1">So sometimes there are tasks that you can't naturally</span> <span data-start="960.1" data-end="961.87">move off of the main thread, such as code</span> <span data-start="961.87" data-end="963.73">that updates the UI.</span> <span data-start="963.73" data-end="967.09">With the recently released Offscreen Canvas feature,</span> <span data-start="967.09" data-end="970.45">now in Chrome and behind a flag in Firefox and Opera,</span> <span data-start="970.45" data-end="973.51">helps you by letting you paint to image surfaces like Canvas</span> <span data-start="973.51" data-end="977.47">and WebGL in a worker, and then copy the image buffer back</span> <span data-start="977.47" data-end="981.96">over to the UI in a single, fast operation.</span> <span data-start="981.96" data-end="984.63">The video here shows how Offscreen Canvas maintains</span> <span data-start="984.63" data-end="988.2">a smooth UI even after we artificially add code</span> <span data-start="988.2" data-end="991.17">to make the painting process expensive using that jank</span> <span data-start="991.17" data-end="992.154">bottom in the middle.</span> </p>
+</section>
+
+<section>
+<p><span data-start="992.154" data-end="993.57"><span class="speaker">Ben Galbraith</span>: It's pretty smooth.</span> <span data-start="996.126" data-end="997.5">Tomorrow, we're going to tell you</span> <span data-start="997.5" data-end="999.84">about more features that are coming to the web</span> <span data-start="999.84" data-end="1004.79">to help with smooth, buttery UIs, such as new APIs</span> <span data-start="1004.79" data-end="1007.73">for background code, called worklets that make tasks</span> <span data-start="1007.73" data-end="1010.88">like animation, audio, custom painting, and custom layout</span> <span data-start="1010.88" data-end="1014.78">easier; a new web component called a Virtual Scroller that</span> <span data-start="1014.78" data-end="1018.23">makes it easy to develop really smooth scrolling</span> <span data-start="1018.23" data-end="1022.43">views over large datasets; and a Task Scheduler API that</span> <span data-start="1022.43" data-end="1025.099">gives developers more control over how the browser spends</span> <span data-start="1025.099" data-end="1025.794">its time.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1025.794" data-end="1027.71"><span class="speaker">Dion Almaer</span>: That's a lot, but as Mariko said,</span> <span data-start="1027.71" data-end="1029.27">you can never add enough butter.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1029.27" data-end="1030.27"><span class="speaker">Ben Galbraith</span>: How true.</span> <span data-start="1030.27" data-end="1031.089">[DION CHUCKLING]</span> </p>
+</section>
+
+<section>
+<p><span data-start="1031.089" data-end="1033.13"><span class="speaker">Dion Almaer</span>: So having a fast-loading, responsive</span> <span data-start="1033.13" data-end="1037.047">website is key, but so are the things that it actually does.</span> <span data-start="1037.047" data-end="1038.63">So on that note, let's talk about some</span> <span data-start="1038.63" data-end="1041.4">of the web's latest integrations with the underlying device</span> <span data-start="1041.4" data-end="1043.29">and operating system.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1043.29" data-end="1046.31"><span class="speaker">Ben Galbraith</span>: Let's take the Spotify PWA as an example.</span> <span data-start="1046.31" data-end="1049.64">With it, users can go straight from a link right into Spotify</span> <span data-start="1049.64" data-end="1051.22">without even installing anything.</span> <span data-start="1051.22" data-end="1054.4">And with the web's full support for background audio, DRM,</span> <span data-start="1054.4" data-end="1060.02">and offline, Spotify can provide a full-featured web experience.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1060.02" data-end="1062.63"><span class="speaker">Dion Almaer</span>: And now Chrome supports desktop PWAs,</span> <span data-start="1062.63" data-end="1065.42">letting apps like Spotify run in their own windows</span> <span data-start="1065.42" data-end="1069.56">and be easily installed on Chrome OS, Windows, Linux,</span> <span data-start="1069.56" data-end="1071.355">and soon on the Mac.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1071.355" data-end="1073.73"><span class="speaker">Ben Galbraith</span>: I think desktop PWAs are really handy when</span> <span data-start="1073.73" data-end="1075.438">you've got lots of tabs open —  like Dion,</span> <span data-start="1075.438" data-end="1076.784">as I mentioned earlier — </span> <span data-start="1076.784" data-end="1078.95">and you want to keep your favorite stuff really easy</span> <span data-start="1078.95" data-end="1081.137">to get to, like with the Twitter PWA</span> <span data-start="1081.137" data-end="1082.97">that we're showing here running as a desktop</span> <span data-start="1082.97" data-end="1085.77">PWA in Chrome Canary on the Mac.</span> <span data-start="1085.77" data-end="1087.47">And what's really cool about Twitter</span> <span data-start="1087.47" data-end="1090.05">is that they've got experimental support that</span> <span data-start="1090.05" data-end="1093.98">enables their mobile PWA to run at desktop screen sizes,</span> <span data-start="1093.98" data-end="1097.76">as we're showing here, which has kind of been the dream of web</span> <span data-start="1097.76" data-end="1100.006">development for a long time.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1100.006" data-end="1103.01"><span class="speaker">Dion Almaer</span>: While we're on the topic of desktop web apps,</span> <span data-start="1103.01" data-end="1105.2">we also recently implemented new web APIs</span> <span data-start="1105.2" data-end="1109.8">in Chrome that enable unfettered access to input devices.</span> <span data-start="1109.8" data-end="1113.69">So web apps can receive full keyboard input elements,</span> <span data-start="1113.69" data-end="1116.24">sample games' pads at high resolution,</span> <span data-start="1116.24" data-end="1118.67">and enter immersive fullscreen modes.</span> <span data-start="1118.67" data-end="1120.2">All of this is perfect for apps like</span> <span data-start="1120.2" data-end="1123.595">the recently-announced Google Project Stream shown here.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1123.595" data-end="1124.97"><span class="speaker">Ben Galbraith</span>: Speaking of media,</span> <span data-start="1124.97" data-end="1126.83">we've also taken the recently-released</span> <span data-start="1126.83" data-end="1128.66">picture-in-picture feature that we</span> <span data-start="1128.66" data-end="1131.66">have on mobile video over to the desktop, which</span> <span data-start="1131.66" data-end="1135.716">makes web video on desktop more of an integrated experience.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1135.716" data-end="1137.84"><span class="speaker">Dion Almaer</span>: And then another important new web API</span> <span data-start="1137.84" data-end="1140.9">is WebAuthN, which enables websites to integrate</span> <span data-start="1140.9" data-end="1143.42">with biometric sensors and other forms</span> <span data-start="1143.42" data-end="1145.4">of multi-factor authentication.</span> <span data-start="1145.4" data-end="1148.22">It's currently implemented in Firefox, Opera, Chrome,</span> <span data-start="1148.22" data-end="1150.76">coming soon to Edge, and it can make web checkout</span> <span data-start="1150.76" data-end="1154.5">a seamlessly secure experience.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1154.5" data-end="1157.11"><span class="speaker">Ben Galbraith</span>: Seen here with the checkout, and with PayPal.</span> <span data-start="1157.11" data-end="1159.401">And it displays the authentication challenge</span> <span data-start="1159.401" data-end="1160.65">as integrated with the device.</span> <span data-start="1163.18" data-end="1165.1">So as the web's capabilities increase,</span> <span data-start="1165.1" data-end="1168.52">it's also important to augment the security and the privacy</span> <span data-start="1168.52" data-end="1171.73">of the platform, and ensure that everyone has an opportunity</span> <span data-start="1171.73" data-end="1175.4">to participate in the open digital economy.</span> <span data-start="1175.4" data-end="1177.34">This is why we've been leading the development</span> <span data-start="1177.34" data-end="1179.32">of advanced new privacy techniques,</span> <span data-start="1179.32" data-end="1182.77">like federated learning and secure aggregation, that</span> <span data-start="1182.77" data-end="1185.74">enable personalized digital experiences that</span> <span data-start="1185.74" data-end="1189.7">also have the strongest privacy guarantees.</span> <span data-start="1189.7" data-end="1192.85">And we've been hard at work reviewing the fundamentals</span> <span data-start="1192.85" data-end="1195.1">of how the web works with respect</span> <span data-start="1195.1" data-end="1197.44">to privacy and personalization.</span> </p>
+<p><span data-start="1197.44" data-end="1200.29">And in the next year, we'll be shipping new features</span> <span data-start="1200.29" data-end="1204.31">into Chrome as well as new server-side technologies that</span> <span data-start="1204.31" data-end="1208">help us uphold the highest standards of user privacy</span> <span data-start="1208" data-end="1211.482">with regards to data collection and usage.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1211.482" data-end="1212.94"><span class="speaker">Dion Almaer</span>: Now as the web evolves</span> <span data-start="1212.94" data-end="1214.356">and we get new capabilities, we're</span> <span data-start="1214.356" data-end="1216.66">constantly focused on interoperability,</span> <span data-start="1216.66" data-end="1219.62">on how well web apps work across browsers.</span> <span data-start="1219.62" data-end="1223.54">And we know this topic is top of mind with developers, too.</span> <span data-start="1223.54" data-end="1225.47">To this end, we've been collaborating</span> <span data-start="1225.47" data-end="1228.59">with other browsers on an open source comprehensive web</span> <span data-start="1228.59" data-end="1230.57">platform test project.</span> <span data-start="1230.57" data-end="1237.79">And we're pleased to share that the browsers are becoming</span> <span data-start="1237.79" data-end="1241.672">more interoperable as measured by these tests,</span> <span data-start="1241.672" data-end="1243.13">and we're continuing to collaborate</span> <span data-start="1243.13" data-end="1244.84">with the other browsers on reference docs</span> <span data-start="1244.84" data-end="1247.35">for the web on the Mozilla develop network.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1247.35" data-end="1249.1"><span class="speaker">Ben Galbraith</span>: These efforts are resulting</span> <span data-start="1249.1" data-end="1252.52">in a less fragmented developer experience for all of us,</span> <span data-start="1252.52" data-end="1255.37">which frees us to spend our time not chasing down compatibility</span> <span data-start="1255.37" data-end="1258.28">bugs, but on adding more features to the platform</span> <span data-start="1258.28" data-end="1260.599">and performance budgets.</span> <span data-start="1260.599" data-end="1262.39">We also think it's more important than ever</span> <span data-start="1262.39" data-end="1265.36">for us to make it easier to create high-quality web</span> <span data-start="1265.36" data-end="1266.84">experiences.</span> <span data-start="1266.84" data-end="1269.38">So to this end, we've been working on a new learning</span> <span data-start="1269.38" data-end="1271.12">website called web.dev.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1273.75" data-end="1275.36"><span class="speaker">Dion Almaer</span>: On web.dev, we start out</span> <span data-start="1275.36" data-end="1277.07">by explaining the principles that we've</span> <span data-start="1277.07" data-end="1280.94">found lead to top quality sites, such as speed, discoverability,</span> <span data-start="1280.94" data-end="1282.35">and reliability.</span> <span data-start="1282.35" data-end="1284.84">And we follow these up with guides</span> <span data-start="1284.84" data-end="1288.35">that explain why you should care about a given concept.</span> <span data-start="1288.35" data-end="1292.1">They provide clear tutorials and offer plenty of sample code.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1295.352" data-end="1297.31"><span class="speaker">Ben Galbraith</span>: We've also partnered with Glitch</span> <span data-start="1297.31" data-end="1299.2">to embed their popular coding tool</span> <span data-start="1299.2" data-end="1301.36">right into the experience, which provides</span> <span data-start="1301.36" data-end="1303.34">an interactive learning environment for getting</span> <span data-start="1303.34" data-end="1307.05">hands-on, and letting you remix and test your code.</span> <span data-start="1307.05" data-end="1311.1">And we've integrated Lighthouse into the web.dev experience,</span> <span data-start="1311.1" data-end="1312.84">giving you a platform that lets you</span> <span data-start="1312.84" data-end="1315.93">track the scores of your websites over time.</span> <span data-start="1315.93" data-end="1319.14">And if your site isn't quite at a perfect score yet,</span> <span data-start="1319.14" data-end="1320.94">it also gives you instructions on how</span> <span data-start="1320.94" data-end="1326.21">to resolve the specific issues that it's found with your site.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1326.21" data-end="1327.52"><span class="speaker">Dion Almaer</span>: So that's web.dev.</span> <span data-start="1327.52" data-end="1329.978">We'd love to get your feedback, especially while we're here</span> <span data-start="1329.978" data-end="1331.47">together at CDS.</span> <span data-start="1331.47" data-end="1333.63">And by the way, if you like that .dev domain,</span> <span data-start="1333.63" data-end="1337.21">check out get.dev for details on how you can register one</span> <span data-start="1337.21" data-end="1339.31">for yourself in the future.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1339.31" data-end="1340.57"><span class="speaker">Ben Galbraith</span>: We also have another fun learning project</span> <span data-start="1340.57" data-end="1341.87">that we want to share with you.</span> <span data-start="1341.87" data-end="1344.08">We've collaborated with Dave Geddes,</span> <span data-start="1344.08" data-end="1348.07">who's created interactive tutorials like Flexbox Zombies</span> <span data-start="1348.07" data-end="1350.68">and CSS Grid Critters —  these are real things,</span> <span data-start="1350.68" data-end="1352.3">and they're really cool — </span> <span data-start="1352.3" data-end="1353.17">to develop — </span> </p>
+</section>
+
+<section>
+<p><span data-start="1353.17" data-end="1356.89"><span class="speaker">Dion Almaer</span>:  — Service Workies, an online adventure</span> <span data-start="1356.89" data-end="1358.72">that helps you really deeply understand</span> <span data-start="1358.72" data-end="1360.79">Service Worker, soup to nuts.</span> <span data-start="1360.79" data-end="1363.41">It's a fun, free, engaging way to learn.</span> <span data-start="1363.41" data-end="1366.91">So please head over to ServiceWorkies.com to sign up</span> <span data-start="1366.91" data-end="1369.33">and start the preview levels that launch just now.</span> <span data-start="1372.11" data-end="1373.85">Now we've also got plenty of updates</span> <span data-start="1373.85" data-end="1375.35">to our developer tools and libraries</span> <span data-start="1375.35" data-end="1377.52">that we're going to share over the next two days.</span> <span data-start="1377.52" data-end="1380.81">But there's one new tool that we'd like to tell you about.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1380.81" data-end="1382.19"><span class="speaker">Ben Galbraith</span>: We call it VisBug,</span> <span data-start="1382.19" data-end="1386.15">and it puts a new spin on how developers and designers can</span> <span data-start="1386.15" data-end="1388.032">interact with web pages.</span> <span data-start="1388.032" data-end="1389.24">We'd like to give you a demo.</span> <span data-start="1389.24" data-end="1392.517">And to do that, let's invite Adam Argyle up to the stage.</span> <span data-start="1392.517" data-end="1393.35">Please welcome Adam.</span> <span data-start="1393.35" data-end="1395.294">[MUSIC PLAYING, APPLAUSE]</span> </p>
+</section>
+
+<section>
+<p><span data-start="1395.294" data-end="1396.75"><span class="speaker">Adam Argyle</span>: What's up, guys?</span> <span data-start="1396.75" data-end="1398.85">Thanks for this opportunity.</span> <span data-start="1398.85" data-end="1400.91">So, developers, you got a lot of tools.</span> <span data-start="1400.91" data-end="1403.34">And whoa, your keynote was amazing so far.</span> <span data-start="1403.34" data-end="1404.35">You're spitting fire.</span> <span data-start="1404.35" data-end="1406.73">I'm back there laughing, and I'm —  anyway, it's awesome.</span> <span data-start="1406.73" data-end="1409.37">So I wanted to give some tools to people that don't generally</span> <span data-start="1409.37" data-end="1411.14">feel like they have a whole lot of power on the web</span> <span data-start="1411.14" data-end="1412.806">unless they open up the Chrome DevTools.</span> <span data-start="1412.806" data-end="1414.95">Chrome DevTools, of course, are like omni-capable.</span> <span data-start="1414.95" data-end="1415.824">But oh, that's right.</span> <span data-start="1415.824" data-end="1417.5">I got my screensaver came on.</span> <span data-start="1417.5" data-end="1419.99">Let me just take my huge password here, because — </span> </p>
+</section>
+
+<section>
+<p><span data-start="1419.99" data-end="1420.82"><span class="speaker">Dion Almaer</span>: That's a cool screensaver.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1420.82" data-end="1421.61"><span class="speaker">Adam Argyle</span>: Oh, for sure.</span> <span data-start="1421.61" data-end="1422.31">Gotta love that.</span> <span data-start="1422.31" data-end="1424.476">OK, so I'm going to hit play on this site, because — </span> <span data-start="1424.476" data-end="1426.59">OK, so I wanted more people to be</span> <span data-start="1426.59" data-end="1429.08">able to contribute to good web experiences,</span> <span data-start="1429.08" data-end="1431.28">and be able to inspect and dissect things.</span> <span data-start="1431.28" data-end="1434.21">And so considered like what Zeppelin is as a designer</span> <span data-start="1434.21" data-end="1435.62">developer handoff.</span> <span data-start="1435.62" data-end="1438.62">I've created this thing called VisBug that essentially</span> <span data-start="1438.62" data-end="1440.039">gives those tools in reverse.</span> <span data-start="1440.039" data-end="1441.83">So this first tool here is the Guides tool.</span> <span data-start="1441.83" data-end="1444.038">Have you ever held a piece of paper up to your screen</span> <span data-start="1444.038" data-end="1446.74">and been like, ooh, is it lined up?</span> <span data-start="1446.74" data-end="1447.442">Here you go.</span> <span data-start="1447.442" data-end="1449.15">There's even, I think, a Chrome extension</span> <span data-start="1449.15" data-end="1450.62">that just does this one thing.</span> </p>
+<p><span data-start="1450.62" data-end="1451.58">And so you can come down here, you're like,</span> <span data-start="1451.58" data-end="1453.67">oh that footer, that looks generally aligned.</span> <span data-start="1453.67" data-end="1455.4">Yeah, let me just kind of hover —  yep,</span> <span data-start="1455.4" data-end="1456.934">yeah, it looks great.</span> <span data-start="1456.934" data-end="1458.1">This is kind of interesting.</span> </p>
+<p><span data-start="1458.1" data-end="1459.808">Look, I can go into a nested hover state,</span> <span data-start="1459.808" data-end="1461.532">and still check what's going on there.</span> <span data-start="1461.532" data-end="1462.74">So that's just the Grid tool.</span> <span data-start="1462.74" data-end="1463.58">There's a whole bunch of tools.</span> <span data-start="1463.58" data-end="1465.913">I'm to do my best to show you more what's going on here.</span> <span data-start="1465.913" data-end="1467.429">This is the Accessibility tool.</span> <span data-start="1467.429" data-end="1469.22">I really want Accessibility to be something</span> <span data-start="1469.22" data-end="1470.48">that more people are aware of.</span> <span data-start="1470.48" data-end="1472.46">It's a little —  there's just too many steps</span> <span data-start="1472.46" data-end="1473.81">to find what is there.</span> </p>
+<p><span data-start="1473.81" data-end="1475.37">So this, you just hover now.</span> <span data-start="1475.37" data-end="1476.99">You just hover for color contrasts.</span> <span data-start="1476.99" data-end="1480.064">You hover for surfacing ARIA rules and tap indexes.</span> <span data-start="1480.064" data-end="1482.48">So basically, the things that you're generally looking for</span> <span data-start="1482.48" data-end="1486.08">are now a hover away instead of maybe it's five or six clicks.</span> <span data-start="1486.08" data-end="1489.08">And the same sort of thing is for styles.</span> <span data-start="1489.08" data-end="1490.25">So you can hover over SVG.</span> </p>
+<p><span data-start="1490.25" data-end="1491.48">You can hover over buttons.</span> <span data-start="1491.48" data-end="1493.46">Nothing is off-limits to Pixelbug.</span> <span data-start="1493.46" data-end="1496.52">It's kind of punk rock.</span> <span data-start="1496.52" data-end="1498.19">It's like, hey, is there DOM there?</span> <span data-start="1498.19" data-end="1498.98">I'll look at it.</span> <span data-start="1498.98" data-end="1500.71">I'll tell you what's there.</span> <span data-start="1500.71" data-end="1501.755">And so here's what you — </span> <span data-start="1501.755" data-end="1503.63">and so let me go through a couple more tools.</span> <span data-start="1503.63" data-end="1505.4">I really like the hue shift tool.</span> <span data-start="1505.4" data-end="1507.41">And so if you go download this Chrome extension,</span> <span data-start="1507.41" data-end="1508.73">you just have to hover over a tool</span> <span data-start="1508.73" data-end="1509.68">and it will show you how it's used.</span> </p>
+<p><span data-start="1509.68" data-end="1512.36">I'll do my best to walk through the keyboard shortcuts</span> <span data-start="1512.36" data-end="1513.03">that I'm doing.</span> <span data-start="1513.03" data-end="1515.47">But it's kind of like design vim at the moment.</span> <span data-start="1515.47" data-end="1516.909">Anyway, it's super fun.</span> <span data-start="1516.909" data-end="1519.2">So what I'm going to do, I'm going to select this path.</span> <span data-start="1519.2" data-end="1521.14">I want to make sure I've got my hue shift tool</span> <span data-start="1521.14" data-end="1523.16">I'm going hit Command-E to expand my selection.</span> <span data-start="1523.16" data-end="1524.243">I'm just going to hold it.</span> </p>
+<p><span data-start="1524.243" data-end="1525.02">Whee.</span> <span data-start="1525.02" data-end="1525.74">And look at that.</span> <span data-start="1525.74" data-end="1527.54">So I selected all of those path nodes.</span> <span data-start="1527.54" data-end="1529.16">So the way that worked is it expanded</span> <span data-start="1529.16" data-end="1530.93">based on the node name and the class name,</span> <span data-start="1530.93" data-end="1533.18">and found similar elements that were siblings.</span> </p>
+<p><span data-start="1533.18" data-end="1535.98">And I'm just going to add some black here.</span> <span data-start="1535.98" data-end="1536.88">Is that magical.</span> <span data-start="1536.88" data-end="1538.02">It feels magical.</span> <span data-start="1538.02" data-end="1540.34">If I hold Control, I can make my selections go away.</span> <span data-start="1540.34" data-end="1542.28">So I could be like, ooh, don't you like it?</span> <span data-start="1542.28" data-end="1543.51">And in this case, I think black's wrong.</span> <span data-start="1543.51" data-end="1544.676">I'm going to add some white.</span> <span data-start="1544.676" data-end="1546.79">I'm going to hit Shift and Right to add some hue.</span> <span data-start="1546.79" data-end="1548.04">And then I'm going to rotate the hue</span> <span data-start="1548.04" data-end="1549.206">with Command-Shift and Down.</span> </p>
+<p><span data-start="1549.206" data-end="1551.83">So I'm rotating the hue by values of 10.</span> <span data-start="1551.83" data-end="1554.01">And now I can explore color palettes.</span> <span data-start="1554.01" data-end="1556.38">I love this particular tool.</span> <span data-start="1556.38" data-end="1557.97">It's HSL-based.</span> <span data-start="1557.97" data-end="1558.72">It's awesome.</span> <span data-start="1558.72" data-end="1560.07">So another thing I want to show you really quick too</span> <span data-start="1560.07" data-end="1561.309">is the Move tool.</span> <span data-start="1561.309" data-end="1563.1">You can just move things in the DOM around.</span> <span data-start="1563.1" data-end="1565.44">You click stuff, and you move it with the keyboard.</span> <span data-start="1565.44" data-end="1567.08">Duh, right?</span> <span data-start="1567.08" data-end="1568.419">Why haven't you had this before?</span> <span data-start="1568.419" data-end="1569.71">It seems to make so much sense.</span> <span data-start="1569.71" data-end="1571.23">So I'm just going to kind of rearrange it here a little bit.</span> <span data-start="1571.23" data-end="1574.29">I'm going to hit M for margin, and then I hit Shift-Up.</span> <span data-start="1574.29" data-end="1576.72">So Shift-Up, Shift-Up, Shift-Up.</span> <span data-start="1576.72" data-end="1579.24">I'm just adding 10 pixels of margin to the top.</span> </p>
+<p><span data-start="1579.24" data-end="1581.7">So consider that these little quick tasks were things</span> <span data-start="1581.7" data-end="1583.44">that you had to sort of nest and find,</span> <span data-start="1583.44" data-end="1585.24">and now you can do them in the chaos</span> <span data-start="1585.24" data-end="1587.31">of the browser in production.</span> <span data-start="1587.31" data-end="1590.022">I wanted the DOM to be the source of truth.</span> <span data-start="1590.022" data-end="1591.48">I wanted a design tool that treated</span> <span data-start="1591.48" data-end="1593.13">the DOM as a source of truth.</span> <span data-start="1593.13" data-end="1596.92">Anyway, I like this site because it's like, ooh, super-flashy,</span> <span data-start="1596.92" data-end="1598.65">and this tool doesn't care.</span> <span data-start="1598.65" data-end="1602.337">Let's get a little meta, and take a quick look at Squoosh,</span> <span data-start="1602.337" data-end="1603.42">which was just introduced.</span> <span data-start="1603.42" data-end="1605.19">It's super-rad.</span> <span data-start="1605.19" data-end="1606.911">And the first thing I want to do is</span> <span data-start="1606.911" data-end="1608.91">talk about some of the additional tools in here.</span> </p>
+<p><span data-start="1608.91" data-end="1612.5">But I want to troll Jake a little bit while I'm up here.</span> <span data-start="1612.5" data-end="1615">So what I'm going to do first, I'm going to grab this image,</span> <span data-start="1615" data-end="1616.95">and I'm going to turn it into myself.</span> <span data-start="1616.95" data-end="1619.065">So have you ever wanted to just swap</span> <span data-start="1619.065" data-end="1621.73">a pinned image on a web page?</span> <span data-start="1621.73" data-end="1623.97">It's just drag and drop, right?</span> <span data-start="1623.97" data-end="1625.6">Why hasn't that been there?</span> <span data-start="1625.6" data-end="1626.85">A lot of the stuff, I had to — </span> <span data-start="1626.85" data-end="1629.97">here's another one, Double-Click for text editing.</span> </p>
+<p><span data-start="1629.97" data-end="1633.57">Let's just make this drag and plop — </span> <span data-start="1633.57" data-end="1635.43">because again, I'm trolling him.</span> <span data-start="1635.43" data-end="1637.584">We'll go back here to my little inspect tool</span> <span data-start="1637.584" data-end="1639.375">we'll look at what styles he's got in here.</span> </p>
+<p><span data-start="1639.375" data-end="1639.74">Ooh, nice.</span> <span data-start="1639.74" data-end="1640.54">Some good Flexbox.</span> <span data-start="1640.54" data-end="1641.43">So I'm going to select this image.</span> <span data-start="1641.43" data-end="1642.84">I'm going to hit Command-E again.</span> <span data-start="1642.84" data-end="1645.4">Here's a fun idea I borrowed from XD.</span> </p>
+<p><span data-start="1645.4" data-end="1649.08">So I'm very inspired from XD, and Figma, and Zeppelin,</span> <span data-start="1649.08" data-end="1650.58">and even Developer Tooling, too.</span> <span data-start="1650.58" data-end="1651.37">So watch this one.</span> <span data-start="1651.37" data-end="1652.21">I love this one.</span> <span data-start="1652.21" data-end="1653.21">I'm going to go in here.</span> <span data-start="1653.21" data-end="1654.68">I'm going to grab two images.</span> <span data-start="1654.68" data-end="1657.7">I want to grab a picture of me.</span> <span data-start="1657.7" data-end="1659.204">I wish I had other pictures.</span> <span data-start="1659.204" data-end="1660.87">Who wants to see my face multiple times?</span> <span data-start="1660.87" data-end="1662.77">Anyway, I want to drag in two images.</span> <span data-start="1662.77" data-end="1664.482">And if you remember we had — </span> <span data-start="1664.482" data-end="1665.19">oh, hey, come on.</span> </p>
+<p><span data-start="1665.19" data-end="1669.73">Take focus, take focus, take focus.</span> <span data-start="1669.73" data-end="1670.23">Oh, good.</span> <span data-start="1670.23" data-end="1671.25">I was just impatient.</span> <span data-start="1671.25" data-end="1671.75">Here you go.</span> <span data-start="1671.75" data-end="1672.3">And I'm going to hover there.</span> </p>
+<p><span data-start="1672.3" data-end="1673.32">Boom, they ping-pong.</span> <span data-start="1673.32" data-end="1674.884">[LAUGHTER]</span> <span data-start="1674.884" data-end="1676.55">It just sort of was like, hey, how many?</span> <span data-start="1676.55" data-end="1677.19">I don't care.</span> <span data-start="1677.19" data-end="1678">And it will just fill it up.</span> <span data-start="1678" data-end="1678.751">It's super-fun.</span> <span data-start="1678.751" data-end="1681">OK, so we're done kind of like trolling his home page.</span> <span data-start="1681" data-end="1682.749">Let's actually go do something meaningful.</span> <span data-start="1682.749" data-end="1684.3">He asked me to do a design review.</span> <span data-start="1684.3" data-end="1685.65">OK, so I hid my tools.</span> <span data-start="1685.65" data-end="1688.05">The site doesn't even know I changed it.</span> </p>
+<p><span data-start="1688.05" data-end="1691.11">Let's drag in something fun.</span> <span data-start="1691.11" data-end="1693.18">I like this Christmas eggnog picture.</span> <span data-start="1693.18" data-end="1694.22">Yeah, this is good.</span> <span data-start="1694.22" data-end="1695.55">Me and my wife — </span> <span data-start="1695.55" data-end="1697.2">hello.</span> <span data-start="1697.2" data-end="1699.72">And so we have this very complex website.</span> <span data-start="1699.72" data-end="1701.526">It's packed with Wasm.</span> </p>
+<p><span data-start="1701.526" data-end="1703.65">And you know, maybe conceptually, you're just like,</span> <span data-start="1703.65" data-end="1705.662">there's no way I could kind of help design that.</span> <span data-start="1705.662" data-end="1706.62">Well of course you can.</span> <span data-start="1706.62" data-end="1707.328">It's [INAUDIBLE].</span> <span data-start="1707.328" data-end="1708.147">It doesn't care.</span> <span data-start="1708.147" data-end="1709.23">So I'm going to expand it.</span> <span data-start="1709.23" data-end="1711.93">I'm going to get some things into a nested state, something</span> <span data-start="1711.93" data-end="1714.19">that's theoretically harder to design with.</span> <span data-start="1714.19" data-end="1716.1">And I'm going to darken this side up.</span> <span data-start="1716.1" data-end="1718.39">I'm a fan of retro wave right now.</span> <span data-start="1718.39" data-end="1720.84">And I love those like purples, pinks, and stuff on dark.</span> <span data-start="1720.84" data-end="1723.14">Let's do that to the site really quick.</span> <span data-start="1723.14" data-end="1724.64">So I'm going to launch [INAUDIBLE].</span> <span data-start="1724.64" data-end="1726.06">and we're just going to use a couple of features here.</span> </p>
+<p><span data-start="1726.06" data-end="1727.62">So I'm going to hit this header because I</span> <span data-start="1727.62" data-end="1728.7">think these need to be a little bit more</span> <span data-start="1728.7" data-end="1730.116">pronounced with some accent color.</span> <span data-start="1730.116" data-end="1732.9">I'm going to expand my selection by clicking a class name.</span> <span data-start="1732.9" data-end="1735.09">So what's cool is BEM and just dynamically generated</span> <span data-start="1735.09" data-end="1735.6">class names.</span> <span data-start="1735.6" data-end="1737.55">What they do is they create a consistency</span> <span data-start="1737.55" data-end="1738.69">between related nodes.</span> <span data-start="1738.69" data-end="1740.037">And so I leveraged those.</span> <span data-start="1740.037" data-end="1741.12">You just make a selection.</span> <span data-start="1741.12" data-end="1742.852">And you can hover on the classes too,</span> <span data-start="1742.852" data-end="1744.06">and it will pseudo-highlight.</span> <span data-start="1744.06" data-end="1746.58">Anyway, this tool is so full of features.</span> <span data-start="1746.58" data-end="1748.36">I'm having a hard time talking slow.</span> </p>
+<p><span data-start="1748.36" data-end="1750.75">OK, so anyway I got these headers.</span> <span data-start="1750.75" data-end="1752.34">I just want to spoof these up.</span> <span data-start="1752.34" data-end="1753.54">So I'm going to get rid of their opacity</span> <span data-start="1753.54" data-end="1755.2">by doing Command-Shift Right and Left.</span> <span data-start="1755.2" data-end="1756.39">You can manage opacity.</span> <span data-start="1756.39" data-end="1758.56">I'm going to add some white by hitting Shift-Up.</span> <span data-start="1758.56" data-end="1761.19">I'm going to add some hue by adding Shift-Right.</span> <span data-start="1761.19" data-end="1764.801">And I'm going to change the hue to (SINGING) hot pink.</span> <span data-start="1764.801" data-end="1765.3">Right?</span> <span data-start="1765.3" data-end="1765.95">Super-rad.</span> <span data-start="1765.95" data-end="1767.58">OK, so then I'm going to go in here.</span> <span data-start="1767.58" data-end="1769.087">And I'm going to darken this up.</span> </p>
+<p><span data-start="1769.087" data-end="1770.67">I like how transparent it is, but I've</span> <span data-start="1770.67" data-end="1772.97">got this darkness vibe.</span> <span data-start="1772.97" data-end="1774.76">I just —  dark.</span> <span data-start="1774.76" data-end="1776.16">So let's darken it up, right?</span> <span data-start="1776.16" data-end="1777.65">OK, and we'll come down here.</span> <span data-start="1777.65" data-end="1780.652">And you know, this should look like magic right now.</span> <span data-start="1780.652" data-end="1781.86">So I'm just doing Shift-Down.</span> <span data-start="1781.86" data-end="1782.97">I'm just adding black.</span> <span data-start="1782.97" data-end="1784.928">Now this particular node, he's a little tricky.</span> <span data-start="1784.928" data-end="1786.09">Look, he's a number input.</span> <span data-start="1786.09" data-end="1789.53">So you can navigate the entire DOM with your keyboard.</span> <span data-start="1789.53" data-end="1790.71">So I'm going to hit tab.</span> </p>
+<p><span data-start="1790.71" data-end="1792.42">It just tabbed me to the next child.</span> <span data-start="1792.42" data-end="1793.14">Hit Shift-Down.</span> <span data-start="1793.14" data-end="1794.625">I'm going to black that out.</span> <span data-start="1794.625" data-end="1795.565">Mm-hmm, that's fine.</span> <span data-start="1795.565" data-end="1798.78">Then we'll grab this, and I'm just going to black that out.</span> <span data-start="1798.78" data-end="1801.37">And we'll get rid of the tool.</span> </p>
+<p><span data-start="1801.37" data-end="1803.03">And I will send a screenshot to Jake,</span> <span data-start="1803.03" data-end="1804.946">and be like, this is how it should look, dude.</span> <span data-start="1804.946" data-end="1807.219">It should be pink and blue.</span> <span data-start="1807.219" data-end="1808.26">Come see me in the forum.</span> <span data-start="1808.26" data-end="1809.61">I've got more stuff to show you.</span> <span data-start="1809.61" data-end="1811.3">I mean, there is —  like, it's weird.</span> <span data-start="1811.3" data-end="1812.56">It does a lot of weird stuff.</span> <span data-start="1812.56" data-end="1814.35">And it's really fun.</span> <span data-start="1814.35" data-end="1816.25">Nothing is off-limits to this tool.</span> </p>
+<p><span data-start="1816.25" data-end="1820.08">And I hope content writers, web designers, just people finally</span> <span data-start="1820.08" data-end="1822.239">have a tool that helps empower them in the DOM.</span> <span data-start="1822.239" data-end="1823.53">It should feel like a document.</span> <span data-start="1823.53" data-end="1824.55">It should feel like an artboard.</span> <span data-start="1824.55" data-end="1825.75">That's the illusion I'm trying to go for.</span> <span data-start="1825.75" data-end="1826.44">So — </span> </p>
+</section>
+
+<section>
+<p><span data-start="1826.44" data-end="1826.89"><span class="speaker">Ben Galbraith</span>: Awesome.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1826.89" data-end="1827.797"><span class="speaker">Adam Argyle</span>: Thanks, guys.</span> <span data-start="1827.797" data-end="1828.284">[APPLAUSE]</span> </p>
+</section>
+
+<section>
+<p><span data-start="1828.284" data-end="1829.46"><span class="speaker">Dion Almaer</span>: Give it for Adam.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1829.46" data-end="1829.68"><span class="speaker">Ben Galbraith</span>: That was awesome.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1829.68" data-end="1830.513"><span class="speaker">Dion Almaer</span>: Thanks.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1831.462" data-end="1832.92"><span class="speaker">Ben Galbraith</span>: It's been a pleasure</span> <span data-start="1832.92" data-end="1835.6">to reflect with you on the past 10 years</span> <span data-start="1835.6" data-end="1836.77">and what's new for the web.</span> <span data-start="1836.77" data-end="1839.56">Before we go, we want to give a brief mention of Chrome OS.</span> <span data-start="1839.56" data-end="1841.69">It's a great way to engage with the web.</span> <span data-start="1841.69" data-end="1843.81">And with support for Linux and Android apps,</span> <span data-start="1843.81" data-end="1845.74">it's also ready for web development.</span> <span data-start="1845.74" data-end="1850.57">We're offering a 75% discount on the Google Pixelbook to all CDS</span> <span data-start="1850.57" data-end="1853.082">attendees so you can check it out.</span> <span data-start="1853.082" data-end="1855.04">The vouchers will be available tomorrow morning</span> <span data-start="1855.04" data-end="1856.414">before the first session begins — </span> </p>
+</section>
+
+<section>
+<p><span data-start="1856.414" data-end="1859.6"><span class="speaker">Dion Almaer</span>:  — so don't party too hard tonight.</span> </p>
+</section>
+
+<section>
+<p><span data-start="1859.6" data-end="1862.03"><span class="speaker">Ben Galbraith</span>: And with that, thank you very much</span> <span data-start="1862.03" data-end="1863.75">for joining us here this morning.</span> <span data-start="1863.75" data-end="1865.02">And let's all work together.</span> <span data-start="1865.02" data-end="1865.62">[APPLAUSE]</span> <span data-start="1865.62" data-end="1866.52">Thank you.</span> <span data-start="1866.52" data-end="1870.47">[MUSIC PLAYING]</span> </p>
+</section>
+
+<!-- div#container ends -->
+</div>
+
+<img alt="The End" id="fin" src="../images/fin.jpg">
+
+<script>
+/*eslint-disable */
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google-translate');
+}
+/* eslint-enable */
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="../js/main.js"></script>
+
+</body>
+
+</html>
