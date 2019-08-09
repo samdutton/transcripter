@@ -231,20 +231,28 @@ function processVideoData(videoId, captions) {
 
 function processCaptions(videoId, captions) {
   let html = '';
-  let numSpans = 0;
   // Randomly set the maximum number of spans allowed in a paragraph.
   let max = getRandom(3, 15);
+  let numSpans = 0;
+
   for (const caption of captions) {
     // Replace line breaks in the captions and remove any stray whitespace.
-    // caption.plainText is used for search indexing.
-    caption.plainText = caption.text = caption.text.replace(/\n/, ' ').trim();
+    // caption.text is plain text (no HTML markup) used for search indexing.
+    caption.text = caption.text.replace(/\n/, ' ').trim();
+
+    // Remove speaker names from caption text so they aren't indexed as content.
+    caption.text = caption.text.replace(SPEAKER_REGEX, '');
     // Test for dodgy characters, just in case.
     if (/^[^a-zA-Z0-9 .\-?]+$/.test(caption.text)) {
       logError(`Found unexpected character in caption: |${caption.text}|`);
     }
-
     // Add a search index document for each caption, indexing caption.plainText
     addSearchIndexDoc(videoId, caption);
+
+    // caption.html is used for creating the transcript HTML.
+    caption.html = caption.text;
+    // Check for a change of speaker and add markup to speaker names.
+    caption.html = handleSpeakerNames(caption);
 
     // For readability, break up long speeches into paragraphs.
     // Attempt to break only at end of sentences.
@@ -255,31 +263,28 @@ function processCaptions(videoId, captions) {
       max = getRandom(3, 15); // reset
     }
 
-    // Check for a change of speaker and add markup to speaker names.
-    caption.text = parseSpeakerNames(caption);
-
-    // NB: This must come after parseSpeakerNames() is called.
+    // NB: This must come after handleSpeakerNames() is called.
     // Add space at end of every caption (these aren't in the SRT) to ensure
     // space between words, and after sentence endings.
     // Note that SRT timings are in milliseconds whereas YouTube uses seconds.
-    caption.text = `<span data-start="${caption.start / 1000}" ` +
-      `data-end="${caption.end / 1000}">${caption.text}</span> `;
+    caption.html = `<span data-start="${caption.start / 1000}" ` +
+      `data-end="${caption.end / 1000}">${caption.html}</span> `;
     // Add a paragraph and section break before each new speaker.
-    if (caption.text.includes('class="speaker"')) {
+    if (caption.html.includes('class="speaker"')) {
       html += '</p>\n</section>\n\n<section>\n<p>';
     }
-    html += caption.text;
+    html += caption.html;
   } // end processing captions
   return html;
 }
 
 function addSearchIndexDoc(videoId, caption) {
-  // NB: This must come after parseSpeakerNames() is called.
+  // NB: This must come after handleSpeakerNames() is called.
   if (CREATE_SEARCH_INDEX) {
     const doc = {
       // base 36 to minimise length/storage of the id value
       id: (docNum++).toString(36),
-      sp: currentSpeaker, // reset in parseSpeakerNames() called above
+      sp: currentSpeaker, // reset in handleSpeakerNames() called above
       st: caption.start,
       t: caption.plainText,
       v: videoId,
@@ -314,11 +319,12 @@ function createStandaloneHomePage() {
       `\x1b[97m${standaloneIndex}\x1b[0m\n`);
 }
 
+// Check the text of each caption for speaker names.
 // Whenever the current speaker changes:
 // • Reset the currentSpeaker value.
 // • Add HTML formatting.
-function parseSpeakerNames(caption) {
-  return caption.text.replace(SPEAKER_REGEX, (match, p1) => {
+function handleSpeakerNames(text) {
+  return text.replace(SPEAKER_REGEX, (match, p1) => {
     currentSpeaker = formatName(p1);
     speakers.add(currentSpeaker);
     // The top and bottom HTML fragments open and close the tags added.
