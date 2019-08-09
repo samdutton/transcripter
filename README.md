@@ -36,11 +36,10 @@ Check for errors in _error-log.txt_.
 
 ```
 -a, --append   Append output to existing files in output directory
--c, --index    Create index page linking to HTML output
--f, --fragment Create HTML content fragments only, without top and bottom HTML
+-c, --index    Create index page linking to standalone transcripts
 -h, --help     Show help
 -i, --input    Input directory, default is [_input_](src/input)
--o, --output   Output directory, default is [_output_](src/output)
+-o, --output   Output directory, default is [_output_](src/docs)
 -s, --search   Create search index
 ```
 
