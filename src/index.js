@@ -187,13 +187,19 @@ function processSrtText(videoId, text) {
   if (++numSrtFilesProcessed === numSrtFiles) {
     console.log(`\nTime to process ${numCaptions} captions`);
     console.timeEnd(`from ${numSrtFiles} transcripts`);
+    console.log('\n');
     if (CREATE_STANDALONE_HOMEPAGE) { // page linking to standalone transcripts
       createStandaloneHomePage();
     }
     if (CREATE_SEARCH_INDEX) {
       writeFile(SEARCH_INDEX_FILEPATH, searchIndex.export());
-      console.log(`Wrote searchIndex to \x1b[97m${SEARCH_INDEX_FILEPATH}\x1b[0m, ` +
+      console.log(`\nWrote search index to \x1b[97m${SEARCH_INDEX_FILEPATH}\x1b[0m, ` +
           `length ${searchIndex.length}\n`);
+      // The number of search docs should equal the number of captions.
+      if (searchIndex.length !== numCaptions) {
+        logError(`searchIndex.length is ${searchIndex.length}, ` +
+          `but should be the same as the number of captions (${numCaptions})`);
+      }
     }
     writeFile(SPEAKERS_DATA_FILEPATH, JSON.stringify([...speakers].sort()));
     console.log(`\nWrote data for ${speakers.size} speakers to ` +
@@ -233,33 +239,40 @@ function processCaptions(videoId, captions) {
   let html = '';
   // Randomly set the maximum number of spans allowed in a paragraph.
   let max = getRandom(3, 15);
-  let numSpans = 0;
+  // speechLength corresponds to the number of span elements used since a
+  // paragraph break was added (see below) to break up long speeches.
+  let speechLength = 0;
 
   for (const caption of captions) {
     // Replace line breaks in the captions and remove any stray whitespace.
-    // caption.text is plain text (no HTML markup) used for search indexing.
     caption.text = caption.text.replace(/\n/, ' ').trim();
 
+    // caption.text is plain text that will bee used for search indexing.
+    // caption.html will be marked up for transcript HTML.
+    caption.html = caption.text;
+
+    // Reset speechLength each time there's a new speaker.
+    if (SPEAKER_REGEX.test(caption.text)) {
+      speechLength = 0;
+    }
     // Remove speaker names from caption text so they aren't indexed as content.
     caption.text = caption.text.replace(SPEAKER_REGEX, '');
     // Test for dodgy characters, just in case.
     if (/^[^a-zA-Z0-9 .\-?]+$/.test(caption.text)) {
-      logError(`Found unexpected character in caption: |${caption.text}|`);
+      logError(`Found unexpected character in caption: ${caption.text}`);
     }
     // Add a search index document for each caption, indexing caption.plainText
     addSearchIndexDoc(videoId, caption);
 
-    // caption.html is used for creating the transcript HTML.
-    caption.html = caption.text;
     // Check for a change of speaker and add markup to speaker names.
-    caption.html = handleSpeakerNames(caption);
+    caption.html = handleSpeakerNames(caption.html);
 
     // For readability, break up long speeches into paragraphs.
     // Attempt to break only at end of sentences.
     // Sentences almost always start at the beginning of captions.
-    if (++numSpans > max && caption.text.match(/^[A-Z]/)) {
+    if (++speechLength > max && caption.text.match(/^[A-Z]/)) {
       html += '</p>\n<p>';
-      numSpans = 0;
+      speechLength = 0;
       max = getRandom(3, 15); // reset
     }
 
@@ -282,11 +295,10 @@ function addSearchIndexDoc(videoId, caption) {
   // NB: This must come after handleSpeakerNames() is called.
   if (CREATE_SEARCH_INDEX) {
     const doc = {
-      // base 36 to minimise length/storage of the id value
-      id: (docNum++).toString(36),
-      sp: currentSpeaker, // reset in handleSpeakerNames() called above
-      st: caption.start,
-      t: caption.plainText,
+      id: (docNum++).toString(36), // Base 36 to minimise storage of id value.
+      sp: currentSpeaker, // Reset whenever handleSpeakerNames() called (above).
+      st: caption.start / 1000, // SRT uses milliseconds; YouTube uses seconds.
+      t: caption.text,
       v: videoId,
     };
     searchIndex.add(doc, (error) => {
@@ -311,7 +323,7 @@ function createStandaloneHomePage() {
     </style>
     `;
   for (const videoId of videoIds) {
-    html += `<p><a href="${videoId}.html">${videoId}</a><p>\n`;
+    html += `<p><a href="transcripts/${videoId}.html">${videoId}</a><p>\n`;
   }
   const standaloneIndex = `${STANDALONE_DIR}/index.html`;
   writeFile(standaloneIndex, html);
@@ -327,7 +339,6 @@ function handleSpeakerNames(text) {
   return text.replace(SPEAKER_REGEX, (match, p1) => {
     currentSpeaker = formatName(p1);
     speakers.add(currentSpeaker);
-    // The top and bottom HTML fragments open and close the tags added.
     return `<span class="speaker">${currentSpeaker}</span>: `;
   });
 }
@@ -358,6 +369,8 @@ function fixTextGlitches(html) {
     replace(/&amp;#39;/gm, '\'').
     replace(/&quot;/gm, '\'').
     replace(/&amp;quot;/gm, '\'').
+    replace(/\.\./gm, '.'). // this and the next used with [INAUDIBLE]
+    replace(/,,/gm, '.').
     replace(/--/gm, ' — ').
     replace(/ - /gm, ' — ');
 }

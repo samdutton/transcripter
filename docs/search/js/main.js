@@ -51,7 +51,7 @@ const searchOptionsDetails = document.getElementById('search-options');
 
 // const speakerInput = document.getElementById('speaker');
 // const speakersDatalist = document.getElementById('speakers');
-const transcriptDiv = document.getElementById('text');
+const transcriptDiv = document.getElementById('transcript');
 // const titleInput = document.getElementById('title');
 // const titlesDatalist = document.getElementById('titles');
 
@@ -323,14 +323,15 @@ function addMatch(match) {
   matchElement.dataset.start = match.st;
   matchElement.dataset.video = match.v;
   matchElement.innerHTML = match.t;
+  matchElement.title = match.sp;
   matchElement.onclick = () => {
-    displayText(match);
+    displayCaption(match);
   };
   matchesList.appendChild(matchElement);
 }
 
 // Display the appropriate text and location when a user taps/clicks on a match
-function displayText(match) {
+function displayCaption(match) {
   // hide(creditElement);
   hide(infoElement);
   hide(matchesList);
@@ -339,24 +340,23 @@ function displayText(match) {
   // e.g. Ham.3.3.2, Son.4.11, Ven.140
   // scene title matches only have act and scene number, e.g. Ham.3.3
   history.pushState({type: 'text'}, null,
-    `${window.location.origin}#${match.v}`);
-  document.title =
-    `CDS: ${match.v}`;
-  console.log('>>> transcript file:', `${TRANSCRIPT_DIR}/${match.v}.html`);
-  fetch(`${TRANSCRIPT_DIR}/${match.v}.html`).then((response) => {
+    `${window.location.origin}#${match.t}`);
+  document.title = `CDS: ${match.t}`;
+  const transcriptFilepath = `${TRANSCRIPT_DIR}/${match.v}.html`;
+  fetch(transcriptFilepath).then((response) => {
     return response.text();
   }).then((html) => {
     transcriptDiv.innerHTML = html;
     // transcriptDiv.onmouseover = addWordSearch;
     show(transcriptDiv);
     // show(creditElement);
-    highlightMatch(match.v, match.st);
+    highlightMatch(match.st);
   }).catch((error) => {
-    console.error(`Error or timeout fetching ${match.v}: ${error}`);
-    displayInfo(`There was a problem downloading ` +
-      `<em>${match.v}.</em><br><br>` +
+    console.error(`Error or timeout fetching ${transcriptFilepath}: ${error}`);
+    displayInfo(`There was a problem downloading the transcript for ` +
+      `<em>${transcriptFilepath}.</em><br><br>` +
       'Check that you\'re online, or try refreshing the page.<br><br>' +
-      'You can download videoTitles when you\'re online by selecting the ' +
+      'You can download transcripts when you\'re online by selecting the ' +
       '<strong>Download all</strong> checkboxes from ' +
       '<strong>Search options</strong>.');
   });
@@ -370,9 +370,11 @@ function displayText(match) {
 // scroll into view
 // }
 
-function highlightMatch(video, time) {
-// highlightTime
-// show(transcriptDiv);
+function highlightMatch(time) {
+  console.log('>>> time', time);
+  const captionSpan = document.querySelector(`span[data-start="${time}"]`);
+  captionSpan.classList.add('highlight');
+  captionSpan.scrollIntoView({block: 'center'});
 }
 
 // Highlight a caption
