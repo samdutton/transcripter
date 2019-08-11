@@ -14,17 +14,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-/* globals gtag FlexSearch */
-
-// const DATALISTS_FILE = 'data/datalists.json';
-const TRANSCRIPT_DIR = 'transcripts';
-const INDEX_FILE = 'data/index.json';
+/* globals gtag FlexSearch YT */
 
 const CACHE_NAME = 'cache';
+
+// const DATALISTS_FILE = 'data/datalists.json';
+const IFRAME_ID = 'youtube';
+// Interval between checks when transcript focus follows video playback.
+const POLLING_INTERVAL = 100;
+
+const SEARCH_INDEX_FILE = 'data/index.json';
+const TRANSCRIPT_DIR = 'transcripts';
+
 const DEBOUNCE_DELAY = 300;
 const QUERY_INPUT_PLACEHOLDER = 'Search for a word or phrase';
 // TODO: Replace with real URL
-const SEARCH_QUERY_PAGE_LOCATION = `https://foo.com/search?q=`;
+const SEARCH_QUERY_PAGE_LOCATION = `https://developer.chrome.com/devsummit/search?q=`;
 const SEARCH_QUERY_PAGE_PATH = `/search?q=`;
 
 const searchIndex = new FlexSearch({
@@ -42,7 +47,9 @@ const searchIndex = new FlexSearch({
 //   expand: false, // true means matches are not whole-word-only
 // };
 
+const captionScrollCheckbox = document.getElementById('captionScroll');
 // const creditElement = document.getElementById('credit');
+const iframe = document.getElementById(IFRAME_ID);
 const infoElement = document.getElementById('info');
 const matchesList = document.getElementById('matches');
 const queryInfoElement = document.getElementById('query-info');
@@ -55,13 +62,118 @@ const transcriptDiv = document.getElementById('transcript');
 // const titleInput = document.getElementById('title');
 // const titlesDatalist = document.getElementById('titles');
 
+let captionSpans;
+let currentSpan = null;
 let datalists;
 let matches;
+let player;
+let pollingTimerId;
 let startTime;
 // let videoTitles;
 let timeout = null;
 
-// Log a Google Analytics event when search options is opened.
+// If the user scrolls manually, turn off automatic scrolling.
+window.onwheel = window.ontouchmove = () => {
+  captionScrollCheckbox.checked = false;
+};
+
+// Select whether the iframe position is sticky, or scrolls with the page.
+// The initial state is `sticky`.
+const videoStickyCheckbox = document.getElementById('videoSticky');
+videoStickyCheckbox.onchange = (event) => {
+  if (event.target.checked) {
+    iframe.style.position = 'sticky';
+  } else {
+    iframe.style.position = 'unset';
+  }
+};
+
+// Get the YouTube API script.
+const tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+const firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+// When the video starts playing, start polling (to focus the current caption).
+// Stop polling when video is paused or ended.
+function handlePlayerStateChange(event) {
+  console.log('>>> handlePlayerStateChange', event.data);
+  if (event.data === YT.PlayerState.PLAYING) {
+    startPolling();
+  } else if (event.data === YT.PlayerState.PAUSED ||
+      event.data === YT.PlayerState.ENDED) {
+    stopPolling();
+  }
+}
+
+// Set the current time of the video when you tap/click on a caption.
+function addCaptionSpanHandlers() {
+  captionSpans = document.querySelectorAll('span[data-start]');
+  for (const span of captionSpans) {
+    span.onclick = () => {
+      if (currentSpan) {
+        currentSpan.classList.remove('current');
+      }
+      currentSpan = span;
+      span.classList.add('current');
+      const start = span.getAttribute('data-start');
+      // Used to not work without rounded number :/...
+      player.seekTo(Math.round(start));
+      // Will not work until user has manually initiated playback.
+      player.playVideo();
+    };
+  }
+}
+
+function startPolling() {
+  pollingTimerId = setInterval(focusCaption, POLLING_INTERVAL);
+}
+
+function stopPolling() {
+  clearInterval(pollingTimerId);
+}
+
+// Set visual focus on the current caption.
+function focusCaption() {
+  const currentTime = player.getCurrentTime();
+  if (currentSpan) {
+    currentSpan.classList.remove('current');
+  }
+  for (const span of captionSpans) {
+    // Find currentSpan — could be optimized.
+    if (span.dataset.start < currentTime && span.dataset.end > currentTime) {
+      span.classList.add('current');
+      currentSpan = span;
+      if (captionScrollCheckbox.checked) {
+        ensureVisible(span);
+      }
+      break;
+    }
+  }
+}
+
+// If necessary, scroll the current span into view.
+function ensureVisible(span) {
+  // If videoStickyCheckbox is checked, it's necessary to account for
+  // iframe height + iframe CSS outline height + page margin.
+  const iframeOffset = iframe.offsetHeight + 40;
+  if (inView(span, iframeOffset)) {
+    return;
+  }
+  if (videoStickyCheckbox.checked) {
+    span.scrollIntoView({block: 'start'});
+    scrollBy(0, -iframeOffset);
+  } else {
+    span.scrollIntoView({block: 'center'});
+  }
+}
+
+function inView(span, iframeOffset) {
+  const r = span.getBoundingClientRect();
+  return r.top >= iframeOffset &&
+      r.bottom < document.documentElement.clientHeight;
+}// Log a Google Analytics event when search options is opened.
 searchOptionsDetails.ontoggle = (event) => {
   if (event.target.open) {
     gtag('event', 'Search options opened', {
@@ -94,7 +206,7 @@ window.onload = () => {
 function getSearchIndex() {
   console.log('Fetching search index...');
   console.time('Fetch search index');
-  fetch(INDEX_FILE).then((response) => {
+  fetch(SEARCH_INDEX_FILE).then((response) => {
     return response.text();
   }).then((text) => {
     console.timeEnd('Fetch search index');
@@ -112,7 +224,7 @@ function getSearchIndex() {
   }).catch((error) => {
     displayInfo(`There was a problem downloading data.<br>` +
       `Check that you're online, or try refreshing the page.<br><br>`);
-    console.error(`Error fetching ${INDEX_FILE}: ${error}`);
+    console.error(`Error fetching ${SEARCH_INDEX_FILE}: ${error}`);
   });
 }
 
@@ -260,6 +372,7 @@ function doSearch(query) {
 // Display a list of matched lines, stage directions,
 // scene locations and scene descriptions
 function displayMatches() {
+  hide(iframe);
   hide(infoElement);
   hide(matchesList);
   matchesList.textContent = '';
@@ -330,23 +443,38 @@ function addMatch(match) {
   matchesList.appendChild(matchElement);
 }
 
-// Display the appropriate text and location when a user taps/clicks on a match
+// Display the appropriate video and caption when a user taps/clicks on a match.
 function displayCaption(match) {
   // hide(creditElement);
   hide(infoElement);
   hide(matchesList);
   hide(queryInfoElement);
-  // match.l is a citation within a play or poem,
-  // e.g. Ham.3.3.2, Son.4.11, Ven.140
-  // scene title matches only have act and scene number, e.g. Ham.3.3
+  // if (iframe.src === '') {
+  iframe.src = `http://www.youtube.com/embed/${match.v}?enablejsapi=1&html5=1` +
+      `&start=${match.st}&autoplay=1`;
+  // }
+  iframe.onload = () => {
+    player = new YT.Player(IFRAME_ID, {
+      events: {
+        'onStateChange': handlePlayerStateChange,
+        'onReady': () => {
+          player.time = match.st;
+          player.seekTo(Math.round(match.st));
+        },
+      },
+    });
+  };
+  show(iframe);
   history.pushState({type: 'text'}, null,
-    `${window.location.origin}#${match.t}`);
+    // Set location to include video ID and start time.
+    `${window.location.origin}#${match.v}?st=${match.st}`);
   document.title = `CDS: ${match.t}`;
   const transcriptFilepath = `${TRANSCRIPT_DIR}/${match.v}.html`;
   fetch(transcriptFilepath).then((response) => {
     return response.text();
   }).then((html) => {
     transcriptDiv.innerHTML = html;
+    addCaptionSpanHandlers();
     // transcriptDiv.onmouseover = addWordSearch;
     show(transcriptDiv);
     // show(creditElement);
@@ -371,10 +499,13 @@ function displayCaption(match) {
 // }
 
 function highlightMatch(time) {
-  console.log('>>> time', time);
   const captionSpan = document.querySelector(`span[data-start="${time}"]`);
   captionSpan.classList.add('highlight');
   captionSpan.scrollIntoView({block: 'center'});
+  // const start = captionSpan.getAttribute('data-start');
+  // player.seekTo(Math.round(start));
+  // Will not work until user has manually initiated playback.
+  // player.play();
 }
 
 // Highlight a caption

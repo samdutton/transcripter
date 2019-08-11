@@ -20,8 +20,7 @@ limitations under the License.
 
 const IFRAME_ID = 'youtube';
 
-// Interval between checks when transcript
-// focus follows video playback.
+// Interval between checks when transcript focus follows video playback.
 const POLLING_INTERVAL = 100;
 
 let currentSpan = null;
@@ -78,7 +77,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function handlePlayerReady(event) {
-  // console.log('>>> ready', event);
+  console.log('>>> ready', event);
   addSpanHandlers();
 }
 
