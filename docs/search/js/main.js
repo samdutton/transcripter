@@ -52,6 +52,7 @@ const captionScrollCheckbox = document.getElementById('captionScroll');
 const iframe = document.getElementById(IFRAME_ID);
 const infoElement = document.getElementById('info');
 const matchesList = document.getElementById('matches');
+const pageOptionsElement = document.getElementById('page-options');
 const queryInfoElement = document.getElementById('query-info');
 const queryInput = document.getElementById('query');
 const searchOptionsDetails = document.getElementById('search-options');
@@ -81,11 +82,8 @@ window.onwheel = window.ontouchmove = () => {
 // The initial state is `sticky`.
 const videoStickyCheckbox = document.getElementById('videoSticky');
 videoStickyCheckbox.onchange = (event) => {
-  if (event.target.checked) {
-    iframe.style.position = 'sticky';
-  } else {
-    iframe.style.position = 'unset';
-  }
+  iframe.style.position = pageOptionsElement.style.position =
+    event.target.checked ? 'sticky' : 'unset';
 };
 
 // Get the YouTube API script.
@@ -449,6 +447,7 @@ function displayCaption(match) {
   hide(infoElement);
   hide(matchesList);
   hide(queryInfoElement);
+  show(pageOptionsElement);
   // if (iframe.src === '') {
   iframe.src = `http://www.youtube.com/embed/${match.v}?enablejsapi=1&html5=1` +
       `&start=${match.st}&autoplay=1`;

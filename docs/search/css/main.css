@@ -96,9 +96,11 @@ div#info {
 
 div#page-options {
   border-bottom: 1px solid #ccc;
-
-  /* margin: 0 0 25px 0; */
-  padding: 0 0 20px 0;
+  margin: 0 0 25px 0;
+  position: sticky;
+  top: 190px;
+  background-color: white;
+  box-shadow: 0 5px 5px 5px white;
 }
 
 div#page-options > div {
@@ -163,7 +165,8 @@ iframe {
   border-bottom: 20px solid white;
   display: block;
   height: calc(100vw * var(--aspect-ratio));
-  margin: 0 auto 20px auto;
+  left: 0;
+  margin: 0 0 0 -20px;
   max-height: calc(800px * var(--aspect-ratio));
   max-width: 800px;
   position: -webkit-sticky;
@@ -373,7 +376,8 @@ summary {
 
   iframe {
     border: 1px solid #ccc;
-    height: calc((100vw - 40px) * var(--aspect-ratio));
+    height: calc((100vw - 80px) * var(--aspect-ratio));
+    margin: 0;
 
     /*
     max-height: calc(800px * 9 / 16);
@@ -381,7 +385,7 @@ summary {
     */
     outline: 20px solid white;
     top: 20px;
-    width: calc(100vw - 40px);
+    width: calc(100vw - 80px);
   }
 
   #page-options input {
