@@ -292,7 +292,7 @@ section#top {
   position: sticky;
 
   /* Not sure why this is required :/ */
-  top: 45px;
+  top: 40px;
   z-index: 1;
 }
 
