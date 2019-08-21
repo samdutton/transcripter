@@ -70,7 +70,7 @@ div.direction-location {
 
 div#container {
   height: 100%;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   max-width: 800px;
 }
 
@@ -99,7 +99,7 @@ div#page-options > div {
 }
 
 div#page-options > div#google-translate {
-  margin: 0 0 30px 0;
+  margin: 0 0 20px 0;
   height: 36px;
 }
 
@@ -198,7 +198,7 @@ input#query {
 
 #page-options label {
   color: #000;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
 }
 
@@ -227,7 +227,7 @@ ol#matches li {
   font-weight: 400;
   line-height: 1.3em;
   margin: 1px 0 1em 0;
-  padding: 0 65px 0 15px;
+  padding: 0 0 0 15px;
   position: relative;
   text-indent: -1em;
 }
@@ -287,7 +287,7 @@ section#top {
   border-bottom: 1px solid #ccc;
   box-shadow: 0 10px 10px 10px white;
   margin: 0;
-  padding: 20px 0 10px 0;
+  padding: 20px 0 0 0;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -348,10 +348,6 @@ summary {
 }
 
 @media (min-width: 500px) {
-  body {
-    margin: 20px;
-  }
-
   div#container {
     margin: 0 auto;
   }
@@ -382,9 +378,9 @@ summary {
     top: -2px;
   }
 
-  #page-options label {
+/*  #page-options label {
     font-size: 16px;
-  }
+  }*/
 
   span[data-start] {
     font-size: 16px;
