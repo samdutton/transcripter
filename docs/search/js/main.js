@@ -134,6 +134,7 @@ function stopPolling() {
 // Set visual focus on the current caption.
 function focusCaption() {
   const currentTime = player.getCurrentTime();
+  // console.log('>>> focusCaption, currentTime', currentTime);
   if (currentSpan) {
     currentSpan.classList.remove('current');
   }
@@ -153,24 +154,26 @@ function focusCaption() {
 // If necessary, scroll the current span into view.
 function ensureVisible(span) {
   // If videoStickyCheckbox is checked, it's necessary to account for
-  // iframe height + iframe CSS outline height + page margin.
-  const iframeOffset = iframe.offsetHeight + 40;
-  if (inView(span, iframeOffset)) {
+  // the height of section#top
+  const topSectionOffset = topSection.offsetHeight + 40;
+  if (inView(span, topSectionOffset)) {
     return;
   }
   if (videoStickyCheckbox.checked) {
     span.scrollIntoView({block: 'start'});
-    scrollBy(0, -iframeOffset);
+    scrollBy(0, -topSectionOffset);
   } else {
     span.scrollIntoView({block: 'center'});
   }
 }
 
-function inView(span, iframeOffset) {
-  const r = span.getBoundingClientRect();
-  return r.top >= iframeOffset &&
-      r.bottom < document.documentElement.clientHeight;
-}// Log a Google Analytics event when search options is opened.
+function inView(span, topSectionOffset) {
+  const spanRect = span.getBoundingClientRect();
+  return spanRect.top >= topSectionOffset &&
+      spanRect.bottom < document.documentElement.clientHeight;
+}
+
+// Log a Google Analytics event when search options is opened.
 searchOptionsDetails.ontoggle = (event) => {
   if (event.target.open) {
     gtag('event', 'Search options opened', {
@@ -456,7 +459,8 @@ function displayCaption(match) {
       events: {
         'onStateChange': handlePlayerStateChange,
         'onReady': () => {
-          player.time = match.st;
+          console.log('>>> ready, time:', match.st);
+          player.time = match.st; // start time
           player.seekTo(Math.round(match.st));
         },
       },
