@@ -63,6 +63,8 @@ const transcriptDiv = document.getElementById('transcript');
 // const titleInput = document.getElementById('title');
 // const titlesDatalist = document.getElementById('titles');
 
+const locationUrl = `${window.location.origin}${window.location.pathname}`;
+
 let captionSpans;
 let currentSpan = null;
 let datalists;
@@ -369,8 +371,7 @@ function doSearch(query) {
   displayMatches(query);
 }
 
-// Display a list of matched lines, stage directions,
-// scene locations and scene descriptions
+// Display a list of matched captions
 function displayMatches() {
   hide(iframe);
   hide(infoElement);
@@ -381,9 +382,7 @@ function displayMatches() {
   const filteredMatches = getFilteredMatches();
   if (filteredMatches.length > 0) {
     const query = queryInput.value;
-    console.log('>>> ', window.location);
-    history.pushState({type: 'results', query}, null,
-      `${window.location.origin}${window.location.pathname}#${query}`);
+    history.pushState({type: 'results', query}, null, `${locationUrl}#${query}`);
     document.title = `CDS: ${query}`;
     show(infoElement);
     show(matchesList);
@@ -460,7 +459,6 @@ function displayCaption(match) {
       events: {
         'onStateChange': handlePlayerStateChange,
         'onReady': () => {
-          console.log('>>> ready, time:', match.st);
           player.time = match.st; // start time
           player.seekTo(Math.round(match.st));
         },
@@ -470,7 +468,7 @@ function displayCaption(match) {
   show(iframe);
   history.pushState({type: 'text'}, null,
     // Set location to include video ID and start time.
-    `${window.location.origin}#${match.v}?st=${match.st}`);
+    `${locationUrl}#${match.v}?st=${match.st}`);
   document.title = `CDS: ${match.t}`;
   const transcriptFilepath = `${TRANSCRIPT_DIR}/${match.v}.html`;
   fetch(transcriptFilepath).then((response) => {
