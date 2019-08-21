@@ -52,7 +52,7 @@ const captionScrollCheckbox = document.getElementById('captionScroll');
 const iframe = document.getElementById(IFRAME_ID);
 const infoElement = document.getElementById('info');
 const matchesList = document.getElementById('matches');
-const pageOptionsElement = document.getElementById('page-options');
+const topSection = document.getElementById('top');
 const queryInfoElement = document.getElementById('query-info');
 const queryInput = document.getElementById('query');
 const searchOptionsDetails = document.getElementById('search-options');
@@ -78,12 +78,11 @@ window.onwheel = window.ontouchmove = () => {
   captionScrollCheckbox.checked = false;
 };
 
-// Select whether the iframe position is sticky, or scrolls with the page.
-// The initial state is `sticky`.
+// Select whether the top section (search, video and page options) is sticky,
+// or scrolls with the page. The initial state is `sticky`.
 const videoStickyCheckbox = document.getElementById('videoSticky');
 videoStickyCheckbox.onchange = (event) => {
-  iframe.style.position = pageOptionsElement.style.position =
-    event.target.checked ? 'sticky' : 'unset';
+  topSection.style.position = event.target.checked ? 'sticky' : 'unset';
 };
 
 // Get the YouTube API script.
@@ -363,7 +362,7 @@ function doSearch(query) {
   const message = `Found ${matches.length} match(es) in ${elapsed} seconds`;
 
   displayInfo(message);
-  queryInfoElement.textContent = 'Click on a match to view text';
+  queryInfoElement.textContent = 'Click on a match to view video';
   displayMatches(query);
 }
 
@@ -447,7 +446,7 @@ function displayCaption(match) {
   hide(infoElement);
   hide(matchesList);
   hide(queryInfoElement);
-  show(pageOptionsElement);
+  show(topSection);
   // if (iframe.src === '') {
   iframe.src = `http://www.youtube.com/embed/${match.v}?enablejsapi=1&html5=1` +
       `&start=${match.st}&autoplay=1`;

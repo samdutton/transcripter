@@ -54,68 +54,71 @@ gtag('config', 'UA-145282882-1');
 
     <div id="container">
 
-      <h1><a href="/" title="Return to home page">Search Chrome Dev Summit video transcripts</a></h1>
+      <h1><a href="/" title="Return to home page">Search Chrome Dev Summit videos</a></h1>
 
-      <div id="query-container">
+        <!-- Search, video and page options -->
+        <section id="top">
 
-        <!-- <label for="query">Search:</label> -->
-        <label for="query" class="hidden">Search: </label><input id="query" placeholder="Loading..." type="text" autocomplete="on" disabled aria-label="Search">
+          <!-- <label for="query">Search:</label> -->
+          <!-- <label for="query" class="hidden">Search: </label> -->
+          <input id="query" placeholder="Loading..." type="text" autocomplete="on" disabled aria-label="Search">
 
-        <details id="search-options">
+          <details id="search-options">
 
-        <summary>Search options</summary>
+            <summary>Search options</summary>
 
-        <!-- <div>
-          <label for="title">Title: </label>
-          <input type="text" id="title" list="titles">
-          <datalist id="titles"></datalist>
-        </div>
+            <!-- <div>
+              <label for="title">Title: </label>
+              <input type="text" id="title" list="titles">
+              <datalist id="titles"></datalist>
+            </div>
 
-        <div id="type">
-          <label>Text type:</label>
-          <input id="type-play" type="checkbox" value="play" checked>
-          <label for="type-play">Play</label>
-          <input id="type-poem" type="checkbox" value="poem" checked>
-          <label for="type-poem">Poem</label>
-          <input id="type-sonnet" type="checkbox" value="sonnet" checked>
-          <label for="type-sonnet">Sonnet</label>
-        </div>
+            <div id="type">
+              <label>Text type:</label>
+              <input id="type-play" type="checkbox" value="play" checked>
+              <label for="type-play">Play</label>
+              <input id="type-poem" type="checkbox" value="poem" checked>
+              <label for="type-poem">Poem</label>
+              <input id="type-sonnet" type="checkbox" value="sonnet" checked>
+              <label for="type-sonnet">Sonnet</label>
+            </div>
 
+            <div>
+              <label for="speaker">Speaker: </label>
+              <input id="speaker"  title="One speaker name" type="text" list="speakers">
+              <datalist id="speakers"></datalist>
+            </div>
+
+            <div>
+              <label for="gender">Gender: </label>
+              <select id="gender">
+                <option></option>
+                <option>male</option>
+                <option>female</option>
+              </select>
+            </div> -->
+
+          </details> <!-- search-options -->
+
+          <div id="info"></div>
+          <div id="query-info"></div>
+
+
+      <iframe class="hidden" id="youtube"></iframe>
+
+      <div id="page-options">
+        <div id="google-translate"></div>
         <div>
-          <label for="speaker">Speaker: </label>
-          <input id="speaker"  title="One speaker name" type="text" list="speakers">
-          <datalist id="speakers"></datalist>
+          <input type="checkbox" id="videoSticky" checked>
+          <label for="videoSticky">Always show video</label>
         </div>
-
         <div>
-          <label for="gender">Gender: </label>
-          <select id="gender">
-            <option></option>
-            <option>male</option>
-            <option>female</option>
-          </select>
-        </div> -->
-
-      </details>
-
-        <div id="info"></div>
-        <div id="query-info"></div>
-
-      </div> <!-- query-container -->
-
-    <iframe class="hidden" id="youtube"></iframe>
-
-    <div id="page-options" class="hidden">
-      <div id="google-translate"></div>
-      <div>
-        <input type="checkbox" id="videoSticky" checked>
-        <label for="videoSticky">Always show video</label>
+          <input type="checkbox" id="captionScroll" checked>
+          <label for="captionScroll">Keep current caption visible</label>
+        </div>
       </div>
-      <div>
-        <input type="checkbox" id="captionScroll" checked>
-        <label for="captionScroll">Keep current caption visible</label>
-      </div>
-    </div>
+
+    </section> <!-- top -->
 
     <ol id="matches" class="hidden" ></ol>
 
@@ -130,6 +133,18 @@ gtag('config', 'UA-145282882-1');
 
   <script src="js/third-party/flexsearch.min.js"></script>
   <script src="js/main.js"></script>
+  <!-- The Google Translate widget is no longer supported. -->
+  <!-- This is left in purely for demo purposes. -->
+  <script>
+  /*eslint-disable */
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google-translate');
+  }
+  /* eslint-enable */
+</script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 
