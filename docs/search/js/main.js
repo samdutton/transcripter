@@ -381,8 +381,9 @@ function displayMatches() {
   const filteredMatches = getFilteredMatches();
   if (filteredMatches.length > 0) {
     const query = queryInput.value;
+    console.log('>>> ', window.location);
     history.pushState({type: 'results', query}, null,
-      `${window.location.origin}#${query}`);
+      `${window.location.origin}${window.location.pathname}#${query}`);
     document.title = `CDS: ${query}`;
     show(infoElement);
     show(matchesList);
