@@ -1,3 +1,6 @@
+When clicking a span, change the URL:
+`${locationUrl}?v=${match.v}&st=${match.st}`);
+
 Optimize finding current span.
 
 Attempt to sort out Google Translate layout — or remove.

@@ -467,8 +467,8 @@ function displayCaption(match) {
   };
   show(iframe);
   history.pushState({type: 'text'}, null,
-    // Set location to include video ID and start time.
-    `${locationUrl}#${match.v}?st=${match.st}`);
+    // Set location to use the video ID and start time.
+    `${locationUrl}?v=${match.v}&st=${match.st}`);
   document.title = `CDS: ${match.t}`;
   const transcriptFilepath = `${TRANSCRIPT_DIR}/${match.v}.html`;
   fetch(transcriptFilepath).then((response) => {
@@ -479,7 +479,7 @@ function displayCaption(match) {
     // transcriptDiv.onmouseover = addWordSearch;
     show(transcriptDiv);
     // show(creditElement);
-    highlightMatch(match.st);
+    highlightCaption(match.st);
   }).catch((error) => {
     console.error(`Error or timeout fetching ${transcriptFilepath}: ${error}`);
     displayInfo(`There was a problem downloading the transcript for ` +
@@ -499,12 +499,13 @@ function displayCaption(match) {
 // scroll into view
 // }
 
-function highlightMatch(time) {
-  const captionSpan = document.querySelector(`span[data-start="${time}"]`);
-  captionSpan.classList.add('highlight');
-  captionSpan.scrollIntoView({block: 'center'});
+// Highlight a caption, given a start time, and make sure it's visible.
+function highlightCaption(startTime) {
+  const captionSpan = document.querySelector(`span[data-start="${startTime}"]`);
+  captionSpan.classList.add('current');
+  ensureVisible(captionSpan);
   // const start = captionSpan.getAttribute('data-start');
-  // player.seekTo(Math.round(start));
+  // player.seekTo(Math.round(start)); // used to need rounded time
   // Will not work until user has manually initiated playback.
   // player.play();
 }

@@ -11,10 +11,6 @@
   padding: 0 !important;
 }
 
-.highlight {
-  color: #c83f3f !important;
-}
-
 .shadow-bottom {
   box-shadow: 0 19px 19px -8px rgba(100, 100, 100, 0.3);
 }
@@ -380,9 +376,9 @@ summary {
     top: -2px;
   }
 
-/*  #page-options label {
+  /*  #page-options label {
     font-size: 16px;
-  }*/
+  } */
 
   section#top {
     top: 0;
