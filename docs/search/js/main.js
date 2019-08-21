@@ -157,22 +157,26 @@ function focusCaption() {
 function ensureVisible(span) {
   // If videoStickyCheckbox is checked, it's necessary to account for
   // the height of section#top
-  const topSectionOffset = topSection.offsetHeight + 40;
-  if (inView(span, topSectionOffset)) {
+  // topSectionHeight depends on the size of the viewport.
+  if (inView(span)) {
     return;
   }
   if (videoStickyCheckbox.checked) {
     span.scrollIntoView({block: 'start'});
-    scrollBy(0, -topSectionOffset);
+    // 40 is magic number to cope with margins.
+    scrollBy(0, -(topSection.offsetHeight + 40));
   } else {
     span.scrollIntoView({block: 'center'});
   }
 }
 
-function inView(span, topSectionOffset) {
-  const spanRect = span.getBoundingClientRect();
-  return spanRect.top >= topSectionOffset &&
-      spanRect.bottom < document.documentElement.clientHeight;
+// Check if an element, such as a caption span, is in view.
+function inView(element) {
+  const elementRect = element.getBoundingClientRect();
+  const topSectionRect = topSection.getBoundingClientRect();
+  // 40 is magic number to cope with margins.
+  return elementRect.top >= (topSectionRect.bottom + 40) &&
+      elementRect.bottom < document.documentElement.clientHeight;
 }
 
 // Log a Google Analytics event when search options is opened.
