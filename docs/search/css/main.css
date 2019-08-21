@@ -291,8 +291,8 @@ section#top {
   position: -webkit-sticky;
   position: sticky;
 
-  /* Not sure why this is required :/ */
-  top: 40px;
+  /* Not sure why this is required in Chrome for Android :/ */
+  top: 35px;
   z-index: 1;
 }
 
