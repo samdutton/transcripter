@@ -1,6 +1,7 @@
 :root {
   --aspect-ratio: 9 / 16;
   --caption-highlight: #cf402f;
+  --max-content-width: 500px;
 }
 
 .hidden {
@@ -67,7 +68,8 @@ div.direction-location {
 div#container {
   height: 100%;
   margin: 0 auto;
-  max-width: 800px;
+  max-height: var(--max-content-width );
+  max-width: var(--max-content-width);
 }
 
 div#credit {
@@ -146,8 +148,8 @@ iframe {
   display: block;
   height: calc(100vw * var(--aspect-ratio));
   margin: 0 0 10px -20px;
-  max-height: calc(800px * var(--aspect-ratio));
-  max-width: 800px;
+  max-height: calc(var(--max-content-width) * var(--aspect-ratio));
+  max-width: var(--max-content-width);
   width: calc(100vw);
   z-index: 1;
 }
@@ -369,7 +371,7 @@ summary {
     max-width: 800px;
     */
     outline: 20px solid white;
-    width: calc(100vw - 80px);
+    width: calc(100vw - 40px);
   }
 
   #page-options input {

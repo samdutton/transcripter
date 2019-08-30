@@ -47,7 +47,6 @@ const searchIndex = new FlexSearch({
 //   expand: false, // true means matches are not whole-word-only
 // };
 
-const captionScrollCheckbox = document.getElementById('captionScroll');
 // const creditElement = document.getElementById('credit');
 const iframe = document.getElementById(IFRAME_ID);
 const infoElement = document.getElementById('info');
@@ -75,6 +74,12 @@ let startTime;
 // let videoTitles;
 let timeout = null;
 
+
+const captionScrollCheckbox = document.getElementById('captionScroll');
+captionScrollCheckbox.checked = localStorage.captionScroll === 'true';
+captionScrollCheckbox.onchange = (event) => {
+  localStorage.captionScroll = event.target.checked;
+};
 // If the user scrolls manually, turn off automatic scrolling.
 window.onwheel = window.ontouchmove = () => {
   captionScrollCheckbox.checked = false;
@@ -83,8 +88,10 @@ window.onwheel = window.ontouchmove = () => {
 // Select whether the top section (search, video and page options) is sticky,
 // or scrolls with the page. The initial state is `sticky`.
 const videoStickyCheckbox = document.getElementById('videoSticky');
+videoStickyCheckbox.checked = localStorage.videoSticky === 'true';
 videoStickyCheckbox.onchange = (event) => {
   topSection.style.position = event.target.checked ? 'sticky' : 'unset';
+  localStorage.videoSticky = event.target.checked;
 };
 
 // Get the YouTube API script.
@@ -97,7 +104,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // When the video starts playing, start polling (to focus the current caption).
 // Stop polling when video is paused or ended.
 function handlePlayerStateChange(event) {
-  console.log('>>> handlePlayerStateChange', event.data);
+  // console.log('>>> handlePlayerStateChange', event.data);
   if (event.data === YT.PlayerState.PLAYING) {
     startPolling();
   } else if (event.data === YT.PlayerState.PAUSED ||
@@ -472,7 +479,7 @@ function displayCaption(match) {
   show(iframe);
   history.pushState({type: 'text'}, null,
     // Set location to use the video ID and start time.
-    `${locationUrl}?v=${match.v}&st=${match.st}`);
+    `${locationUrl}?v=${match.v}&t=${match.st}`);
   document.title = `CDS: ${match.t}`;
   const transcriptFilepath = `${TRANSCRIPT_DIR}/${match.v}.html`;
   fetch(transcriptFilepath).then((response) => {
