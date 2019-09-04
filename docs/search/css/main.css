@@ -68,7 +68,6 @@ div.direction-location {
 div#container {
   height: 100%;
   margin: 0 auto;
-  max-height: var(--max-content-width );
   max-width: var(--max-content-width);
 }
 
