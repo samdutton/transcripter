@@ -292,7 +292,11 @@ function handleHashValue() {
   // else if hash value is a video ID and time, e.g. /#AB9qSUhlxh8?t=1:41
   // ...
   // Otherwise treat the hash value as a query, e.g. /#brazen
-  queryInput.value = hashValue;
+  if (hashValue.length > 2) {
+    queryInput.value = hashValue;
+  } else {
+    queryInput.placeholder = QUERY_INPUT_PLACEHOLDER;
+  }
   doSearch(hashValue);
 }
 
