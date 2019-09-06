@@ -96,6 +96,7 @@ div#page-options > div {
 }
 
 div#page-options > div#google-translate {
+  display: none;
   margin: 0 0 20px 0;
   height: 36px;
 }
@@ -163,7 +164,7 @@ img#fin {
   font-size: 20px;
   margin: 0 7px 0 0;
   position: relative;
-  top: -1px;
+  top: 2px;
 }
 
 input[type=checkbox] {
@@ -349,6 +350,10 @@ summary {
     margin: 0 auto;
   }
 
+  div#page-options > div#google-translate {
+    display: block;
+  }
+
   h1 {
     color: #444;
     font-size: 28px;
@@ -373,6 +378,10 @@ summary {
 
   #page-options input {
     top: -2px;
+  }
+
+  #page-options input[type='checkbox'] {
+    top: -1px;
   }
 
   /*  #page-options label {

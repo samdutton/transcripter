@@ -90,6 +90,7 @@ window.onwheel = window.ontouchmove = () => {
 const videoStickyCheckbox = document.getElementById('videoSticky');
 videoStickyCheckbox.checked = localStorage.videoSticky === 'true';
 videoStickyCheckbox.onchange = (event) => {
+  // TODO: change to use class
   topSection.style.position = event.target.checked ? 'sticky' : 'unset';
   localStorage.videoSticky = event.target.checked;
 };
