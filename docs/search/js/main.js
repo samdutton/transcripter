@@ -466,8 +466,8 @@ function displayCaption(match) {
   hide(queryInfoElement);
   show(topSection);
   // if (iframe.src === '') {
-  iframe.src = `http://www.youtube.com/embed/${match.v}?enablejsapi=1&html5=1` +
-      `&start=${match.st}&autoplay=1`;
+  iframe.src = `https://www.youtube.com/embed/${match.v}?enablejsapi=1&html5=1` +
+      `&start=${match.st}&autoplay=1&mute=1`;
   // }
   iframe.onload = () => {
     player = new YT.Player(IFRAME_ID, {
