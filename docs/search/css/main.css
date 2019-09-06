@@ -287,9 +287,7 @@ section#top {
   padding: 20px 0 0 0;
   position: -webkit-sticky;
   position: sticky;
-
-  /* Not sure why this is required in Chrome for Android :/ */
-  top: 35px;
+  top: 0;
   z-index: 1;
 }
 
@@ -380,10 +378,6 @@ summary {
   /*  #page-options label {
     font-size: 16px;
   } */
-
-  section#top {
-    top: 0;
-  }
 
   span[data-start] {
     font-size: 16px;
