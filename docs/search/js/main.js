@@ -85,10 +85,14 @@ window.onwheel = window.ontouchmove = () => {
   captionScrollCheckbox.checked = false;
 };
 
-// Select whether the top section (search, video and page options) is sticky,
-// or scrolls with the page. The initial state is `sticky`.
+// Select whether the top section (search, video and page options) should be
+// sticky. Otherwise it scrolls with the page. The initial state is `sticky`.
 const videoStickyCheckbox = document.getElementById('videoSticky');
-videoStickyCheckbox.checked = localStorage.videoSticky === 'true';
+// Check the video checkbox unless it's previously been unchecked.
+// In other words, the default state is checked/sticky.
+videoStickyCheckbox.checked =
+    localStorage.videoSticky === 'false' ? false : true;
+
 videoStickyCheckbox.onchange = (event) => {
   // TODO: change to use class
   topSection.style.position = event.target.checked ? 'sticky' : 'unset';
@@ -169,6 +173,7 @@ function ensureVisible(span) {
   if (inView(span)) {
     return;
   }
+  // TODO: MVC rather than saving state in UI.
   if (videoStickyCheckbox.checked) {
     span.scrollIntoView({block: 'start'});
     // 40 is magic number to cope with margins.
