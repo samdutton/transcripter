@@ -135,10 +135,10 @@ function addCaptionSpanHandlers() {
       // Will not work until user has manually initiated playback.
       player.playVideo();
       const state = {type: 'caption', v: currentVideo, t: start};
-      const title = `Caption: ${start}`;
+      const title = `Caption: currentVideo, ${start}`;
       const url = `${baseUrl}?v=${currentVideo}&t=${start}`;
       history.pushState(state, title, url);
-      document.title = `Caption: ${start}`;
+      document.title = title;
     };
   }
 }
