@@ -472,21 +472,27 @@ function displayCaption(match) {
   hide(queryInfoElement);
   show(topSection);
   currentVideo = `${match.v}`;
-  // if (iframe.src === '') {
-  iframe.src = `https://www.youtube.com/embed/${match.v}?enablejsapi=1&html5=1` +
-      `&start=${match.st}&autoplay=1&mute=1`;
-  // }
-  iframe.onload = () => {
-    player = new YT.Player(IFRAME_ID, {
-      events: {
-        'onStateChange': handlePlayerStateChange,
-        'onReady': () => {
-          player.time = match.st; // start time
-          player.seekTo(Math.round(match.st));
+  if (iframe.src === '') {
+    iframe.src = `https://www.youtube.com/embed/${match.v}?enablejsapi=1&html5=1` +
+        `&start=${match.st}&autoplay=1&mute=1`;
+    iframe.onload = () => {
+      player = new YT.Player(IFRAME_ID, {
+        events: {
+          'onStateChange': handlePlayerStateChange,
+          'onReady': () => {
+            player.time = match.st; // start time
+            player.seekTo(Math.round(match.st));
+          },
         },
-      },
+      });
+    };
+  } else {
+    player.loadVideoById({
+      videoId: match.v,
+      startSeconds: Math.round(match.st),
     });
-  };
+  }
+
   show(iframe);
   const state = {type: 'caption', v: match.v, t: match.t};
   const title = `Caption: ${match.v, match.st}`;
