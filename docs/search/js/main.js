@@ -62,10 +62,11 @@ const transcriptDiv = document.getElementById('transcript');
 // const titleInput = document.getElementById('title');
 // const titlesDatalist = document.getElementById('titles');
 
-const locationUrl = `${window.location.origin}${window.location.pathname}`;
+const baseUrl = `${window.location.origin}${window.location.pathname}`;
 
 let captionSpans;
 let currentSpan = null;
+let currentVideo;
 let datalists;
 let matches;
 let player;
@@ -133,6 +134,11 @@ function addCaptionSpanHandlers() {
       player.seekTo(Math.round(start));
       // Will not work until user has manually initiated playback.
       player.playVideo();
+      const state = {type: 'caption', v: currentVideo, t: start};
+      const title = `Caption: ${start}`;
+      const url = `${baseUrl}?v=${currentVideo}&t=${start}`;
+      history.pushState(state, title, url);
+      document.title = `Caption: ${start}`;
     };
   }
 }
@@ -148,7 +154,6 @@ function stopPolling() {
 // Set visual focus on the current caption.
 function focusCaption() {
   const currentTime = player.getCurrentTime();
-  // console.log('>>> focusCaption, currentTime', currentTime);
   if (currentSpan) {
     currentSpan.classList.remove('current');
   }
@@ -202,19 +207,10 @@ searchOptionsDetails.ontoggle = (event) => {
   }
 };
 
-// Handle navigation between search results and text display.
-window.onpopstate = (event) => {
-  if (event.state && event.state.type === 'results') {
-    //
-  } else {
-    //
-  }
-};
-
-// Respond to URL hash changes.
+// Respond to URL pop.
 // A hash value is a search query, video ID, or video ID and time (s or mm:ss)
-// For example: /#brazen, /#AB9qSUhlxh8, /#AB9qSUhlxh8?t=1:41
-window.onhashchange = handleHashValue;
+// For example: /?q=brazen, /?v=AB9qSUhlxh8, /?v=AB9qSUhlxh8&t=1:41
+window.onpopstate = handleQueryParams;
 
 window.onload = () => {
   // registerServiceWorker();
@@ -233,10 +229,11 @@ function getSearchIndex() {
     console.time('Load search index');
     searchIndex.import(text);
     // const results = searchIndex.search('search');
-    // console.log('>>> Search results:', results);
     console.log(`Search index length: ${searchIndex.length}`);
     console.timeEnd('Load search index');
     queryInput.disabled = false;
+    queryInput.placeholder = QUERY_INPUT_PLACEHOLDER;
+    queryInput.focus();
     // Get and parse data for video titles and speaker names from datalists.json.
     // Run here to ensure that (for performance) index data is retrieved first.
     window.setTimeout(fetchDatalists, 100);
@@ -247,7 +244,7 @@ function getSearchIndex() {
   });
 }
 
-// Fetch and parse data for speaker names and text titles and abbreviations.
+// Fetch and parse data for speaker names, etc.
 function fetchDatalists() {
   // fetch(DATALISTS_FILE).then((response) => {
   //   return response.json();
@@ -265,9 +262,9 @@ function fetchDatalists() {
   //     option.value = title;
   //     titlesDatalist.appendChild(option);
   //   }
-  //   // NB: handleHashValue() called in checkHashValue()
+  //   // NB: handleQueryParams() called in checkForQueryParams()
   //   // depends on data in DATALISTS_FILE
-  window.setTimeout(checkHashValue, 100);
+  window.setTimeout(checkForQueryParams, 100);
   // }).catch((error) => {
   //   displayInfo('There was a problem downloading data.<br><br>' +
   //     'Please check that you\'re online or try refreshing the page.');
@@ -275,35 +272,36 @@ function fetchDatalists() {
   // });
 }
 
-// If the location has a hash value, either do a search or load a text,
-// depending on the value. For example: shearch.me#brazen,
-// shearch.me#Hamlet, shearch.me#ham or shearch.me#ham.3.1.56
-// NB: this function uses data fetched in fetchDatalists()
-function checkHashValue() {
-  if (location.hash) {
-    handleHashValue();
-  } else {
-    queryInput.placeholder = QUERY_INPUT_PLACEHOLDER;
+// If the location has query params, do a search of load a video
+function checkForQueryParams() {
+  if (location.search) {
+    handleQueryParams();
   }
-  queryInput.focus();
 }
 
-// A hash value implies a search query, video ID, or video ID and time (s or mm:ss)
-// For example: /#brazen, /#AB9qSUhlxh8, /#AB9qSUhlxh8?t=1:41
-function handleHashValue() {
-  // Decode if necessary and replace non-alpha characters with a space
-  const hashValue = decodeURI(location.hash.slice(1)).replace(/[^\w.]+/g, ' ');
-  // if hash value is a video ID, e.g. /#AB9qSUhlxh8
-  // ...
-  // else if hash value is a video ID and time, e.g. /#AB9qSUhlxh8?t=1:41
-  // ...
-  // Otherwise treat the hash value as a query, e.g. /#brazen
-  if (hashValue.length > 2) {
-    queryInput.value = hashValue;
-  } else {
-    queryInput.placeholder = QUERY_INPUT_PLACEHOLDER;
+// Query paramters mean a search query, video ID, or video ID and time (s or mm:ss)
+// For example: /?q=brazen, /?v=AB9qSUhlxh8, /?v=AB9qSUhlxh8&t=1:41
+function handleQueryParams() {
+  const params = new URLSearchParams(window.location.search);
+  let query = params.get('q');
+  const video = params.get('v');
+  if (query) {
+    // Decode if necessary and replace non-alpha characters with a space
+    query = decodeURI(query).replace(/[^\w.]+/g, ' ');
+    if (query.length > 2) {
+      queryInput.value = query;
+    } else {
+      queryInput.placeholder = QUERY_INPUT_PLACEHOLDER;
+    }
+    doSearch(query);
+  } else if (video) {
+    const startTime = params.get('t') || '0';
+    const location = {
+      st: startTime,
+      v: video,
+    };
+    displayCaption(location);
   }
-  doSearch(hashValue);
 }
 
 // Search whenever query input changes, with debounce delay
@@ -320,6 +318,11 @@ queryInput.onkeydown = () => {
 function handleQueryInput() {
   const value = queryInput.value;
   if (value.length > 2) {
+    const state = {type: 'query', value: value};
+    const title = `Query: ${value}`;
+    const url = `${baseUrl}?q=${value}`;
+    history.pushState(state, title, url);
+    document.title = `Search: ${value}`;
     // debounce text entry
     clearTimeout(timeout);
     timeout = setTimeout(() => {
@@ -402,9 +405,6 @@ function displayMatches() {
   hide(transcriptDiv);
   const filteredMatches = getFilteredMatches();
   if (filteredMatches.length > 0) {
-    const query = queryInput.value;
-    history.pushState({type: 'results', query}, null, `${locationUrl}#${query}`);
-    document.title = `CDS: ${query}`;
     show(infoElement);
     show(matchesList);
     show(queryInfoElement);
@@ -451,7 +451,6 @@ function getFilteredMatches() {
 
 // Add an individual match element to the list of matches
 function addMatch(match) {
-  // console.log('>>> match', match);
   const matchElement = document.createElement('li');
   matchElement.dataset.speaker = match.sp;
   matchElement.dataset.start = match.st;
@@ -464,13 +463,15 @@ function addMatch(match) {
   matchesList.appendChild(matchElement);
 }
 
-// Display the appropriate video and caption when a user taps/clicks on a match.
+// Display the appropriate video and caption when a user taps/clicks on a match
+// or opens a URL with a video and (optionally) a time parameter
 function displayCaption(match) {
   // hide(creditElement);
   hide(infoElement);
   hide(matchesList);
   hide(queryInfoElement);
   show(topSection);
+  currentVideo = `${match.v}`;
   // if (iframe.src === '') {
   iframe.src = `https://www.youtube.com/embed/${match.v}?enablejsapi=1&html5=1` +
       `&start=${match.st}&autoplay=1&mute=1`;
@@ -487,10 +488,11 @@ function displayCaption(match) {
     });
   };
   show(iframe);
-  history.pushState({type: 'text'}, null,
-    // Set location to use the video ID and start time.
-    `${locationUrl}?v=${match.v}&t=${match.st}`);
-  document.title = `CDS: ${match.t}`;
+  const state = {type: 'caption', v: match.v, t: match.t};
+  const title = `Caption: ${match.v, match.st}`;
+  const url = `${baseUrl}?v=${match.v}&t=${match.st}`;
+  history.pushState(state, title, url);
+  document.title = title;
   const transcriptFilepath = `${TRANSCRIPT_DIR}/${match.v}.html`;
   fetch(transcriptFilepath).then((response) => {
     return response.text();
