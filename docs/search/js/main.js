@@ -458,10 +458,16 @@ function addMatch(match) {
   matchElement.innerHTML = match.t;
   matchElement.title = match.sp;
   matchElement.onclick = () => {
+    const state = {type: 'caption', v: match.v, t: match.t};
+    const title = `Caption: ${match.v, match.st}`;
+    const url = `${baseUrl}?v=${match.v}&t=${match.st}`;
+    history.pushState(state, title, url);
+    document.title = title;
     displayCaption(match);
   };
   matchesList.appendChild(matchElement);
 }
+
 
 // Display the appropriate video and caption when a user taps/clicks on a match
 // or opens a URL with a video and (optionally) a time parameter
@@ -494,11 +500,6 @@ function displayCaption(match) {
   }
 
   show(iframe);
-  const state = {type: 'caption', v: match.v, t: match.t};
-  const title = `Caption: ${match.v, match.st}`;
-  const url = `${baseUrl}?v=${match.v}&t=${match.st}`;
-  history.pushState(state, title, url);
-  document.title = title;
   const transcriptFilepath = `${TRANSCRIPT_DIR}/${match.v}.html`;
   fetch(transcriptFilepath).then((response) => {
     return response.text();
