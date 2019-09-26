@@ -1,6 +1,6 @@
 :root {
   --aspect-ratio: 9 / 16;
-  --caption-highlight: #cf402f;
+  --caption-highlight: #999;
   --max-content-width: 500px;
 }
 
@@ -17,12 +17,12 @@
 }
 
 div#credit a {
-  color: rgba(200, 63, 63, 1);
+  color: #999;
   text-decoration: none;
 }
 
 div#credit a:hover {
-  color: rgb(166, 48, 48);
+  color: black;
   text-decoration: underline;
 }
 
@@ -32,7 +32,7 @@ h1 a {
 }
 
 h1 a:hover {
-  color: rgba(200, 63, 63, 1);
+  color: #999;
 }
 
 body {
@@ -83,7 +83,7 @@ div#credit {
 }
 
 div#info {
-  color: #c83f3f;
+  color: #999;
   font-size: 16px;
   font-weight: 300;
   line-height: 1.4em;
@@ -115,7 +115,7 @@ div#transcript {
 
 h1 {
   border-bottom: 1px solid #c83f3f; /* fallback */
-  border-bottom: 1px solid rgba(200, 63, 63, 1);
+  border-bottom: 1px solid #999;
   color: black;
   font-family: Google Sans, Roboto, sans-serif;
   font-size: 22px;
