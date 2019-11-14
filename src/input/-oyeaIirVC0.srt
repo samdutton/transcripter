@@ -1,0 +1,3624 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:03.458
+[MUSIC PLAYING]
+
+00:00:04.953 --> 00:00:06.370
+UNA KRAVETS: So
+we're here to talk
+
+00:00:06.370 --> 00:00:08.673
+to you about next
+generation web styling.
+
+00:00:08.673 --> 00:00:09.840
+ADAM ARGYLE: And we've got--
+
+00:00:09.840 --> 00:00:11.747
+psh-- oh wait, hold
+on, wait, wait, wait.
+
+00:00:11.747 --> 00:00:13.080
+UNA KRAVETS: I was here to help.
+
+00:00:13.080 --> 00:00:13.370
+12.
+
+00:00:13.370 --> 00:00:13.580
+ADAM ARGYLE: You know, 12.
+
+00:00:13.580 --> 00:00:15.046
+Well, I had the little raptor.
+
+00:00:15.046 --> 00:00:15.546
+Anyway.
+
+00:00:15.546 --> 00:00:16.800
+UNA KRAVETS: Oh, right.
+
+00:00:16.800 --> 00:00:18.222
+This is going well.
+
+00:00:18.222 --> 00:00:20.680
+ADAM ARGYLE: I'm a developer
+advocate on Chrome, doing CSS.
+
+00:00:20.680 --> 00:00:22.388
+UNA KRAVETS: And I'm
+a developer advocate
+
+00:00:22.388 --> 00:00:23.950
+for Material Design on the web.
+
+00:00:23.950 --> 00:00:25.780
+And you can follow
+us online here,
+
+00:00:25.780 --> 00:00:27.460
+as well as follow
+us into this journey
+
+00:00:27.460 --> 00:00:29.187
+into the future of web code.
+
+00:00:29.187 --> 00:00:29.770
+AUDIENCE: Woo!
+
+00:00:29.770 --> 00:00:31.630
+ADAM ARGYLE: So all of our
+demos that you're going to see,
+
+00:00:31.630 --> 00:00:33.340
+they are live screen
+captures, so there's
+
+00:00:33.340 --> 00:00:34.432
+no trickery happening.
+
+00:00:34.432 --> 00:00:35.890
+And we have links
+to all the demos,
+
+00:00:35.890 --> 00:00:38.788
+which you can see right
+there, a.nerdy.dev/css-at-cds.
+
+00:00:38.788 --> 00:00:40.330
+UNA KRAVETS: And
+we're going to start
+
+00:00:40.330 --> 00:00:42.558
+with some of the most
+well-supported features
+
+00:00:42.558 --> 00:00:44.350
+and then go into things
+that are definitely
+
+00:00:44.350 --> 00:00:46.630
+coming in the future.
+
+00:00:46.630 --> 00:00:49.580
+ADAM ARGYLE: I'm going to start
+us off with "Awww scroll-snap."
+
+00:00:49.580 --> 00:00:49.750
+UNA KRAVETS: Kick it off.
+
+00:00:49.750 --> 00:00:52.630
+ADAM ARGYLE: And notice that we
+have a little bar chart there.
+
+00:00:52.630 --> 00:00:55.250
+Under there, tells you the
+amount of support that we have.
+
+00:00:55.250 --> 00:00:57.220
+And we're going to start with
+things that have great support
+
+00:00:57.220 --> 00:00:58.637
+and by the end
+we're going to find
+
+00:00:58.637 --> 00:01:00.220
+things that have no support.
+
+00:01:00.220 --> 00:01:01.090
+So, aw scroll-snap.
+
+00:01:01.090 --> 00:01:04.010
+One of my favorite things here
+is that the support is great.
+
+00:01:04.010 --> 00:01:06.790
+It's touch-enabled, 60 frames
+per second, native scrolling
+
+00:01:06.790 --> 00:01:08.140
+for every platform.
+
+00:01:08.140 --> 00:01:11.170
+There's no synthetic scrolling
+with scroll snap points.
+
+00:01:11.170 --> 00:01:12.802
+And it's all organic.
+
+00:01:12.802 --> 00:01:13.510
+It's not organic.
+
+00:01:13.510 --> 00:01:15.910
+Anyway, whatever, it's
+mobile and desktop for free.
+
+00:01:15.910 --> 00:01:17.620
+And my pro tip
+with aw scroll-snap
+
+00:01:17.620 --> 00:01:19.620
+is make sure that you try
+to keep it horizontal,
+
+00:01:19.620 --> 00:01:20.995
+because when you
+do it vertically
+
+00:01:20.995 --> 00:01:22.780
+it kind of feels like
+scroll hijacking.
+
+00:01:22.780 --> 00:01:24.310
+So let's look at
+a little diagram.
+
+00:01:24.310 --> 00:01:26.230
+We've got-- our viewport
+is in the center.
+
+00:01:26.230 --> 00:01:28.510
+Each dot represents
+a snap point item.
+
+00:01:28.510 --> 00:01:30.950
+And this is basically a
+carousel where the items
+
+00:01:30.950 --> 00:01:32.210
+snap to the inline start.
+
+00:01:32.210 --> 00:01:32.980
+And let's see.
+
+00:01:32.980 --> 00:01:35.590
+Let's a demo because
+we love animations.
+
+00:01:35.590 --> 00:01:38.330
+So we have a horizontal
+snap point demo here.
+
+00:01:38.330 --> 00:01:39.520
+This feels like a carousel.
+
+00:01:39.520 --> 00:01:42.820
+We're looking at shirts by
+Ten Hun, a rad Seattle artist.
+
+00:01:42.820 --> 00:01:45.160
+And we have a scroll x, so
+we have overflow container
+
+00:01:45.160 --> 00:01:46.330
+on the section.
+
+00:01:46.330 --> 00:01:48.130
+We're snap starting,
+we're throwing,
+
+00:01:48.130 --> 00:01:49.455
+and we're allowing skipping.
+
+00:01:49.455 --> 00:01:50.830
+So scroll snap
+stop, you can tell
+
+00:01:50.830 --> 00:01:52.450
+it to stop at one
+at a time, in case
+
+00:01:52.450 --> 00:01:53.950
+you don't want to
+let them throw.
+
+00:01:53.950 --> 00:01:56.020
+And it always settles perfectly.
+
+00:01:56.020 --> 00:01:56.860
+So got to love that.
+
+00:01:56.860 --> 00:01:58.150
+And did you know--
+
+00:01:58.150 --> 00:01:59.750
+well, I'm sure you did 'cause
+I mentioned it earlier--
+
+00:01:59.750 --> 00:02:00.680
+you can do it vertically.
+
+00:02:00.680 --> 00:02:01.888
+So here I'm doing vertically.
+
+00:02:01.888 --> 00:02:05.020
+Same CSS, I've pretty much
+just flipped the x for a y.
+
+00:02:05.020 --> 00:02:07.330
+And I've told it to align
+center because that just
+
+00:02:07.330 --> 00:02:08.180
+looks so good.
+
+00:02:08.180 --> 00:02:08.940
+Mm.
+
+00:02:08.940 --> 00:02:09.440
+I like it.
+
+00:02:09.440 --> 00:02:10.180
+UNA KRAVETS: Nice.
+
+00:02:10.180 --> 00:02:11.638
+ADAM ARGYLE: And
+here's the kicker.
+
+00:02:11.638 --> 00:02:13.475
+Did you know you can
+do both directions?
+
+00:02:13.475 --> 00:02:14.350
+AUDIENCE: [MURMURING]
+
+00:02:14.350 --> 00:02:15.372
+UNA KRAVETS: [LAUGHING] Ohh--
+
+00:02:15.372 --> 00:02:16.110
+ADAM ARGYLE: Matrix.
+
+00:02:16.110 --> 00:02:16.780
+UNA KRAVETS: --snap.
+
+00:02:16.780 --> 00:02:18.405
+ADAM ARGYLE: And
+basically you just say
+
+00:02:18.405 --> 00:02:21.942
+overflow, and scroll snap type
+both, and align in the center.
+
+00:02:21.942 --> 00:02:24.400
+And I want to call out to that
+overscroll-behavior contain.
+
+00:02:24.400 --> 00:02:26.830
+That's so if somebody hits
+the end and they keep swiping,
+
+00:02:26.830 --> 00:02:27.700
+they won't--
+
+00:02:27.700 --> 00:02:29.470
+the scroll event
+won't leak outside
+
+00:02:29.470 --> 00:02:30.940
+and go into the next item.
+
+00:02:30.940 --> 00:02:31.810
+Kind of cool.
+
+00:02:31.810 --> 00:02:33.310
+UNA KRAVETS: All
+right, so now we're
+
+00:02:33.310 --> 00:02:34.935
+going to talk about
+focus-within, which
+
+00:02:34.935 --> 00:02:37.030
+solves a lot of
+accessibility elements
+
+00:02:37.030 --> 00:02:39.620
+when you're focusing
+within those elements.
+
+00:02:39.620 --> 00:02:42.820
+So if you wanted to
+create a menu bar,
+
+00:02:42.820 --> 00:02:45.820
+oftentimes we see menu bars
+with dropdowns or flyouts
+
+00:02:45.820 --> 00:02:48.250
+that occur within
+those list items.
+
+00:02:48.250 --> 00:02:50.758
+So you could have a list that's
+inside of your navigation.
+
+00:02:50.758 --> 00:02:52.300
+You could have some
+markup like this,
+
+00:02:52.300 --> 00:02:54.160
+where you have list
+item one, list item two.
+
+00:02:54.160 --> 00:02:56.243
+Inside that list item you
+have this unordered list
+
+00:02:56.243 --> 00:02:57.190
+with more items.
+
+00:02:57.190 --> 00:02:59.060
+We see this pattern a lot.
+
+00:02:59.060 --> 00:03:03.185
+And if we want that submenu
+here to appear, or be displayed,
+
+00:03:03.185 --> 00:03:04.810
+when you hover over
+its parent element,
+
+00:03:04.810 --> 00:03:07.240
+we can apply some
+CSS to style it.
+
+00:03:07.240 --> 00:03:09.895
+So it could look like this,
+where on hover or on focus
+
+00:03:09.895 --> 00:03:12.270
+to that element-- because you
+always want to have a focus
+
+00:03:12.270 --> 00:03:14.380
+style when you are
+creating hover styles--
+
+00:03:14.380 --> 00:03:17.200
+we want to make sure that
+inside list becomes visible
+
+00:03:17.200 --> 00:03:19.690
+and it has a display.
+
+00:03:19.690 --> 00:03:21.280
+In theory, we could
+then write code
+
+00:03:21.280 --> 00:03:22.720
+like this, where
+we say visability
+
+00:03:22.720 --> 00:03:25.310
+visible, with opacity
+one, display block.
+
+00:03:25.310 --> 00:03:27.260
+But as we're tabbing
+through here,
+
+00:03:27.260 --> 00:03:30.037
+we're actually not able
+to see the elements
+
+00:03:30.037 --> 00:03:31.870
+inside of that second
+list item, which we've
+
+00:03:31.870 --> 00:03:34.480
+applied to that sublist within.
+
+00:03:34.480 --> 00:03:36.310
+And that's because
+we're using focus.
+
+00:03:36.310 --> 00:03:37.893
+When you style with
+focus, when you're
+
+00:03:37.893 --> 00:03:40.720
+tabbing into the parent
+using that focus style,
+
+00:03:40.720 --> 00:03:43.240
+you will have those
+children visibly appear.
+
+00:03:43.240 --> 00:03:46.000
+But when you tab to the
+next tabbable element,
+
+00:03:46.000 --> 00:03:49.600
+they disappear because we're no
+longer focusing on the parent.
+
+00:03:49.600 --> 00:03:52.010
+So you lose that style.
+
+00:03:52.010 --> 00:03:54.558
+Now if you use focus-within,
+it solves those problems
+
+00:03:54.558 --> 00:03:56.350
+because you're actually
+telling the browser
+
+00:03:56.350 --> 00:03:58.930
+to apply that style when
+you're focusing within a parent
+
+00:03:58.930 --> 00:04:00.050
+element.
+
+00:04:00.050 --> 00:04:01.480
+So that could look like this.
+
+00:04:01.480 --> 00:04:04.150
+All we have to do is swap
+focus to focus-within,
+
+00:04:04.150 --> 00:04:05.890
+and when we tab through these--
+
+00:04:05.890 --> 00:04:08.110
+over here you see that
+sub-navigation appear
+
+00:04:08.110 --> 00:04:11.460
+and we've solved that
+accessibility problem.
+
+00:04:11.460 --> 00:04:12.840
+ADAM ARGYLE: Cool demo.
+
+00:04:12.840 --> 00:04:13.830
+I like it.
+
+00:04:13.830 --> 00:04:16.519
+These are all the cool
+new media queries we have.
+
+00:04:16.519 --> 00:04:19.410
+And I've said prefers slash star
+because we're-- we have a lot
+
+00:04:19.410 --> 00:04:21.550
+of preferences that we can
+bring to the table now.
+
+00:04:21.550 --> 00:04:23.670
+We can consider our
+users' preferences
+
+00:04:23.670 --> 00:04:25.890
+and adapt our UI/UX
+to lean into those.
+
+00:04:25.890 --> 00:04:27.900
+I also think these are
+kind of design surfaces.
+
+00:04:27.900 --> 00:04:30.030
+These are new design
+opportunities, these contexts
+
+00:04:30.030 --> 00:04:30.868
+and use cases.
+
+00:04:30.868 --> 00:04:33.410
+The way that they work for all
+of us web heads is the browser
+
+00:04:33.410 --> 00:04:34.810
+is our proxy for all this.
+
+00:04:34.810 --> 00:04:37.193
+The system and our platform
+sets these settings.
+
+00:04:37.193 --> 00:04:38.610
+They trickle down
+into our browser
+
+00:04:38.610 --> 00:04:40.285
+and come in the form
+of a media query.
+
+00:04:40.285 --> 00:04:42.660
+Here's a quick overview of
+some of the device preferences
+
+00:04:42.660 --> 00:04:46.260
+you might see on macOS,
+Windows, iOS, and Android.
+
+00:04:46.260 --> 00:04:49.110
+These things get as cool
+as adjust contrast and font
+
+00:04:49.110 --> 00:04:50.370
+size and theme.
+
+00:04:50.370 --> 00:04:51.570
+Personalization, right?
+
+00:04:51.570 --> 00:04:52.140
+I love it.
+
+00:04:52.140 --> 00:04:53.370
+Super cool.
+
+00:04:53.370 --> 00:04:54.450
+So here's our first one.
+
+00:04:54.450 --> 00:04:55.590
+This one's pretty popular.
+
+00:04:55.590 --> 00:04:57.173
+Look at the support,
+it's pretty good.
+
+00:04:57.173 --> 00:04:58.920
+It's a hook to pacify
+movement for folks
+
+00:04:58.920 --> 00:05:00.450
+that are sensitive to movement.
+
+00:05:00.450 --> 00:05:02.520
+And you have the
+option of no preference
+
+00:05:02.520 --> 00:05:03.750
+or to reduce the motion.
+
+00:05:03.750 --> 00:05:05.670
+Support's killer and
+have a fun demo that I
+
+00:05:05.670 --> 00:05:06.900
+want to show you real quick.
+
+00:05:06.900 --> 00:05:09.810
+So we have an animation
+that's pretty wobbly.
+
+00:05:09.810 --> 00:05:11.500
+We have mixing of
+colors happening.
+
+00:05:11.500 --> 00:05:14.430
+But if the user prefers
+reduced, instead of removing
+
+00:05:14.430 --> 00:05:15.692
+the animation, I cross-fade.
+
+00:05:15.692 --> 00:05:18.150
+This is an important thing I
+want to share with y'all, that
+
+00:05:18.150 --> 00:05:20.990
+reduced motion does
+not mean no motion.
+
+00:05:20.990 --> 00:05:24.170
+Anyway, just I thought
+that was a cool demo.
+
+00:05:24.170 --> 00:05:25.835
+I got really worked up there.
+
+00:05:25.835 --> 00:05:28.210
+DevTools has got your back in
+case you wanted to test it.
+
+00:05:28.210 --> 00:05:30.070
+So just pop it open, go
+to the rendering tab--
+
+00:05:30.070 --> 00:05:31.050
+which you can get
+there from the, like,
+
+00:05:31.050 --> 00:05:33.090
+snowman that's on the
+left of console there--
+
+00:05:33.090 --> 00:05:35.460
+and you can change the
+properties and test your work.
+
+00:05:35.460 --> 00:05:36.443
+It's super cool.
+
+00:05:36.443 --> 00:05:37.860
+Another one that's
+pretty popular,
+
+00:05:37.860 --> 00:05:40.318
+which you might have noticed
+on the Chrome Dev Summit site,
+
+00:05:40.318 --> 00:05:42.570
+is prefers-color-scheme
+light or dark.
+
+00:05:42.570 --> 00:05:45.510
+So you can adapt your UI
+for your user's preference
+
+00:05:45.510 --> 00:05:46.320
+on their eyes.
+
+00:05:46.320 --> 00:05:47.550
+It's really hot right now.
+
+00:05:47.550 --> 00:05:48.960
+My mom is on dark mode.
+
+00:05:48.960 --> 00:05:50.130
+Hi, mom.
+
+00:05:50.130 --> 00:05:51.845
+You're in my talk now.
+
+00:05:51.845 --> 00:05:52.470
+And here it is.
+
+00:05:52.470 --> 00:05:54.400
+Again, we have a little
+bit of code here.
+
+00:05:54.400 --> 00:05:55.960
+We have a little demo.
+
+00:05:55.960 --> 00:05:58.230
+CSS-- our CDS site is
+a good example of this.
+
+00:05:58.230 --> 00:06:00.780
+And I have a hot tip,
+which is to follow
+
+00:06:00.780 --> 00:06:03.475
+some of the HSL patterns that
+we've seen with Una's demos.
+
+00:06:03.475 --> 00:06:05.850
+So we'll have a CodePen demo
+in that link that we shared.
+
+00:06:05.850 --> 00:06:08.780
+And there you can just sort of
+flip a couple custom properties
+
+00:06:08.780 --> 00:06:10.800
+and watch the whole
+site pretty much invert.
+
+00:06:10.800 --> 00:06:11.670
+Super rad.
+
+00:06:11.670 --> 00:06:13.775
+And again, DevTools
+has got your back.
+
+00:06:13.775 --> 00:06:15.525
+And in here you can
+simulate both of those
+
+00:06:15.525 --> 00:06:17.370
+so that you don't have to go
+into your operating system,
+
+00:06:17.370 --> 00:06:19.250
+and click a checkbox,
+and go back to Chrome.
+
+00:06:19.250 --> 00:06:20.730
+And do it all right
+inside of here.
+
+00:06:20.730 --> 00:06:23.250
+I'm showing that inside of
+Chrome Canary, so make sure
+
+00:06:23.250 --> 00:06:25.250
+you're in Canary when
+you're checking right now.
+
+00:06:25.250 --> 00:06:26.708
+So here's a bunch
+of media queries,
+
+00:06:26.708 --> 00:06:29.460
+just a little fast pass for ones
+that are coming down the pipe.
+
+00:06:29.460 --> 00:06:31.380
+And look at all these
+design opportunities--
+
+00:06:31.380 --> 00:06:33.840
+prefers-contrast,
+prefers-reduced-motion,
+
+00:06:33.840 --> 00:06:36.240
+forced-colors, and
+light-level dim.
+
+00:06:36.240 --> 00:06:38.740
+And now we can have users
+that say something like this--
+
+00:06:38.740 --> 00:06:41.130
+I prefer high-contrast,
+dark mode motion
+
+00:06:41.130 --> 00:06:43.710
+when in dim lit environments.
+
+00:06:43.710 --> 00:06:45.710
+And we can do that with
+CSS, we can handle that.
+
+00:06:45.710 --> 00:06:46.460
+It's kind of cool.
+
+00:06:46.460 --> 00:06:47.290
+Anyway.
+
+00:06:47.290 --> 00:06:48.840
+UNA KRAVETS: I love that
+browsers are becoming so much
+
+00:06:48.840 --> 00:06:50.430
+more personalized to our needs.
+
+00:06:50.430 --> 00:06:53.250
+And us, as
+developers, we can now
+
+00:06:53.250 --> 00:06:54.892
+create styles that
+work with our brand
+
+00:06:54.892 --> 00:06:56.975
+but also work for all those
+different preferences.
+
+00:06:56.975 --> 00:06:58.075
+It's super cool.
+
+00:06:58.075 --> 00:07:00.180
+So logical properties
+are another thing
+
+00:07:00.180 --> 00:07:02.610
+that allows for really
+speaking to your users,
+
+00:07:02.610 --> 00:07:05.430
+and creating dynamic
+directional spacing
+
+00:07:05.430 --> 00:07:07.440
+within and around elements.
+
+00:07:07.440 --> 00:07:09.840
+This is really important to
+maintain layout integrity
+
+00:07:09.840 --> 00:07:12.630
+across translations
+and writing modes.
+
+00:07:12.630 --> 00:07:14.760
+Right now, in a
+left-to-right-based
+
+00:07:14.760 --> 00:07:17.190
+and top-to-bottom-based
+language, like English,
+
+00:07:17.190 --> 00:07:18.510
+we think like this.
+
+00:07:18.510 --> 00:07:20.370
+We think about height
+and width, and we
+
+00:07:20.370 --> 00:07:22.405
+think of top and
+bottom, left and right.
+
+00:07:22.405 --> 00:07:26.280
+So it's kind of like this
+compass rose aesthetic here
+
+00:07:26.280 --> 00:07:27.960
+when we think about
+layout on the web.
+
+00:07:27.960 --> 00:07:30.240
+But with logical properties,
+that sort of changes.
+
+00:07:30.240 --> 00:07:32.250
+Height becomes--
+height and width become
+
+00:07:32.250 --> 00:07:34.140
+block-size and inline-size.
+
+00:07:34.140 --> 00:07:38.520
+Left and right become the
+inline-start and inline-end.
+
+00:07:38.520 --> 00:07:41.482
+And top and bottom become
+block-start and block-end.
+
+00:07:41.482 --> 00:07:43.440
+You may be familiar with
+some of these concepts
+
+00:07:43.440 --> 00:07:46.140
+if you've used logical
+properties within CSS Grid.
+
+00:07:46.140 --> 00:07:48.840
+But instead of thinking
+about layout like this--
+
+00:07:48.840 --> 00:07:51.180
+top, right, bottom, left,
+with height and width--
+
+00:07:51.180 --> 00:07:54.545
+we think of it like this,
+in this new mental model.
+
+00:07:54.545 --> 00:07:57.150
+And when we do this, we
+actually get a lot back
+
+00:07:57.150 --> 00:07:58.980
+from the browser.
+
+00:07:58.980 --> 00:08:02.070
+With these logical properties,
+when we use them to write code,
+
+00:08:02.070 --> 00:08:04.440
+the browser actually
+creates adjustments for us
+
+00:08:04.440 --> 00:08:07.887
+based on the writing mode and
+the direction of the language.
+
+00:08:07.887 --> 00:08:09.720
+So in a left-to-right
+language like English,
+
+00:08:09.720 --> 00:08:12.540
+margin-inline-start would
+refer to margin-left.
+
+00:08:12.540 --> 00:08:15.450
+In a right-to-left language
+that would be margin-right.
+
+00:08:15.450 --> 00:08:19.500
+In some Japanese typography
+that might be a margin-top,
+
+00:08:19.500 --> 00:08:22.600
+in a vertical-right-left
+language.
+
+00:08:22.600 --> 00:08:25.050
+So we don't have to make all
+these calculations ourself.
+
+00:08:25.050 --> 00:08:27.120
+The browser is actually
+doing it for us.
+
+00:08:27.120 --> 00:08:29.310
+So for something
+like a block-start,
+
+00:08:29.310 --> 00:08:30.750
+that would refer
+to the block flow
+
+00:08:30.750 --> 00:08:33.419
+on the page instead of the
+inline documents in the page.
+
+00:08:33.419 --> 00:08:35.820
+And for here, for both
+left-to-right and right-to-left
+
+00:08:35.820 --> 00:08:37.890
+languages, the
+margin-block-start
+
+00:08:37.890 --> 00:08:39.620
+refers to the margin-top.
+
+00:08:39.620 --> 00:08:41.370
+And for a vertical
+right-to-left language,
+
+00:08:41.370 --> 00:08:42.870
+that would start
+at the margin-right
+
+00:08:42.870 --> 00:08:46.850
+because the block flow
+would go from right to left.
+
+00:08:46.850 --> 00:08:49.190
+Without logical properties,
+as you change the direction
+
+00:08:49.190 --> 00:08:52.090
+and writing mode, the layout
+integrity falls apart.
+
+00:08:52.090 --> 00:08:53.450
+Our boxes collapse.
+
+00:08:53.450 --> 00:08:55.910
+That border top
+becomes misplaced.
+
+00:08:55.910 --> 00:08:57.530
+The text is overlapping.
+
+00:08:57.530 --> 00:08:59.930
+And it starts to look a
+little bit like a mess.
+
+00:08:59.930 --> 00:09:02.510
+But with logical properties,
+we can have the browser
+
+00:09:02.510 --> 00:09:04.315
+do that work for us.
+
+00:09:04.315 --> 00:09:06.440
+When we're using logical
+properties in this layout,
+
+00:09:06.440 --> 00:09:08.630
+instead of using height
+we've used block-size,
+
+00:09:08.630 --> 00:09:11.120
+and instead of using width,
+we've used inline-size.
+
+00:09:11.120 --> 00:09:13.760
+And this allows for the boxes
+to not collapse when we're
+
+00:09:13.760 --> 00:09:17.125
+creating a vertical layout.
+
+00:09:17.125 --> 00:09:18.500
+Instead of the
+margin-left, we're
+
+00:09:18.500 --> 00:09:21.170
+using a margin-inline-start
+here on those headers
+
+00:09:21.170 --> 00:09:21.950
+and paragraphs.
+
+00:09:21.950 --> 00:09:24.200
+So as we swap
+directions, we still
+
+00:09:24.200 --> 00:09:28.310
+have the style of that
+layout maintained.
+
+00:09:28.310 --> 00:09:31.920
+And finally, in this main
+section here, for the border,
+
+00:09:31.920 --> 00:09:34.700
+we are using border-block-start
+and margin-block-start instead
+
+00:09:34.700 --> 00:09:36.740
+of a border-top and margin-top.
+
+00:09:36.740 --> 00:09:42.055
+And that's what's making that
+border retain its spacing.
+
+00:09:42.055 --> 00:09:46.610
+So you can write code like
+this or you can write code
+
+00:09:46.610 --> 00:09:48.260
+like this.
+
+00:09:48.260 --> 00:09:50.630
+And it's the same amount of
+code, same number of lines.
+
+00:09:50.630 --> 00:09:53.035
+It's just changing the mental
+model of how you write it.
+
+00:09:53.035 --> 00:09:55.160
+And the browser does all
+of that great work for you
+
+00:09:55.160 --> 00:09:59.700
+to make that website
+more internationalized.
+
+00:09:59.700 --> 00:10:01.477
+ADAM ARGYLE: Logical
+props, y'all.
+
+00:10:01.477 --> 00:10:02.810
+There was a little hack I found.
+
+00:10:02.810 --> 00:10:04.110
+It's not a hack, it's
+just a good shortcut.
+
+00:10:04.110 --> 00:10:05.910
+If you do border-block
+you can do borders
+
+00:10:05.910 --> 00:10:07.525
+on just the tops and bottoms.
+
+00:10:07.525 --> 00:10:09.400
+Can't really do that
+shorthand any other way.
+
+00:10:09.400 --> 00:10:11.280
+So if you want a little sneaky
+way to get started with--
+
+00:10:11.280 --> 00:10:11.630
+UNA KRAVETS: Love it.
+
+00:10:11.630 --> 00:10:13.020
+ADAM ARGYLE: --lots
+of props, start there.
+
+00:10:13.020 --> 00:10:14.040
+I made a tweet about it.
+
+00:10:14.040 --> 00:10:15.165
+I don't know if you saw it.
+
+00:10:15.165 --> 00:10:17.880
+Anyway, this is about
+sticky situations.
+
+00:10:17.880 --> 00:10:20.700
+This is a CSS sticky, a really
+fun property that I like.
+
+00:10:20.700 --> 00:10:21.658
+Here's a sweet diagram.
+
+00:10:21.658 --> 00:10:24.033
+And one of my favorite things
+about sticky is you can see
+
+00:10:24.033 --> 00:10:26.640
+that as we scroll-- so there's
+paper in a viewport there--
+
+00:10:26.640 --> 00:10:28.258
+the item is in flow
+with the document.
+
+00:10:28.258 --> 00:10:30.300
+But as soon as it reaches
+the point in which I've
+
+00:10:30.300 --> 00:10:31.952
+told it to stick
+with CSS sticky,
+
+00:10:31.952 --> 00:10:33.660
+it gets locked into
+the viewport The page
+
+00:10:33.660 --> 00:10:35.310
+can keep scrolling
+until it comes back
+
+00:10:35.310 --> 00:10:37.860
+to the position at which it was
+in flow, and it becomes back.
+
+00:10:37.860 --> 00:10:39.507
+It is a member of the page.
+
+00:10:39.507 --> 00:10:40.590
+Here's a nice little demo.
+
+00:10:40.590 --> 00:10:42.240
+I call this one
+The Sticky Stack.
+
+00:10:42.240 --> 00:10:43.590
+This is a classic sticky.
+
+00:10:43.590 --> 00:10:45.754
+There's nothing tricky
+with this sticky.
+
+00:10:45.754 --> 00:10:46.598
+AUDIENCE: [LAUGHTER]
+
+00:10:46.598 --> 00:10:47.380
+UNA KRAVETS: [LAUGHTER]
+
+00:10:47.380 --> 00:10:49.000
+ADAM ARGYLE: Setting
+the talk to zero.
+
+00:10:49.000 --> 00:10:50.390
+Anyway, the HTML
+for this ends up
+
+00:10:50.390 --> 00:10:51.640
+being what's more interesting.
+
+00:10:51.640 --> 00:10:53.600
+So I just have position
+sticky, top zero there.
+
+00:10:53.600 --> 00:10:55.450
+Let's check on the HTML.
+
+00:10:55.450 --> 00:10:58.040
+I chose to use the definition
+list for this group list.
+
+00:10:58.040 --> 00:11:00.340
+And notice how the dt
+elements are siblings.
+
+00:11:00.340 --> 00:11:03.380
+So definition of this
+goes dl, dt, and then
+
+00:11:03.380 --> 00:11:05.648
+dd's are all the
+different artists there.
+
+00:11:05.648 --> 00:11:07.690
+And this is why they share
+the same sticky space.
+
+00:11:07.690 --> 00:11:09.710
+It's they actually
+have the same parent.
+
+00:11:09.710 --> 00:11:11.830
+So let's look at an example
+where they're cousins.
+
+00:11:11.830 --> 00:11:13.360
+We get The Sticky Slide.
+
+00:11:13.360 --> 00:11:15.452
+And the sticky is where
+one appears to go out
+
+00:11:15.452 --> 00:11:16.660
+while the other one comes in.
+
+00:11:16.660 --> 00:11:18.970
+And the only difference--
+this is the same CSS--
+
+00:11:18.970 --> 00:11:20.620
+is that we have a
+different parent.
+
+00:11:20.620 --> 00:11:23.500
+So our cousins-- that's
+why we're cousins now.
+
+00:11:23.500 --> 00:11:25.070
+And this is my favorite example.
+
+00:11:25.070 --> 00:11:26.158
+This is Sticky Desperado.
+
+00:11:26.158 --> 00:11:27.700
+And that's because
+the sticky element
+
+00:11:27.700 --> 00:11:30.175
+looks really desperate to
+hang out with its friends.
+
+00:11:30.175 --> 00:11:31.243
+AUDIENCE: [LAUGHTER]
+
+00:11:31.243 --> 00:11:32.035
+ADAM ARGYLE: Right?
+
+00:11:32.035 --> 00:11:34.360
+I'm like, ugh,
+just go away, bro.
+
+00:11:34.360 --> 00:11:37.150
+Anyway, the only difference
+here is the HTML.
+
+00:11:37.150 --> 00:11:39.220
+I got a display
+grid, went sideways,
+
+00:11:39.220 --> 00:11:41.577
+and it's still the sticky
+slide, as we saw before.
+
+00:11:41.577 --> 00:11:42.910
+UNA KRAVETS: I love those demos.
+
+00:11:42.910 --> 00:11:44.260
+And they're all going to
+be available at the link
+
+00:11:44.260 --> 00:11:46.270
+that we share, so you
+can go there and use them
+
+00:11:46.270 --> 00:11:47.870
+for your navigations.
+
+00:11:47.870 --> 00:11:50.140
+I'm really excited to also
+talk about backdrop-filter.
+
+00:11:50.140 --> 00:11:53.220
+This allows you to style
+adjust behind an element,
+
+00:11:53.220 --> 00:11:55.600
+not just on an element, when
+you want to apply filters
+
+00:11:55.600 --> 00:11:56.920
+to that element.
+
+00:11:56.920 --> 00:11:59.037
+Right now, you can
+apply CSS filters.
+
+00:11:59.037 --> 00:11:59.620
+They're great.
+
+00:11:59.620 --> 00:12:00.790
+They're super dynamic.
+
+00:12:00.790 --> 00:12:03.700
+They allow for a non-destructive
+layer transformation
+
+00:12:03.700 --> 00:12:05.680
+on top of any applied elements.
+
+00:12:05.680 --> 00:12:08.250
+And often we see
+filters used on images,
+
+00:12:08.250 --> 00:12:10.000
+but you can also use
+them on hover effects
+
+00:12:10.000 --> 00:12:13.120
+and transformations, and icons,
+links, menu bars, and even
+
+00:12:13.120 --> 00:12:15.016
+video if you wanted to.
+
+00:12:15.016 --> 00:12:18.040
+A cool feature that I recently
+discovered in DevTools
+
+00:12:18.040 --> 00:12:20.260
+is that all of these
+values for the filters
+
+00:12:20.260 --> 00:12:22.630
+are actually pre-filled,
+so you can see what they do
+
+00:12:22.630 --> 00:12:24.180
+and what input
+arguments they take.
+
+00:12:24.180 --> 00:12:25.430
+So I thought that was awesome.
+
+00:12:25.430 --> 00:12:27.380
+Hat tip to DevTools.
+
+00:12:27.380 --> 00:12:29.900
+Now, when you're creating
+a backdrop-filter,
+
+00:12:29.900 --> 00:12:31.940
+it allows for you to
+apply those filter
+
+00:12:31.940 --> 00:12:33.680
+styles behind an element.
+
+00:12:33.680 --> 00:12:36.230
+So here we're applying the
+backdrop-filter of blur
+
+00:12:36.230 --> 00:12:38.570
+on top of a text element.
+
+00:12:38.570 --> 00:12:41.480
+This aesthetic here
+previously was not
+
+00:12:41.480 --> 00:12:44.810
+possible without a bunch of
+weird CSS and JavaScript hacks
+
+00:12:44.810 --> 00:12:46.550
+to make this really work.
+
+00:12:46.550 --> 00:12:48.790
+But now you can do it
+in one line of CSS.
+
+00:12:48.790 --> 00:12:50.870
+So here I have a video
+where I'm applying
+
+00:12:50.870 --> 00:12:53.798
+this blur backdrop-filter
+to that bottom left header.
+
+00:12:53.798 --> 00:12:56.090
+And you can see that you can
+apply different properties
+
+00:12:56.090 --> 00:12:56.678
+to it.
+
+00:12:56.678 --> 00:12:58.970
+You can use this for a blur,
+or lightness, or contrast,
+
+00:12:58.970 --> 00:13:01.142
+or any of those filter types.
+
+00:13:01.142 --> 00:13:02.600
+And so this can be
+used to increase
+
+00:13:02.600 --> 00:13:05.295
+legibility of a piece of
+text on top of an image.
+
+00:13:05.295 --> 00:13:06.920
+And so many more
+things that we're just
+
+00:13:06.920 --> 00:13:09.380
+starting to discover because
+we just got this in browsers.
+
+00:13:09.380 --> 00:13:11.425
+I'm so excited about it.
+
+00:13:11.425 --> 00:13:13.050
+ADAM ARGYLE: I do
+love backdrop-filter.
+
+00:13:13.050 --> 00:13:14.130
+It's all over VisBug.
+
+00:13:14.130 --> 00:13:15.690
+Looks good.
+
+00:13:15.690 --> 00:13:16.690
+Is() selectors.
+
+00:13:16.690 --> 00:13:19.980
+So this is a modern, newer
+spec version of what we've had
+
+00:13:19.980 --> 00:13:21.660
+for many years,
+any() and matches().
+
+00:13:21.660 --> 00:13:23.730
+In fact, it's 10 plus years old.
+
+00:13:23.730 --> 00:13:24.685
+It's super handy.
+
+00:13:24.685 --> 00:13:26.060
+I'm a big fan,
+and I'm just going
+
+00:13:26.060 --> 00:13:27.930
+to show you a video because
+it pretty much sells
+
+00:13:27.930 --> 00:13:28.440
+the whole value--
+
+00:13:28.440 --> 00:13:29.040
+UNA KRAVETS: Bam.
+
+00:13:29.040 --> 00:13:29.976
+ADAM ARGYLE: --of it right here.
+
+00:13:29.976 --> 00:13:30.710
+UNA KRAVETS: [LAUGHTER]
+
+00:13:30.710 --> 00:13:31.440
+ADAM ARGYLE: It's a what?
+
+00:13:31.440 --> 00:13:32.055
+UNA KRAVETS: It's like bam.
+
+00:13:32.055 --> 00:13:33.150
+ADAM ARGYLE: Oh, a bam!
+
+00:13:33.150 --> 00:13:34.450
+UNA KRAVETS: Right away.
+
+00:13:34.450 --> 00:13:36.030
+ADAM ARGYLE: Ah, it is.
+
+00:13:36.030 --> 00:13:36.690
+I like you.
+
+00:13:36.690 --> 00:13:37.020
+UNA KRAVETS: It's so nice.
+
+00:13:37.020 --> 00:13:38.440
+ADAM ARGYLE: What
+were you before?
+
+00:13:38.440 --> 00:13:39.240
+Oh my god!
+
+00:13:39.240 --> 00:13:39.560
+Anyway, I'm kidding.
+
+00:13:39.560 --> 00:13:40.950
+UNA KRAVETS: Pretty much code.
+
+00:13:40.950 --> 00:13:41.330
+ADAM ARGYLE: It was great.
+
+00:13:41.330 --> 00:13:42.705
+It was great still
+before, right?
+
+00:13:42.705 --> 00:13:44.160
+Oh, and now we have gap.
+
+00:13:44.160 --> 00:13:45.990
+It's not just grid
+gap, it's gap.
+
+00:13:45.990 --> 00:13:47.490
+It's coming to Flexbox.
+
+00:13:47.490 --> 00:13:49.720
+That means this is the
+spacing between your children,
+
+00:13:49.720 --> 00:13:51.690
+your kid-- your children
+don't have to-- "your kids."
+
+00:13:51.690 --> 00:13:52.190
+I'm a dad.
+
+00:13:52.190 --> 00:13:53.565
+Your children
+don't have-- should
+
+00:13:53.565 --> 00:13:54.810
+I start calling nodes kids?
+
+00:13:54.810 --> 00:13:55.477
+That'd be funny.
+
+00:13:55.477 --> 00:13:56.800
+UNA KRAVETS: No, don't do that.
+
+00:13:56.800 --> 00:13:57.230
+ADAM ARGYLE: Yeah, I agree.
+
+00:13:57.230 --> 00:13:58.410
+I shouldn't do that.
+
+00:13:58.410 --> 00:14:00.600
+And so on the left, we
+see what margin is doing.
+
+00:14:00.600 --> 00:14:02.310
+And margin is where each--
+
+00:14:02.310 --> 00:14:04.092
+child-- owns its spacing.
+
+00:14:04.092 --> 00:14:05.550
+And on the right,
+we see gap, where
+
+00:14:05.550 --> 00:14:06.852
+the container owns the spacing.
+
+00:14:06.852 --> 00:14:08.310
+And we've all felt
+the pain of what
+
+00:14:08.310 --> 00:14:10.847
+it's like when children are
+imagining their spacing.
+
+00:14:10.847 --> 00:14:11.680
+So I made this demo.
+
+00:14:11.680 --> 00:14:13.620
+This is in the awesome
+Firefox Dev Tools.
+
+00:14:13.620 --> 00:14:15.960
+We have a grid on top,
+a Flexbox on bottom.
+
+00:14:15.960 --> 00:14:18.030
+Both of them are just
+using the same gap
+
+00:14:18.030 --> 00:14:19.920
+and the same
+definition, and we see
+
+00:14:19.920 --> 00:14:22.102
+them competing for a better
+layout strategy here.
+
+00:14:22.102 --> 00:14:24.060
+And one of the best things
+about this is, is we
+
+00:14:24.060 --> 00:14:27.220
+see Flexbox gap being an
+amazing, amazing feature
+
+00:14:27.220 --> 00:14:27.720
+for us.
+
+00:14:27.720 --> 00:14:30.085
+This is one spacing
+declaration instead of whatever
+
+00:14:30.085 --> 00:14:30.960
+might have been many.
+
+00:14:30.960 --> 00:14:33.210
+So lobotomized owl, I don't
+think we need you anymore.
+
+00:14:33.210 --> 00:14:34.710
+You were great,
+though, until then.
+
+00:14:34.710 --> 00:14:36.900
+This is a good demo here, where
+we have the spacing between.
+
+00:14:36.900 --> 00:14:38.610
+This matches the
+diagram that we saw.
+
+00:14:38.610 --> 00:14:41.580
+Display flex,
+flex-wrap, and gap.
+
+00:14:41.580 --> 00:14:43.440
+Hey, rap and gap rhyme.
+
+00:14:43.440 --> 00:14:45.150
+And we can end the
+debate if our button--
+
+00:14:45.150 --> 00:14:47.400
+when our buttons have
+icon-left, icon-right,
+
+00:14:47.400 --> 00:14:49.870
+and all these different members
+in the child button here.
+
+00:14:49.870 --> 00:14:53.543
+We can end the debate by
+just putting a gap on it.
+
+00:14:53.543 --> 00:14:54.960
+UNA KRAVETS: There's
+so many times
+
+00:14:54.960 --> 00:14:57.210
+I've hacked around
+gap that I'm stoked
+
+00:14:57.210 --> 00:15:00.380
+to see that in browsers I'm
+also super excited about CSS
+
+00:15:00.380 --> 00:15:02.320
+Houdini hitting browsers.
+
+00:15:02.320 --> 00:15:02.820
+Woo!
+
+00:15:02.820 --> 00:15:05.105
+Yeah, shoutout to Houdini.
+
+00:15:05.105 --> 00:15:07.950
+CSS Houdini is a
+low-level API for CSS
+
+00:15:07.950 --> 00:15:09.480
+that gives developers
+the ability
+
+00:15:09.480 --> 00:15:12.720
+to tell the browser how they
+want it to read and understand
+
+00:15:12.720 --> 00:15:14.790
+custom CSS.
+
+00:15:14.790 --> 00:15:16.020
+This is what that looks like.
+
+00:15:16.020 --> 00:15:18.750
+It provides developers access
+to the CSS Object Model
+
+00:15:18.750 --> 00:15:21.000
+in a much more consumable way.
+
+00:15:21.000 --> 00:15:22.902
+Previously, if you
+wanted to style anything
+
+00:15:22.902 --> 00:15:24.360
+on a web page that
+didn't currently
+
+00:15:24.360 --> 00:15:26.670
+exist by using
+properties in CSS,
+
+00:15:26.670 --> 00:15:29.700
+you had to write a JavaScript
+polyfill for it, which not only
+
+00:15:29.700 --> 00:15:32.410
+convoluted your logic
+and your styling code,
+
+00:15:32.410 --> 00:15:34.500
+but it also was way slower.
+
+00:15:34.500 --> 00:15:37.507
+Because you'd have to wait for
+the website to read your DOM,
+
+00:15:37.507 --> 00:15:39.840
+the CSS Object Model, and go
+through the whole cascade--
+
+00:15:39.840 --> 00:15:41.400
+layout, paint, composite-- step.
+
+00:15:41.400 --> 00:15:44.580
+And then you'd have to reapply
+whatever JavaScript at whatever
+
+00:15:44.580 --> 00:15:47.910
+point updated your page,
+to have that repaint,
+
+00:15:47.910 --> 00:15:49.530
+and to have it recomposite.
+
+00:15:49.530 --> 00:15:50.990
+And so we don't want that.
+
+00:15:50.990 --> 00:15:54.630
+With Houdini you can now tell
+a browser from the CSS level
+
+00:15:54.630 --> 00:15:57.000
+how you want it
+to draw your page.
+
+00:15:57.000 --> 00:15:58.860
+So it gets that
+from the very start.
+
+00:15:58.860 --> 00:16:00.780
+And that means more
+performance, powerful,
+
+00:16:00.780 --> 00:16:03.700
+and extensible
+styling on the web.
+
+00:16:03.700 --> 00:16:05.800
+Houdini is the
+intersection of work
+
+00:16:05.800 --> 00:16:08.150
+done to improve
+browser performance,
+
+00:16:08.150 --> 00:16:10.030
+giving developers and
+designers more power
+
+00:16:10.030 --> 00:16:12.310
+to translate their
+visions onto the web,
+
+00:16:12.310 --> 00:16:14.920
+and to extend what's possible
+in the set of CSS properties
+
+00:16:14.920 --> 00:16:17.390
+that we have today.
+
+00:16:17.390 --> 00:16:18.860
+It's really this
+umbrella term that
+
+00:16:18.860 --> 00:16:20.630
+covers a few different APIs.
+
+00:16:20.630 --> 00:16:24.530
+And those APIs are the Layout
+API, the Paint API, the Parser
+
+00:16:24.530 --> 00:16:28.010
+API, the Properties &amp; Values
+API, the Animation Worklet,
+
+00:16:28.010 --> 00:16:30.980
+the Typed Object Model,
+and the Font Metrics API.
+
+00:16:30.980 --> 00:16:32.870
+If you want more info
+about any of these,
+
+00:16:32.870 --> 00:16:35.450
+"Is Houdini Ready Yet?" is a
+great resource created by Surma
+
+00:16:35.450 --> 00:16:38.780
+that shows you all of these
+specs, their current place
+
+00:16:38.780 --> 00:16:40.790
+and time, and when
+they're covering.
+
+00:16:40.790 --> 00:16:43.340
+Today we'll be covering the
+Paint, Properties &amp; Values
+
+00:16:43.340 --> 00:16:46.070
+API, the Typed Object Model,
+and Animation because they
+
+00:16:46.070 --> 00:16:47.665
+are the most supported now.
+
+00:16:47.665 --> 00:16:49.830
+So let's start with
+Properties &amp; Values.
+
+00:16:49.830 --> 00:16:52.100
+These allow you to
+extend custom properties,
+
+00:16:52.100 --> 00:16:54.620
+extend the capabilities
+that we have today,
+
+00:16:54.620 --> 00:16:56.420
+when we are creating
+custom properties
+
+00:16:56.420 --> 00:16:58.850
+or CSS variables on the web.
+
+00:16:58.850 --> 00:17:00.710
+Right now you can
+write a custom property
+
+00:17:00.710 --> 00:17:02.420
+by giving a name and a value.
+
+00:17:02.420 --> 00:17:04.250
+But that value is string-based.
+
+00:17:04.250 --> 00:17:05.869
+With registered
+custom properties,
+
+00:17:05.869 --> 00:17:08.089
+as Houdini custom
+property, you can give that
+
+00:17:08.089 --> 00:17:11.630
+a syntax, initial value so
+you have fallback values,
+
+00:17:11.630 --> 00:17:14.359
+and say if it inherits
+from its parent or not.
+
+00:17:14.359 --> 00:17:16.280
+This allows for a lot
+of really cool things,
+
+00:17:16.280 --> 00:17:18.800
+like error checking and
+creating visuals that previously
+
+00:17:18.800 --> 00:17:21.589
+were not possible on the web.
+
+00:17:21.589 --> 00:17:23.180
+Without registered
+custom properties,
+
+00:17:23.180 --> 00:17:25.490
+if you try to animate a
+gradient, for example,
+
+00:17:25.490 --> 00:17:26.569
+it just doesn't work.
+
+00:17:26.569 --> 00:17:28.486
+Whether you're trying
+to animate that gradient
+
+00:17:28.486 --> 00:17:31.280
+inside the gradient itself or
+using this custom property here
+
+00:17:31.280 --> 00:17:35.510
+to try to do it, the browser
+can't comprehend what
+
+00:17:35.510 --> 00:17:37.700
+you're trying to tell it to do.
+
+00:17:37.700 --> 00:17:39.590
+In this example I'm
+trying to animate
+
+00:17:39.590 --> 00:17:42.830
+from a red to pink, to a blue
+to pink gradient on hover,
+
+00:17:42.830 --> 00:17:44.600
+with a one second
+smooth transition.
+
+00:17:44.600 --> 00:17:46.850
+But the browser has trouble
+interpolating these values
+
+00:17:46.850 --> 00:17:48.690
+in this context.
+
+00:17:48.690 --> 00:17:50.780
+Now, if we register
+a custom property
+
+00:17:50.780 --> 00:17:53.225
+and call it gradientStart,
+we can set a syntax
+
+00:17:53.225 --> 00:17:56.100
+to that property so that the
+browser knows what to expect.
+
+00:17:56.100 --> 00:17:58.920
+So here we're setting
+a syntax of color.
+
+00:17:58.920 --> 00:18:01.970
+And there is the exact same
+code that we saw before,
+
+00:18:01.970 --> 00:18:04.550
+but we are seeing that
+smooth one second transition
+
+00:18:04.550 --> 00:18:06.980
+because we've now told the
+browser that gradientStart
+
+00:18:06.980 --> 00:18:08.660
+is a color and to
+look out for that.
+
+00:18:08.660 --> 00:18:13.060
+And it knows how to interpolate
+now between those color values.
+
+00:18:13.060 --> 00:18:15.430
+Custom properties are
+great for design systems.
+
+00:18:15.430 --> 00:18:17.830
+They're great for type
+checking your CSS.
+
+00:18:17.830 --> 00:18:20.320
+In this example, we
+have a custom property
+
+00:18:20.320 --> 00:18:22.090
+called colorPrimary
+that we've given
+
+00:18:22.090 --> 00:18:24.630
+an initial value of deep pink.
+
+00:18:24.630 --> 00:18:26.800
+When we have some code
+here, I don't necessarily
+
+00:18:26.800 --> 00:18:29.260
+have to say what
+colorPrimary is.
+
+00:18:29.260 --> 00:18:31.960
+I don't have to specify
+it in either the global
+
+00:18:31.960 --> 00:18:33.520
+or in the element level.
+
+00:18:33.520 --> 00:18:35.020
+It just knows to
+read from deep pink
+
+00:18:35.020 --> 00:18:38.410
+because we've registered
+it on the CSS interface.
+
+00:18:38.410 --> 00:18:41.155
+We can still override that value
+very easily using the cascades.
+
+00:18:41.155 --> 00:18:43.910
+So here I'm overriding
+colorPrimary as blue.
+
+00:18:43.910 --> 00:18:47.420
+But if we have something that's
+invalid like a number here,
+
+00:18:47.420 --> 00:18:49.450
+this will fall
+back to deep pink.
+
+00:18:49.450 --> 00:18:51.400
+Without a registered
+custom property,
+
+00:18:51.400 --> 00:18:53.410
+the CSS would just
+ignore that line
+
+00:18:53.410 --> 00:18:55.340
+and it would appear
+like a blank box.
+
+00:18:55.340 --> 00:18:57.220
+We would just see
+white background.
+
+00:18:57.220 --> 00:18:59.800
+So having this really allows
+for type checking in CSS which
+
+00:18:59.800 --> 00:19:02.260
+I think is really cool.
+
+00:19:02.260 --> 00:19:04.300
+Also, I think this is
+even more exciting.
+
+00:19:04.300 --> 00:19:07.427
+The future syntax for this
+is all going to be in CSS.
+
+00:19:07.427 --> 00:19:09.760
+So just like you can write
+custom properties in the root
+
+00:19:09.760 --> 00:19:12.520
+now, you can write all of
+your property declarations
+
+00:19:12.520 --> 00:19:14.830
+in your CSS, and keep
+them all in the same file,
+
+00:19:14.830 --> 00:19:16.082
+and it's going to be great.
+
+00:19:16.082 --> 00:19:18.040
+It's just this vision of
+the future that I see.
+
+00:19:18.040 --> 00:19:19.530
+[SNIFFS]
+
+00:19:19.530 --> 00:19:20.160
+Tear.
+
+00:19:20.160 --> 00:19:21.790
+ADAM ARGYLE: CSS, CS--
+
+00:19:21.790 --> 00:19:23.130
+aw man, logical properties.
+
+00:19:23.130 --> 00:19:24.197
+Sweet.
+
+00:19:24.197 --> 00:19:25.030
+All right, Typed OM?
+
+00:19:25.030 --> 00:19:28.260
+So this is where you need
+to ask the DOM for a value.
+
+00:19:28.260 --> 00:19:30.010
+That's like, what's
+the current CSS value?
+
+00:19:30.010 --> 00:19:32.130
+And right now you get a string.
+
+00:19:32.130 --> 00:19:32.630
+[SIGHS]
+
+00:19:32.630 --> 00:19:34.360
+And it's kind of hard if you
+want to add something to it
+
+00:19:34.360 --> 00:19:35.577
+or remove something from it.
+
+00:19:35.577 --> 00:19:36.910
+And so what do we have upcoming?
+
+00:19:36.910 --> 00:19:37.868
+The Typed OM.
+
+00:19:37.868 --> 00:19:40.160
+We're going to get objects,
+y'all, and it's super cool.
+
+00:19:40.160 --> 00:19:41.830
+So anyway, here's
+a good example.
+
+00:19:41.830 --> 00:19:43.965
+I've pulled up the Chrome
+Dev Summit website.
+
+00:19:43.965 --> 00:19:45.840
+I have a little GIF of
+me typing the old way.
+
+00:19:45.840 --> 00:19:47.793
+So I'm going to stash
+this selector for an H1.
+
+00:19:47.793 --> 00:19:49.210
+I'm going to ask
+the window to get
+
+00:19:49.210 --> 00:19:51.850
+a computed style of this H1.
+
+00:19:51.850 --> 00:19:56.080
+And then after that I'll say
+I need a computed property--
+
+00:19:56.080 --> 00:19:59.473
+I want the font size--
+and it says 34 pixels.
+
+00:19:59.473 --> 00:20:01.390
+And that's what design
+tools have been dealing
+
+00:20:01.390 --> 00:20:02.493
+with for all these years.
+
+00:20:02.493 --> 00:20:03.910
+But what they're
+going to get here
+
+00:20:03.910 --> 00:20:06.537
+is I can ask the H1
+directly for a style map
+
+00:20:06.537 --> 00:20:08.620
+and to get the font size
+back, and I get the value
+
+00:20:08.620 --> 00:20:10.090
+and the unit broken up.
+
+00:20:10.090 --> 00:20:10.630
+Super neat.
+
+00:20:13.366 --> 00:20:15.650
+[APPLAUSE]
+
+00:20:15.650 --> 00:20:17.552
+I think VisBug is really
+going to love this.
+
+00:20:17.552 --> 00:20:19.260
+Any design tool is
+really going to love--
+
+00:20:19.260 --> 00:20:20.835
+and really, if you're doing
+any JavaScript computation
+
+00:20:20.835 --> 00:20:21.890
+it's going to be really nice.
+
+00:20:21.890 --> 00:20:23.682
+So on the left, we have
+what we used to do,
+
+00:20:23.682 --> 00:20:25.380
+which is string-based
+regex parsing.
+
+00:20:25.380 --> 00:20:27.930
+And you'd have to
+disassemble and reassemble.
+
+00:20:27.930 --> 00:20:30.490
+With Typed OM, you
+ask, you math, you set.
+
+00:20:30.490 --> 00:20:31.948
+It's super rad.
+
+00:20:31.948 --> 00:20:33.240
+Here's the JavaScript of today.
+
+00:20:33.240 --> 00:20:35.880
+Just so in case you need to
+copy, paste it, screenshot it.
+
+00:20:35.880 --> 00:20:36.150
+Right?
+
+00:20:36.150 --> 00:20:37.983
+We're asking the window
+for a computed style
+
+00:20:37.983 --> 00:20:40.680
+of an H1 and its font
+size, but tomorrow we
+
+00:20:40.680 --> 00:20:42.780
+can just ask the
+H1 for a style map
+
+00:20:42.780 --> 00:20:44.710
+and a get call
+for its font size.
+
+00:20:44.710 --> 00:20:46.170
+And you get more here, too.
+
+00:20:46.170 --> 00:20:49.320
+You get conversion, clamping,
+error handling, and more.
+
+00:20:49.320 --> 00:20:50.970
+So you can't really
+mess that one up
+
+00:20:50.970 --> 00:20:53.388
+as much as you could
+the previous one.
+
+00:20:53.388 --> 00:20:54.930
+UNA KRAVETS: I love
+this semantic CSS
+
+00:20:54.930 --> 00:20:56.097
+that's happening on the web.
+
+00:20:56.097 --> 00:20:57.240
+It's so exciting.
+
+00:20:57.240 --> 00:20:59.710
+The Paint API is also something
+that's super exciting,
+
+00:20:59.710 --> 00:21:02.070
+because you can now create
+your own paint functions
+
+00:21:02.070 --> 00:21:05.130
+using a canvas-like syntax.
+
+00:21:05.130 --> 00:21:07.160
+Before we get into
+the Paint API,
+
+00:21:07.160 --> 00:21:08.940
+we should talk
+briefly about worklets
+
+00:21:08.940 --> 00:21:11.490
+because the Paint API
+is one such worklet.
+
+00:21:11.490 --> 00:21:13.920
+Worklets live in a separate
+thread from your main thread,
+
+00:21:13.920 --> 00:21:15.900
+meaning they don't
+take a page resources
+
+00:21:15.900 --> 00:21:18.420
+or slow down your site
+to apply styling changes,
+
+00:21:18.420 --> 00:21:20.400
+like this paint
+worklet would do.
+
+00:21:20.400 --> 00:21:23.460
+They're similar to Web
+Workers like Service Workers.
+
+00:21:23.460 --> 00:21:25.350
+They're registered
+to your page and they
+
+00:21:25.350 --> 00:21:26.910
+contain all the
+instructions that
+
+00:21:26.910 --> 00:21:31.800
+live outside the main thread and
+can be acted upon when called.
+
+00:21:31.800 --> 00:21:34.650
+So Houdini worklets work
+in very much the same way.
+
+00:21:34.650 --> 00:21:37.090
+To get a Houdini worklet
+into your codebase,
+
+00:21:37.090 --> 00:21:38.092
+you do the following.
+
+00:21:38.092 --> 00:21:40.050
+You first would write
+and register your worklet
+
+00:21:40.050 --> 00:21:41.610
+definition in JavaScript.
+
+00:21:41.610 --> 00:21:43.890
+So here, because I'm
+showcasing a paint worklet,
+
+00:21:43.890 --> 00:21:46.050
+I would say register
+paint, give it a name,
+
+00:21:46.050 --> 00:21:49.680
+and then have all the paint
+code being pulled inside there.
+
+00:21:49.680 --> 00:21:51.720
+Then we want to invoke
+that worklet file
+
+00:21:51.720 --> 00:21:54.510
+by using Add Module on
+the CSS interface inside
+
+00:21:54.510 --> 00:21:55.740
+of, say, the HTML here.
+
+00:21:55.740 --> 00:21:58.800
+So we have script, CSS dot
+paintWorklet dot addModule,
+
+00:21:58.800 --> 00:22:00.090
+and the name that we gave it.
+
+00:22:00.090 --> 00:22:02.600
+And then finally we can use
+that worklet by that name--
+
+00:22:02.600 --> 00:22:04.850
+so I call it "fun" here--
+we can say background paint,
+
+00:22:04.850 --> 00:22:06.960
+the type of worklet that
+we're pulling in here,
+
+00:22:06.960 --> 00:22:08.820
+and then the name.
+
+00:22:08.820 --> 00:22:10.750
+So it could look like this.
+
+00:22:10.750 --> 00:22:15.480
+This is an example of a
+pixel art, sort of rainbow,
+
+00:22:15.480 --> 00:22:18.210
+top-to-bottom
+example that's just
+
+00:22:18.210 --> 00:22:20.350
+painting colors on an element.
+
+00:22:20.350 --> 00:22:22.170
+First I'm checking
+for support by saying,
+
+00:22:22.170 --> 00:22:24.630
+if type of registerPaint
+is not equal to undefined.
+
+00:22:24.630 --> 00:22:27.260
+Then I'm going to write out the
+worklet, saying registerPaint,
+
+00:22:27.260 --> 00:22:27.885
+give it a name.
+
+00:22:27.885 --> 00:22:29.385
+And then inside of
+that, I'm pulling
+
+00:22:29.385 --> 00:22:31.770
+in the context and size of
+the elements for which I'm
+
+00:22:31.770 --> 00:22:33.300
+applying the worklet to.
+
+00:22:33.300 --> 00:22:35.580
+So I can set a size--
+that height and width--
+
+00:22:35.580 --> 00:22:40.220
+from that element, and then I
+could fill the context there.
+
+00:22:40.220 --> 00:22:42.613
+Then, in the HTML,
+we have the class box
+
+00:22:42.613 --> 00:22:44.030
+that we're going
+to apply this to,
+
+00:22:44.030 --> 00:22:48.000
+and we're going to add that
+worklet to the CSS interface.
+
+00:22:48.000 --> 00:22:50.000
+And finally, in CSS
+all we have to do
+
+00:22:50.000 --> 00:22:52.550
+is write background-image,
+paint, and then rainbowtize.
+
+00:22:52.550 --> 00:22:54.258
+That's the name that
+I gave this worklet.
+
+00:22:54.258 --> 00:22:56.342
+But it doesn't only have
+to be a background image.
+
+00:22:56.342 --> 00:22:57.982
+You can use these
+worklets anywhere.
+
+00:22:57.982 --> 00:22:59.690
+So I can also use this
+as a border image.
+
+00:22:59.690 --> 00:23:02.543
+That exact same worklet logic,
+but instead of a background,
+
+00:23:02.543 --> 00:23:03.710
+I'm applying it as a border.
+
+00:23:03.710 --> 00:23:06.530
+And you get a very
+different effect
+
+00:23:06.530 --> 00:23:09.500
+For a few other examples of what
+you can do with the Paint API,
+
+00:23:09.500 --> 00:23:14.270
+I created this website, this
+library, called Extra dot CSS.
+
+00:23:14.270 --> 00:23:18.367
+And what this showcases is just
+the power of custom properties
+
+00:23:18.367 --> 00:23:20.450
+and paint worklets, and
+what you can do with them.
+
+00:23:20.450 --> 00:23:22.610
+You could change all
+these different values
+
+00:23:22.610 --> 00:23:24.860
+inside of your
+code for sparkles,
+
+00:23:24.860 --> 00:23:27.620
+or if you wanted to
+create a scalloped border
+
+00:23:27.620 --> 00:23:30.800
+inside of your code
+with one line of code,
+
+00:23:30.800 --> 00:23:33.320
+changing different properties
+like color and width.
+
+00:23:33.320 --> 00:23:35.900
+Why have one underline when
+you can have many underlines?
+
+00:23:35.900 --> 00:23:37.010
+AUDIENCE: [LAUGHTER]
+
+00:23:37.010 --> 00:23:38.600
+UNA KRAVETS: So
+here it's just, it
+
+00:23:38.600 --> 00:23:40.700
+showcases how much
+power and fun you
+
+00:23:40.700 --> 00:23:42.800
+can have when you can
+tell the browser how
+
+00:23:42.800 --> 00:23:45.458
+you want it to understand
+the code that you're writing.
+
+00:23:45.458 --> 00:23:47.750
+Especially the styling code,
+which we previously didn't
+
+00:23:47.750 --> 00:23:49.940
+have that much access to.
+
+00:23:49.940 --> 00:23:51.890
+And finally, let's end
+with some confetti.
+
+00:23:51.890 --> 00:23:53.822
+The talk's not over
+yet, just this part.
+
+00:23:53.822 --> 00:23:55.270
+AUDIENCE: [LAUGHTER]
+
+00:23:55.270 --> 00:23:57.020
+UNA KRAVETS: For a
+more practical example,
+
+00:23:57.020 --> 00:23:58.880
+I played with recreating
+angled corners
+
+00:23:58.880 --> 00:24:00.632
+on the web using Houdini.
+
+00:24:00.632 --> 00:24:02.340
+This currently isn't
+possible on the web,
+
+00:24:02.340 --> 00:24:05.510
+but it is possible in other
+platforms like Android and iOS.
+
+00:24:05.510 --> 00:24:07.790
+And so in the material spec
+we have angled corners,
+
+00:24:07.790 --> 00:24:10.040
+but it's not something that
+we can do in our platform.
+
+00:24:10.040 --> 00:24:12.740
+And I wanted our platform
+to have nice things, too.
+
+00:24:12.740 --> 00:24:14.132
+So I had a few requirements.
+
+00:24:14.132 --> 00:24:15.590
+The first was that
+I wanted to make
+
+00:24:15.590 --> 00:24:17.990
+sure I could set each corner
+individually, just like you
+
+00:24:17.990 --> 00:24:19.130
+can with border-radius.
+
+00:24:19.130 --> 00:24:21.890
+And I wanted to make sure this
+was a truly cut element, which
+
+00:24:21.890 --> 00:24:25.610
+meant that the ripple wouldn't
+extend past the element itself.
+
+00:24:25.610 --> 00:24:28.020
+I wanted the frame to
+end at those corners.
+
+00:24:28.020 --> 00:24:30.680
+So I used a mix of custom
+properties and input arguments
+
+00:24:30.680 --> 00:24:32.410
+for this.
+
+00:24:32.410 --> 00:24:33.590
+Here is that worklet itself.
+
+00:24:33.590 --> 00:24:35.590
+So I'm registering the
+paint, giving it a name--
+
+00:24:35.590 --> 00:24:37.310
+angled-corners--
+and then I'm pulling
+
+00:24:37.310 --> 00:24:39.512
+in these input properties,
+these custom properties.
+
+00:24:39.512 --> 00:24:40.970
+I'm telling the
+worklet to look out
+
+00:24:40.970 --> 00:24:43.430
+for values that I'm going to
+then use inside the worklet
+
+00:24:43.430 --> 00:24:44.640
+itself.
+
+00:24:44.640 --> 00:24:47.610
+You can also pass
+custom input arguments.
+
+00:24:47.610 --> 00:24:49.670
+So here I'm doing static
+get inputArguments
+
+00:24:49.670 --> 00:24:52.280
+and I'm setting the syntax
+for these inputArguments.
+
+00:24:52.280 --> 00:24:55.230
+In this case, the syntax
+is a custom identifier.
+
+00:24:55.230 --> 00:24:57.530
+And so here I'm looking
+for that custom identifier
+
+00:24:57.530 --> 00:24:58.520
+to be a string.
+
+00:24:58.520 --> 00:25:00.980
+Fields are outlined to
+show two different modes
+
+00:25:00.980 --> 00:25:03.530
+of using this worklet.
+
+00:25:03.530 --> 00:25:06.560
+Then I can use the context,
+the size, the properties,
+
+00:25:06.560 --> 00:25:09.150
+and arguments to build
+out this worklet.
+
+00:25:09.150 --> 00:25:12.020
+And so what I'm doing here is
+I'm building this canvas angled
+
+00:25:12.020 --> 00:25:12.890
+shape.
+
+00:25:12.890 --> 00:25:14.720
+And I'm getting the
+properties, the size,
+
+00:25:14.720 --> 00:25:16.220
+and using that to
+actually determine
+
+00:25:16.220 --> 00:25:17.970
+where I'm placing those points.
+
+00:25:17.970 --> 00:25:21.380
+And finally, here I'm calling
+for the argument of outlined.
+
+00:25:21.380 --> 00:25:23.150
+I'm checking for that string.
+
+00:25:23.150 --> 00:25:24.860
+If it's an outlined
+mode, then I'm
+
+00:25:24.860 --> 00:25:27.500
+going to use a stroke
+to apply the style.
+
+00:25:27.500 --> 00:25:29.370
+If not, I'm going to fill it.
+
+00:25:29.370 --> 00:25:32.420
+So that's because for
+these angled buttons
+
+00:25:32.420 --> 00:25:34.610
+I first set the corner
+radius, and then I
+
+00:25:34.610 --> 00:25:36.680
+want to create a mask
+on all the buttons
+
+00:25:36.680 --> 00:25:38.690
+to make sure that
+nothing goes outside
+
+00:25:38.690 --> 00:25:40.110
+of the end of those buttons.
+
+00:25:40.110 --> 00:25:41.540
+So that's where
+this webkit-mask,
+
+00:25:41.540 --> 00:25:44.720
+paint angled-corners, and
+a filled mode comes from.
+
+00:25:44.720 --> 00:25:47.390
+There's other types of buttons
+material and one of those
+
+00:25:47.390 --> 00:25:48.890
+is the outlined button.
+
+00:25:48.890 --> 00:25:51.440
+So here I'm using the
+outlined argument.
+
+00:25:51.440 --> 00:25:53.180
+I'm setting a couple
+of more properties
+
+00:25:53.180 --> 00:25:55.190
+here, the paint-color
+and the stroke-weight,
+
+00:25:55.190 --> 00:25:57.110
+and I'm using the
+exact same worklet
+
+00:25:57.110 --> 00:26:01.170
+to apply a border image that's
+then painting this on top.
+
+00:26:01.170 --> 00:26:03.920
+So for the outlined button, I'm
+using a mask and a border image
+
+00:26:03.920 --> 00:26:06.100
+with the same worklet.
+
+00:26:06.100 --> 00:26:08.380
+So all together it
+looks like this.
+
+00:26:08.380 --> 00:26:11.290
+You can also use these as CDNs.
+
+00:26:11.290 --> 00:26:14.560
+So you could include this
+as a CDN in your file,
+
+00:26:14.560 --> 00:26:16.573
+and then set your
+custom properties
+
+00:26:16.573 --> 00:26:17.990
+and include that
+line of code that
+
+00:26:17.990 --> 00:26:19.390
+says I want angled corners.
+
+00:26:19.390 --> 00:26:21.910
+And it's just a
+really exciting time.
+
+00:26:21.910 --> 00:26:24.850
+But I know this is a
+talk about future CSS.
+
+00:26:24.850 --> 00:26:26.740
+I still get this
+question a lot--
+
+00:26:26.740 --> 00:26:30.070
+"but what does it look like
+an unsupported browsers?"
+
+00:26:30.070 --> 00:26:31.820
+Well, it looks like this.
+
+00:26:31.820 --> 00:26:33.580
+Here's what it
+looks like an IE 11.
+
+00:26:33.580 --> 00:26:35.570
+This is emulated
+on BrowserStack.
+
+00:26:35.570 --> 00:26:37.960
+You don't get the angled
+corners but these buttons still
+
+00:26:37.960 --> 00:26:41.050
+function well and you
+still have your UI there.
+
+00:26:41.050 --> 00:26:44.290
+I think this is a great example
+of progressive enhancement.
+
+00:26:44.290 --> 00:26:46.750
+You can have great
+UX across browsers,
+
+00:26:46.750 --> 00:26:49.750
+but you have to have pixel
+perfect identical interfaces.
+
+00:26:49.750 --> 00:26:54.520
+I want to free you of that
+construct, of that burden.
+
+00:26:54.520 --> 00:26:56.980
+I think that you can use
+Houdini today in a way that
+
+00:26:56.980 --> 00:26:59.830
+is decorative, and
+can enhance your UIs
+
+00:26:59.830 --> 00:27:01.840
+without making it a
+core part of your UIs
+
+00:27:01.840 --> 00:27:03.677
+when you do have
+things fall back.
+
+00:27:03.677 --> 00:27:05.260
+Check to make sure
+they work but don't
+
+00:27:05.260 --> 00:27:09.610
+be afraid of using these
+future thinking properties.
+
+00:27:09.610 --> 00:27:10.587
+And turn to you.
+
+00:27:10.587 --> 00:27:12.670
+ADAM ARGYLE: I love that
+you used the same worklet
+
+00:27:12.670 --> 00:27:14.150
+across multiple use cases.
+
+00:27:14.150 --> 00:27:16.400
+It was a border image, it
+was a mask, it was a border,
+
+00:27:16.400 --> 00:27:16.940
+it was a background.
+
+00:27:16.940 --> 00:27:17.898
+UNA KRAVETS: So useful.
+
+00:27:17.898 --> 00:27:18.790
+ADAM ARGYLE: So rad.
+
+00:27:18.790 --> 00:27:20.415
+Let's talk about the
+Animation Worklet.
+
+00:27:20.415 --> 00:27:22.430
+This is off the main
+thread animation.
+
+00:27:22.430 --> 00:27:24.580
+This is where your
+first party animation--
+
+00:27:24.580 --> 00:27:26.290
+you're not going to
+be chasing something
+
+00:27:26.290 --> 00:27:27.760
+with a request animation frame.
+
+00:27:27.760 --> 00:27:29.260
+You are included at the core.
+
+00:27:29.260 --> 00:27:30.810
+This is so different.
+
+00:27:30.810 --> 00:27:32.560
+And what I've built
+is a demo that kind of
+
+00:27:32.560 --> 00:27:34.393
+brings all of this stuff
+together that we've
+
+00:27:34.393 --> 00:27:35.930
+been talking about today.
+
+00:27:35.930 --> 00:27:37.730
+So, really quick, just
+like a paint worklet
+
+00:27:37.730 --> 00:27:39.490
+we create a class which
+implements the Houdini
+
+00:27:39.490 --> 00:27:41.615
+animation interface, which
+really just means it has
+
+00:27:41.615 --> 00:27:42.890
+a function called animation.
+
+00:27:42.890 --> 00:27:46.383
+Then we add the module
+to the CSS Object Model.
+
+00:27:46.383 --> 00:27:47.800
+And since ours is
+an animation, we
+
+00:27:47.800 --> 00:27:50.393
+don't really do much in
+the CSS after that point.
+
+00:27:50.393 --> 00:27:53.060
+So let's see a demo just to show
+kind of what I'm talking about.
+
+00:27:53.060 --> 00:27:55.570
+I built a tabs component, which
+might not be that exciting,
+
+00:27:55.570 --> 00:27:58.000
+but notice our little
+indicator on the bottom.
+
+00:27:58.000 --> 00:28:00.160
+It's always in sync
+with the scroll zone.
+
+00:28:00.160 --> 00:28:02.150
+I can click to go to
+my different tabs.
+
+00:28:02.150 --> 00:28:05.380
+I can use tab and space bar to
+navigate with accessibility.
+
+00:28:05.380 --> 00:28:07.840
+And whether it's on a
+responsive desktop or on mobile,
+
+00:28:07.840 --> 00:28:08.500
+I have touch.
+
+00:28:08.500 --> 00:28:09.610
+I have everything.
+
+00:28:09.610 --> 00:28:12.140
+And this is really
+exciting to me.
+
+00:28:12.140 --> 00:28:13.585
+So how did I get there?
+
+00:28:13.585 --> 00:28:15.970
+What this is, this is, Houdini
+plus a scroll timeline.
+
+00:28:15.970 --> 00:28:19.703
+And so we can pass a
+new tick to Houdini.
+
+00:28:19.703 --> 00:28:21.370
+And what that means
+is usually your tick
+
+00:28:21.370 --> 00:28:22.850
+is usually the
+screen refresh rate,
+
+00:28:22.850 --> 00:28:25.400
+but now we can send it to scroll
+position if something else.
+
+00:28:25.400 --> 00:28:28.480
+So since I created
+a CSS grid layout
+
+00:28:28.480 --> 00:28:31.540
+that had scrolling snap points,
+I create a keyframe effect.
+
+00:28:31.540 --> 00:28:34.495
+I create a scroll timeline that
+points to that scrolling space,
+
+00:28:34.495 --> 00:28:36.370
+and I pass in some
+options for initial state,
+
+00:28:36.370 --> 00:28:38.828
+like how many tabs there are
+and what's the maximum scroll.
+
+00:28:38.828 --> 00:28:40.630
+And I give that to
+the Animation Worklet
+
+00:28:40.630 --> 00:28:43.900
+and then we get a gorgeous 60
+frames per second scrolling
+
+00:28:43.900 --> 00:28:46.147
+and in sync tab component.
+
+00:28:46.147 --> 00:28:47.980
+So here's what a keyframe
+effect looks like.
+
+00:28:47.980 --> 00:28:49.360
+The keyframe effect
+is kind of like
+
+00:28:49.360 --> 00:28:50.890
+if you make the at
+keyframes animation
+
+00:28:50.890 --> 00:28:52.720
+but you only take one
+little piece out of it.
+
+00:28:52.720 --> 00:28:54.345
+You can kind of make
+many little pieces
+
+00:28:54.345 --> 00:28:55.570
+and then assemble them later.
+
+00:28:55.570 --> 00:28:56.690
+It's really cool.
+
+00:28:56.690 --> 00:28:58.900
+If you haven't heard
+of a keyframe effect.
+
+00:28:58.900 --> 00:29:00.400
+The scroll timeline
+is also cool.
+
+00:29:00.400 --> 00:29:01.180
+So this is new.
+
+00:29:01.180 --> 00:29:03.070
+This is where I'm creating
+a scroll timeline,
+
+00:29:03.070 --> 00:29:04.410
+and notice with
+scroll there's going
+
+00:29:04.410 --> 00:29:06.050
+to be other timelines
+in the future.
+
+00:29:06.050 --> 00:29:06.880
+So what we're going
+to be able to do
+
+00:29:06.880 --> 00:29:08.620
+is not just rely on
+one type of tick.
+
+00:29:08.620 --> 00:29:11.200
+We can specify many and
+create our animations
+
+00:29:11.200 --> 00:29:13.038
+that are like reactive
+to different things.
+
+00:29:13.038 --> 00:29:15.580
+So this one is reactive to the
+scroll source, which is called
+
+00:29:15.580 --> 00:29:18.230
+section, and I give it a width.
+
+00:29:18.230 --> 00:29:20.590
+I clamp the length there.
+
+00:29:20.590 --> 00:29:22.750
+And I created a
+worklet called "tabs."
+
+00:29:22.750 --> 00:29:25.273
+The constructor takes in some
+initial props and set state.
+
+00:29:25.273 --> 00:29:26.690
+I have the animate
+function that's
+
+00:29:26.690 --> 00:29:27.910
+going to get called on tick.
+
+00:29:27.910 --> 00:29:29.770
+And it does the
+math which is going
+
+00:29:29.770 --> 00:29:31.720
+to calculate the position.
+
+00:29:31.720 --> 00:29:34.610
+All together now, this
+is my tab dot controller.
+
+00:29:34.610 --> 00:29:36.880
+So I'm going to create
+a new animation that's
+
+00:29:36.880 --> 00:29:38.110
+spinning up my worklet.
+
+00:29:38.110 --> 00:29:39.143
+I'm going to name it--
+
+00:29:39.143 --> 00:29:40.810
+well, I'm going to
+reference it by name.
+
+00:29:40.810 --> 00:29:42.173
+My pass and my keyframe effect.
+
+00:29:42.173 --> 00:29:43.840
+I'm going to pass on
+my scroll timeline.
+
+00:29:43.840 --> 00:29:46.340
+There's my initial state that
+we were talking about earlier.
+
+00:29:46.340 --> 00:29:49.280
+And then I say animation dot
+play, and nothing happens.
+
+00:29:49.280 --> 00:29:50.260
+Why?
+
+00:29:50.260 --> 00:29:52.780
+Because the tick is not
+the screen refresh rate,
+
+00:29:52.780 --> 00:29:54.190
+it's my scroll position.
+
+00:29:54.190 --> 00:29:56.208
+You have to scroll
+to make it go!
+
+00:29:56.208 --> 00:29:57.500
+And I think that's really cool.
+
+00:29:57.500 --> 00:29:58.708
+So we got everything in here.
+
+00:29:58.708 --> 00:30:01.338
+We have touch, we have
+mouse, we have keyboard.
+
+00:30:01.338 --> 00:30:02.380
+Everything's ready to go.
+
+00:30:02.380 --> 00:30:03.490
+This is on a [INAUDIBLE].
+
+00:30:03.490 --> 00:30:04.910
+Fork it and check it out.
+
+00:30:04.910 --> 00:30:06.423
+It's super rad.
+
+00:30:06.423 --> 00:30:08.590
+And this is something that
+I got really inspired by.
+
+00:30:08.590 --> 00:30:10.825
+Once I made that demo, my
+brain started going nuts
+
+00:30:10.825 --> 00:30:12.700
+about the reactive
+animations I could create,
+
+00:30:12.700 --> 00:30:13.790
+and I saw this GIF
+and I was like,
+
+00:30:13.790 --> 00:30:15.832
+I could do that with
+Houdini and scroll timeline.
+
+00:30:15.832 --> 00:30:18.685
+We've got a vertical scroll snap
+and a horizontal scroll snap.
+
+00:30:18.685 --> 00:30:21.310
+And all we're doing is reacting
+to the position of those things
+
+00:30:21.310 --> 00:30:22.240
+and we're letting them snap.
+
+00:30:22.240 --> 00:30:23.800
+And we want people to be
+able to touch and push
+
+00:30:23.800 --> 00:30:25.280
+those things any
+way that they want.
+
+00:30:25.280 --> 00:30:27.270
+I'm starting to talk fast and
+that's because it's time for--
+
+00:30:27.270 --> 00:30:28.280
+UNA KRAVETS: Speed round.
+
+00:30:28.280 --> 00:30:29.140
+ADAM ARGYLE: Speed round.
+
+00:30:29.140 --> 00:30:30.070
+UNA KRAVETS: Kick it off, Adam.
+
+00:30:30.070 --> 00:30:30.890
+ADAM ARGYLE: OK, here we go.
+
+00:30:30.890 --> 00:30:31.690
+So we got size.
+
+00:30:31.690 --> 00:30:34.940
+This lets you set height
+and width in one fell swoop.
+
+00:30:34.940 --> 00:30:36.440
+UNA KRAVETS: We've
+got aspect-ratio,
+
+00:30:36.440 --> 00:30:39.080
+which allows for your media
+to retain its dimensions.
+
+00:30:39.080 --> 00:30:41.762
+Meaning you can avoid those
+awkward stretched or squished
+
+00:30:41.762 --> 00:30:44.220
+images, or when you're trying
+to use a web page and the web
+
+00:30:44.220 --> 00:30:46.270
+he starts to move around because
+the images are loading in.
+
+00:30:46.270 --> 00:30:47.110
+This prevents that.
+
+00:30:47.110 --> 00:30:48.700
+Aspect-ratio allows
+for those images
+
+00:30:48.700 --> 00:30:50.240
+to actually have
+their aspect ratio.
+
+00:30:50.240 --> 00:30:50.810
+ADAM ARGYLE: Yes!
+
+00:30:50.810 --> 00:30:52.310
+We've got min(),
+max(), and clamp(),
+
+00:30:52.310 --> 00:30:54.940
+and this is the ability for us
+to set constraints on any CSS
+
+00:30:54.940 --> 00:30:55.820
+property we want.
+
+00:30:55.820 --> 00:30:58.237
+We don't have to do min() width
+and max() width and width.
+
+00:30:58.237 --> 00:31:00.825
+We can just specify a min()
+and a max() and clamp it.
+
+00:31:00.825 --> 00:31:02.950
+UNA KRAVETS: Lists don't
+have to be boring anymore.
+
+00:31:02.950 --> 00:31:06.310
+With the upgraded list style
+capabilities in Chrome 79,
+
+00:31:06.310 --> 00:31:08.080
+you can have SVG,
+an emoji, and if you
+
+00:31:08.080 --> 00:31:10.390
+wanted to play with smile
+again, maybe animated SVG?
+
+00:31:10.390 --> 00:31:11.350
+I don't know, do your thing.
+
+00:31:11.350 --> 00:31:12.390
+ADAM ARGYLE: Animated
+little arrows.
+
+00:31:12.390 --> 00:31:13.220
+"Read me, read me."
+
+00:31:13.220 --> 00:31:14.330
+UNA KRAVETS: [LAUGHS] That
+would get so annoying.
+
+00:31:14.330 --> 00:31:15.175
+ADAM ARGYLE: All
+right, we have display.
+
+00:31:15.175 --> 00:31:16.630
+It can take two parameters now.
+
+00:31:16.630 --> 00:31:19.930
+You can specify how it's fitting
+in the outer scope of the block
+
+00:31:19.930 --> 00:31:23.260
+level, and how its
+inner should work.
+
+00:31:23.260 --> 00:31:24.850
+UNA KRAVETS:
+Regions in CSS allow
+
+00:31:24.850 --> 00:31:28.410
+us to fill a region,
+an area, with content.
+
+00:31:28.410 --> 00:31:30.160
+So you might be familiar
+with this concept
+
+00:31:30.160 --> 00:31:33.220
+if ever used InDesign to
+layout books or brochures.
+
+00:31:33.220 --> 00:31:35.230
+Essentially you can
+create areas of code
+
+00:31:35.230 --> 00:31:37.690
+that flow into and out
+of different boxes,
+
+00:31:37.690 --> 00:31:39.880
+and your code doesn't have
+to be just rectangular.
+
+00:31:39.880 --> 00:31:41.530
+This works really
+great for grids,
+
+00:31:41.530 --> 00:31:43.810
+where you can define
+your various regions
+
+00:31:43.810 --> 00:31:46.722
+and how that text flows into
+and out of those regions.
+
+00:31:46.722 --> 00:31:47.680
+ADAM ARGYLE: Well said.
+
+00:31:47.680 --> 00:31:48.400
+UNA KRAVETS: Those places.
+
+00:31:48.400 --> 00:31:48.860
+ADAM ARGYLE: Nailed it.
+
+00:31:48.860 --> 00:31:49.330
+UNA KRAVETS: The whole UI.
+
+00:31:49.330 --> 00:31:50.372
+ADAM ARGYLE: CSS modules.
+
+00:31:50.372 --> 00:31:52.773
+So now we've got JavaScript
+can ask for a module,
+
+00:31:52.773 --> 00:31:54.190
+whether it's from
+remote or local,
+
+00:31:54.190 --> 00:31:56.080
+and it gets a rich object back.
+
+00:31:56.080 --> 00:31:56.750
+Super nice.
+
+00:31:56.750 --> 00:31:58.000
+UNA KRAVETS: We can't forget--
+
+00:31:58.000 --> 00:31:58.690
+TOGETHER: --sub grid.
+
+00:31:58.690 --> 00:31:59.830
+ADAM ARGYLE: How did we almost
+forget that in the list?
+
+00:31:59.830 --> 00:32:00.460
+UNA KRAVETS: I don't know.
+
+00:32:00.460 --> 00:32:00.690
+How could we forget
+that in the list?
+
+00:32:00.690 --> 00:32:01.710
+ADAM ARGYLE: I don't know
+how that one's not cool.
+
+00:32:01.710 --> 00:32:02.720
+Wait, that one's amazing.
+
+00:32:02.720 --> 00:32:03.553
+UNA KRAVETS: I know.
+
+00:32:03.553 --> 00:32:05.410
+This is coming in
+Firefox 71, and this
+
+00:32:05.410 --> 00:32:07.420
+allows for you to create
+micro layouts along
+
+00:32:07.420 --> 00:32:09.667
+with macros layouts that
+you use with CSS Grid.
+
+00:32:09.667 --> 00:32:10.500
+ADAM ARGYLE: Stoked.
+
+00:32:10.500 --> 00:32:11.440
+Wow, we did--
+
+00:32:11.440 --> 00:32:11.860
+UNA KRAVETS: That's a lot.
+
+00:32:11.860 --> 00:32:12.400
+ADAM ARGYLE: --20 to 30 there.
+
+00:32:12.400 --> 00:32:13.050
+That was 20 CSS--
+
+00:32:13.050 --> 00:32:13.970
+UNA KRAVETS: That
+was 20 [INAUDIBLE]..
+
+00:32:13.970 --> 00:32:14.890
+ADAM ARGYLE: --in 30-- anyway.
+
+00:32:14.890 --> 00:32:15.560
+UNA KRAVETS: We made it.
+
+00:32:15.560 --> 00:32:15.800
+ADAM ARGYLE: We made it.
+
+00:32:15.800 --> 00:32:15.910
+We appreciate y'all.
+
+00:32:15.910 --> 00:32:16.890
+UNA KRAVETS: So we can
+all take a deep breath.
+
+00:32:16.890 --> 00:32:17.590
+You've made it with us.
+
+00:32:17.590 --> 00:32:19.330
+Thank you for joining
+us in this journey.
+
+00:32:19.330 --> 00:32:22.540
+Check out that URL for all
+the resources, for links
+
+00:32:22.540 --> 00:32:23.830
+to all of our demos.
+
+00:32:23.830 --> 00:32:25.850
+Also, if you're here,
+come and talk to us.
+
+00:32:25.850 --> 00:32:28.720
+We'll be outside in the
+sandboxes for VisBug
+
+00:32:28.720 --> 00:32:30.670
+and for Material Design.
+
+00:32:30.670 --> 00:32:32.920
+If you're watching this
+online, feel free to tweet us.
+
+00:32:32.920 --> 00:32:34.922
+We love talking
+about this stuff.
+
+00:32:34.922 --> 00:32:36.630
+I think that's all we
+have for you today.
+
+00:32:36.630 --> 00:32:37.838
+We're definitely out of time.
+
+00:32:37.838 --> 00:32:38.980
+So thank you again.
+
+00:32:38.980 --> 00:32:39.250
+ADAM ARGYLE: Thank you.
+
+00:32:39.250 --> 00:32:39.790
+Nailed it.
+
+00:32:39.790 --> 00:32:40.390
+[APPLAUSE]
+
+00:32:40.390 --> 00:32:44.040
+[MUSIC PLAYING]
+

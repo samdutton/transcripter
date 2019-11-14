@@ -1,6 +1,8 @@
 :root {
   --aspect-ratio: 9 / 16;
-  --caption-highlight: #999;
+
+  /* --caption-highlight: #999; */
+  --caption-highlight: #cf402f;
   --max-content-width: 500px;
 }
 
@@ -317,11 +319,13 @@ select {
 }
 
 #transcript span[data-start]:hover {
+  border-bottom: 1px dashed black;
   color: var(--caption-highlight);
   cursor: pointer;
 }
 
 #transcript span[data-start].current {
+  border-bottom: 1px dashed black;
   color: var(--caption-highlight);
 }
 

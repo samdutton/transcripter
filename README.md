@@ -5,7 +5,7 @@ and Chrome Developer channels to create readable transcripts.
 
 The code could easily be adapted to work with caption files from other playlists.
 
-Try it out at [bit.ly/transcripter](https://bit.ly/transcripter).
+Try it out at [devsearch.me/search](https://devsearch.me/search).
 
 ---
 
@@ -47,7 +47,7 @@ Check for errors in _error-log.txt_.
 
 - Please [file an issue](https://github.com/samdutton/transcripter/issues/new)
 including input files where relevant.
-- See [`TODO`](TODO) for work in progress.
+- See the [TODO](TODO) file for work in progress.
 
 ## Known issues
 

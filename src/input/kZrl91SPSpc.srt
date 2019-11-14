@@ -1,0 +1,2160 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:05.238 --> 00:00:06.530
+THOMAS NATTESTAD: Hi, everyone.
+
+00:00:06.530 --> 00:00:09.430
+My name is Thomas and together
+with my colleague Ingvar here,
+
+00:00:09.430 --> 00:00:11.830
+we're going to show you
+how using WebAssembly
+
+00:00:11.830 --> 00:00:14.050
+can speed up your
+computationally intensive
+
+00:00:14.050 --> 00:00:16.450
+workloads by more than 10x.
+
+00:00:16.450 --> 00:00:19.150
+And how using modern
+WebAssembly tooling
+
+00:00:19.150 --> 00:00:22.580
+can let you take advantage
+of WebAssembly more easily.
+
+00:00:22.580 --> 00:00:25.120
+We'll start by reminding
+everyone what WebAssembly is
+
+00:00:25.120 --> 00:00:26.620
+and showing some
+of the improvements
+
+00:00:26.620 --> 00:00:29.472
+we've been making to
+Chrome's implementation.
+
+00:00:29.472 --> 00:00:31.930
+Then we're going to get into
+some of the different language
+
+00:00:31.930 --> 00:00:35.440
+features that are starting to
+ship as part of WebAssembly.
+
+00:00:35.440 --> 00:00:36.880
+And then finally,
+we'll close out
+
+00:00:36.880 --> 00:00:39.340
+by covering some of the
+new tooling updates that
+
+00:00:39.340 --> 00:00:42.130
+have been coming as well.
+
+00:00:42.130 --> 00:00:43.630
+So let's start by
+reminding everyone
+
+00:00:43.630 --> 00:00:46.690
+what WebAssembly actually is.
+
+00:00:46.690 --> 00:00:49.210
+WebAssembly is a new
+language for the web that
+
+00:00:49.210 --> 00:00:51.580
+is designed as a
+compilation target
+
+00:00:51.580 --> 00:00:54.902
+to offer maximized and
+reliable performance.
+
+00:00:54.902 --> 00:00:56.360
+It's important to
+remember, though,
+
+00:00:56.360 --> 00:00:59.920
+that WebAssembly is in no way
+meant to replace JavaScript.
+
+00:00:59.920 --> 00:01:02.650
+Rather, it's meant to augment
+the things that JavaScript
+
+00:01:02.650 --> 00:01:04.568
+was never designed to do.
+
+00:01:04.568 --> 00:01:06.610
+So let's look at some of
+the different advantages
+
+00:01:06.610 --> 00:01:09.810
+of WebAssembly and why
+you might want to use it.
+
+00:01:09.810 --> 00:01:13.840
+First, because WebAssembly
+offers strong type guarantees,
+
+00:01:13.840 --> 00:01:16.340
+it gives you more consistent
+and reliable performance
+
+00:01:16.340 --> 00:01:17.770
+than JavaScript.
+
+00:01:17.770 --> 00:01:20.650
+Then, with additional features
+like threads and Cindy,
+
+00:01:20.650 --> 00:01:22.300
+which will get more
+into later, you
+
+00:01:22.300 --> 00:01:24.730
+can also achieve speeds that
+are truly higher than what
+
+00:01:24.730 --> 00:01:27.730
+you can with JavaScript.
+
+00:01:27.730 --> 00:01:30.580
+When thinking about comparing
+baseline performance
+
+00:01:30.580 --> 00:01:34.390
+WebAssembly to JavaScript,
+I find this metaphor
+
+00:01:34.390 --> 00:01:37.480
+which my colleague [? Sama ?]
+came up with really useful.
+
+00:01:37.480 --> 00:01:39.940
+JavaScript is like
+running along a tightrope.
+
+00:01:39.940 --> 00:01:42.790
+It's possible to go fast, but
+it requires a lot of skill
+
+00:01:42.790 --> 00:01:45.680
+and it's possible to
+fall off the fast path.
+
+00:01:45.680 --> 00:01:48.430
+Whereas baseline WebAssembly is
+more like running along a train
+
+00:01:48.430 --> 00:01:49.280
+track.
+
+00:01:49.280 --> 00:01:53.600
+You don't have to be as
+careful in order to go fast.
+
+00:01:53.600 --> 00:01:56.980
+Another advantage of WebAssembly
+is its amazing portability.
+
+00:01:56.980 --> 00:02:00.010
+Because you can compile
+from other languages,
+
+00:02:00.010 --> 00:02:02.980
+you can bring not only your
+own code bases and libraries
+
+00:02:02.980 --> 00:02:05.470
+to the web, but also the
+incredible wealth of open
+
+00:02:05.470 --> 00:02:10.703
+source libraries built
+in languages like C++.
+
+00:02:10.703 --> 00:02:12.870
+Lastly, and potentially
+most exciting to many of you
+
+00:02:12.870 --> 00:02:15.368
+out there, is the possibility
+of more flexibility
+
+00:02:15.368 --> 00:02:16.410
+when writing for the web.
+
+00:02:16.410 --> 00:02:19.200
+Specifically, the ability
+to write in other languages.
+
+00:02:19.200 --> 00:02:21.210
+Since the web's
+inception, JavaScript
+
+00:02:21.210 --> 00:02:23.400
+has been the only
+fully supported option.
+
+00:02:23.400 --> 00:02:27.780
+And now through WebAssembly,
+you get more choice.
+
+00:02:27.780 --> 00:02:29.250
+Most exciting
+though, is the fact
+
+00:02:29.250 --> 00:02:32.070
+that WebAssembly is now
+shipping in all major browsers,
+
+00:02:32.070 --> 00:02:35.460
+making it the first new language
+to ship in every major browser
+
+00:02:35.460 --> 00:02:40.060
+since JavaScript was created
+more than 20 years ago.
+
+00:02:40.060 --> 00:02:42.720
+So now that we all are reminded
+of what WebAssembly actually
+
+00:02:42.720 --> 00:02:44.730
+is, I want to cover
+some of the improvements
+
+00:02:44.730 --> 00:02:47.900
+that we've been making
+directly in Chrome.
+
+00:02:47.900 --> 00:02:50.750
+One of the biggest requests that
+we've heard from our developers
+
+00:02:50.750 --> 00:02:53.210
+is the desire for
+faster startup time.
+
+00:02:53.210 --> 00:02:55.940
+To improve startup time
+for WebAssembly modules,
+
+00:02:55.940 --> 00:02:57.440
+we're starting to
+roll out something
+
+00:02:57.440 --> 00:03:00.480
+we're calling implicit caching.
+
+00:03:00.480 --> 00:03:03.330
+To recap, when a site
+loads a WebAssembly module,
+
+00:03:03.330 --> 00:03:05.460
+it first goes into
+the lift off compiler
+
+00:03:05.460 --> 00:03:07.760
+to start executing immediately.
+
+00:03:07.760 --> 00:03:10.380
+It then is further optimized
+off the main thread
+
+00:03:10.380 --> 00:03:12.960
+through the turbo fan
+optimizing compiler,
+
+00:03:12.960 --> 00:03:17.160
+and then the result is
+hot swapped in when ready.
+
+00:03:17.160 --> 00:03:19.980
+Now, with implicit
+caching, we also
+
+00:03:19.980 --> 00:03:23.040
+cache that optimized
+WebAssembly module directly
+
+00:03:23.040 --> 00:03:25.760
+in the HTTP cache.
+
+00:03:25.760 --> 00:03:28.280
+Then, after the user leaves
+the page and comes back,
+
+00:03:28.280 --> 00:03:30.320
+we load that optimized
+module directly
+
+00:03:30.320 --> 00:03:35.030
+from the cache, resulting in
+immediate top tier performance.
+
+00:03:35.030 --> 00:03:38.180
+As the name suggests, implicit
+caching happens automatically.
+
+00:03:38.180 --> 00:03:41.400
+But there are two tips worth
+knowing and keeping in mind.
+
+00:03:41.400 --> 00:03:43.820
+The first, is that code
+caching in WebAssembly
+
+00:03:43.820 --> 00:03:45.530
+works off of the streaming APIs.
+
+00:03:45.530 --> 00:03:48.020
+So make sure it's always
+used compile streaming
+
+00:03:48.020 --> 00:03:50.678
+or instantiate streaming.
+
+00:03:50.678 --> 00:03:52.220
+The second thing is
+just to make sure
+
+00:03:52.220 --> 00:03:53.930
+that you're being
+cache friendly.
+
+00:03:53.930 --> 00:03:56.390
+WebAssembly keeps the
+cache based on the URL
+
+00:03:56.390 --> 00:03:57.960
+of the WebAssembly module.
+
+00:03:57.960 --> 00:03:59.595
+So if this changes
+on each load, you
+
+00:03:59.595 --> 00:04:00.845
+won't see any of the benefits.
+
+00:04:03.490 --> 00:04:05.950
+In addition to new features
+like implicit caching,
+
+00:04:05.950 --> 00:04:07.840
+we're also always
+making improvements
+
+00:04:07.840 --> 00:04:09.730
+to our WebAssembly engine.
+
+00:04:09.730 --> 00:04:11.890
+Here you can see how
+commit by commit,
+
+00:04:11.890 --> 00:04:14.080
+we've cut startup
+time by almost half
+
+00:04:14.080 --> 00:04:17.381
+since just the start
+of this last year.
+
+00:04:17.381 --> 00:04:19.839
+OK, so now that we've covered
+some of the improvements that
+
+00:04:19.839 --> 00:04:21.520
+have been made in
+Chrome, I want to get
+
+00:04:21.520 --> 00:04:23.020
+into some of the
+actual new language
+
+00:04:23.020 --> 00:04:25.518
+features of WebAssembly.
+
+00:04:25.518 --> 00:04:27.310
+The first feature that
+I want to talk about
+
+00:04:27.310 --> 00:04:29.090
+is WebAssembly threads.
+
+00:04:29.090 --> 00:04:32.320
+Threads are a key part
+of practically all CPUs,
+
+00:04:32.320 --> 00:04:34.150
+and utilizing them
+fully and effectively
+
+00:04:34.150 --> 00:04:36.580
+has been one of the great
+challenges for the web
+
+00:04:36.580 --> 00:04:39.070
+until now.
+
+00:04:39.070 --> 00:04:41.140
+WebAssembly threads
+work by relying
+
+00:04:41.140 --> 00:04:42.940
+on three specific things--
+
+00:04:42.940 --> 00:04:47.530
+Web Workers, SharedArrayBuffer,
+and atomic operations.
+
+00:04:47.530 --> 00:04:51.760
+Web Workers allows WebAssembly
+to run on different CPU cores.
+
+00:04:51.760 --> 00:04:55.150
+Then SharedArrayBuffer
+allows WebAssembly to operate
+
+00:04:55.150 --> 00:04:57.400
+on the same piece of memory.
+
+00:04:57.400 --> 00:05:00.100
+Lastly, atomic
+operations, specifically
+
+00:05:00.100 --> 00:05:03.122
+atomic.wake and
+atomic.notify, let
+
+00:05:03.122 --> 00:05:05.080
+you synchronize your
+WebAssembly so that things
+
+00:05:05.080 --> 00:05:08.320
+happen in the right order.
+
+00:05:08.320 --> 00:05:11.630
+Google Earth adapted WebAssembly
+threads with great success.
+
+00:05:11.630 --> 00:05:13.890
+They saw their frame
+rate almost double
+
+00:05:13.890 --> 00:05:16.570
+and their number of dropped
+frames cut by more than half.
+
+00:05:20.870 --> 00:05:22.790
+Soundation, a music
+editing studio,
+
+00:05:22.790 --> 00:05:25.100
+similarly adopted
+threads to enable
+
+00:05:25.100 --> 00:05:27.770
+highly efficient paralization.
+
+00:05:27.770 --> 00:05:29.690
+As they increased their
+number of threads,
+
+00:05:29.690 --> 00:05:33.850
+they saw their performance
+more than triple.
+
+00:05:33.850 --> 00:05:36.250
+One application that I'm
+particularly excited to share
+
+00:05:36.250 --> 00:05:40.270
+is coming to the web through
+WebAssembly threads, is VLC.
+
+00:05:40.270 --> 00:05:42.530
+They were able to originally
+compile their code base
+
+00:05:42.530 --> 00:05:43.995
+to baseline WebAssembly.
+
+00:05:43.995 --> 00:05:45.370
+But without threads,
+they weren't
+
+00:05:45.370 --> 00:05:47.500
+able to achieve anything
+close to the performance
+
+00:05:47.500 --> 00:05:48.950
+that they needed.
+
+00:05:48.950 --> 00:05:51.790
+Now thanks to threads, they
+have a working prototype
+
+00:05:51.790 --> 00:05:54.980
+working directly in Chrome.
+
+00:05:54.980 --> 00:05:56.818
+So going back to our
+analogy from earlier,
+
+00:05:56.818 --> 00:05:59.110
+if baseline WebAssembly it's
+like running along a train
+
+00:05:59.110 --> 00:06:02.390
+track, WebAssembly with threads
+is like an actual train.
+
+00:06:02.390 --> 00:06:07.030
+You're achieving speeds that
+were previously impossible.
+
+00:06:07.030 --> 00:06:09.520
+Threads have been
+available in Chrome desktop
+
+00:06:09.520 --> 00:06:11.350
+since version 74.
+
+00:06:11.350 --> 00:06:14.960
+In Android, Chrome, and Firefox,
+threads are implemented,
+
+00:06:14.960 --> 00:06:17.020
+but not enabled
+by default. We're
+
+00:06:17.020 --> 00:06:19.030
+actively working with
+other browser vendors
+
+00:06:19.030 --> 00:06:21.640
+and the WebAssembly
+community to make threads
+
+00:06:21.640 --> 00:06:23.940
+available in more places.
+
+00:06:23.940 --> 00:06:25.990
+[? Send ?] threads are
+not supported everywhere.
+
+00:06:25.990 --> 00:06:28.030
+It's critical to use
+feature detection
+
+00:06:28.030 --> 00:06:31.060
+before relying on their
+presence, which Ingvar will now
+
+00:06:31.060 --> 00:06:33.400
+show you how to do.
+
+00:06:33.400 --> 00:06:35.872
+INGVAR STEPANYAN:
+Thank you, Thomas.
+
+00:06:35.872 --> 00:06:37.330
+Unfortunately,
+WebAssembly does not
+
+00:06:37.330 --> 00:06:39.497
+have a built-in feature
+detection yet, although it's
+
+00:06:39.497 --> 00:06:40.850
+being actively worked on.
+
+00:06:40.850 --> 00:06:42.970
+For now, we created a
+JavaScript library instead
+
+00:06:42.970 --> 00:06:45.345
+that you can use to detect
+WebAssembly features supported
+
+00:06:45.345 --> 00:06:46.038
+by your browser.
+
+00:06:46.038 --> 00:06:48.580
+This allows you to build several
+versions of your WebAssembly
+
+00:06:48.580 --> 00:06:50.038
+module, for different
+feature sets,
+
+00:06:50.038 --> 00:06:51.747
+just like you would
+for modern JavaScript
+
+00:06:51.747 --> 00:06:54.340
+bundles and dynamically choose
+the ones that your browser can
+
+00:06:54.340 --> 00:06:56.110
+handle.
+
+00:06:56.110 --> 00:06:59.020
+For example, you can use threads
+function in order to detect
+
+00:06:59.020 --> 00:07:00.895
+[INAUDIBLE] [? browse ?]
+[? simple ?] threads
+
+00:07:00.895 --> 00:07:01.850
+in WebAssembly.
+
+00:07:01.850 --> 00:07:04.312
+Then you can use
+dynamic input to load
+
+00:07:04.312 --> 00:07:06.020
+either version of your
+WebAssembly module
+
+00:07:06.020 --> 00:07:07.850
+and the JavaScript
+binded set makes
+
+00:07:07.850 --> 00:07:10.790
+user threads for optimizations,
+or regular one for the older
+
+00:07:10.790 --> 00:07:13.450
+browsers.
+
+00:07:13.450 --> 00:07:16.645
+How do you build a version for
+threads, in the first place?
+
+00:07:16.645 --> 00:07:19.020
+If you're using a script and
+you need to pass an argument
+
+00:07:19.020 --> 00:07:21.110
+-pthread during
+compilation, like you would
+
+00:07:21.110 --> 00:07:22.950
+to regular, native C compilers.
+
+00:07:25.615 --> 00:07:27.990
+And it will automatically
+generate the WebAssembly module
+
+00:07:27.990 --> 00:07:30.240
+and the JavaScript necessary
+for creating, managing,
+
+00:07:30.240 --> 00:07:33.960
+and communicating with the
+Web Workers under the hood.
+
+00:07:33.960 --> 00:07:35.700
+If you aren't in C
+[INAUDIBLE] allows
+
+00:07:35.700 --> 00:07:37.500
+you to use common
+POSIX thread APIs,
+
+00:07:37.500 --> 00:07:40.260
+just like those available
+on native Unix platforms.
+
+00:07:40.260 --> 00:07:42.210
+For example, you can
+use pthread_create
+
+00:07:42.210 --> 00:07:44.130
+with the handler
+function and arguments,
+
+00:07:44.130 --> 00:07:47.130
+in order to start a new thread
+and [? writing ?] the code
+
+00:07:47.130 --> 00:07:49.850
+pthread_join in order to wait
+for it to finish and read
+
+00:07:49.850 --> 00:07:52.450
+the results back.
+
+00:07:52.450 --> 00:07:54.323
+If you write in C++,
+good news has it,
+
+00:07:54.323 --> 00:07:56.740
+Emscripten [? implemented ?]
+an implementation of standard
+
+00:07:56.740 --> 00:08:00.070
+thread APIs, just like in Unix
+makes use of POSIX threads
+
+00:08:00.070 --> 00:08:01.510
+under the hood.
+
+00:08:01.510 --> 00:08:04.540
+And other high level
+APIs, such as std::async,
+
+00:08:04.540 --> 00:08:07.480
+makes use of std::thread
+at the C++ standard level.
+
+00:08:07.480 --> 00:08:10.030
+So they all just work.
+
+00:08:10.030 --> 00:08:13.150
+This means that, for example,
+you can use std::thread with
+
+00:08:13.150 --> 00:08:14.940
+closures in the C++ code.
+
+00:08:14.940 --> 00:08:17.010
+And it will [? lower ?]
+to the same pthread goals
+
+00:08:17.010 --> 00:08:19.230
+and handled by Emscripten.
+
+00:08:19.230 --> 00:08:22.950
+Similarly, you can use
+std::async APIs to spawn
+
+00:08:22.950 --> 00:08:25.290
+futures, which are quite
+similar to JavaScript promises,
+
+00:08:25.290 --> 00:08:27.420
+but allow you to spawn
+tasks on your threads.
+
+00:08:29.995 --> 00:08:31.370
+And the [INAUDIBLE]
+this stories,
+
+00:08:31.370 --> 00:08:32.953
+not just [? been ?]
+[? fleshed ?] out,
+
+00:08:32.953 --> 00:08:34.730
+as you need to maybe
+create Web Workers,
+
+00:08:34.730 --> 00:08:37.188
+send them to WebAssembly module
+and [? memories ?] that you
+
+00:08:37.188 --> 00:08:39.620
+want to share, as well as
+rebuild the standard library
+
+00:08:39.620 --> 00:08:41.328
+with thread support.
+
+00:08:41.328 --> 00:08:43.120
+However, after jumping
+through a few hoops,
+
+00:08:43.120 --> 00:08:45.670
+you are able to even use popular
+multi-threading libraries,
+
+00:08:45.670 --> 00:08:49.210
+like [? Ryan, ?] like in this
+demo by Rust WebAssembly team.
+
+00:08:49.210 --> 00:08:51.690
+Here, they [? brought ?]
+[? in ?] a ray tracer to split
+
+00:08:51.690 --> 00:08:55.247
+and read into several threads
+and compiled it to WebAssembly.
+
+00:08:55.247 --> 00:08:56.830
+You can see how,
+with a single thread,
+
+00:08:56.830 --> 00:09:00.320
+it takes 1.7 seconds to
+render the entire image.
+
+00:09:00.320 --> 00:09:02.330
+But if you split working,
+to say, four threads,
+
+00:09:02.330 --> 00:09:04.660
+it takes only 0.8
+seconds, making it
+
+00:09:04.660 --> 00:09:08.007
+more than two times faster.
+
+00:09:08.007 --> 00:09:10.090
+Another performance feature
+that is making its way
+
+00:09:10.090 --> 00:09:11.615
+into WebAssembly is SIMD.
+
+00:09:11.615 --> 00:09:13.990
+And I'd like to invite Thomas
+back, to tell us what it is
+
+00:09:13.990 --> 00:09:16.240
+and how it can help us.
+
+00:09:16.240 --> 00:09:18.340
+THOMAS NATTESTAD: Thank
+you, so much, Ingvar So,
+
+00:09:18.340 --> 00:09:21.850
+SIMD stands for Single
+Instruction Multiple Data.
+
+00:09:21.850 --> 00:09:24.700
+And while this may not be a term
+that most web developers are
+
+00:09:24.700 --> 00:09:27.100
+familiar with, it's
+an absolutely key part
+
+00:09:27.100 --> 00:09:30.670
+of modern CPU architectures.
+
+00:09:30.670 --> 00:09:34.180
+So to explain SIMD, let's
+take this simple example
+
+00:09:34.180 --> 00:09:36.820
+of adding two arrays
+together into a third array,
+
+00:09:36.820 --> 00:09:39.640
+using a simple for loop.
+
+00:09:39.640 --> 00:09:42.490
+Without SIMD, the CPU
+goes through this loop
+
+00:09:42.490 --> 00:09:45.250
+and adds the different
+elements together, one by one,
+
+00:09:45.250 --> 00:09:48.310
+taking four full steps.
+
+00:09:48.310 --> 00:09:52.540
+Now, with SIMD, the CPU is able
+to vectorize these elements
+
+00:09:52.540 --> 00:09:57.710
+and then take just a single CPU
+operation to add them together.
+
+00:09:57.710 --> 00:10:00.130
+This may seem simple, but
+it can have dramatic impacts
+
+00:10:00.130 --> 00:10:01.330
+on performance.
+
+00:10:01.330 --> 00:10:03.233
+To show the power
+that SIMD can deliver,
+
+00:10:03.233 --> 00:10:05.650
+I want to show off some of the
+work done by our colleagues
+
+00:10:05.650 --> 00:10:08.270
+at Google Research.
+
+00:10:08.270 --> 00:10:11.210
+They've developed several
+real-time ML models
+
+00:10:11.210 --> 00:10:14.390
+that can do everything from
+letting you try on fake glasses
+
+00:10:14.390 --> 00:10:17.630
+or puppet masks, doing dynamic
+background removal, and much
+
+00:10:17.630 --> 00:10:19.460
+more.
+
+00:10:19.460 --> 00:10:22.520
+One of the coolest demos is
+this hand tracking system.
+
+00:10:22.520 --> 00:10:26.210
+And here, you can really see
+the difference that SIMD makes.
+
+00:10:26.210 --> 00:10:28.430
+Without SIMD, you're only
+getting about three frames
+
+00:10:28.430 --> 00:10:30.650
+per second, while
+with SIMD, you've
+
+00:10:30.650 --> 00:10:33.150
+got a much smoother
+15 frames per second,
+
+00:10:33.150 --> 00:10:34.883
+which makes all the difference.
+
+00:10:34.883 --> 00:10:36.800
+You can visit this link
+to check these out for
+
+00:10:36.800 --> 00:10:40.930
+yourself or come by the
+sandbox to play with them.
+
+00:10:40.930 --> 00:10:44.020
+The Google research team looked
+at a bunch of their models
+
+00:10:44.020 --> 00:10:47.830
+and found that, in general,
+SIMD offered a 3x improvement
+
+00:10:47.830 --> 00:10:51.130
+on overall speed.
+
+00:10:51.130 --> 00:10:52.930
+The next example that
+I want to show off
+
+00:10:52.930 --> 00:10:55.870
+is OpenCV and some of the
+work done by our friends
+
+00:10:55.870 --> 00:10:58.090
+at Intel and UC Irvine.
+
+00:10:58.090 --> 00:11:01.720
+OpenCV is an extremely
+popular image analysis library
+
+00:11:01.720 --> 00:11:06.250
+that has tons of performance
+dependent functionality.
+
+00:11:06.250 --> 00:11:08.380
+OpenCV can be compiled
+to WebAssembly
+
+00:11:08.380 --> 00:11:10.700
+and run directly in the browser.
+
+00:11:10.700 --> 00:11:13.330
+It can be used for doing
+things, like card reading,
+
+00:11:13.330 --> 00:11:15.607
+replacing real
+emotions with emojis,
+
+00:11:15.607 --> 00:11:17.440
+and for all the Harry
+Potter fans out there,
+
+00:11:17.440 --> 00:11:21.670
+you can now have your very own
+web-powered invisibility cloak.
+
+00:11:21.670 --> 00:11:23.470
+You can visit this
+link to try them out.
+
+00:11:23.470 --> 00:11:28.450
+Or again, come by the sandbox
+to check and see them there.
+
+00:11:28.450 --> 00:11:31.480
+This work has actually been
+fully upstreamed into OpenCV.
+
+00:11:31.480 --> 00:11:33.070
+And they even have
+a tutorial on how
+
+00:11:33.070 --> 00:11:35.272
+to setup OpenCV
+with the Emscripten,
+
+00:11:35.272 --> 00:11:37.480
+so that you can all play
+with this yourself, at home.
+
+00:11:39.990 --> 00:11:42.930
+And all of this functionality
+can take advantage of threads
+
+00:11:42.930 --> 00:11:45.630
+and SIMD to dramatically
+improve performance.
+
+00:11:45.630 --> 00:11:47.460
+Here we can see the
+visual difference
+
+00:11:47.460 --> 00:11:52.360
+of first adding SIMD and
+then SIMD plus threads.
+
+00:11:52.360 --> 00:11:54.790
+And our benchmarking backs
+up this visually noticeable
+
+00:11:54.790 --> 00:11:55.780
+difference.
+
+00:11:55.780 --> 00:11:58.150
+When using both threads
+and SIMD together,
+
+00:11:58.150 --> 00:12:01.810
+common tasks in OpenCV can
+be improved by around 15x.
+
+00:12:04.540 --> 00:12:07.600
+And some of the benchmarks show
+even more dramatic improvements
+
+00:12:07.600 --> 00:12:09.070
+from threads and SIMD.
+
+00:12:09.070 --> 00:12:11.740
+For the OpenCV kernel
+performance test,
+
+00:12:11.740 --> 00:12:16.030
+using threads gives
+you a 3.5x improvement.
+
+00:12:16.030 --> 00:12:19.870
+And using SIMD gives you an even
+more impressive 9x improvement,
+
+00:12:19.870 --> 00:12:21.730
+just by itself.
+
+00:12:21.730 --> 00:12:23.500
+And then when you
+take these together,
+
+00:12:23.500 --> 00:12:26.320
+it results in an
+overall 30x improvement
+
+00:12:26.320 --> 00:12:30.200
+to this performance test,
+which is truly staggering.
+
+00:12:30.200 --> 00:12:32.290
+So coming back to
+our train analogy,
+
+00:12:32.290 --> 00:12:35.560
+because who doesn't love trains,
+if WebAssembly threads is
+
+00:12:35.560 --> 00:12:38.770
+like an old-style train, using
+threads and SIMD together
+
+00:12:38.770 --> 00:12:40.720
+is like a modern bullet train.
+
+00:12:40.720 --> 00:12:43.600
+So to show you how to actually
+take advantage of this in code,
+
+00:12:43.600 --> 00:12:46.560
+I'd like to hand
+it back to Ingvar.
+
+00:12:46.560 --> 00:12:49.300
+INGVAR STEPANYAN:
+Thanks, Thomas.
+
+00:12:49.300 --> 00:12:51.000
+To build code with
+SIMD and Emscripten,
+
+00:12:51.000 --> 00:12:53.183
+you need to pass a special
+parameter -m, which
+
+00:12:53.183 --> 00:12:54.850
+tells Dandelion's
+[? sealant ?] compiler
+
+00:12:54.850 --> 00:12:58.232
+to enable a specific
+feature, followed by simd128,
+
+00:12:58.232 --> 00:13:00.440
+which is the feature name
+for the currently supported
+
+00:13:00.440 --> 00:13:05.140
+128-bit SIMD operations
+in WebAssembly.
+
+00:13:05.140 --> 00:13:07.540
+In Rust, you need to pass the
+same feature name, by a -C
+
+00:13:07.540 --> 00:13:09.610
+target-feature compiler flag.
+
+00:13:09.610 --> 00:13:11.730
+The easiest way to do
+this on a real project,
+
+00:13:11.730 --> 00:13:13.810
+using cargo wasm-pac
+is currently
+
+00:13:13.810 --> 00:13:15.870
+[? serene ?] environment
+variable RUSTFLAGS,
+
+00:13:15.870 --> 00:13:18.560
+passed during compilation.
+
+00:13:18.560 --> 00:13:21.000
+Now that we've covered
+how to compile our code,
+
+00:13:21.000 --> 00:13:24.408
+let's see what it takes to
+actually use SIMD in our code.
+
+00:13:24.408 --> 00:13:26.200
+The good news has it,
+in the simplest case,
+
+00:13:26.200 --> 00:13:28.140
+the answer is nothing.
+
+00:13:28.140 --> 00:13:30.990
+That is, unlike with threads,
+SIMD [INAUDIBLE] compiler
+
+00:13:30.990 --> 00:13:33.690
+can often make advantage
+of, and take care of,
+
+00:13:33.690 --> 00:13:37.310
+without you having to
+modify any code at all.
+
+00:13:37.310 --> 00:13:40.010
+This compiler feature is
+called auto-vectorization.
+
+00:13:40.010 --> 00:13:41.540
+And it detects
+loops that perform
+
+00:13:41.540 --> 00:13:44.090
+[? same ?] mathematical
+operations on array items,
+
+00:13:44.090 --> 00:13:46.050
+independently.
+
+00:13:46.050 --> 00:13:51.080
+For example, let's take a
+look at this simple code in C.
+
+00:13:51.080 --> 00:13:56.400
+On [INAUDIBLE] one in C++
+All the same one, in Rust.
+
+00:13:56.400 --> 00:13:58.660
+Such a loop operates
+on an array of numbers.
+
+00:13:58.660 --> 00:13:59.890
+Check.
+
+00:13:59.890 --> 00:14:01.900
+It performs
+arithmetic operations.
+
+00:14:01.900 --> 00:14:03.340
+Also, check.
+
+00:14:03.340 --> 00:14:06.100
+And it clearly operates as
+an independent [INAUDIBLE]
+
+00:14:06.100 --> 00:14:06.807
+Also, check.
+
+00:14:06.807 --> 00:14:08.890
+So the compiler should be
+able to make use of SIMD
+
+00:14:08.890 --> 00:14:11.560
+to process several elements at
+once-- [? Ryzen ?] handles them
+
+00:14:11.560 --> 00:14:15.220
+by one-to-one--
+and make it faster.
+
+00:14:15.220 --> 00:14:17.590
+Let's see if it does.
+
+00:14:17.590 --> 00:14:22.700
+First, let's compile this code,
+in any of the source languages,
+
+00:14:22.700 --> 00:14:24.500
+without SIMD enabled
+and take a look
+
+00:14:24.500 --> 00:14:27.320
+at the interactive WebAssembly.
+
+00:14:27.320 --> 00:14:30.500
+We can see that our function
+gets compiled to a loop.
+
+00:14:30.500 --> 00:14:33.380
+Set loads an item from an
+array, multiplies it by 10,
+
+00:14:33.380 --> 00:14:35.600
+and stores the result back.
+
+00:14:35.600 --> 00:14:37.770
+No surprises here.
+
+00:14:37.770 --> 00:14:40.860
+Now, let's get our compiler
+to be SIMD enabled.
+
+00:14:40.860 --> 00:14:44.390
+We can see is that, aside
+from our regular boilerplate,
+
+00:14:44.390 --> 00:14:46.440
+there is now another
+loop that loads
+
+00:14:46.440 --> 00:14:48.380
+four items out of an
+array, multiplies them
+
+00:14:48.380 --> 00:14:51.330
+by four instances of number
+10, and stores the result
+
+00:14:51.330 --> 00:14:54.375
+back, also in just
+one operation.
+
+00:14:54.375 --> 00:14:56.500
+While this improvement
+[? is an ?] example, and not
+
+00:14:56.500 --> 00:14:58.458
+a real-world benchmark,
+it's interesting to see
+
+00:14:58.458 --> 00:14:59.980
+how such implicit
+optimization can
+
+00:14:59.980 --> 00:15:01.660
+help to achieve a
+consistent three times
+
+00:15:01.660 --> 00:15:03.890
+increase in performance
+of the generated code.
+
+00:15:06.307 --> 00:15:07.890
+In some situations,
+however, you don't
+
+00:15:07.890 --> 00:15:10.140
+want to leave it to chance
+to have your code optimized
+
+00:15:10.140 --> 00:15:12.480
+this way or your data
+has a specific layout
+
+00:15:12.480 --> 00:15:16.320
+or you just want more control
+over which features are used.
+
+00:15:16.320 --> 00:15:18.900
+This is where intrinsics
+can come in helpful.
+
+00:15:18.900 --> 00:15:20.730
+Intrinsics are
+special helpers that
+
+00:15:20.730 --> 00:15:23.370
+look like regular
+functions but correspond
+
+00:15:23.370 --> 00:15:25.920
+to specific instructions
+on the target.
+
+00:15:25.920 --> 00:15:27.750
+For SIMD in Emscripten
+they [? leave ?]
+
+00:15:27.750 --> 00:15:30.480
+in wasm_simd128
+header and content
+
+00:15:30.480 --> 00:15:32.670
+all basic operations
+for creating, loading,
+
+00:15:32.670 --> 00:15:34.890
+and storing, and operating
+at once the supported
+
+00:15:34.890 --> 00:15:37.620
+SIMD vector types.
+
+00:15:37.620 --> 00:15:40.670
+In Rust, the easiest way to use
+them is [INAUDIBLE] external
+
+00:15:40.670 --> 00:15:42.930
+packets in [? the ?] crate,
+which is intended to be
+
+00:15:42.930 --> 00:15:44.610
+a prototype for a future
+[? Standard ?] [? Library ?]
+
+00:15:44.610 --> 00:15:45.110
+API.
+
+00:15:48.385 --> 00:15:50.760
+One important thing to keep
+in mind is that SIMD is still
+
+00:15:50.760 --> 00:15:52.980
+experimental and available
+only in Chrome [? under ?]
+
+00:15:52.980 --> 00:15:54.920
+[? flag. ?] So just
+like with threads,
+
+00:15:54.920 --> 00:15:58.013
+you need to make a separate
+build that makes use of SIMD.
+
+00:15:58.013 --> 00:16:00.180
+And then use a feature
+detection library to load it,
+
+00:16:00.180 --> 00:16:03.800
+only if it's supported.
+
+00:16:03.800 --> 00:16:06.365
+Now that we've covered
+new WebAssembly features,
+
+00:16:06.365 --> 00:16:07.990
+we've got some exciting
+tool implements
+
+00:16:07.990 --> 00:16:11.100
+to share with you, too.
+
+00:16:11.100 --> 00:16:14.070
+First if all, earlier
+this year, [? LLVM, ?]
+
+00:16:14.070 --> 00:16:16.020
+the compelling infrastructure
+behind projects,
+
+00:16:16.020 --> 00:16:19.170
+such as Clang and Rust
+and lots of others,
+
+00:16:19.170 --> 00:16:22.428
+has stabilized and finished
+support for WebAssembly target.
+
+00:16:22.428 --> 00:16:24.720
+This includes both compilation
+of separate source files
+
+00:16:24.720 --> 00:16:27.120
+into WebAssembly object
+files, as well as linking them
+
+00:16:27.120 --> 00:16:31.090
+together into the final module.
+
+00:16:31.090 --> 00:16:33.370
+It's not very usable on its own.
+
+00:16:33.370 --> 00:16:39.300
+For example, while it allows
+you to compile a separate C/C++
+
+00:16:39.300 --> 00:16:42.520
+files into WebAssembly, it
+doesn't include any standard
+
+00:16:42.520 --> 00:16:43.020
+library.
+
+00:16:43.020 --> 00:16:45.240
+And it expects you
+to bring your own.
+
+00:16:45.240 --> 00:16:47.940
+However, it does provide a solid
+foundation for other compilers
+
+00:16:47.940 --> 00:16:50.850
+to build on.
+
+00:16:50.850 --> 00:16:53.400
+Let's take a look at Emscripten.
+
+00:16:53.400 --> 00:16:56.310
+Before this, Emscripten had
+to maintain a complex, custom
+
+00:16:56.310 --> 00:17:00.210
+compilation pipeline and a
+fork of LLVM, called fastcomp.
+
+00:17:00.210 --> 00:17:02.460
+In order to parse an
+intermediate representation
+
+00:17:02.460 --> 00:17:06.630
+from Clang, compile
+it to asm.js,
+
+00:17:06.630 --> 00:17:10.650
+and when WebAssembly came along,
+also converted to WebAssembly.
+
+00:17:10.650 --> 00:17:12.524
+Having to work around
+LLVMs, this way, led
+
+00:17:12.524 --> 00:17:13.774
+to various incompatibilities--
+
+00:17:13.774 --> 00:17:14.200
+[COUGH]
+
+00:17:14.200 --> 00:17:16.575
+[? --reported, ?] [? such ?]
+[? as ?] difficulties during
+
+00:17:16.575 --> 00:17:20.855
+upgrades and suboptimal
+compilation performance.
+
+00:17:20.855 --> 00:17:22.230
+Now since the
+WebAssembly support
+
+00:17:22.230 --> 00:17:25.890
+has been properly
+integrated into the LLVM,
+
+00:17:25.890 --> 00:17:28.920
+Emscripten can leverage it
+to simplify the compilation
+
+00:17:28.920 --> 00:17:32.100
+process and focus on
+providing a great development
+
+00:17:32.100 --> 00:17:34.980
+experience, custom features,
+and a standard library,
+
+00:17:34.980 --> 00:17:38.360
+while all core work, for the
+features and optimizations,
+
+00:17:38.360 --> 00:17:40.110
+can be continued to
+be developed upstream.
+
+00:17:42.697 --> 00:17:44.530
+As an example of
+improvements [? reaching ?]
+
+00:17:44.530 --> 00:17:47.350
+to the native backend allowed
+Emscripten to significantly
+
+00:17:47.350 --> 00:17:50.110
+improve linking times,
+with a small extra cost
+
+00:17:50.110 --> 00:17:52.450
+to its initial compilation.
+
+00:17:52.450 --> 00:17:55.848
+This particularly helps on
+incremental development,
+
+00:17:55.848 --> 00:17:57.640
+where you usually modify
+and recompile only
+
+00:17:57.640 --> 00:17:59.770
+like one, two files, at a time.
+
+00:17:59.770 --> 00:18:03.100
+And all you need is
+a fast linking step.
+
+00:18:03.100 --> 00:18:05.980
+Some projects have seen as
+much as seven times improvement
+
+00:18:05.980 --> 00:18:07.750
+in recompilation
+times, in such cases.
+
+00:18:13.390 --> 00:18:16.000
+However, there were some
+compile-time features,
+
+00:18:16.000 --> 00:18:18.280
+unique to Emscripten,
+that were previously
+
+00:18:18.280 --> 00:18:21.160
+handled by the earlier
+mentioned fork of LLVM,
+
+00:18:21.160 --> 00:18:23.170
+and could be lost in transition.
+
+00:18:23.170 --> 00:18:26.780
+One of such features
+is Asyncify.
+
+00:18:26.780 --> 00:18:29.330
+Normally, when calling from
+JavaScript to WebAssembly,
+
+00:18:29.330 --> 00:18:32.090
+and then from WebAssembly
+to some Web APIs,
+
+00:18:32.090 --> 00:18:34.550
+you expect to read the result
+back, continue execution,
+
+00:18:34.550 --> 00:18:37.100
+and eventually
+return to JavaScript.
+
+00:18:37.100 --> 00:18:42.750
+However, many long,
+[? grinding, ?] and expensive
+
+00:18:42.750 --> 00:18:45.580
+Web APIs tend to spawn
+asynchronous tasks,
+
+00:18:45.580 --> 00:18:48.080
+to avoid blocking the [? main ?]
+[? thread. ?] This includes
+
+00:18:48.080 --> 00:18:50.850
+[? Timeless, ?] Fetch
+API, Web Crypto API,
+
+00:18:50.850 --> 00:18:53.907
+and lots of [? others. ?]
+
+00:18:53.907 --> 00:18:56.240
+Because WebAssembly does not
+have a notion of event loop
+
+00:18:56.240 --> 00:18:58.045
+promises or synchronous
+tasks, [INAUDIBLE]
+
+00:18:58.045 --> 00:18:59.420
+would look like
+the external API,
+
+00:18:59.420 --> 00:19:01.250
+as soon as it
+finished execution.
+
+00:19:01.250 --> 00:19:03.970
+So it can continue running
+users code, immediately,
+
+00:19:03.970 --> 00:19:06.850
+while the async task is still
+running in the background,
+
+00:19:06.850 --> 00:19:09.140
+with no handlers attached.
+
+00:19:09.140 --> 00:19:11.190
+This is not what
+we normally want.
+
+00:19:11.190 --> 00:19:14.090
+We want to not only be able
+to start an asynchronous task,
+
+00:19:14.090 --> 00:19:17.150
+but also wait for it to
+finish, read the results back,
+
+00:19:17.150 --> 00:19:20.160
+and continuous
+execution afterwards.
+
+00:19:20.160 --> 00:19:22.273
+This is where I
+Asyncify comes in.
+
+00:19:22.273 --> 00:19:24.440
+I wont go too much into
+implementation details here.
+
+00:19:24.440 --> 00:19:26.898
+But what it does is compiles
+the WebAssembly module in such
+
+00:19:26.898 --> 00:19:29.590
+a way that you can
+suspend execution,
+
+00:19:29.590 --> 00:19:32.120
+remember the state,
+and later, resume
+
+00:19:32.120 --> 00:19:34.610
+from the exact same point,
+when an asynchronous task
+
+00:19:34.610 --> 00:19:36.196
+has finished its execution.
+
+00:19:39.320 --> 00:19:41.480
+This is quite similar
+to await, in JavaScript,
+
+00:19:41.480 --> 00:19:44.360
+but applied to native
+functions and with no changes
+
+00:19:44.360 --> 00:19:46.400
+to your own code.
+
+00:19:46.400 --> 00:19:48.260
+In order to use it
+from Emscripten,
+
+00:19:48.260 --> 00:19:50.330
+you need to pass a
+special parameter,
+
+00:19:50.330 --> 00:19:52.610
+-s asyncify, and specify
+which [? imports ?] should
+
+00:19:52.610 --> 00:19:56.180
+be treated as asynchronous.
+
+00:19:56.180 --> 00:19:57.310
+The great news are--
+
+00:20:00.820 --> 00:20:04.010
+so in your code, you can use
+regular function imports.
+
+00:20:04.010 --> 00:20:05.760
+And it evokes them as
+any other functions,
+
+00:20:05.760 --> 00:20:08.130
+while Asyncify does
+magic under the hood.
+
+00:20:08.130 --> 00:20:10.740
+The great news was that, with
+the transition to the upstream
+
+00:20:10.740 --> 00:20:13.540
+LLVM [INAUDIBLE] the backend,
+this feature has not gone
+
+00:20:13.540 --> 00:20:17.310
+but was extracted as a separate
+transform and can be now used
+
+00:20:17.310 --> 00:20:20.640
+from any languages
+and not just C/C++,
+
+00:20:20.640 --> 00:20:23.250
+as long as they
+compile to WebAssembly.
+
+00:20:23.250 --> 00:20:24.760
+For example, you
+can simply invoke
+
+00:20:24.760 --> 00:20:26.135
+asynchronous
+JavaScript functions
+
+00:20:26.135 --> 00:20:28.350
+from Rust, which is
+particularly helpful for
+
+00:20:28.350 --> 00:20:30.840
+[? both ?] [INAUDIBLE] standard
+synchronous system APIs,
+
+00:20:30.840 --> 00:20:34.242
+available on other platforms.
+
+00:20:34.242 --> 00:20:35.700
+Since you are not
+using Emscripten,
+
+00:20:35.700 --> 00:20:37.830
+in this case, after
+you have compiled
+
+00:20:37.830 --> 00:20:42.480
+your module into [INAUDIBLE]
+using wasm-tool, instead
+
+00:20:42.480 --> 00:20:45.070
+and it will add all the
+necessary magic for spending
+
+00:20:45.070 --> 00:20:46.755
+[INAUDIBLE] execution.
+
+00:20:49.730 --> 00:20:52.730
+Then, you'd need some loop on
+the JavaScript side, as well.
+
+00:20:52.730 --> 00:20:54.040
+We have [INAUDIBLE] for use.
+
+00:20:54.040 --> 00:20:56.530
+It mimics our regular
+WebAssembly API.
+
+00:20:56.530 --> 00:20:58.330
+But [? it allows ?]
+instantiates modules
+
+00:20:58.330 --> 00:21:01.100
+with asynchronous
+imports and exports.
+
+00:21:01.100 --> 00:21:05.020
+To use it, first, import is
+from asyncify-wasm [INAUDIBLE]
+
+00:21:05.020 --> 00:21:07.440
+module.
+
+00:21:07.440 --> 00:21:10.220
+And then, you can use
+regular instantiation APIs.
+
+00:21:10.220 --> 00:21:13.080
+But we use asynchronous imports
+and exports, in addition to
+
+00:21:13.080 --> 00:21:13.820
+the regular ones.
+
+00:21:18.140 --> 00:21:19.580
+Since now your
+WebAssembly module
+
+00:21:19.580 --> 00:21:22.200
+might invoke asynchronous
+APIs in arbitrary points,
+
+00:21:22.200 --> 00:21:24.700
+all the exports need to
+become asynchronous, too.
+
+00:21:24.700 --> 00:21:26.240
+So you need to [? prefix ?]
+[? calls ?] to your exports
+
+00:21:26.240 --> 00:21:27.990
+[? with a write. ?]
+And you're good to go.
+
+00:21:31.370 --> 00:21:33.520
+One particularly interesting
+use case for Asyncify,
+
+00:21:33.520 --> 00:21:37.710
+aside from external
+APIs, is in Emscripten.
+
+00:21:37.710 --> 00:21:40.870
+Emscripten allows you to mark
+parts of your code, that's
+
+00:21:40.870 --> 00:21:43.900
+rarely used, and splits them to
+a separate WebAssembly module,
+
+00:21:43.900 --> 00:21:45.880
+during compilation.
+
+00:21:45.880 --> 00:21:48.940
+[? add-lazy ?] loads them,
+only when it's invoked.
+
+00:21:48.940 --> 00:21:51.760
+This allows us to keep
+your initial bundle small,
+
+00:21:51.760 --> 00:21:55.335
+without any breakage to your own
+code and with minimal changes.
+
+00:21:58.100 --> 00:22:01.220
+To use it, you need to
+call a special function,
+
+00:22:01.220 --> 00:22:03.730
+emscripten_lazy_load_code.
+
+00:22:03.730 --> 00:22:06.170
+During compilation, it will
+extract any following code
+
+00:22:06.170 --> 00:22:09.020
+into a separate
+WebAssembly module.
+
+00:22:09.020 --> 00:22:13.310
+[? Send ?] during runtime when,
+or if, that code is actually
+
+00:22:13.310 --> 00:22:16.310
+reached during
+execution, Emscripten
+
+00:22:16.310 --> 00:22:19.850
+will use Asyncify to dynamically
+load the missing pieces
+
+00:22:19.850 --> 00:22:22.298
+and continue as if
+there was never split,
+
+00:22:22.298 --> 00:22:23.090
+in the first place.
+
+00:22:27.760 --> 00:22:28.760
+This all great features.
+
+00:22:28.760 --> 00:22:30.677
+And it's amazing to see
+how our WebAssembly is
+
+00:22:30.677 --> 00:22:31.820
+growing over time.
+
+00:22:31.820 --> 00:22:34.060
+However, with this
+feature [? course, ?]
+
+00:22:34.060 --> 00:22:38.240
+the surface area of potential
+boxes expanded, as well.
+
+00:22:38.240 --> 00:22:39.900
+When things go wrong,
+and we all know,
+
+00:22:39.900 --> 00:22:44.250
+they often do, you want
+to be able to track where
+
+00:22:44.250 --> 00:22:47.280
+the problem occurred,
+reproduce it step by step,
+
+00:22:47.280 --> 00:22:49.730
+track the inputs that led to
+the issue in the first place,
+
+00:22:49.730 --> 00:22:50.230
+and so on.
+
+00:22:50.230 --> 00:22:52.900
+You want to be able to
+debug a application.
+
+00:22:52.900 --> 00:22:55.000
+Until recently,
+you had two options
+
+00:22:55.000 --> 00:22:56.770
+for debugging WebAssembly.
+
+00:22:56.770 --> 00:22:59.500
+First, you could get
+[? your ?] stack traces,
+
+00:22:59.500 --> 00:23:01.450
+as well as step over
+individual instructions
+
+00:23:01.450 --> 00:23:04.700
+in that WebAssembly text format.
+
+00:23:04.700 --> 00:23:08.120
+This helps somewhat with
+debugging of small isolated
+
+00:23:08.120 --> 00:23:09.510
+functions.
+
+00:23:09.510 --> 00:23:11.930
+But it's not very practical
+for larger ops, where
+
+00:23:11.930 --> 00:23:14.450
+the mapping between
+the disassembled source
+
+00:23:14.450 --> 00:23:18.320
+and your original
+sources is less obvious.
+
+00:23:18.320 --> 00:23:20.780
+To work around this
+problem, Emscripten DevTools
+
+00:23:20.780 --> 00:23:24.190
+have initially adapted the
+existing source maps format,
+
+00:23:24.190 --> 00:23:26.840
+which was designed for
+languages that compile
+
+00:23:26.840 --> 00:23:29.500
+to JavaScript for WebAssembly.
+
+00:23:29.500 --> 00:23:31.210
+This allowed to
+map binary offsets,
+
+00:23:31.210 --> 00:23:34.510
+in the compiled module, to the
+locations in original sources
+
+00:23:34.510 --> 00:23:36.320
+files.
+
+00:23:36.320 --> 00:23:41.220
+However, this format was
+designed for text languages.
+
+00:23:41.220 --> 00:23:43.240
+We use clear mapping to
+JavaScript's concepts
+
+00:23:43.240 --> 00:23:45.430
+and values, and not
+for binary formats,
+
+00:23:45.430 --> 00:23:48.820
+like WebAssembly, using a memory
+arbitrary source languages
+
+00:23:48.820 --> 00:23:51.680
+and arbitrary type systems.
+
+00:23:51.680 --> 00:23:53.260
+This makes the
+integration hacky,
+
+00:23:53.260 --> 00:23:55.030
+limited, and not
+widely supported
+
+00:23:55.030 --> 00:23:57.830
+outside of Emscripten.
+
+00:23:57.830 --> 00:24:01.460
+On the other hand, many
+native languages already
+
+00:24:01.460 --> 00:24:03.140
+have a common
+debugging format that
+
+00:24:03.140 --> 00:24:05.690
+contains all the necessary
+information for the debugger
+
+00:24:05.690 --> 00:24:08.930
+to resolve locations, variable
+names, type layouts, and much
+
+00:24:08.930 --> 00:24:10.420
+more.
+
+00:24:10.420 --> 00:24:12.930
+This format is called DWARF.
+
+00:24:12.930 --> 00:24:15.960
+While there's still some
+WebAssembly-specific features,
+
+00:24:15.960 --> 00:24:18.210
+that need to be edited
+for full compatibility,
+
+00:24:18.210 --> 00:24:20.240
+compilers like Clang
+and Rust already
+
+00:24:20.240 --> 00:24:21.790
+support emitting
+DWARF information
+
+00:24:21.790 --> 00:24:24.300
+in a WebAssembly modules,
+which allows us to start
+
+00:24:24.300 --> 00:24:27.270
+using directly in DevTools.
+
+00:24:27.270 --> 00:24:29.970
+As a first step, we went ahead
+and implemented native source
+
+00:24:29.970 --> 00:24:31.120
+method.
+
+00:24:31.120 --> 00:24:33.690
+So you can start debugging the
+WebAssembly modules produced
+
+00:24:33.690 --> 00:24:35.550
+by any of these
+compilers, without having
+
+00:24:35.550 --> 00:24:38.700
+to resort to disassembled
+format or [INAUDIBLE] scripts
+
+00:24:38.700 --> 00:24:41.710
+for source [? map ?] generation.
+
+00:24:41.710 --> 00:24:44.550
+This integration only covers
+stepping in and offers a code
+
+00:24:44.550 --> 00:24:46.920
+in any of these language,
+set in breakpoints,
+
+00:24:46.920 --> 00:24:48.965
+and resolving stacks traces.
+
+00:24:48.965 --> 00:24:50.340
+There's still much
+more we can do
+
+00:24:50.340 --> 00:24:54.110
+though, such as
+[? preprinting ?] types
+
+00:24:54.110 --> 00:24:59.280
+or even evaluating expressions
+in the source languages.
+
+00:24:59.280 --> 00:25:00.850
+We are actively
+working on bringing
+
+00:25:00.850 --> 00:25:04.197
+this and many other improvements
+to the WebAssembly experience.
+
+00:25:04.197 --> 00:25:06.030
+So please stay tuned
+for the future updates.
+
+00:25:06.030 --> 00:25:07.530
+And thank you, for
+your time, today.
+
+00:25:07.530 --> 00:25:08.880
+[APPLAUSE]
+
+00:25:09.380 --> 00:25:12.430
+[MUSIC PLAYING]
+

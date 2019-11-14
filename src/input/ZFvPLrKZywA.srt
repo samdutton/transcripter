@@ -1,0 +1,2317 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:02.460
+[MUSIC PLAYING]
+
+00:00:05.412 --> 00:00:07.437
+GREG WHITWORTH: How's
+everybody doing?
+
+00:00:07.437 --> 00:00:07.937
+[CHEERING]
+
+00:00:07.937 --> 00:00:09.190
+Wow, that's lackluster.
+
+00:00:09.190 --> 00:00:11.210
+NICOLE SULLIVAN: Thanks
+for being here today.
+
+00:00:11.210 --> 00:00:12.080
+I'm Nicole Sullivan.
+
+00:00:12.080 --> 00:00:13.645
+I'm a PM for Google Chrome.
+
+00:00:13.645 --> 00:00:15.270
+GREG WHITWORTH: And
+I'm Greg Whitworth.
+
+00:00:15.270 --> 00:00:17.437
+I'm a PM for Microsoft Edge,
+and my Twitter handle's
+
+00:00:17.437 --> 00:00:18.062
+@GregWhitworth.
+
+00:00:18.062 --> 00:00:20.050
+NICOLE SULLIVAN: Yeah,
+and I'm @stubbornella.
+
+00:00:20.050 --> 00:00:22.480
+That is, believe it or
+not, actually the best way
+
+00:00:22.480 --> 00:00:25.820
+to get hold of me.
+
+00:00:25.820 --> 00:00:29.270
+OK, so let's start off by
+going back in time a bit.
+
+00:00:29.270 --> 00:00:32.780
+Do you remember when we were
+going to get new HTML elements?
+
+00:00:32.780 --> 00:00:35.000
+Who remembers that?
+
+00:00:35.000 --> 00:00:37.130
+I was super excited.
+
+00:00:37.130 --> 00:00:39.680
+After years of building
+the same tab set again
+
+00:00:39.680 --> 00:00:42.740
+and again and again,
+I thought, huzzah!
+
+00:00:42.740 --> 00:00:43.820
+This is it.
+
+00:00:43.820 --> 00:00:47.450
+Surely they'll see that this
+is in every design system ever,
+
+00:00:47.450 --> 00:00:49.950
+and they'll build
+it into the browser
+
+00:00:49.950 --> 00:00:52.440
+Then imagine my disappointment
+when we actually
+
+00:00:52.440 --> 00:00:54.600
+got a side article and section.
+
+00:00:54.600 --> 00:00:55.962
+They're totally fine.
+
+00:00:55.962 --> 00:00:57.420
+They just didn't
+solve the problems
+
+00:00:57.420 --> 00:00:59.640
+that I was trying to solve.
+
+00:00:59.640 --> 00:01:02.610
+So since then, I've held
+onto the core belief
+
+00:01:02.610 --> 00:01:04.410
+that HTML shouldn't be finished.
+
+00:01:04.410 --> 00:01:06.600
+Design systems have been
+innovating and lighting
+
+00:01:06.600 --> 00:01:10.140
+the path forward for HTML for
+a long time, and I think now,
+
+00:01:10.140 --> 00:01:13.160
+browsers can pave
+those cow paths.
+
+00:01:13.160 --> 00:01:15.460
+GREG WHITWORTH: And at
+Microsoft, we completely agree.
+
+00:01:15.460 --> 00:01:17.543
+On the move from Edge
+HTML over to Chromium,
+
+00:01:17.543 --> 00:01:19.960
+we did a full inventory of
+some of the goodness we thought
+
+00:01:19.960 --> 00:01:22.687
+was in HTML and wanted to
+bring over to Chromium.
+
+00:01:22.687 --> 00:01:24.770
+We reached out to our good
+friends over at Google,
+
+00:01:24.770 --> 00:01:26.440
+and they completely
+agreed, because one
+
+00:01:26.440 --> 00:01:28.898
+of the things we wanted to look
+into that we'll be covering
+
+00:01:28.898 --> 00:01:29.790
+is form controls.
+
+00:01:29.790 --> 00:01:32.920
+And starting up, we were
+with accessibility, touch,
+
+00:01:32.920 --> 00:01:34.870
+and ultimately a
+fresh coat of paint,
+
+00:01:34.870 --> 00:01:36.412
+because when we were
+looking at them,
+
+00:01:36.412 --> 00:01:38.250
+they were pretty
+dated, as you'll see.
+
+00:01:38.250 --> 00:01:40.300
+We'll also be
+covering stylability,
+
+00:01:40.300 --> 00:01:42.400
+extending functionality,
+and then ultimately,
+
+00:01:42.400 --> 00:01:44.103
+as Nicole was saying,
+new components.
+
+00:01:44.103 --> 00:01:45.020
+NICOLE SULLIVAN: Yeah.
+
+00:01:45.020 --> 00:01:51.418
+And bye-bye 1990s gradients.
+
+00:01:51.418 --> 00:01:54.020
+GREG WHITWORTH:
+So as I noted, we
+
+00:01:54.020 --> 00:01:56.490
+wanted to have the first
+run on accessibility.
+
+00:01:56.490 --> 00:01:58.380
+And as we were
+going through them,
+
+00:01:58.380 --> 00:02:00.708
+we also noted there was a
+huge need for look and feel.
+
+00:02:00.708 --> 00:02:02.750
+So we decided to go ahead
+and tackle both of them
+
+00:02:02.750 --> 00:02:04.792
+and update the look and
+feel, and they're planned
+
+00:02:04.792 --> 00:02:07.910
+for both Mac and Windows.
+
+00:02:07.910 --> 00:02:10.000
+NICOLE SULLIVAN: So
+we specifically wanted
+
+00:02:10.000 --> 00:02:13.420
+the form elements to look
+like part of a matched set.
+
+00:02:13.420 --> 00:02:17.320
+We were going for beautiful,
+webby, and neutral.
+
+00:02:17.320 --> 00:02:20.410
+We hope that every design system
+would see a bit of themselves
+
+00:02:20.410 --> 00:02:22.720
+in the new designs
+and easily imagine
+
+00:02:22.720 --> 00:02:25.600
+how they might be adapted
+for their own branding.
+
+00:02:25.600 --> 00:02:28.160
+The progress bar was not so bad.
+
+00:02:28.160 --> 00:02:31.090
+It's a little further along than
+the others and a little newer.
+
+00:02:31.090 --> 00:02:33.340
+And so we took it
+as a starting point
+
+00:02:33.340 --> 00:02:37.180
+to move all of the other form
+controls into the future.
+
+00:02:40.300 --> 00:02:42.980
+So if the progress bar
+had set the standard,
+
+00:02:42.980 --> 00:02:46.080
+the meter needed an upgrade.
+
+00:02:46.080 --> 00:02:47.673
+Super ugly.
+
+00:02:47.673 --> 00:02:49.590
+We're still working out
+the last little tweaks
+
+00:02:49.590 --> 00:02:51.630
+to get the strokes
+exactly right,
+
+00:02:51.630 --> 00:02:55.180
+but you can check it out on
+Canary and give us feedback.
+
+00:02:55.180 --> 00:02:58.320
+This is the before, and on the
+right-hand side is the after.
+
+00:03:01.270 --> 00:03:04.210
+You'll need to enable the Web
+Platform Controls updated UI
+
+00:03:04.210 --> 00:03:09.570
+flag to see the latest
+in about://flags.
+
+00:03:09.570 --> 00:03:13.450
+GREG WHITWORTH: And then we
+have this lovely Windows 95
+
+00:03:13.450 --> 00:03:17.077
+draggable element here in the
+range, which is definitely
+
+00:03:17.077 --> 00:03:18.160
+in the need of an upgrade.
+
+00:03:18.160 --> 00:03:20.400
+So we gave it a
+more modern splash
+
+00:03:20.400 --> 00:03:22.770
+coat of paints to flatten
+it up a little bit.
+
+00:03:22.770 --> 00:03:25.845
+So hopefully it looks a
+lot better to you as well.
+
+00:03:25.845 --> 00:03:28.405
+NICOLE SULLIVAN:
+And for Chrome, we
+
+00:03:28.405 --> 00:03:30.030
+decided to experiment
+with a little bit
+
+00:03:30.030 --> 00:03:32.010
+of a different visual detail.
+
+00:03:32.010 --> 00:03:34.475
+We were showing the selected
+portion of the range in color.
+
+00:03:34.475 --> 00:03:35.850
+We'd love to know
+what you think.
+
+00:03:35.850 --> 00:03:38.130
+This is something we're
+still playing with and trying
+
+00:03:38.130 --> 00:03:41.680
+to figure out what works well.
+
+00:03:41.680 --> 00:03:43.810
+GREG WHITWORTH: And
+check box and radio--
+
+00:03:43.810 --> 00:03:47.810
+they're small, but they're also
+really, really impactful form
+
+00:03:47.810 --> 00:03:48.310
+controls.
+
+00:03:48.310 --> 00:03:50.080
+They're on almost
+all of our forms.
+
+00:03:50.080 --> 00:03:51.820
+And while, again,
+they're subtle changes,
+
+00:03:51.820 --> 00:03:54.850
+those gradients are very,
+very indicative of the year
+
+00:03:54.850 --> 00:03:55.717
+that they came out.
+
+00:03:55.717 --> 00:03:57.550
+And we've now flattened
+and modernized them,
+
+00:03:57.550 --> 00:03:59.967
+and hopefully they fit better
+in all of your form controls
+
+00:03:59.967 --> 00:04:02.760
+on your websites
+that you're making.
+
+00:04:02.760 --> 00:04:06.100
+NICOLE SULLIVAN: I believe that
+you lit the path for us here.
+
+00:04:06.100 --> 00:04:07.330
+Thank you.
+
+00:04:07.330 --> 00:04:09.190
+On Chrome, again, we
+decided to experiment
+
+00:04:09.190 --> 00:04:11.620
+with color for the
+selected state.
+
+00:04:11.620 --> 00:04:14.530
+So that said, though,
+we share about 99%
+
+00:04:14.530 --> 00:04:16.120
+of the code for these elements.
+
+00:04:16.120 --> 00:04:18.328
+And so that's going to make
+the next steps that we're
+
+00:04:18.328 --> 00:04:21.602
+talking about a lot easier.
+
+00:04:21.602 --> 00:04:23.310
+GREG WHITWORTH: Another
+important aspect,
+
+00:04:23.310 --> 00:04:25.098
+as we started off with,
+was accessibility.
+
+00:04:25.098 --> 00:04:26.640
+And one of these
+things is, it really
+
+00:04:26.640 --> 00:04:28.848
+doesn't matter about the
+input modality you're using.
+
+00:04:28.848 --> 00:04:31.035
+You should be able to use
+the control in a good way.
+
+00:04:31.035 --> 00:04:32.410
+And touch is one
+of those things.
+
+00:04:32.410 --> 00:04:36.660
+As you all know, I've been using
+the Macs over at the booth,
+
+00:04:36.660 --> 00:04:39.600
+and I keep touching the touch
+screen that isn't there.
+
+00:04:39.600 --> 00:04:41.350
+We have the 2-in-1
+Windows devices,
+
+00:04:41.350 --> 00:04:43.960
+and so touch is very
+important to us.
+
+00:04:43.960 --> 00:04:46.790
+And so we increased the hit
+test regions on-- here's date.
+
+00:04:46.790 --> 00:04:49.290
+But the thing, the control I
+think that shows this the most,
+
+00:04:49.290 --> 00:04:52.010
+is the time element,
+which as you can see here
+
+00:04:52.010 --> 00:04:54.510
+is the current Chromium one
+with those wonderful little tiny
+
+00:04:54.510 --> 00:04:56.340
+spinners that, good
+luck trying to touch
+
+00:04:56.340 --> 00:04:57.970
+those with your fingers.
+
+00:04:57.970 --> 00:05:00.750
+We now have the similar pop-up
+that we have within date,
+
+00:05:00.750 --> 00:05:02.820
+and you've got the
+normal touch scroll,
+
+00:05:02.820 --> 00:05:06.180
+carousel-type feel to have
+a good user experience.
+
+00:05:06.180 --> 00:05:08.160
+NICOLE SULLIVAN: I mean,
+honestly, yeah, right?
+
+00:05:08.160 --> 00:05:09.540
+Isn't that so good?
+
+00:05:09.540 --> 00:05:10.920
+[LAUGHTER]
+
+00:05:10.920 --> 00:05:13.138
+[APPLAUSE]
+
+00:05:13.138 --> 00:05:15.180
+I mean, I think that those
+spinners were actually
+
+00:05:15.180 --> 00:05:16.805
+pretty hard to click
+with a mouse, too.
+
+00:05:16.805 --> 00:05:18.540
+I'd be like, oops,
+no, I made it go down.
+
+00:05:18.540 --> 00:05:21.270
+GREG WHITWORTH: Same here.
+
+00:05:21.270 --> 00:05:26.172
+So to carry on the
+accessibility notion,
+
+00:05:26.172 --> 00:05:28.380
+I love this graphic, because
+we really try to make it
+
+00:05:28.380 --> 00:05:30.480
+so that we're inclusive
+design from the start.
+
+00:05:30.480 --> 00:05:32.947
+Our friends at Google feel
+the exact same way, because
+
+00:05:32.947 --> 00:05:35.280
+of the fact that it doesn't
+matter whether you're blind,
+
+00:05:35.280 --> 00:05:38.215
+you're driving a car, you're
+only able to use one arm,
+
+00:05:38.215 --> 00:05:39.840
+you're holding a
+baby, a cup of coffee,
+
+00:05:39.840 --> 00:05:42.240
+you're, using a mouse,
+keyboard, touch, or pen.
+
+00:05:42.240 --> 00:05:47.330
+Everyone benefits from
+making your stuff inclusive.
+
+00:05:47.330 --> 00:05:49.220
+One aspect of
+great accessibility
+
+00:05:49.220 --> 00:05:50.480
+is keyboard accessibility.
+
+00:05:50.480 --> 00:05:53.090
+NICOLE SULLIVAN: Yeah, and the
+previous Chromium color picker
+
+00:05:53.090 --> 00:05:56.750
+didn't have keyboard access
+to all parts of the control.
+
+00:05:56.750 --> 00:05:58.855
+In particular, the color
+well wasn't accessible.
+
+00:05:58.855 --> 00:06:00.230
+GREG WHITWORTH:
+And this one here
+
+00:06:00.230 --> 00:06:01.680
+is showing the
+beautiful Windows--
+
+00:06:01.680 --> 00:06:02.610
+NICOLE SULLIVAN:
+Isn't it pretty?
+
+00:06:02.610 --> 00:06:03.950
+GREG WHITWORTH:
+--color control here,
+
+00:06:03.950 --> 00:06:05.783
+but it's also the
+keyboard navigation thing.
+
+00:06:05.783 --> 00:06:08.762
+It's actually true, also, of
+the Apple-native one as well.
+
+00:06:08.762 --> 00:06:10.970
+But we went ahead and did
+all of the keyboard support
+
+00:06:10.970 --> 00:06:12.630
+that any user would expect.
+
+00:06:12.630 --> 00:06:14.540
+So if you're navigating
+this with a keyboard,
+
+00:06:14.540 --> 00:06:16.800
+everything works,
+including the color well.
+
+00:06:16.800 --> 00:06:19.070
+And we also have
+keyboard modifier keys
+
+00:06:19.070 --> 00:06:20.270
+that use Control or Command.
+
+00:06:20.270 --> 00:06:22.940
+You jump 10 color
+values, so that you also
+
+00:06:22.940 --> 00:06:25.153
+get the same speed
+and intuitiveness
+
+00:06:25.153 --> 00:06:27.320
+that you would with a mouse,
+rather than just having
+
+00:06:27.320 --> 00:06:29.237
+to go every single pixel
+value, which would be
+
+00:06:29.237 --> 00:06:30.590
+really annoying and monotonous.
+
+00:06:30.590 --> 00:06:31.550
+NICOLE SULLIVAN: And this
+is the kind of thought
+
+00:06:31.550 --> 00:06:33.530
+that Greg's team really
+puts into these things,
+
+00:06:33.530 --> 00:06:35.300
+because it would be
+super annoying to have
+
+00:06:35.300 --> 00:06:37.970
+to go color by color
+by color by a keyboard.
+
+00:06:37.970 --> 00:06:43.170
+And so being able to make
+that 10-pixel jump is great.
+
+00:06:43.170 --> 00:06:45.480
+GREG WHITWORTH: So Edge also
+had high-contrast support.
+
+00:06:45.480 --> 00:06:46.820
+It's something we value.
+
+00:06:46.820 --> 00:06:49.402
+And one misnomer, also, is,
+it's called high-contrast,
+
+00:06:49.402 --> 00:06:51.360
+but it's actually a color
+theme a user can set,
+
+00:06:51.360 --> 00:06:53.193
+because people actually
+do set low contrasts
+
+00:06:53.193 --> 00:06:54.503
+as well in different scenarios.
+
+00:06:54.503 --> 00:06:55.920
+But here, we're
+showing that these
+
+00:06:55.920 --> 00:06:58.080
+now in Chromium work
+by default. Here's
+
+00:06:58.080 --> 00:07:01.830
+a few of them, working
+in high-contrast mode.
+
+00:07:01.830 --> 00:07:05.370
+And we went ahead and
+brought this into Chromium.
+
+00:07:05.370 --> 00:07:08.370
+And then also, to give you
+all better control of this,
+
+00:07:08.370 --> 00:07:11.580
+because at times you
+all have better context,
+
+00:07:11.580 --> 00:07:13.545
+we went about doing
+the standards work.
+
+00:07:13.545 --> 00:07:15.420
+And this is now behind
+a flag in any Chromium
+
+00:07:15.420 --> 00:07:16.928
+browser, forced-colors.
+
+00:07:16.928 --> 00:07:19.470
+And that lets you know-- this
+is similar to the MS prefix one
+
+00:07:19.470 --> 00:07:20.845
+we had in Edge,
+but this lets you
+
+00:07:20.845 --> 00:07:23.430
+know when somebody is in this
+state, whether it's active
+
+00:07:23.430 --> 00:07:24.300
+or not.
+
+00:07:24.300 --> 00:07:26.770
+Because ultimately, you do
+have more context than we do.
+
+00:07:26.770 --> 00:07:29.520
+And while the defaults are
+great in probably 99.9%
+
+00:07:29.520 --> 00:07:32.550
+of the scenarios that
+we've seen across the web,
+
+00:07:32.550 --> 00:07:33.828
+you also have more context.
+
+00:07:33.828 --> 00:07:35.370
+So you can go ahead
+and turn this off
+
+00:07:35.370 --> 00:07:37.380
+and provide better scenarios.
+
+00:07:37.380 --> 00:07:39.900
+And the old-- does everybody
+remember system colors from way
+
+00:07:39.900 --> 00:07:41.210
+back in the day?
+
+00:07:41.210 --> 00:07:42.760
+CSS system colors, like Windows?
+
+00:07:42.760 --> 00:07:43.540
+OK, cool.
+
+00:07:43.540 --> 00:07:45.750
+A few of us.
+
+00:07:45.750 --> 00:07:47.580
+So those are actually
+being brought back,
+
+00:07:47.580 --> 00:07:50.080
+and some are being added in,
+because those system colors are
+
+00:07:50.080 --> 00:07:52.620
+now being adjusted so
+that you can use them
+
+00:07:52.620 --> 00:07:54.180
+in here to provide,
+again, a better
+
+00:07:54.180 --> 00:07:56.472
+experience for your users in
+the context that you have.
+
+00:07:56.472 --> 00:08:00.745
+But also, understand they
+work great out of the box.
+
+00:08:00.745 --> 00:08:02.950
+NICOLE SULLIVAN: I would
+like to just take a moment
+
+00:08:02.950 --> 00:08:05.710
+and acknowledge that the
+Edge engineers have landed
+
+00:08:05.710 --> 00:08:08.500
+36 commits in the
+core of Chromium
+
+00:08:08.500 --> 00:08:10.930
+that improves the accessibility
+of the form controls.
+
+00:08:10.930 --> 00:08:13.480
+[APPLAUSE]
+
+00:08:13.480 --> 00:08:16.237
+GREG WHITWORTH: Hats off to
+the team back in Redmond.
+
+00:08:16.237 --> 00:08:18.570
+NICOLE SULLIVAN: This is going
+to make a real difference
+
+00:08:18.570 --> 00:08:21.750
+to users every day and make
+it easier for web developers
+
+00:08:21.750 --> 00:08:25.522
+to build things that
+everybody can use.
+
+00:08:25.522 --> 00:08:27.473
+GREG WHITWORTH: So
+the next phase--
+
+00:08:27.473 --> 00:08:29.890
+I'm sure none of you have ever
+had any issues with styling
+
+00:08:29.890 --> 00:08:33.020
+form controls-- is stylability.
+
+00:08:33.020 --> 00:08:34.990
+And so we wanted
+to dig into this,
+
+00:08:34.990 --> 00:08:37.490
+because as we were
+working on this,
+
+00:08:37.490 --> 00:08:39.650
+we noticed the users
+could be [INAUDIBLE],,
+
+00:08:39.650 --> 00:08:40.770
+and we kind of want
+to understand that.
+
+00:08:40.770 --> 00:08:42.280
+So we wanted to
+look at stylability,
+
+00:08:42.280 --> 00:08:43.780
+and we wanted to
+potentially make it
+
+00:08:43.780 --> 00:08:47.740
+so you can style the dumb
+things without hacks.
+
+00:08:47.740 --> 00:08:50.690
+So ultimately, this is
+what it comes down to--
+
+00:08:50.690 --> 00:08:53.890
+and hopefully you heard
+in Yoav and Chris's talk--
+
+00:08:53.890 --> 00:08:56.080
+that we want to
+build stuff you use.
+
+00:08:56.080 --> 00:08:58.570
+We don't spend all these
+days doing this stuff for you
+
+00:08:58.570 --> 00:09:00.220
+all to throw it all away.
+
+00:09:00.220 --> 00:09:02.650
+And currently, form elements
+are not used nearly as much
+
+00:09:02.650 --> 00:09:03.522
+as they could be.
+
+00:09:03.522 --> 00:09:04.980
+And so we wanted
+to understand why,
+
+00:09:04.980 --> 00:09:08.950
+so we started doing customer
+interviews and research.
+
+00:09:08.950 --> 00:09:11.710
+I love this quote
+from a web developer.
+
+00:09:11.710 --> 00:09:13.773
+NICOLE SULLIVAN: Love
+and slash hate, right?
+
+00:09:13.773 --> 00:09:14.690
+It's sort of horrible.
+
+00:09:14.690 --> 00:09:15.840
+GREG WHITWORTH: For sure.
+
+00:09:15.840 --> 00:09:18.570
+Now, it's also noted,
+when we do prioritization,
+
+00:09:18.570 --> 00:09:21.780
+it's important to
+look for emotion.
+
+00:09:21.780 --> 00:09:23.370
+And I actually got
+a lot of comments
+
+00:09:23.370 --> 00:09:26.430
+that I can't put on the screen
+that show how terrible--
+
+00:09:26.430 --> 00:09:28.952
+NICOLE SULLIVAN: Turns out
+y'all hate form elements.
+
+00:09:28.952 --> 00:09:30.180
+GREG WHITWORTH: Just a tad.
+
+00:09:30.180 --> 00:09:32.340
+But anyways, it says, right
+now it is often easier
+
+00:09:32.340 --> 00:09:33.990
+to build form
+controls from scratch
+
+00:09:33.990 --> 00:09:37.200
+than it is to modify the style
+of the controls themselves,
+
+00:09:37.200 --> 00:09:39.120
+which ultimately
+is just terrible.
+
+00:09:42.006 --> 00:09:44.260
+NICOLE SULLIVAN: So why not
+just create form elements
+
+00:09:44.260 --> 00:09:45.928
+from scratch?
+
+00:09:45.928 --> 00:09:47.470
+Do you know how many
+times I've built
+
+00:09:47.470 --> 00:09:49.240
+that tab set in my career?
+
+00:09:49.240 --> 00:09:50.380
+I couldn't even count.
+
+00:09:50.380 --> 00:09:53.052
+That work was duplicated
+over and over and over again
+
+00:09:53.052 --> 00:09:54.010
+in different companies.
+
+00:09:54.010 --> 00:09:55.630
+And even within a
+company, there would
+
+00:09:55.630 --> 00:09:58.618
+be separate design systems.
+
+00:09:58.618 --> 00:10:00.442
+GREG WHITWORTH:
+Too many to count.
+
+00:10:00.442 --> 00:10:02.040
+NICOLE SULLIVAN: How many
+did you find at Microsoft?
+
+00:10:02.040 --> 00:10:02.965
+GREG WHITWORTH: So far, seven.
+
+00:10:02.965 --> 00:10:03.550
+NICOLE SULLIVAN: Seven.
+
+00:10:03.550 --> 00:10:03.940
+[LAUGHTER]
+
+00:10:03.940 --> 00:10:04.898
+GREG WHITWORTH: So far.
+
+00:10:04.898 --> 00:10:07.570
+NICOLE SULLIVAN: And that's
+just internal to Microsoft.
+
+00:10:07.570 --> 00:10:13.150
+So even when you manage to get
+a tab set or form control that
+
+00:10:13.150 --> 00:10:16.120
+works really well, they often
+have an uncanny valley feel,
+
+00:10:16.120 --> 00:10:18.520
+where they match the operating
+system in the browser
+
+00:10:18.520 --> 00:10:19.895
+that you're most
+comfortable with
+
+00:10:19.895 --> 00:10:22.955
+and feel just a little
+bit off everywhere else.
+
+00:10:22.955 --> 00:10:25.330
+There's also something that
+happens around accessibility,
+
+00:10:25.330 --> 00:10:27.730
+where you try, and
+you do your best,
+
+00:10:27.730 --> 00:10:30.400
+and you add the ARIA roles,
+but will every developer
+
+00:10:30.400 --> 00:10:34.694
+that comes after remember
+to add that ARIA role?
+
+00:10:34.694 --> 00:10:35.820
+GREG WHITWORTH: So, OK.
+
+00:10:35.820 --> 00:10:38.450
+This is audience
+participation time.
+
+00:10:38.450 --> 00:10:41.340
+So we're going to just do a
+quick survey to kind of just
+
+00:10:41.340 --> 00:10:42.600
+get a feel for the room.
+
+00:10:42.600 --> 00:10:45.100
+So everybody put a
+hand up in the air.
+
+00:10:45.100 --> 00:10:45.718
+Oh, come on.
+
+00:10:45.718 --> 00:10:46.760
+Put a hand up in the air.
+
+00:10:46.760 --> 00:10:47.260
+Thank you.
+
+00:10:47.260 --> 00:10:48.110
+I was going to say.
+
+00:10:48.110 --> 00:10:49.902
+I was like, this will
+be quick if everybody
+
+00:10:49.902 --> 00:10:50.830
+keeps their hand up.
+
+00:10:50.830 --> 00:10:52.875
+So when I say-- basically,
+it's true or false.
+
+00:10:52.875 --> 00:10:54.750
+When I say something
+that is not true for you
+
+00:10:54.750 --> 00:10:57.330
+in your day-to-day web
+projects, put your hand down
+
+00:10:57.330 --> 00:10:58.620
+and keep it down.
+
+00:10:58.620 --> 00:11:01.620
+So you test your
+website with a mouse.
+
+00:11:01.620 --> 00:11:02.820
+OK, that's good.
+
+00:11:02.820 --> 00:11:05.423
+You test in more
+than one browser.
+
+00:11:05.423 --> 00:11:06.090
+All right, cool.
+
+00:11:06.090 --> 00:11:08.030
+I'm glad hands stayed
+up for that one.
+
+00:11:08.030 --> 00:11:10.693
+You test on more than
+one operating system.
+
+00:11:10.693 --> 00:11:12.110
+OK, that's kind
+of what I figured.
+
+00:11:12.110 --> 00:11:13.160
+I appreciate the honesty.
+
+00:11:13.160 --> 00:11:15.560
+Truly, I appreciate the honesty.
+
+00:11:15.560 --> 00:11:17.895
+You test on more than
+one operating system
+
+00:11:17.895 --> 00:11:20.270
+and in more than one browser
+on those different operating
+
+00:11:20.270 --> 00:11:21.500
+systems.
+
+00:11:21.500 --> 00:11:23.300
+OK, I appreciate
+the honesty still.
+
+00:11:23.300 --> 00:11:27.210
+OK, so you test touch.
+
+00:11:27.210 --> 00:11:27.710
+You do--
+
+00:11:27.710 --> 00:11:28.500
+NICOLE SULLIVAN: That was a lot.
+
+00:11:28.500 --> 00:11:29.180
+That was a lot.
+
+00:11:29.180 --> 00:11:31.280
+I wasn't expecting touch to
+be the one that got everybody.
+
+00:11:31.280 --> 00:11:32.150
+GREG WHITWORTH: This
+is why this is great.
+
+00:11:32.150 --> 00:11:33.500
+Sorry for everybody that
+still has your hands up
+
+00:11:33.500 --> 00:11:34.080
+that we're talking.
+
+00:11:34.080 --> 00:11:35.270
+Your arms are getting tired.
+
+00:11:35.270 --> 00:11:36.100
+You test touch.
+
+00:11:36.100 --> 00:11:37.100
+We already did that one.
+
+00:11:37.100 --> 00:11:39.320
+You do accessibility testing.
+
+00:11:39.320 --> 00:11:40.370
+OK.
+
+00:11:40.370 --> 00:11:44.400
+You do accessibility
+testing in Chrome.
+
+00:11:44.400 --> 00:11:47.240
+Accessibility
+testing in Firefox.
+
+00:11:47.240 --> 00:11:49.930
+Accessibility testing in Safari.
+
+00:11:49.930 --> 00:11:54.245
+Accessibility testing of
+Edge, Samsung Internet?
+
+00:11:54.245 --> 00:11:56.852
+[LAUGHTER]
+
+00:11:56.852 --> 00:11:59.185
+NICOLE SULLIVAN: There was
+that one person out there who
+
+00:11:59.185 --> 00:12:00.360
+had their hand up until that.
+
+00:12:00.360 --> 00:12:02.693
+GREG WHITWORTH: I still have
+six more questions, though.
+
+00:12:02.693 --> 00:12:04.120
+[LAUGHTER]
+
+00:12:04.120 --> 00:12:05.660
+So I'll just rattle
+them through,
+
+00:12:05.660 --> 00:12:06.910
+but you kind of get the point.
+
+00:12:06.910 --> 00:12:08.710
+But did you test
+Windows high-contrast?
+
+00:12:08.710 --> 00:12:10.090
+Did you test keyboard?
+
+00:12:10.090 --> 00:12:12.250
+Did you test assistive
+technologies?
+
+00:12:12.250 --> 00:12:14.570
+And then I even get into the
+specific ATs that we all--
+
+00:12:14.570 --> 00:12:15.300
+NICOLE SULLIVAN: Oh,
+say them, at least.
+
+00:12:15.300 --> 00:12:17.620
+GREG WHITWORTH: OK, so
+voiceover, NVDA, JAWS,
+
+00:12:17.620 --> 00:12:18.280
+narrator.
+
+00:12:18.280 --> 00:12:19.780
+NICOLE SULLIVAN:
+So by [INAUDIBLE]..
+
+00:12:19.780 --> 00:12:22.240
+GREG WHITWORTH: The testing
+matrix is massive here.
+
+00:12:22.240 --> 00:12:23.710
+And then that's
+kind of the point,
+
+00:12:23.710 --> 00:12:26.650
+ultimately, I'm trying
+to get across is,
+
+00:12:26.650 --> 00:12:28.747
+I actually don't fault
+you, all of you that
+
+00:12:28.747 --> 00:12:29.580
+put your hands down.
+
+00:12:29.580 --> 00:12:31.390
+Personally, I feel
+like this is our fault.
+
+00:12:31.390 --> 00:12:33.370
+We enabled this bad thing.
+
+00:12:33.370 --> 00:12:36.040
+Because you want to
+style a slight element,
+
+00:12:36.040 --> 00:12:38.710
+you go rebuild it all, and then
+understandably can't-- you have
+
+00:12:38.710 --> 00:12:40.270
+engineering realities,
+just as we do,
+
+00:12:40.270 --> 00:12:42.730
+and you can't put in
+the time that we do.
+
+00:12:42.730 --> 00:12:45.340
+And then in addition to that,
+I listed all those ATs--
+
+00:12:45.340 --> 00:12:47.290
+we have great
+relationships with them.
+
+00:12:47.290 --> 00:12:49.553
+So when we find
+issues in those ATs,
+
+00:12:49.553 --> 00:12:51.595
+or if they find issues
+with us, we talk about it,
+
+00:12:51.595 --> 00:12:52.265
+and we fix it.
+
+00:12:52.265 --> 00:12:54.640
+And unfortunately, that's just
+not something that scales.
+
+00:12:54.640 --> 00:12:56.807
+So ultimately, we wanted
+to try to fix this problem.
+
+00:12:59.348 --> 00:13:01.140
+NICOLE SULLIVAN: So we
+wanted to understand
+
+00:13:01.140 --> 00:13:04.500
+why form elements are recreated
+as sort of a starting point
+
+00:13:04.500 --> 00:13:08.860
+for understanding what
+we could do differently.
+
+00:13:08.860 --> 00:13:13.210
+The top 10 form controls that
+are recreated by web developers
+
+00:13:13.210 --> 00:13:14.330
+are here on the screen.
+
+00:13:14.330 --> 00:13:15.250
+The top one is Select.
+
+00:13:15.250 --> 00:13:16.630
+GREG WHITWORTH: Shocker!
+
+00:13:16.630 --> 00:13:19.180
+NICOLE SULLIVAN: Yeah, I think
+we all saw that one coming.
+
+00:13:19.180 --> 00:13:23.290
+Check box, date, radio,
+and file, and then
+
+00:13:23.290 --> 00:13:27.072
+a few others that
+are used as well.
+
+00:13:27.072 --> 00:13:28.780
+So then obviously, we
+asked the question,
+
+00:13:28.780 --> 00:13:31.900
+why did developers
+recreate the form controls?
+
+00:13:31.900 --> 00:13:34.450
+And you really couldn't
+have been more clear.
+
+00:13:34.450 --> 00:13:37.900
+36.6% of you are
+recreating form controls
+
+00:13:37.900 --> 00:13:40.750
+just because you want
+to change the style.
+
+00:13:40.750 --> 00:13:43.690
+And I think we both see
+that as a huge opportunity
+
+00:13:43.690 --> 00:13:47.080
+to give you something
+that you need.
+
+00:13:47.080 --> 00:13:52.180
+Another 31.6% are doing it in
+order to add functionality.
+
+00:13:52.180 --> 00:13:56.080
+And then 27.3% percent
+are doing it to overcome
+
+00:13:56.080 --> 00:13:57.860
+browser inconsistencies.
+
+00:13:57.860 --> 00:14:01.484
+So we feel like there's a
+lot we can help with there.
+
+00:14:01.484 --> 00:14:04.465
+GREG WHITWORTH: So we heard you.
+
+00:14:04.465 --> 00:14:06.840
+Honestly, I think it's something
+we've all kind of known.
+
+00:14:06.840 --> 00:14:11.037
+But ultimately, styling a
+form control sucks on the web.
+
+00:14:11.037 --> 00:14:12.870
+So we're going to start
+focusing and digging
+
+00:14:12.870 --> 00:14:15.300
+into the select first,
+then check box, radio,
+
+00:14:15.300 --> 00:14:19.046
+and those other top controls
+that we referenced earlier.
+
+00:14:19.046 --> 00:14:21.880
+NICOLE SULLIVAN: Can you imagine
+being able to style the select?
+
+00:14:21.880 --> 00:14:22.943
+How good would that be?
+
+00:14:22.943 --> 00:14:23.860
+That would be amazing.
+
+00:14:23.860 --> 00:14:26.875
+GREG WHITWORTH:
+I can imagine it.
+
+00:14:26.875 --> 00:14:29.590
+NICOLE SULLIVAN: Then we'll talk
+about extending functionality
+
+00:14:29.590 --> 00:14:32.190
+of these elements.
+
+00:14:32.190 --> 00:14:35.600
+So normalized values are
+really painful for frameworks.
+
+00:14:35.600 --> 00:14:38.450
+We got a bunch of code pens
+from the React DOM team.
+
+00:14:38.450 --> 00:14:41.150
+It turns out that 3
+dot is not equal to 3.
+
+00:14:41.150 --> 00:14:43.940
+And so when the browser
+normalizes those values,
+
+00:14:43.940 --> 00:14:46.940
+often, something
+is lost in the mix.
+
+00:14:46.940 --> 00:14:49.760
+And so we started looking into
+raw value and other solutions
+
+00:14:49.760 --> 00:14:53.040
+for preserving the
+characters typed by the user.
+
+00:14:53.040 --> 00:14:55.850
+We want controls to also
+work for frameworks.
+
+00:14:55.850 --> 00:14:58.200
+I don't think we have
+the end solution there,
+
+00:14:58.200 --> 00:14:59.240
+but we're looking at it.
+
+00:15:01.843 --> 00:15:03.760
+We also asked you which
+form elements give you
+
+00:15:03.760 --> 00:15:05.680
+the most frustration.
+
+00:15:05.680 --> 00:15:09.160
+And you really couldn't
+have been more clear.
+
+00:15:09.160 --> 00:15:11.470
+You kind of hate
+the select element.
+
+00:15:11.470 --> 00:15:13.450
+You hate it!
+
+00:15:13.450 --> 00:15:17.230
+42.7% are the most frustrated
+with the select control.
+
+00:15:17.230 --> 00:15:19.900
+Let's just see-- how many
+people here would put select
+
+00:15:19.900 --> 00:15:21.730
+at the top of their list?
+
+00:15:21.730 --> 00:15:22.230
+Yep.
+
+00:15:22.230 --> 00:15:23.950
+GREG WHITWORTH: It feels like,
+actually, a little bit higher
+
+00:15:23.950 --> 00:15:24.450
+than 40%.
+
+00:15:24.450 --> 00:15:26.050
+NICOLE SULLIVAN: Yeah, it does.
+
+00:15:26.050 --> 00:15:27.040
+Thank you.
+
+00:15:27.040 --> 00:15:29.668
+GREG WHITWORTH:
+We'll update that.
+
+00:15:29.668 --> 00:15:31.370
+NICOLE SULLIVAN: And
+the date picker--
+
+00:15:31.370 --> 00:15:32.995
+you don't like the
+date picker, either.
+
+00:15:32.995 --> 00:15:36.140
+That's 17.3% of folks.
+
+00:15:36.140 --> 00:15:40.030
+And file is another
+popular one, at 9.3%.
+
+00:15:40.030 --> 00:15:43.712
+And finally, check box
+and radio elements.
+
+00:15:43.712 --> 00:15:45.670
+GREG WHITWORTH: So
+since the select
+
+00:15:45.670 --> 00:15:49.123
+was by far the winner
+of being the worst,
+
+00:15:49.123 --> 00:15:50.290
+we decided to dig into that.
+
+00:15:50.290 --> 00:15:52.440
+We did another survey that had
+a bunch of different questions
+
+00:15:52.440 --> 00:15:54.523
+that started digging into
+use cases and everything
+
+00:15:54.523 --> 00:15:55.440
+about the select.
+
+00:15:55.440 --> 00:15:58.390
+NICOLE SULLIVAN: Greg's team
+will do surveys about select.
+
+00:15:58.390 --> 00:15:59.020
+Just select.
+
+00:15:59.020 --> 00:15:59.930
+It's kind of amazing.
+
+00:15:59.930 --> 00:16:02.263
+GREG WHITWORTH: It's very
+useful, because ultimately, we
+
+00:16:02.263 --> 00:16:04.347
+ended up having a bunch
+of questions that ended up
+
+00:16:04.347 --> 00:16:05.470
+in these various buckets.
+
+00:16:05.470 --> 00:16:08.470
+And so overwhelmingly, styling
+is the largest pain point
+
+00:16:08.470 --> 00:16:10.950
+that we should go try to
+tackle first, then behavior
+
+00:16:10.950 --> 00:16:12.800
+and extensibility and
+content adjustments.
+
+00:16:12.800 --> 00:16:14.680
+One aspect I would like
+to call out-- again,
+
+00:16:14.680 --> 00:16:16.847
+why we had the individual
+questions, because earlier
+
+00:16:16.847 --> 00:16:19.097
+we were talking about, oh,
+do you want to extend them?
+
+00:16:19.097 --> 00:16:20.347
+And a lot of people said that.
+
+00:16:20.347 --> 00:16:22.055
+But when we were
+digging into the select,
+
+00:16:22.055 --> 00:16:23.950
+because each control
+has a different meaning
+
+00:16:23.950 --> 00:16:27.070
+of extensibility, the
+select-- the number one,
+
+00:16:27.070 --> 00:16:29.230
+if you take out just the
+top issue that people
+
+00:16:29.230 --> 00:16:31.300
+had in this bucket,
+which is being
+
+00:16:31.300 --> 00:16:33.610
+able to provide a good user
+experience while searching
+
+00:16:33.610 --> 00:16:37.018
+the select, if you take that
+out, this is nonexistent.
+
+00:16:37.018 --> 00:16:38.560
+It doesn't even show
+up on the chart.
+
+00:16:38.560 --> 00:16:41.980
+So to me, that is the thing
+that we would go pick out
+
+00:16:41.980 --> 00:16:43.250
+of that bucket to go solve it.
+
+00:16:43.250 --> 00:16:45.250
+That isn't trying to
+solve an entire component
+
+00:16:45.250 --> 00:16:46.910
+model because of that.
+
+00:16:46.910 --> 00:16:48.490
+And then content
+adjustments-- who
+
+00:16:48.490 --> 00:16:50.875
+here has wanted to put an
+icon in an option element?
+
+00:16:50.875 --> 00:16:51.880
+NICOLE SULLIVAN: Me.
+
+00:16:51.880 --> 00:16:53.150
+GREG WHITWORTH: Good gracious!
+
+00:16:53.150 --> 00:16:53.650
+Come on.
+
+00:16:53.650 --> 00:16:55.270
+You should be able to do that.
+
+00:16:55.270 --> 00:16:57.850
+So hopefully, as we
+dig in to the select,
+
+00:16:57.850 --> 00:16:59.590
+we'll focus first
+on styling and then
+
+00:16:59.590 --> 00:17:02.110
+be able to insert an icon
+into an option element.
+
+00:17:02.110 --> 00:17:04.996
+More than that, but I'm just
+saying non-text-based content.
+
+00:17:04.996 --> 00:17:07.329
+So that's what we'll be talking
+with the next generation
+
+00:17:07.329 --> 00:17:07.829
+of select.
+
+00:17:07.829 --> 00:17:10.940
+I'm super stoked to get
+started working on it,
+
+00:17:10.940 --> 00:17:13.672
+and we'll be telling you
+how we'll be investigating
+
+00:17:13.672 --> 00:17:14.380
+that in a minute.
+
+00:17:14.380 --> 00:17:15.755
+NICOLE SULLIVAN:
+And hopefully be
+
+00:17:15.755 --> 00:17:17.760
+able to put arbitrary
+HTML in a select element.
+
+00:17:17.760 --> 00:17:18.240
+GREG WHITWORTH: Exactly.
+
+00:17:18.240 --> 00:17:19.365
+That's going to be awesome.
+
+00:17:19.365 --> 00:17:21.420
+NICOLE SULLIVAN: That
+would be awesome.
+
+00:17:21.420 --> 00:17:25.300
+So we've talked about the first
+three phases of this project.
+
+00:17:25.300 --> 00:17:28.119
+And now we also heard that you
+would like some new components.
+
+00:17:28.119 --> 00:17:31.410
+And so we'd like
+to talk about that.
+
+00:17:31.410 --> 00:17:33.490
+The most requested
+native controls are
+
+00:17:33.490 --> 00:17:35.500
+virtual-list and toggle-switch.
+
+00:17:35.500 --> 00:17:37.300
+Chrome is working
+on both of those.
+
+00:17:37.300 --> 00:17:37.752
+GREG WHITWORTH: Woo-hoo!
+
+00:17:37.752 --> 00:17:38.627
+NICOLE SULLIVAN: Yay.
+
+00:17:40.920 --> 00:17:43.520
+So virtual scroller is the
+most requested new component.
+
+00:17:43.520 --> 00:17:47.740
+In fact, Pete Hunt reminds
+us every year since 2015--
+
+00:17:47.740 --> 00:17:48.680
+[LAUGHTER]
+
+00:17:48.680 --> 00:17:51.283
+--that he still doesn't
+have a UI table view.
+
+00:17:51.283 --> 00:17:51.950
+Thank you, Pete.
+
+00:17:51.950 --> 00:17:54.430
+Please keep asking.
+
+00:17:54.430 --> 00:17:56.317
+It looks like he forgot in 2018.
+
+00:17:56.317 --> 00:17:58.650
+GREG WHITWORTH: I think it's
+because he was just so mad.
+
+00:17:58.650 --> 00:17:59.650
+He was like, I'm done.
+
+00:17:59.650 --> 00:18:00.990
+NICOLE SULLIVAN: Maybe.
+
+00:18:00.990 --> 00:18:03.110
+So he rightly says
+that UI table view
+
+00:18:03.110 --> 00:18:06.440
+is the foundation for
+all apps with a feed I'd
+
+00:18:06.440 --> 00:18:07.538
+count e-commerce.
+
+00:18:07.538 --> 00:18:09.080
+If you have a lot
+of products, that's
+
+00:18:09.080 --> 00:18:10.700
+basically the same thing.
+
+00:18:10.700 --> 00:18:14.400
+Even something with long amounts
+of content, like Wikipedia.
+
+00:18:14.400 --> 00:18:15.760
+So the need is clearly there.
+
+00:18:15.760 --> 00:18:16.760
+But I want to be honest.
+
+00:18:16.760 --> 00:18:20.160
+This is a really hard problem
+to do well in the browser.
+
+00:18:20.160 --> 00:18:22.370
+So we're creating prototypes,
+trying things out,
+
+00:18:22.370 --> 00:18:26.150
+and trying to find the
+best possible solution.
+
+00:18:26.150 --> 00:18:27.950
+One of our virtual
+scroller prototypes
+
+00:18:27.950 --> 00:18:31.650
+is showing promise for scroll
+performance improvements
+
+00:18:31.650 --> 00:18:34.850
+using a new platform primitive
+called display locking.
+
+00:18:34.850 --> 00:18:38.760
+Display locking is available
+in origin trial right now,
+
+00:18:38.760 --> 00:18:42.380
+and it unlocks a lot
+of different features.
+
+00:18:42.380 --> 00:18:44.270
+It allows you to batch
+rendering updates
+
+00:18:44.270 --> 00:18:46.770
+to avoid paying the
+performance costs for--
+
+00:18:46.770 --> 00:18:50.270
+yeah, it's really good
+for large amounts of DOM.
+
+00:18:50.270 --> 00:18:53.648
+It also means that
+locked sub-trees are not
+
+00:18:53.648 --> 00:18:55.190
+rendered immediately,
+which means you
+
+00:18:55.190 --> 00:18:57.650
+can keep more stuff in the DOM.
+
+00:18:57.650 --> 00:19:00.460
+That's great, because it
+becomes searchable both by Find
+
+00:19:00.460 --> 00:19:04.310
+in Page as well as by
+assistive technologies.
+
+00:19:04.310 --> 00:19:05.060
+So let's be clear.
+
+00:19:05.060 --> 00:19:06.650
+This isn't UI table view.
+
+00:19:06.650 --> 00:19:07.910
+I'm sorry, Pete.
+
+00:19:07.910 --> 00:19:09.440
+I hope we'll get there.
+
+00:19:09.440 --> 00:19:12.080
+But it is definitely a
+step in that direction.
+
+00:19:12.080 --> 00:19:13.550
+It's IN origin trial right now.
+
+00:19:13.550 --> 00:19:14.883
+Please, we'd love your feedback.
+
+00:19:17.270 --> 00:19:19.910
+We've also been working on
+the toggle switch, which
+
+00:19:19.910 --> 00:19:23.420
+allows developers to
+semantically express the on/off
+
+00:19:23.420 --> 00:19:25.880
+state.
+
+00:19:25.880 --> 00:19:27.500
+We started out with
+a ton of research
+
+00:19:27.500 --> 00:19:30.890
+into how other design systems
+handle toggle behavior.
+
+00:19:30.890 --> 00:19:33.800
+We coded a prototype-- you
+can try it, it's on GitHub--
+
+00:19:33.800 --> 00:19:37.280
+and we used it to drive out
+new low-level APIs and better
+
+00:19:37.280 --> 00:19:40.240
+accessibility.
+
+00:19:40.240 --> 00:19:43.180
+So three low-level APIs and
+improvements in particular
+
+00:19:43.180 --> 00:19:46.450
+are form-associated custom
+elements, custom element
+
+00:19:46.450 --> 00:19:51.305
+accessibility, and
+focusable custom elements.
+
+00:19:51.305 --> 00:19:54.097
+GREG WHITWORTH: So we've covered
+all these wonderful aspects.
+
+00:19:54.097 --> 00:19:55.680
+Hopefully, you've
+enjoyed all of them.
+
+00:19:55.680 --> 00:19:57.972
+The accessibility touch and
+the visual refresh of those
+
+00:19:57.972 --> 00:20:00.510
+wonderful '95-era controls.
+
+00:20:00.510 --> 00:20:02.420
+The stylability, yes,
+let's be able to style
+
+00:20:02.420 --> 00:20:05.400
+a select and a radio
+element, for goodness sakes.
+
+00:20:05.400 --> 00:20:07.530
+Extending the functionality,
+and the new components
+
+00:20:07.530 --> 00:20:11.285
+that Nicole just referenced.
+
+00:20:11.285 --> 00:20:13.830
+NICOLE SULLIVAN: And now we'd
+like to ask for your help.
+
+00:20:13.830 --> 00:20:16.927
+GREG WHITWORTH: Please.
+
+00:20:16.927 --> 00:20:18.510
+NICOLE SULLIVAN: We
+want to be honest.
+
+00:20:18.510 --> 00:20:21.300
+It is really hard to standardize
+high-level components.
+
+00:20:21.300 --> 00:20:23.740
+There are a lot of moving parts.
+
+00:20:23.740 --> 00:20:26.045
+It's frankly easier
+to get agreement
+
+00:20:26.045 --> 00:20:27.420
+on something like
+display locking
+
+00:20:27.420 --> 00:20:29.087
+than it is to get
+agreement on something
+
+00:20:29.087 --> 00:20:32.760
+like a virtual scroller or
+a higher-level component.
+
+00:20:32.760 --> 00:20:34.710
+So what we need is for
+you to get involved,
+
+00:20:34.710 --> 00:20:36.960
+for you to let us know if
+this is something you want
+
+00:20:36.960 --> 00:20:38.880
+and how much you
+want it, to let us
+
+00:20:38.880 --> 00:20:42.090
+know which components you
+think would be missing
+
+00:20:42.090 --> 00:20:44.962
+and that you would use
+in your design systems.
+
+00:20:44.962 --> 00:20:46.420
+GREG WHITWORTH:
+And so to that end,
+
+00:20:46.420 --> 00:20:48.270
+we've been meeting,
+as I noted earlier,
+
+00:20:48.270 --> 00:20:51.810
+with many different
+design systems frameworks
+
+00:20:51.810 --> 00:20:54.720
+across the industry, doing
+customer interviews with them,
+
+00:20:54.720 --> 00:20:56.037
+to better clarify.
+
+00:20:56.037 --> 00:20:58.620
+Some of the survey questions we
+had get into the nitty gritty,
+
+00:20:58.620 --> 00:21:00.510
+get into what we can offer
+them that they would use
+
+00:21:00.510 --> 00:21:03.010
+in their design systems across
+some of the largest companies
+
+00:21:03.010 --> 00:21:05.640
+in web properties on the web.
+
+00:21:05.640 --> 00:21:08.983
+If you happen to work on a
+design system or framework,
+
+00:21:08.983 --> 00:21:10.150
+please get in touch with us.
+
+00:21:10.150 --> 00:21:11.640
+We're more than happy to chat
+
+00:21:11.640 --> 00:21:13.223
+NICOLE SULLIVAN:
+Ionic, in particular,
+
+00:21:13.223 --> 00:21:16.050
+has been really helpful in
+identifying gaps and suggesting
+
+00:21:16.050 --> 00:21:16.860
+solutions.
+
+00:21:16.860 --> 00:21:17.880
+GREG WHITWORTH: Huge
+shout out to them.
+
+00:21:17.880 --> 00:21:19.255
+NICOLE SULLIVAN:
+Yes, definitely.
+
+00:21:19.255 --> 00:21:21.510
+GREG WHITWORTH: So I'm
+very excited about this,
+
+00:21:21.510 --> 00:21:23.730
+because as she noted, it's
+very hard to standardize
+
+00:21:23.730 --> 00:21:26.490
+high-level components
+and controls.
+
+00:21:26.490 --> 00:21:28.920
+But in order to do that, we
+need to bring, as we noted,
+
+00:21:28.920 --> 00:21:31.813
+the design system people that
+work on controls and components
+
+00:21:31.813 --> 00:21:34.230
+every single day together with
+the platform engineers that
+
+00:21:34.230 --> 00:21:37.260
+can hopefully make those become
+a reality, built in natively.
+
+00:21:37.260 --> 00:21:39.870
+And so we started-- it's
+in its infancy in the YCG,
+
+00:21:39.870 --> 00:21:42.550
+as you heard Yoav and Chris
+talking about earlier.
+
+00:21:42.550 --> 00:21:44.130
+It's something called Open UI.
+
+00:21:44.130 --> 00:21:47.340
+And basically, a bunch of
+Microsoft-designed system teams
+
+00:21:47.340 --> 00:21:49.940
+are coming together to help
+solve the same problem.
+
+00:21:49.940 --> 00:21:51.640
+Do you want to jump
+to the next slide?
+
+00:21:51.640 --> 00:21:51.780
+Perfect.
+
+00:21:51.780 --> 00:21:52.350
+Thank you.
+
+00:21:52.350 --> 00:21:53.640
+NICOLE SULLIVAN: Sorry.
+
+00:21:53.640 --> 00:21:54.750
+GREG WHITWORTH: That's OK.
+
+00:21:54.750 --> 00:21:57.050
+So open-ui.org-- it's
+where we're beginning.
+
+00:21:57.050 --> 00:21:58.050
+We're in Silicon Valley.
+
+00:21:58.050 --> 00:22:00.180
+If you want to get
+on the ground floor,
+
+00:22:00.180 --> 00:22:01.630
+this is going to be a big deal.
+
+00:22:01.630 --> 00:22:04.195
+So you can get in
+here, help us out.
+
+00:22:04.195 --> 00:22:06.570
+Go add your own design system,
+your own design component.
+
+00:22:06.570 --> 00:22:08.963
+We're trying to really use
+what the industry has already
+
+00:22:08.963 --> 00:22:10.380
+been using-- the
+design systems, I
+
+00:22:10.380 --> 00:22:12.348
+mean you worked
+on them for years.
+
+00:22:12.348 --> 00:22:14.140
+We've been doing this
+forever, and so we're
+
+00:22:14.140 --> 00:22:15.810
+trying to actually just take
+the cow paths you already
+
+00:22:15.810 --> 00:22:17.830
+have created and
+try to go pave them.
+
+00:22:17.830 --> 00:22:21.145
+So go there, start
+a GitHub issue.
+
+00:22:21.145 --> 00:22:22.770
+We'll be keeping you
+posted on research
+
+00:22:22.770 --> 00:22:24.960
+and getting your feedback,
+as well as platform APIs
+
+00:22:24.960 --> 00:22:28.571
+we want your feedback on,
+such as display locking.
+
+00:22:28.571 --> 00:22:31.050
+NICOLE SULLIVAN:
+Finally, submit bugs.
+
+00:22:31.050 --> 00:22:33.297
+We want these form controls
+to meet your needs.
+
+00:22:33.297 --> 00:22:35.130
+Whether you're a designer,
+framework author,
+
+00:22:35.130 --> 00:22:37.110
+or maintain a
+design system, we'd
+
+00:22:37.110 --> 00:22:40.290
+love to hear about anywhere
+that there are gaps.
+
+00:22:40.290 --> 00:22:42.840
+And I know, I remember
+being intimidated when I
+
+00:22:42.840 --> 00:22:44.312
+submitted my first browser bug.
+
+00:22:44.312 --> 00:22:45.770
+And I was like,
+oh, no, is it going
+
+00:22:45.770 --> 00:22:47.520
+to turn out to
+actually not be a bug,
+
+00:22:47.520 --> 00:22:49.770
+and I just didn't understand?
+
+00:22:49.770 --> 00:22:54.000
+But I do want to say that
+both PMs and engineers really
+
+00:22:54.000 --> 00:22:54.960
+welcome your input.
+
+00:22:54.960 --> 00:22:57.180
+It's a huge signal in
+deciding what we work on
+
+00:22:57.180 --> 00:22:58.810
+and what gets attention.
+
+00:22:58.810 --> 00:23:00.990
+So if you see bugs
+when we release,
+
+00:23:00.990 --> 00:23:06.245
+in a little while, these
+components, let us know,
+
+00:23:06.245 --> 00:23:07.620
+and we'd love to
+hear about that.
+
+00:23:07.620 --> 00:23:09.240
+GREG WHITWORTH: Also, star
+the ones if you find them.
+
+00:23:09.240 --> 00:23:11.400
+NICOLE SULLIVAN: Yeah star
+the ones that you really want.
+
+00:23:11.400 --> 00:23:11.640
+GREG WHITWORTH: That's signal.
+
+00:23:11.640 --> 00:23:14.120
+NICOLE SULLIVAN:
+That's super helpful.
+
+00:23:14.120 --> 00:23:15.880
+Again, @stubbornella on Twitter.
+
+00:23:15.880 --> 00:23:16.760
+Please get in touch.
+
+00:23:16.760 --> 00:23:17.520
+GREG WHITWORTH:
+And Greg Whitworth.
+
+00:23:17.520 --> 00:23:18.440
+Thank you so much.
+
+00:23:18.440 --> 00:23:18.740
+NICOLE SULLIVAN: Bye.
+
+00:23:18.740 --> 00:23:19.340
+[APPLAUSE]
+
+00:23:19.340 --> 00:23:22.390
+[MUSIC PLAYING]
+

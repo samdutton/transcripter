@@ -1,6 +1,6 @@
 :root {
   --aspect-ratio: 9 / 16;
-  --span-current: #cf402f;
+  --caption-highlight: #cf402f;
 }
 
 body {
@@ -107,12 +107,14 @@ span[data-start] {
 }
 
 span[data-start]:hover {
-  color: var(--span-current);
+  border-bottom: 1px dashed black;
+  color: var(--caption-highlight);
   cursor: pointer;
 }
 
 span[data-start].current {
-  color: var(--span-current);
+  border-bottom: 1px dashed black;
+  color: var(--caption-highlight);
 }
 
 @media (min-width: 500px) {

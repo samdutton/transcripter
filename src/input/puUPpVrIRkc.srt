@@ -1,0 +1,3297 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:01.398
+[MUSIC PLAYING]
+
+00:00:04.503 --> 00:00:06.170
+NEAL SCHLOSS: Today,
+we're going to talk
+
+00:00:06.170 --> 00:00:08.660
+about performance patterns
+for building inclusive web
+
+00:00:08.660 --> 00:00:09.680
+experiences.
+
+00:00:09.680 --> 00:00:12.680
+Let's kick things off with Addy
+
+00:00:12.680 --> 00:00:18.540
+ADDY OSMANI: Cool, so any user
+can have a slow experience.
+
+00:00:18.540 --> 00:00:20.270
+It could be the site.
+
+00:00:20.270 --> 00:00:24.560
+It could be their hardware,
+or it could be the network.
+
+00:00:24.560 --> 00:00:26.360
+Now, have you ever
+watched someone
+
+00:00:26.360 --> 00:00:28.880
+that has poor network service?
+
+00:00:28.880 --> 00:00:32.369
+They usually will be
+staring at their phone.
+
+00:00:32.369 --> 00:00:36.800
+And then, their arm just slides
+to go up, and up, and up,
+
+00:00:36.800 --> 00:00:37.730
+and up--
+
+00:00:37.730 --> 00:00:40.580
+almost as if they're trying
+to pierce some force fields
+
+00:00:40.580 --> 00:00:42.890
+that will give them 4G.
+
+00:00:42.890 --> 00:00:46.730
+Now, I personally think that I
+probably have the worst network
+
+00:00:46.730 --> 00:00:48.200
+service here.
+
+00:00:48.200 --> 00:00:52.980
+If I go from one part of
+the stage to the other,
+
+00:00:52.980 --> 00:00:55.400
+if I just twirl
+around a little bit,
+
+00:00:55.400 --> 00:00:59.600
+I go from 4G to edge, edge--
+
+00:00:59.600 --> 00:01:01.910
+edge being both my network
+connection type, but also
+
+00:01:01.910 --> 00:01:03.292
+my mental state.
+
+00:01:03.292 --> 00:01:05.890
+[LAUGHTER]
+
+00:01:05.890 --> 00:01:07.780
+Now, we've all had
+user experiences
+
+00:01:07.780 --> 00:01:11.000
+that are fast and also
+plenty that are slow.
+
+00:01:11.000 --> 00:01:13.840
+So to support a web
+ecosystem that's
+
+00:01:13.840 --> 00:01:18.170
+inclusive of users who are both
+on low-end and high-end devices
+
+00:01:18.170 --> 00:01:22.660
+and networks, as developers, we
+need to start doing something.
+
+00:01:22.660 --> 00:01:26.740
+We need to start respecting
+the user's hardware and network
+
+00:01:26.740 --> 00:01:28.210
+constraints.
+
+00:01:28.210 --> 00:01:30.520
+You see, these
+characteristics really matter.
+
+00:01:30.520 --> 00:01:33.250
+The user's hardware
+and their network type
+
+00:01:33.250 --> 00:01:35.230
+can massively impact
+the experience
+
+00:01:35.230 --> 00:01:38.460
+that they're going to
+have with your site.
+
+00:01:38.460 --> 00:01:40.930
+So let's talk about why
+that is, what are components
+
+00:01:40.930 --> 00:01:42.550
+that can contribute to that?
+
+00:01:42.550 --> 00:01:44.050
+Well, what's in a
+modern smartphone?
+
+00:01:44.050 --> 00:01:48.580
+We've got a CPU, memory,
+storage, a screen, and battery.
+
+00:01:48.580 --> 00:01:50.800
+Phone hardware can
+vary quite a lot.
+
+00:01:50.800 --> 00:01:52.900
+The hardware that's
+in your pockets
+
+00:01:52.900 --> 00:01:56.020
+right now can probably vary
+by quite a lot compared
+
+00:01:56.020 --> 00:01:59.110
+to the stuff that your users
+are accessing your sites on.
+
+00:01:59.110 --> 00:02:01.390
+L1, L2, L3 caches--
+all of these things
+
+00:02:01.390 --> 00:02:03.870
+can have an impact on
+the overall experience
+
+00:02:03.870 --> 00:02:05.710
+in pretty noticeable ways.
+
+00:02:05.710 --> 00:02:08.470
+Now, let's quantify this
+problem a little bit.
+
+00:02:08.470 --> 00:02:11.800
+Here is a visualization of
+the performance gap on mobile.
+
+00:02:11.800 --> 00:02:15.310
+What we can see here are the top
+10 highest-selling smartphone
+
+00:02:15.310 --> 00:02:18.190
+sales for the
+first half of 2019.
+
+00:02:18.190 --> 00:02:19.870
+And what you'll
+see is that there's
+
+00:02:19.870 --> 00:02:25.270
+a huge gap between high-end
+devices and everything else.
+
+00:02:25.270 --> 00:02:28.860
+It's about a two or
+three times a slowdown
+
+00:02:28.860 --> 00:02:30.943
+if we're talking about
+the other hardware.
+
+00:02:30.943 --> 00:02:32.860
+Now, device characteristics
+matter quite a lot
+
+00:02:32.860 --> 00:02:34.600
+because one of the
+things we're doing
+
+00:02:34.600 --> 00:02:37.690
+is putting JavaScript
+increasingly into our sites
+
+00:02:37.690 --> 00:02:39.280
+today, a lot of it.
+
+00:02:39.280 --> 00:02:42.303
+And given that JavaScript is
+inherently single-threaded
+
+00:02:42.303 --> 00:02:44.470
+and more single-threaded
+than the rest the platform.
+
+00:02:44.470 --> 00:02:47.300
+This stresses things like
+single-core performance.
+
+00:02:47.300 --> 00:02:49.685
+And so we need to care
+about things like the CPU.
+
+00:02:49.685 --> 00:02:51.310
+So if you're making
+sites that are only
+
+00:02:51.310 --> 00:02:52.780
+going to work on
+high-end hardware,
+
+00:02:52.780 --> 00:02:56.240
+you might be excluding
+some of your users.
+
+00:02:56.240 --> 00:02:58.630
+So this is something we've
+said for multiple years--
+
+00:02:58.630 --> 00:03:01.842
+if you want to build a fast
+site, use slow hardware.
+
+00:03:01.842 --> 00:03:03.550
+Alex Russell has been
+on the stage plenty
+
+00:03:03.550 --> 00:03:05.180
+of times saying the same thing.
+
+00:03:05.180 --> 00:03:07.638
+But I just want to remind you
+that that's one of the things
+
+00:03:07.638 --> 00:03:10.370
+that we need to just make
+sure we're constantly doing.
+
+00:03:10.370 --> 00:03:11.920
+Now, we talked
+about smartphones.
+
+00:03:11.920 --> 00:03:14.830
+But this problem of variance
+applies equally to desktops
+
+00:03:14.830 --> 00:03:15.710
+as well.
+
+00:03:15.710 --> 00:03:18.310
+There's a huge performance
+gap on desktop.
+
+00:03:18.310 --> 00:03:20.330
+Over here, we can see
+the CPU performance.
+
+00:03:20.330 --> 00:03:22.915
+This is using Geebench data,
+same as the other side.
+
+00:03:22.915 --> 00:03:25.570
+This is using Geekbench
+CPU performance data.
+
+00:03:25.570 --> 00:03:27.640
+And it shows us the
+highest-selling laptops
+
+00:03:27.640 --> 00:03:28.540
+on Amazon.
+
+00:03:28.540 --> 00:03:32.410
+And at the very bottom, I have
+a modern popular developer
+
+00:03:32.410 --> 00:03:34.035
+laptop, a MacBook Pro.
+
+00:03:34.035 --> 00:03:36.160
+And what you can see is
+that the devices that we're
+
+00:03:36.160 --> 00:03:40.210
+building our experiences on are
+so much faster than the devices
+
+00:03:40.210 --> 00:03:43.420
+that people are actually
+out there buying on mass.
+
+00:03:43.420 --> 00:03:45.460
+You can have old hardware
+that sticks around
+
+00:03:45.460 --> 00:03:46.630
+for years and years--
+
+00:03:46.630 --> 00:03:48.340
+people that tend to
+have longer refresh
+
+00:03:48.340 --> 00:03:50.278
+cycles for desktop hardware.
+
+00:03:50.278 --> 00:03:52.570
+And there's just generally
+a huge performance disparity
+
+00:03:52.570 --> 00:03:55.930
+between low-end and high-end.
+
+00:03:55.930 --> 00:03:58.980
+So a question that Nate and I
+would like to pose to you today
+
+00:03:58.980 --> 00:04:02.700
+is, do we need to deliver
+the exact same experience
+
+00:04:02.700 --> 00:04:04.620
+to every user?
+
+00:04:04.620 --> 00:04:06.900
+We think that the answer is no.
+
+00:04:06.900 --> 00:04:09.780
+In a world with widely
+varying device capabilities,
+
+00:04:09.780 --> 00:04:13.540
+a one-size-fits-all experience
+doesn't always work.
+
+00:04:13.540 --> 00:04:16.529
+Sites that the light
+users on high-end devices
+
+00:04:16.529 --> 00:04:19.350
+can sometimes be very
+unusable on low-end ones,
+
+00:04:19.350 --> 00:04:22.990
+particularly in emerging
+markets and on older hardware.
+
+00:04:22.990 --> 00:04:26.020
+Now, we think that responsive
+design was a really good start.
+
+00:04:26.020 --> 00:04:29.040
+But we think we can maybe
+increment on it a little bit
+
+00:04:29.040 --> 00:04:30.810
+and improve it.
+
+00:04:30.810 --> 00:04:34.900
+So today, we'd like to introduce
+this idea of adaptive loading.
+
+00:04:34.900 --> 00:04:36.360
+Now, adaptive
+loading is this idea
+
+00:04:36.360 --> 00:04:40.980
+that we build to support low-end
+devices first and progressively
+
+00:04:40.980 --> 00:04:44.110
+add high-end only
+features on top of it.
+
+00:04:44.110 --> 00:04:46.530
+This allows users to get a
+great experience best suited
+
+00:04:46.530 --> 00:04:48.390
+to their device and
+network constraints
+
+00:04:48.390 --> 00:04:50.110
+with fewer frustrations.
+
+00:04:50.110 --> 00:04:51.780
+So one core
+experience everybody--
+
+00:04:51.780 --> 00:04:53.820
+but people in high-end
+networks and devices
+
+00:04:53.820 --> 00:04:56.768
+get something that's
+just a little bit better.
+
+00:04:56.768 --> 00:04:58.560
+Let's chat about a few
+ideas in this space,
+
+00:04:58.560 --> 00:05:00.310
+and how we can make
+it easier for everyone
+
+00:05:00.310 --> 00:05:03.990
+to give users a good
+experience on low-end devices.
+
+00:05:03.990 --> 00:05:06.000
+We're going to kick
+it off with a demo.
+
+00:05:06.000 --> 00:05:09.225
+So a switchover real quick.
+
+00:05:15.490 --> 00:05:18.320
+Let's see if this
+is working, cool.
+
+00:05:18.320 --> 00:05:20.900
+So Paul Irish and
+Elizabeth earlier today,
+
+00:05:20.900 --> 00:05:25.460
+they mentioned this really neat
+YouTube lazy loading element
+
+00:05:25.460 --> 00:05:27.655
+that Paul had built for
+improving performance.
+
+00:05:27.655 --> 00:05:29.030
+And I thought it'd
+be neat for us
+
+00:05:29.030 --> 00:05:30.980
+to actually try integrating
+that into an app
+
+00:05:30.980 --> 00:05:34.010
+and show you a few ways
+that we can improve on it.
+
+00:05:34.010 --> 00:05:35.930
+Before that, how
+many people here know
+
+00:05:35.930 --> 00:05:39.430
+what styled console logs are?
+
+00:05:39.430 --> 00:05:41.560
+That's like 30%,
+40% of the audience.
+
+00:05:41.560 --> 00:05:43.070
+So they basically
+look like this.
+
+00:05:43.070 --> 00:05:47.020
+They let us create these
+nice fun, funky console logs.
+
+00:05:47.020 --> 00:05:50.740
+One of the really nice things
+about styled console logs
+
+00:05:50.740 --> 00:05:55.030
+is that we can also abuse
+them to create our own console
+
+00:05:55.030 --> 00:05:58.930
+and messages-- so in my
+case, speaking after Paul
+
+00:05:58.930 --> 00:06:01.300
+Irish and Elizabeth Sweeny.
+
+00:06:01.300 --> 00:06:05.170
+But we're going to try to give
+you a decent demo of this idea.
+
+00:06:05.170 --> 00:06:07.780
+So here what we've
+got is basically
+
+00:06:07.780 --> 00:06:09.610
+a reimplantation of YouTube.
+
+00:06:09.610 --> 00:06:11.350
+It's using live YouTube data.
+
+00:06:11.350 --> 00:06:14.000
+And I'm going to keep the
+Network Panel open over here.
+
+00:06:14.000 --> 00:06:16.675
+We're going to
+navigate to a video.
+
+00:06:16.675 --> 00:06:18.830
+So let's go to this
+one real quick.
+
+00:06:18.830 --> 00:06:21.970
+What we see is that 514
+kilobytes worth of scripts
+
+00:06:21.970 --> 00:06:23.900
+are loaded for this experience.
+
+00:06:23.900 --> 00:06:28.900
+Now, imagine we were to swap out
+the Core Video experience here
+
+00:06:28.900 --> 00:06:30.850
+for something a
+little bit lighter.
+
+00:06:30.850 --> 00:06:35.232
+Now, I want to do something
+real quick to show you
+
+00:06:35.232 --> 00:06:36.190
+what we're going to do.
+
+00:06:36.190 --> 00:06:38.620
+So we've got this little
+window debug thing.
+
+00:06:38.620 --> 00:06:41.110
+What we can see in green
+is the core content
+
+00:06:41.110 --> 00:06:42.070
+for this experience.
+
+00:06:42.070 --> 00:06:44.080
+In red, we've got all
+this extraneous stuff.
+
+00:06:44.080 --> 00:06:45.580
+We've got Recommended Videos.
+
+00:06:45.580 --> 00:06:47.800
+We've got Comments.
+
+00:06:47.800 --> 00:06:50.020
+And I thought it'd be
+interesting to think about what
+
+00:06:50.020 --> 00:06:54.880
+if you're on a slow network
+or a constrained device,
+
+00:06:54.880 --> 00:06:58.570
+something with low memory, or
+if you receive [INAUDIBLE],, what
+
+00:06:58.570 --> 00:07:01.060
+if we were to do something
+where we can navigate back
+
+00:07:01.060 --> 00:07:04.920
+to the main experience,
+we can emulate this?
+
+00:07:04.920 --> 00:07:08.920
+Let's go into fast 3G.
+
+00:07:08.920 --> 00:07:13.360
+And if we now go to the video
+page, what we see instead
+
+00:07:13.360 --> 00:07:16.240
+is that we've actually used that
+lazy loading element from Paul
+
+00:07:16.240 --> 00:07:17.110
+Irish earlier.
+
+00:07:17.110 --> 00:07:19.608
+And it's only loading up
+three kilobytes of scripts.
+
+00:07:19.608 --> 00:07:22.150
+But we're being very intentional
+with only shipping this down
+
+00:07:22.150 --> 00:07:25.070
+to users who were in
+the worst conditions.
+
+00:07:25.070 --> 00:07:27.385
+So we're going to talk a
+little bit about these ideas.
+
+00:07:27.385 --> 00:07:30.640
+We're going to switch back
+on to the slides right now.
+
+00:07:30.640 --> 00:07:33.220
+Now, there are three
+or four key signals
+
+00:07:33.220 --> 00:07:35.720
+we'll be looking at for
+adaptive loading today.
+
+00:07:35.720 --> 00:07:37.990
+First of all, we've got
+network for fine-tuning things
+
+00:07:37.990 --> 00:07:40.780
+like data transfer to
+use less bandwidth.
+
+00:07:40.780 --> 00:07:43.420
+We've got memory for
+reducing the amount of memory
+
+00:07:43.420 --> 00:07:45.580
+consumption on low-end devices--
+
+00:07:45.580 --> 00:07:48.880
+CPU for limiting costly
+jobs' [INAUDIBLE] execution,
+
+00:07:48.880 --> 00:07:50.980
+and reducing CPU
+intensive logic.
+
+00:07:50.980 --> 00:07:52.940
+And we'll talk a little
+bit about client hints.
+
+00:07:52.940 --> 00:07:55.140
+And we'll talk about
+JavaScript APIs
+
+00:07:55.140 --> 00:07:57.490
+we're doing some on this stuff.
+
+00:07:57.490 --> 00:08:00.250
+Now, to make all of
+this easier, today we're
+
+00:08:00.250 --> 00:08:04.540
+releasing a new experimental
+set of React Hooks
+
+00:08:04.540 --> 00:08:07.868
+for adaptive loading that
+you can go and check out.
+
+00:08:07.868 --> 00:08:09.910
+If you're using React to
+build experiences today,
+
+00:08:09.910 --> 00:08:12.610
+whether it's React on
+its own or next js,
+
+00:08:12.610 --> 00:08:14.830
+you can use these
+Hooks for everything
+
+00:08:14.830 --> 00:08:17.920
+from network, memory, CPU
+to employ some of the ideas
+
+00:08:17.920 --> 00:08:20.170
+that we're going to be talking
+about in just a second.
+
+00:08:20.170 --> 00:08:21.880
+And by the way, all
+of these are built
+
+00:08:21.880 --> 00:08:23.770
+on top of web platform APIs.
+
+00:08:23.770 --> 00:08:25.930
+And so if you're using
+a different framework,
+
+00:08:25.930 --> 00:08:28.100
+if you're using Angular,
+or View, Svelte,
+
+00:08:28.100 --> 00:08:29.950
+Lit, any of these
+things, you can still
+
+00:08:29.950 --> 00:08:31.060
+employ these techniques.
+
+00:08:31.060 --> 00:08:33.518
+It's just that we're going to
+be focusing on React for now.
+
+00:08:33.518 --> 00:08:34.814
+AUDIENCE: Woo!
+
+00:08:34.814 --> 00:08:36.022
+ADDY OSMANI: Well, thank you.
+
+00:08:36.022 --> 00:08:36.710
+[LAUGHTER]
+
+00:08:36.710 --> 00:08:39.620
+Thank you, one person.
+
+00:08:39.620 --> 00:08:42.640
+So let's kick things off
+with adaptive media loading.
+
+00:08:42.640 --> 00:08:45.550
+Now, this is the idea that
+we serve low-quality images
+
+00:08:45.550 --> 00:08:48.460
+and videos to users,
+reducing bandwidth and memory
+
+00:08:48.460 --> 00:08:49.600
+consumption.
+
+00:08:49.600 --> 00:08:52.780
+So picture, I've got a site
+where maybe I'm shipping down
+
+00:08:52.780 --> 00:08:53.920
+videos to everybody.
+
+00:08:53.920 --> 00:08:55.270
+But do I need to?
+
+00:08:55.270 --> 00:08:58.330
+Maybe I could be shipping down
+low-resolution images instead,
+
+00:08:58.330 --> 00:09:01.730
+if your network can't handle it,
+if your device can't handle it.
+
+00:09:01.730 --> 00:09:03.770
+So you could picture a
+photo gallery application
+
+00:09:03.770 --> 00:09:05.410
+and shipping those
+low res images,
+
+00:09:05.410 --> 00:09:08.387
+or using less
+code-heavy carousels.
+
+00:09:08.387 --> 00:09:09.970
+You could imagine a
+search application
+
+00:09:09.970 --> 00:09:13.600
+where maybe you're limiting the
+number of media-heavy previews.
+
+00:09:13.600 --> 00:09:15.280
+You can imagine
+news-oriented site
+
+00:09:15.280 --> 00:09:17.710
+where you're emitting some
+popular categories that
+
+00:09:17.710 --> 00:09:20.830
+maybe have preview
+images in there as well.
+
+00:09:20.830 --> 00:09:25.260
+And the way that we can
+determine network connection
+
+00:09:25.260 --> 00:09:27.760
+information on the platform is
+using the network information
+
+00:09:27.760 --> 00:09:28.630
+API.
+
+00:09:28.630 --> 00:09:30.640
+So the netinfo api
+summarizes performance
+
+00:09:30.640 --> 00:09:31.888
+of users' network connection.
+
+00:09:31.888 --> 00:09:34.180
+And on the web, it's what
+allows us deliver experiences
+
+00:09:34.180 --> 00:09:37.000
+based on how slow or
+fast the connection is.
+
+00:09:37.000 --> 00:09:40.460
+Now, you can use this
+API via the web platform.
+
+00:09:40.460 --> 00:09:41.890
+And you can also
+use it for things
+
+00:09:41.890 --> 00:09:43.570
+like conditional
+resource loading,
+
+00:09:43.570 --> 00:09:46.790
+using the React Hooks
+that I just mentioned.
+
+00:09:46.790 --> 00:09:49.060
+So let's actually take a
+look at a quick demo of this.
+
+00:09:49.060 --> 00:09:52.210
+We're going to switch back
+over to the other machine real
+
+00:09:52.210 --> 00:09:53.320
+quick.
+
+00:09:53.320 --> 00:09:56.720
+And here we have an
+experience called React Movie.
+
+00:09:56.720 --> 00:09:58.690
+By the way, for all
+the demos today, we're
+
+00:09:58.690 --> 00:10:01.600
+integrating adaptive loading
+on top of existing apps built
+
+00:10:01.600 --> 00:10:02.350
+by the community.
+
+00:10:02.350 --> 00:10:04.558
+None of this is just stuff
+that was run from scratch.
+
+00:10:04.558 --> 00:10:06.740
+You can employ these
+ideas in your apps today.
+
+00:10:06.740 --> 00:10:08.920
+So here we have an app
+called React Movie.
+
+00:10:08.920 --> 00:10:11.800
+And this is a movie
+discovery app.
+
+00:10:11.800 --> 00:10:14.080
+I can see all movies that
+are out at the moment.
+
+00:10:14.080 --> 00:10:15.070
+I can click through.
+
+00:10:15.070 --> 00:10:17.753
+And I can browse
+thumbnails for them.
+
+00:10:17.753 --> 00:10:20.170
+But what you see is that this
+core experience is currently
+
+00:10:20.170 --> 00:10:26.680
+shipping 2.7 megs worth of
+images if I'm any casual user.
+
+00:10:26.680 --> 00:10:29.110
+We can employ adaptive
+media loading techniques
+
+00:10:29.110 --> 00:10:30.700
+and actually deliver
+an experience
+
+00:10:30.700 --> 00:10:33.875
+where if you're on slow 3G-- so
+let's actually clear this out.
+
+00:10:33.875 --> 00:10:38.080
+This might take a hot second
+to load up given it's so slow.
+
+00:10:38.080 --> 00:10:40.870
+But the idea that we're going
+to be trying to represent here
+
+00:10:40.870 --> 00:10:44.920
+if ever loads up is
+that you can still
+
+00:10:44.920 --> 00:10:47.980
+offer the users an experience
+with slightly lower-resolution
+
+00:10:47.980 --> 00:10:51.520
+imagery in a lot less bytes.
+
+00:10:51.520 --> 00:10:55.400
+So it's taking its time.
+
+00:10:55.400 --> 00:10:56.900
+It's taking this time.
+
+00:10:56.900 --> 00:10:58.120
+It's getting there.
+
+00:10:58.120 --> 00:11:00.130
+But these are all
+lower-resolution images.
+
+00:11:00.130 --> 00:11:03.100
+The overall payload size is
+significantly smaller than what
+
+00:11:03.100 --> 00:11:04.792
+we were showing you before.
+
+00:11:04.792 --> 00:11:07.000
+And it actually didn't take
+a lot of code to do this.
+
+00:11:07.000 --> 00:11:09.250
+We're just using two or three
+lines of additional code
+
+00:11:09.250 --> 00:11:12.040
+after importing in
+that network Hook.
+
+00:11:12.040 --> 00:11:15.170
+And everything works
+the way you'd expect.
+
+00:11:15.170 --> 00:11:18.760
+So the next thing I wanted to
+show you-- let's switch back
+
+00:11:18.760 --> 00:11:21.287
+over to the slides, please.
+
+00:11:21.287 --> 00:11:22.870
+So the next thing I
+wanted to show you
+
+00:11:22.870 --> 00:11:26.120
+was Data-Saver aware
+resource loading.
+
+00:11:26.120 --> 00:11:28.480
+So the Save Data Client
+hint is something
+
+00:11:28.480 --> 00:11:31.330
+that is a request header
+that lets you deliver lighter
+
+00:11:31.330 --> 00:11:33.070
+experiences to
+your users who opt
+
+00:11:33.070 --> 00:11:35.390
+in to data-saving
+mode in their browser.
+
+00:11:35.390 --> 00:11:36.970
+And when a user has
+this feature on,
+
+00:11:36.970 --> 00:11:39.680
+the browser can request
+low-resolution images.
+
+00:11:39.680 --> 00:11:41.720
+It can defer loading
+some resources.
+
+00:11:41.720 --> 00:11:43.600
+And this is available
+as a JavaScript API but
+
+00:11:43.600 --> 00:11:45.615
+is also something you
+can use via Client Hints.
+
+00:11:45.615 --> 00:11:46.990
+So once again
+here, you see we're
+
+00:11:46.990 --> 00:11:50.560
+using our React Hook in order
+to achieve conditional resource
+
+00:11:50.560 --> 00:11:51.430
+loading.
+
+00:11:51.430 --> 00:11:54.510
+A company that's
+using data saving
+
+00:11:54.510 --> 00:11:57.910
+as a mode-- they've got a custom
+mode quite effectively today--
+
+00:11:57.910 --> 00:11:59.440
+is Twitter.com.
+
+00:11:59.440 --> 00:12:02.320
+So Twitter is designed to
+minimize the amount of data
+
+00:12:02.320 --> 00:12:02.890
+that you use.
+
+00:12:02.890 --> 00:12:04.658
+They've got a really
+nice Data Saver mode.
+
+00:12:04.658 --> 00:12:06.700
+And when you opt into it,
+you can get anywhere up
+
+00:12:06.700 --> 00:12:11.020
+to 80% reduction in overall data
+usage for images on the web,
+
+00:12:11.020 --> 00:12:14.200
+and anywhere up to 96% if
+you're including things
+
+00:12:14.200 --> 00:12:16.330
+like disabled video autoplay.
+
+00:12:16.330 --> 00:12:18.010
+I thought it would
+be neat for us
+
+00:12:18.010 --> 00:12:20.980
+to try re-implementing something
+like the Twitter data feed.
+
+00:12:20.980 --> 00:12:22.480
+So we're going to
+go and take a look
+
+00:12:22.480 --> 00:12:24.590
+at another very quick demo.
+
+00:12:24.590 --> 00:12:27.640
+So here, we have
+the Twitter feed.
+
+00:12:27.640 --> 00:12:30.100
+It's a simplistic version of it.
+
+00:12:30.100 --> 00:12:32.190
+I can scroll through this feed.
+
+00:12:32.190 --> 00:12:35.560
+I see plenty of Tweets,
+plenty of resources.
+
+00:12:35.560 --> 00:12:37.210
+And the overall
+payload size of this
+
+00:12:37.210 --> 00:12:39.740
+is something like 6.9
+megabytes overall.
+
+00:12:39.740 --> 00:12:43.210
+This is including
+high-resolution images, videos,
+
+00:12:43.210 --> 00:12:45.380
+anything else that's supported.
+
+00:12:45.380 --> 00:12:47.710
+Now, using this Hook, or
+using just the web platform
+
+00:12:47.710 --> 00:12:52.420
+APIs for data saving, I can
+go and I can toggle this.
+
+00:12:52.420 --> 00:12:54.070
+And what you'll
+see is that we've
+
+00:12:54.070 --> 00:12:56.580
+switched out those
+high-resolution images
+
+00:12:56.580 --> 00:12:59.220
+for low-quality
+image placeholders.
+
+00:12:59.220 --> 00:13:01.390
+I can scroll through
+this feed pretty quickly.
+
+00:13:01.390 --> 00:13:03.720
+I don't have to be fetching
+the original images
+
+00:13:03.720 --> 00:13:05.340
+at full resolution.
+
+00:13:05.340 --> 00:13:07.380
+And if I want to see the
+full-resolution image,
+
+00:13:07.380 --> 00:13:10.490
+I can just tap and get
+that same experience.
+
+00:13:10.490 --> 00:13:12.840
+Now, scrolling
+back up here, there
+
+00:13:12.840 --> 00:13:18.460
+is actually a video that
+has its autoplay disabled.
+
+00:13:18.460 --> 00:13:19.950
+This is by Mr. doob.
+
+00:13:19.950 --> 00:13:22.060
+And I thought I'd
+play this for you.
+
+00:13:22.060 --> 00:13:23.700
+So this is basically
+what it looks
+
+00:13:23.700 --> 00:13:27.240
+like when we, as developers,
+have a nice payday.
+
+00:13:27.240 --> 00:13:28.980
+You're just like
+doing all your--
+
+00:13:33.470 --> 00:13:35.090
+I love that so much.
+
+00:13:35.090 --> 00:13:39.820
+My version of this is
+unfortunately a lot worse--
+
+00:13:39.820 --> 00:13:41.770
+oh, oh, great, OK.
+
+00:13:41.770 --> 00:13:48.480
+Live stage fail-- let's try this
+out again and see if it goes.
+
+00:13:48.480 --> 00:13:50.494
+OK, this is me.
+
+00:13:50.494 --> 00:13:52.350
+[LAUGHTER]
+
+00:13:52.350 --> 00:13:57.370
+Cool, very, very accurate.
+
+00:13:57.370 --> 00:14:01.060
+So let's switch back up to
+the slides for a second.
+
+00:14:01.060 --> 00:14:03.450
+Now, for a while, people
+have been asking for a media
+
+00:14:03.450 --> 00:14:05.040
+query for safe data.
+
+00:14:05.040 --> 00:14:07.020
+And although one
+doesn't exist just yet,
+
+00:14:07.020 --> 00:14:09.330
+there is an active
+proposal that's
+
+00:14:09.330 --> 00:14:12.780
+been made about introducing this
+idea of a user preference media
+
+00:14:12.780 --> 00:14:13.740
+query--
+
+00:14:13.740 --> 00:14:15.960
+prefers reduced
+data that would let
+
+00:14:15.960 --> 00:14:19.020
+you design data-reduced
+variance of your site for users
+
+00:14:19.020 --> 00:14:20.435
+who expressed that preference.
+
+00:14:20.435 --> 00:14:21.810
+If you're interested
+in something
+
+00:14:21.810 --> 00:14:23.440
+like this existing
+on the platform,
+
+00:14:23.440 --> 00:14:24.360
+there's a link
+here where you can
+
+00:14:24.360 --> 00:14:25.860
+get involved in the discussion.
+
+00:14:25.860 --> 00:14:30.050
+I personally love to see
+something like this existing.
+
+00:14:30.050 --> 00:14:31.620
+Next up, let's
+talk about memory.
+
+00:14:31.620 --> 00:14:34.940
+So the device memory API
+adds navigator.device memory.
+
+00:14:34.940 --> 00:14:38.170
+And it returns how much RAM
+the device has in gigabytes.
+
+00:14:38.170 --> 00:14:40.400
+Round it down to the
+nearest power of 2.
+
+00:14:40.400 --> 00:14:43.250
+Now, this API also features
+a Client Hints header device
+
+00:14:43.250 --> 00:14:45.210
+memory that reports
+the same value.
+
+00:14:45.210 --> 00:14:47.810
+And similar to before, it's
+relatively straightforward
+
+00:14:47.810 --> 00:14:50.810
+to use the memory Hook in
+order to conditionally load
+
+00:14:50.810 --> 00:14:52.670
+different types of experiences.
+
+00:14:52.670 --> 00:14:54.920
+Now, I thought I'd
+show you a demo that's
+
+00:14:54.920 --> 00:14:56.180
+slightly different using this.
+
+00:14:56.180 --> 00:15:00.080
+Let's switch over to the other
+machine real quick once again.
+
+00:15:00.080 --> 00:15:03.260
+I discovered this really
+awesome website called Dixie.
+
+00:15:03.260 --> 00:15:05.770
+And Dixie do a bunch of
+consumer electronics.
+
+00:15:05.770 --> 00:15:07.760
+One of the things
+that they do is
+
+00:15:07.760 --> 00:15:09.680
+they sell mechanical keyboards.
+
+00:15:09.680 --> 00:15:14.300
+And on their site, they have
+this really nifty model viewer
+
+00:15:14.300 --> 00:15:17.880
+usage, where you can go and
+check out-- this is nice.
+
+00:15:17.880 --> 00:15:19.470
+You can spin it around.
+
+00:15:19.470 --> 00:15:21.950
+It's really pretty.
+
+00:15:21.950 --> 00:15:23.450
+But one of the
+downsides to this is,
+
+00:15:23.450 --> 00:15:26.450
+if we go and we load
+up our DevTools,
+
+00:15:26.450 --> 00:15:28.010
+we go to the Network
+Panel, and we
+
+00:15:28.010 --> 00:15:30.280
+try to reload this
+experience up,
+
+00:15:30.280 --> 00:15:33.810
+if we organize things by
+size and go to the very top,
+
+00:15:33.810 --> 00:15:35.780
+you'll see that this
+3D model is actually
+
+00:15:35.780 --> 00:15:38.550
+almost five megabytes in size.
+
+00:15:38.550 --> 00:15:41.240
+Now, in addition
+to that, it also
+
+00:15:41.240 --> 00:15:44.462
+uses quite a lot of
+memory on low-end devices
+
+00:15:44.462 --> 00:15:45.920
+to get something
+like this running.
+
+00:15:45.920 --> 00:15:48.640
+On high-end devices, on
+desktop, it's perfectly fine.
+
+00:15:48.640 --> 00:15:50.660
+But for users who are on
+those low-end devices,
+
+00:15:50.660 --> 00:15:52.885
+what if we were to
+do something like--
+
+00:15:52.885 --> 00:15:55.640
+let me reload this picture
+really quick-- what if we were
+
+00:15:55.640 --> 00:15:58.945
+to do something like
+use memory signals
+
+00:15:58.945 --> 00:16:01.070
+in order to decide whether
+or not to just send them
+
+00:16:01.070 --> 00:16:03.320
+down a static image.
+
+00:16:03.320 --> 00:16:06.110
+We'd save on multiple megabytes
+worth of resources being
+
+00:16:06.110 --> 00:16:08.390
+sent down to those users,
+while still giving users
+
+00:16:08.390 --> 00:16:10.250
+who are on high-end
+devices a really, really
+
+00:16:10.250 --> 00:16:12.570
+slick experience.
+
+00:16:12.570 --> 00:16:16.280
+I personally love these 3D
+models-- love model viewer.
+
+00:16:16.280 --> 00:16:17.840
+Let's talk about JavaScript.
+
+00:16:17.840 --> 00:16:21.860
+So adaptive module serving is
+something I'm excited about.
+
+00:16:21.860 --> 00:16:25.130
+And this is this idea of
+shipping a light interactive
+
+00:16:25.130 --> 00:16:29.180
+core experience to all of your
+users and progressively adding
+
+00:16:29.180 --> 00:16:31.170
+high-end features on top--
+
+00:16:31.170 --> 00:16:33.980
+so if a user's device
+characteristics and network
+
+00:16:33.980 --> 00:16:35.060
+can handle it.
+
+00:16:35.060 --> 00:16:36.560
+Now, it's this
+device awareness that
+
+00:16:36.560 --> 00:16:39.167
+takes progressive
+enhancement to the next step.
+
+00:16:39.167 --> 00:16:41.000
+So in high-end devices,
+we can conditionally
+
+00:16:41.000 --> 00:16:43.490
+be loading more
+highly-interactive components
+
+00:16:43.490 --> 00:16:46.070
+or more computationally-heavy
+operations.
+
+00:16:46.070 --> 00:16:48.110
+You could imagine
+servers of the future
+
+00:16:48.110 --> 00:16:51.530
+being smart enough to use Client
+Hints and ether signals that
+
+00:16:51.530 --> 00:16:54.560
+come from the web platform to
+decide what code to send down
+
+00:16:54.560 --> 00:16:55.710
+to their users.
+
+00:16:55.710 --> 00:16:58.640
+So bundles that are the core
+experiences versus bundles
+
+00:16:58.640 --> 00:16:59.938
+that are a little bit heavier.
+
+00:16:59.938 --> 00:17:01.730
+In this example, we're
+looking at something
+
+00:17:01.730 --> 00:17:04.550
+like an e-commerce site, where
+the core experience represents
+
+00:17:04.550 --> 00:17:07.540
+the product images,
+the cart experience.
+
+00:17:07.540 --> 00:17:09.290
+And the higher-end
+ones can include things
+
+00:17:09.290 --> 00:17:13.640
+like zooming into images,
+related products, videos,
+
+00:17:13.640 --> 00:17:17.119
+and AR version of the
+experience-- go crazy.
+
+00:17:17.119 --> 00:17:18.619
+I wanted to demo
+a slimmer version
+
+00:17:18.619 --> 00:17:22.910
+of this idea, adaptive code
+splitting and code loading.
+
+00:17:22.910 --> 00:17:24.770
+Actually before we go
+into that, some of you
+
+00:17:24.770 --> 00:17:27.512
+might be familiar with
+React.lazy and Suspense.
+
+00:17:27.512 --> 00:17:28.970
+These are basically
+primitives that
+
+00:17:28.970 --> 00:17:32.360
+help you do things like add
+code splitting to React apps
+
+00:17:32.360 --> 00:17:34.550
+and then define fallbacks
+for that content
+
+00:17:34.550 --> 00:17:36.110
+as it's loading up.
+
+00:17:36.110 --> 00:17:38.690
+And you can, in fact,
+extend React.lazys.
+
+00:17:38.690 --> 00:17:41.540
+You can get network-aware,
+or memory-aware, or
+
+00:17:41.540 --> 00:17:43.503
+Data-Saver-aware code splitting.
+
+00:17:43.503 --> 00:17:45.170
+So in this pattern,
+what we're doing is,
+
+00:17:45.170 --> 00:17:48.020
+we're basically doing a
+check for the user's network
+
+00:17:48.020 --> 00:17:50.450
+information effective
+type values.
+
+00:17:50.450 --> 00:17:52.070
+And depending on
+those values, we're
+
+00:17:52.070 --> 00:17:55.100
+able to generate different
+chunks for the people
+
+00:17:55.100 --> 00:17:57.020
+who are on 3G,
+people who are on 4G,
+
+00:17:57.020 --> 00:18:00.410
+maybe a light experience, a
+slightly heavier experience.
+
+00:18:00.410 --> 00:18:04.080
+And I wanted to show you an
+example of this real quick.
+
+00:18:04.080 --> 00:18:05.990
+So eBay are a company
+that are exploring
+
+00:18:05.990 --> 00:18:07.668
+this idea of adaptive serving.
+
+00:18:07.668 --> 00:18:09.710
+And they're able to
+conditionally turn on and off
+
+00:18:09.710 --> 00:18:13.880
+features like zooming if a
+user's hardware or network
+
+00:18:13.880 --> 00:18:18.590
+conditions don't necessarily
+support them well.
+
+00:18:18.590 --> 00:18:19.990
+So let's switch back over here.
+
+00:18:19.990 --> 00:18:22.080
+We've decided to implement
+a version of this.
+
+00:18:22.080 --> 00:18:26.050
+And what you can see is, this
+is a lot like eBay on desktop.
+
+00:18:26.050 --> 00:18:29.780
+And if I hover over
+this product image,
+
+00:18:29.780 --> 00:18:31.520
+I can see this in a
+very high resolution.
+
+00:18:31.520 --> 00:18:34.220
+I've got this nice additional
+magnifier dependency
+
+00:18:34.220 --> 00:18:35.640
+that's being pulled in.
+
+00:18:35.640 --> 00:18:38.630
+But overall, we're shipping
+down about 62 kilobytes
+
+00:18:38.630 --> 00:18:40.580
+of JavaScript to our users.
+
+00:18:40.580 --> 00:18:45.110
+Now, picture that I wanted to
+look at what this might look
+
+00:18:45.110 --> 00:18:48.270
+like if I'm on a
+narrower viewport site.
+
+00:18:48.270 --> 00:18:51.200
+So let's imagine we're
+in this situation.
+
+00:18:51.200 --> 00:18:53.900
+And I'm loading this back up.
+
+00:18:53.900 --> 00:18:55.370
+Now, in this case,
+we're actually
+
+00:18:55.370 --> 00:18:58.280
+only loading 45 kilobytes
+worth of overall scripts.
+
+00:18:58.280 --> 00:19:00.830
+We don't have that same
+magnifying experience
+
+00:19:00.830 --> 00:19:01.765
+on mobile.
+
+00:19:01.765 --> 00:19:03.890
+What we're doing is, we're
+just shipping users down
+
+00:19:03.890 --> 00:19:05.850
+on experience that just
+shows them the image.
+
+00:19:05.850 --> 00:19:08.360
+And at most, maybe
+we show them a modal.
+
+00:19:08.360 --> 00:19:10.640
+So people who are on those
+higher-end situations,
+
+00:19:10.640 --> 00:19:12.973
+they can get the slightly
+more enriched version of this.
+
+00:19:17.180 --> 00:19:19.200
+And next, let's talk about CPU.
+
+00:19:19.200 --> 00:19:22.150
+So desktops and smartphones can
+have multiple physical process
+
+00:19:22.150 --> 00:19:23.780
+or cores in their CPU.
+
+00:19:23.780 --> 00:19:26.430
+And each core can run more
+than one thread at a time.
+
+00:19:26.430 --> 00:19:29.545
+So four-core CPU you might
+have eight logical processors.
+
+00:19:29.545 --> 00:19:31.920
+And in order to determine this
+insight from the platform,
+
+00:19:31.920 --> 00:19:34.665
+you can use the hardware
+concurrency API.
+
+00:19:34.665 --> 00:19:36.290
+Now, there is a Hook
+available for this
+
+00:19:36.290 --> 00:19:38.840
+as well that allows you to
+use conditional resource
+
+00:19:38.840 --> 00:19:41.130
+loading, very similar
+to some of the others.
+
+00:19:41.130 --> 00:19:45.740
+And one of the values
+of this is that you
+
+00:19:45.740 --> 00:19:50.180
+can use it to do things like
+determine the optimal worker
+
+00:19:50.180 --> 00:19:53.450
+thread pool if you're using Web
+Workers in your application.
+
+00:19:53.450 --> 00:19:57.695
+The platform does have, however,
+limited information about CPU.
+
+00:19:57.695 --> 00:19:59.570
+And I think that it's
+interesting to consider
+
+00:19:59.570 --> 00:20:00.950
+should we have more?
+
+00:20:00.950 --> 00:20:03.330
+Could that unlock
+other use cases?
+
+00:20:03.330 --> 00:20:06.770
+Another pattern is adaptive
+data fetching and prefetching.
+
+00:20:06.770 --> 00:20:08.750
+So whether it's on the
+client or the server,
+
+00:20:08.750 --> 00:20:10.580
+reducing the quantity
+of data that you're
+
+00:20:10.580 --> 00:20:13.490
+sending down to users can
+decrease overall latency.
+
+00:20:13.490 --> 00:20:15.050
+And adaptive data
+fetching can use
+
+00:20:15.050 --> 00:20:17.600
+signals like the slow network
+to send fewer results down
+
+00:20:17.600 --> 00:20:19.023
+to your users.
+
+00:20:19.023 --> 00:20:21.440
+And we've been talking about
+a bunch of different patterns
+
+00:20:21.440 --> 00:20:22.160
+today.
+
+00:20:22.160 --> 00:20:23.610
+And you might be
+wondering, OK, well, we're
+
+00:20:23.610 --> 00:20:25.820
+seeing a few folks who are
+using these in production.
+
+00:20:25.820 --> 00:20:27.695
+Is anybody using most
+of these in production?
+
+00:20:27.695 --> 00:20:31.790
+And one example of a company
+that is, is Tinder Web.
+
+00:20:31.790 --> 00:20:33.593
+So Tinder Web and
+Tinder Lite are
+
+00:20:33.593 --> 00:20:35.510
+using a number of these
+patterns in production
+
+00:20:35.510 --> 00:20:37.850
+to keep the experience
+fast for everyone.
+
+00:20:37.850 --> 00:20:41.810
+If a user is on a slow network
+or has Data Saver enabled,
+
+00:20:41.810 --> 00:20:46.070
+they disable video autoplays,
+they limit route prefetching--
+
+00:20:46.070 --> 00:20:48.830
+so prefetching the additional
+routes the user might navigate
+
+00:20:48.830 --> 00:20:50.323
+to across the experience--
+
+00:20:50.323 --> 00:20:51.740
+and they're also
+able to do things
+
+00:20:51.740 --> 00:20:54.730
+like limit loading the
+next image in the carousel.
+
+00:20:54.730 --> 00:20:57.890
+So they just load one at a
+time when you're swiping.
+
+00:20:57.890 --> 00:21:00.800
+They've seen some really great
+stats off the back of this--
+
+00:21:00.800 --> 00:21:03.870
+great improvements and things
+like average swipe count.
+
+00:21:03.870 --> 00:21:06.890
+So for Tinder Lite,
+they saw 7% more swipes
+
+00:21:06.890 --> 00:21:08.883
+in areas like
+Indonesia, [INAUDIBLE]
+
+00:21:08.883 --> 00:21:10.175
+of using some of these signals.
+
+00:21:12.790 --> 00:21:15.370
+And finally, we've got
+adaptive capability toggling.
+
+00:21:15.370 --> 00:21:19.270
+Now, this idea that
+instead of serving
+
+00:21:19.270 --> 00:21:21.282
+animations down to
+all of our users,
+
+00:21:21.282 --> 00:21:22.990
+for people who are on
+lower-end hardware,
+
+00:21:22.990 --> 00:21:25.810
+maybe we consider not shipping
+those animations at all,
+
+00:21:25.810 --> 00:21:29.150
+or throttling the
+frame rate in some way.
+
+00:21:29.150 --> 00:21:31.480
+So what we're going
+to do is demonstrate
+
+00:21:31.480 --> 00:21:32.810
+using this with Client Hints.
+
+00:21:32.810 --> 00:21:34.870
+Now, Client Hints are something
+I've mentioned a little bit
+
+00:21:34.870 --> 00:21:36.037
+in other parts of this talk.
+
+00:21:36.037 --> 00:21:39.070
+But they're a mechanism for
+proactive content negotiation.
+
+00:21:39.070 --> 00:21:42.490
+The client advertises a set of
+hints via HTTP request headers.
+
+00:21:42.490 --> 00:21:43.930
+And the server
+provides hints that
+
+00:21:43.930 --> 00:21:45.970
+adapt to the serve resource.
+
+00:21:45.970 --> 00:21:49.250
+They can be extended to a
+number of different use cases.
+
+00:21:49.250 --> 00:21:51.910
+Now, one of them is helping
+automate the negotiation
+
+00:21:51.910 --> 00:21:54.370
+of optimal resources based
+on the client's Data Saver
+
+00:21:54.370 --> 00:21:55.360
+preferences.
+
+00:21:55.360 --> 00:21:58.930
+And I've got a quick demo
+using Next.js and Client
+
+00:21:58.930 --> 00:22:01.270
+Hints I'm going to switch
+to right now just to show
+
+00:22:01.270 --> 00:22:03.080
+you this idea in action.
+
+00:22:03.080 --> 00:22:06.280
+So here, we've got
+adaptive animation.
+
+00:22:06.280 --> 00:22:08.945
+Imagine that we've got a blog
+site or an e-commerce site
+
+00:22:08.945 --> 00:22:11.320
+of some sort, where we've got
+a number of different cards
+
+00:22:11.320 --> 00:22:12.410
+worth of content.
+
+00:22:12.410 --> 00:22:16.240
+Now, me on my high-end
+device, lots of memory--
+
+00:22:16.240 --> 00:22:18.490
+I can probably handle
+things like nice navigation
+
+00:22:18.490 --> 00:22:20.830
+transitions pretty OK.
+
+00:22:20.830 --> 00:22:22.960
+And they look relatively smooth.
+
+00:22:22.960 --> 00:22:25.540
+But if I'm on a low-end
+device, I've tested this out
+
+00:22:25.540 --> 00:22:28.720
+on Moto G-Force, you can end up
+with pretty choppy experiences.
+
+00:22:28.720 --> 00:22:31.330
+Maybe it doesn't make sense
+to animate on those devices
+
+00:22:31.330 --> 00:22:31.995
+instead.
+
+00:22:31.995 --> 00:22:33.370
+So one thing we
+can do is, we can
+
+00:22:33.370 --> 00:22:37.000
+simulate all of those conditions
+that Client Hints allow
+
+00:22:37.000 --> 00:22:38.000
+us to do.
+
+00:22:38.000 --> 00:22:40.420
+And if I now try
+transitioning, I
+
+00:22:40.420 --> 00:22:43.653
+just get a very simple,
+basic navigation,
+
+00:22:43.653 --> 00:22:45.070
+the same type
+you're probably used
+
+00:22:45.070 --> 00:22:47.540
+to seeing in many
+single-page applications.
+
+00:22:47.540 --> 00:22:50.830
+But we're still able to
+give everybody an experience
+
+00:22:50.830 --> 00:22:53.630
+that best suits their hardware
+and network characteristics
+
+00:22:53.630 --> 00:22:54.830
+in these cases.
+
+00:22:54.830 --> 00:22:57.130
+So I'm really
+excited about that.
+
+00:22:57.130 --> 00:22:59.630
+Now, I'm going to invite Nate
+to the stage in just a second.
+
+00:22:59.630 --> 00:23:02.320
+He's going to talk a little
+bit about how Facebook uses
+
+00:23:02.320 --> 00:23:03.573
+these patterns in production.
+
+00:23:03.573 --> 00:23:04.990
+And one of the
+areas that we don't
+
+00:23:04.990 --> 00:23:06.907
+have a great solution
+for on the platform just
+
+00:23:06.907 --> 00:23:09.352
+yet is this idea of
+device class detection.
+
+00:23:09.352 --> 00:23:11.560
+So you might have noticed
+across some of these ideas,
+
+00:23:11.560 --> 00:23:13.180
+we've been basically
+bucketing things
+
+00:23:13.180 --> 00:23:17.470
+into you're on a slow device,
+or you're on a fast device,
+
+00:23:17.470 --> 00:23:19.818
+you're in a slow network,
+you're in a fast network.
+
+00:23:19.818 --> 00:23:22.360
+Now, one thing we could do to
+build like an ultimate solution
+
+00:23:22.360 --> 00:23:24.460
+around this stuff
+is have a setup,
+
+00:23:24.460 --> 00:23:26.800
+where we're taking a look
+at the user-agent string,
+
+00:23:26.800 --> 00:23:29.530
+determining what is the
+hardware we think you're on?
+
+00:23:29.530 --> 00:23:32.080
+We could connect that up to
+Geekbench performance data.
+
+00:23:32.080 --> 00:23:35.170
+And then, we could decide
+based on thresholds,
+
+00:23:35.170 --> 00:23:38.500
+is the combination of your RAM,
+your CPU, and your CPU score
+
+00:23:38.500 --> 00:23:41.090
+considered low-end or high-end?
+
+00:23:41.090 --> 00:23:43.210
+Now, this is very difficult
+to duct tape together
+
+00:23:43.210 --> 00:23:46.570
+in a way that makes a
+lot of convenience today.
+
+00:23:46.570 --> 00:23:48.905
+But I'm really
+excited, actually,
+
+00:23:48.905 --> 00:23:50.530
+for Nate to talk a
+little bit about how
+
+00:23:50.530 --> 00:23:53.450
+Facebook tackles this problem
+in a little better ways.
+
+00:23:53.450 --> 00:23:56.314
+So please join me in
+welcoming to stage Nate.
+
+00:23:56.314 --> 00:23:57.736
+[APPLAUSE]
+
+00:24:02.905 --> 00:24:04.030
+NEAL SCHLOSS: Thanks, Addy.
+
+00:24:04.030 --> 00:24:07.180
+So one thing Facebook
+recently announced
+
+00:24:07.180 --> 00:24:09.070
+is a redesign of the website.
+
+00:24:09.070 --> 00:24:10.313
+We're calling this FB5.
+
+00:24:10.313 --> 00:24:12.730
+One of the cool things about
+going through and redesigning
+
+00:24:12.730 --> 00:24:15.430
+the site is we've been able to
+take a lot of the things we've
+
+00:24:15.430 --> 00:24:18.580
+learned over the last few
+years about adaptive loading
+
+00:24:18.580 --> 00:24:20.440
+and different types of
+hardware, and making
+
+00:24:20.440 --> 00:24:22.240
+sure the site responds
+correctly to that,
+
+00:24:22.240 --> 00:24:26.590
+and really integrate that
+into the core of FB5.
+
+00:24:26.590 --> 00:24:28.450
+One of the core
+principles we considered
+
+00:24:28.450 --> 00:24:31.820
+when trying to go
+through and design FB5
+
+00:24:31.820 --> 00:24:35.290
+is, we didn't want to
+just build a site that
+
+00:24:35.290 --> 00:24:37.300
+responded based on screen size.
+
+00:24:37.300 --> 00:24:40.330
+We wanted to build a site
+that actually adapted based
+
+00:24:40.330 --> 00:24:42.520
+on the user's actual
+hardware-- so actually
+
+00:24:42.520 --> 00:24:45.520
+changing what loaded and
+how the site ran based
+
+00:24:45.520 --> 00:24:47.890
+on what hardware it's on,
+not merely responding based
+
+00:24:47.890 --> 00:24:49.630
+on changes in the screen size.
+
+00:24:49.630 --> 00:24:53.170
+There are a few steps that
+we took to implementing this.
+
+00:24:53.170 --> 00:24:55.090
+The first step is,
+we actually needed
+
+00:24:55.090 --> 00:24:57.940
+to define consistent buckets
+for how we were talking
+
+00:24:57.940 --> 00:24:59.357
+about different
+types of hardware
+
+00:24:59.357 --> 00:25:00.940
+and how we were
+considering a hardware
+
+00:25:00.940 --> 00:25:03.730
+classification across the
+site, across different teams,
+
+00:25:03.730 --> 00:25:06.058
+across different products.
+
+00:25:06.058 --> 00:25:07.850
+The next step was
+integrating these buckets
+
+00:25:07.850 --> 00:25:09.050
+into all of our logging--
+
+00:25:09.050 --> 00:25:10.640
+looking in at our
+performance logging,
+
+00:25:10.640 --> 00:25:13.610
+our general metric collection
+logging, our engagement
+
+00:25:13.610 --> 00:25:14.300
+logging--
+
+00:25:14.300 --> 00:25:17.055
+and really making sure we were
+able to see a holistic picture
+
+00:25:17.055 --> 00:25:19.430
+of how things were working
+based on these different types
+
+00:25:19.430 --> 00:25:20.910
+of hardware.
+
+00:25:20.910 --> 00:25:23.270
+Next, once we actually can
+see the full complete picture
+
+00:25:23.270 --> 00:25:25.520
+and understand what's going
+on for different users
+
+00:25:25.520 --> 00:25:27.710
+in different situations,
+we can actually
+
+00:25:27.710 --> 00:25:31.050
+adapt loading and change how
+the site runs, how it loads,
+
+00:25:31.050 --> 00:25:33.890
+what happens based
+on the hardware.
+
+00:25:33.890 --> 00:25:38.260
+So on mobile, grouping
+hardware is not so complicated.
+
+00:25:38.260 --> 00:25:41.278
+The mobile UA actually just
+tells us what this device is.
+
+00:25:41.278 --> 00:25:42.820
+And then, there's
+tons of public data
+
+00:25:42.820 --> 00:25:45.910
+sets where you can actually plug
+in which type of device it is
+
+00:25:45.910 --> 00:25:48.550
+and get information about
+the CPU clock speed,
+
+00:25:48.550 --> 00:25:50.780
+how many cores,
+things like that.
+
+00:25:50.780 --> 00:25:52.630
+And then, we can use
+this predefined concept
+
+00:25:52.630 --> 00:25:53.950
+of Year Class.
+
+00:25:53.950 --> 00:25:56.680
+Year Class is a very
+popular framework on Native.
+
+00:25:56.680 --> 00:26:00.670
+You can use it basically
+to figure out in what year
+
+00:26:00.670 --> 00:26:03.620
+would this device have been
+considered groundbreaking.
+
+00:26:03.620 --> 00:26:05.440
+So by looking at Year
+Class, and by looking
+
+00:26:05.440 --> 00:26:09.880
+at the public information about
+a device, and specifically
+
+00:26:09.880 --> 00:26:12.190
+what this model is,
+and how fast it is,
+
+00:26:12.190 --> 00:26:15.400
+we're able to have a general way
+to talk about different devices
+
+00:26:15.400 --> 00:26:17.440
+across both the web and Native.
+
+00:26:17.440 --> 00:26:19.670
+And that's pretty powerful.
+
+00:26:19.670 --> 00:26:22.690
+So on mobile, we can just look
+up exactly what this device is
+
+00:26:22.690 --> 00:26:26.150
+and get all of its hardware
+and performance information.
+
+00:26:26.150 --> 00:26:28.600
+However, in desktop,
+things aren't so obvious.
+
+00:26:28.600 --> 00:26:30.850
+Sure, the user agent tells
+us all right, is it a Mac?
+
+00:26:30.850 --> 00:26:32.260
+Is it a PC?
+
+00:26:32.260 --> 00:26:33.370
+Is it 64-bit?
+
+00:26:33.370 --> 00:26:35.650
+What browser it is--
+most of the time,
+
+00:26:35.650 --> 00:26:37.900
+everything is 64-bit nowadays.
+
+00:26:37.900 --> 00:26:40.660
+It doesn't really tell us
+much about the actual hardware
+
+00:26:40.660 --> 00:26:42.980
+that the user is on right now.
+
+00:26:42.980 --> 00:26:44.360
+So what do we have?
+
+00:26:44.360 --> 00:26:47.230
+Well, we have
+navigator.hardwareConcurrency
+
+00:26:47.230 --> 00:26:49.990
+which tells us generally
+how many CPU cores.
+
+00:26:49.990 --> 00:26:52.960
+And many browsers also give
+us navigator.deviceMemory
+
+00:26:52.960 --> 00:26:54.700
+which tells us how much RAM.
+
+00:26:54.700 --> 00:26:58.390
+So maybe on desktop, there's a
+way we can use these two fields
+
+00:26:58.390 --> 00:27:01.090
+and figure out some
+generalized buckets that we
+
+00:27:01.090 --> 00:27:04.750
+can apply consistently
+across different devices
+
+00:27:04.750 --> 00:27:09.800
+and different metrics.
+
+00:27:09.800 --> 00:27:11.482
+So the first step
+for doing this is
+
+00:27:11.482 --> 00:27:13.440
+to actually log hardware
+concurrency and device
+
+00:27:13.440 --> 00:27:15.490
+memory everywhere.
+
+00:27:15.490 --> 00:27:17.830
+Once we actually have
+these in our tables,
+
+00:27:17.830 --> 00:27:19.810
+we can build metrics
+and understand
+
+00:27:19.810 --> 00:27:22.400
+how things are different
+based on these devices.
+
+00:27:22.400 --> 00:27:25.420
+So once we have done that, the
+next step is actually group
+
+00:27:25.420 --> 00:27:27.220
+by hardware concurrency,
+device memory,
+
+00:27:27.220 --> 00:27:29.428
+OS when looking at
+a different metrics.
+
+00:27:29.428 --> 00:27:31.720
+And basically, come up with
+charts to really understand
+
+00:27:31.720 --> 00:27:33.190
+what the full picture is like.
+
+00:27:33.190 --> 00:27:35.950
+Once we did this, we
+start to see natural bands
+
+00:27:35.950 --> 00:27:37.900
+for different types
+of hardware and how
+
+00:27:37.900 --> 00:27:40.155
+they're performing and
+different barriers.
+
+00:27:40.155 --> 00:27:41.530
+So at Facebook,
+once we did this,
+
+00:27:41.530 --> 00:27:45.097
+we came up with five different
+classifications for devices.
+
+00:27:45.097 --> 00:27:46.930
+And the heuristics we
+used for them actually
+
+00:27:46.930 --> 00:27:49.170
+vary across different
+OS and browsers.
+
+00:27:49.170 --> 00:27:51.670
+So this is something that we
+did some analysis to figure out
+
+00:27:51.670 --> 00:27:54.358
+where the natural bands were.
+
+00:27:54.358 --> 00:27:56.650
+Once we figured out the
+buckets based on the groupings,
+
+00:27:56.650 --> 00:27:59.140
+we're able to apply it
+deep in our data sets,
+
+00:27:59.140 --> 00:28:00.820
+and log it everywhere,
+and actually
+
+00:28:00.820 --> 00:28:03.340
+the consistent way to talk
+about different performance
+
+00:28:03.340 --> 00:28:05.710
+and different device types
+across different metrics
+
+00:28:05.710 --> 00:28:07.150
+and across different teams.
+
+00:28:07.150 --> 00:28:09.760
+And this is pretty cool because
+when integrating performance
+
+00:28:09.760 --> 00:28:11.680
+logging, this
+hardware class reveals
+
+00:28:11.680 --> 00:28:13.138
+a much more complete picture.
+
+00:28:13.138 --> 00:28:15.055
+We can actually see
+everything that's going on
+
+00:28:15.055 --> 00:28:17.020
+and understand how
+the experience varies
+
+00:28:17.020 --> 00:28:20.800
+for different types of users in
+different situations much more
+
+00:28:20.800 --> 00:28:22.360
+holistically.
+
+00:28:22.360 --> 00:28:25.362
+So take, for
+example, this chart.
+
+00:28:25.362 --> 00:28:27.070
+So if you're just
+looking at the average,
+
+00:28:27.070 --> 00:28:29.440
+it looks like basically your
+performance stayed the same--
+
+00:28:29.440 --> 00:28:31.273
+maybe it got slightly
+worse, but overall, it
+
+00:28:31.273 --> 00:28:33.680
+looks like things are fairly
+consistent in performance.
+
+00:28:33.680 --> 00:28:35.513
+But when we break stuff
+up by hardware type,
+
+00:28:35.513 --> 00:28:37.550
+we can see that
+maybe on the 6th,
+
+00:28:37.550 --> 00:28:40.390
+we had an improvement
+ship for low-end devices.
+
+00:28:40.390 --> 00:28:41.890
+However, there is
+a large regression
+
+00:28:41.890 --> 00:28:43.120
+for mid-range devices.
+
+00:28:43.120 --> 00:28:45.010
+The way low-end devices
+and mid-range devices
+
+00:28:45.010 --> 00:28:47.440
+are going to load your site
+is going to be very different.
+
+00:28:47.440 --> 00:28:49.315
+Low-end devices are
+often going to be blocked
+
+00:28:49.315 --> 00:28:52.030
+on pricing JavaScript, actually
+executing the JavaScript
+
+00:28:52.030 --> 00:28:53.175
+and execution.
+
+00:28:53.175 --> 00:28:54.550
+Well, maybe
+mid-range, they might
+
+00:28:54.550 --> 00:28:56.938
+be blocked in-network or
+other different bottlenecks.
+
+00:28:56.938 --> 00:28:58.480
+The way users interact
+with your site
+
+00:28:58.480 --> 00:29:01.510
+is going to be very different
+on both types of devices too.
+
+00:29:01.510 --> 00:29:04.750
+Low-end users might
+engage with your site
+
+00:29:04.750 --> 00:29:06.300
+in different ways
+and different spots
+
+00:29:06.300 --> 00:29:07.690
+than mid-range users might.
+
+00:29:07.690 --> 00:29:09.490
+So you might see
+your metric shift
+
+00:29:09.490 --> 00:29:12.690
+as your mid-range users end up
+in a slower performance class.
+
+00:29:12.690 --> 00:29:14.590
+We won't actually know why.
+
+00:29:14.590 --> 00:29:17.110
+So by breaking stuff up by
+different hardware type,
+
+00:29:17.110 --> 00:29:19.000
+you're actually able
+to see and pinpoint
+
+00:29:19.000 --> 00:29:20.568
+where your regressions
+are happening.
+
+00:29:20.568 --> 00:29:22.360
+The other thing that
+this can help you with
+
+00:29:22.360 --> 00:29:23.990
+is shifts in user population.
+
+00:29:23.990 --> 00:29:26.020
+Let's say, that a low-end
+device suddenly goes
+
+00:29:26.020 --> 00:29:27.270
+on sale in an emerging market.
+
+00:29:27.270 --> 00:29:28.728
+And all of a sudden,
+you have a lot
+
+00:29:28.728 --> 00:29:30.130
+of users on your low-end device.
+
+00:29:30.130 --> 00:29:32.110
+If you're just looking
+at the overall average,
+
+00:29:32.110 --> 00:29:34.460
+you might think, oh, I have
+this big regression right now.
+
+00:29:34.460 --> 00:29:36.127
+When in reality,
+there's just more users
+
+00:29:36.127 --> 00:29:38.952
+taking advantage of the
+promotion on a low-end device.
+
+00:29:38.952 --> 00:29:40.660
+So by breaking stuff
+up, you can actually
+
+00:29:40.660 --> 00:29:44.290
+see if you're loading
+consistently or not
+
+00:29:44.290 --> 00:29:46.420
+and counteract changes
+in just populations
+
+00:29:46.420 --> 00:29:49.460
+on different types of devices.
+
+00:29:49.460 --> 00:29:53.387
+So once we have
+this core metrics,
+
+00:29:53.387 --> 00:29:54.970
+and we're able to
+break it up and have
+
+00:29:54.970 --> 00:29:57.010
+a consistent way
+in understanding
+
+00:29:57.010 --> 00:29:59.560
+of what different types of
+hardware, we can actually
+
+00:29:59.560 --> 00:30:01.730
+consider this in
+our core frameworks.
+
+00:30:01.730 --> 00:30:05.050
+One of the first things we did
+is we looked at animations.
+
+00:30:05.050 --> 00:30:07.030
+Animations take time to render.
+
+00:30:07.030 --> 00:30:08.858
+The browser will attempt
+to paint a frame.
+
+00:30:08.858 --> 00:30:10.900
+Then if it cancels, it
+just throws all that work.
+
+00:30:10.900 --> 00:30:13.210
+But every frame the
+browser is attempting
+
+00:30:13.210 --> 00:30:15.145
+to paint something and
+render an animation,
+
+00:30:15.145 --> 00:30:17.020
+it could be doing
+something else and actually
+
+00:30:17.020 --> 00:30:18.400
+helping you load your page.
+
+00:30:18.400 --> 00:30:21.250
+So on low-end devices,
+animations look like this.
+
+00:30:21.250 --> 00:30:22.480
+They were somewhat janky.
+
+00:30:22.480 --> 00:30:24.610
+They would render like
+a frame, wait awhile,
+
+00:30:24.610 --> 00:30:25.660
+show another frame.
+
+00:30:25.660 --> 00:30:27.100
+And eventually,
+stuff would load.
+
+00:30:27.100 --> 00:30:29.950
+But it's not a good experience
+this kind of animation.
+
+00:30:29.950 --> 00:30:31.780
+One of the first things
+we did is, we just
+
+00:30:31.780 --> 00:30:35.660
+stop shipping animations in many
+instances on low-end devices.
+
+00:30:35.660 --> 00:30:38.050
+This enabled many more users
+to finish loading the page
+
+00:30:38.050 --> 00:30:39.425
+and actually engage
+with the site
+
+00:30:39.425 --> 00:30:41.797
+much more because
+they already weren't
+
+00:30:41.797 --> 00:30:43.630
+getting much benefit
+from the animation that
+
+00:30:43.630 --> 00:30:44.890
+wasn't really loading.
+
+00:30:44.890 --> 00:30:47.310
+And now, that wasted work
+is no longer happening.
+
+00:30:47.310 --> 00:30:51.320
+And they're actually able to
+see the page much quicker.
+
+00:30:51.320 --> 00:30:53.680
+Another thing we do is
+on our mobile website.
+
+00:30:53.680 --> 00:30:56.140
+Our mobile website we have
+a totally different site
+
+00:30:56.140 --> 00:31:00.000
+for Android phones and
+iPhones that have touch
+
+00:31:00.000 --> 00:31:03.730
+screens and have
+powerful CPUs that
+
+00:31:03.730 --> 00:31:06.370
+can run a lot of JavaScript
+versus feature phones
+
+00:31:06.370 --> 00:31:08.920
+that maybe don't have
+as many powerful CPUs
+
+00:31:08.920 --> 00:31:10.930
+and can't run
+JavaScript as well.
+
+00:31:10.930 --> 00:31:14.890
+Our feature phone site is
+mostly static HTML, a little bit
+
+00:31:14.890 --> 00:31:16.780
+of CSS, very few images.
+
+00:31:16.780 --> 00:31:20.110
+It's really optimized for
+this low-powered device case.
+
+00:31:20.110 --> 00:31:22.032
+Even the feature
+phone screen is big,
+
+00:31:22.032 --> 00:31:23.990
+even when the feature
+phone has a touch screen,
+
+00:31:23.990 --> 00:31:26.200
+this is an instance where we're
+not just scaling the site based
+
+00:31:26.200 --> 00:31:28.450
+on screen size, we actually
+have two totally different
+
+00:31:28.450 --> 00:31:30.820
+experiences based on
+the underlying hardware
+
+00:31:30.820 --> 00:31:34.670
+and really optimized
+for that hardware.
+
+00:31:34.670 --> 00:31:37.250
+One of the cool things we're
+doing too and especially
+
+00:31:37.250 --> 00:31:40.580
+on the FB5 site
+is we're actually
+
+00:31:40.580 --> 00:31:44.240
+taking advantage of the fact
+that there is this trade-off
+
+00:31:44.240 --> 00:31:47.210
+right now on the web between
+loading quickly and responding
+
+00:31:47.210 --> 00:31:48.530
+quickly.
+
+00:31:48.530 --> 00:31:50.270
+When you're loading
+your site, often, you
+
+00:31:50.270 --> 00:31:52.160
+get advice to chunk up
+your JavaScript that's
+
+00:31:52.160 --> 00:31:54.035
+needed to load the site
+into different chunks
+
+00:31:54.035 --> 00:31:56.248
+and yield to the browser
+in between each chunk,
+
+00:31:56.248 --> 00:31:58.540
+so the browser can dispatch
+any events that may happen.
+
+00:31:58.540 --> 00:31:59.960
+So if the user
+clicks on something,
+
+00:31:59.960 --> 00:32:02.543
+you don't actually have to wait
+for the entire load to finish.
+
+00:32:02.543 --> 00:32:05.038
+You can respond to that event
+as soon as the click happens.
+
+00:32:05.038 --> 00:32:07.580
+On high-end devices, yielding
+to the browser after each chunk
+
+00:32:07.580 --> 00:32:08.855
+is fairly cheap.
+
+00:32:08.855 --> 00:32:10.730
+The browser will quickly
+see there's no event
+
+00:32:10.730 --> 00:32:12.578
+and just go back to
+running your JavaScript.
+
+00:32:12.578 --> 00:32:14.870
+However, on low-end devices,
+this can be somewhat slow.
+
+00:32:14.870 --> 00:32:16.675
+And it can often take
+quite a bit of time.
+
+00:32:16.675 --> 00:32:18.050
+So there's a
+trade-off right now,
+
+00:32:18.050 --> 00:32:21.070
+where you want to chunk up your
+JavaScript into small chunks.
+
+00:32:21.070 --> 00:32:23.325
+But on low-end devices, if
+you make too small chunks,
+
+00:32:23.325 --> 00:32:25.700
+you're actually going to slow
+down the overall experience
+
+00:32:25.700 --> 00:32:28.390
+by quite a bit.
+
+00:32:28.390 --> 00:32:30.780
+So one thing we
+have been able to do
+
+00:32:30.780 --> 00:32:33.390
+is on-- in React in
+current mode that Addy
+
+00:32:33.390 --> 00:32:36.480
+talked about earlier,
+one of the core things
+
+00:32:36.480 --> 00:32:37.920
+is this concept of a scheduler.
+
+00:32:37.920 --> 00:32:39.390
+This is an experimental API.
+
+00:32:39.390 --> 00:32:41.680
+It's almost definitely
+going to change.
+
+00:32:41.680 --> 00:32:43.153
+But one thing we're
+doing right now
+
+00:32:43.153 --> 00:32:44.820
+is if it's on a low-end
+device, Schedule
+
+00:32:44.820 --> 00:32:46.950
+has this concept of
+forcing a frame rate.
+
+00:32:46.950 --> 00:32:48.510
+Generally, Scheduler
+and React is
+
+00:32:48.510 --> 00:32:50.190
+going to try to
+schedule each frame
+
+00:32:50.190 --> 00:32:52.023
+and run it whatever the
+browser is currently
+
+00:32:52.023 --> 00:32:55.265
+running at-- so 60 FPS, 30
+FPS, something like that.
+
+00:32:55.265 --> 00:32:56.640
+However, by forcing
+a frame rate,
+
+00:32:56.640 --> 00:32:58.560
+we're able to basically
+tell React, all right,
+
+00:32:58.560 --> 00:33:00.602
+ignored what the browser's
+trying to do right now
+
+00:33:00.602 --> 00:33:02.040
+and just take longer.
+
+00:33:02.040 --> 00:33:06.000
+Run it 15 FPS and actually run
+more JavaScript each frame.
+
+00:33:06.000 --> 00:33:08.520
+So the user can actually
+load more of the site
+
+00:33:08.520 --> 00:33:10.210
+before we check for each event.
+
+00:33:10.210 --> 00:33:13.013
+So yes, some events interactions
+become slightly slower.
+
+00:33:13.013 --> 00:33:15.180
+But overall, it's a much
+better experience for users
+
+00:33:15.180 --> 00:33:17.790
+because most users are just
+waiting for your site to load.
+
+00:33:17.790 --> 00:33:21.130
+And this can happen
+now much, much quicker.
+
+00:33:21.130 --> 00:33:23.850
+One interesting thing here too
+is that hopefully, eventually,
+
+00:33:23.850 --> 00:33:26.340
+this trade-off goes away
+altogether with this new API
+
+00:33:26.340 --> 00:33:27.750
+isInputPending.
+
+00:33:27.750 --> 00:33:29.400
+Eventually, we hope
+is isInputPending
+
+00:33:29.400 --> 00:33:30.810
+will ship everywhere.
+
+00:33:30.810 --> 00:33:32.310
+And it'll just be
+a quick, cheap way
+
+00:33:32.310 --> 00:33:34.440
+to check is their
+input right now.
+
+00:33:34.440 --> 00:33:35.940
+So then, this
+trade-off will be gone
+
+00:33:35.940 --> 00:33:38.340
+because we can just run all of
+our JavaScript during loading.
+
+00:33:38.340 --> 00:33:40.215
+And we don't actually
+have to block stuff up.
+
+00:33:40.215 --> 00:33:41.550
+We can still be interactive.
+
+00:33:41.550 --> 00:33:43.950
+Hopefully, this gets
+integrated into React too.
+
+00:33:43.950 --> 00:33:46.740
+So if you're using the latest
+React, once this ships,
+
+00:33:46.740 --> 00:33:49.550
+you should be able
+to get this for free.
+
+00:33:49.550 --> 00:33:51.223
+So by using
+consistent definitions
+
+00:33:51.223 --> 00:33:52.640
+for our bucketing
+and our logging,
+
+00:33:52.640 --> 00:33:55.370
+and adapting based on those
+definitions consistently,
+
+00:33:55.370 --> 00:33:58.190
+we're actually able to share
+this understanding of how
+
+00:33:58.190 --> 00:34:01.220
+the site works across different
+teams, across different orgs,
+
+00:34:01.220 --> 00:34:03.720
+and really figure out what
+is this overall picture
+
+00:34:03.720 --> 00:34:04.470
+that we're seeing.
+
+00:34:04.470 --> 00:34:07.190
+So when metrics change based
+on something one team does,
+
+00:34:07.190 --> 00:34:09.980
+we know that it's based on this
+consistent hardware definition.
+
+00:34:09.980 --> 00:34:12.409
+And it's a lot easier to
+pinpoint changes and see
+
+00:34:12.409 --> 00:34:13.909
+what's going on.
+
+00:34:13.909 --> 00:34:17.451
+Now, I'm going to invite
+Addy back to take it home.
+
+00:34:17.451 --> 00:34:18.882
+[APPLAUSE]
+
+00:34:21.744 --> 00:34:24.005
+ADDY OSMANI: Thank you, Nate.
+
+00:34:24.005 --> 00:34:27.880
+I had some better network
+service in the back.
+
+00:34:27.880 --> 00:34:30.370
+So that's it for
+adaptive loading.
+
+00:34:30.370 --> 00:34:34.600
+Today, we talked about adaptive
+media loading, code serving,
+
+00:34:34.600 --> 00:34:36.040
+data fetching.
+
+00:34:36.040 --> 00:34:39.159
+In general, a lot of these
+ideas have got some promise.
+
+00:34:39.159 --> 00:34:40.600
+And we're very
+excited about them.
+
+00:34:40.600 --> 00:34:43.270
+They do have some
+potential drawbacks
+
+00:34:43.270 --> 00:34:45.489
+that are worth being aware of.
+
+00:34:45.489 --> 00:34:47.469
+Adaptive loading
+does use this idea
+
+00:34:47.469 --> 00:34:50.320
+of often point-in-time
+information about the user's
+
+00:34:50.320 --> 00:34:52.870
+device and network constraints.
+
+00:34:52.870 --> 00:34:54.663
+And you do want to
+keep in mind like what
+
+00:34:54.663 --> 00:34:56.080
+impact is going
+that going to have
+
+00:34:56.080 --> 00:34:58.010
+on things like HTTP caching.
+
+00:34:58.010 --> 00:35:01.170
+So just be very careful with
+adopting these techniques.
+
+00:35:01.170 --> 00:35:02.920
+I do think they can
+have a lot of promise.
+
+00:35:02.920 --> 00:35:06.580
+But that nuance is probably
+useful to talk about as well.
+
+00:35:06.580 --> 00:35:10.550
+And adaptive loading isn't this
+groundbreaking, huge thing,
+
+00:35:10.550 --> 00:35:11.050
+right?
+
+00:35:11.050 --> 00:35:13.515
+It's an incremental practice.
+
+00:35:13.515 --> 00:35:14.890
+Over many, many
+years, we've been
+
+00:35:14.890 --> 00:35:17.860
+talking about this idea of
+trying to increasingly become
+
+00:35:17.860 --> 00:35:20.060
+more lazy first
+with our content.
+
+00:35:20.060 --> 00:35:21.550
+And so adaptive
+loading is really
+
+00:35:21.550 --> 00:35:24.200
+just an incremental pattern
+on top of those things.
+
+00:35:24.200 --> 00:35:26.470
+And so in general, even if
+you take nothing else away
+
+00:35:26.470 --> 00:35:29.290
+from this talk, try to
+reduce, defer, and coalesce
+
+00:35:29.290 --> 00:35:32.020
+the resources that you're
+serving down to your users.
+
+00:35:32.020 --> 00:35:35.290
+Ultimately, what we're trying
+to do with these patterns
+
+00:35:35.290 --> 00:35:40.700
+is build experiences that
+have inclusivity in mind.
+
+00:35:40.700 --> 00:35:42.280
+Though the core
+experience ideally
+
+00:35:42.280 --> 00:35:45.730
+that works great for
+everybody and toggle or layer
+
+00:35:45.730 --> 00:35:47.530
+on features that can
+make it even more
+
+00:35:47.530 --> 00:35:52.460
+awesome if a user has enough
+memory, CPU, or a fast network.
+
+00:35:52.460 --> 00:35:54.220
+So that's it for
+adaptive loading.
+
+00:35:54.220 --> 00:35:55.030
+Thank you.
+
+00:35:55.030 --> 00:35:55.930
+[APPLAUSE]
+
+00:35:55.930 --> 00:35:58.380
+[MUSIC PLAYING]
+

@@ -1,0 +1,2650 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:02.922
+[MUSIC PLAYING]
+
+00:00:06.063 --> 00:00:06.730
+YOAV WEISS: Hey.
+
+00:00:06.730 --> 00:00:07.810
+Welcome.
+
+00:00:07.810 --> 00:00:08.950
+I'm Yoav Weiss.
+
+00:00:08.950 --> 00:00:12.400
+I work on Chrome, co-chairing
+the Web Platform Incubation
+
+00:00:12.400 --> 00:00:16.480
+Community Group at the
+W3C and a Blink API owner,
+
+00:00:16.480 --> 00:00:17.722
+among other roles.
+
+00:00:17.722 --> 00:00:19.180
+CHRIS WILSON: And
+I'm Chris Wilson.
+
+00:00:19.180 --> 00:00:22.480
+I'm also a co-chair of the Web
+Incubation Community Group,
+
+00:00:22.480 --> 00:00:26.810
+and I'm a web developer
+advocate at Google.
+
+00:00:26.810 --> 00:00:30.810
+We're here to discuss how the
+web platform continues to grow.
+
+00:00:30.810 --> 00:00:32.900
+But more particularly,
+to explain
+
+00:00:32.900 --> 00:00:35.240
+how Chromium
+manages new features
+
+00:00:35.240 --> 00:00:37.670
+added to the web
+platform and how
+
+00:00:37.670 --> 00:00:40.400
+Google contributes to open
+standards and works together
+
+00:00:40.400 --> 00:00:42.470
+with the community.
+
+00:00:42.470 --> 00:00:45.920
+Now, before we get going, we
+wanted to define a few terms.
+
+00:00:45.920 --> 00:00:48.692
+Because although you may have
+heard these all the time,
+
+00:00:48.692 --> 00:00:50.150
+there are some
+subtle distinctions,
+
+00:00:50.150 --> 00:00:52.170
+and they kind of get lost.
+
+00:00:52.170 --> 00:00:54.330
+Now, Chrome, I would
+hope everyone knows,
+
+00:00:54.330 --> 00:00:56.240
+is Google's browser.
+
+00:00:56.240 --> 00:00:59.180
+This wraps in a bunch of Google
+services and user experience
+
+00:00:59.180 --> 00:01:00.170
+features.
+
+00:01:00.170 --> 00:01:02.720
+But Chrome is built on
+top of Chromium, which
+
+00:01:02.720 --> 00:01:04.860
+is an open source project.
+
+00:01:04.860 --> 00:01:07.340
+And that core open
+source project
+
+00:01:07.340 --> 00:01:09.860
+also gets used by a
+number of other browsers--
+
+00:01:09.860 --> 00:01:13.580
+Edge, Samsung, Internet
+Browser, many others.
+
+00:01:13.580 --> 00:01:16.730
+Blink is the web platform
+engine inside that.
+
+00:01:16.730 --> 00:01:18.860
+Sometimes we'll say
+Blink when really we
+
+00:01:18.860 --> 00:01:20.840
+mean Chromium, and vice versa.
+
+00:01:20.840 --> 00:01:21.410
+Sorry.
+
+00:01:21.410 --> 00:01:23.070
+We've tried to script
+this really well,
+
+00:01:23.070 --> 00:01:25.910
+but I'm not positive
+we'll do it right.
+
+00:01:25.910 --> 00:01:28.610
+And Blink is built
+around the implementation
+
+00:01:28.610 --> 00:01:30.560
+of a number of features--
+
+00:01:30.560 --> 00:01:33.050
+open standards based
+web platform core
+
+00:01:33.050 --> 00:01:35.750
+features that we've all
+known to come and love
+
+00:01:35.750 --> 00:01:39.920
+and HTML, CSS, JavaScript,
+a bunch of other APIs.
+
+00:01:39.920 --> 00:01:42.620
+Most of those are defined
+in open collaborative forums
+
+00:01:42.620 --> 00:01:47.180
+like the W3C, the
+IETF, the WHATWG.
+
+00:01:47.180 --> 00:01:50.310
+The last bit is one that
+Yoav and I already mentioned,
+
+00:01:50.310 --> 00:01:53.360
+which is the Web Platform
+Incubation Community Group.
+
+00:01:53.360 --> 00:01:56.270
+We usually call this the WICG.
+
+00:01:56.270 --> 00:01:59.870
+We co-chair this, along with
+Marcos Caceres from Mozilla
+
+00:01:59.870 --> 00:02:02.090
+and Travis Leithead
+from Microsoft.
+
+00:02:02.090 --> 00:02:04.190
+And this is the
+place where we start
+
+00:02:04.190 --> 00:02:07.010
+the journey of a lot of
+these collaborative efforts.
+
+00:02:07.010 --> 00:02:09.530
+Now, we should be clear
+that open source is not
+
+00:02:09.530 --> 00:02:11.810
+the same as open standards.
+
+00:02:11.810 --> 00:02:14.420
+That's the core of what we want
+to discuss today, really-- how
+
+00:02:14.420 --> 00:02:16.760
+these processes of
+managing an open source
+
+00:02:16.760 --> 00:02:19.490
+project like Chromium
+interacts together
+
+00:02:19.490 --> 00:02:21.830
+with the processes of
+managing an open standards
+
+00:02:21.830 --> 00:02:23.720
+platform like the web.
+
+00:02:26.820 --> 00:02:29.700
+YOAV WEISS: So, yeah,
+we're here at 10:00 AM
+
+00:02:29.700 --> 00:02:32.310
+to talk about
+processes, and I want
+
+00:02:32.310 --> 00:02:35.280
+to apologize about that,
+because no one really
+
+00:02:35.280 --> 00:02:37.440
+likes bureaucracy.
+
+00:02:37.440 --> 00:02:39.840
+Everyone have horror
+stories of processes
+
+00:02:39.840 --> 00:02:42.750
+that went horribly
+wrong or make no sense.
+
+00:02:42.750 --> 00:02:47.790
+And bureaucrat is
+rarely a compliment.
+
+00:02:47.790 --> 00:02:50.610
+But at the same time,
+bureaucracy can be important.
+
+00:02:50.610 --> 00:02:53.130
+Coordinating humans is hard.
+
+00:02:53.130 --> 00:02:57.000
+Chromium is a huge open source
+project that's seeing 90,000
+
+00:02:57.000 --> 00:03:01.950
+commits a year from over 2,000
+different contributors working
+
+00:03:01.950 --> 00:03:05.010
+for 55 different
+companies, potentially
+
+00:03:05.010 --> 00:03:08.870
+with multiple organizations
+inside of each company.
+
+00:03:08.870 --> 00:03:11.610
+And each one of those parties
+have slightly different
+
+00:03:11.610 --> 00:03:13.800
+interests.
+
+00:03:13.800 --> 00:03:16.170
+It's also important to
+recognize that a lot
+
+00:03:16.170 --> 00:03:19.960
+of those contributions are
+coming from Google employees,
+
+00:03:19.960 --> 00:03:25.750
+but non-Google contributors are
+almost 20% of that pie chart.
+
+00:03:25.750 --> 00:03:29.910
+And as someone who was a
+Chromium contributor many years
+
+00:03:29.910 --> 00:03:32.730
+before becoming a
+Google employee,
+
+00:03:32.730 --> 00:03:35.860
+that's something that's
+near and dear to my heart.
+
+00:03:35.860 --> 00:03:40.440
+So in order to make sure
+that all those contributions
+
+00:03:40.440 --> 00:03:45.090
+from different parties all make
+sense, we need an open process.
+
+00:03:45.090 --> 00:03:47.100
+We needed to make sure
+that the project is
+
+00:03:47.100 --> 00:03:48.990
+making progress
+towards its goals
+
+00:03:48.990 --> 00:03:52.623
+and remains true to its mission.
+
+00:03:52.623 --> 00:03:54.290
+CHRIS WILSON: And
+it's important to note
+
+00:03:54.290 --> 00:03:56.570
+that open standards
+organizations also
+
+00:03:56.570 --> 00:03:58.200
+have their own processes.
+
+00:03:58.200 --> 00:04:00.650
+Now, I'm going to
+focus mostly on the W3C
+
+00:04:00.650 --> 00:04:02.660
+during the course of this talk.
+
+00:04:02.660 --> 00:04:05.570
+I'm on their advisory board, so
+I have the most insight there.
+
+00:04:05.570 --> 00:04:08.900
+But the diversity across other
+open standards organizations
+
+00:04:08.900 --> 00:04:11.130
+is actually fairly similar.
+
+00:04:11.130 --> 00:04:14.390
+The W3C has over 400
+different member companies,
+
+00:04:14.390 --> 00:04:17.060
+participating in more than
+40 active working groups
+
+00:04:17.060 --> 00:04:19.640
+and interest groups,
+and 300 community
+
+00:04:19.640 --> 00:04:23.540
+groups that kind of explore
+different topics in a less
+
+00:04:23.540 --> 00:04:25.160
+organized way.
+
+00:04:25.160 --> 00:04:29.120
+The main document that
+governs the W3C's process
+
+00:04:29.120 --> 00:04:31.850
+is more than 50 pages long.
+
+00:04:31.850 --> 00:04:33.950
+So there are lots of
+different people, lots
+
+00:04:33.950 --> 00:04:35.450
+of different needs involved.
+
+00:04:35.450 --> 00:04:37.490
+And in this context,
+Chromium's engagement
+
+00:04:37.490 --> 00:04:39.920
+is really just one
+piece that needs to fit
+
+00:04:39.920 --> 00:04:42.480
+into that standards process.
+
+00:04:42.480 --> 00:04:44.270
+In fact, although
+Google may dominate
+
+00:04:44.270 --> 00:04:46.820
+the participation in
+Chromium, we're not at all
+
+00:04:46.820 --> 00:04:48.500
+the majority in standards.
+
+00:04:48.500 --> 00:04:50.810
+Yoav just showed you this
+pie chart of participants
+
+00:04:50.810 --> 00:04:52.340
+in Chromium on the left.
+
+00:04:52.340 --> 00:04:53.840
+The graph on the
+right is the number
+
+00:04:53.840 --> 00:04:58.030
+of individual participants
+in the W3C by company.
+
+00:04:58.030 --> 00:05:01.400
+Now, although Google is
+still that largest slice
+
+00:05:01.400 --> 00:05:02.600
+single company--
+
+00:05:02.600 --> 00:05:05.150
+we do believe in and we
+participate really heavily
+
+00:05:05.150 --> 00:05:07.700
+in open standards efforts--
+
+00:05:07.700 --> 00:05:11.090
+we're only about an eighth
+of the overall participation.
+
+00:05:11.090 --> 00:05:15.440
+In fact, if you add up all of
+the Chromium browsers together,
+
+00:05:15.440 --> 00:05:19.070
+like Microsoft's participation
+and Samsung's participation
+
+00:05:19.070 --> 00:05:22.490
+and Chrome, you'll find this
+is still less than a quarter
+
+00:05:22.490 --> 00:05:25.280
+of the whole
+participation at the W3C.
+
+00:05:25.280 --> 00:05:27.350
+The web is much broader
+than just Chromium.
+
+00:05:29.980 --> 00:05:33.590
+Now, Chrome is, however, fully
+committed to the broader web.
+
+00:05:33.590 --> 00:05:35.560
+In fact, the first
+half of our mission
+
+00:05:35.560 --> 00:05:38.680
+is explicitly to make the
+web the premier platform
+
+00:05:38.680 --> 00:05:41.415
+for its experiencing
+the world's information.
+
+00:05:41.415 --> 00:05:42.790
+The second half
+of our mission is
+
+00:05:42.790 --> 00:05:44.320
+to deliver the
+best implementation
+
+00:05:44.320 --> 00:05:46.000
+of that platform.
+
+00:05:46.000 --> 00:05:48.580
+Now, it's natural to
+ask, why do we really
+
+00:05:48.580 --> 00:05:50.410
+care so much about the web?
+
+00:05:50.410 --> 00:05:52.990
+We do work on at least one
+other premier native platform.
+
+00:05:52.990 --> 00:05:55.030
+And of course, our
+revenue doesn't come
+
+00:05:55.030 --> 00:05:56.920
+directly from the web itself.
+
+00:05:56.920 --> 00:05:59.080
+We don't sell Chrome.
+
+00:05:59.080 --> 00:06:02.590
+But the answer is one we've
+talked about many, many times,
+
+00:06:02.590 --> 00:06:05.410
+starting with the very
+first Chrome Dev Summit.
+
+00:06:05.410 --> 00:06:07.180
+Those of you who
+participated in that
+
+00:06:07.180 --> 00:06:11.170
+might recognize this slide
+and the SLICE acronym.
+
+00:06:11.170 --> 00:06:14.950
+We believe a Secure, Linkable,
+Indexable, Composable,
+
+00:06:14.950 --> 00:06:17.890
+Ephemeral platform is critical.
+
+00:06:17.890 --> 00:06:20.800
+Above all, the fact that
+this platform is open
+
+00:06:20.800 --> 00:06:24.550
+makes it more powerful
+than any single vendor.
+
+00:06:24.550 --> 00:06:26.140
+Yes, even Google.
+
+00:06:26.140 --> 00:06:27.940
+So these attributes
+make a shared openly
+
+00:06:27.940 --> 00:06:31.847
+defined platform, this critical
+value for users and developers.
+
+00:06:31.847 --> 00:06:34.180
+And although these core
+critical attributes don't really
+
+00:06:34.180 --> 00:06:36.070
+change over time,
+like we're pretty much
+
+00:06:36.070 --> 00:06:39.770
+using the same slide
+from seven years ago--
+
+00:06:39.770 --> 00:06:41.830
+well, six years ago--
+
+00:06:41.830 --> 00:06:45.160
+we want the web to always be
+open, secure, and ephemeral.
+
+00:06:45.160 --> 00:06:47.170
+It's important to recognize
+that the web needs
+
+00:06:47.170 --> 00:06:50.260
+to evolve as computing evolves.
+
+00:06:50.260 --> 00:06:53.830
+A viable platform cannot
+afford to stand still.
+
+00:06:53.830 --> 00:06:56.710
+Computing and how
+we users experience
+
+00:06:56.710 --> 00:06:59.410
+it continues to march
+forward, and so does
+
+00:06:59.410 --> 00:07:01.750
+our expectations of computing.
+
+00:07:01.750 --> 00:07:05.230
+When I first started working on
+the web platform 26 years ago,
+
+00:07:05.230 --> 00:07:07.300
+it was a radically
+different world,
+
+00:07:07.300 --> 00:07:11.033
+when graphical UIs were still
+a relatively new concept.
+
+00:07:11.033 --> 00:07:12.700
+The smartphone that's
+in my pocket right
+
+00:07:12.700 --> 00:07:16.240
+now, the platform for most
+of my web consumption,
+
+00:07:16.240 --> 00:07:19.030
+that's more powerful than
+the Cray supercomputers
+
+00:07:19.030 --> 00:07:22.150
+that I worked with at that time.
+
+00:07:22.150 --> 00:07:24.910
+Now, even in more recent times,
+it took years for the web
+
+00:07:24.910 --> 00:07:27.910
+to pivot, even as
+a content platform,
+
+00:07:27.910 --> 00:07:30.160
+from desktop to mobile.
+
+00:07:30.160 --> 00:07:31.930
+The web was slow to
+move from this kind
+
+00:07:31.930 --> 00:07:35.290
+of hard-coded, pixel-perfect
+desktop experience
+
+00:07:35.290 --> 00:07:39.450
+to a mobile first
+development model.
+
+00:07:39.450 --> 00:07:41.570
+YOAV WEISS: And if we
+want the web to remain
+
+00:07:41.570 --> 00:07:44.210
+relevant for years
+to come, there's
+
+00:07:44.210 --> 00:07:47.670
+a lot of work to be done.
+
+00:07:47.670 --> 00:07:48.170
+so?
+
+00:07:48.170 --> 00:07:51.410
+We need the platform to
+evolve, but what's the rush?
+
+00:07:51.410 --> 00:07:55.250
+Admittedly, we are shipping
+a lot of new features.
+
+00:07:55.250 --> 00:07:57.110
+Can we just slow down?
+
+00:07:57.110 --> 00:07:59.210
+Well, there are
+multiple areas where
+
+00:07:59.210 --> 00:08:04.150
+we think the web needs
+to urgently improve.
+
+00:08:04.150 --> 00:08:07.760
+Developer experience is one,
+because we see developers
+
+00:08:07.760 --> 00:08:11.390
+working around the web
+platform's basic model of page
+
+00:08:11.390 --> 00:08:14.630
+navigations to create
+different models that fit them
+
+00:08:14.630 --> 00:08:16.250
+and their users better.
+
+00:08:16.250 --> 00:08:18.530
+We see them-- well, you--
+
+00:08:18.530 --> 00:08:22.730
+using complex tools in order
+to solve common problems.
+
+00:08:22.730 --> 00:08:24.600
+And we feel like we
+need to do better.
+
+00:08:24.600 --> 00:08:26.600
+We need to provide better
+building blocks that
+
+00:08:26.600 --> 00:08:29.330
+will enable developers
+to easily create
+
+00:08:29.330 --> 00:08:32.630
+the experiences they need.
+
+00:08:32.630 --> 00:08:35.120
+And the three talks coming
+right after this one
+
+00:08:35.120 --> 00:08:39.440
+will outline exactly what
+we're doing on that front.
+
+00:08:39.440 --> 00:08:42.620
+We also see users
+spending more and more
+
+00:08:42.620 --> 00:08:46.010
+of their time in native apps and
+less of their time on the web.
+
+00:08:46.010 --> 00:08:49.280
+We need the web to match
+those users' expectations
+
+00:08:49.280 --> 00:08:53.390
+of mobile experiences.
+
+00:08:53.390 --> 00:08:56.030
+Highly related to that,
+there's the performance front,
+
+00:08:56.030 --> 00:09:00.200
+where we have data that
+shows that most users still
+
+00:09:00.200 --> 00:09:05.300
+have subpar experiences on the
+web, which we know is causing
+
+00:09:05.300 --> 00:09:07.070
+them frustration, at best.
+
+00:09:07.070 --> 00:09:12.670
+And we need a faster web if we
+want our users to stick around.
+
+00:09:12.670 --> 00:09:15.250
+There are also new
+user interaction models
+
+00:09:15.250 --> 00:09:16.630
+that are arriving--
+
+00:09:16.630 --> 00:09:21.040
+most notably, VR and AR-- that
+the web needs to be ready for.
+
+00:09:21.040 --> 00:09:24.760
+And finally, computing
+has moved to mobile.
+
+00:09:24.760 --> 00:09:26.590
+The web needs to
+be as present there
+
+00:09:26.590 --> 00:09:32.260
+as it is on desktop, because
+this is where the users are.
+
+00:09:32.260 --> 00:09:36.160
+So as the project is focused
+on improving the web platform,
+
+00:09:36.160 --> 00:09:40.480
+we have two major ways, two
+major tools, to do that--
+
+00:09:40.480 --> 00:09:44.590
+adding new features that will
+help developers and users
+
+00:09:44.590 --> 00:09:49.610
+and removing user-hostile
+features from the platform.
+
+00:09:49.610 --> 00:09:53.080
+Both of these have obvious
+benefits, but also slightly
+
+00:09:53.080 --> 00:09:56.350
+less obvious risks.
+
+00:09:56.350 --> 00:09:59.440
+Removing features can
+harm web compatibility
+
+00:09:59.440 --> 00:10:02.110
+and break some
+content that relies
+
+00:10:02.110 --> 00:10:04.660
+on those harmful features.
+
+00:10:04.660 --> 00:10:08.380
+But we feel strongly that the
+platform cannot live forever
+
+00:10:08.380 --> 00:10:10.600
+with the burden
+of past mistakes.
+
+00:10:10.600 --> 00:10:12.700
+And given our market
+share, we feel
+
+00:10:12.700 --> 00:10:18.040
+like it's our responsibility to
+take on that compatibility risk
+
+00:10:18.040 --> 00:10:21.100
+and enable other
+browsers to follow.
+
+00:10:21.100 --> 00:10:23.680
+And adding new features,
+especially when
+
+00:10:23.680 --> 00:10:26.740
+we are the first to ship
+them, carries another risk--
+
+00:10:26.740 --> 00:10:28.420
+interoperability risk.
+
+00:10:28.420 --> 00:10:30.550
+Different stakeholders
+in the platform
+
+00:10:30.550 --> 00:10:34.090
+have different views on
+the urgency of improving it
+
+00:10:34.090 --> 00:10:36.490
+and different levels
+of investment in it
+
+00:10:36.490 --> 00:10:38.830
+and, therefore, can
+focus on different things
+
+00:10:38.830 --> 00:10:40.240
+that matter to them.
+
+00:10:40.240 --> 00:10:43.160
+Maybe some use case that
+we think is critical
+
+00:10:43.160 --> 00:10:47.230
+is something that they are not
+willing to invest resources
+
+00:10:47.230 --> 00:10:49.930
+in or think that the
+user and developer
+
+00:10:49.930 --> 00:10:53.470
+benefits don't outweigh the
+extra complexity and cost.
+
+00:10:56.900 --> 00:11:01.430
+And if other browsers never
+adopt the features we ship,
+
+00:11:01.430 --> 00:11:03.740
+they will never
+be interoperable.
+
+00:11:03.740 --> 00:11:06.620
+And developers won't be able
+to use them across the web
+
+00:11:06.620 --> 00:11:09.980
+as part of a platform,
+which is not our goal.
+
+00:11:09.980 --> 00:11:13.910
+At the same time, if every
+browser waited for others
+
+00:11:13.910 --> 00:11:18.590
+to ship first, that would result
+in deadlock and stagnation.
+
+00:11:18.590 --> 00:11:21.500
+And sometimes in order
+to convince other vendors
+
+00:11:21.500 --> 00:11:23.990
+that a use case is
+indeed important,
+
+00:11:23.990 --> 00:11:29.990
+we need data that can only be
+gathered by real-life usage.
+
+00:11:29.990 --> 00:11:32.750
+Therefore, we unfortunately
+often find ourselves
+
+00:11:32.750 --> 00:11:35.570
+in a position where we are
+the first browser engine
+
+00:11:35.570 --> 00:11:38.090
+to ship new features.
+
+00:11:38.090 --> 00:11:40.020
+In order to reduce
+the risk there,
+
+00:11:40.020 --> 00:11:42.920
+we make sure there is a
+clear path for other vendors
+
+00:11:42.920 --> 00:11:47.030
+to follow by investing heavily
+in testing infrastructure,
+
+00:11:47.030 --> 00:11:49.850
+requiring comprehensive
+test suites,
+
+00:11:49.850 --> 00:11:51.650
+as well as detailed
+specifications
+
+00:11:51.650 --> 00:11:53.300
+for the features we ship.
+
+00:11:53.300 --> 00:11:55.760
+So that even if we
+can't get those features
+
+00:11:55.760 --> 00:11:58.220
+to be interoperable
+out the gate,
+
+00:11:58.220 --> 00:12:01.000
+we get to eventual
+interoperability.
+
+00:12:01.000 --> 00:12:05.060
+And in order to properly
+manage that risk versus benefit
+
+00:12:05.060 --> 00:12:07.250
+calculus, we have
+the Blink process.
+
+00:12:10.110 --> 00:12:12.080
+CHRIS WILSON: So if
+you've interacted at all
+
+00:12:12.080 --> 00:12:13.970
+with the Chromium
+open source project,
+
+00:12:13.970 --> 00:12:16.940
+you've probably seen people
+talking about intents.
+
+00:12:16.940 --> 00:12:19.370
+Intents to implement,
+intents to ship.
+
+00:12:19.370 --> 00:12:22.640
+These intents are part of
+the Blink process, where
+
+00:12:22.640 --> 00:12:24.320
+a set of trusted
+Chromium engineers
+
+00:12:24.320 --> 00:12:26.780
+called the API
+owners, such as Yoav,
+
+00:12:26.780 --> 00:12:28.490
+make sure that the
+trade-off is being
+
+00:12:28.490 --> 00:12:30.650
+taken into account by
+the engineers working
+
+00:12:30.650 --> 00:12:31.970
+on different features.
+
+00:12:31.970 --> 00:12:34.460
+Mozilla has a very
+similar process.
+
+00:12:34.460 --> 00:12:38.230
+Part of our process grew from
+the WebKit process, as well.
+
+00:12:38.230 --> 00:12:40.040
+But as part of these
+processes, engineers
+
+00:12:40.040 --> 00:12:43.340
+need to show that there's
+industry agreement or backing,
+
+00:12:43.340 --> 00:12:46.130
+that the feature they're trying
+to ship is an important one,
+
+00:12:46.130 --> 00:12:49.790
+and also that the feature's
+design was properly reviewed.
+
+00:12:49.790 --> 00:12:52.400
+That Blink process is not a
+replacement for the standards
+
+00:12:52.400 --> 00:12:54.720
+process, but a separate one.
+
+00:12:54.720 --> 00:12:57.260
+And it's not determining
+what gets standardized,
+
+00:12:57.260 --> 00:13:02.710
+but what code can land in
+Chromium turned on by default.
+
+00:13:02.710 --> 00:13:06.260
+Now, those standards
+processes, on the other hand,
+
+00:13:06.260 --> 00:13:09.060
+are a lot broader, and they
+can be a lot slower, too.
+
+00:13:09.060 --> 00:13:10.560
+As I pointed out
+before, Chromium
+
+00:13:10.560 --> 00:13:13.860
+is just one engine and one slice
+of the participation driving
+
+00:13:13.860 --> 00:13:15.040
+standards.
+
+00:13:15.040 --> 00:13:17.370
+Now, we do try
+very hard to build
+
+00:13:17.370 --> 00:13:19.170
+that collaboration
+between different teams
+
+00:13:19.170 --> 00:13:22.350
+from different organizations and
+across the wider web standards
+
+00:13:22.350 --> 00:13:25.080
+community by consistently
+participating
+
+00:13:25.080 --> 00:13:26.700
+in those open forums--
+
+00:13:26.700 --> 00:13:31.810
+the W3C, the WHATWG, the IETF,
+TC39, and ECMA, and the like--
+
+00:13:31.810 --> 00:13:33.780
+and bringing our
+needs to those groups
+
+00:13:33.780 --> 00:13:36.620
+to incubate them in public.
+
+00:13:36.620 --> 00:13:38.670
+And this process
+of incubation first
+
+00:13:38.670 --> 00:13:41.490
+is one that we actually
+started championing in Chromium
+
+00:13:41.490 --> 00:13:44.550
+a few years ago as a way
+to explore new additions
+
+00:13:44.550 --> 00:13:47.400
+to the web platform
+with low overhead,
+
+00:13:47.400 --> 00:13:50.825
+without committing
+first, without saying,
+
+00:13:50.825 --> 00:13:52.950
+hey, we're going to ship
+this feature at some point
+
+00:13:52.950 --> 00:13:54.300
+in the very near future.
+
+00:13:54.300 --> 00:13:56.110
+Because some ideas fail.
+
+00:13:56.110 --> 00:13:58.080
+In fact, some ideas should fail.
+
+00:13:58.080 --> 00:13:59.730
+But you don't really
+know that upfront.
+
+00:13:59.730 --> 00:14:02.910
+We didn't want to get those
+ideas baked into a standard
+
+00:14:02.910 --> 00:14:06.780
+before we realized, hey, maybe
+this wasn't such a great idea.
+
+00:14:06.780 --> 00:14:08.800
+Incubation in the
+WICG, for example,
+
+00:14:08.800 --> 00:14:11.310
+is a great way to work
+together in public
+
+00:14:11.310 --> 00:14:13.920
+and collect intellectual
+property commitments
+
+00:14:13.920 --> 00:14:16.680
+so eventual standards
+will be free to implement,
+
+00:14:16.680 --> 00:14:18.420
+but with low overhead.
+
+00:14:18.420 --> 00:14:20.610
+In short, the idea
+was to get to 80%
+
+00:14:20.610 --> 00:14:24.150
+of the exploration with
+a much lower overhead,
+
+00:14:24.150 --> 00:14:27.400
+but responsibly, as well.
+
+00:14:27.400 --> 00:14:29.920
+Now, this leads to a
+couple of key points.
+
+00:14:29.920 --> 00:14:32.610
+First, incubations
+can actively fail.
+
+00:14:32.610 --> 00:14:34.110
+They can go into a deep freeze.
+
+00:14:34.110 --> 00:14:37.110
+They can wait for more
+data, some other change.
+
+00:14:37.110 --> 00:14:41.040
+Or in some cases, they may ship
+in one browser or another prior
+
+00:14:41.040 --> 00:14:44.340
+to transitioning to an
+official recognized standard.
+
+00:14:44.340 --> 00:14:48.580
+Now, in that latter case, this
+is not the end of the story.
+
+00:14:48.580 --> 00:14:50.370
+This isn't the endpoint.
+
+00:14:50.370 --> 00:14:53.370
+Not everyone agrees on which
+incubations are ready to ship.
+
+00:14:53.370 --> 00:14:55.650
+Everybody has
+different priorities.
+
+00:14:55.650 --> 00:14:58.650
+But when Chromium
+ships incubation
+
+00:14:58.650 --> 00:15:02.470
+status specifications because
+we believe they're needed,
+
+00:15:02.470 --> 00:15:05.220
+but we don't have agreement
+from other vendors or developers
+
+00:15:05.220 --> 00:15:07.230
+to turn them into
+standards yet, we're
+
+00:15:07.230 --> 00:15:09.480
+taking on a deeper
+responsibility.
+
+00:15:09.480 --> 00:15:11.820
+We have to continue to
+maintain that feature.
+
+00:15:11.820 --> 00:15:14.790
+We have to continue to push
+for cross-vendor collaboration
+
+00:15:14.790 --> 00:15:16.220
+and standardization.
+
+00:15:16.220 --> 00:15:19.080
+And if those features do get
+picked up by others later,
+
+00:15:19.080 --> 00:15:21.450
+we need to work together
+to possibly change
+
+00:15:21.450 --> 00:15:23.310
+what we already
+shipped to make them
+
+00:15:23.310 --> 00:15:26.160
+truly cross-industry standards.
+
+00:15:26.160 --> 00:15:29.820
+Incubations are not standards--
+
+00:15:29.820 --> 00:15:30.930
+yet, at least.
+
+00:15:30.930 --> 00:15:33.240
+Incubations only
+turn into standards
+
+00:15:33.240 --> 00:15:35.730
+when a sufficiently
+cross-industry set
+
+00:15:35.730 --> 00:15:37.500
+of participants
+in open standards
+
+00:15:37.500 --> 00:15:40.440
+agree that they should
+become interoperable.
+
+00:15:40.440 --> 00:15:44.200
+Until multiple vendors want
+to ship those implementations,
+
+00:15:44.200 --> 00:15:46.800
+there's only so much one
+vendor can really do.
+
+00:15:46.800 --> 00:15:48.750
+Now, we do control
+our ship cycles.
+
+00:15:48.750 --> 00:15:51.420
+We choose what features
+Chromium is going to ship
+
+00:15:51.420 --> 00:15:53.220
+and what features
+Chromium believes
+
+00:15:53.220 --> 00:15:55.740
+are critical to
+provide to developers.
+
+00:15:55.740 --> 00:15:59.100
+But what becomes a standard
+is an open community decision.
+
+00:15:59.100 --> 00:16:01.170
+The broader community of
+developers and vendors
+
+00:16:01.170 --> 00:16:04.800
+need to want this
+feature to happen.
+
+00:16:04.800 --> 00:16:07.940
+So as incubations mature
+and there's open agreement
+
+00:16:07.940 --> 00:16:10.250
+that there should be an
+interoperable standard,
+
+00:16:10.250 --> 00:16:12.290
+it's time to create
+a working group
+
+00:16:12.290 --> 00:16:14.450
+with multiple
+cross-industry stakeholders,
+
+00:16:14.450 --> 00:16:16.520
+or be adopted by
+a working group,
+
+00:16:16.520 --> 00:16:18.970
+and set timelines
+for deliverables.
+
+00:16:18.970 --> 00:16:21.110
+Formalize the use cases.
+
+00:16:21.110 --> 00:16:22.790
+Finalize the design.
+
+00:16:22.790 --> 00:16:25.430
+Make sure you have wide
+review of that design.
+
+00:16:25.430 --> 00:16:28.250
+If you haven't already
+completed addressing
+
+00:16:28.250 --> 00:16:30.950
+accessibility and privacy
+and internationalization
+
+00:16:30.950 --> 00:16:33.070
+and other wide
+review issues, now
+
+00:16:33.070 --> 00:16:35.503
+is the time to
+finish all of that.
+
+00:16:35.503 --> 00:16:36.920
+You need to finalize
+a test suite.
+
+00:16:36.920 --> 00:16:39.830
+Make sure that we're fully
+making sure that this
+
+00:16:39.830 --> 00:16:41.690
+is going to be interoperable.
+
+00:16:41.690 --> 00:16:43.760
+And then, of course,
+finalize the standard,
+
+00:16:43.760 --> 00:16:45.740
+actually get it out in public.
+
+00:16:45.740 --> 00:16:48.410
+Now, this is a
+super long process.
+
+00:16:48.410 --> 00:16:51.510
+Also, this can be different
+across different organizations,
+
+00:16:51.510 --> 00:16:54.170
+like the W3C versus
+the WHATWG, and I
+
+00:16:54.170 --> 00:16:57.020
+don't want to spend all
+our time in that detail.
+
+00:16:57.020 --> 00:16:59.683
+But with this in
+mind as the end goal,
+
+00:16:59.683 --> 00:17:01.100
+we wanted to dive
+into the journey
+
+00:17:01.100 --> 00:17:05.152
+of a feature in Chromium
+from idea to shipping.
+
+00:17:05.152 --> 00:17:06.569
+And that really
+is where we start.
+
+00:17:06.569 --> 00:17:09.533
+The first question is,
+well, what do we work on?
+
+00:17:09.533 --> 00:17:11.700
+And I know it's really
+tempting to think that Google
+
+00:17:11.700 --> 00:17:14.250
+has some super detailed
+internal feature
+
+00:17:14.250 --> 00:17:17.310
+plan of exactly what the
+priority is of all features
+
+00:17:17.310 --> 00:17:20.609
+for the next 5 or 10 years
+is for the web, sorted
+
+00:17:20.609 --> 00:17:24.180
+in priority order, exact
+ship dates, everything.
+
+00:17:24.180 --> 00:17:25.740
+Of course, we do try to plan.
+
+00:17:25.740 --> 00:17:28.410
+That is not really
+the way that it works.
+
+00:17:28.410 --> 00:17:31.380
+In reality, we listen
+to a lot of inputs.
+
+00:17:31.380 --> 00:17:34.710
+We have to know what
+areas need attention.
+
+00:17:34.710 --> 00:17:36.840
+And we work very
+closely together
+
+00:17:36.840 --> 00:17:38.700
+with individual web
+developer partners
+
+00:17:38.700 --> 00:17:42.230
+out there to get insight into
+how their work is progressing.
+
+00:17:42.230 --> 00:17:45.680
+You know, ask them where the
+rough edges of the web are.
+
+00:17:45.680 --> 00:17:48.050
+We also recommend
+that web developers
+
+00:17:48.050 --> 00:17:52.015
+use a tool initiated by our
+colleagues at Microsoft,
+
+00:17:52.015 --> 00:17:53.390
+the Web We Want
+initiative, which
+
+00:17:53.390 --> 00:17:55.340
+is a great place to
+share ideas that you
+
+00:17:55.340 --> 00:17:57.440
+may have as developers.
+
+00:17:57.440 --> 00:18:00.320
+So browser and
+platform engine people,
+
+00:18:00.320 --> 00:18:02.293
+we participate in triaging
+these suggestions.
+
+00:18:02.293 --> 00:18:02.960
+We look at them.
+
+00:18:02.960 --> 00:18:06.860
+We see what people think is
+important to add to the web
+
+00:18:06.860 --> 00:18:10.400
+platform and try to
+take it from there.
+
+00:18:10.400 --> 00:18:13.460
+And both of us, as well as
+our co-chairs and many others
+
+00:18:13.460 --> 00:18:15.800
+in the web platform
+standard space,
+
+00:18:15.800 --> 00:18:18.320
+we participate in discussions
+in the WICG discourse
+
+00:18:18.320 --> 00:18:21.890
+tool, which you can find
+from our site at wicg.io.
+
+00:18:21.890 --> 00:18:26.495
+This is where a lot of
+new incubations pop up.
+
+00:18:26.495 --> 00:18:27.870
+And then, finally,
+we participate
+
+00:18:27.870 --> 00:18:29.910
+in a number of other channels.
+
+00:18:29.910 --> 00:18:31.920
+We listen to the results
+of the MDN survey.
+
+00:18:31.920 --> 00:18:34.440
+We pay a lot of attention
+to the framework ecosystem.
+
+00:18:34.440 --> 00:18:37.480
+Shubhie and Houssein will
+detail that later this morning.
+
+00:18:37.480 --> 00:18:42.040
+And of course, a lot of other
+channels and conversations.
+
+00:18:42.040 --> 00:18:44.860
+Now, once we've identified
+a problem space that we want
+
+00:18:44.860 --> 00:18:49.030
+to address, we-- well, engineers
+on the Chromium project--
+
+00:18:49.030 --> 00:18:51.640
+start a process of exploring
+that feature space.
+
+00:18:51.640 --> 00:18:55.030
+And step one in that
+process is to spend time
+
+00:18:55.030 --> 00:18:56.350
+researching the problem.
+
+00:18:56.350 --> 00:18:59.710
+Now, we're not always perfect
+at separating this stage out,
+
+00:18:59.710 --> 00:19:03.190
+but we try very hard to
+focus first on the problem.
+
+00:19:03.190 --> 00:19:06.610
+Not a proposed solution, but
+researching the use cases,
+
+00:19:06.610 --> 00:19:09.500
+figuring out the problem space
+the developer needs first,
+
+00:19:09.500 --> 00:19:13.030
+rather than inventing
+a solution first.
+
+00:19:13.030 --> 00:19:17.140
+The goal of this stage is to
+publish, publicly publish,
+
+00:19:17.140 --> 00:19:19.690
+an explainer with those
+use cases detailed.
+
+00:19:19.690 --> 00:19:21.970
+There might be a
+suggested solution,
+
+00:19:21.970 --> 00:19:23.590
+but it's critically
+important for us
+
+00:19:23.590 --> 00:19:26.590
+not to focus on that
+first, not to fall in love
+
+00:19:26.590 --> 00:19:28.330
+with our first good idea.
+
+00:19:28.330 --> 00:19:31.020
+To put it another way,
+if the explainer contains
+
+00:19:31.020 --> 00:19:33.490
+a design for a
+really great hammer,
+
+00:19:33.490 --> 00:19:35.890
+every use case is going
+to look like a nail.
+
+00:19:35.890 --> 00:19:38.193
+You might need an electric
+screwdriver instead.
+
+00:19:38.193 --> 00:19:39.610
+And you won't know
+that unless you
+
+00:19:39.610 --> 00:19:43.550
+research what kind of
+fasteners are the use cases.
+
+00:19:43.550 --> 00:19:45.130
+So an explainer is a short--
+
+00:19:45.130 --> 00:19:47.380
+hopefully no more
+than a page or two--
+
+00:19:47.380 --> 00:19:49.760
+explanation of the problem
+space at this point.
+
+00:19:49.760 --> 00:19:50.890
+It grows later.
+
+00:19:50.890 --> 00:19:52.450
+This is the point
+where the explainer
+
+00:19:52.450 --> 00:19:54.500
+should go to a public forum.
+
+00:19:54.500 --> 00:19:56.230
+So frequently, in
+Chromium, these
+
+00:19:56.230 --> 00:20:01.545
+get published to the WICG
+discourse to attract attention.
+
+00:20:01.545 --> 00:20:03.420
+This results in a file
+like this, by the way.
+
+00:20:03.420 --> 00:20:06.980
+This is one of the very first
+really well-known explainers,
+
+00:20:06.980 --> 00:20:10.280
+the service worker explainer.
+
+00:20:10.280 --> 00:20:12.440
+And we strongly
+encourage developers
+
+00:20:12.440 --> 00:20:15.230
+to participate at this stage,
+both by sharing what you need
+
+00:20:15.230 --> 00:20:18.560
+to spark these ideas and
+these use cases, filing needs
+
+00:20:18.560 --> 00:20:21.000
+in the Web We Want
+tool or whatever.
+
+00:20:21.000 --> 00:20:23.150
+But also, participating
+in the early discussion
+
+00:20:23.150 --> 00:20:25.940
+of those features, like
+watch the ideas that
+
+00:20:25.940 --> 00:20:29.090
+get shared in the WICG
+discourse, comment on them,
+
+00:20:29.090 --> 00:20:31.310
+give us your feedback on them.
+
+00:20:31.310 --> 00:20:35.130
+We're building this platform
+for you, not for ourselves.
+
+00:20:35.130 --> 00:20:37.820
+And in terms of maturity,
+though, it's really important
+
+00:20:37.820 --> 00:20:40.010
+to understand at
+this stage, this
+
+00:20:40.010 --> 00:20:42.140
+is not a done, baked feature.
+
+00:20:42.140 --> 00:20:43.802
+This is like a newborn kitten.
+
+00:20:43.802 --> 00:20:45.260
+It's hard to tell
+exactly what it's
+
+00:20:45.260 --> 00:20:47.150
+going to look like
+as it matures,
+
+00:20:47.150 --> 00:20:51.730
+and it needs a lot of
+care and attention.
+
+00:20:51.730 --> 00:20:54.430
+YOAV WEISS: The next step, once
+we have a clear understanding
+
+00:20:54.430 --> 00:20:56.920
+of what we're trying
+to solve and why,
+
+00:20:56.920 --> 00:21:00.530
+is to figure out what a solution
+may look like, try it out, see
+
+00:21:00.530 --> 00:21:03.790
+how it can be improved,
+and basically rinse
+
+00:21:03.790 --> 00:21:05.770
+and repeat that process
+until we're fairly
+
+00:21:05.770 --> 00:21:08.800
+confident we got it right.
+
+00:21:08.800 --> 00:21:11.290
+At this point, the
+Chromium engineers
+
+00:21:11.290 --> 00:21:12.850
+working on this
+problem would want
+
+00:21:12.850 --> 00:21:15.940
+to notify others on
+the projects that they
+
+00:21:15.940 --> 00:21:19.820
+plan to start lending code
+related to the problem
+
+00:21:19.820 --> 00:21:22.030
+behind a flag turned
+off by default.
+
+00:21:22.030 --> 00:21:26.140
+This is what they intent
+to prototype email is for.
+
+00:21:26.140 --> 00:21:29.650
+Intent emails, in general,
+are sent over to the Blink Dev
+
+00:21:29.650 --> 00:21:31.930
+mailing list and serve
+as a notification
+
+00:21:31.930 --> 00:21:35.650
+to the broader
+community of work that's
+
+00:21:35.650 --> 00:21:37.730
+happening in certain areas.
+
+00:21:37.730 --> 00:21:41.350
+That step was previously
+called Intent to Implement,
+
+00:21:41.350 --> 00:21:43.960
+but that resulted
+in some confusion,
+
+00:21:43.960 --> 00:21:46.960
+because it wasn't really
+clear that this only
+
+00:21:46.960 --> 00:21:50.500
+means lending code behind a
+flag and not some stronger
+
+00:21:50.500 --> 00:21:52.060
+commitment.
+
+00:21:52.060 --> 00:21:55.510
+As a result, Mozilla
+renamed their similar step
+
+00:21:55.510 --> 00:21:58.100
+in their process to
+Intent to Prototype,
+
+00:21:58.100 --> 00:22:03.550
+and we very recently, just
+last week, aligned with them.
+
+00:22:03.550 --> 00:22:07.630
+Got to love conference-driven
+development, huh, Chris?
+
+00:22:07.630 --> 00:22:09.670
+The purpose of this
+step is to make
+
+00:22:09.670 --> 00:22:12.830
+sure code owners won't be
+surprised when they see code
+
+00:22:12.830 --> 00:22:15.130
+starting to land in this area.
+
+00:22:15.130 --> 00:22:17.830
+But starting to work
+on a certain prototype
+
+00:22:17.830 --> 00:22:22.770
+doesn't require
+project-wide approvals.
+
+00:22:22.770 --> 00:22:25.440
+This is also a good
+checkpoint to make sure
+
+00:22:25.440 --> 00:22:28.470
+that the feature is on the
+right track for getting
+
+00:22:28.470 --> 00:22:32.190
+a wide review and a tag
+review for the explainer
+
+00:22:32.190 --> 00:22:34.890
+in the initial design
+and making sure
+
+00:22:34.890 --> 00:22:38.220
+that we get feedback and
+opinions from other browser
+
+00:22:38.220 --> 00:22:39.060
+vendors.
+
+00:22:39.060 --> 00:22:42.300
+And if that hasn't happened
+yet, that checkpoint
+
+00:22:42.300 --> 00:22:44.340
+gives us a lot of
+time to still do
+
+00:22:44.340 --> 00:22:48.490
+that and correct that course.
+
+00:22:48.490 --> 00:22:50.830
+How can developers get involved?
+
+00:22:50.830 --> 00:22:54.520
+Browser engineers at this
+stage are craving for feedback.
+
+00:22:54.520 --> 00:22:56.920
+The [? last ?] steps
+deliverable was an explainer
+
+00:22:56.920 --> 00:22:58.970
+outlining the use cases.
+
+00:22:58.970 --> 00:23:01.660
+One form of feedback could
+be to point out related use
+
+00:23:01.660 --> 00:23:04.060
+cases that are not addressed.
+
+00:23:04.060 --> 00:23:08.320
+Or otherwise, in case
+there is a proposed design,
+
+00:23:08.320 --> 00:23:11.650
+pointing out ways in which
+the design can be improved.
+
+00:23:11.650 --> 00:23:14.830
+And alternatively, a
+statement of support
+
+00:23:14.830 --> 00:23:18.130
+and real-life examples
+related to the use cases
+
+00:23:18.130 --> 00:23:20.380
+can be extremely helpful.
+
+00:23:20.380 --> 00:23:23.770
+And if this is a subject
+you're familiar with
+
+00:23:23.770 --> 00:23:26.200
+and want to get
+more involved, you
+
+00:23:26.200 --> 00:23:29.140
+can just hop over
+to the GitHub repo
+
+00:23:29.140 --> 00:23:32.510
+and participate in
+that early design work.
+
+00:23:32.510 --> 00:23:34.870
+And by the time intent
+to prototype is sent,
+
+00:23:34.870 --> 00:23:37.960
+there is probably some
+rough design in mind,
+
+00:23:37.960 --> 00:23:41.420
+but it's still not too
+late to change course.
+
+00:23:41.420 --> 00:23:44.590
+At that point, feedback on
+the API shape, its ergonomics,
+
+00:23:44.590 --> 00:23:48.790
+or its ability to solve your
+problem is very much welcome.
+
+00:23:48.790 --> 00:23:51.760
+And at that stage, some
+code might be landing,
+
+00:23:51.760 --> 00:23:55.990
+and the API opens its eyes
+and starts wobbling around.
+
+00:23:55.990 --> 00:23:58.570
+But it's still extremely
+early, so no telling
+
+00:23:58.570 --> 00:24:00.340
+how it will end up.
+
+00:24:00.340 --> 00:24:01.990
+And also, I'm now
+legally obliged
+
+00:24:01.990 --> 00:24:03.910
+to say that these
+are my kittens,
+
+00:24:03.910 --> 00:24:07.100
+and the credit for the
+photos go to my kids,
+
+00:24:07.100 --> 00:24:10.130
+which this is all they do.
+
+00:24:10.130 --> 00:24:12.730
+CHRIS WILSON: So the next major
+step in a feature's journey
+
+00:24:12.730 --> 00:24:15.850
+is to evolve that design
+by experimenting in code,
+
+00:24:15.850 --> 00:24:17.350
+working together
+with the community,
+
+00:24:17.350 --> 00:24:19.727
+just plain iterating
+on development.
+
+00:24:19.727 --> 00:24:21.310
+And at this point,
+engineers are going
+
+00:24:21.310 --> 00:24:24.040
+to be landing code in
+Chromium under flags
+
+00:24:24.040 --> 00:24:26.772
+and asking developers to
+try out those designs,
+
+00:24:26.772 --> 00:24:28.480
+even though the features
+are switched off
+
+00:24:28.480 --> 00:24:30.220
+by default for users.
+
+00:24:30.220 --> 00:24:32.860
+This is also the stage where
+open collaboration with others
+
+00:24:32.860 --> 00:24:35.290
+in the standards space
+becomes even more
+
+00:24:35.290 --> 00:24:39.560
+important to make this a
+multi-stakeholder project.
+
+00:24:39.560 --> 00:24:41.620
+So how do developers get
+involved at this point?
+
+00:24:41.620 --> 00:24:44.428
+Well, this stage is really
+about developer involvement.
+
+00:24:44.428 --> 00:24:45.970
+This is where we're
+asking developers
+
+00:24:45.970 --> 00:24:48.820
+to try out the designs,
+to check out a feature,
+
+00:24:48.820 --> 00:24:51.010
+switching on flags
+and testing them out
+
+00:24:51.010 --> 00:24:53.740
+with the understanding, of
+course, that they may not ship.
+
+00:24:53.740 --> 00:24:58.353
+They certainly may not ship in
+that particular form at all.
+
+00:24:58.353 --> 00:24:59.770
+But we also have
+another tool that
+
+00:24:59.770 --> 00:25:03.200
+comes into play at this point
+that we wanted to mention.
+
+00:25:03.200 --> 00:25:06.760
+And in Chrome, we have this
+tool called Origin Trials.
+
+00:25:06.760 --> 00:25:10.000
+Now, this is not a mandatory
+step for feature development.
+
+00:25:10.000 --> 00:25:12.530
+It's a useful one,
+a lot of time,
+
+00:25:12.530 --> 00:25:15.190
+because it's a way to get
+even broader developer testing
+
+00:25:15.190 --> 00:25:16.300
+on a particular feature.
+
+00:25:16.300 --> 00:25:20.350
+A Chromium engineer communicates
+this intent to experiment,
+
+00:25:20.350 --> 00:25:23.290
+and then any developer
+out there can register
+
+00:25:23.290 --> 00:25:25.210
+for a key for their domain.
+
+00:25:25.210 --> 00:25:28.090
+And that will turn on the
+feature for their users,
+
+00:25:28.090 --> 00:25:30.220
+even if the users
+don't enable the flag
+
+00:25:30.220 --> 00:25:33.310
+or have no idea what
+this flag is about.
+
+00:25:33.310 --> 00:25:37.030
+This Origin Trial gets some
+specific features to prevent it
+
+00:25:37.030 --> 00:25:40.300
+from getting too popular
+or burning it into the web
+
+00:25:40.300 --> 00:25:42.010
+platform accidentally.
+
+00:25:42.010 --> 00:25:43.810
+This is a way to
+broadly test features
+
+00:25:43.810 --> 00:25:47.950
+with a wide variety of users,
+not just those, like most of us
+
+00:25:47.950 --> 00:25:52.780
+here, who might be convinced
+to turn on some magic flags.
+
+00:25:52.780 --> 00:25:55.600
+But at this point, the feature's
+kind of like a teenager.
+
+00:25:55.600 --> 00:25:58.120
+And as a parent of a
+teenager or myself,
+
+00:25:58.120 --> 00:26:01.100
+and as a former
+teenager, it's maturing.
+
+00:26:01.100 --> 00:26:02.240
+It's pretty stable.
+
+00:26:02.240 --> 00:26:04.173
+It's self-supporting,
+for the most part.
+
+00:26:04.173 --> 00:26:05.590
+And you can see a
+lot of the shape
+
+00:26:05.590 --> 00:26:10.340
+that it's starting to take
+as it becomes a real grownup.
+
+00:26:10.340 --> 00:26:13.400
+YOAV WEISS: And finally,
+when we're confident enough
+
+00:26:13.400 --> 00:26:16.550
+that an API is in a good shape
+and would solve real developer
+
+00:26:16.550 --> 00:26:21.530
+and user problems, that's when
+it's time to try and ship it.
+
+00:26:21.530 --> 00:26:24.610
+That's the point in the process
+that's a bit more strict.
+
+00:26:24.610 --> 00:26:29.200
+Chromium developers that want
+to ship a feature by default
+
+00:26:29.200 --> 00:26:31.300
+need to prove that it's
+mature enough to do that
+
+00:26:31.300 --> 00:26:32.930
+without excessive risk.
+
+00:26:32.930 --> 00:26:35.410
+We talked earlier about the
+risk and benefit assessment
+
+00:26:35.410 --> 00:26:39.860
+that API owners need to do
+in order to ship features.
+
+00:26:39.860 --> 00:26:42.220
+This is the point where
+that assessment happens.
+
+00:26:42.220 --> 00:26:46.390
+And shipping new features
+requires three API owners
+
+00:26:46.390 --> 00:26:49.000
+to sign off on it
+or LGTM it, which
+
+00:26:49.000 --> 00:26:51.820
+stands for Looks Good To Me.
+
+00:26:51.820 --> 00:26:54.760
+It's important to note that the
+fact that an intent email was
+
+00:26:54.760 --> 00:26:58.280
+sent to Blink Dev doesn't--
+
+00:26:58.280 --> 00:27:00.340
+so it means that the
+team behind the feature
+
+00:27:00.340 --> 00:27:01.750
+thinks that it's ready.
+
+00:27:01.750 --> 00:27:04.480
+But it doesn't yet mean
+that it will ship soon.
+
+00:27:04.480 --> 00:27:08.980
+There are many cases where
+the feature team is slightly
+
+00:27:08.980 --> 00:27:12.280
+optimistic, and the
+API owners conclude
+
+00:27:12.280 --> 00:27:14.170
+that there's more
+work to be done
+
+00:27:14.170 --> 00:27:16.000
+before the feature can ship.
+
+00:27:16.000 --> 00:27:20.460
+That's fine and a natural
+part of the process.
+
+00:27:20.460 --> 00:27:24.800
+There are also cases which are
+a bit more rare of features that
+
+00:27:24.800 --> 00:27:27.860
+don't ship at all due to
+fundamental disagreements,
+
+00:27:27.860 --> 00:27:30.890
+which mean that the risk
+inherent in the feature
+
+00:27:30.890 --> 00:27:36.410
+outweighs the benefits of--
+
+00:27:36.410 --> 00:27:39.400
+outweighs its benefits.
+
+00:27:39.400 --> 00:27:41.590
+And while the exciting
+parts of the process
+
+00:27:41.590 --> 00:27:43.600
+revolve around
+shipping new things,
+
+00:27:43.600 --> 00:27:45.940
+removing old and busted
+parts of the platform
+
+00:27:45.940 --> 00:27:49.540
+is equally important for
+security performance, as well
+
+00:27:49.540 --> 00:27:51.580
+as interoperability.
+
+00:27:51.580 --> 00:27:53.680
+If we refuse to
+remove features, that
+
+00:27:53.680 --> 00:27:55.870
+means that adding
+any new feature
+
+00:27:55.870 --> 00:27:59.110
+would make it part of
+the platform forever.
+
+00:27:59.110 --> 00:28:01.630
+And willingness to
+take some compact risk
+
+00:28:01.630 --> 00:28:05.470
+and remove features
+helps us to ship faster
+
+00:28:05.470 --> 00:28:08.560
+and can also help other
+browser vendors, who can then
+
+00:28:08.560 --> 00:28:11.140
+follow in their footsteps
+with reduced compatibility
+
+00:28:11.140 --> 00:28:13.180
+risk for their users.
+
+00:28:13.180 --> 00:28:15.910
+Feature removal is equally
+part of the process
+
+00:28:15.910 --> 00:28:18.760
+subject to an intent to remove.
+
+00:28:18.760 --> 00:28:21.850
+That requires approval
+from three API owners,
+
+00:28:21.850 --> 00:28:25.030
+just like shipping
+a new feature.
+
+00:28:25.030 --> 00:28:28.600
+That approval typically
+requires a high bar-- or rather,
+
+00:28:28.600 --> 00:28:30.610
+low usage of the feature--
+
+00:28:30.610 --> 00:28:34.390
+in order to make sure that the
+removal won't break the web
+
+00:28:34.390 --> 00:28:39.280
+and won't cause too
+much compatibility pain.
+
+00:28:39.280 --> 00:28:42.130
+And because we're
+all humans, we also
+
+00:28:42.130 --> 00:28:46.750
+need to account for cases
+where we got it wrong.
+
+00:28:46.750 --> 00:28:48.460
+Again, one of the
+principles that
+
+00:28:48.460 --> 00:28:51.490
+enable us to take that
+interoperability risk
+
+00:28:51.490 --> 00:28:53.170
+of shipping first
+is our willingness
+
+00:28:53.170 --> 00:28:55.000
+to change course
+and remove features
+
+00:28:55.000 --> 00:28:57.490
+if we realize we
+need to modify them
+
+00:28:57.490 --> 00:29:00.650
+or even unship them entirely.
+
+00:29:00.650 --> 00:29:03.400
+There are cases where
+after we shipped,
+
+00:29:03.400 --> 00:29:06.760
+substantial feedback from
+other vendors and developers
+
+00:29:06.760 --> 00:29:09.760
+convinced us that we need
+to change the API shape.
+
+00:29:09.760 --> 00:29:12.700
+And our willingness to
+make those breaking changes
+
+00:29:12.700 --> 00:29:16.990
+enables us to listen and
+act on that feedback.
+
+00:29:16.990 --> 00:29:21.250
+Prominent examples include
+the web components V0,
+
+00:29:21.250 --> 00:29:25.060
+which shipped and is now
+in the process of being
+
+00:29:25.060 --> 00:29:30.710
+removed in favor of web
+components V1 as well as video.
+
+00:29:30.710 --> 00:29:33.550
+CHRIS WILSON: WebVR, which we
+didn't actually entirely ship
+
+00:29:33.550 --> 00:29:36.010
+but had to take feedback on.
+
+00:29:36.010 --> 00:29:38.830
+Audio AutoPlay, where we
+radically changed the way
+
+00:29:38.830 --> 00:29:42.148
+that we detected
+AutoPlay scenarios.
+
+00:29:42.148 --> 00:29:44.140
+YOAV WEISS: Yup.
+
+00:29:44.140 --> 00:29:47.660
+And so even when an
+API is about to ship,
+
+00:29:47.660 --> 00:29:50.400
+there's still a lot of room
+for developer involvement
+
+00:29:50.400 --> 00:29:51.600
+and feedback.
+
+00:29:51.600 --> 00:29:55.050
+Feedback on the intent thread
+can provide a lot of insights
+
+00:29:55.050 --> 00:29:59.110
+and can influence the
+API owner's decision.
+
+00:29:59.110 --> 00:30:02.040
+Similarly to the previous
+step, playing around
+
+00:30:02.040 --> 00:30:05.790
+with the implemented
+API by turning on flags
+
+00:30:05.790 --> 00:30:08.060
+before it's shipped
+and reporting issue,
+
+00:30:08.060 --> 00:30:10.350
+or even after it's
+shipped, can be extremely
+
+00:30:10.350 --> 00:30:12.940
+helpful for newly shipped APIs.
+
+00:30:12.940 --> 00:30:16.530
+And finally, actually using
+the APIs you find useful
+
+00:30:16.530 --> 00:30:18.540
+is an extremely
+strong signal for us
+
+00:30:18.540 --> 00:30:22.850
+to ensure us that we
+made the right decision.
+
+00:30:22.850 --> 00:30:28.430
+And at this point, the feature
+is fully mature, on its own,
+
+00:30:28.430 --> 00:30:29.850
+theoretically in the wild.
+
+00:30:29.850 --> 00:30:33.650
+But in practice, just
+sits on the couch all day.
+
+00:30:33.650 --> 00:30:35.810
+This is where the metaphor
+kind of breaks down.
+
+00:30:38.600 --> 00:30:42.290
+So, to recap, the
+typical journey of an API
+
+00:30:42.290 --> 00:30:45.320
+goes from researching
+the problem space,
+
+00:30:45.320 --> 00:30:48.020
+publishing an explainer
+with use cases,
+
+00:30:48.020 --> 00:30:52.460
+designing a solution in the
+open with interested parties,
+
+00:30:52.460 --> 00:30:54.630
+experimenting with
+that solution,
+
+00:30:54.630 --> 00:30:58.370
+and eventually
+shipping it or not.
+
+00:30:58.370 --> 00:31:01.220
+And note that at
+any stage, we can
+
+00:31:01.220 --> 00:31:04.410
+decide that we need to go
+back and address some issues.
+
+00:31:04.410 --> 00:31:06.320
+For example, an origin
+trial can reveal
+
+00:31:06.320 --> 00:31:08.930
+that there are some
+problems in the design
+
+00:31:08.930 --> 00:31:10.790
+or the understanding
+of the problem space
+
+00:31:10.790 --> 00:31:16.020
+and cause us to go back to
+one or two steps before that.
+
+00:31:16.020 --> 00:31:20.840
+And on top of that, there
+are also always exceptions
+
+00:31:20.840 --> 00:31:22.500
+to that general flow.
+
+00:31:22.500 --> 00:31:25.130
+So just last week, we had
+an intent to experiment
+
+00:31:25.130 --> 00:31:28.220
+for an origin trial that was
+required in order to gather
+
+00:31:28.220 --> 00:31:31.370
+data to understand
+a certain use case
+
+00:31:31.370 --> 00:31:33.260
+and know whether
+it will or will not
+
+00:31:33.260 --> 00:31:34.850
+provide performance benefits.
+
+00:31:34.850 --> 00:31:40.423
+So an origin trial is part
+of step zero, if you will.
+
+00:31:40.423 --> 00:31:42.590
+CHRIS WILSON: So what we
+would like you to take away
+
+00:31:42.590 --> 00:31:44.630
+from this talk is,
+first, there is
+
+00:31:44.630 --> 00:31:48.050
+a difference between Chromium
+process and standards process.
+
+00:31:48.050 --> 00:31:49.880
+They work together,
+but they're not
+
+00:31:49.880 --> 00:31:51.650
+replacements for each other.
+
+00:31:51.650 --> 00:31:54.170
+Our intent process is
+intended to make it possible
+
+00:31:54.170 --> 00:31:56.552
+for us to move the
+web platform forward,
+
+00:31:56.552 --> 00:31:58.010
+even if we have to
+go out on a limb
+
+00:31:58.010 --> 00:32:00.620
+sometimes, but also work
+together with the standards
+
+00:32:00.620 --> 00:32:01.740
+process.
+
+00:32:01.740 --> 00:32:04.160
+This is all done in
+public on purpose,
+
+00:32:04.160 --> 00:32:06.500
+and we'd really love to
+get developer involvement
+
+00:32:06.500 --> 00:32:08.190
+at every stage of this.
+
+00:32:08.190 --> 00:32:09.680
+Adopt an API space.
+
+00:32:09.680 --> 00:32:11.780
+Propose needs in Web We Want.
+
+00:32:11.780 --> 00:32:15.920
+Look at proposals on
+the WICG discourse.
+
+00:32:15.920 --> 00:32:20.870
+File issues in individual
+feature featuring incubations.
+
+00:32:20.870 --> 00:32:22.940
+Watch the intents on Blink Dev.
+
+00:32:22.940 --> 00:32:24.650
+Give us feedback
+on all those things
+
+00:32:24.650 --> 00:32:27.192
+you care about, because that's
+what we're really looking for.
+
+00:32:29.350 --> 00:32:31.290
+And with that,
+we'd like to close.
+
+00:32:31.290 --> 00:32:32.860
+Thank you so much
+for your attention.
+
+00:32:32.860 --> 00:32:34.200
+YOAV WEISS: Thank you.
+
+00:32:34.200 --> 00:32:37.250
+[MUSIC PLAYING]
+
