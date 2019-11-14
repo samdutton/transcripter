@@ -19,7 +19,7 @@ const recursive = require('recursive-readdir');
 const subtitle = require('subtitle');
 const validator = require('html-validator');
 
-// Errors for validator to ignore.
+// Errors for HTML validator to ignore.
 // <head> errors are mostly to allow validation when not writing complete page.
 const VALIDATOR_IGNORE = [
   'Error: Bad value “https://www.youtube.com/embed/${videoId}?enablejsapi=1” ' +
@@ -59,7 +59,7 @@ let searchIndex;
 const speakers = new Set();
 const videoIds = [];
 
-const DO_VALIDATION = true;
+let DO_VALIDATION = false;
 
 let INPUT_DIR = 'input';
 // Use ../docs for integration with GitHub Pages.
@@ -76,11 +76,13 @@ const argv = require('yargs')
   .alias('c', 'index')
   .alias('h', 'help')
   .alias('i', 'input')
+  .alias('l', 'validate')
   .alias('o', 'output')
   .describe('a', 'Append/overwrite: don\'t delete existing files in output directory')
   .describe('c', `Create index page linking to HTML output, ` +
     `default is ${CREATE_STANDALONE_HOMEPAGE}`) // index page for standalone transcripts
   .describe('i', `Input directory, default is ${INPUT_DIR}`)
+  .describe('l', 'Validate HTML output')
   .describe('o', `Output directory, default is ${OUTPUT_DIR}`)
   .describe('s', `Create search index file`)
   .help('h')
@@ -109,6 +111,10 @@ if (argv.c) {
 
 if (argv.i) {
   INPUT_DIR = argv.i;
+}
+
+if (argv.l) {
+  DO_VALIDATION = true;
 }
 
 if (argv.o) {
