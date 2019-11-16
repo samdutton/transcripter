@@ -8,3 +8,7 @@ Input directory input contains stray file input/.DS_Store
 
 Input directory input contains stray file input/.DS_Store
 
+Input directory srt contains stray file srt/.DS_Store
+
+Input directory srt contains stray file srt/.DS_Store
+

@@ -1,0 +1,2051 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:02.982
+[MUSIC PLAYING]
+
+00:00:05.470 --> 00:00:07.760
+EMILY STARK: Today, my
+colleague Michael Kleber and I
+
+00:00:07.760 --> 00:00:10.010
+are going to be telling you
+about what Chrome is doing
+
+00:00:10.010 --> 00:00:12.597
+to help people make safe
+decisions about what data they
+
+00:00:12.597 --> 00:00:13.430
+share with websites.
+
+00:00:16.370 --> 00:00:19.130
+If you're a web user in
+2019, and I think most of you
+
+00:00:19.130 --> 00:00:22.580
+probably are, you've probably
+had some pretty mystifying
+
+00:00:22.580 --> 00:00:24.680
+experiences.
+
+00:00:24.680 --> 00:00:26.450
+You've probably
+had an experience
+
+00:00:26.450 --> 00:00:29.480
+where you're reading a news
+article on your work desktop
+
+00:00:29.480 --> 00:00:33.050
+computer, when you stumble
+upon an ad for the exact pair
+
+00:00:33.050 --> 00:00:36.110
+of shoes that you searched for
+on your personal phone a week
+
+00:00:36.110 --> 00:00:37.890
+ago.
+
+00:00:37.890 --> 00:00:41.450
+No matter how many times you've
+seen ad experiences like this,
+
+00:00:41.450 --> 00:00:44.120
+it still probably
+throws you for a loop.
+
+00:00:44.120 --> 00:00:46.640
+How did this one
+website on one device
+
+00:00:46.640 --> 00:00:48.600
+know your search history
+on another device
+
+00:00:48.600 --> 00:00:50.577
+at a completely different time?
+
+00:00:50.577 --> 00:00:52.160
+And what else might
+it know about you?
+
+00:00:55.610 --> 00:01:00.110
+Or maybe you got an email,
+another mystifying experience,
+
+00:01:00.110 --> 00:01:02.720
+from your bank,
+telling you to log
+
+00:01:02.720 --> 00:01:07.370
+in to verify a fraudulent charge
+or to unfreeze your account.
+
+00:01:07.370 --> 00:01:10.040
+And the email looks legit,
+the link looks legit,
+
+00:01:10.040 --> 00:01:11.720
+but how do you know?
+
+00:01:11.720 --> 00:01:13.880
+How are you really
+supposed to tell?
+
+00:01:13.880 --> 00:01:16.880
+And maybe even more importantly,
+how is a non-technical user
+
+00:01:16.880 --> 00:01:17.720
+supposed to tell?
+
+00:01:21.250 --> 00:01:24.070
+The fact is, it's not
+always easy to tell
+
+00:01:24.070 --> 00:01:27.010
+where you are on the
+web or what websites
+
+00:01:27.010 --> 00:01:29.560
+are observing about you.
+
+00:01:29.560 --> 00:01:33.300
+Chrome's goal is to help people
+with both of these problems.
+
+00:01:33.300 --> 00:01:35.670
+We want to help users
+make safe decisions
+
+00:01:35.670 --> 00:01:38.880
+while staying in control
+of their personal data.
+
+00:01:38.880 --> 00:01:41.640
+And we want to do this while
+preserving a thriving web
+
+00:01:41.640 --> 00:01:44.280
+ecosystem where content
+creators can make money
+
+00:01:44.280 --> 00:01:46.305
+through ads without
+invading users' privacy.
+
+00:01:50.540 --> 00:01:52.220
+We'll start by talking
+about what Chrome
+
+00:01:52.220 --> 00:01:54.740
+is doing to help people
+understand where they are
+
+00:01:54.740 --> 00:01:57.500
+on the web, what's the
+identity of the website
+
+00:01:57.500 --> 00:02:00.260
+that they're visiting,
+and particularly,
+
+00:02:00.260 --> 00:02:04.010
+is the site being misleading
+about its identity?
+
+00:02:04.010 --> 00:02:05.930
+As developers, this
+may be a problem
+
+00:02:05.930 --> 00:02:08.780
+that your users struggle
+with, or maybe even
+
+00:02:08.780 --> 00:02:11.550
+something that you sometimes
+struggle with, yourself.
+
+00:02:11.550 --> 00:02:13.430
+Because even as
+expert users, even
+
+00:02:13.430 --> 00:02:16.100
+for myself, as a person who
+works on a browser security
+
+00:02:16.100 --> 00:02:18.410
+team, it's not
+always obvious when
+
+00:02:18.410 --> 00:02:21.113
+a site is being misleading
+about its identity.
+
+00:02:24.290 --> 00:02:27.110
+In theory, the URL
+bar that's shown
+
+00:02:27.110 --> 00:02:30.620
+at the top of a web browser
+is your unambiguous clue
+
+00:02:30.620 --> 00:02:32.720
+to website identity.
+
+00:02:32.720 --> 00:02:37.050
+If the URL bar says Google.com,
+you're at the real Google.
+
+00:02:37.050 --> 00:02:39.800
+And if it says
+Evil.com, you're not,
+
+00:02:39.800 --> 00:02:43.640
+no matter how much the web
+content area looks like Google.
+
+00:02:43.640 --> 00:02:45.410
+But in practice,
+it's not always so
+
+00:02:45.410 --> 00:02:48.650
+easy to tell site
+identity from a domain,
+
+00:02:48.650 --> 00:02:51.990
+as you can see here
+with these examples.
+
+00:02:51.990 --> 00:02:54.840
+Some of these URLs might be
+hard for even expert users
+
+00:02:54.840 --> 00:02:57.270
+to notice and distinguish
+from Google.com,
+
+00:02:57.270 --> 00:02:58.710
+much less non-technical users.
+
+00:03:02.260 --> 00:03:04.160
+And this isn't speculation.
+
+00:03:04.160 --> 00:03:07.340
+There's lots of research,
+lab studies, surveys, field
+
+00:03:07.340 --> 00:03:10.910
+experiments showing that
+many users don't notice
+
+00:03:10.910 --> 00:03:13.850
+or understand URLs when they
+need to in order to make
+
+00:03:13.850 --> 00:03:15.530
+effective security decisions.
+
+00:03:19.140 --> 00:03:22.380
+In a study that we did with
+over 1,000 participants,
+
+00:03:22.380 --> 00:03:24.990
+we showed users a browser
+window where the website looked
+
+00:03:24.990 --> 00:03:27.450
+like a Google login
+page, but the address bar
+
+00:03:27.450 --> 00:03:30.470
+said tinyurl.com.
+
+00:03:30.470 --> 00:03:33.980
+When asked to identify
+this website, over 85%
+
+00:03:33.980 --> 00:03:36.710
+of participants said
+the website was Google,
+
+00:03:36.710 --> 00:03:39.610
+even though the address bar
+clearly said tinyurl.com.
+
+00:03:43.940 --> 00:03:47.040
+This presents a
+really hard problem.
+
+00:03:47.040 --> 00:03:51.230
+Lots of people use URLs for
+lots of really useful things,
+
+00:03:51.230 --> 00:03:53.420
+but there are also lots
+of ways that URLs can be
+
+00:03:53.420 --> 00:03:56.360
+used to trick or harm people.
+
+00:03:56.360 --> 00:03:58.610
+So what can we do about it?
+
+00:03:58.610 --> 00:04:01.600
+We're approaching this
+problem from a few angles.
+
+00:04:01.600 --> 00:04:04.660
+First, we're actively combating
+sophisticated spoofing
+
+00:04:04.660 --> 00:04:07.210
+techniques that
+abuse URLs to create
+
+00:04:07.210 --> 00:04:10.210
+unusually deceptive attacks.
+
+00:04:10.210 --> 00:04:11.950
+Second, we're
+drawing-- we're trying
+
+00:04:11.950 --> 00:04:15.310
+to draw people's attention to
+the information in URLs that's
+
+00:04:15.310 --> 00:04:19.110
+most relevant for making
+security decisions.
+
+00:04:19.110 --> 00:04:21.350
+And finally, we're
+building specialized tools
+
+00:04:21.350 --> 00:04:24.770
+to support expert use cases
+so that we can help make URLs
+
+00:04:24.770 --> 00:04:27.140
+better security tools
+without interfering
+
+00:04:27.140 --> 00:04:28.610
+with expert workflows.
+
+00:04:32.660 --> 00:04:34.850
+We've found that sites
+can be particularly
+
+00:04:34.850 --> 00:04:36.800
+misleading about
+their identity when
+
+00:04:36.800 --> 00:04:41.210
+they abuse Internationalized
+Domain Names, or IDNs.
+
+00:04:41.210 --> 00:04:43.910
+These spoofing sites
+use non-Ascii characters
+
+00:04:43.910 --> 00:04:47.650
+in the domain to look remarkably
+similar to a legitimate domain.
+
+00:04:51.220 --> 00:04:55.510
+Suppose you were looking at
+Example.com, as written here.
+
+00:04:55.510 --> 00:04:58.630
+You could do a very careful,
+character-by-character
+
+00:04:58.630 --> 00:05:00.880
+comparison, and
+you would probably
+
+00:05:00.880 --> 00:05:04.660
+conclude very confidently that
+you're at the real Example.com.
+
+00:05:04.660 --> 00:05:06.370
+There is no way this is a spoof.
+
+00:05:09.300 --> 00:05:12.570
+But it turns out, there's
+a Cyrillic character that
+
+00:05:12.570 --> 00:05:15.462
+looks identical to
+a Latin letter A,
+
+00:05:15.462 --> 00:05:16.920
+so this isn't the
+real Example.com.
+
+00:05:16.920 --> 00:05:19.230
+It's a completely
+different domain,
+
+00:05:19.230 --> 00:05:21.990
+even though it looks the same.
+
+00:05:21.990 --> 00:05:24.510
+The question that
+browsers are faced with
+
+00:05:24.510 --> 00:05:27.330
+is when is it safe to
+display non-Ascii characters
+
+00:05:27.330 --> 00:05:29.760
+in a domain, and when
+does it create a spoofing
+
+00:05:29.760 --> 00:05:32.250
+opportunity like this?
+
+00:05:32.250 --> 00:05:35.730
+You can see that with a
+naive IDN display policy,
+
+00:05:35.730 --> 00:05:38.100
+or even with a
+sophisticated one,
+
+00:05:38.100 --> 00:05:39.600
+there are many
+interesting avenues
+
+00:05:39.600 --> 00:05:41.100
+for spoofing that can open up.
+
+00:05:45.170 --> 00:05:48.740
+To combat this kind of
+spoofing, in Chrome 75
+
+00:05:48.740 --> 00:05:50.420
+we introduced a
+new warning which
+
+00:05:50.420 --> 00:05:53.300
+we call the Lookalike Warning.
+
+00:05:53.300 --> 00:05:56.960
+This morning detects
+spoofy IDNs and shows
+
+00:05:56.960 --> 00:05:59.452
+this page to direct the
+user to the legitimate site
+
+00:05:59.452 --> 00:06:01.160
+when we think they
+might be under attack.
+
+00:06:06.310 --> 00:06:08.670
+Here's how this
+works under the hood.
+
+00:06:08.670 --> 00:06:12.000
+When Chrome encounters an IDN,
+Internationalized Domain Name,
+
+00:06:12.000 --> 00:06:15.660
+in a navigation, it
+converts it to a skeleton
+
+00:06:15.660 --> 00:06:19.260
+using an algorithm that converts
+a representation of the domain,
+
+00:06:19.260 --> 00:06:23.250
+collapsing similar looking
+characters into one.
+
+00:06:23.250 --> 00:06:26.310
+We then compare that skeleton
+against the skeletons of very
+
+00:06:26.310 --> 00:06:29.640
+popular sites and also sites
+that the user has visited
+
+00:06:29.640 --> 00:06:32.430
+and engaged with in the past.
+
+00:06:32.430 --> 00:06:34.560
+If there's a match among
+one of those sites,
+
+00:06:34.560 --> 00:06:37.290
+we show this morning to direct
+the user to the legitimate site
+
+00:06:37.290 --> 00:06:39.580
+that we think is the site
+they actually want to go to.
+
+00:06:44.030 --> 00:06:46.850
+But of course, it's not
+only IDNs that are confusing
+
+00:06:46.850 --> 00:06:49.370
+and that present
+spoofing opportunities.
+
+00:06:49.370 --> 00:06:52.430
+Paths, fragments, and
+other components of the URL
+
+00:06:52.430 --> 00:06:54.470
+can distract from the
+domain name, which
+
+00:06:54.470 --> 00:06:56.480
+is the crucial
+indicator of identity
+
+00:06:56.480 --> 00:07:01.100
+that users need to scrutinize
+to make security decisions.
+
+00:07:01.100 --> 00:07:03.050
+You may have noticed
+some changes recently
+
+00:07:03.050 --> 00:07:05.930
+to how Chrome's Omnibox
+looks to help draw users'
+
+00:07:05.930 --> 00:07:07.430
+attention to the domain name.
+
+00:07:10.050 --> 00:07:13.530
+First, we did some user research
+on the extended validation
+
+00:07:13.530 --> 00:07:15.960
+indicator in Chrome.
+
+00:07:15.960 --> 00:07:19.590
+Extended validation is a special
+type of HTTPS certificate
+
+00:07:19.590 --> 00:07:23.500
+which you can buy to tie your
+domain name to a legal entity.
+
+00:07:23.500 --> 00:07:25.710
+And when you do this,
+your legal entity name
+
+00:07:25.710 --> 00:07:30.310
+shows up in browser address
+bars, as you can see here.
+
+00:07:30.310 --> 00:07:32.440
+The idea is that this
+type of certificate
+
+00:07:32.440 --> 00:07:34.510
+relieves people,
+relieves end users,
+
+00:07:34.510 --> 00:07:37.540
+from having to understand
+site identity from URLs,
+
+00:07:37.540 --> 00:07:39.310
+because they should
+be able to discern it
+
+00:07:39.310 --> 00:07:40.670
+from the EV indicator instead.
+
+00:07:44.430 --> 00:07:46.770
+From our user
+research, though, we
+
+00:07:46.770 --> 00:07:48.720
+found that EV
+certificates don't really
+
+00:07:48.720 --> 00:07:52.200
+help people understand
+site identity today.
+
+00:07:52.200 --> 00:07:54.150
+For EV to be
+effective, people need
+
+00:07:54.150 --> 00:07:56.220
+to notice when it's
+missing, because that
+
+00:07:56.220 --> 00:07:58.470
+indicates a possible attack.
+
+00:07:58.470 --> 00:08:01.230
+But we found that they didn't.
+
+00:08:01.230 --> 00:08:03.420
+There have also been
+some recent proof
+
+00:08:03.420 --> 00:08:05.640
+of concept attacks
+showing that EV can even
+
+00:08:05.640 --> 00:08:09.360
+be abused to show actively
+misleading site identity
+
+00:08:09.360 --> 00:08:10.750
+information in the address bar.
+
+00:08:13.980 --> 00:08:17.670
+So in Chrome 77, we
+moved the EV indicator
+
+00:08:17.670 --> 00:08:20.520
+into page info, which
+is this UI surface
+
+00:08:20.520 --> 00:08:24.450
+that you see when you click
+on the lock icon in Chrome.
+
+00:08:24.450 --> 00:08:27.210
+If you have an EV
+certificate for your website
+
+00:08:27.210 --> 00:08:30.000
+and you're wondering where
+the EV indicator went,
+
+00:08:30.000 --> 00:08:31.800
+this is where.
+
+00:08:31.800 --> 00:08:34.390
+This is in line with our
+general philosophy on Chrome
+
+00:08:34.390 --> 00:08:38.130
+that users should be able to
+assume security by default
+
+00:08:38.130 --> 00:08:41.309
+and will warn when
+something is wrong,
+
+00:08:41.309 --> 00:08:44.370
+rather than, we don't want to be
+presenting positive indicators
+
+00:08:44.370 --> 00:08:46.535
+and relying on users
+noticing their absence,
+
+00:08:46.535 --> 00:08:48.660
+because we've found that
+just doesn't work as well.
+
+00:08:52.550 --> 00:08:54.490
+We also recently
+launched a change
+
+00:08:54.490 --> 00:08:58.800
+to simplify how URLs themselves
+are displayed in the Omnibox.
+
+00:08:58.800 --> 00:09:06.250
+This scheme, HTTPS or HTTP, and
+the very common subdomain www,
+
+00:09:06.250 --> 00:09:10.400
+don't add much information
+for many users.
+
+00:09:10.400 --> 00:09:11.990
+The scheme is most
+useful for telling
+
+00:09:11.990 --> 00:09:14.580
+whether the connection
+is secure or not,
+
+00:09:14.580 --> 00:09:16.760
+but we already represent
+that visually with a lock
+
+00:09:16.760 --> 00:09:19.710
+icon or a not secure a badge.
+
+00:09:19.710 --> 00:09:21.710
+Besides, we want it to
+be so that you don't have
+
+00:09:21.710 --> 00:09:24.740
+to specifically check when a
+connection is HTTPS by looking
+
+00:09:24.740 --> 00:09:29.960
+for this scheme, because Chrome
+will warn you when it isn't.
+
+00:09:29.960 --> 00:09:32.150
+And for the vast
+majority of sites,
+
+00:09:32.150 --> 00:09:35.780
+the presence or absence
+of the www subdomain
+
+00:09:35.780 --> 00:09:36.990
+doesn't make a difference.
+
+00:09:36.990 --> 00:09:38.960
+It's just visual noise
+for a lot of users
+
+00:09:38.960 --> 00:09:40.760
+who have a hard time
+finding the security
+
+00:09:40.760 --> 00:09:43.520
+relevant part of the URL.
+
+00:09:43.520 --> 00:09:45.770
+We now hide these URL
+components in what
+
+00:09:45.770 --> 00:09:49.790
+we call the steady state of
+the box to make the UI simpler
+
+00:09:49.790 --> 00:09:52.310
+and to focus the user's
+attention on the security
+
+00:09:52.310 --> 00:09:55.250
+relevant part of the URL,
+which is the domain name.
+
+00:09:58.350 --> 00:10:02.730
+You could imagine in the
+future other possible UI
+
+00:10:02.730 --> 00:10:04.530
+changes that might
+draw attention
+
+00:10:04.530 --> 00:10:07.110
+to the domain name even more.
+
+00:10:07.110 --> 00:10:09.270
+Should we hide the
+path of a URL until you
+
+00:10:09.270 --> 00:10:12.000
+click to edit in the box?
+
+00:10:12.000 --> 00:10:13.920
+Should we make the
+domain name stand out
+
+00:10:13.920 --> 00:10:17.010
+more by making it
+bolder or bigger?
+
+00:10:17.010 --> 00:10:19.440
+Should we animate in
+the path, after the user
+
+00:10:19.440 --> 00:10:22.930
+has had a chance to inspect
+the domain on its own?
+
+00:10:22.930 --> 00:10:25.260
+There are lots of
+different possibilities,
+
+00:10:25.260 --> 00:10:28.170
+but so far we don't have
+strong evidence about which one
+
+00:10:28.170 --> 00:10:30.870
+is the best direction,
+if any, so this is still
+
+00:10:30.870 --> 00:10:31.730
+an open problem.
+
+00:10:35.550 --> 00:10:37.650
+In line with this
+philosophy, we plan
+
+00:10:37.650 --> 00:10:39.780
+to eventually remove
+even the lock icon
+
+00:10:39.780 --> 00:10:44.160
+that browsers typically
+show on HTTPS connections.
+
+00:10:44.160 --> 00:10:48.000
+We plan to present secure
+HTTPS connections as neutral,
+
+00:10:48.000 --> 00:10:50.550
+as the default,
+and warn only when
+
+00:10:50.550 --> 00:10:53.400
+the connection lacks security.
+
+00:10:53.400 --> 00:10:56.370
+As you can see here, positive
+indicators like the lock icon
+
+00:10:56.370 --> 00:11:00.150
+can be confusing to users
+and send the wrong message.
+
+00:11:00.150 --> 00:11:02.260
+We want to make it so
+that if you see nothing,
+
+00:11:02.260 --> 00:11:04.560
+you can assume it's
+security HTTPS,
+
+00:11:04.560 --> 00:11:07.780
+because Chrome will
+warn you if it's not.
+
+00:11:07.780 --> 00:11:09.790
+However, we don't
+have a firm timeline
+
+00:11:09.790 --> 00:11:11.770
+for this change for
+removing the lock icon,
+
+00:11:11.770 --> 00:11:14.250
+because we need some more time
+for research and preparation
+
+00:11:14.250 --> 00:11:14.750
+still.
+
+00:11:18.740 --> 00:11:23.720
+Now, not everybody wants
+their URL display simplified.
+
+00:11:23.720 --> 00:11:25.910
+In fact, many of
+you in the audience
+
+00:11:25.910 --> 00:11:29.455
+might be power users who
+understand URLs perfectly well
+
+00:11:29.455 --> 00:11:31.580
+and are pretty good at
+telling when a site is being
+
+00:11:31.580 --> 00:11:34.320
+misleading about its identity.
+
+00:11:34.320 --> 00:11:38.000
+We want to build tools just
+for power users like you who
+
+00:11:38.000 --> 00:11:40.560
+understand the underlying
+identity system of the web
+
+00:11:40.560 --> 00:11:41.060
+well.
+
+00:11:44.350 --> 00:11:47.800
+Our first foray into this
+space is a Chrome extension
+
+00:11:47.800 --> 00:11:50.232
+called Suspicious
+Site Reporter, and it
+
+00:11:50.232 --> 00:11:52.690
+does a couple of things that
+might be of interest to people
+
+00:11:52.690 --> 00:11:55.390
+like you, who want to see the
+full details about the web
+
+00:11:55.390 --> 00:11:57.940
+pages they're visiting.
+
+00:11:57.940 --> 00:12:00.770
+So first of all, when you
+install this extension,
+
+00:12:00.770 --> 00:12:05.140
+you'll always see the full,
+unedited URL in the Omnibox.
+
+00:12:05.140 --> 00:12:07.450
+It let you bypass
+any simplifications
+
+00:12:07.450 --> 00:12:10.000
+that we make to the
+box in default Chrome
+
+00:12:10.000 --> 00:12:14.010
+with the aim of helping
+less technical users.
+
+00:12:14.010 --> 00:12:17.700
+Secondly, we think that
+experts play an important role
+
+00:12:17.700 --> 00:12:20.670
+in protecting the
+masses on the web.
+
+00:12:20.670 --> 00:12:22.530
+The extension gives
+you an easy way
+
+00:12:22.530 --> 00:12:25.140
+to report malicious sites
+to Google's Safe Browsing
+
+00:12:25.140 --> 00:12:30.640
+service, which scans the
+web for malicious activity.
+
+00:12:30.640 --> 00:12:33.550
+For example, if we go back to
+that suspicious bank website
+
+00:12:33.550 --> 00:12:36.070
+that I mentioned at the
+beginning of the talk,
+
+00:12:36.070 --> 00:12:39.010
+suppose that you,
+as an expert user,
+
+00:12:39.010 --> 00:12:41.500
+received this link from an
+email and noticed that it
+
+00:12:41.500 --> 00:12:42.850
+looks like a phishing site.
+
+00:12:42.850 --> 00:12:45.790
+Maybe it doesn't look like
+your bank's normal domain,
+
+00:12:45.790 --> 00:12:48.100
+or that your real
+bank wouldn't ask
+
+00:12:48.100 --> 00:12:51.890
+you to do something like provide
+your password over the phone.
+
+00:12:51.890 --> 00:12:54.670
+So in these circumstances, if
+you open up the Suspicious Site
+
+00:12:54.670 --> 00:12:57.250
+Reporter extension, you'll
+see some more information
+
+00:12:57.250 --> 00:12:59.350
+about that site,
+highlighting maybe
+
+00:12:59.350 --> 00:13:02.410
+that it's not a top site
+that users visit often.
+
+00:13:02.410 --> 00:13:05.520
+Maybe it's a site you've
+never visited before yourself,
+
+00:13:05.520 --> 00:13:08.110
+and maybe pointing out some
+behaviors that suspicious sites
+
+00:13:08.110 --> 00:13:10.300
+typically exhibit.
+
+00:13:10.300 --> 00:13:13.910
+From there, if you decide the
+site is, indeed, suspicious,
+
+00:13:13.910 --> 00:13:16.418
+it's one click to report
+that the URL to Safe Browsing
+
+00:13:16.418 --> 00:13:16.960
+for scanning.
+
+00:13:19.620 --> 00:13:22.940
+And if Safe Browsing finds that
+the site is indeed malicious,
+
+00:13:22.940 --> 00:13:25.160
+seeing evidence that it
+violates our policies
+
+00:13:25.160 --> 00:13:26.900
+on phishing or
+malware distribution
+
+00:13:26.900 --> 00:13:29.690
+or social engineering,
+it will block the site
+
+00:13:29.690 --> 00:13:32.600
+for all users of Chrome.
+
+00:13:32.600 --> 00:13:35.360
+So as technical experts,
+you have an ability
+
+00:13:35.360 --> 00:13:38.840
+to stop malicious sites that
+non-technical people might not
+
+00:13:38.840 --> 00:13:41.420
+have, and you can
+use that ability
+
+00:13:41.420 --> 00:13:43.240
+to protect all users of the web.
+
+00:13:47.110 --> 00:13:49.687
+You can install the
+extension from this URL,
+
+00:13:49.687 --> 00:13:51.520
+or if you want to get
+even further involved,
+
+00:13:51.520 --> 00:13:54.150
+the code is on GitHub, and
+we'd welcome your issues
+
+00:13:54.150 --> 00:13:55.900
+that you want to file
+or any code that you
+
+00:13:55.900 --> 00:13:57.173
+want to contribute.
+
+00:14:03.100 --> 00:14:07.660
+Building usable security tools
+is a really hard problem,
+
+00:14:07.660 --> 00:14:09.400
+but Chrome is
+committing to helping--
+
+00:14:09.400 --> 00:14:11.200
+is committed to helping
+people understand
+
+00:14:11.200 --> 00:14:13.540
+where they are on the web.
+
+00:14:13.540 --> 00:14:15.640
+We're doing this by
+combating spoofing,
+
+00:14:15.640 --> 00:14:18.490
+drawing people's attention to
+what they need to understand
+
+00:14:18.490 --> 00:14:21.340
+to make security
+decisions, and harnessing
+
+00:14:21.340 --> 00:14:23.020
+the power of experts like you.
+
+00:14:26.550 --> 00:14:30.030
+But web users today aren't just
+concerned about first party
+
+00:14:30.030 --> 00:14:31.800
+website identity.
+
+00:14:31.800 --> 00:14:33.720
+They're also concerned
+with third parties
+
+00:14:33.720 --> 00:14:37.220
+and how their data flows
+among those third parties.
+
+00:14:37.220 --> 00:14:38.790
+I'll now handed
+over to my colleague
+
+00:14:38.790 --> 00:14:42.120
+Michael to talk about limiting
+what data is being observed
+
+00:14:42.120 --> 00:14:44.850
+about you on the web while
+enabling a thriving web
+
+00:14:44.850 --> 00:14:46.566
+ecosystem.
+
+00:14:46.566 --> 00:14:47.522
+[APPLAUSE]
+
+00:14:47.522 --> 00:14:48.478
+Thank you.
+
+00:14:48.478 --> 00:14:49.436
+MICHAEL KLEBER: Thanks.
+
+00:14:53.270 --> 00:14:53.960
+Hi.
+
+00:14:53.960 --> 00:14:56.570
+I'm Michael Kleber, and
+I'm a software engineer
+
+00:14:56.570 --> 00:15:01.640
+working on privacy and
+tracking prevention in Chrome.
+
+00:15:01.640 --> 00:15:04.850
+So let's talk about
+third parties on the web.
+
+00:15:04.850 --> 00:15:07.760
+As Emily says, when you're
+visiting a site on the web,
+
+00:15:07.760 --> 00:15:11.220
+the browser can do a lot to help
+you know what site you're on.
+
+00:15:11.220 --> 00:15:13.430
+But most sites
+aren't constructed
+
+00:15:13.430 --> 00:15:16.210
+in-house from the ground up.
+
+00:15:16.210 --> 00:15:18.310
+Just like most homeowners
+get a professional
+
+00:15:18.310 --> 00:15:21.130
+to do their electrical
+work, lots of websites
+
+00:15:21.130 --> 00:15:23.860
+have third party experts
+to do their analytics
+
+00:15:23.860 --> 00:15:28.220
+or their video serving or other
+specialized functions for them.
+
+00:15:28.220 --> 00:15:31.720
+Third parties are great, and
+the fact that this is possible
+
+00:15:31.720 --> 00:15:32.680
+is pretty amazing.
+
+00:15:32.680 --> 00:15:37.210
+Composability is one of
+the web's superpowers.
+
+00:15:37.210 --> 00:15:41.310
+One huge role third
+parties play today is ads.
+
+00:15:41.310 --> 00:15:44.910
+Sure, Google and Facebook
+put ads on their own sites,
+
+00:15:44.910 --> 00:15:46.650
+but that's not what
+I'm talking about.
+
+00:15:46.650 --> 00:15:50.190
+Most ads on the web
+come from third parties.
+
+00:15:50.190 --> 00:15:53.010
+When you visit a news
+site, it probably has
+
+00:15:53.010 --> 00:15:56.130
+ads that were placed there--
+could be by Google or Facebook,
+
+00:15:56.130 --> 00:15:57.960
+or could be by 100
+other companies
+
+00:15:57.960 --> 00:15:59.820
+in the ad-placing business.
+
+00:15:59.820 --> 00:16:01.230
+And that's great, too.
+
+00:16:01.230 --> 00:16:05.130
+Sites across the web, full of
+important and useful content
+
+00:16:05.130 --> 00:16:08.100
+that people get to see for
+free, support themselves
+
+00:16:08.100 --> 00:16:10.200
+with tens of billions
+of dollars a year
+
+00:16:10.200 --> 00:16:13.937
+from ads placed
+by third parties.
+
+00:16:13.937 --> 00:16:15.770
+But there's a problem
+with the system today,
+
+00:16:15.770 --> 00:16:17.350
+and I'm sure you
+know what it is.
+
+00:16:17.350 --> 00:16:19.240
+Privacy.
+
+00:16:19.240 --> 00:16:20.890
+If you're browsing
+the web, then even
+
+00:16:20.890 --> 00:16:23.740
+if you know where you are,
+what site you're visiting,
+
+00:16:23.740 --> 00:16:25.810
+you probably don't know
+all the third parties
+
+00:16:25.810 --> 00:16:27.010
+that are involved.
+
+00:16:27.010 --> 00:16:29.960
+And it's unreasonable
+to expect you to.
+
+00:16:29.960 --> 00:16:32.090
+What's more, if you're
+a developer building
+
+00:16:32.090 --> 00:16:34.970
+your own site, you might not
+know all the third parties
+
+00:16:34.970 --> 00:16:36.800
+who could be pulled
+in when it runs.
+
+00:16:36.800 --> 00:16:39.380
+This is like knowing
+your whole supply chain.
+
+00:16:39.380 --> 00:16:42.163
+Transitive
+dependencies are hard.
+
+00:16:42.163 --> 00:16:43.580
+And even if you
+know who they are,
+
+00:16:43.580 --> 00:16:46.070
+you still might not know
+everything that they're doing.
+
+00:16:48.870 --> 00:16:51.230
+And the answer is
+it shouldn't matter.
+
+00:16:51.230 --> 00:16:54.050
+People should be able to
+browse the web without worrying
+
+00:16:54.050 --> 00:16:56.390
+that someone is collecting
+a dossier on them
+
+00:16:56.390 --> 00:16:58.670
+for what they're
+doing, and developers
+
+00:16:58.670 --> 00:17:01.070
+should be able to build
+sites without worrying
+
+00:17:01.070 --> 00:17:03.560
+that their infrastructure
+is compromising their users'
+
+00:17:03.560 --> 00:17:05.310
+interests.
+
+00:17:05.310 --> 00:17:07.140
+So how can we get there?
+
+00:17:07.140 --> 00:17:10.319
+How can we let third parties
+do the hugely important things
+
+00:17:10.319 --> 00:17:12.869
+that they do today,
+including letting
+
+00:17:12.869 --> 00:17:16.200
+ads pay for content, without
+allowing specific people to be
+
+00:17:16.200 --> 00:17:17.190
+tracked across the web?
+
+00:17:19.730 --> 00:17:23.240
+We have a 2-step plan to
+get to a flourishing web
+
+00:17:23.240 --> 00:17:25.280
+without tracking.
+
+00:17:25.280 --> 00:17:28.280
+First, we want to give
+third parties new tools
+
+00:17:28.280 --> 00:17:30.780
+to accomplish their goals.
+
+00:17:30.780 --> 00:17:33.300
+That's probably not what you
+expected me to say, right?
+
+00:17:33.300 --> 00:17:36.290
+But bear with me a minute.
+
+00:17:36.290 --> 00:17:39.080
+Third parties may want
+to answer some very
+
+00:17:39.080 --> 00:17:42.200
+natural and
+nonpersonal questions,
+
+00:17:42.200 --> 00:17:45.920
+things like how many
+different people saw my ad?
+
+00:17:45.920 --> 00:17:48.950
+Or how often do the people
+who click on these ads
+
+00:17:48.950 --> 00:17:51.080
+actually buy something?
+
+00:17:51.080 --> 00:17:54.200
+Or is there someone who
+can vouch for you being
+
+00:17:54.200 --> 00:17:57.530
+a trustworthy human web user?
+
+00:17:57.530 --> 00:17:59.090
+Answering all these
+questions today
+
+00:17:59.090 --> 00:18:03.710
+relies on a really powerful
+capability, global cross site
+
+00:18:03.710 --> 00:18:05.035
+identity.
+
+00:18:05.035 --> 00:18:06.410
+And this is what
+can also be used
+
+00:18:06.410 --> 00:18:11.790
+to knit your browsing behavior
+together into a user profile.
+
+00:18:11.790 --> 00:18:13.940
+We would be much
+better off if it
+
+00:18:13.940 --> 00:18:16.010
+were possible to answer
+these questions with more
+
+00:18:16.010 --> 00:18:18.620
+right-sized APIs.
+
+00:18:18.620 --> 00:18:20.720
+We need a web that
+is powerful enough
+
+00:18:20.720 --> 00:18:25.460
+to support those vital third
+party use cases without relying
+
+00:18:25.460 --> 00:18:28.400
+on a too-large tracking
+mechanism that gives you
+
+00:18:28.400 --> 00:18:30.800
+a way more information
+than what you really need.
+
+00:18:33.872 --> 00:18:36.080
+It turns out that support
+for some of these use cases
+
+00:18:36.080 --> 00:18:37.650
+isn't easy.
+
+00:18:37.650 --> 00:18:40.250
+We don't want the browser to
+share your activity with anyone
+
+00:18:40.250 --> 00:18:44.900
+else, not even with a trusted
+counting service or a spam
+
+00:18:44.900 --> 00:18:46.970
+detection provider,
+and that means
+
+00:18:46.970 --> 00:18:50.180
+we need to do things the hard
+way with powerful machinery
+
+00:18:50.180 --> 00:18:54.720
+doing privacy preserving
+operations behind the scenes.
+
+00:18:54.720 --> 00:18:57.720
+Privacy preserving measurement
+and fraud prevention,
+
+00:18:57.720 --> 00:19:00.150
+well, we've published
+proposals backed
+
+00:19:00.150 --> 00:19:03.870
+by cutting edge crypto and
+secure multi-party computation
+
+00:19:03.870 --> 00:19:04.920
+research.
+
+00:19:04.920 --> 00:19:09.570
+Check out the private join and
+compute blog posts and video
+
+00:19:09.570 --> 00:19:12.480
+for some related prior work.
+
+00:19:12.480 --> 00:19:14.490
+Even harder are the
+ways that the browser
+
+00:19:14.490 --> 00:19:16.890
+can support those ad
+companies who want to show you
+
+00:19:16.890 --> 00:19:19.410
+ads that you're most
+likely to be interested in.
+
+00:19:19.410 --> 00:19:22.020
+We have ideas here,
+too, built on top
+
+00:19:22.020 --> 00:19:25.260
+of on-device and
+federated computation
+
+00:19:25.260 --> 00:19:28.290
+and guarded by differential
+privacy protections.
+
+00:19:28.290 --> 00:19:30.868
+Check out Google's
+Federated Learning website
+
+00:19:30.868 --> 00:19:31.785
+for some more details.
+
+00:19:35.332 --> 00:19:37.790
+I know it's odd to think about
+something specifically meant
+
+00:19:37.790 --> 00:19:41.750
+to help ads being built
+into web browsers,
+
+00:19:41.750 --> 00:19:43.520
+but the browser
+is the place where
+
+00:19:43.520 --> 00:19:47.930
+we can offer privacy guarantees,
+and these capabilities turn out
+
+00:19:47.930 --> 00:19:51.280
+to be really important
+for the web to flourish.
+
+00:19:51.280 --> 00:19:52.630
+How important?
+
+00:19:52.630 --> 00:19:56.200
+Well, our friends in Google Ads
+ran some experiments on life
+
+00:19:56.200 --> 00:19:59.800
+without personalization or
+these sorts of new capabilities,
+
+00:19:59.800 --> 00:20:01.990
+and the results are
+pretty devastating.
+
+00:20:01.990 --> 00:20:06.730
+Websites got 52% less
+ads revenue on average,
+
+00:20:06.730 --> 00:20:10.940
+and news publishers
+got 62% less.
+
+00:20:10.940 --> 00:20:14.120
+I'm sure you all can imagine
+what losing half of their money
+
+00:20:14.120 --> 00:20:16.670
+would do to the
+websites you love.
+
+00:20:16.670 --> 00:20:19.040
+And that's why Chrome
+believes that this work is
+
+00:20:19.040 --> 00:20:22.768
+worthwhile and necessary
+to the health of the web.
+
+00:20:22.768 --> 00:20:25.060
+And look, I know some of you
+are looking at this slide,
+
+00:20:25.060 --> 00:20:27.550
+and saying, oh, this
+is just about Chrome
+
+00:20:27.550 --> 00:20:30.080
+helping Google protect
+its bottom line.
+
+00:20:30.080 --> 00:20:31.820
+So let me be clear here.
+
+00:20:31.820 --> 00:20:36.340
+Google makes most of its
+money from search ads,
+
+00:20:36.340 --> 00:20:38.470
+and people only
+come to Google.com
+
+00:20:38.470 --> 00:20:43.400
+to search for stuff because all
+the richness of the web exists.
+
+00:20:43.400 --> 00:20:46.970
+Helping the open web thrive
+is the mission for Chrome
+
+00:20:46.970 --> 00:20:49.710
+and is vital to
+Google, and I think
+
+00:20:49.710 --> 00:20:50.960
+it's why we're all here today.
+
+00:20:53.720 --> 00:20:56.350
+So part one of my
+plan was new APIs,
+
+00:20:56.350 --> 00:21:00.340
+and these APIs are built to
+support their use cases even
+
+00:21:00.340 --> 00:21:02.920
+in a world where there's no
+way to link up your activity
+
+00:21:02.920 --> 00:21:06.350
+across different sites.
+
+00:21:06.350 --> 00:21:08.720
+So once we've invented new
+ways for the web to flourish,
+
+00:21:08.720 --> 00:21:11.030
+ways that don't
+rely on tracking,
+
+00:21:11.030 --> 00:21:12.590
+what does that unlock?
+
+00:21:12.590 --> 00:21:15.470
+How do we move to a world
+where people who use the web
+
+00:21:15.470 --> 00:21:18.095
+are going to be safe and feel
+confident in their browsing?
+
+00:21:20.870 --> 00:21:23.300
+Recognizing users across
+sites has historically
+
+00:21:23.300 --> 00:21:26.650
+been based on third
+party cookies,
+
+00:21:26.650 --> 00:21:29.890
+but as browsers have restricted
+access to those cookies,
+
+00:21:29.890 --> 00:21:32.800
+we've seen them replaced
+with other mechanisms,
+
+00:21:32.800 --> 00:21:37.330
+covert browser storage, device
+fingerprinting, asking for user
+
+00:21:37.330 --> 00:21:40.120
+provided information
+like email addresses.
+
+00:21:40.120 --> 00:21:43.360
+Those covert tracking
+techniques are a real problem.
+
+00:21:43.360 --> 00:21:45.640
+They lack transparency
+into who's using them
+
+00:21:45.640 --> 00:21:51.160
+and for what purpose, and often,
+there is no way to reset them.
+
+00:21:51.160 --> 00:21:52.930
+We've started landing
+changes in Chrome
+
+00:21:52.930 --> 00:21:55.450
+to block some of these
+ways of tracking.
+
+00:21:55.450 --> 00:21:57.880
+To be honest, there
+are a lot of ways
+
+00:21:57.880 --> 00:21:59.620
+that you might try
+to track users,
+
+00:21:59.620 --> 00:22:02.140
+and so fixing them is going
+to be a long road, not
+
+00:22:02.140 --> 00:22:03.850
+a quick fix.
+
+00:22:03.850 --> 00:22:07.870
+And we'll be carefully
+watching the impact on good use
+
+00:22:07.870 --> 00:22:09.670
+cases along the way.
+
+00:22:09.670 --> 00:22:12.590
+Something like shared caches
+can be a tracking vector,
+
+00:22:12.590 --> 00:22:15.280
+for example, but they also
+help pages load faster.
+
+00:22:18.390 --> 00:22:20.210
+Speaking of good
+use cases, remember
+
+00:22:20.210 --> 00:22:22.010
+what I said about
+us being much better
+
+00:22:22.010 --> 00:22:23.870
+off if it were possible
+to answer questions
+
+00:22:23.870 --> 00:22:27.020
+with more right-sized APIs?
+
+00:22:27.020 --> 00:22:30.080
+This applies to the covert
+tracking problem, also.
+
+00:22:30.080 --> 00:22:31.700
+Check out this code.
+
+00:22:31.700 --> 00:22:32.990
+What's going on here?
+
+00:22:32.990 --> 00:22:35.930
+Looks like someone is writing
+a string of characters
+
+00:22:35.930 --> 00:22:39.260
+to a Canvas element and then
+reading the pixels back, maybe
+
+00:22:39.260 --> 00:22:43.910
+to fingerprint you based on your
+graphics stack, for example?
+
+00:22:43.910 --> 00:22:47.000
+No, it turns out
+this is WordPress.
+
+00:22:47.000 --> 00:22:49.070
+The rights to
+Canvas are read back
+
+00:22:49.070 --> 00:22:53.240
+to check whether this string
+of emoji here with 0 width
+
+00:22:53.240 --> 00:22:56.750
+joins in between them, renders
+as three separate characters,
+
+00:22:56.750 --> 00:23:03.160
+like this, or as this one
+character added in Emoji 12.
+
+00:23:03.160 --> 00:23:05.350
+If the web platform
+forces you to use
+
+00:23:05.350 --> 00:23:07.480
+high entropy
+fingerprinting surfaces
+
+00:23:07.480 --> 00:23:11.080
+to perform mundane tasks like
+checking for Emoji support,
+
+00:23:11.080 --> 00:23:14.250
+that's a problem
+that we need to fix.
+
+00:23:14.250 --> 00:23:18.530
+And then we want Chrome
+to notice it and stop it
+
+00:23:18.530 --> 00:23:20.270
+when a website is
+abusing a bunch
+
+00:23:20.270 --> 00:23:24.200
+of unrelated, high entropy
+content APIs as a way
+
+00:23:24.200 --> 00:23:25.460
+to fingerprint you.
+
+00:23:25.460 --> 00:23:28.430
+Our privacy budget
+explainer describes
+
+00:23:28.430 --> 00:23:30.770
+the multi-step process
+that we're working on.
+
+00:23:33.670 --> 00:23:37.025
+As for third party
+cookies themselves,
+
+00:23:37.025 --> 00:23:38.650
+let me start with
+some upcoming changes
+
+00:23:38.650 --> 00:23:40.960
+that we announced
+earlier this year.
+
+00:23:40.960 --> 00:23:45.880
+Starting in Chrome M80,
+that's three months from now,
+
+00:23:45.880 --> 00:23:47.590
+if you set a cookie
+the way you've
+
+00:23:47.590 --> 00:23:50.140
+probably been doing it
+since the dawn of the web,
+
+00:23:50.140 --> 00:23:55.530
+that cookie will be available
+only in a first party context.
+
+00:23:55.530 --> 00:23:57.790
+If you want that cookie
+when you're a third party,
+
+00:23:57.790 --> 00:24:00.640
+you need to do something new.
+
+00:24:00.640 --> 00:24:03.280
+For details, see the Chromium
+blog posts linked here,
+
+00:24:03.280 --> 00:24:07.030
+or see the console warnings that
+are live in Chrome right now.
+
+00:24:07.030 --> 00:24:09.560
+But the quick summary is this.
+
+00:24:09.560 --> 00:24:13.090
+If you want a cookie available
+when you're a third party,
+
+00:24:13.090 --> 00:24:16.480
+you will need to explicitly
+set it with the attributes
+
+00:24:16.480 --> 00:24:21.190
+SameSite=None and secure.
+
+00:24:21.190 --> 00:24:26.590
+And yes, that secure thing
+does mean that HTTPS is a must.
+
+00:24:26.590 --> 00:24:28.900
+There will be no
+third party cookies
+
+00:24:28.900 --> 00:24:32.980
+on insecure HTTP requests.
+
+00:24:32.980 --> 00:24:34.720
+This is part of an IETF draft.
+
+00:24:34.720 --> 00:24:37.570
+We expect both
+Firefox and Microsoft
+
+00:24:37.570 --> 00:24:41.863
+Edge to shift this change in
+sometime next year as well.
+
+00:24:41.863 --> 00:24:42.780
+This is the new world.
+
+00:24:46.150 --> 00:24:50.720
+OK, so what about third party
+cookies over HTTPS, then?
+
+00:24:50.720 --> 00:24:54.350
+I'm sure some of you are
+hoping that I will tell you
+
+00:24:54.350 --> 00:24:56.450
+the future, that
+I am going to gaze
+
+00:24:56.450 --> 00:24:59.240
+into my cookie
+dough-flavored crystal ball
+
+00:24:59.240 --> 00:25:03.200
+and tell you whether cookies
+are going to stick around
+
+00:25:03.200 --> 00:25:10.702
+in their current form or
+go away entirely or live on
+
+00:25:10.702 --> 00:25:12.160
+with some restrictions
+that prevent
+
+00:25:12.160 --> 00:25:14.800
+their use in
+cross-site tracking.
+
+00:25:14.800 --> 00:25:17.530
+And I wish I had
+an answer for you.
+
+00:25:17.530 --> 00:25:21.140
+People's expectations
+are changing,
+
+00:25:21.140 --> 00:25:22.870
+and all of us in the
+browser community
+
+00:25:22.870 --> 00:25:25.350
+are watching those
+changes happen.
+
+00:25:25.350 --> 00:25:30.590
+And it's difficult to predict,
+especially about the future.
+
+00:25:30.590 --> 00:25:33.650
+Google is a company, and
+Chrome, as a browser,
+
+00:25:33.650 --> 00:25:37.430
+cannot unilaterally chart
+the future of the cookie.
+
+00:25:37.430 --> 00:25:39.890
+We can make the current
+web architecture better
+
+00:25:39.890 --> 00:25:44.040
+by introducing more privacy-safe
+ways to do important things,
+
+00:25:44.040 --> 00:25:47.510
+and we can build for
+every eventuality.
+
+00:25:47.510 --> 00:25:50.110
+So what I can say
+is that Chrome wants
+
+00:25:50.110 --> 00:25:54.710
+to build a web that
+thrives, even if third party
+
+00:25:54.710 --> 00:25:56.512
+cookies go away entirely.
+
+00:25:59.820 --> 00:26:01.700
+And this is where
+we need your help.
+
+00:26:01.700 --> 00:26:04.810
+Help us imagine a world
+without third party cookies
+
+00:26:04.810 --> 00:26:07.190
+or other tracking vectors.
+
+00:26:07.190 --> 00:26:10.840
+What other use cases are crying
+out for a specialized browser
+
+00:26:10.840 --> 00:26:13.570
+support before we
+can land there?
+
+00:26:13.570 --> 00:26:16.390
+What new primitive capabilities
+does the web platform
+
+00:26:16.390 --> 00:26:19.360
+require to get as much
+utility as possible
+
+00:26:19.360 --> 00:26:22.870
+without allowing user tracking?
+
+00:26:22.870 --> 00:26:25.910
+The Chromium privacy sandbox
+page links to the explainers
+
+00:26:25.910 --> 00:26:28.130
+that we've published so far.
+
+00:26:28.130 --> 00:26:30.500
+Tomorrow morning there's
+a talk by Chris and Yoav
+
+00:26:30.500 --> 00:26:34.010
+about the Blink process,
+what an explainer is,
+
+00:26:34.010 --> 00:26:36.980
+and the conversations
+that we have
+
+00:26:36.980 --> 00:26:40.700
+in public where we figure out
+what to ship to solve problems
+
+00:26:40.700 --> 00:26:44.220
+and what problems need
+solving in the first place.
+
+00:26:44.220 --> 00:26:45.770
+Please join us.
+
+00:26:45.770 --> 00:26:50.060
+There are hard trade offs and
+difficult design problems here.
+
+00:26:50.060 --> 00:26:51.900
+Let's solve them together.
+
+00:26:51.900 --> 00:26:52.400
+[APPLAUSE]
+
+00:26:52.400 --> 00:26:53.300
+Thank you.
+
+00:26:53.300 --> 00:26:56.350
+[MUSIC PLAYING]
+

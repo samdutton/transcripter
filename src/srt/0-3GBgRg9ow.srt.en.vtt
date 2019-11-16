@@ -1,0 +1,737 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.120 --> 00:00:00.580
+MUSTAFA KURTUIDU: Hello there.
+
+00:00:00.580 --> 00:00:02.487
+My name is Mustafa, a
+UX designer at Google,
+
+00:00:02.487 --> 00:00:05.070
+and in this talk, I'm going to
+be covering designing for speed
+
+00:00:05.070 --> 00:00:06.360
+and hacking user perception.
+
+00:00:06.360 --> 00:00:08.960
+So I'll go through some research
+and some design examples.
+
+00:00:08.960 --> 00:00:11.460
+But before I get into that, I'd
+like to talk through a story
+
+00:00:11.460 --> 00:00:13.810
+which will summarize pretty
+much most of the talk,
+
+00:00:13.810 --> 00:00:16.530
+and that's the story
+of the slow elevator.
+
+00:00:16.530 --> 00:00:18.660
+So people often complain
+to building managers
+
+00:00:18.660 --> 00:00:20.740
+that the elevator is
+running really slow.
+
+00:00:20.740 --> 00:00:22.485
+So this is a big pain point.
+
+00:00:22.485 --> 00:00:25.720
+One potential solution is
+to make the elevator faster.
+
+00:00:25.720 --> 00:00:27.180
+So you can install a new motor.
+
+00:00:27.180 --> 00:00:28.380
+You can upgrade the motor.
+
+00:00:28.380 --> 00:00:31.118
+You can rip out the elevator,
+try different algorithms.
+
+00:00:31.118 --> 00:00:33.660
+The problem with this, though--
+it's quite an expensive thing
+
+00:00:33.660 --> 00:00:34.420
+to do.
+
+00:00:34.420 --> 00:00:36.760
+And for legacy systems,
+this is really difficult.
+
+00:00:36.760 --> 00:00:38.788
+So this parable kind
+of describes the web.
+
+00:00:38.788 --> 00:00:40.830
+When new technologies or
+new techniques come out,
+
+00:00:40.830 --> 00:00:42.690
+it's really difficult
+to rip out old code
+
+00:00:42.690 --> 00:00:44.290
+and replace it with new code.
+
+00:00:44.290 --> 00:00:46.350
+So what can we actually
+do in these situations?
+
+00:00:46.350 --> 00:00:48.940
+Well, if we look at the
+problem and the pain point--
+
+00:00:48.940 --> 00:00:49.857
+the elevator is slow--
+
+00:00:49.857 --> 00:00:51.357
+really, from the
+user point of view,
+
+00:00:51.357 --> 00:00:53.070
+it's not so much the
+elevator being slow,
+
+00:00:53.070 --> 00:00:55.200
+but it's actually the
+waiting being quite annoying.
+
+00:00:55.200 --> 00:00:57.310
+So if you reframe
+the problem, we say,
+
+00:00:57.310 --> 00:00:58.590
+OK, waiting is annoying.
+
+00:00:58.590 --> 00:01:01.590
+So what can we do to actually
+make the waiting feel shorter?
+
+00:01:01.590 --> 00:01:03.990
+So we say, OK, building
+managers will put up mirrors,
+
+00:01:03.990 --> 00:01:05.760
+they'll install
+a hand sanitizer,
+
+00:01:05.760 --> 00:01:07.317
+and perhaps they'll play music.
+
+00:01:07.317 --> 00:01:09.150
+And this distraction
+technique will actually
+
+00:01:09.150 --> 00:01:11.410
+make the whole experience
+feel much faster.
+
+00:01:11.410 --> 00:01:13.200
+So reframing the
+problem can actually
+
+00:01:13.200 --> 00:01:16.470
+help us think about how we
+can hack things perceptively
+
+00:01:16.470 --> 00:01:18.000
+for the users.
+
+00:01:18.000 --> 00:01:19.770
+Because speed is
+broken down into two
+
+00:01:19.770 --> 00:01:21.750
+things, real and perceived.
+
+00:01:21.750 --> 00:01:24.900
+So looking at some of
+the technical speed data,
+
+00:01:24.900 --> 00:01:26.137
+we see the "Financial Times."
+
+00:01:26.137 --> 00:01:28.470
+So the "Financial Times" have
+this interesting algorithm
+
+00:01:28.470 --> 00:01:29.670
+called the tipping point.
+
+00:01:29.670 --> 00:01:31.800
+If the user comes to
+the website five times
+
+00:01:31.800 --> 00:01:33.960
+a month to read five
+articles a month,
+
+00:01:33.960 --> 00:01:36.690
+they're more likely to
+subscribe to their site.
+
+00:01:36.690 --> 00:01:38.520
+And if they reach
+nine articles a month,
+
+00:01:38.520 --> 00:01:40.170
+then they're definitely
+more likely to subscribe.
+
+00:01:40.170 --> 00:01:41.962
+So they have this
+tipping point, the moment
+
+00:01:41.962 --> 00:01:44.950
+the user starts accessing
+this five times a month.
+
+00:01:44.950 --> 00:01:47.320
+So they'll start targeting
+and engaging with that user.
+
+00:01:47.320 --> 00:01:49.950
+But what they found was
+by making the website one
+
+00:01:49.950 --> 00:01:51.870
+second faster, they
+increased engagement
+
+00:01:51.870 --> 00:01:53.940
+for everybody coming
+to the website.
+
+00:01:53.940 --> 00:01:57.390
+So making the experience faster,
+from a technical point of view,
+
+00:01:57.390 --> 00:01:58.720
+is really critical.
+
+00:01:58.720 --> 00:02:00.660
+But also, the opposite is true.
+
+00:02:00.660 --> 00:02:03.000
+For every two seconds
+a site takes to load,
+
+00:02:03.000 --> 00:02:04.560
+bounce rates go up by 50%.
+
+00:02:04.560 --> 00:02:07.520
+So it's really critical to make
+your sites technically fast.
+
+00:02:07.520 --> 00:02:09.445
+And from a UX
+point of view, when
+
+00:02:09.445 --> 00:02:11.820
+you ask users, what's the most
+important thing on a page,
+
+00:02:11.820 --> 00:02:13.380
+they always talk about speed.
+
+00:02:13.380 --> 00:02:15.060
+As a matter of fact,
+the top four things
+
+00:02:15.060 --> 00:02:16.860
+here are all about
+speed and perception,
+
+00:02:16.860 --> 00:02:18.027
+if you think about them.
+
+00:02:18.027 --> 00:02:19.860
+The bottom one, how
+attractive a site looks,
+
+00:02:19.860 --> 00:02:21.600
+is quite depressing
+for me as a designer.
+
+00:02:21.600 --> 00:02:26.000
+But on the mobile web, speed
+is really, really critical.
+
+00:02:26.000 --> 00:02:27.570
+But what can we
+do as a quick win?
+
+00:02:27.570 --> 00:02:30.120
+So we have an app called Squoosh
+that we released last year.
+
+00:02:30.120 --> 00:02:31.920
+This optimizes
+images on the web.
+
+00:02:31.920 --> 00:02:32.980
+Why is that important?
+
+00:02:32.980 --> 00:02:35.160
+Because average page
+content is images,
+
+00:02:35.160 --> 00:02:37.140
+and images are really heavy.
+
+00:02:37.140 --> 00:02:38.280
+So this is a PWA.
+
+00:02:38.280 --> 00:02:40.470
+You can drag and drop
+images and start reducing
+
+00:02:40.470 --> 00:02:41.580
+the size of the images.
+
+00:02:41.580 --> 00:02:44.610
+And we demonstrated this
+at Chrome Dev Summit 2019
+
+00:02:44.610 --> 00:02:47.970
+and showed, by taking
+the IO's home page image,
+
+00:02:47.970 --> 00:02:49.710
+we reduced it by 83%.
+
+00:02:49.710 --> 00:02:52.590
+So we can all collectively
+start improving the experiences
+
+00:02:52.590 --> 00:02:54.900
+on the web just by making
+images much smaller.
+
+00:02:54.900 --> 00:02:56.970
+You can download the
+code here and also grab
+
+00:02:56.970 --> 00:02:59.880
+any of the components that are
+useful, such as Pinch to Zoom.
+
+00:02:59.880 --> 00:03:01.610
+And so please do check that out.
+
+00:03:01.610 --> 00:03:03.330
+But speed on the mobile
+web is important,
+
+00:03:03.330 --> 00:03:05.730
+but the perception of
+speed is just as important,
+
+00:03:05.730 --> 00:03:08.580
+because what we find is
+at least a third of users
+
+00:03:08.580 --> 00:03:11.430
+still feel experiences
+that are technically fast
+
+00:03:11.430 --> 00:03:12.820
+actually feel really slow.
+
+00:03:12.820 --> 00:03:14.920
+So what can we do to
+actually improve that?
+
+00:03:14.920 --> 00:03:17.430
+Well, perception
+and recognizable UI.
+
+00:03:17.430 --> 00:03:18.960
+Making navigation
+front of center
+
+00:03:18.960 --> 00:03:20.730
+is one small thing
+that you can do,
+
+00:03:20.730 --> 00:03:23.700
+because if a button is
+recognized straight away,
+
+00:03:23.700 --> 00:03:25.440
+the experiences
+feel faster, based
+
+00:03:25.440 --> 00:03:27.150
+on the research that we've seen.
+
+00:03:27.150 --> 00:03:29.460
+So another example
+is making buttons
+
+00:03:29.460 --> 00:03:31.120
+recognizable as buttons.
+
+00:03:31.120 --> 00:03:33.060
+So the blue button here
+looks like a button.
+
+00:03:33.060 --> 00:03:34.560
+It's more likely
+to be engaged with,
+
+00:03:34.560 --> 00:03:37.890
+as opposed to the text
+button, it may be a button,
+
+00:03:37.890 --> 00:03:39.280
+it may not be a button.
+
+00:03:39.280 --> 00:03:41.250
+So if a person is
+looking around a page
+
+00:03:41.250 --> 00:03:43.590
+to see what they're
+supposed to tap or click on,
+
+00:03:43.590 --> 00:03:44.920
+the experience feels slower.
+
+00:03:44.920 --> 00:03:48.240
+So make your navigation
+items recognizable.
+
+00:03:48.240 --> 00:03:50.020
+Also, give feedback to the user.
+
+00:03:50.020 --> 00:03:52.740
+So the typical life of a button
+is, a user will see a button,
+
+00:03:52.740 --> 00:03:54.582
+they'll tap on a
+button, engage with it.
+
+00:03:54.582 --> 00:03:57.040
+They get enraged, because they
+don't know what's happening.
+
+00:03:57.040 --> 00:03:58.457
+And then they may
+tap on it again,
+
+00:03:58.457 --> 00:04:01.330
+because maybe they didn't tap
+on it correctly the first time.
+
+00:04:01.330 --> 00:04:02.850
+So what can we do to stop this?
+
+00:04:02.850 --> 00:04:04.740
+Well, just giving back
+feedback mechanisms
+
+00:04:04.740 --> 00:04:06.750
+like the ripple that we
+have in Material Design
+
+00:04:06.750 --> 00:04:08.970
+can help, because on
+touchscreen devices,
+
+00:04:08.970 --> 00:04:10.080
+you won't have a hover.
+
+00:04:10.080 --> 00:04:12.390
+So just giving
+reassurances to the user
+
+00:04:12.390 --> 00:04:14.880
+is a small thing to actually
+change the perceptive speed
+
+00:04:14.880 --> 00:04:16.860
+of an actual experience.
+
+00:04:16.860 --> 00:04:18.640
+Progression is really
+key here as well,
+
+00:04:18.640 --> 00:04:21.813
+giving users some indication how
+long something takes to load.
+
+00:04:21.813 --> 00:04:23.730
+One interesting thing
+in research that we find
+
+00:04:23.730 --> 00:04:25.530
+is ripples that animate
+towards the left
+
+00:04:25.530 --> 00:04:28.380
+feel faster than other
+forms of progression.
+
+00:04:28.380 --> 00:04:29.880
+So if you can see
+in this animation,
+
+00:04:29.880 --> 00:04:32.190
+they're all the same, but
+the one third from bottom
+
+00:04:32.190 --> 00:04:33.330
+feels faster.
+
+00:04:33.330 --> 00:04:35.940
+In YouTube, what we do is
+we will stagger the progress
+
+00:04:35.940 --> 00:04:37.885
+bar across the top just
+a little bit because,
+
+00:04:37.885 --> 00:04:39.510
+it gives this
+anticipation and hanging,
+
+00:04:39.510 --> 00:04:41.052
+so it feels like
+the site is loading.
+
+00:04:41.052 --> 00:04:43.045
+Again, this is a
+small perceptive thing
+
+00:04:43.045 --> 00:04:45.420
+that hacks the perception that
+the experience is actually
+
+00:04:45.420 --> 00:04:46.573
+in progress.
+
+00:04:46.573 --> 00:04:48.990
+One other thing that you can
+do is skeleton screens, which
+
+00:04:48.990 --> 00:04:50.980
+are placeholders for content.
+
+00:04:50.980 --> 00:04:52.920
+So one thing that
+you don't want to do,
+
+00:04:52.920 --> 00:04:55.500
+in the scale of good to
+bad, is a blank screen.
+
+00:04:55.500 --> 00:04:57.810
+You want to make sure
+you show something.
+
+00:04:57.810 --> 00:05:00.380
+The next thing along
+is an actual spinner.
+
+00:05:00.380 --> 00:05:02.047
+Spinners are better
+than showing nothing
+
+00:05:02.047 --> 00:05:03.713
+going into an experience,
+but they still
+
+00:05:03.713 --> 00:05:05.340
+don't give any clear
+indication of what
+
+00:05:05.340 --> 00:05:07.620
+and when something
+is actually coming.
+
+00:05:07.620 --> 00:05:10.980
+A replacement of that would
+be the skeleton screen.
+
+00:05:10.980 --> 00:05:13.220
+Now, when you ask users
+about skeleton screens,
+
+00:05:13.220 --> 00:05:15.260
+generally speaking, they'll
+say gray boxes makes
+
+00:05:15.260 --> 00:05:16.740
+the experience feel broken.
+
+00:05:16.740 --> 00:05:18.980
+And there's this mass
+reveal, which isn't great,
+
+00:05:18.980 --> 00:05:21.110
+because conceptually, it's
+the same as the spinner.
+
+00:05:21.110 --> 00:05:23.090
+What we really
+will need to do is
+
+00:05:23.090 --> 00:05:25.700
+have metadata giving an
+indication to the user
+
+00:05:25.700 --> 00:05:28.080
+as to what is coming
+above the skeletons.
+
+00:05:28.080 --> 00:05:29.900
+The moment we have
+content, we load it.
+
+00:05:29.900 --> 00:05:33.410
+And perhaps images we'll frost
+or show a pixelated version
+
+00:05:33.410 --> 00:05:35.850
+first, and then load the
+actual full-quality image.
+
+00:05:35.850 --> 00:05:37.503
+So you want to
+show at every step
+
+00:05:37.503 --> 00:05:39.170
+some form of progression,
+so the user is
+
+00:05:39.170 --> 00:05:41.450
+reassured that something
+is definitely coming.
+
+00:05:41.450 --> 00:05:44.400
+Now, again, this is contextual
+to your own experiences.
+
+00:05:44.400 --> 00:05:47.030
+So in YouTube, what we do is,
+we'll load the video first,
+
+00:05:47.030 --> 00:05:48.290
+as opposed to the
+rest of the content,
+
+00:05:48.290 --> 00:05:50.290
+even though it's the
+heaviest thing on the page,
+
+00:05:50.290 --> 00:05:52.130
+because as part
+of the experience,
+
+00:05:52.130 --> 00:05:54.090
+the video is the
+most important thing.
+
+00:05:54.090 --> 00:05:56.840
+So again, you have to target
+which content pieces are
+
+00:05:56.840 --> 00:05:59.510
+critical in your experience
+and load them first,
+
+00:05:59.510 --> 00:06:02.000
+because the transitions
+that we use,
+
+00:06:02.000 --> 00:06:04.430
+we want to give the
+feeling of progression,
+
+00:06:04.430 --> 00:06:05.510
+rather than processing.
+
+00:06:05.510 --> 00:06:07.910
+So we don't just show a
+spinner and give no indication
+
+00:06:07.910 --> 00:06:08.660
+of what is coming.
+
+00:06:08.660 --> 00:06:11.480
+We need to show content coming
+in slowly and coming out,
+
+00:06:11.480 --> 00:06:14.942
+because it feels like a much
+faster, progressive experience.
+
+00:06:14.942 --> 00:06:16.400
+And so in summary,
+you want to make
+
+00:06:16.400 --> 00:06:17.870
+sure you reframe the problem.
+
+00:06:17.870 --> 00:06:19.400
+You want to avoid blank screens.
+
+00:06:19.400 --> 00:06:21.860
+You want to show bold
+animations, making sure
+
+00:06:21.860 --> 00:06:24.020
+that you're progressing,
+rather than processing,
+
+00:06:24.020 --> 00:06:26.560
+and keep navigation
+clear and simple.
+
+00:06:26.560 --> 00:06:28.730
+To find out more about
+the research on speed,
+
+00:06:28.730 --> 00:06:32.760
+you can download our ebook
+here, called "Brain Food."
+
+00:06:32.760 --> 00:06:35.720
+You can also check
+out our PWA ebook
+
+00:06:35.720 --> 00:06:37.970
+to learn more about
+Progressive Web Apps.
+
+00:06:37.970 --> 00:06:40.300
+And I also have this
+course on SkillShare
+
+00:06:40.300 --> 00:06:42.170
+so you can learn about
+the process of UX
+
+00:06:42.170 --> 00:06:44.300
+to help improve
+your experiences.
+
+00:06:44.300 --> 00:06:46.040
+And with that, I'd
+like to say thank you.
+
+00:06:46.040 --> 00:06:49.090
+[MUSIC PLAYING]
+

@@ -1,0 +1,2990 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:03.346
+[MUSIC PLAYING]
+
+00:00:05.263 --> 00:00:06.430
+KENJI BAHEUX: Hi, I'm Kenji.
+
+00:00:06.430 --> 00:00:07.830
+I'm a project manger in Chrome.
+
+00:00:07.830 --> 00:00:09.247
+I work on making
+things load fast.
+
+00:00:09.247 --> 00:00:10.580
+YUSUKE UTSUNOMIYA: Hi, everyone.
+
+00:00:10.580 --> 00:00:13.175
+I'm Yusuke from gTech Velocity
+at Google, helping our partners
+
+00:00:13.175 --> 00:00:14.585
+with everything web.
+
+00:00:14.585 --> 00:00:16.960
+KENJI BAHEUX: This talk is
+about bleeding-edge API design
+
+00:00:16.960 --> 00:00:19.600
+to help you create user
+experiences that are seamless,
+
+00:00:19.600 --> 00:00:21.200
+instant, and available.
+
+00:00:21.200 --> 00:00:24.050
+There is a lot to cover today,
+so let's jump right into it--
+
+00:00:27.400 --> 00:00:29.830
+maybe.
+
+00:00:29.830 --> 00:00:30.777
+It's coming.
+
+00:00:30.777 --> 00:00:33.110
+Well, yeah, the [? loading ?]
+[? on the screen ?] first,
+
+00:00:33.110 --> 00:00:35.230
+obviously.
+
+00:00:35.230 --> 00:00:37.450
+So we spend a lot of
+time waiting for things
+
+00:00:37.450 --> 00:00:40.060
+to load or disappear
+on the screen, right?
+
+00:00:40.060 --> 00:00:42.070
+Especially on mobile,
+browsing the web
+
+00:00:42.070 --> 00:00:43.570
+doesn't feel
+particularly delightful
+
+00:00:43.570 --> 00:00:47.228
+compared to the user experience
+you have on native apps.
+
+00:00:47.228 --> 00:00:48.770
+And there are a few
+reasons for that,
+
+00:00:48.770 --> 00:00:51.160
+but I think the main one is
+the way we load websites,
+
+00:00:51.160 --> 00:00:56.137
+generally speaking, it
+is sluggish, typically,
+
+00:00:56.137 --> 00:00:57.970
+the user experience
+that we have on the web.
+
+00:00:57.970 --> 00:01:01.270
+Let's see why that's the case.
+
+00:01:01.270 --> 00:01:02.770
+So this is a typical
+user experience
+
+00:01:02.770 --> 00:01:03.978
+that you have on today's web.
+
+00:01:03.978 --> 00:01:06.790
+You click on the link,
+and then, essentially, you
+
+00:01:06.790 --> 00:01:08.890
+see this blank page,
+because the process is
+
+00:01:08.890 --> 00:01:11.740
+going to fetch the HTML
+for the main resource
+
+00:01:11.740 --> 00:01:14.240
+for the new navigation,
+and it can take a while.
+
+00:01:14.240 --> 00:01:17.450
+So you still wait for
+something to happen-- anything.
+
+00:01:17.450 --> 00:01:20.140
+You don't even know, is it
+going to work or not, right?
+
+00:01:20.140 --> 00:01:21.510
+It could just fail.
+
+00:01:21.510 --> 00:01:24.490
+And then, eventually, you start
+to see like things rendering
+
+00:01:24.490 --> 00:01:25.550
+and you only use it.
+
+00:01:25.550 --> 00:01:27.960
+But what happened
+usually is that there
+
+00:01:27.960 --> 00:01:30.610
+are elements on the page
+that comes late and shift
+
+00:01:30.610 --> 00:01:34.157
+things on the screen, which
+makes it very hard to use,
+
+00:01:34.157 --> 00:01:35.740
+because you tap on
+something, and then
+
+00:01:35.740 --> 00:01:37.063
+you tap on the wrong thing.
+
+00:01:37.063 --> 00:01:38.730
+YUSUKE UTSUNOMIYA:
+Kenji, I think you're
+
+00:01:38.730 --> 00:01:39.942
+absolutely right on this.
+
+00:01:39.942 --> 00:01:42.150
+I wonder if we could deliver
+experiences like the one
+
+00:01:42.150 --> 00:01:44.120
+that we have on the
+slide right now--
+
+00:01:44.120 --> 00:01:46.470
+experiencing without
+wait times, experience
+
+00:01:46.470 --> 00:01:48.743
+without jumping layouts
+or rendering states,
+
+00:01:48.743 --> 00:01:50.910
+experiences that feel snappy
+because they seamlessly
+
+00:01:50.910 --> 00:01:55.250
+transition you to
+your destination.
+
+00:01:55.250 --> 00:01:56.750
+Kenji, do you think
+it's a good idea
+
+00:01:56.750 --> 00:01:58.850
+to first walk through the
+range of options we have
+
+00:01:58.850 --> 00:02:01.120
+when building new user
+experiences today?
+
+00:02:01.120 --> 00:02:03.620
+I really want to hear a couple
+of your good, good metaphors.
+
+00:02:03.620 --> 00:02:04.640
+I really love [INAUDIBLE].
+
+00:02:04.640 --> 00:02:06.240
+KENJI BAHEUX: I'm not sure about
+good, but we can try it, right?
+
+00:02:06.240 --> 00:02:07.710
+YUSUKE UTSUNOMIYA: Sure.
+
+00:02:07.710 --> 00:02:09.252
+KENJI BAHEUX: All
+right, so you could
+
+00:02:09.252 --> 00:02:11.420
+choose to focus all your
+resources into building
+
+00:02:11.420 --> 00:02:14.023
+a native app and develop a
+top-notch user experience.
+
+00:02:14.023 --> 00:02:15.440
+But the problem
+with that approach
+
+00:02:15.440 --> 00:02:17.732
+is that, on average,
+this is the equivalent
+
+00:02:17.732 --> 00:02:19.190
+of building an
+experience that only
+
+00:02:19.190 --> 00:02:22.910
+a small subset of your
+users can afford or need.
+
+00:02:22.910 --> 00:02:25.340
+Installing a native app
+is a non-trivial request
+
+00:02:25.340 --> 00:02:28.620
+because it is, first
+of all, time-consuming,
+
+00:02:28.620 --> 00:02:32.010
+but it also requires a high
+level of trust and commitment--
+
+00:02:32.010 --> 00:02:33.800
+whether that's about
+storage, or enabling
+
+00:02:33.800 --> 00:02:36.480
+a bunch of permissions.
+
+00:02:36.480 --> 00:02:38.150
+So while you could
+skip on native,
+
+00:02:38.150 --> 00:02:41.160
+you absolutely need a
+presence on the web,
+
+00:02:41.160 --> 00:02:43.240
+especially if you want
+to reach more users.
+
+00:02:43.240 --> 00:02:45.620
+And on the web, you have,
+essentially, two options--
+
+00:02:45.620 --> 00:02:49.340
+MPA, or Multiple Page
+Application, and Single Page
+
+00:02:49.340 --> 00:02:50.990
+Application, SPA.
+
+00:02:50.990 --> 00:02:52.620
+Let's have a quick
+look at SPA first.
+
+00:02:55.416 --> 00:03:00.460
+OK, so to me, going SPA is kind
+of like building a high-rise.
+
+00:03:00.460 --> 00:03:03.240
+It is complex because you end
+up rebuilding key features
+
+00:03:03.240 --> 00:03:06.720
+that the browser provides
+for free, such as history
+
+00:03:06.720 --> 00:03:08.790
+or restoring scrolling position.
+
+00:03:08.790 --> 00:03:11.613
+That shared experience can be
+nice when you are in the app,
+
+00:03:11.613 --> 00:03:14.280
+but getting there can take a lot
+of time because of all the code
+
+00:03:14.280 --> 00:03:16.230
+that you need to load upfront.
+
+00:03:16.230 --> 00:03:17.290
+And that's [? really, ?]
+[? really ?] [? big, ?]
+
+00:03:17.290 --> 00:03:19.665
+because first impression
+matters a lot when you're trying
+
+00:03:19.665 --> 00:03:21.420
+to reach new users.
+
+00:03:21.420 --> 00:03:23.910
+And as you build
+this thing it kind of
+
+00:03:23.910 --> 00:03:28.070
+falls apart, because as the
+site [? of the SPA ?] increases,
+
+00:03:28.070 --> 00:03:29.950
+it is just too complex.
+
+00:03:29.950 --> 00:03:31.620
+And so the only
+solution you have
+
+00:03:31.620 --> 00:03:34.455
+is to put this big thing
+into multiple SPAs.
+
+00:03:34.455 --> 00:03:35.830
+And so you're back
+to square one,
+
+00:03:35.830 --> 00:03:37.920
+where you have to navigate
+between different user
+
+00:03:37.920 --> 00:03:38.740
+experiences.
+
+00:03:38.740 --> 00:03:42.465
+And as we've seen, it's not a
+great user expense on the web.
+
+00:03:42.465 --> 00:03:44.590
+The last thing is that,
+when we talked to partners,
+
+00:03:44.590 --> 00:03:47.250
+it was clear that, for
+them, an SPA results
+
+00:03:47.250 --> 00:03:49.710
+in the loss of productivity
+because of the [INAUDIBLE]
+
+00:03:49.710 --> 00:03:52.697
+dependencies of
+a monolithic app.
+
+00:03:52.697 --> 00:03:54.780
+So for instance, you can't
+just fiddle with things
+
+00:03:54.780 --> 00:03:56.880
+without impacting other things.
+
+00:03:56.880 --> 00:04:01.290
+And let's look at what MPA
+has to offer on your end.
+
+00:04:01.290 --> 00:04:04.200
+To me, going MPA is kind of
+like building a small town.
+
+00:04:04.200 --> 00:04:06.360
+Each team gets its
+own house, which
+
+00:04:06.360 --> 00:04:08.663
+means that they can focus
+on the thing that matters.
+
+00:04:08.663 --> 00:04:10.080
+They don't need
+to reinvent things
+
+00:04:10.080 --> 00:04:11.990
+that the browser
+provides, for instance.
+
+00:04:11.990 --> 00:04:15.300
+And they can also more
+freely tweak their product
+
+00:04:15.300 --> 00:04:17.190
+to their needs without
+worrying of having
+
+00:04:17.190 --> 00:04:18.209
+to impact other teams.
+
+00:04:22.780 --> 00:04:24.700
+But MPA are not without
+downsides, right?
+
+00:04:24.700 --> 00:04:25.730
+It's not perfect.
+
+00:04:25.730 --> 00:04:27.680
+Overall, it is
+true that MPA tends
+
+00:04:27.680 --> 00:04:29.740
+to result in user
+expenses that are
+
+00:04:29.740 --> 00:04:32.950
+higher-friction because
+everything is navigation.
+
+00:04:32.950 --> 00:04:36.790
+And as we've seen, it's a rather
+frustrating user experience.
+
+00:04:36.790 --> 00:04:38.790
+YUSUKE UTSUNOMIYA: Kenji
+talked about our desire
+
+00:04:38.790 --> 00:04:41.515
+of enabling seamless
+experiences on the web.
+
+00:04:41.515 --> 00:04:42.890
+Seamless sounds
+very neat, but it
+
+00:04:42.890 --> 00:04:45.900
+might be hard to understand
+what we actually mean by this.
+
+00:04:45.900 --> 00:04:48.300
+Here's an example from
+the Android platform.
+
+00:04:48.300 --> 00:04:50.640
+It's called shared
+element transition.
+
+00:04:50.640 --> 00:04:54.030
+Essentially, the idea is to use
+an element throughout the state
+
+00:04:54.030 --> 00:04:56.610
+transition to reassure the
+user that their action has
+
+00:04:56.610 --> 00:04:58.655
+been acknowledged
+and being acted on.
+
+00:04:58.655 --> 00:04:59.780
+KENJI BAHEUX: Good example.
+
+00:04:59.780 --> 00:05:03.408
+Too bad this is only an
+Android-native app, API, right?
+
+00:05:03.408 --> 00:05:04.950
+I'm sure that a lot
+of you would like
+
+00:05:04.950 --> 00:05:07.650
+to build something like that,
+especially if you have an MPA.
+
+00:05:07.650 --> 00:05:09.233
+It's kind of like
+an achievable today.
+
+00:05:09.233 --> 00:05:10.900
+YUSUKE UTSUNOMIYA:
+Kenji-san, Kenji-san,
+
+00:05:10.900 --> 00:05:12.310
+I think I have
+something for you.
+
+00:05:12.310 --> 00:05:14.280
+It's still in the early
+days, but with the help
+
+00:05:14.280 --> 00:05:15.900
+from the broader
+community, we think
+
+00:05:15.900 --> 00:05:18.420
+we have found a way to
+create such experiences.
+
+00:05:18.420 --> 00:05:19.890
+It's called Portals.
+
+00:05:19.890 --> 00:05:22.230
+We gave a teaser
+during last year CDS
+
+00:05:22.230 --> 00:05:25.200
+and showed off our seamless
+vision in IO this year.
+
+00:05:25.200 --> 00:05:27.630
+The feedback from the
+community has been amazing,
+
+00:05:27.630 --> 00:05:29.490
+and the team has made
+significant progress
+
+00:05:29.490 --> 00:05:32.310
+for enabling same-origin
+use cases, which will
+
+00:05:32.310 --> 00:05:33.750
+be our focus for this talk.
+
+00:05:33.750 --> 00:05:36.480
+So Kenji, could you please
+give us a high-level pitch
+
+00:05:36.480 --> 00:05:37.600
+on what Portals are?
+
+00:05:37.600 --> 00:05:39.330
+KENJI BAHEUX: Yeah, sure.
+
+00:05:39.330 --> 00:05:42.210
+So let's briefly expand the
+key concepts behind Portal.
+
+00:05:42.210 --> 00:05:45.630
+Portal is all about enabling
+better navigation on the web.
+
+00:05:45.630 --> 00:05:47.490
+And in the early
+days, every navigation
+
+00:05:47.490 --> 00:05:51.060
+was done through simple
+links like this one, right?
+
+00:05:51.060 --> 00:05:53.730
+But the downside is
+with those simple links,
+
+00:05:53.730 --> 00:05:55.200
+it's not super appealing.
+
+00:05:55.200 --> 00:05:57.870
+It's just a bunch
+of text and words.
+
+00:05:57.870 --> 00:06:00.540
+And also, the friction of
+navigating gets in the way.
+
+00:06:06.310 --> 00:06:08.050
+Then, snippets
+came around, right?
+
+00:06:08.050 --> 00:06:11.890
+It's some sort of way to
+make the links more appealing
+
+00:06:11.890 --> 00:06:15.760
+by providing more details
+and having a nice visual.
+
+00:06:15.760 --> 00:06:17.410
+But that said, it's
+not much better.
+
+00:06:17.410 --> 00:06:19.780
+For one, the information
+that is available
+
+00:06:19.780 --> 00:06:21.448
+there could be out-of-date.
+
+00:06:21.448 --> 00:06:22.990
+And also, it's still
+going to trigger
+
+00:06:22.990 --> 00:06:28.365
+this high-friction navigation
+and navigation user experience.
+
+00:06:28.365 --> 00:06:32.260
+All right-- and eventually,
+iframe came around.
+
+00:06:32.260 --> 00:06:34.480
+So because the
+content is now served
+
+00:06:34.480 --> 00:06:36.610
+by the website you are
+linking linking to,
+
+00:06:36.610 --> 00:06:39.340
+the [? freshnet ?] concern
+is not there anymore,
+
+00:06:39.340 --> 00:06:42.220
+but it's still going to
+trigger a high-friction user
+
+00:06:42.220 --> 00:06:43.330
+navigation.
+
+00:06:43.330 --> 00:06:47.770
+And so it's not that different
+from what we've seen so far.
+
+00:06:47.770 --> 00:06:52.610
+And this is where
+Portal comes in.
+
+00:06:52.610 --> 00:06:55.280
+As you will see, it's
+sort of like an iframe,
+
+00:06:55.280 --> 00:06:58.020
+except that you can
+navigate into it.
+
+00:06:58.020 --> 00:07:00.440
+So I think this is a better
+explanation of it, right?
+
+00:07:00.440 --> 00:07:03.547
+It's like a frame that you
+can open and cross over.
+
+00:07:03.547 --> 00:07:05.630
+All right, I think that's
+enough metaphor for now.
+
+00:07:05.630 --> 00:07:06.573
+Hands on time.
+
+00:07:06.573 --> 00:07:08.240
+YUSUKE UTSUNOMIYA:
+Awesome stuff, Kenji.
+
+00:07:08.240 --> 00:07:10.060
+I like how you've
+framed those things.
+
+00:07:10.060 --> 00:07:10.820
+KENJI BAHEUX: I see
+what you did there.
+
+00:07:10.820 --> 00:07:11.720
+YUSUKE UTSUNOMIYA: Exactly.
+
+00:07:11.720 --> 00:07:14.270
+So the exciting that thing is
+Portals for same-origin use
+
+00:07:14.270 --> 00:07:16.790
+case is coming soon
+as an Origin trial.
+
+00:07:16.790 --> 00:07:18.710
+Just like any
+other HTML element,
+
+00:07:18.710 --> 00:07:22.170
+you can use it directly with
+the HTML tag or from JavaScript.
+
+00:07:22.170 --> 00:07:26.270
+Let's walk through step by
+step what Portals could do.
+
+00:07:26.270 --> 00:07:29.430
+Let's say you have a
+page, say foo.html--
+
+00:07:29.430 --> 00:07:31.790
+all blue, super nice with
+its full blue background,
+
+00:07:31.790 --> 00:07:33.570
+and having foo.html
+in the center.
+
+00:07:33.570 --> 00:07:35.820
+KENJI BAHEUX: This looks
+amazing, like Jessie's shirt.
+
+00:07:35.820 --> 00:07:38.210
+Like it's-- I don't know if
+you did that on purpose, maybe?
+
+00:07:38.210 --> 00:07:40.610
+YUSUKE UTSUNOMIYA: And you also
+have another page, bar.html,
+
+00:07:40.610 --> 00:07:42.200
+which is pretty
+similar to foo.html,
+
+00:07:42.200 --> 00:07:44.450
+but having a different
+color and a different URL.
+
+00:07:44.450 --> 00:07:45.140
+KENJI BAHEUX: I
+should have weared
+
+00:07:45.140 --> 00:07:46.700
+some kind of yellow
+thing, right?
+
+00:07:46.700 --> 00:07:47.420
+YUSUKE UTSUNOMIYA: Exactly.
+
+00:07:47.420 --> 00:07:49.370
+I know these are looking
+pretty beautiful.
+
+00:07:49.370 --> 00:07:54.090
+We'll use these two pages to
+see what Portals could do.
+
+00:07:54.090 --> 00:07:56.833
+You would first want to check if
+your browser supports Portals.
+
+00:07:56.833 --> 00:07:58.500
+As you all know,
+progressive enhancement
+
+00:07:58.500 --> 00:08:00.030
+is very important
+because we don't
+
+00:08:00.030 --> 00:08:03.150
+want to break any experience
+in non-supported browsers.
+
+00:08:03.150 --> 00:08:05.880
+You can check if a HTML Portal
+element is in the global window
+
+00:08:05.880 --> 00:08:06.990
+object to achieve this.
+
+00:08:09.540 --> 00:08:11.130
+Next, let's create
+a portal element
+
+00:08:11.130 --> 00:08:16.260
+by document.CreateElement,
+setting the source attribute
+
+00:08:16.260 --> 00:08:23.550
+as bar.html, and adding
+some styles of your own,
+
+00:08:23.550 --> 00:08:25.780
+and lastly, adding the
+element to the document.
+
+00:08:25.780 --> 00:08:28.800
+And boom, you'll see bar.html
+embedded in the page.
+
+00:08:28.800 --> 00:08:29.800
+KENJI BAHEUX: Fantastic.
+
+00:08:29.800 --> 00:08:31.150
+This is like never seen before.
+
+00:08:31.150 --> 00:08:33.215
+YUSUKE UTSUNOMIYA: Yeah,
+it looks amazing, right?
+
+00:08:33.215 --> 00:08:34.840
+You can actually
+check in the dev tools
+
+00:08:34.840 --> 00:08:37.210
+that another document is
+rendered inside the Portal
+
+00:08:37.210 --> 00:08:39.350
+element.
+
+00:08:39.350 --> 00:08:41.390
+In this case, I
+added width 100%,
+
+00:08:41.390 --> 00:08:44.350
+height 100%, transform
+scale, and a fixed position,
+
+00:08:44.350 --> 00:08:46.100
+so it looks just like
+the full document is
+
+00:08:46.100 --> 00:08:47.580
+embedded in the page.
+
+00:08:47.580 --> 00:08:50.147
+But you can file your
+Portal element as you like.
+
+00:08:50.147 --> 00:08:51.480
+KENJI BAHEUX: Isn't it exciting?
+
+00:08:51.480 --> 00:08:54.350
+You can now embed other
+documents in a document?
+
+00:08:54.350 --> 00:08:56.085
+That sound a little
+bit, like, familiar.
+
+00:08:56.085 --> 00:08:57.710
+YUSUKE UTSUNOMIYA:
+Yes, but what really
+
+00:08:57.710 --> 00:08:59.570
+gets exciting with
+Portals is that it
+
+00:08:59.570 --> 00:09:02.282
+has this powerful Activate
+function built in.
+
+00:09:02.282 --> 00:09:03.740
+This function will
+let you navigate
+
+00:09:03.740 --> 00:09:06.490
+into the already-rendered
+page inside a Portal element.
+
+00:09:09.140 --> 00:09:10.210
+Let's see it in action.
+
+00:09:10.210 --> 00:09:12.478
+I'll, then, now add an
+OnClickListener to the portal
+
+00:09:12.478 --> 00:09:14.270
+and see if I could
+activate the portal when
+
+00:09:14.270 --> 00:09:16.310
+the user taps on the element.
+
+00:09:16.310 --> 00:09:19.340
+And what you get is--
+
+00:09:19.340 --> 00:09:20.110
+this.
+
+00:09:20.110 --> 00:09:22.580
+The top-level window navigation
+happens, and you magically
+
+00:09:22.580 --> 00:09:24.170
+navigate into the portal.
+
+00:09:24.170 --> 00:09:27.960
+It's an instant
+navigation experience.
+
+00:09:27.960 --> 00:09:30.640
+Like I mentioned, this is a
+top-level window navigation,
+
+00:09:30.640 --> 00:09:34.020
+so the URL correctly switches
+to the activated page.
+
+00:09:34.020 --> 00:09:35.880
+I mean, keeping the URL
+right is always good
+
+00:09:35.880 --> 00:09:37.005
+when you work with the web.
+
+00:09:41.180 --> 00:09:42.980
+So as you can see,
+Portals really
+
+00:09:42.980 --> 00:09:44.438
+makes the loading
+speeds disappear.
+
+00:09:44.438 --> 00:09:45.897
+You don't need to
+wait for the page
+
+00:09:45.897 --> 00:09:47.600
+to render anymore
+because it's already
+
+00:09:47.600 --> 00:09:50.235
+rendered inside the Portal.
+
+00:09:50.235 --> 00:09:51.610
+KENJI BAHEUX:
+Thanks you, Yusuke.
+
+00:09:51.610 --> 00:09:54.020
+I'm very impressed because you
+did make loading disappear.
+
+00:09:54.020 --> 00:09:55.020
+Like, round of applause.
+
+00:09:55.020 --> 00:09:58.977
+[APPLAUSE]
+
+00:09:58.977 --> 00:10:01.790
+However, on the
+second [? side, ?]
+
+00:10:01.790 --> 00:10:04.928
+this is super confusing
+because it goes too fast.
+
+00:10:04.928 --> 00:10:06.470
+I mean, it's like
+one of those movies
+
+00:10:06.470 --> 00:10:08.660
+where they quickly like
+shift to a different scene
+
+00:10:08.660 --> 00:10:10.280
+and you lose the plot.
+
+00:10:10.280 --> 00:10:12.860
+Look at the target experience
+that this is so much easier
+
+00:10:12.860 --> 00:10:14.720
+to understand.
+
+00:10:14.720 --> 00:10:16.720
+YUSUKE UTSUNOMIYA: I'm
+totally agreed with that.
+
+00:10:16.720 --> 00:10:18.610
+The good news is,
+Portal does enable
+
+00:10:18.610 --> 00:10:21.270
+the creation of those
+intuitive and delightful user
+
+00:10:21.270 --> 00:10:24.067
+experiences, but you have
+to put some efforts to it.
+
+00:10:24.067 --> 00:10:26.400
+I think this is preferable,
+because a platform shouldn't
+
+00:10:26.400 --> 00:10:29.500
+be in the business of defining
+rigid user experiences.
+
+00:10:29.500 --> 00:10:31.120
+It should empower
+you to design what
+
+00:10:31.120 --> 00:10:33.298
+works best for your
+product and your users.
+
+00:10:33.298 --> 00:10:34.090
+KENJI BAHEUX: Cool.
+
+00:10:34.090 --> 00:10:36.550
+I really like this concept
+of bring your own animation.
+
+00:10:36.550 --> 00:10:39.272
+It makes a lot of sense.
+
+00:10:39.272 --> 00:10:41.230
+YUSUKE UTSUNOMIYA: So
+what we can do better is,
+
+00:10:41.230 --> 00:10:43.520
+first, embed the Portal element.
+
+00:10:43.520 --> 00:10:46.890
+And when the user
+taps on the element,
+
+00:10:46.890 --> 00:10:49.840
+don't activate just yet, and
+start animating the portal.
+
+00:10:49.840 --> 00:10:54.700
+In this case, let's try to
+bring back to scale to 100%.
+
+00:10:54.700 --> 00:10:56.700
+Once the Portal element
+covers the full screen--
+
+00:10:56.700 --> 00:10:59.242
+and by the way, you can see that
+the URL is still at foo.html
+
+00:10:59.242 --> 00:11:01.760
+at this point--
+
+00:11:01.760 --> 00:11:03.290
+and lastly, activate the Portal.
+
+00:11:03.290 --> 00:11:05.900
+The instant top-level
+navigation happens and the user
+
+00:11:05.900 --> 00:11:07.245
+has now landed to bar.html.
+
+00:11:10.370 --> 00:11:12.818
+Like I mentioned, Portal has
+nothing to do with animation,
+
+00:11:12.818 --> 00:11:14.360
+but you can always
+animate the Portal
+
+00:11:14.360 --> 00:11:16.340
+to make the transition smooth.
+
+00:11:16.340 --> 00:11:18.715
+It could be using key frames
+or JavaScript to move around
+
+00:11:18.715 --> 00:11:20.382
+the element, but in
+this case, let's say
+
+00:11:20.382 --> 00:11:25.420
+we animated the element
+with CSS transitions.
+
+00:11:25.420 --> 00:11:27.920
+The fancy animation function
+we have here could be something
+
+00:11:27.920 --> 00:11:30.710
+like changing the transform
+scale, translate x,
+
+00:11:30.710 --> 00:11:33.785
+translate y, and also setting
+the transition duration to 400
+
+00:11:33.785 --> 00:11:35.270
+. milliseconds.
+
+00:11:35.270 --> 00:11:39.210
+The animation could look
+something like this--
+
+00:11:39.210 --> 00:11:39.710
+very smooth.
+
+00:11:42.255 --> 00:11:43.980
+When the CSS
+transition completes,
+
+00:11:43.980 --> 00:11:46.350
+there will be a transition
+end event being fired.
+
+00:11:46.350 --> 00:11:48.937
+Listen to that event,
+and then activate.
+
+00:11:48.937 --> 00:11:51.270
+KENJI BAHEUX: And well, you
+now have a smooth transition
+
+00:11:51.270 --> 00:11:53.050
+despite being an MPA.
+
+00:11:53.050 --> 00:11:54.700
+That's pretty cool.
+
+00:11:54.700 --> 00:11:57.300
+But I mean, yeah, it
+does look much better.
+
+00:11:57.300 --> 00:12:00.337
+But what if I don't want
+my users to navigate away?
+
+00:12:00.337 --> 00:12:01.920
+YUSUKE UTSUNOMIYA:
+Don't want to force
+
+00:12:01.920 --> 00:12:03.045
+the users to navigate away?
+
+00:12:03.045 --> 00:12:03.970
+Kenji, I don't know.
+
+00:12:03.970 --> 00:12:05.262
+I think you're asking too much.
+
+00:12:05.262 --> 00:12:07.095
+KENJI BAHEUX: Sorry, I
+really can't help it.
+
+00:12:07.095 --> 00:12:08.993
+But I swear, this is
+going to be useful.
+
+00:12:08.993 --> 00:12:10.410
+So can we do
+something about that?
+
+00:12:10.410 --> 00:12:13.300
+YUSUKE UTSUNOMIYA: OK, yeah.
+
+00:12:13.300 --> 00:12:16.530
+So the good news is, you can do
+that easily with Portals, yes.
+
+00:12:16.530 --> 00:12:18.630
+Another powerful API
+that element provides
+
+00:12:18.630 --> 00:12:20.130
+is adoptPredecessor.
+
+00:12:20.130 --> 00:12:23.040
+As you can tell from the
+name, after activating Portal,
+
+00:12:23.040 --> 00:12:25.440
+you will be able to reuse
+the predecessor, which will
+
+00:12:25.440 --> 00:12:27.490
+be the previous page instance.
+
+00:12:27.490 --> 00:12:30.517
+Let's see how this works.
+
+00:12:30.517 --> 00:12:32.850
+First of all, you can listen
+to the portalactivate event
+
+00:12:32.850 --> 00:12:34.440
+inside a Portal
+embedded document
+
+00:12:34.440 --> 00:12:36.352
+to check if the
+page was activated.
+
+00:12:36.352 --> 00:12:38.310
+This event is very useful
+if you have something
+
+00:12:38.310 --> 00:12:40.090
+you want to do right
+after the activation,
+
+00:12:40.090 --> 00:12:43.480
+like changing the UI and such.
+
+00:12:43.480 --> 00:12:45.330
+And the most exciting
+pieces that the event
+
+00:12:45.330 --> 00:12:47.700
+comes with this
+adoptPredecessor function, which
+
+00:12:47.700 --> 00:12:49.410
+you can use to retrieve
+the previous page
+
+00:12:49.410 --> 00:12:52.300
+as a portal element with all
+the UI and the JavaScript
+
+00:12:52.300 --> 00:12:55.150
+states available.
+
+00:12:55.150 --> 00:12:57.150
+And from here on, you can
+add it to the document
+
+00:12:57.150 --> 00:12:59.205
+and use it like
+any other portal.
+
+00:12:59.205 --> 00:13:00.705
+What I built is
+something like this.
+
+00:13:03.280 --> 00:13:07.630
+Bar adopting Foo as a
+predecessor, and then activate.
+
+00:13:07.630 --> 00:13:12.860
+Foo adapting Bar as a
+predecessor, and then activate.
+
+00:13:12.860 --> 00:13:15.770
+It's kind of like this cat
+like spinning back and forth--
+
+00:13:15.770 --> 00:13:16.790
+endless loop.
+
+00:13:16.790 --> 00:13:17.940
+KENJI BAHEUX: That's
+very cute, but there
+
+00:13:17.940 --> 00:13:19.690
+are more practical
+ways to use this thing.
+
+00:13:19.690 --> 00:13:21.560
+So let's have a look.
+
+00:13:21.560 --> 00:13:23.510
+Like this example from Yahoo--
+
+00:13:23.510 --> 00:13:26.330
+they are using adoptPredecessor
+to smooth out the experience
+
+00:13:26.330 --> 00:13:28.375
+of checking breaking news.
+
+00:13:28.375 --> 00:13:29.750
+When the news
+stories break, it's
+
+00:13:29.750 --> 00:13:32.280
+very likely that you were
+doing something else.
+
+00:13:32.280 --> 00:13:35.180
+And so having you navigate away
+from whatever you were doing
+
+00:13:35.180 --> 00:13:37.110
+would be a pretty
+bad user experience.
+
+00:13:37.110 --> 00:13:40.760
+But in that case, by using
+Portal and [INAUDIBLE],,
+
+00:13:40.760 --> 00:13:42.470
+you can keep the
+context around so
+
+00:13:42.470 --> 00:13:45.150
+that user knows that whatever
+they were doing is still there.
+
+00:13:45.150 --> 00:13:46.890
+And so they can
+quickly go back to it.
+
+00:13:46.890 --> 00:13:47.390
+You see?
+
+00:13:47.390 --> 00:13:48.500
+I told you it would be useful.
+
+00:13:48.500 --> 00:13:50.125
+YUSUKE UTSUNOMIYA:
+Very exciting stuff.
+
+00:13:50.125 --> 00:13:52.040
+While Portals is
+a powerful API, I
+
+00:13:52.040 --> 00:13:56.320
+would also want to point out
+some tips when using Portals.
+
+00:13:56.320 --> 00:13:57.970
+First of all, as we
+mentioned, Portal
+
+00:13:57.970 --> 00:13:59.920
+does not come with
+any animation features
+
+00:13:59.920 --> 00:14:01.630
+by default, which
+would also mean
+
+00:14:01.630 --> 00:14:05.920
+that it's your responsibility to
+maintain the 60 FPS animation.
+
+00:14:05.920 --> 00:14:07.840
+As Uncle Paul has been
+saying many times,
+
+00:14:07.840 --> 00:14:09.990
+stick to changing
+transition opacity.
+
+00:14:09.990 --> 00:14:12.250
+Use will-change to
+give a browser hint.
+
+00:14:12.250 --> 00:14:14.590
+And if you're directly
+animating using JavaScript,
+
+00:14:14.590 --> 00:14:16.520
+user requestAnimationFrame.
+
+00:14:19.460 --> 00:14:21.290
+Next, accessibility.
+
+00:14:21.290 --> 00:14:23.060
+In time for the
+Origin trial, we want
+
+00:14:23.060 --> 00:14:25.620
+to make sure the
+accessibility works fine
+
+00:14:25.620 --> 00:14:27.680
+and the semantics works
+fine for the Portals.
+
+00:14:27.680 --> 00:14:30.350
+Also, from some people prefer
+reduced motion settings,
+
+00:14:30.350 --> 00:14:33.230
+so please consider using the
+prefers-reduced-motion @media
+
+00:14:33.230 --> 00:14:37.280
+query to customize
+the animation.
+
+00:14:37.280 --> 00:14:39.440
+In this case, when the user
+prefers reduced motion,
+
+00:14:39.440 --> 00:14:41.750
+the transform transition that
+moves the elements around
+
+00:14:41.750 --> 00:14:43.010
+would be nearly instant.
+
+00:14:46.940 --> 00:14:47.990
+Last, but not least--
+
+00:14:47.990 --> 00:14:50.300
+and I cannot emphasize
+this more-- but again,
+
+00:14:50.300 --> 00:14:52.160
+while Portals is a
+powerful element,
+
+00:14:52.160 --> 00:14:54.650
+avoid overloading the
+page with Portals.
+
+00:14:54.650 --> 00:14:57.230
+What you can do here is try
+loading a new portal based
+
+00:14:57.230 --> 00:14:59.510
+on user interaction
+and interest--
+
+00:14:59.510 --> 00:15:01.520
+something like using the
+intersection observer
+
+00:15:01.520 --> 00:15:04.220
+to lazily load a portal
+or dynamically creating
+
+00:15:04.220 --> 00:15:06.410
+a portal on user
+interaction, initially
+
+00:15:06.410 --> 00:15:09.750
+immediately showing the skeleton
+UI while the loading completes.
+
+00:15:12.263 --> 00:15:14.180
+KENJI BAHEUX: All right,
+if there is any thing
+
+00:15:14.180 --> 00:15:16.190
+to take from this
+overview of Portals,
+
+00:15:16.190 --> 00:15:19.640
+it's that Portal is, by
+design, a very simple API
+
+00:15:19.640 --> 00:15:22.640
+because we don't want to get
+in the way of your creativity.
+
+00:15:22.640 --> 00:15:25.460
+And so to give you some ideas of
+what you could do with Portals,
+
+00:15:25.460 --> 00:15:27.530
+we got some UX patterns
+and a bunch of demos
+
+00:15:27.530 --> 00:15:30.000
+from partners to show off.
+
+00:15:30.000 --> 00:15:32.500
+Let's start with this pattern
+that we talked about last year
+
+00:15:32.500 --> 00:15:34.520
+at CDS, but it's
+still a good one.
+
+00:15:34.520 --> 00:15:37.010
+This works really well
+when you know where
+
+00:15:37.010 --> 00:15:38.787
+the user is going to go next.
+
+00:15:38.787 --> 00:15:41.120
+And so, this is something
+that we build in collaboration
+
+00:15:41.120 --> 00:15:42.410
+with Hatena.
+
+00:15:42.410 --> 00:15:45.200
+As you can see, it's
+a comic viewer-reader.
+
+00:15:45.200 --> 00:15:48.020
+And the next chapter is
+pre-rendered right there
+
+00:15:48.020 --> 00:15:49.020
+on the last page.
+
+00:15:49.020 --> 00:15:50.960
+And so you can seamlessly
+transition the user
+
+00:15:50.960 --> 00:15:51.990
+to the next chapter.
+
+00:15:51.990 --> 00:15:53.090
+And this is an MPA, right?
+
+00:15:53.090 --> 00:15:53.920
+This is not an SPA.
+
+00:15:54.950 --> 00:15:59.240
+This is another exploration done
+by Farfetch, an online luxury
+
+00:15:59.240 --> 00:16:01.400
+fashion retail platform
+based in the UK.
+
+00:16:01.400 --> 00:16:01.790
+YUSUKE UTSUNOMIYA:
+Got that right.
+
+00:16:01.790 --> 00:16:03.248
+KENJI BAHEUX: Got
+that right, yeah.
+
+00:16:03.248 --> 00:16:05.150
+Their goal was to use
+Portal to smooth out
+
+00:16:05.150 --> 00:16:08.390
+the navigation on their
+inspirational content page.
+
+00:16:08.390 --> 00:16:10.700
+They are also using
+adoptPredecessor
+
+00:16:10.700 --> 00:16:14.630
+to the end of the whole sequence
+to end the swiping navigation
+
+00:16:14.630 --> 00:16:18.425
+back to where you have started.
+
+00:16:18.425 --> 00:16:20.820
+All right, second UX
+panel that we have.
+
+00:16:20.820 --> 00:16:24.210
+This is designed to help users
+find more quickly the item
+
+00:16:24.210 --> 00:16:26.832
+that they want among many.
+
+00:16:26.832 --> 00:16:28.290
+What goes on here
+at the high level
+
+00:16:28.290 --> 00:16:31.260
+is that there is a portal
+all that is offscreen,
+
+00:16:31.260 --> 00:16:34.000
+and it renders a skeleton UI.
+
+00:16:34.000 --> 00:16:36.190
+And when you use the
+site to check one item,
+
+00:16:36.190 --> 00:16:38.370
+the main page is
+sending the information
+
+00:16:38.370 --> 00:16:41.040
+that the portal needs
+to complete to view,
+
+00:16:41.040 --> 00:16:43.770
+and the animation is
+started, and hopefully,
+
+00:16:43.770 --> 00:16:45.960
+by the end of which,
+everything is in place.
+
+00:16:45.960 --> 00:16:49.110
+It's pretty-- a good
+user experience.
+
+00:16:49.110 --> 00:16:52.230
+All right, and so
+this was just user--
+
+00:16:52.230 --> 00:16:53.820
+expand on that [INAUDIBLE].
+
+00:16:53.820 --> 00:16:56.033
+But we have partners
+that use that to create
+
+00:16:56.033 --> 00:16:56.950
+something interesting.
+
+00:16:56.950 --> 00:17:00.848
+So this one, done by Yahoo
+Japan PayPay [? Mall ?] team,
+
+00:17:00.848 --> 00:17:03.140
+you can see it's a different
+zoom in/zoom out animation
+
+00:17:03.140 --> 00:17:04.190
+that's very fancy.
+
+00:17:04.190 --> 00:17:07.380
+YUSUKE UTSUNOMIYA: Once
+the user taps on an item,
+
+00:17:07.380 --> 00:17:09.795
+they are dynamic creating
+a Portal offscreen.
+
+00:17:09.795 --> 00:17:11.670
+While the Portal loads,
+immediately animating
+
+00:17:11.670 --> 00:17:14.280
+the existing image and
+showing a skeleton UI
+
+00:17:14.280 --> 00:17:16.680
+of the product detail page.
+
+00:17:16.680 --> 00:17:19.410
+After the portal loading
+completes, activate.
+
+00:17:19.410 --> 00:17:21.750
+They are actually providing
+the same types of experience
+
+00:17:21.750 --> 00:17:23.670
+in their native apps,
+but it's really nice
+
+00:17:23.670 --> 00:17:26.140
+to see this smooth transition
+on the web as well.
+
+00:17:26.140 --> 00:17:27.069
+So awesome.
+
+00:17:27.069 --> 00:17:29.550
+Kenji, do we have room
+for one more UX pattern?
+
+00:17:29.550 --> 00:17:30.330
+KENJI BAHEUX: It's
+going to be tight,
+
+00:17:30.330 --> 00:17:31.663
+but maybe we can give it a shot.
+
+00:17:31.663 --> 00:17:33.308
+YUSUKE UTSUNOMIYA: Cool.
+
+00:17:33.308 --> 00:17:35.850
+This one it's about providing
+a more intuitive and faster way
+
+00:17:35.850 --> 00:17:38.940
+of consuming content, and
+I call it speed browsing.
+
+00:17:38.940 --> 00:17:40.940
+KENJI BAHEUX: Wow, you
+have a trademark already?
+
+00:17:40.940 --> 00:17:42.210
+YUSUKE UTSUNOMIYA:
+Yes, I got that right.
+
+00:17:42.210 --> 00:17:44.250
+Like the ones that we are
+showing on the slides,
+
+00:17:44.250 --> 00:17:46.090
+as your user reaches
+the end of the page.
+
+00:17:46.090 --> 00:17:48.270
+You can use Portals to
+pre-render the next page.
+
+00:17:48.270 --> 00:17:51.000
+Have it peek from the bottom so
+that the user can drag it over
+
+00:17:51.000 --> 00:17:52.440
+to complete the navigation.
+
+00:17:55.590 --> 00:17:58.930
+In this exploration, eBay
+is experimenting with Portal
+
+00:17:58.930 --> 00:18:00.910
+to help their customers
+quickly browse
+
+00:18:00.910 --> 00:18:02.448
+through different products.
+
+00:18:02.448 --> 00:18:04.240
+The current user
+experience without Portals
+
+00:18:04.240 --> 00:18:07.070
+involves a lot of back-and-forth
+between the product detail page
+
+00:18:07.070 --> 00:18:08.500
+and its search results page.
+
+00:18:08.500 --> 00:18:10.000
+In other words,
+without Portals, you
+
+00:18:10.000 --> 00:18:12.730
+end up loading and rendering a
+lot more things which results
+
+00:18:12.730 --> 00:18:14.170
+in frustrating experience.
+
+00:18:17.210 --> 00:18:20.100
+"Yahoo Japan News" built a whole
+new experience from scratch.
+
+00:18:20.100 --> 00:18:22.160
+This is a stack of
+highly visual cards
+
+00:18:22.160 --> 00:18:25.100
+that the user can swipe through,
+also combined with the ability
+
+00:18:25.100 --> 00:18:28.367
+to seamlessly deep-dive
+into the article itself.
+
+00:18:28.367 --> 00:18:30.200
+And all of these screens
+are separate pages,
+
+00:18:30.200 --> 00:18:32.840
+and yet there's absolutely
+no loading to be seen.
+
+00:18:32.840 --> 00:18:34.827
+Very smooth, great
+experience, and something
+
+00:18:34.827 --> 00:18:35.660
+very new to the web.
+
+00:18:38.370 --> 00:18:40.260
+The exciting part is
+"Yahoo Japan News"
+
+00:18:40.260 --> 00:18:42.515
+has published the prototype
+as their lab experiment,
+
+00:18:42.515 --> 00:18:44.640
+and you can experience
+their Portals implementation
+
+00:18:44.640 --> 00:18:46.930
+from the link shown
+on the screen.
+
+00:18:46.930 --> 00:18:48.740
+Of course, it's still
+in the early stage,
+
+00:18:48.740 --> 00:18:51.780
+but we think this new experience
+has a strong value proposition
+
+00:18:51.780 --> 00:18:54.758
+regarding overall UX.
+
+00:18:54.758 --> 00:18:56.800
+KENJI BAHEUX: All right,
+we also received a quote
+
+00:18:56.800 --> 00:18:58.630
+from the CTO of
+Yahoo Japan, which
+
+00:18:58.630 --> 00:19:01.570
+I'm super excited about
+because it does show that there
+
+00:19:01.570 --> 00:19:04.570
+is a need for an API like this.
+
+00:19:04.570 --> 00:19:07.510
+Even companies with plenty
+of resources and skill
+
+00:19:07.510 --> 00:19:10.300
+still prefer using MPA
+despite all the downsides
+
+00:19:10.300 --> 00:19:11.487
+we talked about.
+
+00:19:11.487 --> 00:19:13.570
+And so, having Portals as
+part of the web platform
+
+00:19:13.570 --> 00:19:16.672
+to squeeze out these
+expenses is super useful.
+
+00:19:16.672 --> 00:19:18.880
+So yeah, so Portal will
+[? always ?] [? to ?] improve
+
+00:19:18.880 --> 00:19:21.720
+the user expense thanks to the
+smooth transition between web
+
+00:19:21.720 --> 00:19:24.902
+pages, even on our
+MPA architecture.
+
+00:19:24.902 --> 00:19:27.110
+And the last part is the
+one I'm super excited about.
+
+00:19:27.110 --> 00:19:29.890
+In addition, not only
+engineers, but also designers
+
+00:19:29.890 --> 00:19:31.850
+could use Portals effectively.
+
+00:19:31.850 --> 00:19:34.090
+So I really feel like
+Portals is a tool that
+
+00:19:34.090 --> 00:19:36.962
+helped democratize seamless
+transitions for everyone
+
+00:19:36.962 --> 00:19:38.920
+and would love to see
+what you can come up with
+
+00:19:38.920 --> 00:19:42.360
+and your feedback on this API.
+
+00:19:42.360 --> 00:19:45.390
+There is a lot more examples we
+could show off, but we will be,
+
+00:19:45.390 --> 00:19:47.350
+definitely, running out of time.
+
+00:19:47.350 --> 00:19:49.230
+So thanks to all
+our early partners
+
+00:19:49.230 --> 00:19:51.180
+for their amazing
+feedback we got so far
+
+00:19:51.180 --> 00:19:53.040
+and building
+inspiring experience.
+
+00:19:53.040 --> 00:19:53.540
+Thank you.
+
+00:19:53.540 --> 00:19:56.893
+[APPLAUSE]
+
+00:20:00.312 --> 00:20:02.020
+YUSUKE UTSUNOMIYA: I
+mean, this is great.
+
+00:20:02.020 --> 00:20:03.340
+Can we wrap up our session now?
+
+00:20:03.340 --> 00:20:05.470
+KENJI BAHEUX: I wish,
+[LAUGHS] but not quite.
+
+00:20:05.470 --> 00:20:06.970
+As you've seen, is
+true that you can
+
+00:20:06.970 --> 00:20:09.460
+use Portal to build very
+compelling user experience.
+
+00:20:09.460 --> 00:20:10.630
+But is it really enough?
+
+00:20:10.630 --> 00:20:13.250
+YUSUKE UTSUNOMIYA: What
+do you mean by that?
+
+00:20:13.250 --> 00:20:14.750
+KENJI BAHEUX: The
+problem was merely
+
+00:20:14.750 --> 00:20:16.520
+building great user
+expenses is that there
+
+00:20:16.520 --> 00:20:20.420
+is no guarantee that your
+users are going to find them.
+
+00:20:20.420 --> 00:20:23.390
+It takes a lot of efforts to
+try something new, especially
+
+00:20:23.390 --> 00:20:25.910
+when you already have your own
+preference about how you want
+
+00:20:25.910 --> 00:20:29.320
+to use your time, for instance.
+
+00:20:29.320 --> 00:20:32.040
+And so what do you
+do in that case?
+
+00:20:32.040 --> 00:20:34.020
+Well, essentially,
+you can do two things.
+
+00:20:34.020 --> 00:20:36.380
+Number one, lower
+the amount of effort
+
+00:20:36.380 --> 00:20:38.450
+it takes for people
+to try something new.
+
+00:20:38.450 --> 00:20:41.690
+And number two, lower
+the amount of effort
+
+00:20:41.690 --> 00:20:44.090
+it takes for someone
+to try something new.
+
+00:20:44.090 --> 00:20:46.430
+Ideally, it is zero, right?
+
+00:20:46.430 --> 00:20:49.310
+Let's now look at a few more
+proposals and ongoing efforts
+
+00:20:49.310 --> 00:20:53.090
+that we have that are meant
+to help on this front.
+
+00:20:53.090 --> 00:20:55.380
+All right, so first,
+let's start with a way
+
+00:20:55.380 --> 00:20:58.040
+to make an initial
+navigation instant.
+
+00:20:58.040 --> 00:20:59.790
+Use case-- what
+if, by the time you
+
+00:20:59.790 --> 00:21:02.040
+went on your Japanese
+commute, you already
+
+00:21:02.040 --> 00:21:04.650
+have a whole bunch of content
+available on your device?
+
+00:21:04.650 --> 00:21:06.570
+I think people talked
+about it just before.
+
+00:21:06.570 --> 00:21:08.153
+YUSUKE UTSUNOMIYA:
+Yeah, that actually
+
+00:21:08.153 --> 00:21:09.352
+solves most of my problems.
+
+00:21:09.352 --> 00:21:10.310
+KENJI BAHEUX: Yeah, OK.
+
+00:21:10.310 --> 00:21:12.810
+So good news is there
+is this new API called
+
+00:21:12.810 --> 00:21:17.790
+Periodic Background Sync, which
+is meant to solve that issue.
+
+00:21:17.790 --> 00:21:19.290
+And so not only
+would the experience
+
+00:21:19.290 --> 00:21:22.130
+be instant, but it will
+also be available--
+
+00:21:22.130 --> 00:21:24.450
+like connection doesn't
+really matter anymore,
+
+00:21:24.450 --> 00:21:26.500
+because it's already
+on the device.
+
+00:21:26.500 --> 00:21:29.560
+So let's see what this
+could mean in practice.
+
+00:21:29.560 --> 00:21:31.920
+So this is an
+exploration done by Gaana
+
+00:21:31.920 --> 00:21:35.520
+by Tencent [? Internet. ?] Gaana
+is the largest music streaming
+
+00:21:35.520 --> 00:21:37.000
+service in India.
+
+00:21:37.000 --> 00:21:40.680
+What's interesting here is that
+India is a challenging market,
+
+00:21:40.680 --> 00:21:44.110
+in particular because data has
+become a lot more affordable,
+
+00:21:44.110 --> 00:21:46.540
+the infrastructure has trouble
+to keep up with the demand.
+
+00:21:46.540 --> 00:21:48.300
+And so depending on
+the time of the day,
+
+00:21:48.300 --> 00:21:50.720
+you can end up on a
+very slow connection.
+
+00:21:50.720 --> 00:21:54.345
+And so Gaana wants to use PBS
+to smooth out the experience--
+
+00:21:54.345 --> 00:21:56.160
+so it can fetch
+content ahead of time
+
+00:21:56.160 --> 00:21:58.338
+so that they don't have
+to worry about hitting
+
+00:21:58.338 --> 00:21:59.630
+bad connection through the day.
+
+00:22:02.270 --> 00:22:04.660
+This is another
+example, from Hatena.
+
+00:22:04.660 --> 00:22:07.235
+They want to use Periodic
+Background Sync to proactively
+
+00:22:07.235 --> 00:22:09.880
+prefetch the latest
+edition of a user's
+
+00:22:09.880 --> 00:22:12.040
+favorite manga or magazines.
+
+00:22:12.040 --> 00:22:16.320
+And these can be very large,
+like 100 megs at a time.
+
+00:22:16.320 --> 00:22:18.070
+The other thing that's
+important to know--
+
+00:22:18.070 --> 00:22:20.112
+and maybe that's a surprise
+for a lot of people--
+
+00:22:20.112 --> 00:22:23.720
+is that in Japan, more than half
+of the subscribers only have
+
+00:22:23.720 --> 00:22:25.300
+three gigabyte of storage--
+
+00:22:25.300 --> 00:22:27.580
+sorry, of data-- per month.
+
+00:22:27.580 --> 00:22:29.690
+After that, they get
+throttled to 2G, which
+
+00:22:29.690 --> 00:22:30.940
+is a very bad user experience.
+
+00:22:30.940 --> 00:22:31.870
+I've been there.
+
+00:22:31.870 --> 00:22:33.080
+You've been there too, right?
+
+00:22:33.080 --> 00:22:33.510
+YUSUKE UTSUNOMIYA: Yeah, yeah.
+
+00:22:33.510 --> 00:22:34.500
+For about three years, yeah.
+
+00:22:34.500 --> 00:22:35.292
+KENJI BAHEUX: Yeah.
+
+00:22:35.292 --> 00:22:37.210
+[LAUGHS] And so the
+idea is that you
+
+00:22:37.210 --> 00:22:40.370
+can use PBS when you are at
+home on Wi-Fi to download
+
+00:22:40.370 --> 00:22:43.330
+this heavy content so that
+when you're on the commute,
+
+00:22:43.330 --> 00:22:44.308
+everything is there.
+
+00:22:44.308 --> 00:22:45.100
+Isn't that amazing?
+
+00:22:45.100 --> 00:22:46.120
+YUSUKE UTSUNOMIYA:
+Yeah, this is exactly
+
+00:22:46.120 --> 00:22:48.440
+the feature I wanted
+I mean, I love manga,
+
+00:22:48.440 --> 00:22:50.908
+and it'll be great times--
+like, to kill my commute time.
+
+00:22:50.908 --> 00:22:53.575
+KENJI BAHEUX: All right, can you
+run us through the API, Yusuke?
+
+00:22:53.575 --> 00:22:55.240
+YUSUKE UTSUNOMIYA:
+Sure, definitely.
+
+00:22:55.240 --> 00:22:57.100
+With PBS, you'll be
+able to register a sync
+
+00:22:57.100 --> 00:22:58.420
+event for your service worker.
+
+00:22:58.420 --> 00:23:00.260
+You can satisfy
+your own tag name
+
+00:23:00.260 --> 00:23:01.777
+and just, like, the
+background sync.
+
+00:23:01.777 --> 00:23:03.610
+In this case, the sample
+code is registering
+
+00:23:03.610 --> 00:23:08.000
+sync-amazing-cats event,
+which is very nice.
+
+00:23:08.000 --> 00:23:10.690
+And here's also-- there's also
+a minInterval option where
+
+00:23:10.690 --> 00:23:13.330
+we can define a minimum duration
+between each of the syncs.
+
+00:23:16.290 --> 00:23:18.000
+And once the event
+is registered,
+
+00:23:18.000 --> 00:23:20.773
+the browser will regularly
+fire periodic sync events
+
+00:23:20.773 --> 00:23:21.690
+at the service worker.
+
+00:23:24.420 --> 00:23:28.100
+You could then run your own
+logic to sync [INAUDIBLE]----
+
+00:23:28.100 --> 00:23:29.752
+oh something went wrong?--
+
+00:23:29.752 --> 00:23:31.710
+such as the web resource
+and the guest storage,
+
+00:23:31.710 --> 00:23:33.485
+or application settings
+in your IndexDB.
+
+00:23:36.270 --> 00:23:38.190
+Taking a minInterval
+option into account,
+
+00:23:38.190 --> 00:23:39.900
+the frequency of the
+sync event depends
+
+00:23:39.900 --> 00:23:43.380
+on how frequently the user
+engages with your website.
+
+00:23:43.380 --> 00:23:46.950
+In Chrome, we are reserving
+PBS for installed apps, a.k.a.
+
+00:23:46.950 --> 00:23:48.810
+installed PWAs.
+
+00:23:48.810 --> 00:23:50.370
+When the event
+triggers, please be
+
+00:23:50.370 --> 00:23:52.620
+mindful of the user
+environment-- for example,
+
+00:23:52.620 --> 00:23:54.840
+storage and data saving options.
+
+00:23:54.840 --> 00:23:57.420
+Some APIs that might help you
+understand if it's a good time
+
+00:23:57.420 --> 00:24:00.030
+to run the sync logic is
+navigator.connection.saveData
+
+00:24:00.030 --> 00:24:02.040
+to see if it's in
+a data saving mode,
+
+00:24:02.040 --> 00:24:04.890
+and storage API to estimate
+the available storage.
+
+00:24:04.890 --> 00:24:08.468
+Cool, so we now have a way to
+download podcasts ahead of time
+
+00:24:08.468 --> 00:24:10.510
+and also make the transition
+smooth with Portals.
+
+00:24:10.510 --> 00:24:12.570
+Kenji, I think we're
+good for today.
+
+00:24:12.570 --> 00:24:13.945
+KENJI BAHEUX: You
+know me, right?
+
+00:24:13.945 --> 00:24:15.230
+I always want more.
+
+00:24:15.230 --> 00:24:16.950
+So we're not quite done, right?
+
+00:24:16.950 --> 00:24:20.370
+I think it's great that we can
+have this website practically
+
+00:24:20.370 --> 00:24:22.290
+fetch content ahead
+of time and deliver it
+
+00:24:22.290 --> 00:24:25.360
+like an instant-available,
+great user expense.
+
+00:24:25.360 --> 00:24:28.220
+But there is something missing.
+
+00:24:28.220 --> 00:24:30.020
+The problem is that
+if all of that work
+
+00:24:30.020 --> 00:24:32.870
+is done and no one noticed,
+what's the point, right?
+
+00:24:32.870 --> 00:24:35.040
+It's actually wasteful.
+
+00:24:35.040 --> 00:24:38.760
+But to me, this feels like
+a discovery opportunity.
+
+00:24:38.760 --> 00:24:42.090
+And so we do understand that
+building great user experience
+
+00:24:42.090 --> 00:24:43.510
+takes a lot of effort.
+
+00:24:43.510 --> 00:24:46.080
+And so we've been thinking of
+ways to reward that effort.
+
+00:24:46.080 --> 00:24:48.000
+In particular, we
+think we can help
+
+00:24:48.000 --> 00:24:52.230
+you reengage with your
+users or find new users.
+
+00:24:52.230 --> 00:24:55.110
+And so more concretely, this
+is like early exploration,
+
+00:24:55.110 --> 00:24:57.510
+but what you're
+looking at right now
+
+00:24:57.510 --> 00:25:00.180
+are ways for us to
+surface content that's
+
+00:25:00.180 --> 00:25:03.570
+available on the device in
+the Chrome downloads page,
+
+00:25:03.570 --> 00:25:05.920
+and also into
+Chrome New Tab page.
+
+00:25:05.920 --> 00:25:07.980
+So we're [INAUDIBLE]
+with that, but that's
+
+00:25:07.980 --> 00:25:09.840
+one of the ways in
+which we want to help
+
+00:25:09.840 --> 00:25:13.170
+user identify that something
+interesting on their device.
+
+00:25:13.170 --> 00:25:15.430
+But to make this work,
+we need your help, right?
+
+00:25:15.430 --> 00:25:17.550
+Only you what's
+available on the device
+
+00:25:17.550 --> 00:25:19.317
+and how to best present it.
+
+00:25:19.317 --> 00:25:21.900
+And so the good news is there
+is a [? nerdy ?] proposal called
+
+00:25:21.900 --> 00:25:23.590
+content indexing.
+
+00:25:23.590 --> 00:25:26.680
+And so Yusuke is go to help
+me to explain how that works.
+
+00:25:26.680 --> 00:25:28.050
+YUSUKE UTSUNOMIYA: Sure.
+
+00:25:28.050 --> 00:25:30.180
+So the prerequisite for
+using a content indexing
+
+00:25:30.180 --> 00:25:33.600
+API is to ensure that you are
+your web app uses a service
+
+00:25:33.600 --> 00:25:36.660
+worker and that at least
+a subset of your URLs
+
+00:25:36.660 --> 00:25:39.000
+can be navigated
+to while offline.
+
+00:25:39.000 --> 00:25:41.640
+And please don't get it
+confused-- content indexing API
+
+00:25:41.640 --> 00:25:43.020
+is not a new storage mechanism.
+
+00:25:43.020 --> 00:25:45.910
+You can keep on using
+a test source for that.
+
+00:25:45.910 --> 00:25:47.490
+It's a simple way
+of indexing content
+
+00:25:47.490 --> 00:25:51.410
+that is available on the device.
+
+00:25:51.410 --> 00:25:53.710
+Let's look into the basics.
+
+00:25:53.710 --> 00:25:55.870
+You can add URLs and
+associated metadata
+
+00:25:55.870 --> 00:25:58.630
+to the index with the
+newly-exposed index.add
+
+00:25:58.630 --> 00:26:03.520
+function in the service
+worker registration interface.
+
+00:26:03.520 --> 00:26:08.800
+For details, you need
+to add a unique ID.
+
+00:26:08.800 --> 00:26:13.863
+and the launch URL, which
+has to work offline,
+
+00:26:13.863 --> 00:26:15.780
+and some other metadata,
+which the browser can
+
+00:26:15.780 --> 00:26:19.470
+use to show a list of readily
+available content to the user.
+
+00:26:19.470 --> 00:26:22.530
+You might want to provide a
+Save for Later button to save
+
+00:26:22.530 --> 00:26:25.020
+and index a piece
+of content, or you
+
+00:26:25.020 --> 00:26:27.230
+might want to add the
+contents automatically
+
+00:26:27.230 --> 00:26:29.070
+when a periodic background
+sync event fires.
+
+00:26:32.070 --> 00:26:34.610
+In addition, the API provides
+ways to list and delete
+
+00:26:34.610 --> 00:26:37.170
+the entries in the index so
+that it can keep the index up
+
+00:26:37.170 --> 00:26:38.310
+to date.
+
+00:26:38.310 --> 00:26:40.650
+The API will be available
+as an Origin trial
+
+00:26:40.650 --> 00:26:43.530
+soon from Chrome 80, and we
+are waiting for your feedback.
+
+00:26:46.150 --> 00:26:48.527
+KENJI BAHEUX: All right,
+having a collection of content
+
+00:26:48.527 --> 00:26:50.360
+ready to go is quite
+convenient, but I think
+
+00:26:50.360 --> 00:26:52.035
+we can take it a lot further--
+
+00:26:52.035 --> 00:26:54.685
+hopefully, In those three
+minutes that we have left.
+
+00:26:54.685 --> 00:26:56.310
+So what if we could
+have, for instance,
+
+00:26:56.310 --> 00:26:58.130
+a self-contained
+piece of content
+
+00:26:58.130 --> 00:27:00.650
+or apps that we could
+share and distribute,
+
+00:27:00.650 --> 00:27:02.570
+instead of just having links?
+
+00:27:02.570 --> 00:27:06.080
+This will allow your user to
+find, like, or discover, opt
+
+00:27:06.080 --> 00:27:09.380
+in, or enjoy like content
+in so many interesting ways.
+
+00:27:11.845 --> 00:27:14.220
+So for a self-contained piece
+of content or app to exist,
+
+00:27:14.220 --> 00:27:16.680
+there needs to be a way to
+package all the resources
+
+00:27:16.680 --> 00:27:20.583
+that thing needs in a convenient
+and distributable format.
+
+00:27:20.583 --> 00:27:22.750
+YUSUKE UTSUNOMIYA: With the
+help from the community,
+
+00:27:22.750 --> 00:27:24.792
+we've been working on
+specifying and implementing
+
+00:27:24.792 --> 00:27:26.580
+such a format for a long time.
+
+00:27:26.580 --> 00:27:29.587
+We have been using the term,
+bundled HTTP exchanges.
+
+00:27:29.587 --> 00:27:31.170
+KENJI BAHEUX: That's
+quite a mouthful.
+
+00:27:31.170 --> 00:27:34.020
+YUSUKE UTSUNOMIYA: Honestly,
+[? http ?] speaking, yes.
+
+00:27:34.020 --> 00:27:36.088
+So we decided to
+name it Web Bundle.
+
+00:27:36.088 --> 00:27:37.380
+KENJI BAHEUX: That's very nice.
+
+00:27:37.380 --> 00:27:39.218
+I like it.
+
+00:27:39.218 --> 00:27:41.010
+YUSUKE UTSUNOMIYA: As
+the new name implies,
+
+00:27:41.010 --> 00:27:42.600
+it's designed for
+the web, and allows
+
+00:27:42.600 --> 00:27:46.020
+you to bundle any resources
+into one convenient file, which
+
+00:27:46.020 --> 00:27:47.880
+you can serve over
+the wire or even share
+
+00:27:47.880 --> 00:27:49.220
+with any peer-to-peer protocol.
+
+00:27:49.220 --> 00:27:50.970
+KENJI BAHEUX: That's
+sounds like some sort
+
+00:27:50.970 --> 00:27:52.680
+of zip archive for the web.
+
+00:27:52.680 --> 00:27:54.888
+YUSUKE UTSUNOMIYA: That's
+actually one way to see it.
+
+00:27:54.888 --> 00:27:57.380
+Let's see what we
+have for so far.
+
+00:27:57.380 --> 00:28:00.500
+We have we now have a CLI
+to easily build a bundle.
+
+00:28:00.500 --> 00:28:03.160
+Since it's a bundle, since
+it's built with Golang,
+
+00:28:03.160 --> 00:28:05.035
+you would want to use
+go get to first install
+
+00:28:05.035 --> 00:28:06.350
+the command like tools.
+
+00:28:06.350 --> 00:28:08.900
+The command gem bundle
+gives you many ways
+
+00:28:08.900 --> 00:28:10.880
+to bundle up web
+resources, but I personally
+
+00:28:10.880 --> 00:28:14.540
+feel the -har option is really
+convenient because it just
+
+00:28:14.540 --> 00:28:16.790
+takes the HAR files and input
+to produce a web bundle.
+
+00:28:16.790 --> 00:28:17.457
+It's super easy.
+
+00:28:20.185 --> 00:28:22.310
+We are also exploring the
+JavaScript implementation
+
+00:28:22.310 --> 00:28:23.528
+for web bundles as well.
+
+00:28:23.528 --> 00:28:25.070
+We just released
+the very first draft
+
+00:28:25.070 --> 00:28:30.310
+an npm module
+called [? wbn. ?] We
+
+00:28:30.310 --> 00:28:32.530
+are still in the middle of
+brushing up the library.
+
+00:28:32.530 --> 00:28:35.350
+We hope that you will be able to
+integrate this module into your
+
+00:28:35.350 --> 00:28:37.658
+build pipelines so that
+you could easily bundle up
+
+00:28:37.658 --> 00:28:38.200
+your content.
+
+00:28:40.585 --> 00:28:42.960
+KENJI BAHEUX: All right, as
+I said, a distribution format
+
+00:28:42.960 --> 00:28:44.820
+enables interesting use case.
+
+00:28:44.820 --> 00:28:47.940
+In this example, you can see
+that I can share with a friend
+
+00:28:47.940 --> 00:28:50.550
+this amazing game called
+[? "Prox," ?] which I having
+
+00:28:50.550 --> 00:28:52.140
+in Web Bundle format.
+
+00:28:52.140 --> 00:28:54.210
+And the thing is, I can
+do that without internet.
+
+00:28:54.210 --> 00:28:56.400
+I just need to use
+a file transfer app,
+
+00:28:56.400 --> 00:28:57.250
+and it just works.
+
+00:28:57.250 --> 00:28:59.310
+I can share with my friend
+without any internet.
+
+00:28:59.310 --> 00:29:01.720
+I can be on a plane,
+[INAUDIBLE] somewhere,
+
+00:29:01.720 --> 00:29:03.970
+or even like [? Jack ?]
+[? Archibald's ?] famous Wi-Fi
+
+00:29:03.970 --> 00:29:05.640
+[? toilet, ?] if you
+know what I mean.
+
+00:29:05.640 --> 00:29:07.550
+It just works.
+
+00:29:07.550 --> 00:29:09.800
+One more use case I'm excited
+about is faster already.
+
+00:29:09.800 --> 00:29:10.880
+YUSUKE UTSUNOMIYA: Oh,
+Kenji, you are so much
+
+00:29:10.880 --> 00:29:12.005
+obsessed with fast loading.
+
+00:29:12.005 --> 00:29:13.340
+KENJI BAHEUX: I know, I know.
+
+00:29:13.340 --> 00:29:16.190
+So the trick is, because
+everything is on the device,
+
+00:29:16.190 --> 00:29:19.292
+a Web Bundle will offer a
+much faster user experience.
+
+00:29:19.292 --> 00:29:20.000
+Let's do a match.
+
+00:29:20.000 --> 00:29:21.375
+On the left, you
+have Web Bundle,
+
+00:29:21.375 --> 00:29:25.210
+all on the right, you have
+[? WebWeb. ?] Ready, fight.
+
+00:29:25.210 --> 00:29:29.050
+And see, [INAUDIBLE].
+
+00:29:29.050 --> 00:29:30.550
+I mean, there is
+no picture, right?
+
+00:29:30.550 --> 00:29:32.920
+It's like Web Bundle wins--
+
+00:29:32.920 --> 00:29:34.685
+amazing.
+
+00:29:34.685 --> 00:29:36.310
+YUSUKE UTSUNOMIYA:
+Just like Kenji, I'm
+
+00:29:36.310 --> 00:29:38.268
+very excited about this
+feature, but you really
+
+00:29:38.268 --> 00:29:39.400
+have to try it yourself.
+
+00:29:39.400 --> 00:29:41.740
+The good news is that
+we added this USB Type
+
+00:29:41.740 --> 00:29:43.750
+D-- yes, type Dino--
+in your strap bag,
+
+00:29:43.750 --> 00:29:46.493
+and it contains sample web
+bundles and instructions.
+
+00:29:46.493 --> 00:29:48.910
+You can play around with the
+full feature of [? "Prox," ?]
+
+00:29:48.910 --> 00:29:51.225
+[INAUDIBLE] and [INAUDIBLE],,
+wherever you are,
+
+00:29:51.225 --> 00:29:52.600
+no matter your
+network condition,
+
+00:29:52.600 --> 00:29:56.483
+or even on your flight back
+to your hometown after CDS.
+
+00:29:56.483 --> 00:29:57.900
+KENJI BAHEUX: All
+right, to close,
+
+00:29:57.900 --> 00:30:00.100
+we've talked about
+four APIs today.
+
+00:30:00.100 --> 00:30:03.010
+The first one-- Portal, which
+is designed to enable instant
+
+00:30:03.010 --> 00:30:04.480
+and seamless navigation.
+
+00:30:04.480 --> 00:30:06.030
+This is going to
+be available soon
+
+00:30:06.030 --> 00:30:08.910
+in an Origin trial for
+the same Origin use case,
+
+00:30:08.910 --> 00:30:10.410
+and we are seeing
+tremendous support
+
+00:30:10.410 --> 00:30:11.663
+from the web developers.
+
+00:30:11.663 --> 00:30:13.080
+Your interesting
+feedback is going
+
+00:30:13.080 --> 00:30:15.330
+to help us engage with
+other browser vendors,
+
+00:30:15.330 --> 00:30:17.710
+because so far, we've
+got no signals from them.
+
+00:30:17.710 --> 00:30:19.580
+So it's going to be useful.
+
+00:30:19.580 --> 00:30:20.783
+All right, next one.
+
+00:30:20.783 --> 00:30:22.200
+Periodic background
+sync-- this is
+
+00:30:22.200 --> 00:30:25.530
+designed to get content
+ahead of time on the device
+
+00:30:25.530 --> 00:30:28.150
+so that you don't have to
+worry about connection.
+
+00:30:28.150 --> 00:30:30.368
+This is already available
+in an Origin trial.
+
+00:30:30.368 --> 00:30:32.160
+We have great interest
+from web developers,
+
+00:30:32.160 --> 00:30:36.030
+and there is some work to do
+with other browser vendors.
+
+00:30:36.030 --> 00:30:38.280
+Content indexing-- this
+one is about surfacing
+
+00:30:38.280 --> 00:30:40.590
+the content that's
+available on the device,
+
+00:30:40.590 --> 00:30:43.830
+and it's going to be available
+in an Origin trial soon.
+
+00:30:43.830 --> 00:30:44.710
+This is brand new.
+
+00:30:44.710 --> 00:30:45.752
+We want to hear from you.
+
+00:30:45.752 --> 00:30:46.970
+So please try it out.
+
+00:30:46.970 --> 00:30:49.720
+Let's let us know if it
+works for you or not.
+
+00:30:49.720 --> 00:30:52.020
+And last but not
+least, Web Bundles.
+
+00:30:52.020 --> 00:30:54.090
+So this is a convenient
+format to enable
+
+00:30:54.090 --> 00:30:55.770
+discovery and distribution.
+
+00:30:55.770 --> 00:30:56.730
+This is bleeding-edge.
+
+00:30:56.730 --> 00:30:59.730
+It's only available behind
+an experimental flag.
+
+00:30:59.730 --> 00:31:01.950
+There is some early interest
+from web developers,
+
+00:31:01.950 --> 00:31:03.990
+and some of the other
+[? broader ?] vendors
+
+00:31:03.990 --> 00:31:04.900
+are a bit concerned.
+
+00:31:04.900 --> 00:31:06.837
+But that tends to be
+for a set of use cases
+
+00:31:06.837 --> 00:31:08.170
+that we didn't talk about today.
+
+00:31:08.170 --> 00:31:11.950
+If you want to learn more,
+come to talk to me later.
+
+00:31:11.950 --> 00:31:12.950
+YUSUKE UTSUNOMIYA: Cool.
+
+00:31:12.950 --> 00:31:14.150
+Finally, we've
+made it to the end.
+
+00:31:14.150 --> 00:31:14.670
+KENJI BAHEUX: Yeah.
+
+00:31:14.670 --> 00:31:15.720
+YUSUKE UTSUNOMIYA: Thank
+you so much for listening,
+
+00:31:15.720 --> 00:31:17.950
+and I hope you're excited
+by these new APIs.
+
+00:31:17.950 --> 00:31:18.450
+Kenji?
+
+00:31:18.450 --> 00:31:18.680
+[APPLAUSE]
+
+00:31:18.680 --> 00:31:19.250
+KENJI BAHEUX: Thank you all.
+
+00:31:19.250 --> 00:31:21.458
+Please check this link for
+more details and pointers.
+
+00:31:21.458 --> 00:31:24.600
+[MUSIC PLAYING]
+

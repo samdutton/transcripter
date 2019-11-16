@@ -1,0 +1,2334 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:03.213
+[MUSIC PLAYING]
+
+00:00:05.480 --> 00:00:06.980
+ELIZABETH SWEENY:
+So I am Elizabeth,
+
+00:00:06.980 --> 00:00:09.320
+and I'm a product manager on
+the Chrome web platform team.
+
+00:00:09.320 --> 00:00:10.195
+PAUL IRISH: I'm Paul.
+
+00:00:10.195 --> 00:00:11.520
+I'm a software engineer.
+
+00:00:11.520 --> 00:00:15.240
+So we didn't really know
+what to talk about up here.
+
+00:00:15.240 --> 00:00:16.990
+ELIZABETH SWEENY: Yeah,
+so when in doubt--
+
+00:00:16.990 --> 00:00:20.620
+PAUL IRISH: --we
+just ran Lighthouse.
+
+00:00:20.620 --> 00:00:22.577
+Yeah, ta-da, gave us an agenda.
+
+00:00:22.577 --> 00:00:24.327
+ELIZABETH SWEENY: What
+an all-in-one tool.
+
+00:00:24.327 --> 00:00:25.035
+PAUL IRISH: Yeah.
+
+00:00:25.035 --> 00:00:26.619
+ELIZABETH SWEENY:
+So at I/O this year,
+
+00:00:26.619 --> 00:00:28.580
+Paul and I laid out a
+comprehensive blueprint
+
+00:00:28.580 --> 00:00:31.330
+for your performance success.
+
+00:00:31.330 --> 00:00:33.080
+PAUL IRISH: So it had
+15 steps, everything
+
+00:00:33.080 --> 00:00:36.050
+that you need to successfully
+measure, optimize, and monitor
+
+00:00:36.050 --> 00:00:37.300
+the performance of your sites.
+
+00:00:37.300 --> 00:00:38.925
+ELIZABETH SWEENY:
+Yeah, and today we're
+
+00:00:38.925 --> 00:00:41.240
+really excited to take a
+subset of that blueprint
+
+00:00:41.240 --> 00:00:42.570
+and dive a bit deeper.
+
+00:00:42.570 --> 00:00:45.650
+So we're going to use web.dev as
+our example throughout the talk
+
+00:00:45.650 --> 00:00:46.600
+today.
+
+00:00:46.600 --> 00:00:48.100
+PAUL IRISH: Cool,
+let's get started.
+
+00:00:48.100 --> 00:00:48.630
+ELIZABETH SWEENY: Cool.
+
+00:00:48.630 --> 00:00:50.338
+PAUL IRISH: So the
+first thing that we're
+
+00:00:50.338 --> 00:00:53.090
+going to do is take a
+few minutes to measure
+
+00:00:53.090 --> 00:00:55.520
+and benchmark quality, sharing
+some of the newest metrics
+
+00:00:55.520 --> 00:00:56.570
+that we've been
+working on and updates
+
+00:00:56.570 --> 00:00:58.230
+coming into the Lighthouse
+performance score.
+
+00:00:58.230 --> 00:00:58.610
+ELIZABETH SWEENY:
+Yeah, then we're
+
+00:00:58.610 --> 00:01:01.110
+going to jump right into how
+to use our tools for production
+
+00:01:01.110 --> 00:01:03.450
+monitoring and how to
+diagnose and fix problems.
+
+00:01:03.450 --> 00:01:05.150
+PAUL IRISH: We're not going
+to forget Lighthouse plugins
+
+00:01:05.150 --> 00:01:05.420
+either.
+
+00:01:05.420 --> 00:01:06.200
+ELIZABETH SWEENY: No.
+
+00:01:06.200 --> 00:01:08.533
+And we'll finally talk about
+our newest addition to you,
+
+00:01:08.533 --> 00:01:11.410
+Lighthouse tooling
+family, Lighthouse CI.
+
+00:01:11.410 --> 00:01:12.035
+PAUL IRISH: OK.
+
+00:01:12.035 --> 00:01:13.660
+ELIZABETH SWEENY: So
+let's get started.
+
+00:01:13.660 --> 00:01:15.560
+Measuring the quality
+of a user's experience
+
+00:01:15.560 --> 00:01:18.012
+is not always obvious.
+
+00:01:18.012 --> 00:01:19.470
+And we know you've
+heard it before,
+
+00:01:19.470 --> 00:01:21.512
+but some things never
+change, and that's the fact
+
+00:01:21.512 --> 00:01:23.900
+that there are two really
+critical elements to measuring
+
+00:01:23.900 --> 00:01:25.530
+the performance of your page.
+
+00:01:25.530 --> 00:01:27.140
+So lab data, which
+is synthetically
+
+00:01:27.140 --> 00:01:29.690
+collected in a reproducible
+testing environment,
+
+00:01:29.690 --> 00:01:32.840
+is critical for tracking down
+bugs and diagnosing issues
+
+00:01:32.840 --> 00:01:34.490
+before your users see them.
+
+00:01:34.490 --> 00:01:36.950
+But field data allows
+you to understand
+
+00:01:36.950 --> 00:01:40.190
+what real-world users are
+actually experiencing,
+
+00:01:40.190 --> 00:01:42.290
+conditions that are kind
+of impossible to simulate
+
+00:01:42.290 --> 00:01:43.820
+in the real lab.
+
+00:01:43.820 --> 00:01:47.630
+The real world is messy with
+permutations of devices,
+
+00:01:47.630 --> 00:01:49.610
+networks, cache conditions.
+
+00:01:49.610 --> 00:01:51.080
+The list goes on and on.
+
+00:01:51.080 --> 00:01:53.572
+Either set of metrics
+taken in isolation
+
+00:01:53.572 --> 00:01:55.280
+aren't nearly as
+powerful as when they're
+
+00:01:55.280 --> 00:01:57.105
+taken together and combined.
+
+00:01:57.105 --> 00:01:59.480
+PAUL IRISH: So you have easy
+access to both lab and field
+
+00:01:59.480 --> 00:02:02.780
+data in tools like Lighthouse,
+PageSpeed Insights, Chrome UX
+
+00:02:02.780 --> 00:02:04.580
+Report, Search Console.
+
+00:02:04.580 --> 00:02:06.800
+So these tools allow for
+local measurement as well as
+
+00:02:06.800 --> 00:02:08.467
+production monitoring,
+which we're going
+
+00:02:08.467 --> 00:02:09.902
+to get more into in a bit.
+
+00:02:09.902 --> 00:02:11.860
+ELIZABETH SWEENY: One
+thing I wanted to address
+
+00:02:11.860 --> 00:02:13.900
+was why metrics change.
+
+00:02:13.900 --> 00:02:16.060
+As we know, there are a
+lot of different aspects
+
+00:02:16.060 --> 00:02:19.270
+of performance that can
+frustrate or delight a user--
+
+00:02:19.270 --> 00:02:23.110
+you know, waiting, uncertainty,
+hipster pineapples.
+
+00:02:23.110 --> 00:02:25.090
+OK, hipster
+pineapples are great,
+
+00:02:25.090 --> 00:02:27.830
+but things that take them
+away from me are not great.
+
+00:02:27.830 --> 00:02:31.480
+So without having a clear
+way to accurately measure
+
+00:02:31.480 --> 00:02:33.710
+the nuances of
+users' experience,
+
+00:02:33.710 --> 00:02:36.160
+it isn't really possible to
+quantify the impact that they
+
+00:02:36.160 --> 00:02:38.170
+have on your bottom line
+or track improvements
+
+00:02:38.170 --> 00:02:39.130
+and regressions.
+
+00:02:39.130 --> 00:02:41.410
+That means we need to
+have our metrics evolve
+
+00:02:41.410 --> 00:02:44.470
+as our understanding and ability
+to measure user experience
+
+00:02:44.470 --> 00:02:46.000
+develops.
+
+00:02:46.000 --> 00:02:48.340
+Here is where our
+metrics have been.
+
+00:02:48.340 --> 00:02:49.990
+Across lab and
+field, we're trying
+
+00:02:49.990 --> 00:02:52.750
+to capture load
+holistically as well
+
+00:02:52.750 --> 00:02:54.820
+as the interactivity of a page.
+
+00:02:54.820 --> 00:02:56.620
+But there are gaps.
+
+00:02:56.620 --> 00:02:58.870
+And there are opportunities
+to more accurately
+
+00:02:58.870 --> 00:03:01.908
+and comprehensively represent
+a user's experience.
+
+00:03:01.908 --> 00:03:04.450
+So you can remember when we used
+to focus on metrics like DOM
+
+00:03:04.450 --> 00:03:06.070
+content loaded or on load.
+
+00:03:06.070 --> 00:03:09.190
+They were measuring very
+technical aspects of a page,
+
+00:03:09.190 --> 00:03:11.377
+like when a DOM tree
+was fully constructed.
+
+00:03:11.377 --> 00:03:13.210
+And they don't necessarily
+correlate to what
+
+00:03:13.210 --> 00:03:15.800
+a user actually experiences.
+
+00:03:15.800 --> 00:03:17.740
+And as we evolve
+our metrics story,
+
+00:03:17.740 --> 00:03:20.410
+we want to fill in as many
+gaps of our measurement of user
+
+00:03:20.410 --> 00:03:22.360
+experience as we can.
+
+00:03:22.360 --> 00:03:24.860
+There are a few major shifts
+here that I'd like to call out.
+
+00:03:24.860 --> 00:03:27.730
+The first one is the reduced
+emphasis on First Meaningful
+
+00:03:27.730 --> 00:03:31.240
+Paint and First CPU Idle
+We're excited to have metrics
+
+00:03:31.240 --> 00:03:34.810
+available that better capture
+when a page feels usable, which
+
+00:03:34.810 --> 00:03:36.940
+leads me to the second
+major call-out, which is
+
+00:03:36.940 --> 00:03:38.800
+the new metrics you see added.
+
+00:03:38.800 --> 00:03:40.420
+Now at I/O this
+year, Paul and I did
+
+00:03:40.420 --> 00:03:42.745
+share that they were--
+these metrics were coming,
+
+00:03:42.745 --> 00:03:43.870
+and they were on their way.
+
+00:03:43.870 --> 00:03:45.160
+But now they're here.
+
+00:03:45.160 --> 00:03:48.250
+So Largest Contentful
+Paint, Total Blocking Time,
+
+00:03:48.250 --> 00:03:51.160
+and Cumulative Layout Shift
+are all out and available.
+
+00:03:51.160 --> 00:03:53.020
+These new metrics
+help to fill some
+
+00:03:53.020 --> 00:03:54.850
+of the gaps in our
+measurement story.
+
+00:03:54.850 --> 00:03:56.830
+For instance, when
+time to interactive
+
+00:03:56.830 --> 00:04:00.250
+does a good job of identifying
+when the main thread calms down
+
+00:04:00.250 --> 00:04:02.260
+later in load,
+total blocking time
+
+00:04:02.260 --> 00:04:05.080
+aims to quantify how
+strained the main thread is
+
+00:04:05.080 --> 00:04:06.370
+throughout the load.
+
+00:04:06.370 --> 00:04:10.250
+So they complement each other
+and provide that balance.
+
+00:04:10.250 --> 00:04:12.610
+So let's explore the
+new metrics themselves.
+
+00:04:12.610 --> 00:04:15.910
+Largest Contentful Paint aims
+to measure exactly what its name
+
+00:04:15.910 --> 00:04:18.010
+sounds like, what
+is the main largest
+
+00:04:18.010 --> 00:04:19.810
+content visible for the user?
+
+00:04:19.810 --> 00:04:20.800
+When is it?
+
+00:04:20.800 --> 00:04:22.870
+Metrics like First
+Contentful Paint are helpful,
+
+00:04:22.870 --> 00:04:24.580
+but they only capture
+the very beginning
+
+00:04:24.580 --> 00:04:25.600
+of a loading experience.
+
+00:04:25.600 --> 00:04:28.330
+And LCP helps to flesh
+out how quickly a user is
+
+00:04:28.330 --> 00:04:31.640
+able to see the meat of what
+they expect and want on a page.
+
+00:04:31.640 --> 00:04:34.180
+So yay, I expect to
+see my dog, Annie.
+
+00:04:34.180 --> 00:04:35.410
+It's actually my dog.
+
+00:04:35.410 --> 00:04:38.530
+And so as soon as I can see
+her entire cute, little face,
+
+00:04:38.530 --> 00:04:41.520
+that's the value of my LCP.
+
+00:04:41.520 --> 00:04:42.432
+Then there's this.
+
+00:04:42.432 --> 00:04:44.140
+It's def as not as
+cute as my dog, is it?
+
+00:04:44.140 --> 00:04:44.360
+PAUL IRISH: Nope.
+
+00:04:44.360 --> 00:04:45.570
+ELIZABETH SWEENY:
+No, not as cute.
+
+00:04:45.570 --> 00:04:47.487
+Just a few pixels moving
+can be the difference
+
+00:04:47.487 --> 00:04:50.290
+between happiness
+and complete mayhem.
+
+00:04:50.290 --> 00:04:53.370
+So Cumulative Layout Shift
+measures an aspect of users'--
+
+00:04:53.370 --> 00:04:56.530
+of a user experience that we're
+excited to build out over time.
+
+00:04:56.530 --> 00:05:00.510
+In addition to our load
+and interactivity metrics.
+
+00:05:00.510 --> 00:05:04.190
+And that's predictability.
+
+00:05:04.190 --> 00:05:06.200
+Cumulative Layout Shift
+measures the amount
+
+00:05:06.200 --> 00:05:08.030
+that the elements
+within the viewport move
+
+00:05:08.030 --> 00:05:10.820
+around during load CLS is
+trying to measure things
+
+00:05:10.820 --> 00:05:13.850
+like prepending and add to a
+list in a way that increases
+
+00:05:13.850 --> 00:05:16.610
+the chances of accidental
+clicks like this one,
+
+00:05:16.610 --> 00:05:20.930
+or having a new page in which
+the story's photos shifts down
+
+00:05:20.930 --> 00:05:23.400
+the page when it fully loads,
+all that kind of stuff.
+
+00:05:23.400 --> 00:05:24.590
+PAUL IRISH: All right,
+so that brings us
+
+00:05:24.590 --> 00:05:25.548
+to Total Blocking Time.
+
+00:05:25.548 --> 00:05:27.007
+I'm going to take
+a second on this.
+
+00:05:27.007 --> 00:05:28.580
+And we need to do
+a quick refresher
+
+00:05:28.580 --> 00:05:31.892
+on how event handling
+happens in the browser.
+
+00:05:31.892 --> 00:05:33.350
+So let's say we
+have a main thread,
+
+00:05:33.350 --> 00:05:36.560
+and then the user taps
+on a button, right?
+
+00:05:36.560 --> 00:05:37.720
+So we have some input.
+
+00:05:37.720 --> 00:05:39.750
+Now JavaScript has
+to react to that.
+
+00:05:39.750 --> 00:05:42.960
+So we have an event handler,
+touch start, click handler,
+
+00:05:42.960 --> 00:05:44.380
+whatever, some JavaScript.
+
+00:05:44.380 --> 00:05:46.680
+Then we're going to have
+recalculate styles, layout,
+
+00:05:46.680 --> 00:05:47.180
+paint.
+
+00:05:47.180 --> 00:05:48.780
+We ship a frame.
+
+00:05:48.780 --> 00:05:52.220
+So that's just kind of
+the basic, normal flow.
+
+00:05:52.220 --> 00:05:53.930
+But let's say that we
+take a main thread,
+
+00:05:53.930 --> 00:05:55.910
+and there's something
+happening on it already,
+
+00:05:55.910 --> 00:05:58.370
+just some JavaScript
+that's doing things.
+
+00:05:58.370 --> 00:06:01.340
+And then, but the user
+still clicks on that button
+
+00:06:01.340 --> 00:06:02.900
+in the middle of that task.
+
+00:06:02.900 --> 00:06:06.950
+Well, in that case, we
+have to kind of wait a bit.
+
+00:06:06.950 --> 00:06:10.460
+And then we can do the event
+handling and ship the frame.
+
+00:06:10.460 --> 00:06:12.980
+But so there's this
+delay here, this input
+
+00:06:12.980 --> 00:06:14.670
+delay where we're waiting.
+
+00:06:14.670 --> 00:06:16.908
+Of course, if it's just a
+little bit of input delay,
+
+00:06:16.908 --> 00:06:18.200
+the user shouldn't even notice.
+
+00:06:18.200 --> 00:06:21.080
+And a little bit would probably
+be about 50 milliseconds.
+
+00:06:21.080 --> 00:06:24.090
+Up to that, user won't
+even pay attention.
+
+00:06:24.090 --> 00:06:28.160
+But if it's over that, the user
+is going to start to notice.
+
+00:06:28.160 --> 00:06:29.750
+So what we're
+interested in here is
+
+00:06:29.750 --> 00:06:35.660
+kind of quantifying that risk
+of how much this long task might
+
+00:06:35.660 --> 00:06:38.360
+potentially impact any
+sort of user interaction
+
+00:06:38.360 --> 00:06:40.620
+that could come
+along at any time.
+
+00:06:40.620 --> 00:06:42.520
+So if we zoom in--
+
+00:06:42.520 --> 00:06:45.930
+and let's take this task.
+
+00:06:45.930 --> 00:06:48.510
+So it's 150 milliseconds long.
+
+00:06:48.510 --> 00:06:50.955
+So basically, the
+first 50 milliseconds,
+
+00:06:50.955 --> 00:06:51.830
+it's going to freeze.
+
+00:06:51.830 --> 00:06:54.980
+Because if all your tasks
+are under 50 milliseconds,
+
+00:06:54.980 --> 00:06:55.490
+you're good.
+
+00:06:55.490 --> 00:06:56.410
+No problem.
+
+00:06:56.410 --> 00:06:58.265
+But once we get above
+that, it's a problem.
+
+00:06:58.265 --> 00:07:01.470
+So the 100 milliseconds
+at the end,
+
+00:07:01.470 --> 00:07:03.920
+we call this blocking time.
+
+00:07:03.920 --> 00:07:05.780
+So Total Blocking
+Time, basically,
+
+00:07:05.780 --> 00:07:08.250
+if we take a main thread
+that looks like this,
+
+00:07:08.250 --> 00:07:13.610
+we have 270 milliseconds, in
+total, of tasks on main thread.
+
+00:07:13.610 --> 00:07:16.040
+And 60 milliseconds
+of that surpasses
+
+00:07:16.040 --> 00:07:18.660
+that 50-millisecond overage.
+
+00:07:18.660 --> 00:07:20.510
+So that's our Total
+Blocking Time.
+
+00:07:20.510 --> 00:07:25.820
+So the TBT is just the
+blocking time summed up,
+
+00:07:25.820 --> 00:07:27.830
+all of it between the
+First Contentful Paint
+
+00:07:27.830 --> 00:07:29.100
+and the Time To Interactive.
+
+00:07:29.100 --> 00:07:31.480
+That's TBT.
+
+00:07:31.480 --> 00:07:33.890
+OK, so we covered a few metrics.
+
+00:07:33.890 --> 00:07:36.320
+They're available
+in various places.
+
+00:07:36.320 --> 00:07:41.750
+Pretty much all the lab metrics
+are available in Lighthouse.
+
+00:07:41.750 --> 00:07:45.765
+First Input Delay only really
+makes sense in the field.
+
+00:07:45.765 --> 00:07:47.390
+So then when it comes
+to field metrics,
+
+00:07:47.390 --> 00:07:50.570
+you can see most of them are
+available in Chrome UX Report.
+
+00:07:50.570 --> 00:07:52.640
+[INAUDIBLE] them, you
+can collect yourself
+
+00:07:52.640 --> 00:07:54.500
+with the Performance Observer.
+
+00:07:54.500 --> 00:07:57.250
+And you can check out, actually,
+the documentation for all this
+
+00:07:57.250 --> 00:08:00.090
+in web.dev/metrics,
+brand-new landing page,
+
+00:08:00.090 --> 00:08:02.600
+which summarizes all these
+metrics and also how to measure
+
+00:08:02.600 --> 00:08:04.110
+them yourself.
+
+00:08:04.110 --> 00:08:05.370
+Cool.
+
+00:08:05.370 --> 00:08:07.620
+ELIZABETH SWEENY: So I know
+what you're all thinking--
+
+00:08:07.620 --> 00:08:09.510
+OK, this is all fine and great.
+
+00:08:09.510 --> 00:08:11.510
+But how do I make my
+Lighthouse score better?
+
+00:08:11.510 --> 00:08:14.840
+So ultimately, optimizing for
+the metrics we just went over
+
+00:08:14.840 --> 00:08:16.730
+will allow you to move
+your scores from stuff
+
+00:08:16.730 --> 00:08:19.080
+like this to this.
+
+00:08:19.080 --> 00:08:21.295
+So let's take a
+minute to make sure
+
+00:08:21.295 --> 00:08:23.420
+that we know exactly how
+the Lighthouse performance
+
+00:08:23.420 --> 00:08:25.112
+score is actually calculated.
+
+00:08:25.112 --> 00:08:27.320
+We're going to be updating
+the Lighthouse performance
+
+00:08:27.320 --> 00:08:28.048
+score soon.
+
+00:08:28.048 --> 00:08:30.590
+We're still working to ensure
+that all the scoring curves are
+
+00:08:30.590 --> 00:08:32.330
+finessed and our
+metrics are mature.
+
+00:08:32.330 --> 00:08:35.070
+But we're going to ship
+roughly in January.
+
+00:08:35.070 --> 00:08:37.580
+This is what the current
+v5 score looks like.
+
+00:08:37.580 --> 00:08:41.210
+It has five metrics that are
+weighted and blended together
+
+00:08:41.210 --> 00:08:43.640
+to form the 0 to 100
+performance score that you
+
+00:08:43.640 --> 00:08:46.890
+see then populated in the
+gauge at the top of the report.
+
+00:08:46.890 --> 00:08:49.340
+The new v6 score that
+we're working on now
+
+00:08:49.340 --> 00:08:53.330
+replaces First CPU Idle
+and First Meaningful
+
+00:08:53.330 --> 00:08:56.820
+Paint with Largest Contentful
+Paint and Total Blocking Time.
+
+00:08:56.820 --> 00:08:58.320
+So let's take a
+look at that change.
+
+00:08:58.320 --> 00:08:59.050
+PAUL IRISH: I got
+a little animation.
+
+00:08:59.050 --> 00:09:00.508
+We got to pay
+attention right here.
+
+00:09:00.508 --> 00:09:01.210
+Ready?
+
+00:09:01.210 --> 00:09:03.700
+All right.
+
+00:09:03.700 --> 00:09:05.575
+Take those ones away,
+bring in the new ones--
+
+00:09:05.575 --> 00:09:07.075
+ELIZABETH SWEENY:
+It's so beautiful.
+
+00:09:07.075 --> 00:09:08.790
+PAUL IRISH: --and
+then re-weight.
+
+00:09:08.790 --> 00:09:10.290
+ELIZABETH SWEENY:
+It's so beautiful.
+
+00:09:10.290 --> 00:09:12.720
+PAUL IRISH: OK, so that's
+the change we're making.
+
+00:09:12.720 --> 00:09:14.530
+ELIZABETH SWEENY:
+It took us hours.
+
+00:09:14.530 --> 00:09:17.220
+You can see that we aren't just
+updating the metrics to reflect
+
+00:09:17.220 --> 00:09:20.040
+TBT and LCP, but we're
+also adjusting the weights
+
+00:09:20.040 --> 00:09:22.050
+to be more balanced
+between phases of load
+
+00:09:22.050 --> 00:09:23.880
+as well as
+interactivity measures.
+
+00:09:23.880 --> 00:09:26.320
+Cumulative Layout Shift
+is still being finessed,
+
+00:09:26.320 --> 00:09:29.367
+but we plan to
+incorporate it eventually.
+
+00:09:29.367 --> 00:09:31.200
+So let's jump right
+into some of the tactics
+
+00:09:31.200 --> 00:09:32.700
+to actually improve
+these metrics.
+
+00:09:32.700 --> 00:09:35.283
+Just a quick, cool new feature
+in the interest of allowing you
+
+00:09:35.283 --> 00:09:38.350
+to measure the user's experience
+as accurately as possible,
+
+00:09:38.350 --> 00:09:40.830
+we've added a reanalyzed
+prompt to PageSpeed Insights.
+
+00:09:40.830 --> 00:09:43.830
+PAUL IRISH: So for sites that
+are redirected to a new URL,
+
+00:09:43.830 --> 00:09:46.230
+you're prompted to
+rerun the report
+
+00:09:46.230 --> 00:09:47.850
+on that post-redirect URL.
+
+00:09:47.850 --> 00:09:49.530
+So you get a full,
+accurate picture
+
+00:09:49.530 --> 00:09:53.350
+of, OK, from the redirect,
+what is the story of that page.
+
+00:09:53.350 --> 00:09:56.220
+So you can go to the PageSpeed
+Insights report to benchmark.
+
+00:09:56.220 --> 00:09:57.820
+It's a great place to start.
+
+00:09:57.820 --> 00:09:59.430
+But we also want
+to know how things
+
+00:09:59.430 --> 00:10:03.000
+work over a
+historical perspective
+
+00:10:03.000 --> 00:10:05.320
+and see what the trends are.
+
+00:10:05.320 --> 00:10:09.040
+So the PageSpeed
+Insights API itself,
+
+00:10:09.040 --> 00:10:11.320
+that is underlying the web app.
+
+00:10:11.320 --> 00:10:13.360
+And it's free to
+use and allows you
+
+00:10:13.360 --> 00:10:16.300
+to scale up your monitoring
+across multiple pages
+
+00:10:16.300 --> 00:10:17.300
+and domains.
+
+00:10:17.300 --> 00:10:19.810
+And the cool thing is you can
+just hook it up to a Cron job,
+
+00:10:19.810 --> 00:10:22.630
+ping it daily, drop the
+results the Google Sheets,
+
+00:10:22.630 --> 00:10:23.350
+and chart it.
+
+00:10:23.350 --> 00:10:26.350
+And I actually did
+that here with web.dev.
+
+00:10:26.350 --> 00:10:29.380
+Was able just to do that, a
+lot of conditional formatting.
+
+00:10:29.380 --> 00:10:31.750
+Love conditional formatting.
+
+00:10:31.750 --> 00:10:33.520
+And then got these
+charts, right.
+
+00:10:33.520 --> 00:10:35.950
+And so this is actually
+like two weeks of data
+
+00:10:35.950 --> 00:10:39.770
+from web.dev homepage collected
+by PageSpeed Insights,
+
+00:10:39.770 --> 00:10:43.690
+the homepage, and then also one
+of the articles that I found.
+
+00:10:43.690 --> 00:10:46.390
+So interestingly,
+First Contentful Paint
+
+00:10:46.390 --> 00:10:47.740
+is about the same in both cases.
+
+00:10:47.740 --> 00:10:50.110
+But then the speed
+index and TTI are quite
+
+00:10:50.110 --> 00:10:52.140
+a bit higher on the article.
+
+00:10:52.140 --> 00:10:53.570
+Like, the homepage
+is fast-- cool.
+
+00:10:53.570 --> 00:10:54.010
+But the article--
+
+00:10:54.010 --> 00:10:54.580
+ELIZABETH SWEENY:
+We should probably
+
+00:10:54.580 --> 00:10:55.600
+investigate that at some point.
+
+00:10:55.600 --> 00:10:57.267
+PAUL IRISH: Yeah,
+we'll go back to this.
+
+00:10:57.267 --> 00:10:58.550
+ELIZABETH SWEENY: OK, cool.
+
+00:10:58.550 --> 00:11:00.040
+So it's exciting to see
+what our partners have
+
+00:11:00.040 --> 00:11:02.170
+been able to do with the
+production monitoring
+
+00:11:02.170 --> 00:11:04.965
+capabilities that
+the PSI API offers.
+
+00:11:04.965 --> 00:11:06.340
+This is a snapshot
+of a dashboard
+
+00:11:06.340 --> 00:11:08.340
+that VRBO created with the API.
+
+00:11:08.340 --> 00:11:10.840
+And they're able to track their
+long-term performance trends
+
+00:11:10.840 --> 00:11:13.450
+and ensure that their page
+speed performance remains on par
+
+00:11:13.450 --> 00:11:15.985
+or better within
+the travel industry.
+
+00:11:15.985 --> 00:11:17.860
+Another way to track
+and improve your metrics
+
+00:11:17.860 --> 00:11:20.530
+is with Search Console's
+new speed report.
+
+00:11:20.530 --> 00:11:22.673
+It was just formally
+announced lock last week,
+
+00:11:22.673 --> 00:11:23.590
+which is kind of cool.
+
+00:11:23.590 --> 00:11:24.730
+The speed report
+allows you to get
+
+00:11:24.730 --> 00:11:26.710
+a sense of your overall
+status of the site
+
+00:11:26.710 --> 00:11:29.590
+and is powered by data collected
+from the Chrome User Experience
+
+00:11:29.590 --> 00:11:30.430
+Report.
+
+00:11:30.430 --> 00:11:32.680
+You're able to then go
+to PageSpeed Insights
+
+00:11:32.680 --> 00:11:34.780
+to get the actionable
+recommendations that are
+
+00:11:34.780 --> 00:11:37.180
+surfaced in the speed report.
+
+00:11:37.180 --> 00:11:40.390
+And we're making it rain
+with origin coverage.
+
+00:11:40.390 --> 00:11:41.890
+OK, yeah, it's a
+stretch, but I had
+
+00:11:41.890 --> 00:11:43.420
+to find a reason to use this.
+
+00:11:43.420 --> 00:11:47.500
+Because, oh my god, it's a
+plug, and money, and pink.
+
+00:11:47.500 --> 00:11:48.530
+Come on.
+
+00:11:48.530 --> 00:11:50.590
+But, OK, in all
+seriousness, every time
+
+00:11:50.590 --> 00:11:53.560
+Paul and I get up
+here and do a talk,
+
+00:11:53.560 --> 00:11:55.720
+the CrUX team has done an
+amazing job and expanded
+
+00:11:55.720 --> 00:11:57.590
+coverage to even more origins.
+
+00:11:57.590 --> 00:12:00.642
+So typically, about a
+million jump every time.
+
+00:12:00.642 --> 00:12:01.600
+That's really exciting.
+
+00:12:01.600 --> 00:12:03.378
+It does provide us
+with the ability
+
+00:12:03.378 --> 00:12:05.920
+to better understand the current
+state of the web in a really
+
+00:12:05.920 --> 00:12:07.720
+comprehensive way.
+
+00:12:07.720 --> 00:12:09.100
+PAUL IRISH: And
+as of this month,
+
+00:12:09.100 --> 00:12:11.750
+we made the change the
+Lighthouse Chrome extension.
+
+00:12:11.750 --> 00:12:15.130
+So it will no longer run
+locally on your machine.
+
+00:12:15.130 --> 00:12:16.750
+Instead, you'll
+just hit a button.
+
+00:12:16.750 --> 00:12:19.480
+And it's going to go ping
+the API PageSpeed Insights
+
+00:12:19.480 --> 00:12:21.695
+and run on our
+infrastructure instead.
+
+00:12:21.695 --> 00:12:23.320
+If, of course, you're
+testing something
+
+00:12:23.320 --> 00:12:25.570
+on localhost or something
+that's not publicly accessible,
+
+00:12:25.570 --> 00:12:27.970
+then just open up DevTools
+and run it in the Audits panel
+
+00:12:27.970 --> 00:12:30.600
+instead.
+
+00:12:30.600 --> 00:12:34.530
+I wanted to briefly touch on the
+reproducibility of Lighthouse
+
+00:12:34.530 --> 00:12:35.320
+numbers.
+
+00:12:35.320 --> 00:12:37.710
+So you might have noticed
+that they change sometimes.
+
+00:12:37.710 --> 00:12:40.470
+And we see this as
+two separate concerns.
+
+00:12:40.470 --> 00:12:43.530
+So first, running
+Lighthouse for the same page
+
+00:12:43.530 --> 00:12:45.390
+in different
+environments-- say, like,
+
+00:12:45.390 --> 00:12:48.710
+DevTools, PageSpeed Insights,
+Lighthouse on web page test,
+
+00:12:48.710 --> 00:12:50.800
+you might end up with
+different results.
+
+00:12:50.800 --> 00:12:52.890
+So we are investigating
+a calibration method
+
+00:12:52.890 --> 00:12:55.660
+that might be able to
+mitigate this somewhat.
+
+00:12:55.660 --> 00:12:57.840
+But in general, I'd
+say it's fair to expect
+
+00:12:57.840 --> 00:12:59.850
+that different conditions
+and hardware will
+
+00:12:59.850 --> 00:13:02.550
+lead to different
+measurements for now.
+
+00:13:02.550 --> 00:13:04.360
+So variability,
+on the other hand,
+
+00:13:04.360 --> 00:13:05.940
+is the issue when
+you see numbers,
+
+00:13:05.940 --> 00:13:07.773
+and they're moving
+around even though you're
+
+00:13:07.773 --> 00:13:09.280
+on the exact same environment.
+
+00:13:09.280 --> 00:13:11.490
+So this is a hard problem
+that all engineering
+
+00:13:11.490 --> 00:13:14.630
+teams that measure
+performance struggle with.
+
+00:13:14.630 --> 00:13:17.460
+We're always working to mitigate
+variability when we can.
+
+00:13:17.460 --> 00:13:19.360
+And while we have
+more work to do,
+
+00:13:19.360 --> 00:13:22.140
+we're sharing some documentation
+on the sources of variability
+
+00:13:22.140 --> 00:13:26.630
+and suggestions with what your
+team can do to implement them.
+
+00:13:26.630 --> 00:13:30.280
+OK, so now we're on to how
+Lighthouse can be expanded
+
+00:13:30.280 --> 00:13:32.050
+and extended as a platform.
+
+00:13:32.050 --> 00:13:34.660
+So we want to make sure
+that Lighthouse is tailored
+
+00:13:34.660 --> 00:13:35.980
+and actionable for you.
+
+00:13:35.980 --> 00:13:37.790
+So we're making a few--
+
+00:13:37.790 --> 00:13:40.570
+going to take a few minutes to
+talk about how you can leverage
+
+00:13:40.570 --> 00:13:42.602
+it for your own use cases.
+
+00:13:42.602 --> 00:13:44.560
+ELIZABETH SWEENY: So
+there are two primary ways
+
+00:13:44.560 --> 00:13:46.240
+that you can build
+on top of Lighthouse
+
+00:13:46.240 --> 00:13:48.070
+depending on what
+your goals are.
+
+00:13:48.070 --> 00:13:50.230
+The first is with stack packs.
+
+00:13:53.450 --> 00:13:54.450
+PAUL IRISH: There we go.
+
+00:13:54.450 --> 00:13:55.640
+ELIZABETH SWEENY: Thank you.
+
+00:13:55.640 --> 00:13:57.310
+Stack packs is a
+feature that allows
+
+00:13:57.310 --> 00:13:59.110
+for stack-specific
+advice to be served
+
+00:13:59.110 --> 00:14:00.507
+within the report itself.
+
+00:14:00.507 --> 00:14:02.590
+So Lighthouse automatically
+detects whether or not
+
+00:14:02.590 --> 00:14:04.260
+you're on a CMS or
+using a framework.
+
+00:14:04.260 --> 00:14:06.010
+And then it will provide
+you with guidance
+
+00:14:06.010 --> 00:14:07.750
+that is specific to your stack.
+
+00:14:07.750 --> 00:14:10.960
+These stack packs take the core
+audits of the Lighthouse report
+
+00:14:10.960 --> 00:14:13.750
+and layer customized
+recommendations on top of them
+
+00:14:13.750 --> 00:14:16.530
+that are curated by community
+experts that know the CMSs
+
+00:14:16.530 --> 00:14:17.590
+and frameworks.
+
+00:14:17.590 --> 00:14:20.080
+We're excited to be launching
+stack packs with frameworks
+
+00:14:20.080 --> 00:14:23.320
+and CMSs like Angular,
+WordPress, Magento, React,
+
+00:14:23.320 --> 00:14:24.170
+and AMP.
+
+00:14:24.170 --> 00:14:26.230
+We're actively
+wanting to encourage
+
+00:14:26.230 --> 00:14:28.690
+you to create a stack pack.
+
+00:14:28.690 --> 00:14:31.418
+So please do check out the
+repo and work with us on it.
+
+00:14:31.418 --> 00:14:33.960
+PAUL IRISH: So the second way
+that Lighthouse can be extended
+
+00:14:33.960 --> 00:14:35.050
+is plugins.
+
+00:14:35.050 --> 00:14:38.020
+So Elizabeth and I announced
+them earlier this year
+
+00:14:38.020 --> 00:14:40.780
+at Google I/O. We're
+excited to see the community
+
+00:14:40.780 --> 00:14:42.210
+start to build their own.
+
+00:14:42.210 --> 00:14:43.960
+ELIZABETH SWEENY: Yeah,
+so let's just take
+
+00:14:43.960 --> 00:14:45.550
+a second to kind of
+refresh our memory
+
+00:14:45.550 --> 00:14:47.088
+on the impetus behind plugins.
+
+00:14:47.088 --> 00:14:49.630
+There's a lot of quality checks
+that aren't currently covered
+
+00:14:49.630 --> 00:14:51.220
+by Lighthouse core
+audits, and that's
+
+00:14:51.220 --> 00:14:52.580
+for a few different reasons.
+
+00:14:52.580 --> 00:14:54.910
+One is that we want
+core Lighthouse audits
+
+00:14:54.910 --> 00:14:57.730
+to make sure that they're
+applicable to all web
+
+00:14:57.730 --> 00:14:58.720
+developers.
+
+00:14:58.720 --> 00:15:02.080
+There may be really great audits
+for an e-commerce checkout
+
+00:15:02.080 --> 00:15:04.390
+page, for instance,
+patterns that you definitely
+
+00:15:04.390 --> 00:15:05.320
+want to follow.
+
+00:15:05.320 --> 00:15:07.843
+But those checks wouldn't
+be relevant for everybody.
+
+00:15:07.843 --> 00:15:09.760
+There are also a lot of
+really valuable audits
+
+00:15:09.760 --> 00:15:11.858
+that are relevant to
+all web developers,
+
+00:15:11.858 --> 00:15:13.900
+but the Lighthouse team
+just hasn't gotten around
+
+00:15:13.900 --> 00:15:15.370
+to doing them yet.
+
+00:15:15.370 --> 00:15:17.600
+So this is where
+Lighthouse plugins come in.
+
+00:15:17.600 --> 00:15:19.810
+They allow you to implement
+a new set of checks
+
+00:15:19.810 --> 00:15:21.820
+that will be run by
+Lighthouse and added
+
+00:15:21.820 --> 00:15:24.460
+to the report as an
+entirely new category.
+
+00:15:24.460 --> 00:15:25.990
+Whenever Lighthouse
+loads a page,
+
+00:15:25.990 --> 00:15:27.790
+it collects a bunch
+of great stuff,
+
+00:15:27.790 --> 00:15:30.580
+and all sorts of data about
+its elements, network records,
+
+00:15:30.580 --> 00:15:31.600
+and just so much more.
+
+00:15:31.600 --> 00:15:32.960
+It's a complete wealth.
+
+00:15:32.960 --> 00:15:35.410
+So these artifacts can
+be leveraged for plugins.
+
+00:15:35.410 --> 00:15:37.670
+Once you know what data
+is available to you,
+
+00:15:37.670 --> 00:15:40.570
+you can think through what your
+goal is for creating a plugin
+
+00:15:40.570 --> 00:15:42.970
+and how actionable,
+consistent, and valuable it
+
+00:15:42.970 --> 00:15:44.440
+would be for a user
+to be presented
+
+00:15:44.440 --> 00:15:45.640
+with that information.
+
+00:15:45.640 --> 00:15:47.140
+PAUL IRISH: OK,
+let's make a plugin.
+
+00:15:49.068 --> 00:15:50.860
+ELIZABETH SWEENY: We
+saw something earlier.
+
+00:15:50.860 --> 00:15:52.277
+PAUL IRISH: Yes,
+right, that page,
+
+00:15:52.277 --> 00:15:55.150
+that article page on
+web.dev that was quite slow.
+
+00:15:55.150 --> 00:15:58.270
+I looked into-- we looked
+into why it was slow.
+
+00:15:58.270 --> 00:15:59.495
+You know what it was?
+
+00:15:59.495 --> 00:16:01.260
+It was a YouTube embed.
+
+00:16:01.260 --> 00:16:03.370
+We were like--
+
+00:16:03.370 --> 00:16:04.360
+I do like YouTube.
+
+00:16:04.360 --> 00:16:04.600
+ELIZABETH SWEENY: It's great
+
+00:16:04.600 --> 00:16:05.530
+PAUL IRISH: I watch YouTube.
+
+00:16:05.530 --> 00:16:06.030
+It's good.
+
+00:16:06.030 --> 00:16:09.560
+But you know what, those
+little iframe embeds--
+
+00:16:09.560 --> 00:16:11.783
+pff.
+
+00:16:11.783 --> 00:16:13.200
+ELIZABETH SWEENY:
+Let's show them.
+
+00:16:13.200 --> 00:16:13.960
+PAUL IRISH: Yeah.
+
+00:16:13.960 --> 00:16:15.330
+This is my desktop machine.
+
+00:16:15.330 --> 00:16:16.810
+This is a very powerful machine.
+
+00:16:16.810 --> 00:16:20.350
+And it took half a
+second of main thread.
+
+00:16:20.350 --> 00:16:21.880
+The main thread
+was just taken up,
+
+00:16:21.880 --> 00:16:24.820
+doing things just as
+the iframe was loading,
+
+00:16:24.820 --> 00:16:27.955
+just to show me the thumbnail
+and the red play button.
+
+00:16:27.955 --> 00:16:29.980
+ELIZABETH SWEENY: Did
+you try it on mobile too?
+
+00:16:29.980 --> 00:16:30.510
+PAUL IRISH: I didn't.
+
+00:16:30.510 --> 00:16:30.850
+I didn't.
+
+00:16:30.850 --> 00:16:31.480
+I'm scared.
+
+00:16:31.480 --> 00:16:32.780
+It would be a lot more.
+
+00:16:32.780 --> 00:16:36.620
+So that's not the best.
+
+00:16:36.620 --> 00:16:39.200
+There's a few people that
+have looked into this too.
+
+00:16:39.200 --> 00:16:42.670
+And the quick hack is
+essentially, well, you just
+
+00:16:42.670 --> 00:16:47.080
+take the thumbnail image and put
+a red play button on it, just
+
+00:16:47.080 --> 00:16:48.070
+ones that you created.
+
+00:16:48.070 --> 00:16:49.570
+And then when the
+user clicks on it,
+
+00:16:49.570 --> 00:16:52.450
+just throw the iframe in
+there and have it AutoPlay--
+
+00:16:52.450 --> 00:16:54.160
+kind of straightforward.
+
+00:16:54.160 --> 00:16:57.550
+So anyways, I made a stupid
+little custom element
+
+00:16:57.550 --> 00:16:59.890
+that does the exact same
+thing, really straightforward.
+
+00:16:59.890 --> 00:17:04.089
+And the nice thing is it takes
+500 milliseconds of main thread
+
+00:17:04.089 --> 00:17:11.319
+time down to zero and, what is
+it, 600k of network activity
+
+00:17:11.319 --> 00:17:13.160
+down to 1--
+
+00:17:13.160 --> 00:17:14.869
+so a nice overall win.
+
+00:17:14.869 --> 00:17:17.290
+So let's turn--
+let's write a plugin
+
+00:17:17.290 --> 00:17:22.030
+that just identifies these
+normal costly iframe embeds.
+
+00:17:22.030 --> 00:17:24.040
+So it's basically we
+start out with this.
+
+00:17:24.040 --> 00:17:25.036
+We just name it.
+
+00:17:25.036 --> 00:17:27.369
+And the only important thing
+here is required artifacts.
+
+00:17:27.369 --> 00:17:29.320
+So we're just saying,
+OK, Lighthouse,
+
+00:17:29.320 --> 00:17:31.813
+we want the data
+about iframe elements.
+
+00:17:31.813 --> 00:17:33.230
+And we're going
+to work with that.
+
+00:17:33.230 --> 00:17:35.770
+So the actual
+implementation's here.
+
+00:17:35.770 --> 00:17:38.020
+We take that iframe
+element's artifact,
+
+00:17:38.020 --> 00:17:39.075
+and we just look it over.
+
+00:17:39.075 --> 00:17:40.450
+And basically,
+we're just looking
+
+00:17:40.450 --> 00:17:43.180
+to see where it's
+coming from YouTube.
+
+00:17:43.180 --> 00:17:44.170
+That's roughly it.
+
+00:17:44.170 --> 00:17:45.628
+And we're essentially
+going to fail
+
+00:17:45.628 --> 00:17:48.310
+the audit if we find iframes.
+
+00:17:48.310 --> 00:17:51.640
+Otherwise we'll pass
+it, because we're good.
+
+00:17:51.640 --> 00:17:54.268
+In a plugin, you can then decide
+how you want to score things.
+
+00:17:54.268 --> 00:17:55.560
+Because it's your own category.
+
+00:17:55.560 --> 00:17:56.825
+You have a 0 to 100 score.
+
+00:17:56.825 --> 00:17:58.450
+You can decide how
+things are weighted.
+
+00:17:58.450 --> 00:18:00.730
+You have a lot of control there.
+
+00:18:00.730 --> 00:18:01.930
+We did this, packaged it up.
+
+00:18:01.930 --> 00:18:04.870
+It's a really straightforward
+and small little plugin.
+
+00:18:04.870 --> 00:18:08.270
+And you get a nice-- this is
+a failure state, of course.
+
+00:18:08.270 --> 00:18:12.500
+But easy enough to just
+identify, OK, yeah,
+
+00:18:12.500 --> 00:18:14.480
+there's a YouTube
+embed here on the page.
+
+00:18:14.480 --> 00:18:15.640
+It's not optimized.
+
+00:18:15.640 --> 00:18:17.980
+We should probably
+go implement it.
+
+00:18:17.980 --> 00:18:21.970
+So I ran it against
+web.dev, found the failure.
+
+00:18:21.970 --> 00:18:23.830
+And then I was like,
+well, let's just
+
+00:18:23.830 --> 00:18:28.180
+apply my little custom
+element hack to the page
+
+00:18:28.180 --> 00:18:30.730
+and make it faster--
+not 400 times,
+
+00:18:30.730 --> 00:18:32.670
+I mean, but faster probably.
+
+00:18:32.670 --> 00:18:35.130
+ELIZABETH SWEENY:
+Just marginally.
+
+00:18:35.130 --> 00:18:36.850
+PAUL IRISH: And that
+works really well.
+
+00:18:36.850 --> 00:18:39.430
+I feel confident about it
+being a much better thing
+
+00:18:39.430 --> 00:18:41.180
+for the page.
+
+00:18:41.180 --> 00:18:42.880
+But at the same time--
+
+00:18:42.880 --> 00:18:45.280
+ELIZABETH SWEENY: I mean,
+yes, ditto, I trust you too.
+
+00:18:45.280 --> 00:18:45.400
+PAUL IRISH: Thank you.
+
+00:18:45.400 --> 00:18:46.942
+ELIZABETH SWEENY:
+But we need to make
+
+00:18:46.942 --> 00:18:49.475
+sure that the plugin and
+the light YouTube embed is--
+
+00:18:49.475 --> 00:18:51.460
+that the fix is viable
+and sustainable,
+
+00:18:51.460 --> 00:18:53.870
+and we can show
+that to our teams.
+
+00:18:53.870 --> 00:18:56.350
+PAUL IRISH: So--
+
+00:18:56.350 --> 00:18:58.850
+ELIZABETH SWEENY: And so that's
+when Lighthouse CI comes in.
+
+00:18:58.850 --> 00:18:59.558
+PAUL IRISH: Yeah.
+
+00:18:59.558 --> 00:19:02.290
+ELIZABETH SWEENY: So you can now
+run Lighthouse on every commit
+
+00:19:02.290 --> 00:19:03.540
+before you push to production.
+
+00:19:03.540 --> 00:19:04.248
+PAUL IRISH: Yeah.
+
+00:19:04.248 --> 00:19:06.170
+And so we really want
+to be able to provide
+
+00:19:06.170 --> 00:19:08.090
+that kind of confidence
+for the entire team
+
+00:19:08.090 --> 00:19:09.007
+and that transparency.
+
+00:19:09.007 --> 00:19:11.480
+So for every single pull
+request, what sort of change
+
+00:19:11.480 --> 00:19:14.420
+are we looking at here?
+
+00:19:14.420 --> 00:19:18.253
+So a brief architectural
+look-- so inside your CI
+
+00:19:18.253 --> 00:19:20.420
+where you're doing your
+unit tests and your linting,
+
+00:19:20.420 --> 00:19:21.795
+you can run the
+collection agent.
+
+00:19:21.795 --> 00:19:23.870
+So essentially, it's just
+going to run Lighthouse
+
+00:19:23.870 --> 00:19:26.703
+a few times for each URL
+that you're interested in.
+
+00:19:26.703 --> 00:19:28.370
+Maybe you're going
+to search some things
+
+00:19:28.370 --> 00:19:30.950
+against a performance budget.
+
+00:19:30.950 --> 00:19:35.680
+You can then update GitHub and
+then post the data to a server.
+
+00:19:35.680 --> 00:19:39.062
+So Lighthouse CI server
+stands on its own
+
+00:19:39.062 --> 00:19:40.770
+and has a nice front
+end that we're going
+
+00:19:40.770 --> 00:19:43.790
+to take a closer look at now.
+
+00:19:43.790 --> 00:19:48.808
+So the setup is basically like,
+if this is your travis.yml,
+
+00:19:48.808 --> 00:19:50.100
+then you're building your site.
+
+00:19:50.100 --> 00:19:51.350
+You're running your own tests.
+
+00:19:51.350 --> 00:19:54.270
+And the last line is basically,
+let's run Lighthouse CI as well
+
+00:19:54.270 --> 00:19:56.970
+on a couple URLs.
+
+00:19:56.970 --> 00:19:59.860
+You can set it up just
+on your own like this.
+
+00:19:59.860 --> 00:20:03.630
+There's also an option
+of using a new GitHub
+
+00:20:03.630 --> 00:20:05.190
+action, a Lighthouse CI action.
+
+00:20:05.190 --> 00:20:07.890
+We've been working on this
+with our friends at Treo.
+
+00:20:07.890 --> 00:20:12.060
+And it kind of batches it up and
+runs it inside of GitHub's CI
+
+00:20:12.060 --> 00:20:13.545
+machines as well.
+
+00:20:13.545 --> 00:20:16.170
+ELIZABETH SWEENY: And so you're
+able to see your entire project
+
+00:20:16.170 --> 00:20:18.420
+overview, how your
+branches have performed
+
+00:20:18.420 --> 00:20:19.815
+over time against master.
+
+00:20:19.815 --> 00:20:21.690
+And the trends for your
+Lighthouse categories
+
+00:20:21.690 --> 00:20:23.820
+are all there and visible
+to the entire team.
+
+00:20:26.163 --> 00:20:27.580
+PAUL IRISH: And
+so the integration
+
+00:20:27.580 --> 00:20:29.120
+with GitHub, you'll
+see on a pull request,
+
+00:20:29.120 --> 00:20:30.828
+is in the little commit
+statuses pointing
+
+00:20:30.828 --> 00:20:33.960
+to every URL that's tested
+and what the results are.
+
+00:20:33.960 --> 00:20:35.710
+ELIZABETH SWEENY: And
+thank goodness, gone
+
+00:20:35.710 --> 00:20:37.960
+are the days where you're
+having to toggle and compare
+
+00:20:37.960 --> 00:20:39.760
+between two Lighthouse
+reports side by side
+
+00:20:39.760 --> 00:20:41.590
+trying to find the differences.
+
+00:20:41.590 --> 00:20:43.605
+And you're actually able
+to see the diff view.
+
+00:20:43.605 --> 00:20:45.730
+Now you can see the changes
+between the two reports
+
+00:20:45.730 --> 00:20:46.960
+in a single view.
+
+00:20:46.960 --> 00:20:49.180
+Now not only are the
+differences in the performance
+
+00:20:49.180 --> 00:20:52.025
+metrics visible, but also--
+
+00:20:52.025 --> 00:20:54.400
+PAUL IRISH: Yeah, so actually,
+this right here, this diff
+
+00:20:54.400 --> 00:20:57.760
+is the diff of the page, the
+article page that I measured
+
+00:20:57.760 --> 00:20:59.200
+that was very slow before.
+
+00:20:59.200 --> 00:21:01.327
+Has the YouTube embed.
+
+00:21:01.327 --> 00:21:02.410
+ELIZABETH SWEENY: Plus 20.
+
+00:21:02.410 --> 00:21:04.810
+PAUL IRISH: Yeah, that's a
+plus 20 performance score.
+
+00:21:04.810 --> 00:21:06.070
+I felt good about that.
+
+00:21:06.070 --> 00:21:07.960
+That was not so bad.
+
+00:21:07.960 --> 00:21:11.170
+Yeah, so this, I will admit,
+it has the YouTube embed fix
+
+00:21:11.170 --> 00:21:14.260
+and the image optimization, our
+sponsored image optimizations
+
+00:21:14.260 --> 00:21:15.100
+from the keynote--
+
+00:21:15.100 --> 00:21:17.290
+so both those two.
+
+00:21:17.290 --> 00:21:18.722
+And so that's good.
+
+00:21:18.722 --> 00:21:19.930
+So performance score went up.
+
+00:21:19.930 --> 00:21:21.070
+We can see what happened.
+
+00:21:21.070 --> 00:21:24.042
+All of our metrics
+dropped, which is great.
+
+00:21:24.042 --> 00:21:26.500
+We can scroll down, see the
+summary of everything else that
+
+00:21:26.500 --> 00:21:26.850
+changed.
+
+00:21:26.850 --> 00:21:29.410
+So if anything stayed the same
+between master and this pull
+
+00:21:29.410 --> 00:21:31.330
+request, it's just not shown.
+
+00:21:31.330 --> 00:21:33.063
+It's only presented
+with what's useful.
+
+00:21:33.063 --> 00:21:34.480
+And what's nice
+here is, also, you
+
+00:21:34.480 --> 00:21:35.990
+can just click in
+on a few of these.
+
+00:21:35.990 --> 00:21:38.710
+So for instance, total
+number of requests and bytes
+
+00:21:38.710 --> 00:21:40.750
+for everything-- well,
+we see that, images,
+
+00:21:40.750 --> 00:21:44.590
+we have 1.6 megs less
+images on the page--
+
+00:21:44.590 --> 00:21:45.350
+fine.
+
+00:21:45.350 --> 00:21:46.980
+I think that's fine.
+
+00:21:46.980 --> 00:21:48.910
+Main thread work--
+our script execution,
+
+00:21:48.910 --> 00:21:52.090
+we're doing, what, 2 seconds
+less, a second and a half
+
+00:21:52.090 --> 00:21:54.790
+less of work on the main thread.
+
+00:21:54.790 --> 00:21:57.190
+And also third-party, you
+can see the YouTube line
+
+00:21:57.190 --> 00:22:01.100
+where we drop 600k of
+YouTube's bytes from the page.
+
+00:22:01.100 --> 00:22:02.760
+So in general, feel
+good about that.
+
+00:22:02.760 --> 00:22:03.760
+I'm all right with that.
+
+00:22:03.760 --> 00:22:06.260
+ELIZABETH SWEENY: Yeah,
+that feels like a win.
+
+00:22:06.260 --> 00:22:08.360
+So how excited is the
+team, actually, about this?
+
+00:22:08.360 --> 00:22:09.030
+PAUL IRISH: We're pumped.
+
+00:22:09.030 --> 00:22:10.905
+ELIZABETH SWEENY: Yeah,
+we're really excited.
+
+00:22:10.905 --> 00:22:15.210
+So we are launching the 0.3
+alpha of Lighthouse CI today.
+
+00:22:15.210 --> 00:22:17.290
+And you can check it out
+in the repo, set it up.
+
+00:22:17.290 --> 00:22:18.957
+Please let us know
+what you think of it.
+
+00:22:18.957 --> 00:22:19.860
+It is early stages.
+
+00:22:19.860 --> 00:22:21.640
+And we definitely
+want your feedback.
+
+00:22:21.640 --> 00:22:22.938
+PAUL IRISH: Yeah.
+
+00:22:22.938 --> 00:22:24.980
+ELIZABETH SWEENY: And now
+we're to key takeaways.
+
+00:22:24.980 --> 00:22:27.392
+PAUL IRISH: Yeah, we're
+at the end, all right.
+
+00:22:27.392 --> 00:22:28.850
+ELIZABETH SWEENY:
+So first, we want
+
+00:22:28.850 --> 00:22:31.910
+to make sure that everybody's
+benchmarking with new metrics,
+
+00:22:31.910 --> 00:22:33.600
+the ones that we
+discussed today.
+
+00:22:33.600 --> 00:22:35.017
+We also want you
+to take advantage
+
+00:22:35.017 --> 00:22:38.223
+of Lighthouse extensibility
+with stack packs and plugins.
+
+00:22:38.223 --> 00:22:39.890
+PAUL IRISH: Yeah, try
+out Lighthouse CI.
+
+00:22:39.890 --> 00:22:41.120
+Give it a shot.
+
+00:22:41.120 --> 00:22:42.170
+Tell us what you think.
+
+00:22:42.170 --> 00:22:45.530
+And keep an eye out for the
+changes with Lighthouse v6
+
+00:22:45.530 --> 00:22:46.450
+that are coming out.
+
+00:22:46.450 --> 00:22:48.658
+We're going to be making
+changes with the perf score,
+
+00:22:48.658 --> 00:22:52.760
+introducing new metrics,
+deprecating some older metrics.
+
+00:22:52.760 --> 00:22:53.660
+So keep an eye out.
+
+00:22:53.660 --> 00:22:56.690
+V6 should be
+finalized by January.
+
+00:22:56.690 --> 00:22:59.390
+But we'll have a
+alpha release of it
+
+00:22:59.390 --> 00:23:03.620
+for you to try for the
+node module pretty soon.
+
+00:23:03.620 --> 00:23:04.338
+That'll do it.
+
+00:23:04.338 --> 00:23:06.380
+Here's all the links that
+we were showing before.
+
+00:23:06.380 --> 00:23:08.438
+And thank you guys very much.
+
+00:23:08.438 --> 00:23:09.480
+ELIZABETH SWEENY: Thanks.
+
+00:23:09.480 --> 00:23:10.080
+[APPLAUSE]
+
+00:23:10.080 --> 00:23:13.430
+[MUSIC PLAYING]
+

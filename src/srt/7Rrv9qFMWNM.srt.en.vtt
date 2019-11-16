@@ -1,0 +1,2690 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:03.311
+[MUSIC PLAYING]
+
+00:00:05.680 --> 00:00:08.710
+SURMA: The main thread is
+overworked and underpaid.
+
+00:00:08.710 --> 00:00:12.550
+And yet all of us run their
+code almost exclusively
+
+00:00:12.550 --> 00:00:13.930
+on the main thread.
+
+00:00:13.930 --> 00:00:16.300
+And I'm not wagging
+my finger at you.
+
+00:00:16.300 --> 00:00:18.710
+This has been the norm.
+
+00:00:18.710 --> 00:00:21.670
+This is the best practice
+on the web currently.
+
+00:00:21.670 --> 00:00:23.110
+And it makes sense
+because, if you
+
+00:00:23.110 --> 00:00:27.250
+had the choice between driving
+your car on the main road
+
+00:00:27.250 --> 00:00:30.910
+or on a side alley, you would
+drive it on the main road.
+
+00:00:30.910 --> 00:00:33.400
+And so what I'm really
+saying is the main thread
+
+00:00:33.400 --> 00:00:35.470
+is overworked and underpaid--
+
+00:00:35.470 --> 00:00:37.940
+and the name is bad, too--
+
+00:00:37.940 --> 00:00:38.440
+really?
+
+00:00:42.740 --> 00:00:43.958
+So what is this all about?
+
+00:00:43.958 --> 00:00:46.250
+Well, this whole thing started
+to become a topic for me
+
+00:00:46.250 --> 00:00:48.020
+when I was researching
+people coming
+
+00:00:48.020 --> 00:00:49.900
+online for the first time.
+
+00:00:49.900 --> 00:00:52.580
+50% of the world's
+population are currently
+
+00:00:52.580 --> 00:00:58.010
+online, which means that 50%
+are not, or at least, not yet.
+
+00:00:58.010 --> 00:01:02.660
+These 50% are now slowly coming
+online through a vast variety
+
+00:01:02.660 --> 00:01:03.740
+of devices.
+
+00:01:03.740 --> 00:01:05.530
+For example, feature
+phones-- they
+
+00:01:05.530 --> 00:01:08.930
+have been incredibly popular for
+a long time in emerging markets
+
+00:01:08.930 --> 00:01:09.830
+like India.
+
+00:01:09.830 --> 00:01:12.020
+They are incredibly
+cheap to manufacture
+
+00:01:12.020 --> 00:01:17.240
+and, as such, they can be
+sold for a very low price tag,
+
+00:01:17.240 --> 00:01:21.010
+bringing more people from the
+world of offline to online.
+
+00:01:21.010 --> 00:01:24.080
+So the Jio Phone that you can
+see here on the very right
+
+00:01:24.080 --> 00:01:27.800
+is running a fork off the
+old Firefox OS called KaiOS,
+
+00:01:27.800 --> 00:01:30.470
+which is based on Firefox 42.
+
+00:01:30.470 --> 00:01:34.130
+So that isn't a recent version
+of Firefox by any means.
+
+00:01:34.130 --> 00:01:38.490
+But it is modern enough
+to browse the current web.
+
+00:01:38.490 --> 00:01:41.030
+And this phone only
+costs $15, which
+
+00:01:41.030 --> 00:01:43.400
+means the phone is
+incredibly popular
+
+00:01:43.400 --> 00:01:47.180
+and makes the mobile internet
+accessible to many more people
+
+00:01:47.180 --> 00:01:48.950
+than before.
+
+00:01:48.950 --> 00:01:51.200
+And these people coming
+online for the first time
+
+00:01:51.200 --> 00:01:54.200
+with comparatively
+low-powered phones
+
+00:01:54.200 --> 00:01:58.560
+are sometimes referred to as
+the Next Billion Users, or NBU.
+
+00:01:58.560 --> 00:02:01.250
+And I know that many of you
+hear this and might think
+
+00:02:01.250 --> 00:02:03.420
+of emerging markets like India.
+
+00:02:03.420 --> 00:02:04.920
+And that is
+absolutely not wrong.
+
+00:02:04.920 --> 00:02:07.430
+But it's also not
+the entire story,
+
+00:02:07.430 --> 00:02:10.797
+because there are also
+people in America.
+
+00:02:10.797 --> 00:02:13.130
+Now, they might not be coming
+online for the first time,
+
+00:02:13.130 --> 00:02:13.940
+necessarily.
+
+00:02:13.940 --> 00:02:16.340
+But they do spend
+their time on devices
+
+00:02:16.340 --> 00:02:18.990
+with very similar
+performance characteristics,
+
+00:02:18.990 --> 00:02:21.025
+for example, the Nokia 2.
+
+00:02:21.025 --> 00:02:24.680
+The Nokia 2 is a great phone
+because it is nice looking,
+
+00:02:24.680 --> 00:02:28.460
+it is very cheap, and
+it runs modern Android.
+
+00:02:28.460 --> 00:02:31.550
+However, the Nokia 2
+smartphone is as smart
+
+00:02:31.550 --> 00:02:33.050
+as Iron Man is iron.
+
+00:02:33.050 --> 00:02:35.000
+There is a resemblance
+from the outside,
+
+00:02:35.000 --> 00:02:37.070
+but it's really made
+from something much more
+
+00:02:37.070 --> 00:02:38.630
+lightweight.
+
+00:02:38.630 --> 00:02:42.320
+So now these Americans that
+have phones like the Nokia 2
+
+00:02:42.320 --> 00:02:45.080
+have these phones because
+they are subsidized.
+
+00:02:45.080 --> 00:02:47.060
+These phones are
+available at little
+
+00:02:47.060 --> 00:02:50.840
+or almost no cost for people
+living below the poverty line.
+
+00:02:50.840 --> 00:02:54.290
+And that is around
+16% of Americans.
+
+00:02:54.290 --> 00:02:56.600
+And similar programs
+exist in other countries
+
+00:02:56.600 --> 00:02:58.650
+in the Western world.
+
+00:02:58.650 --> 00:03:01.250
+So to compare, look
+at how the iPhones
+
+00:03:01.250 --> 00:03:04.010
+have been climbing the
+single-core benchmark
+
+00:03:04.010 --> 00:03:05.010
+over the years.
+
+00:03:05.010 --> 00:03:07.250
+They are absolute
+beasts, and they continue
+
+00:03:07.250 --> 00:03:09.020
+to keep getting faster.
+
+00:03:09.020 --> 00:03:12.410
+The Nokia 2, on the
+other hand, is down here.
+
+00:03:12.410 --> 00:03:15.560
+It came out in 2018, but
+it's pretty much on par
+
+00:03:15.560 --> 00:03:17.570
+with the iPhone from 2011.
+
+00:03:17.570 --> 00:03:18.800
+That's seven years ago.
+
+00:03:18.800 --> 00:03:21.140
+It's ancient for
+technology standards.
+
+00:03:21.140 --> 00:03:23.900
+And yet, this ancient
+hardware runs a modern version
+
+00:03:23.900 --> 00:03:26.360
+of Android with the most
+recent version of Chrome.
+
+00:03:26.360 --> 00:03:31.310
+So you get all the modern,
+new APIs, but on old hardware.
+
+00:03:31.310 --> 00:03:36.050
+So you should be looking at
+the Nokia 2 or a similar phone
+
+00:03:36.050 --> 00:03:41.480
+to see how your web app feels
+for up to 16% of Americans.
+
+00:03:41.480 --> 00:03:44.030
+Or to phrase it another
+way, the Nokia 2.1
+
+00:03:44.030 --> 00:03:47.120
+is probably representative
+as a 95th percentile
+
+00:03:47.120 --> 00:03:48.760
+phone for America.
+
+00:03:48.760 --> 00:03:51.320
+If your app runs on
+this phone, your app
+
+00:03:51.320 --> 00:03:55.040
+will be usable for
+95% of Americans.
+
+00:03:55.040 --> 00:03:56.270
+And that's just America.
+
+00:03:56.270 --> 00:03:58.580
+Globally, the percentiles
+are skewed much more
+
+00:03:58.580 --> 00:04:02.120
+towards the low-end
+spectrum of phones.
+
+00:04:02.120 --> 00:04:04.040
+Either way, you should
+try out this phone
+
+00:04:04.040 --> 00:04:06.700
+and see how your web app feels.
+
+00:04:06.700 --> 00:04:08.620
+The bottom line
+is here that, even
+
+00:04:08.620 --> 00:04:10.630
+in the wealthy
+Western world, we need
+
+00:04:10.630 --> 00:04:13.180
+to care about
+hyperconstrained devices
+
+00:04:13.180 --> 00:04:17.140
+with crappy CPUs, pretty
+much no GPUs, small screens,
+
+00:04:17.140 --> 00:04:19.149
+and sometimes even no touch.
+
+00:04:19.149 --> 00:04:20.980
+And more precisely, we
+need to start caring
+
+00:04:20.980 --> 00:04:24.790
+about people who are constrained
+to these kind of devices.
+
+00:04:24.790 --> 00:04:29.090
+And as an exercise in this, we
+wrote PROXX earlier this year.
+
+00:04:29.090 --> 00:04:31.100
+It's a minesweeper
+clone as a PWA.
+
+00:04:31.100 --> 00:04:35.200
+So it has all the PWA goodies,
+like offline and nice graphics.
+
+00:04:35.200 --> 00:04:39.100
+And it was projected that around
+400 million phones, feature
+
+00:04:39.100 --> 00:04:42.220
+phones, would be
+sold in 2019 alone.
+
+00:04:42.220 --> 00:04:45.220
+So we explicitly wanted
+to include that audience
+
+00:04:45.220 --> 00:04:47.950
+in our target audience so that
+they can play on these devices
+
+00:04:47.950 --> 00:04:49.845
+as well.
+
+00:04:49.845 --> 00:04:51.220
+So we wanted to
+see what it takes
+
+00:04:51.220 --> 00:04:53.470
+to make a game run
+on devices like this,
+
+00:04:53.470 --> 00:04:56.620
+these hyperconstrained devices,
+without writing a completely
+
+00:04:56.620 --> 00:04:58.530
+separate version of the game.
+
+00:04:58.530 --> 00:04:59.950
+And a couple of
+early experiments
+
+00:04:59.950 --> 00:05:03.700
+showed that we are really
+pushing the performance
+
+00:05:03.700 --> 00:05:06.130
+boundaries of these devices
+by something as simple
+
+00:05:06.130 --> 00:05:09.070
+as a table with a couple of
+buttons and some JavaScript
+
+00:05:09.070 --> 00:05:10.420
+to update the table.
+
+00:05:10.420 --> 00:05:13.550
+The main thread was
+completely overworked.
+
+00:05:13.550 --> 00:05:16.510
+So what is the main thread?
+
+00:05:16.510 --> 00:05:19.540
+Since the beginning of
+browsers, websites only ever
+
+00:05:19.540 --> 00:05:20.998
+had one thread.
+
+00:05:20.998 --> 00:05:22.540
+In the early days,
+the entire browser
+
+00:05:22.540 --> 00:05:25.840
+just had one thread because
+you just had one window.
+
+00:05:25.840 --> 00:05:27.610
+If you wanted to surf
+multiple websites,
+
+00:05:27.610 --> 00:05:30.070
+you would start a completely
+separate second instance
+
+00:05:30.070 --> 00:05:31.240
+of that browser.
+
+00:05:31.240 --> 00:05:34.840
+Since then, we have at least
+gotten one thread per tab,
+
+00:05:34.840 --> 00:05:36.880
+kind of; there are exceptions.
+
+00:05:36.880 --> 00:05:38.320
+But at the same
+time, the web has
+
+00:05:38.320 --> 00:05:41.440
+evolved from static
+documents with a couple
+
+00:05:41.440 --> 00:05:44.620
+of styles and images to
+new, full-blown, dynamic
+
+00:05:44.620 --> 00:05:45.730
+applications.
+
+00:05:45.730 --> 00:05:49.750
+And everything that is required
+to make this jump from docs
+
+00:05:49.750 --> 00:05:53.350
+to applications has just been
+added to this one thread,
+
+00:05:53.350 --> 00:05:56.510
+to the main thread, over time.
+
+00:05:56.510 --> 00:05:59.310
+And as a result, the
+main thread ended up
+
+00:05:59.310 --> 00:06:02.460
+with a lot of responsibilities
+when loading and running
+
+00:06:02.460 --> 00:06:03.480
+a website.
+
+00:06:03.480 --> 00:06:06.450
+So it has to process the
+events that the user causes
+
+00:06:06.450 --> 00:06:07.980
+by scrolling or
+interacting with it
+
+00:06:07.980 --> 00:06:10.470
+and figuring out if there's
+any JavaScript that needs to be
+
+00:06:10.470 --> 00:06:12.370
+run in response to this event.
+
+00:06:12.370 --> 00:06:15.480
+If there is, the browser needs
+to run that JavaScript, then
+
+00:06:15.480 --> 00:06:17.250
+figure out if the
+JavaScript changed
+
+00:06:17.250 --> 00:06:19.290
+the styles in which
+elements are affected
+
+00:06:19.290 --> 00:06:21.120
+by the changes in these styles.
+
+00:06:21.120 --> 00:06:23.040
+Then it needs to do
+layout to figure out
+
+00:06:23.040 --> 00:06:26.730
+where the elements end
+up where on this page
+
+00:06:26.730 --> 00:06:28.237
+and where the text
+flows and breaks.
+
+00:06:28.237 --> 00:06:29.820
+And then it needs
+to paint everything,
+
+00:06:29.820 --> 00:06:32.310
+meaning it needs to color
+in the elements' backgrounds
+
+00:06:32.310 --> 00:06:35.400
+and the borders and the images
+and the text and the shadows.
+
+00:06:35.400 --> 00:06:38.130
+And lastly, it needs
+to finally composite
+
+00:06:38.130 --> 00:06:40.230
+all these individual
+elements into the final image
+
+00:06:40.230 --> 00:06:42.930
+that you see on your screen.
+
+00:06:42.930 --> 00:06:44.560
+Now, to put that
+into context, we
+
+00:06:44.560 --> 00:06:47.500
+want to ship 60 frames
+a second because that's
+
+00:06:47.500 --> 00:06:49.840
+what it takes to make
+scrolling or animations
+
+00:06:49.840 --> 00:06:54.100
+feel smooth to, well, humans
+with human psychology.
+
+00:06:54.100 --> 00:06:56.530
+Not hitting that goal is
+what can make your web app
+
+00:06:56.530 --> 00:06:59.200
+feel like low quality
+or unpolished.
+
+00:06:59.200 --> 00:07:02.440
+Failing to hit a
+consistent 60 FPS
+
+00:07:02.440 --> 00:07:05.320
+is one of the bigger factors
+in why web apps feel worse
+
+00:07:05.320 --> 00:07:07.810
+than their comparable
+native app.
+
+00:07:07.810 --> 00:07:10.380
+So if you want to ship
+60 frames a second,
+
+00:07:10.380 --> 00:07:12.510
+the entire system
+can spend, at most,
+
+00:07:12.510 --> 00:07:17.670
+16.6 milliseconds to finish
+each frame, start to end.
+
+00:07:17.670 --> 00:07:19.630
+Most of these tasks
+are run by the browser.
+
+00:07:19.630 --> 00:07:22.050
+And so you really don't
+have any direct control
+
+00:07:22.050 --> 00:07:23.010
+over the duration.
+
+00:07:23.010 --> 00:07:25.110
+The only thing where
+you have direct control
+
+00:07:25.110 --> 00:07:28.920
+over the duration is your
+JavaScript, the amount of code
+
+00:07:28.920 --> 00:07:31.090
+that you run on the phone.
+
+00:07:31.090 --> 00:07:33.570
+But it's not just that,
+not just the JavaScript,
+
+00:07:33.570 --> 00:07:38.010
+but also the amount of work
+that the JavaScript causes.
+
+00:07:38.010 --> 00:07:41.850
+So it's really hard to tell how
+much work a piece of JavaScript
+
+00:07:41.850 --> 00:07:42.780
+will cost.
+
+00:07:42.780 --> 00:07:46.230
+And that's why it's so important
+to test on real devices.
+
+00:07:46.230 --> 00:07:48.450
+And here you might
+realize the device
+
+00:07:48.450 --> 00:07:50.190
+that you choose for
+testing will have
+
+00:07:50.190 --> 00:07:54.070
+a massive impact on the results
+that you get in your testing.
+
+00:07:54.070 --> 00:07:56.830
+So while you test on your
+iPhone or even your laptop,
+
+00:07:56.830 --> 00:07:57.880
+it might look like this.
+
+00:07:57.880 --> 00:07:59.430
+And you feel, oh, that's fine.
+
+00:07:59.430 --> 00:08:01.860
+But then you check
+on a Moto G4, and it
+
+00:08:01.860 --> 00:08:06.090
+looks like this, which is
+still fine, but definitely less
+
+00:08:06.090 --> 00:08:06.900
+headroom.
+
+00:08:06.900 --> 00:08:10.020
+And then you run your app on,
+say, a feature phone or a Nokia
+
+00:08:10.020 --> 00:08:14.620
+2, and suddenly, you're
+way over your budget.
+
+00:08:14.620 --> 00:08:16.550
+And again, the budget
+was 16 milliseconds
+
+00:08:16.550 --> 00:08:18.800
+because that's how
+much time you have
+
+00:08:18.800 --> 00:08:22.500
+when you want to fit 60
+frames into one second.
+
+00:08:22.500 --> 00:08:26.030
+But recently, Google
+brought out the Pixel 4,
+
+00:08:26.030 --> 00:08:27.620
+which has a 90 hertz screen.
+
+00:08:27.620 --> 00:08:31.363
+So on that device, you only
+have 11 milliseconds per frame.
+
+00:08:31.363 --> 00:08:32.780
+On that note, two
+years ago, Apple
+
+00:08:32.780 --> 00:08:35.330
+published the second
+generation of the iPad Pro,
+
+00:08:35.330 --> 00:08:37.220
+which has a 120 hertz screen.
+
+00:08:37.220 --> 00:08:41.150
+So that means that, yeah,
+you only have 8 milliseconds.
+
+00:08:41.150 --> 00:08:44.300
+We barely make it through
+our [INAUDIBLE] styles here.
+
+00:08:44.300 --> 00:08:48.080
+Did I mention that there are
+desktop screen is 144 hertz?
+
+00:08:48.080 --> 00:08:49.717
+Yeah, we're in trouble here.
+
+00:08:49.717 --> 00:08:51.550
+So on the one hand, we
+have hyperconstrained
+
+00:08:51.550 --> 00:08:54.370
+devices that are not
+getting faster, but cheaper.
+
+00:08:54.370 --> 00:08:56.480
+And at the same time,
+also wealthy Westerners
+
+00:08:56.480 --> 00:08:59.870
+getting the flagship phones
+get faster hardware, but also
+
+00:08:59.870 --> 00:09:02.940
+screens that want to ship
+more frames per second.
+
+00:09:02.940 --> 00:09:05.180
+So both of these
+developments leave us
+
+00:09:05.180 --> 00:09:08.120
+with less and less time to
+spend on the main thread
+
+00:09:08.120 --> 00:09:09.270
+for our code.
+
+00:09:09.270 --> 00:09:11.210
+We can't just keep
+putting code there
+
+00:09:11.210 --> 00:09:13.668
+without thinking about it.
+
+00:09:13.668 --> 00:09:15.210
+So really what I'm
+trying to say here
+
+00:09:15.210 --> 00:09:18.420
+is, if we want to follow
+the RAIL guidelines,
+
+00:09:18.420 --> 00:09:20.670
+we are imposing
+budgets on ourselves
+
+00:09:20.670 --> 00:09:23.700
+based on how an app feels when
+a user uses it-- so basically
+
+00:09:23.700 --> 00:09:26.080
+based on human psychology.
+
+00:09:26.080 --> 00:09:28.590
+And that is completely
+independent of the device
+
+00:09:28.590 --> 00:09:30.990
+that the user holds
+in their hands.
+
+00:09:30.990 --> 00:09:32.910
+And then we write some
+code, and we throw it
+
+00:09:32.910 --> 00:09:34.740
+all at the main thread.
+
+00:09:34.740 --> 00:09:38.550
+And every piece of code we run
+consumes a piece of our budget
+
+00:09:38.550 --> 00:09:39.990
+from the main thread.
+
+00:09:39.990 --> 00:09:44.010
+But how much is actually
+dependent on the hardware
+
+00:09:44.010 --> 00:09:47.850
+and, as such, is completely
+device dependent.
+
+00:09:47.850 --> 00:09:50.610
+So we are setting ourselves
+up for failure here.
+
+00:09:50.610 --> 00:09:52.380
+We have no control
+over the environment
+
+00:09:52.380 --> 00:09:53.640
+that our app will run in.
+
+00:09:53.640 --> 00:09:57.520
+So the question
+is the main thread
+
+00:09:57.520 --> 00:09:59.550
+is completely unpredictable.
+
+00:09:59.550 --> 00:10:01.960
+What takes two milliseconds
+on a modern flagship phone
+
+00:10:01.960 --> 00:10:05.060
+might take 20 milliseconds
+on the next low-end phone.
+
+00:10:05.060 --> 00:10:08.740
+How can we escape
+this unpredictability?
+
+00:10:08.740 --> 00:10:11.770
+Looking at native platforms
+like Android or iOS,
+
+00:10:11.770 --> 00:10:13.930
+they provide
+threads and patterns
+
+00:10:13.930 --> 00:10:16.810
+around and on top of
+threads and have done so
+
+00:10:16.810 --> 00:10:18.430
+for a very, very long time.
+
+00:10:18.430 --> 00:10:20.070
+Basic threading often
+looks like this.
+
+00:10:20.070 --> 00:10:20.820
+This is a snippet.
+
+00:10:20.820 --> 00:10:24.430
+It would work like
+this in Java or C#.
+
+00:10:24.430 --> 00:10:26.290
+But most other
+languages are similar
+
+00:10:26.290 --> 00:10:28.300
+where you just give
+a thread of function,
+
+00:10:28.300 --> 00:10:30.850
+and now that function
+will run in parallel
+
+00:10:30.850 --> 00:10:32.320
+to the rest of your program.
+
+00:10:32.320 --> 00:10:35.033
+You can access the same
+variables from both threads.
+
+00:10:35.033 --> 00:10:36.950
+And to make sure there
+are no race conditions,
+
+00:10:36.950 --> 00:10:39.790
+you can use [INAUDIBLE]
+to synchronize access
+
+00:10:39.790 --> 00:10:41.500
+to these shared resources.
+
+00:10:41.500 --> 00:10:44.300
+In terms of higher level
+abstractions, iOS, for example,
+
+00:10:44.300 --> 00:10:47.230
+has Grand Central Dispatch,
+a scheduling service, which
+
+00:10:47.230 --> 00:10:49.270
+allows you to think in tasks.
+
+00:10:49.270 --> 00:10:52.690
+Here's an example from Swift
+and how you use Grand Central
+
+00:10:52.690 --> 00:10:53.920
+Dispatch in Swift.
+
+00:10:53.920 --> 00:10:56.470
+In this case, you want to
+update a label in our UI
+
+00:10:56.470 --> 00:10:57.460
+with a new text.
+
+00:10:57.460 --> 00:10:59.290
+And to know what
+goes into the label,
+
+00:10:59.290 --> 00:11:02.090
+let's say we have to hit
+the database or the network.
+
+00:11:02.090 --> 00:11:04.570
+So we schedule the
+loadArticleText function that
+
+00:11:04.570 --> 00:11:06.310
+does this in the background.
+
+00:11:06.310 --> 00:11:08.170
+So it runs independent
+of the main thread
+
+00:11:08.170 --> 00:11:09.700
+and with a lower priority.
+
+00:11:09.700 --> 00:11:12.270
+And once it is done, it will
+schedule another main thread
+
+00:11:12.270 --> 00:11:12.770
+task.
+
+00:11:12.770 --> 00:11:15.790
+It actually does the
+assignment to the label
+
+00:11:15.790 --> 00:11:19.190
+because only the main thread
+can access UI elements.
+
+00:11:19.190 --> 00:11:22.990
+And this is what I would
+love to have for the web.
+
+00:11:22.990 --> 00:11:25.330
+However, JavaScript,
+as a language,
+
+00:11:25.330 --> 00:11:27.820
+is incapable of providing
+these kind of threads.
+
+00:11:27.820 --> 00:11:31.780
+JavaScript was designed around
+the concept of a single thread.
+
+00:11:31.780 --> 00:11:34.800
+And we can't just add
+threads and shared memory
+
+00:11:34.800 --> 00:11:37.840
+to JavaScript, because it
+would actually break everything
+
+00:11:37.840 --> 00:11:39.460
+and set it on fire.
+
+00:11:39.460 --> 00:11:43.000
+So instead, we have to isolate
+the concept to a dedicated
+
+00:11:43.000 --> 00:11:47.740
+type, like SharedArrayBuffer,
+and provide parallelism
+
+00:11:47.740 --> 00:11:49.400
+through workers.
+
+00:11:49.400 --> 00:11:51.860
+Now, SharedArrayBuffers
+are fairly new,
+
+00:11:51.860 --> 00:11:53.560
+but workers are
+actually not new at all.
+
+00:11:53.560 --> 00:11:56.560
+They have been around
+since roughly 2007
+
+00:11:56.560 --> 00:12:00.010
+and had wide support in
+every browser since 2012.
+
+00:12:00.010 --> 00:12:01.780
+And just to make it
+clear, web workers
+
+00:12:01.780 --> 00:12:04.540
+are something very different
+from service workers
+
+00:12:04.540 --> 00:12:05.560
+and worklets.
+
+00:12:05.560 --> 00:12:08.170
+They share some
+characteristics, but be
+
+00:12:08.170 --> 00:12:09.520
+careful to not conflate them.
+
+00:12:09.520 --> 00:12:14.692
+In the context of this talk, I'm
+only talking about web workers.
+
+00:12:14.692 --> 00:12:16.150
+So workers, in case
+you don't know,
+
+00:12:16.150 --> 00:12:20.020
+are a bit like as if I
+opened the browser twice,
+
+00:12:20.020 --> 00:12:22.510
+but one of them is
+kind of headless.
+
+00:12:22.510 --> 00:12:26.500
+So they're completely isolated,
+no variables can be shared,
+
+00:12:26.500 --> 00:12:29.040
+and they run in parallel.
+
+00:12:29.040 --> 00:12:30.790
+Now, in terms of code,
+you create a worker
+
+00:12:30.790 --> 00:12:34.000
+by passing a file to
+the worker constructor.
+
+00:12:34.000 --> 00:12:37.480
+And that will basically
+spin up the isolated worker
+
+00:12:37.480 --> 00:12:38.480
+that you can--
+
+00:12:38.480 --> 00:12:40.630
+the second browser without--
+
+00:12:40.630 --> 00:12:41.800
+the headless version.
+
+00:12:41.800 --> 00:12:44.920
+You can still communicate
+with it by sending messages.
+
+00:12:44.920 --> 00:12:46.810
+And the value of the
+message you want to send
+
+00:12:46.810 --> 00:12:49.030
+is the parameter for
+this postMessage call.
+
+00:12:49.030 --> 00:12:52.120
+That value will now be
+copied to the worker.
+
+00:12:52.120 --> 00:12:55.600
+And to receive it, you
+must register a handler
+
+00:12:55.600 --> 00:12:57.310
+for the message event.
+
+00:12:57.310 --> 00:12:59.770
+The value can then be
+read on the dot data
+
+00:12:59.770 --> 00:13:01.300
+property on the event.
+
+00:13:01.300 --> 00:13:02.950
+And the worker is,
+of course, allowed
+
+00:13:02.950 --> 00:13:05.410
+to send a message back
+to the main thread
+
+00:13:05.410 --> 00:13:06.655
+with the exact same API.
+
+00:13:06.655 --> 00:13:08.530
+And you receive it on
+the main thread, again,
+
+00:13:08.530 --> 00:13:10.690
+with the exact same
+message event header.
+
+00:13:10.690 --> 00:13:11.770
+And that's all you got.
+
+00:13:11.770 --> 00:13:14.830
+That's all you can use when
+you want to use workers.
+
+00:13:14.830 --> 00:13:18.130
+Now, that might seem kind of OK.
+
+00:13:18.130 --> 00:13:20.350
+So far, workers have
+historically only
+
+00:13:20.350 --> 00:13:23.710
+been used for moving
+a piece of heavy work
+
+00:13:23.710 --> 00:13:25.900
+away from the main thread.
+
+00:13:25.900 --> 00:13:28.360
+And the worker only
+exists for the duration
+
+00:13:28.360 --> 00:13:31.190
+of the main thread, for
+example, in Skrooge.
+
+00:13:31.190 --> 00:13:32.530
+We did exactly this.
+
+00:13:32.530 --> 00:13:33.410
+We spin up a worker.
+
+00:13:33.410 --> 00:13:36.370
+We load our WebAssembly-fied
+image codecs.
+
+00:13:36.370 --> 00:13:37.833
+We send over a bitmap.
+
+00:13:37.833 --> 00:13:39.250
+WebAssembly does
+its thing, and it
+
+00:13:39.250 --> 00:13:41.740
+responds with the
+encoded image, and then
+
+00:13:41.740 --> 00:13:42.740
+we terminate the worker.
+
+00:13:42.740 --> 00:13:43.573
+We are done with it.
+
+00:13:43.573 --> 00:13:46.480
+It's just a one-off worker for
+a single task, a single purpose
+
+00:13:46.480 --> 00:13:48.260
+worker, if you will.
+
+00:13:48.260 --> 00:13:50.590
+However, things will
+get unwieldy quite
+
+00:13:50.590 --> 00:13:54.010
+quickly when you want to
+offer more than one operation
+
+00:13:54.010 --> 00:13:54.790
+in a worker.
+
+00:13:54.790 --> 00:13:57.700
+To get back to our previous
+example, what if, in addition
+
+00:13:57.700 --> 00:14:01.130
+to addition, we also
+wanted to add subtraction?
+
+00:14:01.130 --> 00:14:03.370
+Now we have to not only
+encode the parameters
+
+00:14:03.370 --> 00:14:05.650
+into the message, but
+also the operation
+
+00:14:05.650 --> 00:14:08.470
+that the worker is
+supposed to execute.
+
+00:14:08.470 --> 00:14:12.510
+And that has implications for
+the complexity of the worker
+
+00:14:12.510 --> 00:14:15.240
+because now we need to not
+only introspect the operation,
+
+00:14:15.240 --> 00:14:18.000
+but also dispatch the parameters
+to the right piece of code that
+
+00:14:18.000 --> 00:14:19.660
+actually does that.
+
+00:14:19.660 --> 00:14:21.690
+And now what if, while
+the first operation
+
+00:14:21.690 --> 00:14:24.056
+is being calculated in the
+worker, the main thread
+
+00:14:24.056 --> 00:14:25.140
+sends another operation?
+
+00:14:25.140 --> 00:14:28.440
+How do we know which response
+maps to which original request?
+
+00:14:28.440 --> 00:14:30.420
+We have to now do
+bookkeeping with IDs.
+
+00:14:30.420 --> 00:14:33.240
+And it is not great.
+
+00:14:33.240 --> 00:14:35.693
+If you've ever worked with
+threads in any other language,
+
+00:14:35.693 --> 00:14:37.110
+coming to Java
+[INAUDIBLE] workers
+
+00:14:37.110 --> 00:14:40.850
+is going to feel really bad
+and feel very complicated.
+
+00:14:40.850 --> 00:14:42.780
+And I think that's one
+of the main reasons why
+
+00:14:42.780 --> 00:14:45.420
+workers haven't seen a
+lot of adoption on the web
+
+00:14:45.420 --> 00:14:46.830
+to this day.
+
+00:14:46.830 --> 00:14:48.810
+I actually believe
+that postMessage
+
+00:14:48.810 --> 00:14:50.730
+has been a bit misunderstood.
+
+00:14:50.730 --> 00:14:52.980
+And it could actually
+be a strength
+
+00:14:52.980 --> 00:14:56.040
+if you build something around
+that message-passing pattern.
+
+00:14:56.040 --> 00:14:59.187
+For example, the actor
+model is a perfect fit here.
+
+00:14:59.187 --> 00:15:01.020
+And Paul Lewis and I
+talked about this here,
+
+00:15:01.020 --> 00:15:02.560
+at CDS, last year.
+
+00:15:02.560 --> 00:15:04.960
+And you should check that
+talk out if you're interested.
+
+00:15:04.960 --> 00:15:06.660
+But since we already
+talked about it last year,
+
+00:15:06.660 --> 00:15:08.827
+I want to talk about a
+different approach this year.
+
+00:15:08.827 --> 00:15:12.080
+And this is with
+libraries like Comlink.
+
+00:15:12.080 --> 00:15:15.568
+Now Comlink is a library that
+removes the conceptual overhead
+
+00:15:15.568 --> 00:15:16.860
+of communication with a worker.
+
+00:15:16.860 --> 00:15:19.680
+Its goal is to let you use
+workers without actually
+
+00:15:19.680 --> 00:15:21.250
+thinking about them.
+
+00:15:21.250 --> 00:15:24.180
+So through some
+convoluted proxy magic,
+
+00:15:24.180 --> 00:15:26.010
+Comlink allows you
+to share variables
+
+00:15:26.010 --> 00:15:28.020
+between the worker
+and the main thread
+
+00:15:28.020 --> 00:15:30.210
+almost like the
+normal programming
+
+00:15:30.210 --> 00:15:32.010
+languages that are out there.
+
+00:15:32.010 --> 00:15:35.610
+So for example, I can import
+Comlink into my worker,
+
+00:15:35.610 --> 00:15:37.570
+and I can define
+a set of functions
+
+00:15:37.570 --> 00:15:40.590
+that I want to expose
+to the main thread.
+
+00:15:40.590 --> 00:15:42.300
+And then, on the main
+thread, I can also
+
+00:15:42.300 --> 00:15:44.850
+import Comlink and
+wrap the worker
+
+00:15:44.850 --> 00:15:48.000
+and get access to these
+exposed functions.
+
+00:15:48.000 --> 00:15:50.160
+The API variable here,
+on the main thread,
+
+00:15:50.160 --> 00:15:53.400
+will behave exactly the same
+as the one in the worker,
+
+00:15:53.400 --> 00:15:56.250
+except that every function
+will now not return a value,
+
+00:15:56.250 --> 00:15:59.778
+but a promise for that value.
+
+00:15:59.778 --> 00:16:02.190
+And in combination
+with async await,
+
+00:16:02.190 --> 00:16:05.220
+it barely makes a difference
+syntactically, though.
+
+00:16:05.220 --> 00:16:07.830
+And so this is exactly
+what we used in PROXX
+
+00:16:07.830 --> 00:16:10.440
+to move parts of our
+game into a worker.
+
+00:16:10.440 --> 00:16:12.030
+But now the next
+question is, which
+
+00:16:12.030 --> 00:16:14.310
+parts did we actually move?
+
+00:16:14.310 --> 00:16:16.890
+Because one of the limitations
+that many people point
+
+00:16:16.890 --> 00:16:21.000
+out is that workers do not
+have access to the DOM.
+
+00:16:21.000 --> 00:16:24.780
+And actually, they can't
+access a whole bunch of APIs.
+
+00:16:24.780 --> 00:16:28.290
+So depending on whether
+your app relies on access
+
+00:16:28.290 --> 00:16:30.750
+to some of these
+APIs, you might not
+
+00:16:30.750 --> 00:16:34.060
+be able to run most of
+your app into worker.
+
+00:16:34.060 --> 00:16:36.630
+So really, the
+title of this talk
+
+00:16:36.630 --> 00:16:40.320
+should be "The main thread
+is overworked and underpaid--
+
+00:16:40.320 --> 00:16:42.750
+the name is bad, too,
+and yet, sometimes, you
+
+00:16:42.750 --> 00:16:44.850
+don't even have a choice."
+
+00:16:44.850 --> 00:16:47.650
+At that point, you
+have to chunk your code
+
+00:16:47.650 --> 00:16:50.730
+that's running on the main
+thread to make sure with APIs
+
+00:16:50.730 --> 00:16:53.920
+isInputPending that
+Eddie and I talked about.
+
+00:16:53.920 --> 00:16:55.980
+But again, it's
+really hard to know
+
+00:16:55.980 --> 00:16:58.680
+how small the chunks
+should be because devices
+
+00:16:58.680 --> 00:17:01.830
+are so widespread in
+their performance metrics.
+
+00:17:01.830 --> 00:17:05.099
+And also just because we cannot
+move everything doesn't mean we
+
+00:17:05.099 --> 00:17:07.410
+should abandon the
+entire effort altogether.
+
+00:17:07.410 --> 00:17:10.230
+Every small piece of
+code that we can move
+
+00:17:10.230 --> 00:17:13.980
+buys a little bit more headroom
+to make room for the stuff
+
+00:17:13.980 --> 00:17:17.400
+that we have to run on the main
+thread, like access to the DOM
+
+00:17:17.400 --> 00:17:19.833
+because the DOM is not
+available in a worker
+
+00:17:19.833 --> 00:17:21.750
+and, therefore, it's
+bound to the main thread.
+
+00:17:21.750 --> 00:17:24.720
+And I'm pretty sure
+all our apps have UIs.
+
+00:17:24.720 --> 00:17:26.790
+And again, this is
+not an alien concept.
+
+00:17:26.790 --> 00:17:29.940
+Both Android and
+iOS do not let you
+
+00:17:29.940 --> 00:17:33.400
+access your UI from anywhere
+but the main thread.
+
+00:17:33.400 --> 00:17:36.180
+So let's go back to that Swift
+example that we had earlier.
+
+00:17:36.180 --> 00:17:37.740
+If we just go to
+the main thread just
+
+00:17:37.740 --> 00:17:41.640
+to change the text of a label,
+if we were to skip that step,
+
+00:17:41.640 --> 00:17:42.750
+the app would crash.
+
+00:17:42.750 --> 00:17:43.950
+They actively enforce it.
+
+00:17:43.950 --> 00:17:45.850
+You cannot do that.
+
+00:17:45.850 --> 00:17:49.240
+You cannot access your UI from
+anywhere but the main thread,
+
+00:17:49.240 --> 00:17:51.780
+which is actually why both
+iOS and Android often call
+
+00:17:51.780 --> 00:17:53.585
+their main thread the UI thread.
+
+00:17:53.585 --> 00:17:55.710
+And I find that really
+helpful because it tells you
+
+00:17:55.710 --> 00:17:59.392
+what should be there and
+what should not be there.
+
+00:17:59.392 --> 00:18:00.850
+One of the struggles
+I often see is
+
+00:18:00.850 --> 00:18:03.310
+that current UI
+frameworks on the web
+
+00:18:03.310 --> 00:18:05.380
+are the center of your universe.
+
+00:18:05.380 --> 00:18:07.600
+They are the entry
+point to your codes.
+
+00:18:07.600 --> 00:18:10.843
+And they are the overall
+orchestrator of everything.
+
+00:18:10.843 --> 00:18:12.760
+Anything else that you
+want to use in your app
+
+00:18:12.760 --> 00:18:16.138
+ends up being a component
+within that UI framework.
+
+00:18:16.138 --> 00:18:17.680
+And again, it's not
+something that we
+
+00:18:17.680 --> 00:18:19.720
+can blame UI frameworks for.
+
+00:18:19.720 --> 00:18:22.540
+This is how it's been on
+the web since its inception.
+
+00:18:22.540 --> 00:18:26.350
+that has been a best practice
+or even the only choice.
+
+00:18:26.350 --> 00:18:28.740
+UI frameworks think
+in UI components
+
+00:18:28.740 --> 00:18:31.720
+and are inherently tied
+to the UI and the DOM.
+
+00:18:31.720 --> 00:18:35.380
+And as a result, workers are
+not very useful from a UI
+
+00:18:35.380 --> 00:18:37.240
+framework's perspective.
+
+00:18:37.240 --> 00:18:39.220
+And I think we can
+move forward here
+
+00:18:39.220 --> 00:18:41.360
+by separating these concerns.
+
+00:18:41.360 --> 00:18:45.370
+I think we should try to use
+the UI thread for UI work only.
+
+00:18:45.370 --> 00:18:47.570
+And UI frameworks do UI work.
+
+00:18:47.570 --> 00:18:48.800
+They are allowed on the UI.
+
+00:18:48.800 --> 00:18:49.660
+They belong there.
+
+00:18:49.660 --> 00:18:53.410
+But many other things can
+actually go somewhere else.
+
+00:18:53.410 --> 00:18:56.770
+And that's the mantra that
+we've followed for PROXX.
+
+00:18:56.770 --> 00:18:59.830
+We actually distinguished
+between a visual state and game
+
+00:18:59.830 --> 00:19:01.210
+state.
+
+00:19:01.210 --> 00:19:03.820
+Or to categorize
+it another way, we
+
+00:19:03.820 --> 00:19:06.943
+had the main thread, which
+runs our two rendering engines.
+
+00:19:06.943 --> 00:19:08.860
+Yes, we have two rendering
+engines-- one using
+
+00:19:08.860 --> 00:19:12.340
+WebGL and one using Canvas 2D,
+because not all phones actually
+
+00:19:12.340 --> 00:19:14.920
+have WebGL like
+these feature phones.
+
+00:19:14.920 --> 00:19:18.310
+And this code's handled states
+for animations and transitions
+
+00:19:18.310 --> 00:19:19.160
+and small things.
+
+00:19:19.160 --> 00:19:20.910
+So we want to be really
+snappy in response
+
+00:19:20.910 --> 00:19:24.260
+if the code is small
+and really, really fast.
+
+00:19:24.260 --> 00:19:27.730
+The worker runs the game logic,
+and it's purely computational.
+
+00:19:27.730 --> 00:19:30.400
+This code is longer and can
+actually run longer or even
+
+00:19:30.400 --> 00:19:32.760
+in a blocking fashion.
+
+00:19:32.760 --> 00:19:35.540
+So note there are two kinds
+of state, UI state and the app
+
+00:19:35.540 --> 00:19:36.040
+state.
+
+00:19:36.040 --> 00:19:38.400
+The separation has proved
+quite useful to use,
+
+00:19:38.400 --> 00:19:40.260
+but it's somewhat of
+a change in a mindset.
+
+00:19:43.190 --> 00:19:46.410
+Now, this might sound
+familiar to some of you
+
+00:19:46.410 --> 00:19:50.140
+because what we're doing here is
+pretty much use something that
+
+00:19:50.140 --> 00:19:53.232
+is very similar to the Flux
+pattern, as in Flux Redux.
+
+00:19:53.232 --> 00:19:55.190
+And I found this realization
+really interesting
+
+00:19:55.190 --> 00:19:59.870
+because, to me, it means that
+many apps that use Flux or Flux
+
+00:19:59.870 --> 00:20:03.110
+Redux might actually have a
+pretty easy time to migrate
+
+00:20:03.110 --> 00:20:05.278
+to an off-the-main-thread
+architecture.
+
+00:20:05.278 --> 00:20:07.820
+In case you don't know it, this
+is what the Flux architecture
+
+00:20:07.820 --> 00:20:08.570
+looks like.
+
+00:20:08.570 --> 00:20:12.320
+It is implied that only the view
+is supposed to do the UI work.
+
+00:20:12.320 --> 00:20:16.010
+And as such, it should
+run on the main thread.
+
+00:20:16.010 --> 00:20:17.510
+Then the UI emits actions.
+
+00:20:17.510 --> 00:20:19.520
+The actions are received
+by a dispatcher.
+
+00:20:19.520 --> 00:20:21.078
+And the dispatcher
+then kicks off
+
+00:20:21.078 --> 00:20:23.120
+the functions that manipulate
+the state according
+
+00:20:23.120 --> 00:20:23.960
+to the action.
+
+00:20:23.960 --> 00:20:28.100
+And the new state gets
+stored in, well, the store.
+
+00:20:28.100 --> 00:20:29.450
+And this is the important part.
+
+00:20:29.450 --> 00:20:33.170
+All of that can run off
+main thread environment
+
+00:20:33.170 --> 00:20:35.570
+or, more specifically,
+in a worker.
+
+00:20:35.570 --> 00:20:38.180
+Now, no matter how much
+processing the dispatcher
+
+00:20:38.180 --> 00:20:40.850
+has to do, it does not
+lock the main thread.
+
+00:20:40.850 --> 00:20:42.350
+It could even run
+a while True loop.
+
+00:20:42.350 --> 00:20:44.060
+The UI would stay responsive.
+
+00:20:44.060 --> 00:20:46.050
+The user can keep interacting.
+
+00:20:46.050 --> 00:20:49.430
+So if you use Redux or any
+other form of Flux pattern,
+
+00:20:49.430 --> 00:20:52.460
+I wrote a blog post on how to
+pull Redux in a worker, which
+
+00:20:52.460 --> 00:20:54.610
+might be of interest to you.
+
+00:20:54.610 --> 00:20:58.040
+Now, if you want to adopt an
+off-main-thread architecture,
+
+00:20:58.040 --> 00:21:01.430
+I want you to be very aware that
+off-main-thread architecture
+
+00:21:01.430 --> 00:21:03.650
+will not make your app faster.
+
+00:21:03.650 --> 00:21:05.360
+It will make it more reliable.
+
+00:21:05.360 --> 00:21:08.420
+Because we are really just
+moving the same amount of work
+
+00:21:08.420 --> 00:21:09.560
+to a different thread.
+
+00:21:09.560 --> 00:21:12.500
+The overall amount of
+work stays the same.
+
+00:21:12.500 --> 00:21:14.270
+If anything, it
+might actually get
+
+00:21:14.270 --> 00:21:17.120
+a tiny bit slower because of
+the additional communication
+
+00:21:17.120 --> 00:21:20.000
+overhead between the
+worker and the main thread.
+
+00:21:20.000 --> 00:21:22.070
+The difference is that,
+while the worker is busy
+
+00:21:22.070 --> 00:21:24.410
+running whatever logic
+you have, the main thread
+
+00:21:24.410 --> 00:21:27.450
+stays free and available to
+process user interactions
+
+00:21:27.450 --> 00:21:29.450
+and do scrolling and do
+all these kind of things
+
+00:21:29.450 --> 00:21:31.550
+while JavaScript is running.
+
+00:21:31.550 --> 00:21:35.000
+It's often better to make the
+user wait a little bit longer
+
+00:21:35.000 --> 00:21:36.710
+than to drop a frame.
+
+00:21:36.710 --> 00:21:39.950
+The time to drop a frame is
+on the order of milliseconds.
+
+00:21:39.950 --> 00:21:42.410
+The time to make a user
+wait is on the order
+
+00:21:42.410 --> 00:21:44.330
+of hundreds of milliseconds.
+
+00:21:44.330 --> 00:21:47.140
+And so adding thread helps
+to process state change
+
+00:21:47.140 --> 00:21:50.863
+is less risky than squeezing
+more work into the next frame,
+
+00:21:50.863 --> 00:21:52.280
+especially when
+the amount of time
+
+00:21:52.280 --> 00:21:55.820
+that you cause on the main
+thread is so unpredictable.
+
+00:21:55.820 --> 00:21:58.160
+Now, of course, off-main-thread
+can make your app
+
+00:21:58.160 --> 00:22:01.010
+faster because phones
+have multiple cores.
+
+00:22:01.010 --> 00:22:02.390
+And with workers,
+we can make use
+
+00:22:02.390 --> 00:22:04.320
+of all these cores in parallel.
+
+00:22:04.320 --> 00:22:06.410
+So if your app's logic
+is parallelizable,
+
+00:22:06.410 --> 00:22:08.190
+you should go ahead
+and reap the benefits.
+
+00:22:08.190 --> 00:22:10.190
+However, do keep in
+mind that, on phones,
+
+00:22:10.190 --> 00:22:13.010
+it's only often one or two
+cores that are actually fast,
+
+00:22:13.010 --> 00:22:15.417
+and all the other
+cores are a lot slower.
+
+00:22:15.417 --> 00:22:17.000
+So it's actually
+hard to estimate what
+
+00:22:17.000 --> 00:22:18.440
+the benefits are going to be.
+
+00:22:18.440 --> 00:22:21.650
+And for this talk, I want
+to focus on risk reduction
+
+00:22:21.650 --> 00:22:23.450
+because I think that's
+really the key word.
+
+00:22:23.450 --> 00:22:26.810
+I see off-main-thread as
+a means to reduce risk,
+
+00:22:26.810 --> 00:22:30.590
+make your app more robust in
+the face of adverse runtime
+
+00:22:30.590 --> 00:22:31.298
+conditions.
+
+00:22:31.298 --> 00:22:32.840
+It's not about
+parallelizable for me.
+
+00:22:32.840 --> 00:22:37.265
+It's about improving
+my microbenchmarks.
+
+00:22:37.265 --> 00:22:41.388
+And in PROXX, we actually have a
+pretty extreme example of this.
+
+00:22:41.388 --> 00:22:42.180
+Let's look at this.
+
+00:22:42.180 --> 00:22:44.180
+Here we have a version
+of PROXX where everything
+
+00:22:44.180 --> 00:22:46.020
+runs on the main thread.
+
+00:22:46.020 --> 00:22:47.520
+No workers are in use.
+
+00:22:47.520 --> 00:22:50.292
+And the timer starts when a
+user taps one of the fields
+
+00:22:50.292 --> 00:22:50.875
+on the screen.
+
+00:22:50.875 --> 00:22:52.060
+You ready?
+
+00:22:52.060 --> 00:22:52.770
+Go.
+
+00:22:52.770 --> 00:22:54.840
+The game engine is now figuring
+out what needs to happen.
+
+00:22:54.840 --> 00:22:56.257
+Which fields need
+to get revealed?
+
+00:22:56.257 --> 00:22:58.530
+And during that time,
+the UI is frozen--
+
+00:22:58.530 --> 00:23:02.650
+no animations, no scrolling
+for six seconds in total.
+
+00:23:02.650 --> 00:23:03.770
+That's pretty bad.
+
+00:23:03.770 --> 00:23:05.370
+Now let's compare
+this to the game
+
+00:23:05.370 --> 00:23:09.030
+running on the same hardware
+but with our off-main-thread
+
+00:23:09.030 --> 00:23:10.920
+architecture with workers.
+
+00:23:10.920 --> 00:23:11.880
+Ready?
+
+00:23:11.880 --> 00:23:12.960
+Go.
+
+00:23:12.960 --> 00:23:14.080
+We see an animation.
+
+00:23:14.080 --> 00:23:16.490
+We see, actually, that the
+game engine is working.
+
+00:23:16.490 --> 00:23:19.530
+And during all this time,
+the UI is responsive.
+
+00:23:19.530 --> 00:23:22.195
+The user can scroll and
+tap and keep playing.
+
+00:23:22.195 --> 00:23:23.820
+Basically, the user
+is getting feedback
+
+00:23:23.820 --> 00:23:27.045
+that something is happening,
+a very basic UX rule.
+
+00:23:27.045 --> 00:23:28.920
+And here's why I say
+it's an extreme example.
+
+00:23:28.920 --> 00:23:33.220
+The game takes almost twice as
+long to reach the same state.
+
+00:23:33.220 --> 00:23:34.920
+Now, that sounds
+pretty bad, doesn't it?
+
+00:23:34.920 --> 00:23:37.170
+But the question is, is this
+really the number that we
+
+00:23:37.170 --> 00:23:38.640
+should be looking at here?
+
+00:23:38.640 --> 00:23:41.550
+Is the question how quickly
+can we get this work done,
+
+00:23:41.550 --> 00:23:45.252
+or how can we make
+the game feel better?
+
+00:23:45.252 --> 00:23:46.710
+Let's the measure
+how long it takes
+
+00:23:46.710 --> 00:23:50.823
+for the game to give the
+user a visual response.
+
+00:23:50.823 --> 00:23:52.240
+On the version
+without workers, we
+
+00:23:52.240 --> 00:23:54.850
+saw we had to wait for six
+seconds for the task to finish.
+
+00:23:54.850 --> 00:23:56.350
+And since it was
+on the main thread,
+
+00:23:56.350 --> 00:23:57.975
+the main thread was
+completely blocked.
+
+00:23:57.975 --> 00:23:59.890
+So after six seconds
+is the first time
+
+00:23:59.890 --> 00:24:02.200
+that we actually can
+cause any change.
+
+00:24:02.200 --> 00:24:04.240
+And that's exactly
+what the number shows.
+
+00:24:04.240 --> 00:24:07.690
+When we use workers, we
+keep the main thread free.
+
+00:24:07.690 --> 00:24:11.530
+And we can use that freedom to
+update the UI while the game
+
+00:24:11.530 --> 00:24:12.280
+logic was running.
+
+00:24:12.280 --> 00:24:15.640
+So the first update actually
+happens seven frames
+
+00:24:15.640 --> 00:24:17.980
+after we tapped, which is
+roughly 100 milliseconds,
+
+00:24:17.980 --> 00:24:21.610
+and so perfectly in line
+with our RAIL budget.
+
+00:24:21.610 --> 00:24:23.830
+So the question is, is
+this, it takes twice
+
+00:24:23.830 --> 00:24:25.450
+as long, a big deal?
+
+00:24:25.450 --> 00:24:26.950
+Yeah, it's a big
+deal, but it's also
+
+00:24:26.950 --> 00:24:28.600
+a very conscious trade-off.
+
+00:24:28.600 --> 00:24:31.150
+And it's also important to
+note the slowdown is not
+
+00:24:31.150 --> 00:24:32.890
+because we're using workers.
+
+00:24:32.890 --> 00:24:35.140
+It is slower because we
+are using the freedom
+
+00:24:35.140 --> 00:24:38.170
+to ship more frames than
+the other version, which
+
+00:24:38.170 --> 00:24:40.720
+shipped no frames at all.
+
+00:24:40.720 --> 00:24:42.800
+And shipping frames on
+these low-end devices
+
+00:24:42.800 --> 00:24:45.410
+is very expensive.
+
+00:24:45.410 --> 00:24:48.340
+And it looks very different
+if you run the exact same code
+
+00:24:48.340 --> 00:24:50.190
+on a modern piece of hardware.
+
+00:24:50.190 --> 00:24:51.340
+Ready?
+
+00:24:51.340 --> 00:24:52.430
+Go.
+
+00:24:52.430 --> 00:24:52.930
+That's it.
+
+00:24:52.930 --> 00:24:53.555
+You can see it.
+
+00:24:53.555 --> 00:24:54.460
+It's pretty fast.
+
+00:24:54.460 --> 00:24:57.760
+So we can give the users
+of hyperconstrained devices
+
+00:24:57.760 --> 00:25:00.460
+a better experience
+without penalizing
+
+00:25:00.460 --> 00:25:04.210
+the experience of flagship phone
+users with the same code base.
+
+00:25:04.210 --> 00:25:08.488
+To simplify, really, slower
+does not always mean worse.
+
+00:25:08.488 --> 00:25:10.780
+As an anecdote-- you might
+have heard this one before--
+
+00:25:10.780 --> 00:25:13.210
+Houston airport actually
+got a lot of complains
+
+00:25:13.210 --> 00:25:16.030
+that people were spending
+too much time waiting
+
+00:25:16.030 --> 00:25:18.280
+for their luggage at the belts.
+
+00:25:18.280 --> 00:25:19.405
+Customers were complaining.
+
+00:25:19.405 --> 00:25:20.780
+And so they could
+have spent time
+
+00:25:20.780 --> 00:25:22.180
+optimizing how
+quickly they could
+
+00:25:22.180 --> 00:25:24.310
+get the luggage from
+the plane onto the belt.
+
+00:25:24.310 --> 00:25:27.310
+But instead, they made the
+way longer for the customers
+
+00:25:27.310 --> 00:25:30.610
+to walk from the
+plane to the belt.
+
+00:25:30.610 --> 00:25:33.850
+So the customers were being
+kept busy with walking
+
+00:25:33.850 --> 00:25:36.520
+and spent, technically,
+less time waiting.
+
+00:25:36.520 --> 00:25:39.210
+They were happier, and
+they got less complaints.
+
+00:25:39.210 --> 00:25:41.050
+And this is kind of
+what you're doing here.
+
+00:25:41.050 --> 00:25:43.750
+We made a task slower
+to have more freedom
+
+00:25:43.750 --> 00:25:45.700
+and to use that freedom
+to keep our users
+
+00:25:45.700 --> 00:25:48.970
+busy with a nice animation
+and actually with the ability
+
+00:25:48.970 --> 00:25:51.373
+to continue playing the game.
+
+00:25:51.373 --> 00:25:53.290
+So if you find yourself
+doing microbenchmarks,
+
+00:25:53.290 --> 00:25:56.500
+keep in mind that there might
+be not so obvious trade-offs,
+
+00:25:56.500 --> 00:26:00.750
+and that the numbers game
+is not always the best game.
+
+00:26:00.750 --> 00:26:03.250
+Something I've glossed over so
+far a little bit in this talk
+
+00:26:03.250 --> 00:26:06.220
+is that the value that you send
+from a worker to a main thread
+
+00:26:06.220 --> 00:26:07.990
+needs to be copied.
+
+00:26:07.990 --> 00:26:11.780
+And that process is
+called structured cloning.
+
+00:26:11.780 --> 00:26:14.380
+It has been a source of worry
+for many people evaluating
+
+00:26:14.380 --> 00:26:16.310
+workers over time.
+
+00:26:16.310 --> 00:26:17.590
+So I ran a benchmark.
+
+00:26:17.590 --> 00:26:19.020
+You don't need to look
+at this graph too much.
+
+00:26:19.020 --> 00:26:20.160
+I just put it in here
+so that I look legit
+
+00:26:20.160 --> 00:26:21.685
+when I talk about numbers.
+
+00:26:21.685 --> 00:26:23.560
+But what I try to prove
+here is that the time
+
+00:26:23.560 --> 00:26:26.610
+it takes to copy a value
+from one thread to another
+
+00:26:26.610 --> 00:26:29.400
+is dependent on how
+complex the object is.
+
+00:26:29.400 --> 00:26:31.510
+A deeply nested,
+big object will take
+
+00:26:31.510 --> 00:26:35.415
+longer than a long-ish
+string or a simple array.
+
+00:26:35.415 --> 00:26:37.290
+And what it turned out
+that there is actually
+
+00:26:37.290 --> 00:26:39.650
+a simple rule of thumb.
+
+00:26:39.650 --> 00:26:41.350
+The amount of time
+it takes to structure
+
+00:26:41.350 --> 00:26:44.230
+clone an object is roughly
+proportional to the length
+
+00:26:44.230 --> 00:26:46.003
+of its JSON representation.
+
+00:26:46.003 --> 00:26:47.920
+Now, keep in mind that
+the number that you get
+
+00:26:47.920 --> 00:26:51.015
+is very much device-specific.
+
+00:26:51.015 --> 00:26:52.390
+And so I ran some
+more benchmarks
+
+00:26:52.390 --> 00:26:54.050
+to establish a lower bound.
+
+00:26:54.050 --> 00:26:57.950
+So I want to look at the results
+that I got on the Nokia 2.
+
+00:26:57.950 --> 00:27:01.110
+The TLDR of this graph
+is that even on the Nokia
+
+00:27:01.110 --> 00:27:04.857
+2, if your raw JSON
+is under 10 kilobytes,
+
+00:27:04.857 --> 00:27:06.940
+you don't have to worry
+about bursting through any
+
+00:27:06.940 --> 00:27:08.410
+of your RAIL budgets.
+
+00:27:08.410 --> 00:27:09.980
+This might not be enough.
+
+00:27:09.980 --> 00:27:12.280
+The 10 kilobytes might not
+be enough for every app,
+
+00:27:12.280 --> 00:27:15.520
+but you can actually do quite
+a lot with 10 kilobytes.
+
+00:27:15.520 --> 00:27:17.560
+If, however, you are
+running into problems
+
+00:27:17.560 --> 00:27:19.493
+with this postMessage
+pattern, you
+
+00:27:19.493 --> 00:27:21.910
+can look into alternatives
+like transferring array buffers
+
+00:27:21.910 --> 00:27:23.740
+using SharedArrayBuffers
+in Atomics
+
+00:27:23.740 --> 00:27:25.590
+or even look into WebAssembly.
+
+00:27:25.590 --> 00:27:28.580
+But I can't fit all of that
+into the 30 minutes that I have.
+
+00:27:28.580 --> 00:27:30.250
+So if your interest
+is peaked, I also
+
+00:27:30.250 --> 00:27:32.320
+have a more detailed
+blog post on this,
+
+00:27:32.320 --> 00:27:34.390
+where I explain the graphs
+and the methodology,
+
+00:27:34.390 --> 00:27:36.890
+but all for these alternative
+techniques that might help you
+
+00:27:36.890 --> 00:27:41.143
+address the performance problems
+if you actually encounter them.
+
+00:27:41.143 --> 00:27:43.060
+So if you want to
+experiment with workers now,
+
+00:27:43.060 --> 00:27:46.750
+you might be wondering what
+the tooling situation is.
+
+00:27:46.750 --> 00:27:49.600
+Because workers are
+not really mainstream.
+
+00:27:49.600 --> 00:27:53.290
+They have been overlooked
+by most of the tooling
+
+00:27:53.290 --> 00:27:54.760
+that we have today.
+
+00:27:54.760 --> 00:27:57.850
+Webpack and Rollup, for example,
+don't support workers out
+
+00:27:57.850 --> 00:27:58.600
+of the box.
+
+00:27:58.600 --> 00:28:00.370
+To change that,
+my colleague Jason
+
+00:28:00.370 --> 00:28:03.310
+wrote a plug-in that teaches
+Webpack about workers.
+
+00:28:03.310 --> 00:28:06.183
+I wrote a plug-in the
+teaches Rollup about workers.
+
+00:28:06.183 --> 00:28:08.350
+I want to give a big shout
+out to the parcel people,
+
+00:28:08.350 --> 00:28:11.140
+because they actually made
+workers work out of the box,
+
+00:28:11.140 --> 00:28:13.900
+so thumbs-up to them.
+
+00:28:13.900 --> 00:28:19.630
+And this was basically my
+off-main-thread on-the-web
+
+00:28:19.630 --> 00:28:21.255
+speed run for you.
+
+00:28:21.255 --> 00:28:22.630
+There is much more
+to talk about.
+
+00:28:22.630 --> 00:28:24.760
+There is much more
+nuance in this topic,
+
+00:28:24.760 --> 00:28:27.430
+and it's very explorative
+at this point.
+
+00:28:27.430 --> 00:28:30.110
+So I just want to
+leave you with this.
+
+00:28:30.110 --> 00:28:33.250
+We are experiencing
+death by 1,000 cuts.
+
+00:28:33.250 --> 00:28:37.600
+Our problem is not really that
+any specific UI library is slow
+
+00:28:37.600 --> 00:28:40.870
+or that painting takes
+too long in one browser.
+
+00:28:40.870 --> 00:28:43.420
+It's the accumulation
+of all of these tasks,
+
+00:28:43.420 --> 00:28:48.080
+that we run everything
+on the UI thread.
+
+00:28:48.080 --> 00:28:50.570
+Support hyperconstrained
+devices.
+
+00:28:50.570 --> 00:28:52.600
+It is a matter of inclusivity.
+
+00:28:52.600 --> 00:28:55.120
+We need to look beyond the tech
+bubble that we often live in
+
+00:28:55.120 --> 00:28:57.700
+and experience the web as the
+50th percentile and probably,
+
+00:28:57.700 --> 00:28:59.920
+even better, the
+75th percentile.
+
+00:28:59.920 --> 00:29:01.750
+Some of our current
+pages won't even
+
+00:29:01.750 --> 00:29:07.740
+load over 3G on a feature phone
+let alone run in a usable way.
+
+00:29:07.740 --> 00:29:09.540
+By embracing off main
+thread architecture,
+
+00:29:09.540 --> 00:29:12.660
+you are moving execution
+costs to a different thread.
+
+00:29:12.660 --> 00:29:16.540
+But you actually also
+move parsing cost.
+
+00:29:16.540 --> 00:29:19.800
+So in turn, it might mean
+that your UI thread is now
+
+00:29:19.800 --> 00:29:22.930
+booting up faster, giving you
+a better time to first count
+
+00:29:22.930 --> 00:29:26.160
+in full paint or maybe even
+a better time to interactive.
+
+00:29:26.160 --> 00:29:28.520
+And so, in turn, you could
+increase your Lighthouse
+
+00:29:28.520 --> 00:29:29.550
+scores--
+
+00:29:29.550 --> 00:29:31.060
+just saying.
+
+00:29:31.060 --> 00:29:34.330
+And lastly, web workers
+seem very complicated
+
+00:29:34.330 --> 00:29:39.130
+and crazy and scary, but
+they can be enjoyable,
+
+00:29:39.130 --> 00:29:41.890
+either by embracing
+the communication model
+
+00:29:41.890 --> 00:29:44.200
+or through libraries
+like Comlink.
+
+00:29:44.200 --> 00:29:46.450
+And with this, I
+think, we can actually
+
+00:29:46.450 --> 00:29:49.510
+take a big step for the
+web development ecosystem
+
+00:29:49.510 --> 00:29:52.990
+to make our web apps more
+reliable, but also more usable
+
+00:29:52.990 --> 00:29:54.260
+for everyone.
+
+00:29:54.260 --> 00:29:54.910
+Thank you.
+
+00:29:54.910 --> 00:29:55.510
+[APPLAUSE]
+
+00:29:55.510 --> 00:29:58.860
+[MUSIC PLAYING]
+

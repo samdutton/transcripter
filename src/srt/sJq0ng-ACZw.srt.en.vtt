@@ -1,0 +1,525 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.020 --> 00:00:02.520
+SAM THOROGOOD: Hi, I'm Sam from
+the Developer Relations Team
+
+00:00:02.520 --> 00:00:03.700
+here at Google.
+
+00:00:03.700 --> 00:00:06.600
+And I'm here to tell you that
+it's OK to abandon all hope,
+
+00:00:06.600 --> 00:00:09.910
+to give up, and to go
+back on your plans.
+
+00:00:09.910 --> 00:00:11.430
+Let me set the scene for you.
+
+00:00:11.430 --> 00:00:13.950
+As you plan your next release
+and you look at your code,
+
+00:00:13.950 --> 00:00:15.450
+it's very easy to
+fall into the trap
+
+00:00:15.450 --> 00:00:18.877
+of improving your code base
+rather than moving forward.
+
+00:00:18.877 --> 00:00:20.460
+You might consider
+having faster build
+
+00:00:20.460 --> 00:00:23.520
+times, more readable code, or
+to upgrade to the latest web
+
+00:00:23.520 --> 00:00:26.220
+framework that
+everyone's talking about.
+
+00:00:26.220 --> 00:00:29.023
+This happened to me back in
+November, 2018 in the lead
+
+00:00:29.023 --> 00:00:31.440
+up to releasing "Santa Tracker,"
+which is a holiday themed
+
+00:00:31.440 --> 00:00:33.060
+experience for all ages.
+
+00:00:33.060 --> 00:00:34.980
+We were in the
+middle of a rewrite,
+
+00:00:34.980 --> 00:00:37.090
+mainly because our build
+times were enormous,
+
+00:00:37.090 --> 00:00:39.090
+and we wanted to use
+Google's new web components
+
+00:00:39.090 --> 00:00:41.010
+library, LitElement.
+
+00:00:41.010 --> 00:00:43.530
+But we made a hard decision
+to give up on our tech debt
+
+00:00:43.530 --> 00:00:46.110
+and to ship our old code
+base because Santa only
+
+00:00:46.110 --> 00:00:47.340
+comes once a year.
+
+00:00:47.340 --> 00:00:49.630
+And by being busy
+refactoring a code base,
+
+00:00:49.630 --> 00:00:53.410
+we just weren't checking off
+our task list fast enough.
+
+00:00:53.410 --> 00:00:55.680
+So let's talk a bit about
+what we were dealing with.
+
+00:00:55.680 --> 00:00:58.300
+"Santa Tracker," at
+its core, is a shell,
+
+00:00:58.300 --> 00:01:00.390
+which hosts lots of
+small games or scenes,
+
+00:01:00.390 --> 00:01:03.660
+like this are fun snowball
+throwing game here.
+
+00:01:03.660 --> 00:01:06.815
+And on December 24, we
+unlock the tracker itself,
+
+00:01:06.815 --> 00:01:08.190
+where you can see
+Santa traveling
+
+00:01:08.190 --> 00:01:10.770
+around the world on his
+journey delivering presents
+
+00:01:10.770 --> 00:01:13.590
+and finding out when
+he'll arrive in your town.
+
+00:01:13.590 --> 00:01:15.940
+Some of these games have
+code that is years old.
+
+00:01:15.940 --> 00:01:17.580
+And, as much as
+possible, we want
+
+00:01:17.580 --> 00:01:20.550
+to avoid throwing these
+games out in a rewrite.
+
+00:01:20.550 --> 00:01:22.560
+So, in 2018, we
+decide to migrate
+
+00:01:22.560 --> 00:01:25.770
+about 50 different games to
+work on this new platform.
+
+00:01:25.770 --> 00:01:27.330
+And, fundamentally,
+the rate we were
+
+00:01:27.330 --> 00:01:28.890
+getting through
+our migration tasks
+
+00:01:28.890 --> 00:01:31.375
+just didn't equal our
+December 1 release date.
+
+00:01:31.375 --> 00:01:32.500
+And this is why we gave up.
+
+00:01:35.080 --> 00:01:38.270
+So we've now successfully
+migrated for 2019 and beyond.
+
+00:01:38.270 --> 00:01:41.740
+But what did we
+learn in the process?
+
+00:01:41.740 --> 00:01:43.830
+The first learning
+is the old idiom of,
+
+00:01:43.830 --> 00:01:45.960
+don't let perfect
+be the enemy of good
+
+00:01:45.960 --> 00:01:47.760
+as it applies to
+developer experience
+
+00:01:47.760 --> 00:01:49.245
+versus user experience.
+
+00:01:49.245 --> 00:01:51.120
+I imagined that "Santa
+Tracker" would somehow
+
+00:01:51.120 --> 00:01:53.100
+be infinitely
+better for our users
+
+00:01:53.100 --> 00:01:56.160
+if we had a faster build
+time and a more modern stack.
+
+00:01:56.160 --> 00:01:58.500
+But the reality is that
+an upgrade would mostly
+
+00:01:58.500 --> 00:02:01.110
+help my team and have very
+little benefit to our end
+
+00:02:01.110 --> 00:02:02.695
+users.
+
+00:02:02.695 --> 00:02:04.320
+Keep in mind, of
+course, that sometimes
+
+00:02:04.320 --> 00:02:06.900
+your technical choices are
+changed from underneath you.
+
+00:02:06.900 --> 00:02:09.479
+And, in our case, we were
+using Hastymail inports,
+
+00:02:09.479 --> 00:02:11.370
+which shipped in Chrome
+but never really got
+
+00:02:11.370 --> 00:02:12.840
+wider adoption.
+
+00:02:12.840 --> 00:02:15.150
+The truth is though there's
+often really fewer reasons
+
+00:02:15.150 --> 00:02:19.410
+than we think as developers
+to change the stack.
+
+00:02:19.410 --> 00:02:21.810
+Secondly, we learned the
+value of allocating time
+
+00:02:21.810 --> 00:02:23.580
+to prototyping
+before you decided
+
+00:02:23.580 --> 00:02:25.230
+on a new technical stack.
+
+00:02:25.230 --> 00:02:27.660
+This can save you a lot of
+grief and technical debt.
+
+00:02:27.660 --> 00:02:29.910
+Technical debt is when
+you're on a tight deadline
+
+00:02:29.910 --> 00:02:31.920
+and, instead of properly
+solving some problem,
+
+00:02:31.920 --> 00:02:34.378
+you're patching over it and
+leaving it for your future self
+
+00:02:34.378 --> 00:02:35.100
+to solve.
+
+00:02:35.100 --> 00:02:37.397
+And, of course, all
+software has technical debt.
+
+00:02:37.397 --> 00:02:39.480
+But it's even worse when
+you're blazing new paths,
+
+00:02:39.480 --> 00:02:41.610
+like we were, into a
+totally unknown framework
+
+00:02:41.610 --> 00:02:43.330
+for a library.
+
+00:02:43.330 --> 00:02:45.990
+And, for us, we didn't really
+allocate time for prototyping.
+
+00:02:45.990 --> 00:02:47.720
+We were on a tight schedule.
+
+00:02:47.720 --> 00:02:49.303
+You know, we'd bought
+into this vision
+
+00:02:49.303 --> 00:02:51.040
+of a new, amazing
+developer experience.
+
+00:02:51.040 --> 00:02:53.340
+But, in practice, "Santa
+Tracker," like every site,
+
+00:02:53.340 --> 00:02:55.740
+has edge cases that we
+didn't really plan for
+
+00:02:55.740 --> 00:02:58.170
+and didn't fit into the
+mold of this new stack which
+
+00:02:58.170 --> 00:03:02.710
+we'd chosen, which caused us
+to incur this technical debt.
+
+00:03:02.710 --> 00:03:04.620
+Software always has
+innate knowledge.
+
+00:03:04.620 --> 00:03:06.000
+Our old "Santa
+Tracker" code base
+
+00:03:06.000 --> 00:03:08.390
+had years upon years of
+hacks and work arounds.
+
+00:03:08.390 --> 00:03:09.840
+And, in any rewrite,
+it's enticing
+
+00:03:09.840 --> 00:03:11.850
+to skip these weird code paths.
+
+00:03:11.850 --> 00:03:14.250
+But, in the end, they
+were there for a reason.
+
+00:03:14.250 --> 00:03:16.590
+By building a working
+prototype in a new stack,
+
+00:03:16.590 --> 00:03:18.450
+you can test these
+edge cases to see
+
+00:03:18.450 --> 00:03:20.130
+if they still matter to you.
+
+00:03:20.130 --> 00:03:22.830
+Because we skipped this step,
+we hit all sorts of challenges
+
+00:03:22.830 --> 00:03:24.840
+way late into our
+development cycle
+
+00:03:24.840 --> 00:03:26.100
+when it was just too late.
+
+00:03:26.100 --> 00:03:28.878
+We had to give up
+on the refactor.
+
+00:03:28.878 --> 00:03:30.420
+In hindsight, we
+should have built up
+
+00:03:30.420 --> 00:03:33.060
+all these tricky nuances of
+our site in a full prototype
+
+00:03:33.060 --> 00:03:35.670
+before attempting to replace
+the entire tech stack.
+
+00:03:35.670 --> 00:03:37.770
+What we ended up doing
+with what we're using what
+
+00:03:37.770 --> 00:03:40.410
+we built in 2018 as the
+prototype for what you now
+
+00:03:40.410 --> 00:03:42.720
+seen in 2019 and beyond.
+
+00:03:42.720 --> 00:03:43.800
+Don't get me wrong.
+
+00:03:43.800 --> 00:03:46.020
+In 2019, we still
+shipped some of the best
+
+00:03:46.020 --> 00:03:47.190
+parts of the product type.
+
+00:03:47.190 --> 00:03:50.670
+And that leads me to
+the final learning.
+
+00:03:50.670 --> 00:03:52.337
+Ship early and ship often.
+
+00:03:52.337 --> 00:03:54.420
+You always want to validate
+your technical choices
+
+00:03:54.420 --> 00:03:56.040
+with real users.
+
+00:03:56.040 --> 00:03:58.890
+So we'd written a whole new
+game, "Elf Maker," entirely
+
+00:03:58.890 --> 00:04:00.000
+on the new stack.
+
+00:04:00.000 --> 00:04:02.590
+It wasn't part of the
+old codebase whatsoever.
+
+00:04:02.590 --> 00:04:05.200
+So we felt comfortable
+testing it with real users.
+
+00:04:05.200 --> 00:04:08.557
+And, in fact, if you closely at
+how that scene loaded in 2018,
+
+00:04:08.557 --> 00:04:10.890
+you could see how we introduced
+a bit of magic deferring
+
+00:04:10.890 --> 00:04:14.430
+to an iframe, with a small
+shim between the codebases.
+
+00:04:14.430 --> 00:04:17.191
+We had to come talk to Frank in
+build system to make this work.
+
+00:04:17.191 --> 00:04:18.899
+But, as part of that,
+we forced ourselves
+
+00:04:18.899 --> 00:04:21.690
+to have an end-to-end build
+process of the new prototype,
+
+00:04:21.690 --> 00:04:23.950
+even though we weren't
+shipping it wholesale.
+
+00:04:23.950 --> 00:04:26.325
+And this meant that our rewrite
+wasn't just wholly turned
+
+00:04:26.325 --> 00:04:27.285
+into just a prototype.
+
+00:04:27.285 --> 00:04:29.910
+And we got a small slice of the
+new code in front of real users
+
+00:04:29.910 --> 00:04:31.956
+to show that it could work.
+
+00:04:31.956 --> 00:04:32.862
+[BELLS JINGLING]
+
+00:04:32.862 --> 00:04:35.070
+We're hoping to open source
+the new version of "Santa
+
+00:04:35.070 --> 00:04:36.720
+Tracker" in early 2020.
+
+00:04:36.720 --> 00:04:37.758
+It's not perfect.
+
+00:04:37.758 --> 00:04:39.300
+But it is a real
+website with a bunch
+
+00:04:39.300 --> 00:04:42.150
+of build tooling, legacy
+card, and necessary technology
+
+00:04:42.150 --> 00:04:43.230
+choices.
+
+00:04:43.230 --> 00:04:44.820
+I hope you'll check
+it out and get
+
+00:04:44.820 --> 00:04:48.160
+some insights into how to best
+structure your next project.
+
+00:04:48.160 --> 00:04:50.700
+Remember, don't let perfect
+be the enemy of good.
+
+00:04:50.700 --> 00:04:52.962
+Your users don't care
+how the sausage is made.
+
+00:04:52.962 --> 00:04:54.420
+Ruminate on your
+technology choices
+
+00:04:54.420 --> 00:04:56.040
+by building a prototype.
+
+00:04:56.040 --> 00:04:58.650
+And, if possible, try to get
+the safest parts of your code
+
+00:04:58.650 --> 00:05:00.930
+in front of real users,
+even if your whole refactor
+
+00:05:00.930 --> 00:05:02.370
+isn't done yet.
+
+00:05:02.370 --> 00:05:04.650
+Thanks for watching, and
+I'll see you next time.
+
+00:05:04.650 --> 00:05:08.000
+[MUSIC PLAYING]
+

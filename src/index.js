@@ -61,7 +61,7 @@ const videoIds = [];
 
 let DO_VALIDATION = false;
 
-let INPUT_DIR = 'input';
+let SRT_DIR = 'srt';
 // Use ../docs for integration with GitHub Pages.
 let OUTPUT_DIR = '../docs';
 const SEARCH_DIR = `${OUTPUT_DIR}/search`;
@@ -81,7 +81,7 @@ const argv = require('yargs')
   .describe('a', 'Append/overwrite: don\'t delete existing files in output directory')
   .describe('c', `Create index page linking to HTML output, ` +
     `default is ${CREATE_STANDALONE_HOMEPAGE}`) // index page for standalone transcripts
-  .describe('i', `Input directory, default is ${INPUT_DIR}`)
+  .describe('i', `Input directory, default is ${SRT_DIR}`)
   .describe('l', 'Validate HTML output')
   .describe('o', `Output directory, default is ${OUTPUT_DIR}`)
   .describe('s', `Create search index file`)
@@ -110,7 +110,7 @@ if (argv.c) {
 }
 
 if (argv.i) {
-  INPUT_DIR = argv.i;
+  SRT_DIR = argv.i;
 }
 
 if (argv.l) {
@@ -134,12 +134,12 @@ if (argv.s) {
 }
 
 // Parse each SRT caption file in the input directory.
-recursive(INPUT_DIR).then((filepaths) => {
+recursive(SRT_DIR).then((filepaths) => {
   filepaths = filepaths.filter((filename) => {
     // Filename is <YouTubeID>.srt
     if (!filename.match(/[a-zA-Z0-9_-]{11}.srt/)) {
       const message =
-        `Input directory ${INPUT_DIR} contains stray file ${filename}`;
+        `Input directory ${SRT_DIR} contains stray file ${filename}`;
       displayError(message);
       logError(message);
     } else {
@@ -155,9 +155,9 @@ recursive(INPUT_DIR).then((filepaths) => {
   for (const filepath of filepaths) {
     processSrtFile(filepath);
   }
-}).catch((error) => displayError(`Error reading from ${INPUT_DIR}:`, error));
+}).catch((error) => displayError(`Error reading from ${SRT_DIR}:`, error));
 
-// For each SRT caption file in ${INPUT_DIR}, i.e. each transcript:
+// For each SRT caption file in ${SRT_DIR}, i.e. each transcript:
 // • Get the video ID.
 // • Parse the text.
 async function processSrtFile(filepath) {
@@ -415,6 +415,7 @@ function logError(error) {
 function validateThenWrite(filepath, html) {
   if (!DO_VALIDATION) {
     writeFile(filepath, html);
+    return;
   }
   const options = {
     data: html,
