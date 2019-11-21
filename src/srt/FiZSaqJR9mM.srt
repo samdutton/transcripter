@@ -1,0 +1,593 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:02.490
+BEN MORSS: If you've seen the
+talk at Chrome Dev Summit,
+
+00:00:02.490 --> 00:00:04.050
+you already know
+that much of the web
+
+00:00:04.050 --> 00:00:07.200
+is too slow, too
+heavy, and inefficient,
+
+00:00:07.200 --> 00:00:10.650
+making sites hard to use for
+people on slower connections
+
+00:00:10.650 --> 00:00:12.810
+or lower-powered devices.
+
+00:00:12.810 --> 00:00:15.180
+Your site may work great
+on your $1,000 phone
+
+00:00:15.180 --> 00:00:16.890
+in your major metropolis.
+
+00:00:16.890 --> 00:00:19.680
+But someone in a rural
+area or another country
+
+00:00:19.680 --> 00:00:23.555
+may find your site frustrating
+or simply unusable.
+
+00:00:23.555 --> 00:00:25.180
+What if you could
+keep your site's look
+
+00:00:25.180 --> 00:00:28.350
+and feel while making it
+accessible to everyone?
+
+00:00:28.350 --> 00:00:31.650
+What if you could make your site
+more elegant, leaner, and more
+
+00:00:31.650 --> 00:00:34.870
+maintainable with less code?
+
+00:00:34.870 --> 00:00:36.870
+This is why AMP was
+created, to make
+
+00:00:36.870 --> 00:00:38.730
+it simple for all
+developers to create
+
+00:00:38.730 --> 00:00:41.770
+fast, lean sites for all users.
+
+00:00:41.770 --> 00:00:44.070
+So what is AMP?
+
+00:00:44.070 --> 00:00:47.970
+First, fundamentally, AMP
+is a web components library.
+
+00:00:47.970 --> 00:00:49.800
+Working on all
+major browsers, it
+
+00:00:49.800 --> 00:00:52.890
+provides new HTML tags that
+do the work you'd normally
+
+00:00:52.890 --> 00:00:54.450
+do with JavaScript.
+
+00:00:54.450 --> 00:00:57.030
+AMP is also a set of
+guidelines on how to create
+
+00:00:57.030 --> 00:00:59.220
+fast sites for everyone.
+
+00:00:59.220 --> 00:01:02.760
+It requires HTML attributes
+that enable accessibility.
+
+00:01:02.760 --> 00:01:05.340
+It stops you from
+including too much CSS.
+
+00:01:05.340 --> 00:01:07.920
+And JavaScript can only be
+used in a context where it
+
+00:01:07.920 --> 00:01:11.450
+can't harm the user experience.
+
+00:01:11.450 --> 00:01:14.120
+Sites that follow the
+rules of AMP get a bonus.
+
+00:01:14.120 --> 00:01:16.460
+Caches like Google
+store AMP pages
+
+00:01:16.460 --> 00:01:19.280
+so that they can be loaded from
+search in less than a second,
+
+00:01:19.280 --> 00:01:21.590
+even on 3G.
+
+00:01:21.590 --> 00:01:24.430
+While it's most known
+for pure content sites,
+
+00:01:24.430 --> 00:01:27.650
+AMP also provides tools
+to create interactivity.
+
+00:01:27.650 --> 00:01:29.850
+We'll talk about two
+ways to do this--
+
+00:01:29.850 --> 00:01:33.620
+the old way, which we'll call
+AMP Classic, and AMP Script,
+
+00:01:33.620 --> 00:01:36.470
+which we'll just call,
+well, AMP script.
+
+00:01:36.470 --> 00:01:39.140
+We could also call them
+JavaScript Light and JavaScript
+
+00:01:39.140 --> 00:01:40.430
+Pro.
+
+00:01:40.430 --> 00:01:42.470
+So first, AMP Classic--
+
+00:01:42.470 --> 00:01:45.680
+for this, we'll use some
+examples from our AMP Camp demo
+
+00:01:45.680 --> 00:01:47.960
+site and some that aren't.
+
+00:01:47.960 --> 00:01:50.220
+Let's say that when the
+user taps this button,
+
+00:01:50.220 --> 00:01:51.890
+we want to open a menu.
+
+00:01:51.890 --> 00:01:54.890
+For this, we use AMP
+Events and Actions.
+
+00:01:54.890 --> 00:01:57.860
+AMP processes browser
+events into AMP events
+
+00:01:57.860 --> 00:02:00.560
+and exposes those to
+you, the developer.
+
+00:02:00.560 --> 00:02:04.580
+For example, when a user clicks
+a mouse or taps a touchscreen,
+
+00:02:04.580 --> 00:02:07.490
+AMP fires an event called Tap.
+
+00:02:07.490 --> 00:02:10.590
+AMP actions allow you to
+change things on your page.
+
+00:02:10.590 --> 00:02:12.810
+For example, to
+show a Dom element,
+
+00:02:12.810 --> 00:02:14.540
+we'd use an action called Show.
+
+00:02:14.540 --> 00:02:18.950
+To toggle its visibility, we'd
+use an action called Toggle.
+
+00:02:18.950 --> 00:02:20.960
+And that's how we open the menu.
+
+00:02:20.960 --> 00:02:25.790
+Notice the form here, on
+equals tap sidebar toggle.
+
+00:02:25.790 --> 00:02:27.380
+Tap is the event.
+
+00:02:27.380 --> 00:02:30.230
+Sidebar is the ID of the
+element we're acting on.
+
+00:02:30.230 --> 00:02:32.240
+And Toggle is the action.
+
+00:02:32.240 --> 00:02:34.910
+Next, how about server calls?
+
+00:02:34.910 --> 00:02:36.890
+When a user visits
+our site, we want
+
+00:02:36.890 --> 00:02:39.830
+to call an API to find out how
+many items are in their cart
+
+00:02:39.830 --> 00:02:42.050
+and then show this
+on the screen.
+
+00:02:42.050 --> 00:02:45.260
+For this, we use two components
+that work well together,
+
+00:02:45.260 --> 00:02:48.440
+AMP Lists and AMP Mustache.
+
+00:02:48.440 --> 00:02:52.250
+AMP lists sends an XHR
+request to an endpoint.
+
+00:02:52.250 --> 00:02:56.220
+The data returned gets formatted
+through a Mustache template.
+
+00:02:56.220 --> 00:02:58.370
+Here's how this
+works on AMP Camp.
+
+00:02:58.370 --> 00:03:01.700
+On page load, AMP List calls
+the end point specified
+
+00:03:01.700 --> 00:03:03.490
+in the source attribute.
+
+00:03:03.490 --> 00:03:06.680
+Our API returns JSON that
+contains the number of items
+
+00:03:06.680 --> 00:03:08.510
+in the user's cart.
+
+00:03:08.510 --> 00:03:12.140
+AMP then plugs that JSON
+into this Mustache template.
+
+00:03:12.140 --> 00:03:15.260
+If there is a count, that
+gets displayed at a span.
+
+00:03:15.260 --> 00:03:17.750
+If the count is zero,
+we display nothing--
+
+00:03:17.750 --> 00:03:20.000
+simple.
+
+00:03:20.000 --> 00:03:22.730
+Finally, to change what's
+on the screen in response
+
+00:03:22.730 --> 00:03:26.150
+to user actions, AMP lets
+you store application data
+
+00:03:26.150 --> 00:03:31.860
+in HTML state variables and bind
+expressions to Dom elements.
+
+00:03:31.860 --> 00:03:33.285
+Here's a simple example.
+
+00:03:33.285 --> 00:03:34.910
+We start with the
+state variable called
+
+00:03:34.910 --> 00:03:39.260
+Team that contains an object
+with one property, Star,
+
+00:03:39.260 --> 00:03:43.100
+whose value is
+initialized to Yao Ming.
+
+00:03:43.100 --> 00:03:44.750
+Now, here's a P
+tag with something
+
+00:03:44.750 --> 00:03:48.660
+unusual, an attribute
+called Text in Brackets.
+
+00:03:48.660 --> 00:03:52.130
+These brackets let AMP know
+this is a bound attribute.
+
+00:03:52.130 --> 00:03:55.880
+We've bound this to the
+expression Team dot Star
+
+00:03:55.880 --> 00:03:57.410
+plus Is Tall.
+
+00:03:57.410 --> 00:03:59.640
+When that expression's
+value changes,
+
+00:03:59.640 --> 00:04:02.400
+so will the content
+of the P tag.
+
+00:04:02.400 --> 00:04:05.150
+Now, remember
+actions and events?
+
+00:04:05.150 --> 00:04:07.970
+Here, we're saying that
+when this button is tapped,
+
+00:04:07.970 --> 00:04:09.980
+go into our team's
+state variable
+
+00:04:09.980 --> 00:04:14.120
+and change the value of Star
+to Yao Ming and Mandarin.
+
+00:04:14.120 --> 00:04:15.710
+And here's the results.
+
+00:04:15.710 --> 00:04:20.730
+You tap this button and the
+text on the screen changes.
+
+00:04:20.730 --> 00:04:22.980
+Now let's put all this together.
+
+00:04:22.980 --> 00:04:27.290
+We can use data binding
+to change API endpoints.
+
+00:04:27.290 --> 00:04:29.330
+On our site's
+Product Listing page,
+
+00:04:29.330 --> 00:04:31.850
+our user can filter
+and search results.
+
+00:04:31.850 --> 00:04:33.620
+Each time they make
+a selection, we
+
+00:04:33.620 --> 00:04:37.520
+call our API to retrieve
+the appropriate JSON.
+
+00:04:37.520 --> 00:04:40.400
+When the user makes a new
+selection under Sort By,
+
+00:04:40.400 --> 00:04:42.740
+AMP fires an event
+called Change.
+
+00:04:42.740 --> 00:04:46.310
+Then we store their selection in
+the filter property of a state
+
+00:04:46.310 --> 00:04:48.740
+variable called Products.
+
+00:04:48.740 --> 00:04:51.830
+Meanwhile, we've found the
+source property of this AMP
+
+00:04:51.830 --> 00:04:53.780
+list to an expression
+that calculates
+
+00:04:53.780 --> 00:04:56.882
+the query string for the API.
+
+00:04:56.882 --> 00:04:58.340
+So when the user
+makes a selection,
+
+00:04:58.340 --> 00:05:01.070
+the product's object
+changes and the expression
+
+00:05:01.070 --> 00:05:04.550
+is recomputed, which then
+triggers a new server call.
+
+00:05:04.550 --> 00:05:08.330
+And presto, new products appear.
+
+00:05:08.330 --> 00:05:10.790
+You might be excited to
+try out these techniques
+
+00:05:10.790 --> 00:05:15.390
+or you might just be saying,
+why can't I just use JavaScript?
+
+00:05:15.390 --> 00:05:17.900
+The AMP team loves
+JavaScript too.
+
+00:05:17.900 --> 00:05:19.560
+But part of the
+promise of AMP is
+
+00:05:19.560 --> 00:05:22.710
+that JavaScript isn't allowed
+to block the main thread
+
+00:05:22.710 --> 00:05:24.960
+and slow things
+down for the user.
+
+00:05:24.960 --> 00:05:28.260
+Fortunately, now
+there's a solution.
+
+00:05:28.260 --> 00:05:30.930
+You may have heard talk about
+[? Worker Rides ?] JavaScript.
+
+00:05:30.930 --> 00:05:32.490
+It's the new hotness.
+
+00:05:32.490 --> 00:05:35.160
+The nice thing is
+JavaScript and a Web Worker
+
+00:05:35.160 --> 00:05:38.310
+runs in a separate thread so it
+doesn't block the main thread
+
+00:05:38.310 --> 00:05:40.230
+or user interactions.
+
+00:05:40.230 --> 00:05:43.080
+The problem is workers
+can't access the Dom.
+
+00:05:43.080 --> 00:05:46.710
+So how can a worker
+control web interactions?
+
+00:05:46.710 --> 00:05:49.530
+AMP's Script provides
+a clever solution.
+
+00:05:49.530 --> 00:05:52.710
+It maintains a copy of the
+Dom and the worker itself.
+
+00:05:52.710 --> 00:05:54.720
+When something changes
+in the real Dom,
+
+00:05:54.720 --> 00:05:59.260
+AMP Script changes the copy in
+its virtual Dom and vice versa.
+
+00:05:59.260 --> 00:06:03.090
+This makes [? Worker Rides ?]
+JavaScript easy.
+
+00:06:03.090 --> 00:06:05.340
+To preserve AMP's
+performance guarantee,
+
+00:06:05.340 --> 00:06:07.710
+scripts can only run
+after a user interaction,
+
+00:06:07.710 --> 00:06:09.380
+not on page load.
+
+00:06:09.380 --> 00:06:12.490
+And your code can't exceed 150k.
+
+00:06:12.490 --> 00:06:14.100
+AMP Script that's
+pretty exciting.
+
+00:06:14.100 --> 00:06:16.920
+But it's so new that at the
+time of making this video,
+
+00:06:16.920 --> 00:06:18.480
+we haven't yet had
+time to include it
+
+00:06:18.480 --> 00:06:20.550
+in our AMP Camp site.
+
+00:06:20.550 --> 00:06:24.630
+Hopefully by the time
+you see this, we will.
+
+00:06:24.630 --> 00:06:26.950
+I urge you to try
+these techniques.
+
+00:06:26.950 --> 00:06:29.040
+If you don't like
+them, by all means
+
+00:06:29.040 --> 00:06:31.690
+create your interactive
+site in another way.
+
+00:06:31.690 --> 00:06:33.270
+You don't have to use AMP.
+
+00:06:33.270 --> 00:06:36.870
+But I will say, it's still
+hard and rare for non-AMP sites
+
+00:06:36.870 --> 00:06:39.870
+to be as fast and
+lean as AMP sites.
+
+00:06:39.870 --> 00:06:41.920
+It takes effort and discipline.
+
+00:06:41.920 --> 00:06:43.860
+And especially on
+larger teams, it's
+
+00:06:43.860 --> 00:06:47.790
+simply hard to avoid
+excessive JS and CSS.
+
+00:06:47.790 --> 00:06:49.980
+AMP can be a product
+manager, your scrum
+
+00:06:49.980 --> 00:06:53.290
+master urging you onward.
+
+00:06:53.290 --> 00:06:55.168
+So why not give this a try?
+
+00:06:55.168 --> 00:06:57.210
+Check the links in the
+video description for more
+
+00:06:57.210 --> 00:06:59.310
+information and
+for documentation,
+
+00:06:59.310 --> 00:07:02.430
+as well as for links to the AMP
+Camp demo site and the AMP Camp
+
+00:07:02.430 --> 00:07:03.990
+code on GitHub.
+
+00:07:03.990 --> 00:07:04.880
+Thanks for watching.
+
+00:07:04.880 --> 00:07:07.590
+And see you next time.
+
+00:07:07.590 --> 00:07:09.740
+[MUSIC PLAYING]
+

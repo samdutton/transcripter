@@ -1,0 +1,553 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.180 --> 00:00:00.810
+SAM DRAZIN: Hi.
+
+00:00:00.810 --> 00:00:03.180
+I'm Sam Drazin from
+the Chrome XR team.
+
+00:00:03.180 --> 00:00:04.980
+We work on advancing
+the web to power
+
+00:00:04.980 --> 00:00:09.600
+compelling virtual, mixed, and
+augmented reality experiences.
+
+00:00:09.600 --> 00:00:12.125
+Google is committed to
+growing the immersive web.
+
+00:00:12.125 --> 00:00:14.250
+And we believe that immersive
+computing and the web
+
+00:00:14.250 --> 00:00:16.840
+complement each other.
+
+00:00:16.840 --> 00:00:18.605
+The web excels at
+providing information
+
+00:00:18.605 --> 00:00:20.730
+you didn't know you needed
+right until you need it,
+
+00:00:20.730 --> 00:00:22.800
+like how to fix a leaky sink.
+
+00:00:22.800 --> 00:00:24.660
+Even if you installed
+an app for this,
+
+00:00:24.660 --> 00:00:27.810
+you'd likely uninstall it
+as soon as you were done.
+
+00:00:27.810 --> 00:00:30.060
+Situations where immersive
+experiences shine
+
+00:00:30.060 --> 00:00:32.549
+are often ephemeral or sporadic.
+
+00:00:32.549 --> 00:00:34.290
+You might not buy
+a sofa very often,
+
+00:00:34.290 --> 00:00:37.050
+but when you do it likely
+helps to see how big it is
+
+00:00:37.050 --> 00:00:39.960
+or whether it will
+fit your room's decor.
+
+00:00:39.960 --> 00:00:43.290
+The web empowers users to
+explore and discover easily,
+
+00:00:43.290 --> 00:00:46.260
+and in the moment without
+the burden of installation.
+
+00:00:46.260 --> 00:00:48.750
+In addition, the web
+also unifies hardware
+
+00:00:48.750 --> 00:00:50.050
+and ecosystems.
+
+00:00:50.050 --> 00:00:54.210
+It runs on laptops, phones,
+desktops, even cars.
+
+00:00:54.210 --> 00:00:57.180
+For XR hardware, like
+virtual reality headsets,
+
+00:00:57.180 --> 00:01:00.270
+there are already numerous
+siloed app ecosystems
+
+00:01:00.270 --> 00:01:04.019
+that exclusively cater to their
+respective hardware platforms.
+
+00:01:04.019 --> 00:01:06.300
+The web unifies these
+device ecosystems
+
+00:01:06.300 --> 00:01:09.540
+under one common XR
+platform, while also serving
+
+00:01:09.540 --> 00:01:13.200
+foreign factors like smartphones
+and augmented reality headsets.
+
+00:01:13.200 --> 00:01:16.020
+The web provides a clear
+path to broadly access
+
+00:01:16.020 --> 00:01:18.780
+users, devices, and ecosystems.
+
+00:01:18.780 --> 00:01:21.210
+That, in conjunction
+with compelling use cases
+
+00:01:21.210 --> 00:01:23.130
+that are best
+served ephemerally,
+
+00:01:23.130 --> 00:01:25.727
+has driven us to push the
+immersive web forward.
+
+00:01:25.727 --> 00:01:27.810
+And we have some exciting
+updates and user stories
+
+00:01:27.810 --> 00:01:29.400
+to share.
+
+00:01:29.400 --> 00:01:33.130
+Last year at CDS, we previewed
+the WebXR device API,
+
+00:01:33.130 --> 00:01:36.300
+an imperative API that enables
+web developers to create
+
+00:01:36.300 --> 00:01:40.470
+VR experiences for tethered
+and mobile VR systems.
+
+00:01:40.470 --> 00:01:42.570
+We're excited to
+announce that the core VR
+
+00:01:42.570 --> 00:01:45.090
+capabilities of the
+WebXR device API
+
+00:01:45.090 --> 00:01:48.720
+are available now
+in Chrome 79 beta.
+
+00:01:48.720 --> 00:01:52.350
+Next month, we will ship WebXR
+in Chrome Stable in the 79
+
+00:01:52.350 --> 00:01:53.820
+release.
+
+00:01:53.820 --> 00:01:55.950
+We're ecstatic to be
+joined by other browsers,
+
+00:01:55.950 --> 00:01:58.860
+like Firefox Reality
+and Oculus Browser, who
+
+00:01:58.860 --> 00:02:02.160
+will also be shipping WebXR
+before the end of the year.
+
+00:02:02.160 --> 00:02:05.700
+This solidifies the foundation
+for VR within the web platform,
+
+00:02:05.700 --> 00:02:09.210
+completing what WebVR
+started years ago.
+
+00:02:09.210 --> 00:02:12.750
+Three.js continues to be a
+flagship library in simplifying
+
+00:02:12.750 --> 00:02:16.260
+and extending access for web
+developers to 3D programming.
+
+00:02:16.260 --> 00:02:19.260
+Version 110 and later
+feature important updates
+
+00:02:19.260 --> 00:02:21.545
+to its WebXR
+support, taking care
+
+00:02:21.545 --> 00:02:22.920
+of the heavy
+lifting with regards
+
+00:02:22.920 --> 00:02:25.530
+to rendering and
+controller inputs.
+
+00:02:25.530 --> 00:02:28.230
+For enhanced testing and
+debugging of immersive VR
+
+00:02:28.230 --> 00:02:31.050
+experiences, a WebXR
+emulator extension
+
+00:02:31.050 --> 00:02:33.390
+was created by Mozilla.
+
+00:02:33.390 --> 00:02:34.920
+This extension
+enables developers
+
+00:02:34.920 --> 00:02:37.950
+to test WebVR experiences
+from their desktops
+
+00:02:37.950 --> 00:02:40.710
+with selectable XR
+hardware emulators.
+
+00:02:40.710 --> 00:02:42.420
+Another announcement
+we made last year
+
+00:02:42.420 --> 00:02:45.360
+was the introduction of
+model-viewer, a web component
+
+00:02:45.360 --> 00:02:49.290
+that makes it easy to embed
+interactive 3D models to view
+
+00:02:49.290 --> 00:02:52.410
+on the web and in AR.
+
+00:02:52.410 --> 00:02:55.230
+Since then, we've added
+features, such as advanced
+
+00:02:55.230 --> 00:02:59.160
+controls to access and position
+the camera, animation support,
+
+00:02:59.160 --> 00:03:01.740
+and integrations to
+view models in 3D
+
+00:03:01.740 --> 00:03:06.960
+and AR via Quick Look on iOS
+and Scene Viewer on Android.
+
+00:03:06.960 --> 00:03:09.870
+It's been exciting to see
+XR making waves on the web,
+
+00:03:09.870 --> 00:03:12.270
+empowering developers
+to innovate and address
+
+00:03:12.270 --> 00:03:14.130
+real market needs.
+
+00:03:14.130 --> 00:03:15.630
+Let's hear from a
+few companies that
+
+00:03:15.630 --> 00:03:19.152
+have applied some of these
+tools to their sites.
+
+00:03:19.152 --> 00:03:20.610
+DANIEL BEAUCHAMP:
+In the past year,
+
+00:03:20.610 --> 00:03:22.740
+we've made it possible
+for our merchants
+
+00:03:22.740 --> 00:03:26.220
+on our platform to upload
+and manage 3D models
+
+00:03:26.220 --> 00:03:29.010
+and to feature them on their
+online store in the same way
+
+00:03:29.010 --> 00:03:31.080
+that images and video work.
+
+00:03:31.080 --> 00:03:33.990
+Now shoppers can see
+products in a whole new way.
+
+00:03:33.990 --> 00:03:36.870
+They can zoom in and zoom
+out and rotate the product
+
+00:03:36.870 --> 00:03:40.770
+to see it in any angle they want
+down to the smallest detail.
+
+00:03:40.770 --> 00:03:43.380
+And the best part is they
+can tap the augmented reality
+
+00:03:43.380 --> 00:03:46.440
+button to see what that product
+looks like in their home,
+
+00:03:46.440 --> 00:03:49.800
+see it outside, even see
+if it fits in their car.
+
+00:03:49.800 --> 00:03:51.540
+And the results
+have been amazing.
+
+00:03:51.540 --> 00:03:53.070
+Shoppers are up
+to 2 and 1/2 times
+
+00:03:53.070 --> 00:03:56.340
+more likely to buy when
+interacting with 3D models
+
+00:03:56.340 --> 00:03:59.303
+because they're more confident
+in what it is they're buying.
+
+00:03:59.303 --> 00:04:00.970
+JESSICA VANDERLELIE:
+La Trobe University
+
+00:04:00.970 --> 00:04:04.300
+is actively investing in the
+future of university life.
+
+00:04:04.300 --> 00:04:07.780
+Working with XHQ
+and Google on WebXR,
+
+00:04:07.780 --> 00:04:10.120
+we are seeking to unlock
+the university experience
+
+00:04:10.120 --> 00:04:12.580
+to students and the
+community everywhere,
+
+00:04:12.580 --> 00:04:16.110
+irrespective of time, location,
+or technology platform.
+
+00:04:16.110 --> 00:04:18.070
+We've began with the
+construction of buildings
+
+00:04:18.070 --> 00:04:20.079
+in the physical
+world and embarking
+
+00:04:20.079 --> 00:04:22.960
+on exciting opportunities
+to build a virtual world.
+
+00:04:22.960 --> 00:04:25.510
+We see the incredible
+potential for technology
+
+00:04:25.510 --> 00:04:27.730
+to enhance an
+augment student life.
+
+00:04:27.730 --> 00:04:30.280
+AMIT SION: Our focus
+with XHQ is to create
+
+00:04:30.280 --> 00:04:33.070
+an immersive experience
+for the community.
+
+00:04:33.070 --> 00:04:36.220
+With this project, we started
+by creating augmented reality
+
+00:04:36.220 --> 00:04:39.040
+and virtual reality apps
+to engage the students
+
+00:04:39.040 --> 00:04:41.022
+with the university.
+
+00:04:41.022 --> 00:04:42.980
+SAM DRAZIN: There have
+been great strides taken
+
+00:04:42.980 --> 00:04:44.820
+towards realizing
+the immersive web,
+
+00:04:44.820 --> 00:04:47.180
+but this is only
+just the beginning.
+
+00:04:47.180 --> 00:04:49.250
+Here is what you
+can expect next.
+
+00:04:49.250 --> 00:04:52.270
+Through the W3C immersive
+web community group,
+
+00:04:52.270 --> 00:04:55.370
+AR incubations within
+WebXR are ongoing
+
+00:04:55.370 --> 00:04:57.350
+and have made great
+progress, exploring
+
+00:04:57.350 --> 00:04:59.570
+features like hit
+tests and anchors
+
+00:04:59.570 --> 00:05:03.620
+and how they enable powerful
+AR experiences for the web.
+
+00:05:03.620 --> 00:05:07.280
+You can try these experiments
+out today in Chrome Canary.
+
+00:05:07.280 --> 00:05:12.380
+For more information, check
+out github.com/immersive-web/.
+
+00:05:12.380 --> 00:05:14.450
+As a part of the gamepad's
+module spec work,
+
+00:05:14.450 --> 00:05:16.790
+a registry of controllers
+is being developed
+
+00:05:16.790 --> 00:05:18.530
+to provide more
+detailed information
+
+00:05:18.530 --> 00:05:21.320
+about the capabilities
+and layouts of controllers
+
+00:05:21.320 --> 00:05:23.540
+for XR hardware systems.
+
+00:05:23.540 --> 00:05:26.180
+This includes providing
+free-to-use rigged
+
+00:05:26.180 --> 00:05:29.510
+3D models of known controllers,
+which will enable sites
+
+00:05:29.510 --> 00:05:31.490
+to dynamically load
+controllers that
+
+00:05:31.490 --> 00:05:35.060
+match what the user is holding
+for a variety of systems.
+
+00:05:35.060 --> 00:05:38.334
+For more information, check out
+github.com/immersive web/webxr
+
+00:05:38.334 --> 00:05:39.870
+input profiles.
+
+00:05:43.220 --> 00:05:47.420
+For model-viewer, we plan to
+ship version 1.0 in early 2020
+
+00:05:47.420 --> 00:05:49.790
+with noteworthy improvements,
+including support
+
+00:05:49.790 --> 00:05:53.360
+for Draco encoded models,
+support for soft and real time
+
+00:05:53.360 --> 00:05:56.360
+shadows, and integrating
+animations from interaction
+
+00:05:56.360 --> 00:05:57.170
+prompts.
+
+00:05:57.170 --> 00:06:00.890
+For more information,
+check out modelviewer.dev.
+
+00:06:00.890 --> 00:06:03.110
+The future of the
+immersive web is bright.
+
+00:06:03.110 --> 00:06:06.110
+And we're hoping you'll enjoy
+exploring the possibilities.
+
+00:06:06.110 --> 00:06:07.700
+If you're interested
+in learning more
+
+00:06:07.700 --> 00:06:10.700
+or have specific questions,
+swing by the XR Sandbox
+
+00:06:10.700 --> 00:06:12.860
+at Chrome Dev Summit and say hi.
+
+00:06:12.860 --> 00:06:15.170
+You can also find links in
+the description for details
+
+00:06:15.170 --> 00:06:18.140
+about how to learn more and
+get started with the features
+
+00:06:18.140 --> 00:06:20.450
+and tools mentioned today.
+
+00:06:20.450 --> 00:06:22.430
+Thanks and enjoy
+Chrome Dev Summit.
+
+00:06:22.430 --> 00:06:25.480
+[MUSIC PLAYING]
+

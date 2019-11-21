@@ -1,0 +1,463 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.500 --> 00:00:02.220
+PJ MCLACHLAN: Hi,
+I'm PJ, and this talk
+
+00:00:02.220 --> 00:00:03.930
+is about getting permission--
+
+00:00:03.930 --> 00:00:07.600
+Patterns for Making Fluid
+Permission Requests.
+
+00:00:07.600 --> 00:00:10.160
+The web is expanding in
+exciting new directions
+
+00:00:10.160 --> 00:00:11.890
+and as a platform.
+
+00:00:11.890 --> 00:00:15.340
+With powerful apps like G
+Suite, Google Earth, or AutoCAD
+
+00:00:15.340 --> 00:00:17.230
+all running in the
+web browser, more
+
+00:00:17.230 --> 00:00:20.510
+is possible with the modern
+web than ever before.
+
+00:00:20.510 --> 00:00:24.430
+For example, we have
+location access, camera, mic,
+
+00:00:24.430 --> 00:00:27.880
+push notifications,
+offline, WebAssembly.
+
+00:00:27.880 --> 00:00:30.940
+These are just a few examples
+of modern capabilities
+
+00:00:30.940 --> 00:00:33.500
+that have arrived on the
+web in the last few years,
+
+00:00:33.500 --> 00:00:35.450
+and there's a lot
+more coming, too.
+
+00:00:35.450 --> 00:00:38.620
+But this new power often
+relies on underlying device
+
+00:00:38.620 --> 00:00:41.140
+capabilities.
+
+00:00:41.140 --> 00:00:42.820
+The web is a sandbox
+that's designed
+
+00:00:42.820 --> 00:00:45.070
+to let users safely
+run untrusted code
+
+00:00:45.070 --> 00:00:46.210
+on their computer.
+
+00:00:46.210 --> 00:00:49.090
+Enabling users to quickly and
+safely use websites and web
+
+00:00:49.090 --> 00:00:52.120
+apps from untrusted sources
+with a tap of a finger
+
+00:00:52.120 --> 00:00:54.170
+or click of a mouse
+in the browser
+
+00:00:54.170 --> 00:00:56.470
+and without downloading
+and installing software
+
+00:00:56.470 --> 00:00:58.390
+is one of the web superpowers.
+
+00:00:58.390 --> 00:01:01.312
+The w3c developed a set of
+ethical principles for the web,
+
+00:01:01.312 --> 00:01:03.520
+and there's two that especially
+apply to powerful web
+
+00:01:03.520 --> 00:01:06.160
+capabilities and permissions.
+
+00:01:06.160 --> 00:01:08.500
+First, the principle
+that security and privacy
+
+00:01:08.500 --> 00:01:11.770
+are essential, and second,
+that the web must enhance
+
+00:01:11.770 --> 00:01:14.108
+a user's control and power.
+
+00:01:14.108 --> 00:01:16.150
+It's tricky to balance
+the trade-off between user
+
+00:01:16.150 --> 00:01:17.980
+empowerment and safety.
+
+00:01:17.980 --> 00:01:19.972
+Access must be controlled
+from the web sandbox
+
+00:01:19.972 --> 00:01:22.180
+to any feature that could
+be used to violate the user
+
+00:01:22.180 --> 00:01:23.620
+security and privacy.
+
+00:01:23.620 --> 00:01:26.320
+But browsers must give
+users control and power
+
+00:01:26.320 --> 00:01:29.080
+to allow access when it's
+safe to do so and in ways
+
+00:01:29.080 --> 00:01:31.090
+that facilitate their goals.
+
+00:01:31.090 --> 00:01:33.100
+Many advanced web
+capabilities are effectively
+
+00:01:33.100 --> 00:01:36.580
+letting users open up gateways
+in and out of the sandbox.
+
+00:01:36.580 --> 00:01:39.130
+To adhere to the w3c
+principles, browsers
+
+00:01:39.130 --> 00:01:41.358
+need to err on the
+side of user safety.
+
+00:01:41.358 --> 00:01:43.150
+But browsers can't know
+what a web app will
+
+00:01:43.150 --> 00:01:45.220
+want to do with a
+given permission,
+
+00:01:45.220 --> 00:01:50.560
+so browser UI for permissions
+is context free by necessity.
+
+00:01:50.560 --> 00:01:52.720
+Web developers need to
+help users understand
+
+00:01:52.720 --> 00:01:55.190
+what access their
+application is requesting
+
+00:01:55.190 --> 00:01:56.770
+and what it will
+be used for to help
+
+00:01:56.770 --> 00:02:00.140
+users make empowered decisions.
+
+00:02:00.140 --> 00:02:03.010
+First, only ask for
+permission you really need.
+
+00:02:03.010 --> 00:02:06.290
+Trust and fluency are everything
+in the modern digital world.
+
+00:02:06.290 --> 00:02:09.430
+If a user doesn't understand why
+you're asking for permission,
+
+00:02:09.430 --> 00:02:11.140
+you've risked your
+trust with that user.
+
+00:02:11.140 --> 00:02:13.300
+Worse, you may have
+interrupted their workflow
+
+00:02:13.300 --> 00:02:15.820
+with a prompt, increasing
+their cognitive load,
+
+00:02:15.820 --> 00:02:18.610
+distraction, and the chances
+that they won't get value out
+
+00:02:18.610 --> 00:02:20.650
+of your offering.
+
+00:02:20.650 --> 00:02:23.350
+Second, be clear and
+specific about what you need
+
+00:02:23.350 --> 00:02:25.720
+and why in advance of prompting.
+
+00:02:25.720 --> 00:02:28.030
+Don't assume that your users
+know what your brand is
+
+00:02:28.030 --> 00:02:29.680
+or what your app does.
+
+00:02:29.680 --> 00:02:31.570
+Explain to them
+clearly, or make sure
+
+00:02:31.570 --> 00:02:34.870
+the usage is fully aligned
+to the user's gesture.
+
+00:02:34.870 --> 00:02:37.570
+Third, prompt at a
+contextually relevant moment
+
+00:02:37.570 --> 00:02:38.800
+in the user's journey.
+
+00:02:38.800 --> 00:02:41.020
+Don't ask for
+permissions upfront.
+
+00:02:41.020 --> 00:02:43.210
+Fourth, degrade gracefully.
+
+00:02:43.210 --> 00:02:45.520
+If a user ignores or
+blocks a permission,
+
+00:02:45.520 --> 00:02:47.920
+make sure your
+experience still works.
+
+00:02:47.920 --> 00:02:50.260
+Fifth, if a block or
+ignored permission
+
+00:02:50.260 --> 00:02:52.340
+is needed to use a
+feature of your app,
+
+00:02:52.340 --> 00:02:54.250
+make this obvious to
+your users, but don't
+
+00:02:54.250 --> 00:02:56.917
+get in the way of other features
+that don't need that permission
+
+00:02:56.917 --> 00:02:58.170
+to work.
+
+00:02:58.170 --> 00:03:00.670
+These principles will not only
+make your user's journey more
+
+00:03:00.670 --> 00:03:03.010
+pleasant, they'll contribute
+to better business metrics
+
+00:03:03.010 --> 00:03:04.100
+as well.
+
+00:03:04.100 --> 00:03:06.130
+Users hate being
+interrupted, and they hate
+
+00:03:06.130 --> 00:03:07.630
+getting broken experiences.
+
+00:03:07.630 --> 00:03:09.910
+Keeping this principles
+in mind in your app design
+
+00:03:09.910 --> 00:03:12.590
+makes for a better user journey.
+
+00:03:12.590 --> 00:03:14.230
+Let's do this by example.
+
+00:03:14.230 --> 00:03:17.890
+Don't ask the user if they want
+to allow push notifications as
+
+00:03:17.890 --> 00:03:19.900
+soon as they land
+on your website.
+
+00:03:19.900 --> 00:03:22.180
+In the future, Chrome will
+minify the push permission
+
+00:03:22.180 --> 00:03:24.970
+prompt for sites with very
+low push accept rates.
+
+00:03:24.970 --> 00:03:27.820
+You can already test this
+feature out in Chrome Canary
+
+00:03:27.820 --> 00:03:29.500
+by enabling the
+Quieter notification
+
+00:03:29.500 --> 00:03:31.490
+permission prompt flag.
+
+00:03:31.490 --> 00:03:34.480
+Please do prompt for
+notification permission
+
+00:03:34.480 --> 00:03:37.480
+when there is a clear benefit
+and a context to the user.
+
+00:03:41.670 --> 00:03:43.800
+Don't prompt for
+location permission
+
+00:03:43.800 --> 00:03:45.490
+without user context.
+
+00:03:45.490 --> 00:03:47.970
+For example, users
+may not know why
+
+00:03:47.970 --> 00:03:49.620
+they're being asked
+for their location
+
+00:03:49.620 --> 00:03:52.830
+if there's no map or location
+UI visible in the page,
+
+00:03:52.830 --> 00:03:54.480
+or if it's below the fold.
+
+00:03:54.480 --> 00:03:56.880
+Please do prompt
+location permission
+
+00:03:56.880 --> 00:03:58.710
+after an explicit user action.
+
+00:04:02.310 --> 00:04:05.160
+Please don't prompt for
+mic or camera access
+
+00:04:05.160 --> 00:04:07.110
+without explicitly
+indicating how it's
+
+00:04:07.110 --> 00:04:08.445
+going to be used in advance.
+
+00:04:14.730 --> 00:04:19.079
+Do make use of mic and video
+permissions where appropriate.
+
+00:04:19.079 --> 00:04:21.690
+Either explain the
+upcoming prompt in advance,
+
+00:04:21.690 --> 00:04:24.990
+or associate the permission
+prompt with obvious context
+
+00:04:24.990 --> 00:04:27.900
+such as following a user
+gesture to start a video or chat
+
+00:04:27.900 --> 00:04:28.920
+session.
+
+00:04:28.920 --> 00:04:32.130
+Please don't fail silently
+if a user ignored or blocked
+
+00:04:32.130 --> 00:04:34.560
+necessary access for a
+feature they're trying to use.
+
+00:04:39.910 --> 00:04:43.330
+But do explain why your feature
+won't work without access,
+
+00:04:43.330 --> 00:04:44.920
+and let your users
+know they'll need
+
+00:04:44.920 --> 00:04:47.320
+to enable access if they
+want to use that feature.
+
+00:04:51.440 --> 00:04:53.330
+To recap, these
+are the principles
+
+00:04:53.330 --> 00:04:55.070
+of good permissions request UX.
+
+00:04:55.070 --> 00:04:58.370
+First, only ask for
+access you really need.
+
+00:04:58.370 --> 00:05:01.040
+Second, be clear and specific.
+
+00:05:01.040 --> 00:05:04.010
+Third, prompt at a
+contextually relevant moment.
+
+00:05:04.010 --> 00:05:06.320
+Fourth, degrade gracefully.
+
+00:05:06.320 --> 00:05:09.620
+And fifth, when a blocked or
+ignored permission is needed,
+
+00:05:09.620 --> 00:05:12.380
+make that obvious.
+
+00:05:12.380 --> 00:05:13.807
+Thank you so much for listening.
+
+00:05:13.807 --> 00:05:15.390
+If you have any
+feedback or questions,
+
+00:05:15.390 --> 00:05:17.140
+please reach out to
+me on Twitter @b1tr0t.
+
+00:05:19.340 --> 00:05:22.390
+[MUSIC PLAYING]
+

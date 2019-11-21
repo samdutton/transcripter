@@ -29,7 +29,7 @@ const TRANSCRIPT_DIR = 'transcripts';
 const DEBOUNCE_DELAY = 300;
 const QUERY_INPUT_PLACEHOLDER = 'Search for a word or phrase';
 // TODO: Replace with real URL
-const SEARCH_QUERY_PAGE_LOCATION = `https://developer.chrome.com/devsummit/search?q=`;
+const SEARCH_QUERY_PAGE_LOCATION = `https://devsearch.me/search?q=`;
 const SEARCH_QUERY_PAGE_PATH = `/search?q=`;
 
 const searchIndex = new FlexSearch({
@@ -100,7 +100,7 @@ videoStickyCheckbox.onchange = (event) => {
   localStorage.videoSticky = event.target.checked;
 };
 
-// Get the YouTube API script.
+// Get the YouTube video player API script.
 const tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
 const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -143,15 +143,17 @@ function addCaptionSpanHandlers() {
   }
 }
 
+// Start polling (for focusing on the current caption).
 function startPolling() {
   pollingTimerId = setInterval(focusCaption, POLLING_INTERVAL);
 }
 
+// Stop polling (for focusing on the current caption).
 function stopPolling() {
   clearInterval(pollingTimerId);
 }
 
-// Set visual focus on the current caption.
+// Set focus on the caption for the current video time.
 function focusCaption() {
   const currentTime = player.getCurrentTime();
   if (currentSpan) {
@@ -296,11 +298,10 @@ function handleQueryParams() {
     doSearch(query);
   } else if (video) {
     const startTime = params.get('t') || '0';
-    const location = {
+    displayCaption({
       st: startTime,
       v: video,
-    };
-    displayCaption(location);
+    });
   }
 }
 
@@ -470,7 +471,8 @@ function addMatch(match) {
 
 
 // Display the appropriate video and caption when a user taps/clicks on a match
-// or opens a URL with a video and (optionally) a time parameter
+// or opens a URL with a video and (optionally) a time parameter.
+// Before loading the video, check if there's a transcript.
 function displayCaption(match) {
   // hide(creditElement);
   hide(infoElement);
@@ -478,6 +480,31 @@ function displayCaption(match) {
   hide(queryInfoElement);
   show(topSection);
   currentVideo = `${match.v}`;
+  const transcriptFilepath = `${TRANSCRIPT_DIR}/${match.v}.html`;
+  fetch(transcriptFilepath)
+    .then(async (response) => {
+      if (response.ok) {
+        const html = await response.text();
+        // OK to load video if there's a transcript for it.
+        loadVideo(match);
+        transcriptDiv.innerHTML = html;
+        addCaptionSpanHandlers();
+        // transcriptDiv.onmouseover = addWordSearch;
+        show(transcriptDiv);
+        // show(creditElement);
+        highlightCaption(match.st);
+      } else {
+        displayInfo(`There was a problem downloading the transcript for ` +
+          `ID <em>${match.v}</em>.<br><br>Is the video ID correct?`);
+      }
+    }).catch((error) => {
+      console.error(`Error or timeout fetching ${transcriptFilepath}: ${error}`);
+      displayInfo(`There was a problem downloading the transcript for ` +
+        `<em>${transcriptFilepath}.`);
+    });
+}
+
+function loadVideo(match) {
   if (iframe.src === '') {
     iframe.src = `https://www.youtube.com/embed/${match.v}?enablejsapi=1&html5=1` +
         `&start=${match.st}&autoplay=1&mute=1`;
@@ -500,25 +527,6 @@ function displayCaption(match) {
   }
 
   show(iframe);
-  const transcriptFilepath = `${TRANSCRIPT_DIR}/${match.v}.html`;
-  fetch(transcriptFilepath).then((response) => {
-    return response.text();
-  }).then((html) => {
-    transcriptDiv.innerHTML = html;
-    addCaptionSpanHandlers();
-    // transcriptDiv.onmouseover = addWordSearch;
-    show(transcriptDiv);
-    // show(creditElement);
-    highlightCaption(match.st);
-  }).catch((error) => {
-    console.error(`Error or timeout fetching ${transcriptFilepath}: ${error}`);
-    displayInfo(`There was a problem downloading the transcript for ` +
-      `<em>${transcriptFilepath}.</em><br><br>` +
-      'Check that you\'re online, or try refreshing the page.<br><br>' +
-      'You can download transcripts when you\'re online by selecting the ' +
-      '<strong>Download all</strong> checkboxes from ' +
-      '<strong>Search options</strong>.');
-  });
 }
 
 // Highlight a caption within a video, given a time.
@@ -530,14 +538,27 @@ function displayCaption(match) {
 // }
 
 // Highlight a caption, given a start time, and make sure it's visible.
+// Caption start times in transcripts are in seconds with three decimal places.
+// This function needs to make sense of times requested via tap/click on
+// search results as well as values from URLs.
 function highlightCaption(startTime) {
-  const captionSpan = document.querySelector(`span[data-start="${startTime}"]`);
-  captionSpan.classList.add('current');
-  ensureVisible(captionSpan);
-  // const start = captionSpan.getAttribute('data-start');
-  // player.seekTo(Math.round(start)); // used to need rounded time
-  // Will not work until user has manually initiated playback.
-  // player.play();
+  // Normal case: will work for exact matches (as when clicking search results)
+  // and for URLs where the time is in seconds and matches the integer part
+  // of a caption's start time.
+  const captionSpan = document.querySelector(`span[data-start^="${startTime}"]`);
+  // If found, i.e. no problem, then highlight the current caption.
+  if (captionSpan) {
+    captionSpan.classList.add('current');
+    ensureVisible(captionSpan);
+  } else if (startTime < 0 || startTime >= 86400) {
+    // If attempting to set a time that's negative or longer than one day.
+    highlightCaption(0);
+  } else if (!captionSpan && startTime > 1) {
+    // For example, when trying to set a startTime that doesn't correspond to
+    // the integer part of a caption span's data-start property.
+    // Just keep trying one second earlier. Hacky, but works well enough.
+    highlightCaption(startTime - 1);
+  }
 }
 
 // Highlight a caption

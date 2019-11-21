@@ -1,0 +1,363 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.228 --> 00:00:02.520
+RICHARD ACHEE: Hello, everyone,
+and thanks for joining.
+
+00:00:02.520 --> 00:00:04.562
+Today, we're going to
+learn about Progressive Web
+
+00:00:04.562 --> 00:00:06.395
+Apps, or PWAs for short.
+
+00:00:06.395 --> 00:00:09.120
+And we'll look at an example
+of a major health care solution
+
+00:00:09.120 --> 00:00:12.030
+provider that is building a
+progressive web app to overcome
+
+00:00:12.030 --> 00:00:14.160
+the challenges of
+moving to the cloud
+
+00:00:14.160 --> 00:00:17.110
+while meeting the needs
+of mobile workers.
+
+00:00:17.110 --> 00:00:18.690
+So I spend a lot
+of my time working
+
+00:00:18.690 --> 00:00:21.330
+with health care solution
+providers and their customers.
+
+00:00:21.330 --> 00:00:23.070
+Based on what we're
+seeing in the market,
+
+00:00:23.070 --> 00:00:25.620
+the benefits for health care
+systems to move to the cloud
+
+00:00:25.620 --> 00:00:26.430
+is clear.
+
+00:00:26.430 --> 00:00:28.530
+First, let's look
+at the patients.
+
+00:00:28.530 --> 00:00:30.870
+Based on a study by
+Accenture, the opportunity
+
+00:00:30.870 --> 00:00:34.080
+to improve the experience
+for digitally-savvy patients
+
+00:00:34.080 --> 00:00:36.930
+can boost margins by 50%.
+
+00:00:36.930 --> 00:00:40.350
+For clinicians, the shift to
+cloud apps and mobile devices
+
+00:00:40.350 --> 00:00:43.710
+can reduce paperwork by 60%
+and increase patient face time
+
+00:00:43.710 --> 00:00:47.730
+by 29%, helping to mitigate
+the risk of physician burnout
+
+00:00:47.730 --> 00:00:49.990
+while improving the
+quality of care.
+
+00:00:49.990 --> 00:00:52.650
+But moving to the cloud from
+traditional desktop apps
+
+00:00:52.650 --> 00:00:54.700
+has not been easy
+in health care.
+
+00:00:54.700 --> 00:00:57.210
+So for example, let's think
+about the day in the life
+
+00:00:57.210 --> 00:00:59.130
+of an emergency
+medical technician,
+
+00:00:59.130 --> 00:01:02.760
+or EMT, moving from
+helicopter to ambulance
+
+00:01:02.760 --> 00:01:06.990
+to hospital while updating
+vital patient information.
+
+00:01:06.990 --> 00:01:09.720
+To address the needs of mobile
+health workers while shifting
+
+00:01:09.720 --> 00:01:12.060
+mission-critical
+applications to the cloud,
+
+00:01:12.060 --> 00:01:15.240
+health care solution providers
+and IT leaders need a way
+
+00:01:15.240 --> 00:01:17.740
+to deal with a
+variety of issues--
+
+00:01:17.740 --> 00:01:21.150
+flaky networks, lots
+of mobile workers,
+
+00:01:21.150 --> 00:01:23.880
+clinicians using
+multiple form factors,
+
+00:01:23.880 --> 00:01:26.730
+ensuring the security and
+privacy of patient data
+
+00:01:26.730 --> 00:01:30.690
+while making it accessible
+anywhere and on any device,
+
+00:01:30.690 --> 00:01:33.840
+and making it feel like
+a native app experience.
+
+00:01:33.840 --> 00:01:35.460
+We're now seeing
+health care solution
+
+00:01:35.460 --> 00:01:38.100
+providers shift to
+progressive web apps
+
+00:01:38.100 --> 00:01:39.690
+to address these issues.
+
+00:01:39.690 --> 00:01:41.820
+But what do we mean by
+progressive web apps,
+
+00:01:41.820 --> 00:01:43.080
+and how can they help?
+
+00:01:43.080 --> 00:01:46.140
+Progressive web apps are
+just like any other web app.
+
+00:01:46.140 --> 00:01:48.450
+The key difference is
+that they have adopted
+
+00:01:48.450 --> 00:01:51.150
+progressive features,
+such as service workers
+
+00:01:51.150 --> 00:01:54.880
+to enable background
+processes and offline access,
+
+00:01:54.880 --> 00:01:57.870
+and a web app manifest
+to allow for the web app
+
+00:01:57.870 --> 00:01:59.820
+to be installed
+alongside other apps
+
+00:01:59.820 --> 00:02:03.560
+on a computer with the look
+and feel of a desktop app.
+
+00:02:03.560 --> 00:02:07.250
+Service workers ensure that
+PWAs are always up to date
+
+00:02:07.250 --> 00:02:10.580
+and can be accessed offline,
+mitigating flaky network
+
+00:02:10.580 --> 00:02:11.630
+issues.
+
+00:02:11.630 --> 00:02:14.330
+This feature increases
+reliability and speed
+
+00:02:14.330 --> 00:02:15.710
+for workers on the go.
+
+00:02:15.710 --> 00:02:18.890
+And with web app manifest,
+you can enable your web app
+
+00:02:18.890 --> 00:02:22.000
+to be installed just like
+any other desktop app.
+
+00:02:22.000 --> 00:02:25.070
+So with a few changes to
+your existing web app,
+
+00:02:25.070 --> 00:02:27.170
+you can bring the progressive
+web app experience
+
+00:02:27.170 --> 00:02:32.580
+to any OS and form factor,
+all with a single code base.
+
+00:02:32.580 --> 00:02:34.890
+So let's look at an example.
+
+00:02:34.890 --> 00:02:37.040
+One major health care
+solution provider
+
+00:02:37.040 --> 00:02:41.892
+decided, two years ago, to use
+Electron for their NextGen EHR.
+
+00:02:41.892 --> 00:02:43.850
+At the time, they felt
+Electron would give them
+
+00:02:43.850 --> 00:02:45.740
+increased control of
+the user experience
+
+00:02:45.740 --> 00:02:48.920
+and help them keep their
+product up to date.
+
+00:02:48.920 --> 00:02:52.223
+But since two years ago, the
+web has rapidly advanced.
+
+00:02:52.223 --> 00:02:54.140
+And they took another
+look at the capabilities
+
+00:02:54.140 --> 00:02:56.840
+of PWA and the advanced
+enterprise security
+
+00:02:56.840 --> 00:03:00.350
+and management features now
+available on Chrome browser.
+
+00:03:00.350 --> 00:03:02.660
+After doing the research,
+they came to the conclusion
+
+00:03:02.660 --> 00:03:04.520
+that with progressive
+web apps, they
+
+00:03:04.520 --> 00:03:06.440
+can realize the
+benefits they had hoped
+
+00:03:06.440 --> 00:03:10.690
+to achieve with Electron while
+greatly enhancing the security
+
+00:03:10.690 --> 00:03:13.260
+and portability of
+their application.
+
+00:03:13.260 --> 00:03:15.440
+So they decided to shelve
+their Electron plans
+
+00:03:15.440 --> 00:03:17.320
+and pivot to PWA.
+
+00:03:17.320 --> 00:03:19.400
+It provided the same
+benefits that they
+
+00:03:19.400 --> 00:03:21.410
+were trying to get from
+Electron while making
+
+00:03:21.410 --> 00:03:22.970
+it much easier to
+ensure their app
+
+00:03:22.970 --> 00:03:27.330
+is highly secure and
+accessible from any device.
+
+00:03:27.330 --> 00:03:28.940
+So what did we learn?
+
+00:03:28.940 --> 00:03:31.250
+Adopting progressive
+features in your web app
+
+00:03:31.250 --> 00:03:33.230
+creates a native-like
+experience.
+
+00:03:33.230 --> 00:03:34.700
+To start your
+journey, look at what
+
+00:03:34.700 --> 00:03:37.880
+you can do with service
+workers and web app manifest.
+
+00:03:37.880 --> 00:03:39.920
+Service workers for
+background processes
+
+00:03:39.920 --> 00:03:44.150
+and offline access, web app
+manifest for installability.
+
+00:03:44.150 --> 00:03:45.680
+With a little
+development effort,
+
+00:03:45.680 --> 00:03:47.450
+you can provide a
+native-like experience
+
+00:03:47.450 --> 00:03:53.120
+to any user on any device,
+all from a single code base.
+
+00:03:53.120 --> 00:03:54.387
+Thanks for watching.
+
+00:03:54.387 --> 00:03:55.970
+I've included links
+in the description
+
+00:03:55.970 --> 00:03:58.700
+for details on how to integrate
+any of these features.
+
+00:03:58.700 --> 00:03:59.990
+See you next time.
+
+00:03:59.990 --> 00:04:03.340
+[MUSIC PLAYING]
+

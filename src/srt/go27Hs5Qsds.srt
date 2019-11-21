@@ -1,0 +1,452 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:02.928
+[MUSIC PLAYING]
+
+00:00:06.978 --> 00:00:09.020
+SPEAKER 1: Here's a summary
+of how web install is
+
+00:00:09.020 --> 00:00:10.430
+different from bookmarks.
+
+00:00:10.430 --> 00:00:12.590
+Web install offers
+users access to web
+
+00:00:12.590 --> 00:00:14.060
+from familiar
+discovery and launch
+
+00:00:14.060 --> 00:00:15.320
+services for their device.
+
+00:00:15.320 --> 00:00:17.142
+So [INAUDIBLE],, this
+could be standalone.
+
+00:00:17.142 --> 00:00:19.100
+That means it can be
+separate from the browser.
+
+00:00:19.100 --> 00:00:21.850
+It also means that they can be
+integrated into the native task
+
+00:00:21.850 --> 00:00:22.550
+switcher.
+
+00:00:22.550 --> 00:00:24.620
+This can be a more
+familiar way for users
+
+00:00:24.620 --> 00:00:26.060
+to interact with
+apps, or it might
+
+00:00:26.060 --> 00:00:29.410
+be more suitable to certain
+types of tasks than tabs.
+
+00:00:29.410 --> 00:00:31.370
+Web install integrates
+the web apps
+
+00:00:31.370 --> 00:00:34.470
+with the device services
+that expect an installed app.
+
+00:00:34.470 --> 00:00:37.340
+The important thing to remember
+when you're asking a user
+
+00:00:37.340 --> 00:00:39.875
+to install PWA is that
+with an installed app,
+
+00:00:39.875 --> 00:00:41.300
+you're telling the
+user that it is
+
+00:00:41.300 --> 00:00:43.130
+an experience that is
+meant for the device
+
+00:00:43.130 --> 00:00:44.380
+that the user is using.
+
+00:00:44.380 --> 00:00:45.590
+And that means that
+you need to live up
+
+00:00:45.590 --> 00:00:47.173
+to those expectations
+what you design,
+
+00:00:47.173 --> 00:00:48.800
+you're going to
+have unhappy users.
+
+00:00:48.800 --> 00:00:51.170
+SPEAKER 2: But of course,
+who are these users?
+
+00:00:51.170 --> 00:00:53.535
+Who is going to benefit
+from this extra power?
+
+00:00:53.535 --> 00:00:55.910
+We're the first ones to admit
+that it won't be everybody.
+
+00:00:55.910 --> 00:00:58.760
+The power of the web has always
+been that it is ephemeral.
+
+00:00:58.760 --> 00:01:01.280
+Users can move seamlessly
+between experiences,
+
+00:01:01.280 --> 00:01:03.930
+and so you shouldn't expect
+all of your users to install.
+
+00:01:03.930 --> 00:01:06.530
+And toward that end, there is
+a bit of an install funnel.
+
+00:01:06.530 --> 00:01:10.400
+This is the same as native
+apps or e-commerce conversions.
+
+00:01:10.400 --> 00:01:12.775
+Most strategies for
+optimization apply here as well.
+
+00:01:12.775 --> 00:01:14.900
+You don't want to push the
+user to convert too soon
+
+00:01:14.900 --> 00:01:16.503
+or they'll leave
+your site running.
+
+00:01:16.503 --> 00:01:18.170
+You should only promote
+install to users
+
+00:01:18.170 --> 00:01:20.240
+who are frequent users,
+or who will actually
+
+00:01:20.240 --> 00:01:23.392
+benefit from your services.
+
+00:01:23.392 --> 00:01:25.600
+SPEAKER 3: The web is super
+powerful in its own right
+
+00:01:25.600 --> 00:01:26.470
+today.
+
+00:01:26.470 --> 00:01:28.600
+You can build a hyper
+local video chat app
+
+00:01:28.600 --> 00:01:32.050
+with WebRTC, geolocation
+and push messaging.
+
+00:01:32.050 --> 00:01:33.700
+You can make that app install.
+
+00:01:33.700 --> 00:01:35.710
+You can add video
+effects with Blossom.
+
+00:01:35.710 --> 00:01:37.780
+And you can even bring
+it into new realities
+
+00:01:37.780 --> 00:01:40.240
+with WebGL and WebVR.
+
+00:01:40.240 --> 00:01:42.820
+But there's still gaps in
+what we can solve with the web
+
+00:01:42.820 --> 00:01:44.170
+today.
+
+00:01:44.170 --> 00:01:46.810
+In the worst case, this
+means that developers are not
+
+00:01:46.810 --> 00:01:49.360
+building for the web at all,
+or they're relegating it
+
+00:01:49.360 --> 00:01:51.678
+to a second class experience.
+
+00:01:51.678 --> 00:01:53.470
+For those that do want
+to build for the web
+
+00:01:53.470 --> 00:01:56.050
+but need the
+capabilities of native,
+
+00:01:56.050 --> 00:01:59.260
+they're forced to bundle
+web apps in native wrappers.
+
+00:01:59.260 --> 00:02:01.270
+This often results in
+developers effectively
+
+00:02:01.270 --> 00:02:04.240
+shipping their own
+custom browsers to users,
+
+00:02:04.240 --> 00:02:06.310
+exploding the size
+of their web apps,
+
+00:02:06.310 --> 00:02:09.340
+and forcing them to take on
+the security and maintenance
+
+00:02:09.340 --> 00:02:11.590
+burden of both
+keeping the browser
+
+00:02:11.590 --> 00:02:13.870
+and their native
+wrapper up to date.
+
+00:02:13.870 --> 00:02:16.185
+Social apps on mobile
+devices have been hard,
+
+00:02:16.185 --> 00:02:18.310
+because they need to be
+tightly integrated in order
+
+00:02:18.310 --> 00:02:20.470
+to be loved by their users.
+
+00:02:20.470 --> 00:02:22.990
+Quinn thinks for
+themself, "our users
+
+00:02:22.990 --> 00:02:25.862
+want to start a journal entry
+from anywhere on their device,
+
+00:02:25.862 --> 00:02:27.820
+and they want to be able
+to share those entries
+
+00:02:27.820 --> 00:02:29.560
+to other social accounts.
+
+00:02:29.560 --> 00:02:32.360
+They also want to collaborate
+on entries with their friends,
+
+00:02:32.360 --> 00:02:35.260
+so they need to be able to
+invite them to do so easily."
+
+00:02:35.260 --> 00:02:37.390
+Until recently,
+these capabilities
+
+00:02:37.390 --> 00:02:39.730
+would seem to rule out
+building a web app.
+
+00:02:39.730 --> 00:02:42.280
+They just simply didn't exist.
+
+00:02:42.280 --> 00:02:45.400
+Both Web Share and the new Web
+Share Target V2 and Contacts
+
+00:02:45.400 --> 00:02:48.490
+APIs, that calculus
+has changed, and Quinn
+
+00:02:48.490 --> 00:02:51.575
+can build a progressive web
+app instead of a native app.
+
+00:02:51.575 --> 00:02:53.500
+Go try it yourself.
+
+00:02:53.500 --> 00:02:57.510
+On your Android device, go
+to fugu-journal.web.app,
+
+00:02:57.510 --> 00:03:00.790
+add it to your home screen, and
+try out everything you've seen,
+
+00:03:00.790 --> 00:03:04.900
+inviting friends, adding
+content, then sharing it out.
+
+00:03:04.900 --> 00:03:07.880
+While the Contacts API
+isn't fully launched yet,
+
+00:03:07.880 --> 00:03:10.282
+I've enabled an origin
+trial on Fugu Journal
+
+00:03:10.282 --> 00:03:12.490
+so you can see how it works
+without a special version
+
+00:03:12.490 --> 00:03:15.660
+of Chrome, or toggling
+any Chrome flags.
+
+00:03:15.660 --> 00:03:18.370
+And again, you can
+try this out yourself.
+
+00:03:18.370 --> 00:03:22.930
+On your computer, go to
+fugu-edit.web.app, install it,
+
+00:03:22.930 --> 00:03:25.840
+and try to open the files and
+folders and save them as you
+
+00:03:25.840 --> 00:03:26.920
+normally would.
+
+00:03:26.920 --> 00:03:30.040
+Go to webwewant.fyi
+to let us know
+
+00:03:30.040 --> 00:03:32.530
+what you'd like to see
+added to the web platform
+
+00:03:32.530 --> 00:03:36.510
+to help you bridge
+the native app gap.
+
+00:03:36.510 --> 00:03:38.950
+SPEAKER 4: The first feature
+that I want to talk about
+
+00:03:38.950 --> 00:03:40.730
+is WebAssembly threads.
+
+00:03:40.730 --> 00:03:43.960
+Threads are key part of
+practically all CPUs,
+
+00:03:43.960 --> 00:03:45.820
+and utilizing them
+fully and effectively
+
+00:03:45.820 --> 00:03:48.250
+has been one of the great
+challenges for the web
+
+00:03:48.250 --> 00:03:49.150
+until now.
+
+00:03:49.150 --> 00:03:52.750
+SIMD stands for single
+instruction multiple data.
+
+00:03:52.750 --> 00:03:55.600
+And while this may not be a term
+that most web developers are
+
+00:03:55.600 --> 00:03:58.000
+familiar with, it's
+an absolutely key part
+
+00:03:58.000 --> 00:04:00.220
+of modern CPU architectures.
+
+00:04:00.220 --> 00:04:03.280
+The Google Research team looked
+at a bunch of their models
+
+00:04:03.280 --> 00:04:07.060
+and found that, in general,
+SIMD offered a 3x improvement
+
+00:04:07.060 --> 00:04:08.682
+on overall speed.
+
+00:04:08.682 --> 00:04:11.140
+And our benchmarking backs up
+there's a visually noticeable
+
+00:04:11.140 --> 00:04:12.130
+difference.
+
+00:04:12.130 --> 00:04:14.500
+When using both threads
+and SIMD together,
+
+00:04:14.500 --> 00:04:19.125
+common tasks in OpenCV can
+be improved by around 15x.
+
+00:04:19.125 --> 00:04:20.500
+SPEAKER 5: We want
+to not only be
+
+00:04:20.500 --> 00:04:22.480
+able to start an
+asynchronous task,
+
+00:04:22.480 --> 00:04:24.720
+but also wait for
+you to finish, read
+
+00:04:24.720 --> 00:04:27.770
+the results back, and continue
+the execution afterwards.
+
+00:04:27.770 --> 00:04:29.260
+This is where Asyncify comes in.
+
+00:04:29.260 --> 00:04:31.120
+I won't go too much into
+implementation details here,
+
+00:04:31.120 --> 00:04:33.120
+but what it does is compose
+a WebAssembly module
+
+00:04:33.120 --> 00:04:35.560
+in such a way that you
+can suspend the execution,
+
+00:04:35.560 --> 00:04:37.720
+remember the state,
+and later resume
+
+00:04:37.720 --> 00:04:40.360
+from the exact same point
+when an asynchronous task has
+
+00:04:40.360 --> 00:04:41.410
+finished its execution.
+
+00:04:41.410 --> 00:04:44.460
+[MUSIC PLAYING]
+

@@ -1,0 +1,473 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.500 --> 00:00:01.480
+YI XU: Hello, everyone.
+
+00:00:01.480 --> 00:00:02.790
+My name is Yi.
+
+00:00:02.790 --> 00:00:06.020
+I'm here to talk about
+new futures in Canvas,
+
+00:00:06.020 --> 00:00:07.980
+OffscreenCanvas.
+
+00:00:07.980 --> 00:00:12.480
+To understand offscreenCanvas,
+let me first talk about Canvas.
+
+00:00:12.480 --> 00:00:16.560
+Canvas is a popular way of
+doing all kinds of graphics
+
+00:00:16.560 --> 00:00:21.060
+on the screen, and is an entry
+point to the world of WebGL.
+
+00:00:21.060 --> 00:00:24.240
+WebGL allows you,
+the web developers,
+
+00:00:24.240 --> 00:00:28.320
+to run their interactive 2D
+and 3D graphics on Chrome
+
+00:00:28.320 --> 00:00:31.260
+without using any
+[? applied inks. ?]
+
+00:00:31.260 --> 00:00:35.610
+However, [? all ?] Canvas
+logic, rendering computations,
+
+00:00:35.610 --> 00:00:39.180
+user interactions,
+and much more are all
+
+00:00:39.180 --> 00:00:41.610
+happening in the main thread.
+
+00:00:41.610 --> 00:00:45.700
+When the main thread busy
+with critical computations,
+
+00:00:45.700 --> 00:00:50.010
+the Canvas becomes very
+junky and slow to use.
+
+00:00:50.010 --> 00:00:52.350
+It is a big drawback for Canvas.
+
+00:00:52.350 --> 00:00:54.810
+How can we improve performance?
+
+00:00:54.810 --> 00:00:58.440
+Fortunately, offscreenCanvas
+is a solution.
+
+00:00:58.440 --> 00:01:01.950
+As the name may
+suggest, it allows users
+
+00:01:01.950 --> 00:01:04.379
+to run tasks in the background.
+
+00:01:04.379 --> 00:01:07.110
+That is, it can be
+detached from DOM
+
+00:01:07.110 --> 00:01:11.090
+and move Canvas logic and
+computations to a Web Worker.
+
+00:01:11.090 --> 00:01:13.810
+Web Worker is a web
+version of thread.
+
+00:01:13.810 --> 00:01:18.450
+So, in other words, we move
+all those Canvas computations
+
+00:01:18.450 --> 00:01:19.800
+to a different thread.
+
+00:01:19.800 --> 00:01:21.660
+And the Canvas like this--
+
+00:01:21.660 --> 00:01:24.060
+canvas logics and
+computations-- can
+
+00:01:24.060 --> 00:01:26.820
+be done in parallel
+with computations
+
+00:01:26.820 --> 00:01:27.930
+on the main thread.
+
+00:01:27.930 --> 00:01:31.680
+And by moving these
+computations away,
+
+00:01:31.680 --> 00:01:34.860
+main thread will have
+more room for rendering
+
+00:01:34.860 --> 00:01:36.720
+logic and other things.
+
+00:01:36.720 --> 00:01:39.180
+One way to create
+offscreenCanvas
+
+00:01:39.180 --> 00:01:42.200
+is by calling transfer
+control to offscreen.
+
+00:01:42.200 --> 00:01:47.070
+It mirrors the regular
+Canvas to a offscreenCanvas.
+
+00:01:47.070 --> 00:01:49.980
+So what happened in the
+offscreenCanvas will
+
+00:01:49.980 --> 00:01:54.300
+be rendered automatically to
+the source Canvas, the one that
+
+00:01:54.300 --> 00:01:56.070
+is shown on screen.
+
+00:01:56.070 --> 00:01:59.940
+I want to highlight that
+image bitmap rendering context
+
+00:01:59.940 --> 00:02:02.730
+is also available
+for offscreenCanvas.
+
+00:02:02.730 --> 00:02:06.125
+It can be accessed
+via offscreenCanvas.
+
+00:02:06.125 --> 00:02:11.100
+getContext("bitmaprenderer"),
+as shown in this slide.
+
+00:02:11.100 --> 00:02:13.920
+We can then load
+bitmap to the context
+
+00:02:13.920 --> 00:02:17.880
+by calling transfer
+from image bitmap.
+
+00:02:17.880 --> 00:02:21.280
+Image bitmap can
+be from any source,
+
+00:02:21.280 --> 00:02:25.800
+including other Canvas, or
+even other offscreenCanvas.
+
+00:02:25.800 --> 00:02:30.360
+The advantage is that the image
+bitmap, it's just a texture.
+
+00:02:30.360 --> 00:02:34.620
+And it can be draw
+without any undo latency.
+
+00:02:34.620 --> 00:02:37.350
+Without further ado,
+here is an example
+
+00:02:37.350 --> 00:02:40.140
+of performance
+differences between Canvas
+
+00:02:40.140 --> 00:02:41.880
+and OffscreenCanvas.
+
+00:02:41.880 --> 00:02:45.090
+In both case, the main
+thread is very busy.
+
+00:02:45.090 --> 00:02:48.360
+On the left, with
+the busy main thread,
+
+00:02:48.360 --> 00:02:52.080
+it doesn't have time to do any
+computations for the Canvas.
+
+00:02:52.080 --> 00:02:54.990
+The animation is
+very junky and slow.
+
+00:02:54.990 --> 00:02:58.070
+On the right, since the
+computation for Canvas
+
+00:02:58.070 --> 00:03:01.240
+are sent to different
+thread, the busy main thread
+
+00:03:01.240 --> 00:03:03.870
+doesn't effect Canvas
+performance at all.
+
+00:03:03.870 --> 00:03:06.570
+The animation is very smooth.
+
+00:03:06.570 --> 00:03:09.130
+Coding offscreenCanvas
+is very easy.
+
+00:03:09.130 --> 00:03:12.540
+You can simply create
+up worker.js file.
+
+00:03:12.540 --> 00:03:16.450
+Then, you can create this
+worker in your JavaScript
+
+00:03:16.450 --> 00:03:17.870
+and start to use it.
+
+00:03:17.870 --> 00:03:21.300
+Here, I'm showing an
+example of implementation
+
+00:03:21.300 --> 00:03:23.040
+of such a worker.
+
+00:03:23.040 --> 00:03:27.220
+As it is a new future, you may
+wonder if it is safe to use.
+
+00:03:27.220 --> 00:03:30.210
+In fact, we're using
+offscreenCanvas in production
+
+00:03:30.210 --> 00:03:31.260
+today.
+
+00:03:31.260 --> 00:03:34.710
+Before this talk, I looked it
+into Chrome [? futures ?] test
+
+00:03:34.710 --> 00:03:37.350
+to get some exact
+data on the usage.
+
+00:03:37.350 --> 00:03:41.460
+It is used in almost
+32% of all pages loaded
+
+00:03:41.460 --> 00:03:45.140
+by Chrome across all
+channels and platforms.
+
+00:03:45.140 --> 00:03:48.450
+80% of Chrome users
+interact with a page that
+
+00:03:48.450 --> 00:03:51.270
+contains offscreenCanvas daily.
+
+00:03:51.270 --> 00:03:54.180
+I think most of you who
+are listening to my talk
+
+00:03:54.180 --> 00:03:56.610
+have used it today already.
+
+00:03:56.610 --> 00:04:01.590
+It is a top 200 CSS properties
+among the 3,000 properties
+
+00:04:01.590 --> 00:04:02.670
+available.
+
+00:04:02.670 --> 00:04:06.900
+And I hope it will get even
+more popular after this talk.
+
+00:04:06.900 --> 00:04:09.770
+Moving Canvas computations
+to a different thread
+
+00:04:09.770 --> 00:04:13.320
+is not the only advantage
+of offscreenCanvas.
+
+00:04:13.320 --> 00:04:16.380
+Even when it's running
+on the main thread,
+
+00:04:16.380 --> 00:04:18.779
+it's still faster than Canvas.
+
+00:04:18.779 --> 00:04:22.540
+We have run a micro
+benchmark on creating Canvas,
+
+00:04:22.540 --> 00:04:25.290
+then get its context.
+
+00:04:25.290 --> 00:04:28.380
+Performing these operations
+on offscreenCanvas
+
+00:04:28.380 --> 00:04:32.820
+is 50% faster than
+performing them on a Canvas.
+
+00:04:32.820 --> 00:04:36.840
+I'm showing one particular round
+of many rounds we have done.
+
+00:04:36.840 --> 00:04:41.640
+It has a particular advantage
+on text-related operations.
+
+00:04:41.640 --> 00:04:46.420
+It is consistently
+15% to 45% faster.
+
+00:04:46.420 --> 00:04:50.200
+Speaking of text, it
+leads to our next topic,
+
+00:04:50.200 --> 00:04:52.350
+what's new in text metrics?
+
+00:04:52.350 --> 00:04:54.890
+We've added actualBoundingBox
+measurements
+
+00:04:54.890 --> 00:04:57.000
+in major text functions.
+
+00:04:57.000 --> 00:04:59.642
+The actualBoundingBox
+measurements--
+
+00:04:59.642 --> 00:05:04.080
+it measures the smallest
+rect that can bend the text.
+
+00:05:04.080 --> 00:05:07.660
+It ignores the space at the
+beginning and at the end.
+
+00:05:07.660 --> 00:05:09.780
+In this example
+in the slide, I'm
+
+00:05:09.780 --> 00:05:13.930
+measuring space space
+ABC space space.
+
+00:05:13.930 --> 00:05:17.500
+The only measurement we
+support before in measured text
+
+00:05:17.500 --> 00:05:20.980
+is width, which includes
+a lens of space.
+
+00:05:20.980 --> 00:05:26.290
+And the actual BoundingBox will
+only contain the size of ABC.
+
+00:05:26.290 --> 00:05:30.340
+In fact, actual BoundingBox
+left will be a negative value
+
+00:05:30.340 --> 00:05:32.050
+due to the indentation.
+
+00:05:32.050 --> 00:05:34.060
+I will also take
+this opportunity
+
+00:05:34.060 --> 00:05:37.660
+to share with you what we
+are working on right now.
+
+00:05:37.660 --> 00:05:41.080
+Batch drawImage-- this is
+where multiple image can
+
+00:05:41.080 --> 00:05:43.780
+be draw using a single API cut.
+
+00:05:43.780 --> 00:05:46.420
+Recorded pictures--
+this is where
+
+00:05:46.420 --> 00:05:49.030
+you can create a
+record object that
+
+00:05:49.030 --> 00:05:52.300
+receive all the commands
+from a Canvas 2D
+
+00:05:52.300 --> 00:05:54.790
+and can be replayed
+multiple times.
+
+00:05:54.790 --> 00:05:56.920
+With these two
+features, we are hoping
+
+00:05:56.920 --> 00:06:00.820
+to get some good performance
+improvement in Canvas.
+
+00:06:00.820 --> 00:06:05.590
+There are few new
+primitives, such as RoundRect
+
+00:06:05.590 --> 00:06:07.780
+and oval primitives.
+
+00:06:07.780 --> 00:06:11.200
+We will also improve all of
+our support to text and color.
+
+00:06:13.950 --> 00:06:16.830
+Thank you very much for
+listening to my talk.
+
+00:06:16.830 --> 00:06:19.110
+Of course, I did not
+code everything I
+
+00:06:19.110 --> 00:06:21.240
+presented today, not even half.
+
+00:06:21.240 --> 00:06:24.850
+This was a joint effort
+with all my teammates.
+
+00:06:24.850 --> 00:06:27.000
+They are here on this slide.
+
+00:06:27.000 --> 00:06:29.518
+I want to give a special
+thanks to Fernando,
+
+00:06:29.518 --> 00:06:30.810
+our tech lead for this project.
+
+00:06:30.810 --> 00:06:34.160
+[MUSIC PLAYING]
+
