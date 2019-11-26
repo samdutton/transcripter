@@ -1,0 +1,451 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:01.875
+SOC SIENG: There are
+many ways to add support
+
+00:00:01.875 --> 00:00:03.460
+for payments on your website.
+
+00:00:03.460 --> 00:00:06.550
+But which one is right for
+you and your customers?
+
+00:00:06.550 --> 00:00:07.440
+My name is Soc.
+
+00:00:07.440 --> 00:00:10.717
+And I am a developer
+advocate with Google Pay.
+
+00:00:10.717 --> 00:00:12.300
+Today, I want to
+provide some guidance
+
+00:00:12.300 --> 00:00:15.210
+on how you, as developers, can
+enhance the online checkout
+
+00:00:15.210 --> 00:00:17.610
+experience for your customers.
+
+00:00:17.610 --> 00:00:19.290
+Specifically, I'll
+walk you through how
+
+00:00:19.290 --> 00:00:21.420
+to make payments
+simple and more secure
+
+00:00:21.420 --> 00:00:24.060
+with autofill and Google Pay.
+
+00:00:24.060 --> 00:00:26.700
+In many cases, people
+make online purchases
+
+00:00:26.700 --> 00:00:29.400
+with a credit or debit card.
+
+00:00:29.400 --> 00:00:31.080
+Providing this
+information is often
+
+00:00:31.080 --> 00:00:33.010
+accompanied with requests
+for other details,
+
+00:00:33.010 --> 00:00:35.740
+like a user's shipping
+or billing address.
+
+00:00:35.740 --> 00:00:38.160
+Autofill simplifies this
+experience for users
+
+00:00:38.160 --> 00:00:39.960
+by making their
+payment details readily
+
+00:00:39.960 --> 00:00:42.660
+available during
+the checkout flow.
+
+00:00:42.660 --> 00:00:45.300
+Autofill does most of
+the work for the user.
+
+00:00:45.300 --> 00:00:48.270
+And no additional effort is
+required by website operators
+
+00:00:48.270 --> 00:00:49.850
+to take advantage of it.
+
+00:00:49.850 --> 00:00:52.343
+Autofill works by providing
+a list of suggested payment
+
+00:00:52.343 --> 00:00:53.760
+and contact details
+that have been
+
+00:00:53.760 --> 00:00:55.980
+saved to the user's browser.
+
+00:00:55.980 --> 00:00:57.780
+If the user is
+signed into Chrome,
+
+00:00:57.780 --> 00:01:00.090
+Chrome autofill extends
+this by asking the user
+
+00:01:00.090 --> 00:01:03.030
+to save these details
+to their Google account.
+
+00:01:03.030 --> 00:01:05.670
+This action makes the user's
+payment and contact details
+
+00:01:05.670 --> 00:01:09.400
+available across any of
+the Chrome-enabled devices.
+
+00:01:09.400 --> 00:01:11.430
+Checkout forms can
+vary significantly
+
+00:01:11.430 --> 00:01:13.320
+from one website to another.
+
+00:01:13.320 --> 00:01:14.900
+To account for this,
+Chrome autofill
+
+00:01:14.900 --> 00:01:17.790
+uses heuristics to identify
+payment and contact detail
+
+00:01:17.790 --> 00:01:18.900
+fields.
+
+00:01:18.900 --> 00:01:20.940
+To improve the
+effectiveness of autofill
+
+00:01:20.940 --> 00:01:22.440
+and to ensure that
+your users have
+
+00:01:22.440 --> 00:01:25.980
+a great autofill experience,
+make sure your form fields are
+
+00:01:25.980 --> 00:01:27.720
+tagged with their
+respective attributes
+
+00:01:27.720 --> 00:01:32.280
+for credit card fields
+and address fields.
+
+00:01:32.280 --> 00:01:34.770
+Links to autofill resources
+can be found in the video's
+
+00:01:34.770 --> 00:01:36.120
+description below.
+
+00:01:36.120 --> 00:01:38.610
+With Google Pay, you can
+make checkout even easier
+
+00:01:38.610 --> 00:01:41.100
+for customers by eliminating
+payment and shipping
+
+00:01:41.100 --> 00:01:42.990
+forms altogether.
+
+00:01:42.990 --> 00:01:45.565
+Google Pay provides users with
+a simple and secure method
+
+00:01:45.565 --> 00:01:47.190
+for entering their
+payment and shipping
+
+00:01:47.190 --> 00:01:49.230
+information on websites.
+
+00:01:49.230 --> 00:01:51.900
+Plus, it works across
+all modern browsers.
+
+00:01:51.900 --> 00:01:53.850
+Hundreds of millions
+of Google users
+
+00:01:53.850 --> 00:01:57.240
+already have their payment
+details saved to Google Pay.
+
+00:01:57.240 --> 00:02:00.130
+That means purchases
+are just a click away.
+
+00:02:00.130 --> 00:02:02.610
+They don't even
+need to enter a CVC.
+
+00:02:02.610 --> 00:02:05.490
+In addition to accepting credit
+card and debit card payments,
+
+00:02:05.490 --> 00:02:08.550
+Google Pay offers additional
+payment methods like PayPal.
+
+00:02:08.550 --> 00:02:11.460
+Once configured, using
+PayPal as a payment method
+
+00:02:11.460 --> 00:02:13.020
+with Google Pay
+no longer requires
+
+00:02:13.020 --> 00:02:14.670
+the user to re-enter
+their PayPal
+
+00:02:14.670 --> 00:02:16.740
+password when making a payment.
+
+00:02:16.740 --> 00:02:20.347
+The security and privacy of user
+data is paramount to Google.
+
+00:02:20.347 --> 00:02:21.930
+And this is no
+different when it comes
+
+00:02:21.930 --> 00:02:23.910
+to payment data in Google Pay.
+
+00:02:23.910 --> 00:02:25.380
+Payment credentials
+are encrypted
+
+00:02:25.380 --> 00:02:27.480
+for secure payment processing.
+
+00:02:27.480 --> 00:02:29.880
+Integrating the Google Pay
+button into your website
+
+00:02:29.880 --> 00:02:33.210
+is easy, and testing it out
+requires very little effort.
+
+00:02:33.210 --> 00:02:35.910
+First, include the Google
+Pay JavaScript file,
+
+00:02:35.910 --> 00:02:40.310
+check if the user is ready to
+pay, add the Google Pay button,
+
+00:02:40.310 --> 00:02:43.890
+request payment data, and
+finally, extract the payment
+
+00:02:43.890 --> 00:02:45.840
+token for processing.
+
+00:02:45.840 --> 00:02:49.320
+A detailed step-by-step guide is
+available as a code lab linked
+
+00:02:49.320 --> 00:02:50.900
+in the description below.
+
+00:02:50.900 --> 00:02:53.100
+To speed up and simplify
+the purchasing experience
+
+00:02:53.100 --> 00:02:55.620
+for your customers, add
+the Google Pay button
+
+00:02:55.620 --> 00:03:00.120
+to checkout floor, shopping
+cart, and product pages.
+
+00:03:00.120 --> 00:03:02.130
+Google Pay is always
+making improvements
+
+00:03:02.130 --> 00:03:04.470
+for both our
+merchants and users.
+
+00:03:04.470 --> 00:03:07.170
+So keep an eye out for new
+features, like promo codes
+
+00:03:07.170 --> 00:03:08.280
+and offers.
+
+00:03:08.280 --> 00:03:10.320
+We've also been experimenting
+with enhancements
+
+00:03:10.320 --> 00:03:11.880
+to the Google Pay button.
+
+00:03:11.880 --> 00:03:14.400
+And early results have
+shown increased usage rates
+
+00:03:14.400 --> 00:03:16.320
+amongst users.
+
+00:03:16.320 --> 00:03:19.142
+If you're interested in early
+access to these new features,
+
+00:03:19.142 --> 00:03:21.600
+please let us know by following
+the link in the description
+
+00:03:21.600 --> 00:03:23.190
+below.
+
+00:03:23.190 --> 00:03:25.480
+What about the
+Payment Request API?
+
+00:03:25.480 --> 00:03:28.260
+The Payment Request
+API is a W3C standard
+
+00:03:28.260 --> 00:03:30.420
+that helps users share
+their payment and contact
+
+00:03:30.420 --> 00:03:33.660
+details with websites
+using web or native payment
+
+00:03:33.660 --> 00:03:36.120
+apps, like Google Pay.
+
+00:03:36.120 --> 00:03:37.980
+If you are a payment
+app provider,
+
+00:03:37.980 --> 00:03:41.010
+we encourage you to explore the
+Payment Request APIs as a way
+
+00:03:41.010 --> 00:03:45.690
+to offer your users an enhanced
+experience on Chrome browsers.
+
+00:03:45.690 --> 00:03:48.090
+Payment app creators can
+use the web payment standard
+
+00:03:48.090 --> 00:03:51.240
+to deliver a better
+user experience.
+
+00:03:51.240 --> 00:03:52.830
+The Google Pay
+JavaScript Library
+
+00:03:52.830 --> 00:03:54.450
+leverages the
+Payment Request API
+
+00:03:54.450 --> 00:03:57.410
+to provide a native experience
+on Chrome for Android
+
+00:03:57.410 --> 00:04:00.900
+with a native experience rolling
+out soon on Chrome for desktop.
+
+00:04:00.900 --> 00:04:02.880
+At the moment, the
+Payment Request API
+
+00:04:02.880 --> 00:04:05.640
+is not consistently
+supported across all browsers
+
+00:04:05.640 --> 00:04:09.360
+and requires developers to
+include browser specific logic.
+
+00:04:09.360 --> 00:04:11.160
+Therefore, to accept
+Google Pay, we
+
+00:04:11.160 --> 00:04:13.470
+recommend that developers
+integrate with the Google Pay
+
+00:04:13.470 --> 00:04:15.450
+JavaScript Library directly.
+
+00:04:15.450 --> 00:04:17.700
+Google Pay can simplify
+your customer's purchasing
+
+00:04:17.700 --> 00:04:21.390
+experience by eliminating the
+need to interact with a payment
+
+00:04:21.390 --> 00:04:22.560
+form completely.
+
+00:04:22.560 --> 00:04:25.800
+In addition, it provides
+a simple browser agnostic
+
+00:04:25.800 --> 00:04:29.010
+API for developers, a
+simple and secure payment
+
+00:04:29.010 --> 00:04:32.520
+experience for users on
+both mobile and desktop,
+
+00:04:32.520 --> 00:04:36.480
+support for additional forms
+of payment, and, in the future,
+
+00:04:36.480 --> 00:04:39.750
+access to features like
+promo code and offers.
+
+00:04:39.750 --> 00:04:41.970
+When used together,
+autofill and Google Pay
+
+00:04:41.970 --> 00:04:46.410
+can help make payments
+simple and secure.
+
+00:04:46.410 --> 00:04:48.840
+Thanks for watching
+and see you next time.
+
+00:04:48.840 --> 00:04:52.790
+[MUSIC PLAYING]
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<!--
+Copyright 2018 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="//google.com">
+  <meta name="description" content="Chrome Dev Summit">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cy5aXqx62_E</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+
+<iframe id="youtube" src="https://www.youtube.com/embed/cy5aXqx62_E?enablejsapi=1"></iframe>
+
+<div id="container">
+
+<div id="options">
+  <div id="google-translate"></div>
+  <div>
+    <input type="checkbox" id="videoSticky" checked>
+    <label for="videoSticky">Video position sticky</label>
+  </div>
+  <div>
+    <input type="checkbox" id="captionScroll" checked>
+    <label for="captionScroll">Keep current caption visible</label>
+  </div>
+</div>
+
+<section>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="0.5" data-end="1.11"><span class="speaker">Tharu</span>: Hi.</span> <span data-start="1.11" data-end="3.15">My name is Tharu, and I'm a Product Manager</span> <span data-start="3.15" data-end="4.41">on the Chrome commercial team.</span> </p>
+</section>
+
+<section>
+<p><span data-start="4.41" data-end="6"><span class="speaker">Jason Wong</span>: And my name is Jason.</span> <span data-start="6" data-end="8.835">I'm a Program Manager on the Chrome ecosystem team.</span> </p>
+</section>
+
+<section>
+<p><span data-start="8.835" data-end="11.01"><span class="speaker">Tharu</span>: As a developer building products</span> <span data-start="11.01" data-end="13.3">for Chrome OS and Chrome browser,</span> <span data-start="13.3" data-end="15.69">you may wonder how best to support your users</span> <span data-start="15.69" data-end="19.47">and customers while maintaining development velocity.</span> <span data-start="19.47" data-end="21.15">This can especially be a challenge</span> <span data-start="21.15" data-end="23.46">in enterprise environments where downtime</span> <span data-start="23.46" data-end="26.34">can have a severe impact on the productivity of thousands</span> <span data-start="26.34" data-end="27.615">of employees.</span> </p>
+</section>
+
+<section>
+<p><span data-start="27.615" data-end="29.97"><span class="speaker">Jason Wong</span>: We've put together some best practices</span> <span data-start="29.97" data-end="33.06">from working closely with enterprise developers targeting</span> <span data-start="33.06" data-end="34.08">Chrome.</span> <span data-start="34.08" data-end="36.96">In this talk, we'll be covering application testing.</span> <span data-start="36.96" data-end="39.12">By following some simple testing guidelines,</span> <span data-start="39.12" data-end="40.77">you can ensure that your applications</span> <span data-start="40.77" data-end="43.61">will be stable and operate with high performance.</span> </p>
+</section>
+
+<section>
+<p><span data-start="43.61" data-end="47.76"><span class="speaker">Tharu</span>: First, let's talk about what to test.</span> <span data-start="47.76" data-end="50.82">When developing your tests, be sure to test your critical user</span> <span data-start="50.82" data-end="51.87">journeys.</span> <span data-start="51.87" data-end="53.61">Your test cases should be representative</span> <span data-start="53.61" data-end="56.76">of the workflows people use in your application.</span> <span data-start="56.76" data-end="59.91">Second, you should be sure to test against multiple operating</span> <span data-start="59.91" data-end="60.99">systems.</span> <span data-start="60.99" data-end="65.489">Chrome Browser is available on Windows, Mac, Linux, Android,</span> <span data-start="65.489" data-end="67.77">iOS, and Chrome OS.</span> <span data-start="67.77" data-end="70.26">Look at what operating systems your users are on</span> <span data-start="70.26" data-end="73.35">and be sure to test those versions of Chrome.</span> <span data-start="73.35" data-end="75.87">In particular, Chrome for iOS is built</span> <span data-start="75.87" data-end="78.24">on top of WebKit rather than Blink,</span> <span data-start="78.24" data-end="82.42">so there may be unexpected feature gaps or unique issues.</span> </p>
+<p><span data-start="82.42" data-end="85.45">If you have a strong user presence using Chrome for iOS,</span> <span data-start="85.45" data-end="88.83">be sure to test that platform separately.</span> <span data-start="88.83" data-end="92.49">Finally, we recommend that you test against multiple channels</span> <span data-start="92.49" data-end="94.02">of Chrome.</span> <span data-start="94.02" data-end="96.64">You can install and run the stable beta and dev</span> <span data-start="96.64" data-end="98.94">versions of Chrome simultaneously</span> <span data-start="98.94" data-end="102.03">on Windows, Linux, and Android.</span> <span data-start="102.03" data-end="104.73">Please note that side by side Chrome installation</span> <span data-start="104.73" data-end="108.78">is not currently available on Mac OS, iOS, or Chrome OS.</span> <span data-start="108.78" data-end="110.79">To test on these platforms, you should use</span> <span data-start="110.79" data-end="114.09">one machine for each channel.</span> <span data-start="114.09" data-end="116.13">There are four Chrome channels.</span> <span data-start="116.13" data-end="118.17">The stable channel —  you're probably</span> <span data-start="118.17" data-end="121.06">already testing against the stable channel today.</span> </p>
+<p><span data-start="121.06" data-end="123.06">This is the channel that the majority of users</span> <span data-start="123.06" data-end="125.68">are on, including enterprise users.</span> <span data-start="125.68" data-end="128.43">So if you do find any bugs on the stable channel,</span> <span data-start="128.43" data-end="130.44">they are likely to already be affecting</span> <span data-start="130.44" data-end="132.383">your current customers.</span> <span data-start="132.383" data-end="134.55">This is why we recommend testing on the beta channel</span> <span data-start="134.55" data-end="138.51">so that you can mitigate potential issues ahead of time.</span> <span data-start="138.51" data-end="141.36">The beta channel is the channel we most strongly recommend</span> <span data-start="141.36" data-end="143.53">that you use for testing.</span> </p>
+<p><span data-start="143.53" data-end="145.98">We also recommend Chrome Enterprise organizations</span> <span data-start="145.98" data-end="149.22">to keep 5% of their deployment on Chrome beta,</span> <span data-start="149.22" data-end="152.34">as they will get a four to six week preview of new features</span> <span data-start="152.34" data-end="155.46">and find issues which could impact their entire Chrome user</span> <span data-start="155.46" data-end="156.93">base.</span> <span data-start="156.93" data-end="158.97">The dev channel includes new features</span> <span data-start="158.97" data-end="161.49">and is updated several times a week.</span> <span data-start="161.49" data-end="163.74">We primarily recommend testing on the dev channel</span> <span data-start="163.74" data-end="165.93">for previewing bug fixes.</span> </p>
+<p><span data-start="165.93" data-end="168.12">Finally, the canary channel includes</span> <span data-start="168.12" data-end="171">many experimental features and is not</span> <span data-start="171" data-end="173.4">recommended for enterprise application testing,</span> <span data-start="173.4" data-end="176.61">due to its unstable nature, unless you are targeting</span> <span data-start="176.61" data-end="178.95">those experimental features.</span> <span data-start="178.95" data-end="182.73">New versions are released daily.</span> <span data-start="182.73" data-end="186.81">Next, let's talk about when to test your application.</span> <span data-start="186.81" data-end="190.21">Chrome operates on a six week release schedule.</span> <span data-start="190.21" data-end="192.9">Be sure to test your application against the newest beta</span> <span data-start="192.9" data-end="194.82">every six weeks.</span> <span data-start="194.82" data-end="197.16">One week after a new stable version of Chrome</span> <span data-start="197.16" data-end="199.29">is pushed to the public, the beta channel</span> <span data-start="199.29" data-end="202.68">for the next version of Chrome will be released.</span> <span data-start="202.68" data-end="205.5">The beta channel will be promoted to stable five weeks</span> <span data-start="205.5" data-end="207.09">after it is released.</span> <span data-start="207.09" data-end="209.07">The best time to test your application</span> <span data-start="209.07" data-end="211.86">is during the first two weeks of the beta release,</span> <span data-start="211.86" data-end="214.74">so that there is more time to address any identified</span> <span data-start="214.74" data-end="217.77">issues before it is promoted to stable.</span> </p>
+<p><span data-start="217.77" data-end="220.065">You can check the schedule at chromestatus.com</span> <span data-start="220.065" data-end="224.41">/features/schedule for exact dates.</span> <span data-start="224.41" data-end="225.97">Please note that the stable release</span> <span data-start="225.97" data-end="229.45">is done as a scattered update, so the publish date does not</span> <span data-start="229.45" data-end="231.7">reflect the date at which 100% of users</span> <span data-start="231.7" data-end="234.25">will be on the latest version of Chrome.</span> <span data-start="234.25" data-end="237.34">Also, each operating system has a different stable rollout</span> <span data-start="237.34" data-end="239.384">plan.</span> </p>
+</section>
+
+<section>
+<p><span data-start="239.384" data-end="243.11"><span class="speaker">Jason Wong</span>: Now, we'll discuss how to test your application.</span> <span data-start="243.11" data-end="245.83">First, in order to test against the relevant channels</span> <span data-start="245.83" data-end="247.54">and operating systems, you will need</span> <span data-start="247.54" data-end="250.03">to download those builds of Chrome.</span> <span data-start="250.03" data-end="252.19">All builds of Chrome for all operating systems</span> <span data-start="252.19" data-end="255.04">are available through the links on this page.</span> <span data-start="255.04" data-end="257.32">Since Chrome Enterprise offers version pinning,</span> <span data-start="257.32" data-end="259">enterprise deployments may be pinned</span> <span data-start="259" data-end="261.22">to an older version of Chrome.</span> <span data-start="261.22" data-end="263.41">Please keep this in mind, that we do not make</span> <span data-start="263.41" data-end="264.77">historical builds available.</span> <span data-start="264.77" data-end="267.28">So in order to test against a specific older</span> <span data-start="267.28" data-end="269.5">version of Chrome, you will need to maintain</span> <span data-start="269.5" data-end="272.26">your own archive of builds.</span> </p>
+<p><span data-start="272.26" data-end="274.36">Also note, we do not support bugs</span> <span data-start="274.36" data-end="277.78">filed against older versions of Chrome.</span> <span data-start="277.78" data-end="280.3">Now, let's talk about some tools that we provide</span> <span data-start="280.3" data-end="282.46">to help with testing Chrome.</span> <span data-start="282.46" data-end="285.7">Puppeteer is a Node.js library which provides a high level</span> <span data-start="285.7" data-end="288.85">API to control headless or full non-headless Chrome</span> <span data-start="288.85" data-end="292.12">or Chromium over the DevTools protocol.</span> <span data-start="292.12" data-end="294.73">Puppeteer can be used to automate navigation</span> <span data-start="294.73" data-end="298.9">to web pages, user input, JavaScript, execution,</span> <span data-start="298.9" data-end="302.56">performance testing, reporting, and more.</span> <span data-start="302.56" data-end="304.75">Lighthouse is an open source automated</span> <span data-start="304.75" data-end="307.3">tool for improving the quality of web pages.</span> <span data-start="307.3" data-end="309.53">You can run Lighthouse against any web page,</span> <span data-start="309.53" data-end="312.33">whether public or requiring authentication.</span> <span data-start="312.33" data-end="317.27">It has audits for performance, API deprecations, and more.</span> </p>
+<p><span data-start="317.27" data-end="319.75">Finally, let's talk about how to report</span> <span data-start="319.75" data-end="323.2">issues that you come across in your testing.</span> <span data-start="323.2" data-end="326.23">Testing and reporting bugs early, using the right tools</span> <span data-start="326.23" data-end="330.61">and providing the right context, are key to getting resolutions.</span> <span data-start="330.61" data-end="334.54">First, you should verify that the bug is specific to Chrome.</span> <span data-start="334.54" data-end="336.49">Make sure the bug can be reproduced</span> <span data-start="336.49" data-end="338.41">on a different device running the latest</span> <span data-start="338.41" data-end="340.69">beta version of Chrome.</span> <span data-start="340.69" data-end="343.39">Before filing a bug, check if your issue has already</span> <span data-start="343.39" data-end="346.18">been reported by searching through existing bugs.</span> <span data-start="346.18" data-end="348.4">If you're logged in, you can click the star icon</span> <span data-start="348.4" data-end="351.76">to subscribe to all updates posted on the bug.</span> </p>
+<p><span data-start="351.76" data-end="354.43">Starting a bug also helps us prioritize it and lets</span> <span data-start="354.43" data-end="358.63">us know how many developers or users are impacted by the bug.</span> <span data-start="358.63" data-end="360.7">Duplicate bugs will still be triaged.</span> <span data-start="360.7" data-end="363.01">However, this may increase the time</span> <span data-start="363.01" data-end="364.96">before your bug is addressed.</span> <span data-start="364.96" data-end="367.51">In other words, it is more effective to add a comment</span> <span data-start="367.51" data-end="369.88">to an existing bug and star it than to create</span> <span data-start="369.88" data-end="372.5">a new bug for the same issue.</span> <span data-start="372.5" data-end="375.58">Finally, be sure to provide sufficient detail.</span> <span data-start="375.58" data-end="378.86">Evaluation and triaging will be more efficient and reliable</span> <span data-start="378.86" data-end="381.68">if you can provide as much information as possible,</span> <span data-start="381.68" data-end="384.88">including detailed reproduction steps, screenshots, operating</span> <span data-start="384.88" data-end="387.04">system, and browser version.</span> </p>
+<p><span data-start="387.04" data-end="388.96">You can follow your bugs to the Chromium issue</span> <span data-start="388.96" data-end="392.16">tracker, which is available to the public at crbug.com</span> <span data-start="392.16" data-end="395.21">[MUSIC PLAYING]</span> </p>
+</section>
+
+<!-- div#container ends -->
+</div>
+
+<img alt="The End" id="fin" src="../images/fin.jpg">
+
+<script>
+/*eslint-disable */
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google-translate');
+}
+/* eslint-enable */
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="../js/main.js"></script>
+
+</body>
+
+</html>

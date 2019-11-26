@@ -1,0 +1,772 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.220 --> 00:00:00.970
+SANDEEP GUPTA: Hi.
+
+00:00:00.970 --> 00:00:03.430
+My name is Sandeep Gupta,
+and I'm the Product Manager
+
+00:00:03.430 --> 00:00:04.930
+of TensorFlow JavaScript.
+
+00:00:04.930 --> 00:00:07.180
+Today, I'm really excited
+to talk to you at the Chrome
+
+00:00:07.180 --> 00:00:10.210
+Developer Summit about machine
+learning in JavaScript.
+
+00:00:10.210 --> 00:00:12.040
+As a web developer,
+you may have felt
+
+00:00:12.040 --> 00:00:14.170
+that all this buzz and
+excitement about machine
+
+00:00:14.170 --> 00:00:16.480
+learning seems to
+require Python,
+
+00:00:16.480 --> 00:00:18.490
+and how you as a
+JavaScript developer
+
+00:00:18.490 --> 00:00:21.020
+can jump in and use
+machine learning.
+
+00:00:21.020 --> 00:00:23.830
+I want to show you that now
+machine learning in JavaScript
+
+00:00:23.830 --> 00:00:26.290
+is real, powerful, and
+useful, and you can
+
+00:00:26.290 --> 00:00:29.420
+do some amazing things with it.
+
+00:00:29.420 --> 00:00:32.000
+Earlier this year, Google
+released its first ever
+
+00:00:32.000 --> 00:00:33.980
+AI-powered Google Doodle.
+
+00:00:33.980 --> 00:00:36.980
+In this, users could
+synthesize a Bach-style harmony
+
+00:00:36.980 --> 00:00:39.500
+using a machine learning
+model running directly
+
+00:00:39.500 --> 00:00:40.880
+in their browser.
+
+00:00:40.880 --> 00:00:43.490
+So, in only three days,
+more than 50 million people
+
+00:00:43.490 --> 00:00:47.770
+used this Doodle to create,
+save, and share their music.
+
+00:00:47.770 --> 00:00:49.610
+A creative marketing
+team in Google
+
+00:00:49.610 --> 00:00:52.790
+has built a fun, interactive
+experience where users
+
+00:00:52.790 --> 00:00:54.590
+are shown a Zodiac symbol.
+
+00:00:54.590 --> 00:00:56.630
+And they try to match
+the shown animal
+
+00:00:56.630 --> 00:00:58.700
+with a shadow of
+their hand, making
+
+00:00:58.700 --> 00:01:01.290
+that character come to life.
+
+00:01:01.290 --> 00:01:04.250
+Other teams are experimenting
+with novel ways of making
+
+00:01:04.250 --> 00:01:06.350
+web interfaces more accessible.
+
+00:01:06.350 --> 00:01:08.270
+In this example, here,
+on the bottom left,
+
+00:01:08.270 --> 00:01:11.540
+called Create Ability, people
+can control web interfaces
+
+00:01:11.540 --> 00:01:14.540
+with gesture such as playing
+a keyboard with their face
+
+00:01:14.540 --> 00:01:16.200
+motion.
+
+00:01:16.200 --> 00:01:18.840
+All of these amazing examples
+have been made possible
+
+00:01:18.840 --> 00:01:20.400
+by TensorFlow.js.
+
+00:01:20.400 --> 00:01:23.160
+TensorFlow.js is an open source
+library for machine learning
+
+00:01:23.160 --> 00:01:24.390
+and JavaScript.
+
+00:01:24.390 --> 00:01:26.580
+It runs in a web
+browser and can also
+
+00:01:26.580 --> 00:01:29.310
+be used server-side and on
+many other platforms that
+
+00:01:29.310 --> 00:01:31.370
+support JavaScript.
+
+00:01:31.370 --> 00:01:33.350
+You can use TensorFlow
+JavaScript in one
+
+00:01:33.350 --> 00:01:34.940
+of three different ways.
+
+00:01:34.940 --> 00:01:36.860
+You can run a pre-trained
+machine learning
+
+00:01:36.860 --> 00:01:38.810
+model in your application.
+
+00:01:38.810 --> 00:01:40.550
+You can customize
+a pre-trained model
+
+00:01:40.550 --> 00:01:42.830
+by retraining it
+on your own data.
+
+00:01:42.830 --> 00:01:44.690
+Or you can use the
+lower-level ops
+
+00:01:44.690 --> 00:01:49.586
+API to write a new model from
+scratch directly in JavaScript.
+
+00:01:49.586 --> 00:01:52.280
+There are many reasons why
+you may want to consider
+
+00:01:52.280 --> 00:01:54.350
+using TensorFlow JavaScript.
+
+00:01:54.350 --> 00:01:57.110
+First of all, it allows
+web application developers
+
+00:01:57.110 --> 00:02:00.080
+and JavaScript developers to
+use machine learning directly
+
+00:02:00.080 --> 00:02:02.360
+in their applications,
+and it's really easy
+
+00:02:02.360 --> 00:02:05.600
+to get started and
+be up and running.
+
+00:02:05.600 --> 00:02:09.110
+With only a few lines of
+code, you can load our library
+
+00:02:09.110 --> 00:02:10.979
+and you can load a
+pre-trained model,
+
+00:02:10.979 --> 00:02:12.750
+such as the body-pix model.
+
+00:02:12.750 --> 00:02:15.590
+And this is a model that allows
+you to do person segmentation
+
+00:02:15.590 --> 00:02:16.850
+on an image.
+
+00:02:16.850 --> 00:02:18.770
+You create an
+instance of the model,
+
+00:02:18.770 --> 00:02:21.440
+and then you call its
+estimatePersonSegmentation
+
+00:02:21.440 --> 00:02:23.810
+method on your selected image.
+
+00:02:23.810 --> 00:02:27.410
+And you get back a JSON object,
+which contains the segmentation
+
+00:02:27.410 --> 00:02:31.310
+mask, which can then be directly
+used in your application code.
+
+00:02:31.310 --> 00:02:32.408
+That's all there is to it.
+
+00:02:32.408 --> 00:02:34.700
+So in just a couple of minutes,
+you are up and running,
+
+00:02:34.700 --> 00:02:37.370
+and you are using ML
+in your web application
+
+00:02:37.370 --> 00:02:40.010
+without having to deal with
+concepts such as tensors,
+
+00:02:40.010 --> 00:02:42.770
+optimizers, losses, et cetera.
+
+00:02:42.770 --> 00:02:44.660
+TensorFlow.js can
+be used client-side
+
+00:02:44.660 --> 00:02:47.730
+in the browser and other
+browser-like platforms.
+
+00:02:47.730 --> 00:02:49.370
+This has many advantages.
+
+00:02:49.370 --> 00:02:52.250
+You get all the benefits
+of the interactivity of web
+
+00:02:52.250 --> 00:02:55.160
+as a platform, and
+users can use directly
+
+00:02:55.160 --> 00:02:57.650
+microphones and webcams
+and other sensors that
+
+00:02:57.650 --> 00:02:59.690
+are attached to the browser.
+
+00:02:59.690 --> 00:03:01.590
+Users don't need to
+install anything,
+
+00:03:01.590 --> 00:03:03.500
+so your application
+becomes instantly
+
+00:03:03.500 --> 00:03:05.780
+deployable and shareable.
+
+00:03:05.780 --> 00:03:09.110
+Another big benefit is that
+user data stays client-site,
+
+00:03:09.110 --> 00:03:11.690
+and this has very big
+implications for privacy,
+
+00:03:11.690 --> 00:03:14.450
+for applications such as
+health care, for example.
+
+00:03:14.450 --> 00:03:18.840
+And it also helps reduce
+latency and server-side costs.
+
+00:03:18.840 --> 00:03:20.990
+Finally, we support
+GPU acceleration
+
+00:03:20.990 --> 00:03:24.020
+through WebGL, which gives
+it excellent performance out
+
+00:03:24.020 --> 00:03:25.930
+of the box.
+
+00:03:25.930 --> 00:03:27.480
+Although, in this
+talk, we are mainly
+
+00:03:27.480 --> 00:03:29.580
+talking about
+browser use cases, I
+
+00:03:29.580 --> 00:03:31.620
+should mention that
+TensorFlow.js can also
+
+00:03:31.620 --> 00:03:34.290
+be used with
+Node.js server side,
+
+00:03:34.290 --> 00:03:36.960
+and this is very useful
+for enterprise applications
+
+00:03:36.960 --> 00:03:39.320
+when Node is heavily used.
+
+00:03:39.320 --> 00:03:42.890
+So a natural question to
+ask is, how fast is it?
+
+00:03:42.890 --> 00:03:44.820
+Well, it turns out
+it's really fast.
+
+00:03:44.820 --> 00:03:47.910
+For example, on mobile
+devices running inference
+
+00:03:47.910 --> 00:03:49.950
+with an image
+classification example using
+
+00:03:49.950 --> 00:03:53.460
+the MobileNet v2 model, you
+get real-time performance
+
+00:03:53.460 --> 00:03:56.300
+with 20 milliseconds
+inference time.
+
+00:03:56.300 --> 00:03:58.650
+And on server side, we
+have performance parity
+
+00:03:58.650 --> 00:04:01.530
+with Python-based TensorFlow.
+
+00:04:01.530 --> 00:04:03.910
+So to help you get started,
+we have a collection
+
+00:04:03.910 --> 00:04:07.060
+of pre-trained ML models
+for common ML problems
+
+00:04:07.060 --> 00:04:09.010
+that we have
+prepackaged for you.
+
+00:04:09.010 --> 00:04:12.010
+These include use cases such as
+image classification and object
+
+00:04:12.010 --> 00:04:15.100
+detection, detecting
+human pose and gesture,
+
+00:04:15.100 --> 00:04:17.440
+audio models for
+recognizing spoken words
+
+00:04:17.440 --> 00:04:19.810
+and building speech
+command interfaces,
+
+00:04:19.810 --> 00:04:22.570
+and text models for text
+classification, sentiment
+
+00:04:22.570 --> 00:04:25.450
+analysis, toxicity
+detection, et cetera.
+
+00:04:25.450 --> 00:04:28.300
+It's really easy to use any
+of these pre-trained models
+
+00:04:28.300 --> 00:04:31.270
+with our high-level wrapped
+APIs from our hosted scripts,
+
+00:04:31.270 --> 00:04:35.100
+or you could install
+from our NPM packages.
+
+00:04:35.100 --> 00:04:37.410
+Using these models
+as building blocks,
+
+00:04:37.410 --> 00:04:40.920
+applications can be built
+for a variety of use cases.
+
+00:04:40.920 --> 00:04:43.920
+These include things
+like accessibility, AR/VR
+
+00:04:43.920 --> 00:04:45.790
+experiences such
+as virtual product
+
+00:04:45.790 --> 00:04:48.900
+try-ons, conversational
+agents, and moderating
+
+00:04:48.900 --> 00:04:52.230
+user-generated content
+on your websites.
+
+00:04:52.230 --> 00:04:55.710
+So these pre-trained models
+are a great starting point.
+
+00:04:55.710 --> 00:04:57.510
+Often, however,
+in real life, you
+
+00:04:57.510 --> 00:05:00.880
+need to customize these
+models on your own data.
+
+00:05:00.880 --> 00:05:03.090
+So one way to do this
+is, again, by using
+
+00:05:03.090 --> 00:05:06.030
+the power of TensorFlow
+running directly in the browser
+
+00:05:06.030 --> 00:05:10.450
+interactively, and using that to
+train a model on your own data.
+
+00:05:10.450 --> 00:05:13.800
+Let's take a look
+at how easy this is.
+
+00:05:13.800 --> 00:05:15.480
+So in this demo, I
+will show you how
+
+00:05:15.480 --> 00:05:19.020
+to use Teachable Machine
+to train a custom model.
+
+00:05:19.020 --> 00:05:21.780
+So the MobileNet image
+classification model is already
+
+00:05:21.780 --> 00:05:23.840
+running in this
+browser session, and we
+
+00:05:23.840 --> 00:05:25.920
+will modify it to
+recognize symbols
+
+00:05:25.920 --> 00:05:28.030
+for rock, paper, and scissors.
+
+00:05:28.030 --> 00:05:31.320
+So we're going to output the
+word rock for the first class,
+
+00:05:31.320 --> 00:05:34.050
+we will output the word
+paper for the second class,
+
+00:05:34.050 --> 00:05:36.850
+and we'll output scissors
+for the third class.
+
+00:05:36.850 --> 00:05:40.000
+Now, let's record the training
+images for these three classes.
+
+00:05:40.000 --> 00:05:41.813
+So, first, let's
+record images for rock.
+
+00:05:41.813 --> 00:05:43.230
+So I'll hold up
+my hand like this.
+
+00:05:46.060 --> 00:05:46.780
+COMPUTER: Rock.
+
+00:05:46.780 --> 00:05:49.280
+SANDEEP GUPTA: And, now, let's
+record some images for paper.
+
+00:05:52.773 --> 00:05:53.440
+COMPUTER: Paper.
+
+00:05:53.440 --> 00:05:54.110
+Rock.
+
+00:05:54.110 --> 00:05:56.152
+SANDEEP GUPTA: And, now,
+let's record some images
+
+00:05:56.152 --> 00:05:56.790
+for scissors.
+
+00:05:56.790 --> 00:05:57.457
+COMPUTER: Paper.
+
+00:06:00.790 --> 00:06:01.440
+Scissors.
+
+00:06:01.440 --> 00:06:03.857
+SANDEEP GUPTA: And, now, our
+model is ready for inference,
+
+00:06:03.857 --> 00:06:04.980
+so let's take a look.
+
+00:06:04.980 --> 00:06:05.940
+COMPUTER: Rock.
+
+00:06:05.940 --> 00:06:06.880
+Paper.
+
+00:06:06.880 --> 00:06:07.830
+Scissors.
+
+00:06:07.830 --> 00:06:09.100
+Paper.
+
+00:06:09.100 --> 00:06:10.030
+Rock.
+
+00:06:10.030 --> 00:06:10.810
+Paper.
+
+00:06:10.810 --> 00:06:11.680
+Scissors.
+
+00:06:11.680 --> 00:06:12.660
+SANDEEP GUPTA: So that's
+all there is to it.
+
+00:06:12.660 --> 00:06:14.368
+In a few minutes, you
+have a custom model
+
+00:06:14.368 --> 00:06:16.330
+trained in the browser.
+
+00:06:16.330 --> 00:06:18.890
+So, so far, we have seen the
+capabilities of the library.
+
+00:06:18.890 --> 00:06:21.130
+Now, let's take a look
+at some use cases.
+
+00:06:21.130 --> 00:06:24.370
+Modiface is an Augmented
+Reality technology company based
+
+00:06:24.370 --> 00:06:27.970
+in Canada, and they have used
+TensorFlow.js in the WeChat
+
+00:06:27.970 --> 00:06:31.690
+Mini Program platform to build
+a beauty product virtual try-on
+
+00:06:31.690 --> 00:06:33.910
+application for L'Oréal.
+
+00:06:33.910 --> 00:06:37.570
+Using TensorFlow.js, they were
+able to deploy a custom model
+
+00:06:37.570 --> 00:06:40.060
+meeting their model size
+and speed constraints
+
+00:06:40.060 --> 00:06:41.290
+for this application.
+
+00:06:41.290 --> 00:06:45.040
+And you can do the same
+thing in browser extensions.
+
+00:06:45.040 --> 00:06:48.550
+To showcase how you can enable
+amazing user experiences
+
+00:06:48.550 --> 00:06:52.440
+with the power of TensorFlow.js,
+we have built an application.
+
+00:06:52.440 --> 00:06:54.610
+Here, we are running a
+state-of-the-art machine
+
+00:06:54.610 --> 00:06:58.030
+learning model to track
+users' lips and face movement,
+
+00:06:58.030 --> 00:07:01.600
+and we use that to lip sync to a
+song and score how well you do.
+
+00:07:01.600 --> 00:07:02.470
+[MUSIC PLAYING]
+
+00:07:02.470 --> 00:07:04.450
+You get awesome
+real-time performance
+
+00:07:04.450 --> 00:07:06.410
+that enables this application.
+
+00:07:06.410 --> 00:07:08.620
+And because there are many
+JavaScript visualization
+
+00:07:08.620 --> 00:07:10.930
+libraries out there,
+we can use them to add
+
+00:07:10.930 --> 00:07:12.515
+on some cool special effects.
+
+00:07:12.515 --> 00:07:13.390
+So let's take a look.
+
+00:07:13.390 --> 00:07:14.033
+[MUSIC PLAYING]
+
+00:07:14.533 --> 00:07:17.555
+(SINGING) Give me one
+more minute, I would.
+
+00:07:17.555 --> 00:07:19.025
+Hey, hey.
+
+00:07:19.025 --> 00:07:21.965
+Give me one more, one more.
+
+00:07:21.965 --> 00:07:23.435
+Hey, hey.
+
+00:07:23.435 --> 00:07:26.375
+Give me one more
+minute, I would.
+
+00:07:26.375 --> 00:07:27.722
+Hey, hey.
+
+00:07:27.722 --> 00:07:28.500
+Make it now--
+
+00:07:28.500 --> 00:07:30.500
+SANDEEP GUPTA: Companies
+are using TensorFlow.js
+
+00:07:30.500 --> 00:07:32.750
+for a variety of
+purposes, whether it
+
+00:07:32.750 --> 00:07:35.000
+be for internal tools
+for experimentation
+
+00:07:35.000 --> 00:07:38.810
+and visualization at Uber,
+privacy-preserving client-side
+
+00:07:38.810 --> 00:07:43.460
+application at Airbnb, and also
+offline mobile device use case
+
+00:07:43.460 --> 00:07:46.680
+for field use by IBM Research.
+
+00:07:46.680 --> 00:07:49.500
+Lastly, I want to highlight
+that the success of the library
+
+00:07:49.500 --> 00:07:53.140
+is due to our amazing
+contributor and user community.
+
+00:07:53.140 --> 00:07:55.930
+The library continues to
+grow in users and popularity,
+
+00:07:55.930 --> 00:07:59.010
+and we are really excited
+about the amazing libraries
+
+00:07:59.010 --> 00:08:02.010
+that the community is building
+on top of TensorFlow.js
+
+00:08:02.010 --> 00:08:04.560
+to extend its functionality
+and applications,
+
+00:08:04.560 --> 00:08:05.940
+so thank you, all.
+
+00:08:05.940 --> 00:08:08.850
+This was a quick intro
+to TensorFlow.js.
+
+00:08:08.850 --> 00:08:10.650
+Please do check out
+our website, where
+
+00:08:10.650 --> 00:08:13.560
+we have more demos and examples
+and getting-started guides
+
+00:08:13.560 --> 00:08:14.760
+and resources.
+
+00:08:14.760 --> 00:08:17.520
+And also, from there, you can
+join our developer mailing
+
+00:08:17.520 --> 00:08:18.460
+list.
+
+00:08:18.460 --> 00:08:20.070
+Thank you so much for watching.
+
+00:08:20.070 --> 00:08:22.820
+[MUSIC PLAYING]
+

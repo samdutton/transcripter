@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<!--
+Copyright 2018 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="//google.com">
+  <meta name="description" content="Chrome Dev Summit">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ePaUrMCL7g4</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+
+<iframe id="youtube" src="https://www.youtube.com/embed/ePaUrMCL7g4?enablejsapi=1"></iframe>
+
+<div id="container">
+
+<div id="options">
+  <div id="google-translate"></div>
+  <div>
+    <input type="checkbox" id="videoSticky" checked>
+    <label for="videoSticky">Video position sticky</label>
+  </div>
+  <div>
+    <input type="checkbox" id="captionScroll" checked>
+    <label for="captionScroll">Keep current caption visible</label>
+  </div>
+</div>
+
+<section>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="0.5" data-end="1.48"><span class="speaker">Yi Xu</span>: Hello, everyone.</span> <span data-start="1.48" data-end="2.79">My name is Yi.</span> <span data-start="2.79" data-end="6.02">I'm here to talk about new futures in Canvas,</span> <span data-start="6.02" data-end="7.98">OffscreenCanvas.</span> <span data-start="7.98" data-end="12.48">To understand offscreenCanvas, let me first talk about Canvas.</span> <span data-start="12.48" data-end="16.56">Canvas is a popular way of doing all kinds of graphics</span> <span data-start="16.56" data-end="21.06">on the screen, and is an entry point to the world of WebGL.</span> <span data-start="21.06" data-end="24.24">WebGL allows you, the web developers,</span> <span data-start="24.24" data-end="28.32">to run their interactive 2D and 3D graphics on Chrome</span> <span data-start="28.32" data-end="31.26">without using any [? applied inks. ?]</span> <span data-start="31.26" data-end="35.61">However, [? all ?] Canvas logic, rendering computations,</span> <span data-start="35.61" data-end="39.18">user interactions, and much more are all</span> <span data-start="39.18" data-end="41.61">happening in the main thread.</span> </p>
+<p><span data-start="41.61" data-end="45.7">When the main thread busy with critical computations,</span> <span data-start="45.7" data-end="50.01">the Canvas becomes very junky and slow to use.</span> <span data-start="50.01" data-end="52.35">It is a big drawback for Canvas.</span> <span data-start="52.35" data-end="54.81">How can we improve performance?</span> <span data-start="54.81" data-end="58.44">Fortunately, offscreenCanvas is a solution.</span> <span data-start="58.44" data-end="61.95">As the name may suggest, it allows users</span> <span data-start="61.95" data-end="64.379">to run tasks in the background.</span> <span data-start="64.379" data-end="67.11">That is, it can be detached from DOM</span> <span data-start="67.11" data-end="71.09">and move Canvas logic and computations to a Web Worker.</span> <span data-start="71.09" data-end="73.81">Web Worker is a web version of thread.</span> <span data-start="73.81" data-end="78.45">So, in other words, we move all those Canvas computations</span> <span data-start="78.45" data-end="79.8">to a different thread.</span> <span data-start="79.8" data-end="81.66">And the Canvas like this — </span> <span data-start="81.66" data-end="84.06">canvas logics and computations —  can</span> <span data-start="84.06" data-end="86.82">be done in parallel with computations</span> <span data-start="86.82" data-end="87.93">on the main thread.</span> </p>
+<p><span data-start="87.93" data-end="91.68">And by moving these computations away,</span> <span data-start="91.68" data-end="94.86">main thread will have more room for rendering</span> <span data-start="94.86" data-end="96.72">logic and other things.</span> <span data-start="96.72" data-end="99.18">One way to create offscreenCanvas</span> <span data-start="99.18" data-end="102.2">is by calling transfer control to offscreen.</span> </p>
+<p><span data-start="102.2" data-end="107.07">It mirrors the regular Canvas to a offscreenCanvas.</span> <span data-start="107.07" data-end="109.98">So what happened in the offscreenCanvas will</span> <span data-start="109.98" data-end="114.3">be rendered automatically to the source Canvas, the one that</span> <span data-start="114.3" data-end="116.07">is shown on screen.</span> <span data-start="116.07" data-end="119.94">I want to highlight that image bitmap rendering context</span> <span data-start="119.94" data-end="122.73">is also available for offscreenCanvas.</span> <span data-start="122.73" data-end="126.125">It can be accessed via offscreenCanvas.</span> <span data-start="126.125" data-end="131.1">getContext("bitmaprenderer"), as shown in this slide.</span> <span data-start="131.1" data-end="133.92">We can then load bitmap to the context</span> <span data-start="133.92" data-end="137.88">by calling transfer from image bitmap.</span> <span data-start="137.88" data-end="141.28">Image bitmap can be from any source,</span> <span data-start="141.28" data-end="145.8">including other Canvas, or even other offscreenCanvas.</span> </p>
+<p><span data-start="145.8" data-end="150.36">The advantage is that the image bitmap, it's just a texture.</span> <span data-start="150.36" data-end="154.62">And it can be draw without any undo latency.</span> <span data-start="154.62" data-end="157.35">Without further ado, here is an example</span> <span data-start="157.35" data-end="160.14">of performance differences between Canvas</span> <span data-start="160.14" data-end="161.88">and OffscreenCanvas.</span> <span data-start="161.88" data-end="165.09">In both case, the main thread is very busy.</span> <span data-start="165.09" data-end="168.36">On the left, with the busy main thread,</span> <span data-start="168.36" data-end="172.08">it doesn't have time to do any computations for the Canvas.</span> <span data-start="172.08" data-end="174.99">The animation is very junky and slow.</span> <span data-start="174.99" data-end="178.07">On the right, since the computation for Canvas</span> <span data-start="178.07" data-end="181.24">are sent to different thread, the busy main thread</span> <span data-start="181.24" data-end="183.87">doesn't effect Canvas performance at all.</span> <span data-start="183.87" data-end="186.57">The animation is very smooth.</span> <span data-start="186.57" data-end="189.13">Coding offscreenCanvas is very easy.</span> <span data-start="189.13" data-end="192.54">You can simply create up worker.js file.</span> <span data-start="192.54" data-end="196.45">Then, you can create this worker in your JavaScript</span> <span data-start="196.45" data-end="197.87">and start to use it.</span> </p>
+<p><span data-start="197.87" data-end="201.3">Here, I'm showing an example of implementation</span> <span data-start="201.3" data-end="203.04">of such a worker.</span> <span data-start="203.04" data-end="207.22">As it is a new future, you may wonder if it is safe to use.</span> <span data-start="207.22" data-end="210.21">In fact, we're using offscreenCanvas in production</span> <span data-start="210.21" data-end="211.26">today.</span> <span data-start="211.26" data-end="214.71">Before this talk, I looked it into Chrome [? futures ?] test</span> <span data-start="214.71" data-end="217.35">to get some exact data on the usage.</span> <span data-start="217.35" data-end="221.46">It is used in almost 32% of all pages loaded</span> <span data-start="221.46" data-end="225.14">by Chrome across all channels and platforms.</span> <span data-start="225.14" data-end="228.45">80% of Chrome users interact with a page that</span> <span data-start="228.45" data-end="231.27">contains offscreenCanvas daily.</span> <span data-start="231.27" data-end="234.18">I think most of you who are listening to my talk</span> <span data-start="234.18" data-end="236.61">have used it today already.</span> </p>
+<p><span data-start="236.61" data-end="241.59">It is a top 200 CSS properties among the 3,000 properties</span> <span data-start="241.59" data-end="242.67">available.</span> <span data-start="242.67" data-end="246.9">And I hope it will get even more popular after this talk.</span> <span data-start="246.9" data-end="249.77">Moving Canvas computations to a different thread</span> <span data-start="249.77" data-end="253.32">is not the only advantage of offscreenCanvas.</span> </p>
+<p><span data-start="253.32" data-end="256.38">Even when it's running on the main thread,</span> <span data-start="256.38" data-end="258.779">it's still faster than Canvas.</span> <span data-start="258.779" data-end="262.54">We have run a micro benchmark on creating Canvas,</span> <span data-start="262.54" data-end="265.29">then get its context.</span> <span data-start="265.29" data-end="268.38">Performing these operations on offscreenCanvas</span> <span data-start="268.38" data-end="272.82">is 50% faster than performing them on a Canvas.</span> <span data-start="272.82" data-end="276.84">I'm showing one particular round of many rounds we have done.</span> <span data-start="276.84" data-end="281.64">It has a particular advantage on text-related operations.</span> <span data-start="281.64" data-end="286.42">It is consistently 15% to 45% faster.</span> <span data-start="286.42" data-end="290.2">Speaking of text, it leads to our next topic,</span> <span data-start="290.2" data-end="292.35">what's new in text metrics?</span> <span data-start="292.35" data-end="294.89">We've added actualBoundingBox measurements</span> <span data-start="294.89" data-end="297">in major text functions.</span> <span data-start="297" data-end="299.642">The actualBoundingBox measurements — </span> <span data-start="299.642" data-end="304.08">it measures the smallest rect that can bend the text.</span> </p>
+<p><span data-start="304.08" data-end="307.66">It ignores the space at the beginning and at the end.</span> <span data-start="307.66" data-end="309.78">In this example in the slide, I'm</span> <span data-start="309.78" data-end="313.93">measuring space space ABC space space.</span> <span data-start="313.93" data-end="317.5">The only measurement we support before in measured text</span> <span data-start="317.5" data-end="320.98">is width, which includes a lens of space.</span> <span data-start="320.98" data-end="326.29">And the actual BoundingBox will only contain the size of ABC.</span> <span data-start="326.29" data-end="330.34">In fact, actual BoundingBox left will be a negative value</span> <span data-start="330.34" data-end="332.05">due to the indentation.</span> <span data-start="332.05" data-end="334.06">I will also take this opportunity</span> <span data-start="334.06" data-end="337.66">to share with you what we are working on right now.</span> <span data-start="337.66" data-end="341.08">Batch drawImage —  this is where multiple image can</span> <span data-start="341.08" data-end="343.78">be draw using a single API cut.</span> </p>
+<p><span data-start="343.78" data-end="346.42">Recorded pictures —  this is where</span> <span data-start="346.42" data-end="349.03">you can create a record object that</span> <span data-start="349.03" data-end="352.3">receive all the commands from a Canvas 2D</span> <span data-start="352.3" data-end="354.79">and can be replayed multiple times.</span> <span data-start="354.79" data-end="356.92">With these two features, we are hoping</span> <span data-start="356.92" data-end="360.82">to get some good performance improvement in Canvas.</span> <span data-start="360.82" data-end="365.59">There are few new primitives, such as RoundRect</span> <span data-start="365.59" data-end="367.78">and oval primitives.</span> <span data-start="367.78" data-end="371.2">We will also improve all of our support to text and color.</span> <span data-start="373.95" data-end="376.83">Thank you very much for listening to my talk.</span> </p>
+<p><span data-start="376.83" data-end="379.11">Of course, I did not code everything I</span> <span data-start="379.11" data-end="381.24">presented today, not even half.</span> <span data-start="381.24" data-end="384.85">This was a joint effort with all my teammates.</span> <span data-start="384.85" data-end="387">They are here on this slide.</span> <span data-start="387" data-end="389.518">I want to give a special thanks to Fernando,</span> <span data-start="389.518" data-end="390.81">our tech lead for this project.</span> <span data-start="390.81" data-end="394.16">[MUSIC PLAYING]</span> </p>
+</section>
+
+<!-- div#container ends -->
+</div>
+
+<img alt="The End" id="fin" src="../images/fin.jpg">
+
+<script>
+/*eslint-disable */
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google-translate');
+}
+/* eslint-enable */
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="../js/main.js"></script>
+
+</body>
+
+</html>

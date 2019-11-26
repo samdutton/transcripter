@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<!--
+Copyright 2018 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="//google.com">
+  <meta name="description" content="Chrome Dev Summit">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FiZSaqJR9mM</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+
+<iframe id="youtube" src="https://www.youtube.com/embed/FiZSaqJR9mM?enablejsapi=1"></iframe>
+
+<div id="container">
+
+<div id="options">
+  <div id="google-translate"></div>
+  <div>
+    <input type="checkbox" id="videoSticky" checked>
+    <label for="videoSticky">Video position sticky</label>
+  </div>
+  <div>
+    <input type="checkbox" id="captionScroll" checked>
+    <label for="captionScroll">Keep current caption visible</label>
+  </div>
+</div>
+
+<section>
+<p></p>
+</section>
+
+<section>
+<p><span data-start="0" data-end="2.49"><span class="speaker">Ben Morss</span>: If you've seen the talk at Chrome Dev Summit,</span> <span data-start="2.49" data-end="4.05">you already know that much of the web</span> <span data-start="4.05" data-end="7.2">is too slow, too heavy, and inefficient,</span> <span data-start="7.2" data-end="10.65">making sites hard to use for people on slower connections</span> <span data-start="10.65" data-end="12.81">or lower-powered devices.</span> <span data-start="12.81" data-end="15.18">Your site may work great on your $1,000 phone</span> <span data-start="15.18" data-end="16.89">in your major metropolis.</span> <span data-start="16.89" data-end="19.68">But someone in a rural area or another country</span> <span data-start="19.68" data-end="23.555">may find your site frustrating or simply unusable.</span> </p>
+<p><span data-start="23.555" data-end="25.18">What if you could keep your site's look</span> <span data-start="25.18" data-end="28.35">and feel while making it accessible to everyone?</span> <span data-start="28.35" data-end="31.65">What if you could make your site more elegant, leaner, and more</span> <span data-start="31.65" data-end="34.87">maintainable with less code?</span> <span data-start="34.87" data-end="36.87">This is why AMP was created, to make</span> <span data-start="36.87" data-end="38.73">it simple for all developers to create</span> <span data-start="38.73" data-end="41.77">fast, lean sites for all users.</span> <span data-start="41.77" data-end="44.07">So what is AMP?</span> <span data-start="44.07" data-end="47.97">First, fundamentally, AMP is a web components library.</span> <span data-start="47.97" data-end="49.8">Working on all major browsers, it</span> <span data-start="49.8" data-end="52.89">provides new HTML tags that do the work you'd normally</span> <span data-start="52.89" data-end="54.45">do with JavaScript.</span> <span data-start="54.45" data-end="57.03">AMP is also a set of guidelines on how to create</span> <span data-start="57.03" data-end="59.22">fast sites for everyone.</span> <span data-start="59.22" data-end="62.76">It requires HTML attributes that enable accessibility.</span> <span data-start="62.76" data-end="65.34">It stops you from including too much CSS.</span> </p>
+<p><span data-start="65.34" data-end="67.92">And JavaScript can only be used in a context where it</span> <span data-start="67.92" data-end="71.45">can't harm the user experience.</span> <span data-start="71.45" data-end="74.12">Sites that follow the rules of AMP get a bonus.</span> <span data-start="74.12" data-end="76.46">Caches like Google store AMP pages</span> <span data-start="76.46" data-end="79.28">so that they can be loaded from search in less than a second,</span> <span data-start="79.28" data-end="81.59">even on 3G.</span> <span data-start="81.59" data-end="84.43">While it's most known for pure content sites,</span> <span data-start="84.43" data-end="87.65">AMP also provides tools to create interactivity.</span> <span data-start="87.65" data-end="89.85">We'll talk about two ways to do this — </span> <span data-start="89.85" data-end="93.62">the old way, which we'll call AMP Classic, and AMP Script,</span> <span data-start="93.62" data-end="96.47">which we'll just call, well, AMP script.</span> </p>
+<p><span data-start="96.47" data-end="99.14">We could also call them JavaScript Light and JavaScript</span> <span data-start="99.14" data-end="100.43">Pro.</span> <span data-start="100.43" data-end="102.47">So first, AMP Classic — </span> <span data-start="102.47" data-end="105.68">for this, we'll use some examples from our AMP Camp demo</span> <span data-start="105.68" data-end="107.96">site and some that aren't.</span> <span data-start="107.96" data-end="110.22">Let's say that when the user taps this button,</span> <span data-start="110.22" data-end="111.89">we want to open a menu.</span> </p>
+<p><span data-start="111.89" data-end="114.89">For this, we use AMP Events and Actions.</span> <span data-start="114.89" data-end="117.86">AMP processes browser events into AMP events</span> <span data-start="117.86" data-end="120.56">and exposes those to you, the developer.</span> <span data-start="120.56" data-end="124.58">For example, when a user clicks a mouse or taps a touchscreen,</span> <span data-start="124.58" data-end="127.49">AMP fires an event called Tap.</span> <span data-start="127.49" data-end="130.59">AMP actions allow you to change things on your page.</span> <span data-start="130.59" data-end="132.81">For example, to show a Dom element,</span> <span data-start="132.81" data-end="134.54">we'd use an action called Show.</span> <span data-start="134.54" data-end="138.95">To toggle its visibility, we'd use an action called Toggle.</span> <span data-start="138.95" data-end="140.96">And that's how we open the menu.</span> <span data-start="140.96" data-end="145.79">Notice the form here, on equals tap sidebar toggle.</span> <span data-start="145.79" data-end="147.38">Tap is the event.</span> <span data-start="147.38" data-end="150.23">Sidebar is the ID of the element we're acting on.</span> </p>
+<p><span data-start="150.23" data-end="152.24">And Toggle is the action.</span> <span data-start="152.24" data-end="154.91">Next, how about server calls?</span> <span data-start="154.91" data-end="156.89">When a user visits our site, we want</span> <span data-start="156.89" data-end="159.83">to call an API to find out how many items are in their cart</span> <span data-start="159.83" data-end="162.05">and then show this on the screen.</span> </p>
+<p><span data-start="162.05" data-end="165.26">For this, we use two components that work well together,</span> <span data-start="165.26" data-end="168.44">AMP Lists and AMP Mustache.</span> <span data-start="168.44" data-end="172.25">AMP lists sends an XHR request to an endpoint.</span> <span data-start="172.25" data-end="176.22">The data returned gets formatted through a Mustache template.</span> <span data-start="176.22" data-end="178.37">Here's how this works on AMP Camp.</span> <span data-start="178.37" data-end="181.7">On page load, AMP List calls the end point specified</span> <span data-start="181.7" data-end="183.49">in the source attribute.</span> </p>
+<p><span data-start="183.49" data-end="186.68">Our API returns JSON that contains the number of items</span> <span data-start="186.68" data-end="188.51">in the user's cart.</span> <span data-start="188.51" data-end="192.14">AMP then plugs that JSON into this Mustache template.</span> <span data-start="192.14" data-end="195.26">If there is a count, that gets displayed at a span.</span> <span data-start="195.26" data-end="197.75">If the count is zero, we display nothing — </span> <span data-start="197.75" data-end="200">simple.</span> <span data-start="200" data-end="202.73">Finally, to change what's on the screen in response</span> <span data-start="202.73" data-end="206.15">to user actions, AMP lets you store application data</span> <span data-start="206.15" data-end="211.86">in HTML state variables and bind expressions to Dom elements.</span> <span data-start="211.86" data-end="213.285">Here's a simple example.</span> <span data-start="213.285" data-end="214.91">We start with the state variable called</span> <span data-start="214.91" data-end="219.26">Team that contains an object with one property, Star,</span> <span data-start="219.26" data-end="223.1">whose value is initialized to Yao Ming.</span> <span data-start="223.1" data-end="224.75">Now, here's a P tag with something</span> <span data-start="224.75" data-end="228.66">unusual, an attribute called Text in Brackets.</span> </p>
+<p><span data-start="228.66" data-end="232.13">These brackets let AMP know this is a bound attribute.</span> <span data-start="232.13" data-end="235.88">We've bound this to the expression Team dot Star</span> <span data-start="235.88" data-end="237.41">plus Is Tall.</span> <span data-start="237.41" data-end="239.64">When that expression's value changes,</span> <span data-start="239.64" data-end="242.4">so will the content of the P tag.</span> <span data-start="242.4" data-end="245.15">Now, remember actions and events?</span> <span data-start="245.15" data-end="247.97">Here, we're saying that when this button is tapped,</span> <span data-start="247.97" data-end="249.98">go into our team's state variable</span> <span data-start="249.98" data-end="254.12">and change the value of Star to Yao Ming and Mandarin.</span> </p>
+<p><span data-start="254.12" data-end="255.71">And here's the results.</span> <span data-start="255.71" data-end="260.73">You tap this button and the text on the screen changes.</span> <span data-start="260.73" data-end="262.98">Now let's put all this together.</span> <span data-start="262.98" data-end="267.29">We can use data binding to change API endpoints.</span> <span data-start="267.29" data-end="269.33">On our site's Product Listing page,</span> <span data-start="269.33" data-end="271.85">our user can filter and search results.</span> <span data-start="271.85" data-end="273.62">Each time they make a selection, we</span> <span data-start="273.62" data-end="277.52">call our API to retrieve the appropriate JSON.</span> <span data-start="277.52" data-end="280.4">When the user makes a new selection under Sort By,</span> <span data-start="280.4" data-end="282.74">AMP fires an event called Change.</span> </p>
+<p><span data-start="282.74" data-end="286.31">Then we store their selection in the filter property of a state</span> <span data-start="286.31" data-end="288.74">variable called Products.</span> <span data-start="288.74" data-end="291.83">Meanwhile, we've found the source property of this AMP</span> <span data-start="291.83" data-end="293.78">list to an expression that calculates</span> <span data-start="293.78" data-end="296.882">the query string for the API.</span> <span data-start="296.882" data-end="298.34">So when the user makes a selection,</span> <span data-start="298.34" data-end="301.07">the product's object changes and the expression</span> <span data-start="301.07" data-end="304.55">is recomputed, which then triggers a new server call.</span> </p>
+<p><span data-start="304.55" data-end="308.33">And presto, new products appear.</span> <span data-start="308.33" data-end="310.79">You might be excited to try out these techniques</span> <span data-start="310.79" data-end="315.39">or you might just be saying, why can't I just use JavaScript?</span> <span data-start="315.39" data-end="317.9">The AMP team loves JavaScript too.</span> <span data-start="317.9" data-end="319.56">But part of the promise of AMP is</span> <span data-start="319.56" data-end="322.71">that JavaScript isn't allowed to block the main thread</span> <span data-start="322.71" data-end="324.96">and slow things down for the user.</span> <span data-start="324.96" data-end="328.26">Fortunately, now there's a solution.</span> <span data-start="328.26" data-end="330.93">You may have heard talk about [? Worker Rides ?] JavaScript.</span> <span data-start="330.93" data-end="332.49">It's the new hotness.</span> <span data-start="332.49" data-end="335.16">The nice thing is JavaScript and a Web Worker</span> <span data-start="335.16" data-end="338.31">runs in a separate thread so it doesn't block the main thread</span> <span data-start="338.31" data-end="340.23">or user interactions.</span> <span data-start="340.23" data-end="343.08">The problem is workers can't access the Dom.</span> <span data-start="343.08" data-end="346.71">So how can a worker control web interactions?</span> </p>
+<p><span data-start="346.71" data-end="349.53">AMP's Script provides a clever solution.</span> <span data-start="349.53" data-end="352.71">It maintains a copy of the Dom and the worker itself.</span> <span data-start="352.71" data-end="354.72">When something changes in the real Dom,</span> <span data-start="354.72" data-end="359.26">AMP Script changes the copy in its virtual Dom and vice versa.</span> <span data-start="359.26" data-end="363.09">This makes [? Worker Rides ?] JavaScript easy.</span> <span data-start="363.09" data-end="365.34">To preserve AMP's performance guarantee,</span> <span data-start="365.34" data-end="367.71">scripts can only run after a user interaction,</span> <span data-start="367.71" data-end="369.38">not on page load.</span> <span data-start="369.38" data-end="372.49">And your code can't exceed 150k.</span> <span data-start="372.49" data-end="374.1">AMP Script that's pretty exciting.</span> <span data-start="374.1" data-end="376.92">But it's so new that at the time of making this video,</span> <span data-start="376.92" data-end="378.48">we haven't yet had time to include it</span> <span data-start="378.48" data-end="380.55">in our AMP Camp site.</span> <span data-start="380.55" data-end="384.63">Hopefully by the time you see this, we will.</span> <span data-start="384.63" data-end="386.95">I urge you to try these techniques.</span> <span data-start="386.95" data-end="389.04">If you don't like them, by all means</span> <span data-start="389.04" data-end="391.69">create your interactive site in another way.</span> </p>
+<p><span data-start="391.69" data-end="393.27">You don't have to use AMP.</span> <span data-start="393.27" data-end="396.87">But I will say, it's still hard and rare for non-AMP sites</span> <span data-start="396.87" data-end="399.87">to be as fast and lean as AMP sites.</span> <span data-start="399.87" data-end="401.92">It takes effort and discipline.</span> <span data-start="401.92" data-end="403.86">And especially on larger teams, it's</span> <span data-start="403.86" data-end="407.79">simply hard to avoid excessive JS and CSS.</span> <span data-start="407.79" data-end="409.98">AMP can be a product manager, your scrum</span> <span data-start="409.98" data-end="413.29">master urging you onward.</span> </p>
+<p><span data-start="413.29" data-end="415.168">So why not give this a try?</span> <span data-start="415.168" data-end="417.21">Check the links in the video description for more</span> <span data-start="417.21" data-end="419.31">information and for documentation,</span> <span data-start="419.31" data-end="422.43">as well as for links to the AMP Camp demo site and the AMP Camp</span> <span data-start="422.43" data-end="423.99">code on GitHub.</span> <span data-start="423.99" data-end="424.88">Thanks for watching.</span> <span data-start="424.88" data-end="427.59">And see you next time.</span> <span data-start="427.59" data-end="429.74">[MUSIC PLAYING]</span> </p>
+</section>
+
+<!-- div#container ends -->
+</div>
+
+<img alt="The End" id="fin" src="../images/fin.jpg">
+
+<script>
+/*eslint-disable */
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google-translate');
+}
+/* eslint-enable */
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="../js/main.js"></script>
+
+</body>
+
+</html>

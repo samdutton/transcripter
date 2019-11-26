@@ -1,0 +1,268 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.080 --> 00:00:01.080
+Hi gang!
+
+00:00:01.080 --> 00:00:02.850
+My name is Mathias, and I work on Chrome.
+
+00:00:02.850 --> 00:00:08.280
+Today, I’d like to highlight a handy little JavaScript performance trick that’s a little bit surprising,
+
+00:00:08.280 --> 00:00:10.880
+and somewhat counterintuitive.
+
+00:00:10.880 --> 00:00:16.570
+JavaScript applications, and in particular web apps, commonly use large objects to represent
+
+00:00:16.570 --> 00:00:18.800
+state or other data.
+
+00:00:18.800 --> 00:00:22.160
+The example we’re looking at right now is very simple and small,
+
+00:00:22.160 --> 00:00:28.090
+…but on the web it’s surprisingly common to see objects of several kilobytes in size, especially
+
+00:00:28.090 --> 00:00:33.490
+for web apps built using frameworks such as React or Redux.
+
+00:00:33.490 --> 00:00:38.750
+Unfortunately, web apps often depend on this data for their initial render.
+
+00:00:38.760 --> 00:00:43.640
+In such cases, this large JavaScript object ends up on the critical path,
+
+00:00:43.640 --> 00:00:48.080
+and so, users end up staring at a blank screen until all of this data is
+
+00:00:48.080 --> 00:00:53.000
+loaded, parsed, compiled, and executed by the JavaScript engine.
+
+00:00:53.060 --> 00:00:56.980
+How can web developers make this faster?
+
+00:00:56.980 --> 00:01:02.530
+One approach is to use server-side rendering: you serve plain HTML that already contains
+
+00:01:02.530 --> 00:01:09.500
+the processed form of the data, and therefore no JavaScript is required for the initial load of your app.
+
+00:01:09.500 --> 00:01:13.930
+This way, you can avoid the need for the large JavaScript objects entirely.
+
+00:01:13.930 --> 00:01:17.240
+But, what if you can’t use server-side rendering?
+
+00:01:17.240 --> 00:01:19.960
+Is there anything else we can do to improve performance?
+
+00:01:19.960 --> 00:01:21.960
+It depends.
+
+00:01:21.960 --> 00:01:27.250
+In many cases, this critical data doesn’t contain anything that cannot be unambiguously
+
+00:01:27.250 --> 00:01:34.630
+represented in JSON: there’s no Date objects, no BigInts, no Maps, no Sets, and so on.
+
+00:01:34.630 --> 00:01:39.460
+And in those cases, instead of having an object literal in the JavaScript source code, you
+
+00:01:39.460 --> 00:01:44.640
+can serialize the object as JSON, turn it into a JavaScript string literal, and then pass
+
+00:01:44.640 --> 00:01:47.860
+that to the built-in JSON.parse function.
+
+00:01:47.860 --> 00:01:51.620
+This technique produces an equivalent object.
+
+00:01:51.620 --> 00:01:55.620
+Now which of these two techniques do you think is faster?
+
+00:01:55.620 --> 00:01:59.880
+As it turns out, the JSON approach is significantly faster!
+
+00:01:59.880 --> 00:02:04.950
+This is a little surprising and counter-intuitive: the JavaScript object literal feels like the
+
+00:02:04.950 --> 00:02:10.880
+more direct approach, whereas JSON.parse feels like an additional layer of indirection.
+
+00:02:10.880 --> 00:02:15.690
+Yet somehow, JSON.parse is much faster. Why is that?
+
+00:02:15.690 --> 00:02:20.200
+Part of the reason is that for JavaScript engines, the JSON example is super simple
+
+00:02:20.200 --> 00:02:23.780
+to scan and parse.
+
+00:02:23.780 --> 00:02:28.441
+To the JavaScript parser, this code snippet is little more than a CallExpression with
+
+00:02:28.441 --> 00:02:30.050
+a single argument.
+
+00:02:30.050 --> 00:02:33.980
+The large blob of data is just a single StringLiteral token!
+
+00:02:33.980 --> 00:02:38.700
+On the other hand, the equivalent object literal consists of many more tokens:
+
+00:02:39.700 --> 00:02:43.480
+each property name is an Identifier token or a string-like literal,
+
+00:02:44.490 --> 00:02:49.900
+and in this case each of the values is a NumericLiteral, but they could really be anything.
+
+00:02:49.900 --> 00:02:57.100
+They could be nested objects or arrays, with properties and values of their own, in which case there’s even more tokens.
+
+00:02:57.100 --> 00:03:02.200
+So compared to the JSON.parse example, the JavaScript parser needs to work harder
+
+00:03:02.200 --> 00:03:05.230
+just to tokenize this script correctly.
+
+00:03:05.230 --> 00:03:10.100
+Another reason why JavaScript object literals are harder to scan and parse is because
+
+00:03:10.100 --> 00:03:13.239
+you don’t know ahead of time that they’re object literals!
+
+00:03:13.239 --> 00:03:15.250
+Let’s unpack that a little bit.
+
+00:03:15.250 --> 00:03:21.720
+Pretend you’re a parser for a minute, and you’re looking at source code character by character.
+
+00:03:21.720 --> 00:03:26.600
+In JSON, if you see an opening brace, there’s only two possible options:
+
+00:03:26.620 --> 00:03:31.300
+either this is the start of an object, or this is invalid JSON.
+
+00:03:31.300 --> 00:03:33.300
+Two options. That’s it.
+
+00:03:34.260 --> 00:03:37.800
+In JavaScript however, there’s many more possibilities.
+
+00:03:37.819 --> 00:03:43.800
+An opening brace could be the start of an object literal, but it could also be a number of other things!
+
+00:03:43.850 --> 00:03:45.910
+Let’s walk through some examples.
+
+00:03:45.910 --> 00:03:49.960
+Here, we have an opening brace on the second line.
+
+00:03:49.960 --> 00:03:53.640
+What do you think, is this an object literal or not?
+
+00:03:53.640 --> 00:03:56.129
+And what does the x on the second line refer to?
+
+00:03:56.129 --> 00:04:01.300
+Does it refer to the binding on the first line, or is it something else?
+
+00:04:01.300 --> 00:04:06.800
+Turns out, it’s not even possible to answer these questions without looking at the rest of the code.
+
+00:04:06.800 --> 00:04:11.210
+In this case, the second line creates an object literal.
+
+00:04:11.210 --> 00:04:14.200
+x refers to the binding on the first line.
+
+00:04:14.200 --> 00:04:21.489
+But in this case, it’s an object destructuring, and the x doesn’t refer to the first line at all.
+
+00:04:21.489 --> 00:04:26.059
+And then there’s this scenario, where the second line contains an arrow function with
+
+00:04:26.059 --> 00:04:29.069
+a destructuring parameter named x.
+
+00:04:29.069 --> 00:04:33.139
+In that case, the x also does not refer to the first line.
+
+00:04:33.139 --> 00:04:39.700
+The point I’m trying to make here is that parsing JavaScript is tricky because its grammar is context-sensitive.
+
+00:04:39.700 --> 00:04:44.919
+JSON doesn’t have that problem, and so parsing JSON is much simpler.
+
+00:04:44.919 --> 00:04:53.900
+And that’s why, especially for large objects, it’s faster to use JSON.parse than to use a JavaScript object literal.
+
+00:04:53.919 --> 00:04:55.789
+At this point you’re probably wondering…
+
+00:04:55.789 --> 00:04:58.000
+how much faster is it exactly?
+
+00:04:58.000 --> 00:05:05.500
+We measured this for an 8-MB payload on cold loads (with no caching) and found that in V8 and Chrome,
+
+00:05:05.500 --> 00:05:10.849
+the JSON.parse technique is 1.7 times as fast as the object literal.
+
+00:05:10.849 --> 00:05:15.190
+And the speed-up applies to other JavaScript engines and browsers as well!
+
+00:05:15.190 --> 00:05:22.059
+In Safari and JavaScriptCore, the difference is even greater: there, JSON.parse is twice as fast!
+
+00:05:22.059 --> 00:05:27.360
+Ok, you might say, that’s just a synthetic benchmark with a very large payload.
+
+00:05:27.360 --> 00:05:30.139
+How does this affect real-world web apps?
+
+00:05:30.139 --> 00:05:35.432
+Well, Henrik Joreteg applied this optimization to a Redux app he was working on,
+
+00:05:35.432 --> 00:05:38.000
+and published a case study about the results.
+
+00:05:38.000 --> 00:05:44.430
+There was an 18% improvement in Time to Interactive, and the app’s Lighthouse performance score
+
+00:05:44.430 --> 00:05:46.960
+went up 8 points as well.
+
+00:05:46.960 --> 00:05:50.440
+That’s not bad for applying a single optimization!
+
+00:05:50.440 --> 00:05:53.219
+How can you start making use of this optimization?
+
+00:05:53.219 --> 00:05:56.539
+I wouldn’t recommend doing this manually.
+
+00:05:56.539 --> 00:06:01.360
+In source code, you’d still want to use object literals since they’re more readable.
+
+00:06:01.360 --> 00:06:07.599
+Instead, tooling can help you automatically transform large object literals into JSON.parse,
+
+00:06:07.599 --> 00:06:10.229
+as a build-time optimization.
+
+00:06:10.229 --> 00:06:16.340
+webpack already applies the JSON.parse technique if your code base uses JSON modules.
+
+00:06:16.340 --> 00:06:21.280
+There’s also a Babel plugin that can apply the transformation on other code.
+
+00:06:21.280 --> 00:06:26.420
+For more JavaScript performance tips, check out “The Cost of JavaScript” on the V8 blog.
+
+00:06:27.060 --> 00:06:29.500
+And that’s it — thanks for watching, everyone!
+

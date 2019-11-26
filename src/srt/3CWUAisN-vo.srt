@@ -1,0 +1,788 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.120 --> 00:00:00.912
+EMILIE ROBERTS: Hi.
+
+00:00:00.912 --> 00:00:03.900
+I'm Emilie Roberts, a developer
+advocate with Chrome OS
+
+00:00:03.900 --> 00:00:05.610
+developer relations.
+
+00:00:05.610 --> 00:00:08.460
+Today, I'm going to talk about
+web development on Chromebooks.
+
+00:00:08.460 --> 00:00:12.570
+Here is a quote from you,
+a skilled web developer.
+
+00:00:12.570 --> 00:00:15.580
+"Chromebooks are awesome."
+
+00:00:15.580 --> 00:00:17.850
+And if you don't remember
+saying this recently,
+
+00:00:17.850 --> 00:00:19.780
+I hope that after
+watching this video,
+
+00:00:19.780 --> 00:00:21.810
+it will become a daily thing.
+
+00:00:21.810 --> 00:00:25.410
+Chromebooks are known for being
+lightweight, fast, secure web
+
+00:00:25.410 --> 00:00:26.700
+browsing machines.
+
+00:00:26.700 --> 00:00:28.500
+They are so much more.
+
+00:00:28.500 --> 00:00:31.230
+The device portfolio has
+grown to include tablets,
+
+00:00:31.230 --> 00:00:34.110
+detachables, all-in-one,
+mini desktops,
+
+00:00:34.110 --> 00:00:36.630
+and of course, laptops
+and convertibles.
+
+00:00:36.630 --> 00:00:40.590
+Many of these are capable
+development devices.
+
+00:00:40.590 --> 00:00:42.620
+So what can you run on them?
+
+00:00:42.620 --> 00:00:47.870
+Well, IDEs like Visual
+Studio Code, Atom, WebStorm,
+
+00:00:47.870 --> 00:00:51.290
+tools like Node,
+React, Docker, and Git,
+
+00:00:51.290 --> 00:00:54.320
+and you can test your web
+apps with multiple browsers,
+
+00:00:54.320 --> 00:00:56.570
+including real mobile browsers.
+
+00:00:56.570 --> 00:00:59.360
+As well, you can check how
+your mobile app interacts
+
+00:00:59.360 --> 00:01:03.030
+with your web server, all
+right on the same device.
+
+00:01:03.030 --> 00:01:03.530
+OK.
+
+00:01:03.530 --> 00:01:05.390
+Let's get started and
+get your Chrome OS
+
+00:01:05.390 --> 00:01:07.820
+device ready for development.
+
+00:01:07.820 --> 00:01:10.070
+We are going to set
+up a Linux environment
+
+00:01:10.070 --> 00:01:11.780
+and then install
+the tools you need.
+
+00:01:11.780 --> 00:01:15.370
+To start, open Chrome
+settings and search
+
+00:01:15.370 --> 00:01:17.360
+or scroll down to Linux.
+
+00:01:17.360 --> 00:01:19.640
+Click Turn on.
+
+00:01:19.640 --> 00:01:22.370
+This will download and
+setup a Linux environment.
+
+00:01:22.370 --> 00:01:25.030
+When it's complete, you'll
+see a terminal prompt.
+
+00:01:25.030 --> 00:01:28.550
+Pro tip-- if you will be
+doing a lot of development,
+
+00:01:28.550 --> 00:01:31.250
+pin the Terminal by
+right-clicking and choosing
+
+00:01:31.250 --> 00:01:33.350
+Pin.
+
+00:01:33.350 --> 00:01:35.240
+Now we have a Linux environment.
+
+00:01:35.240 --> 00:01:37.550
+Let's install some tools.
+
+00:01:37.550 --> 00:01:40.340
+Head over to the Visual
+Studio Code website
+
+00:01:40.340 --> 00:01:44.270
+and download the
+Linux.deb package.
+
+00:01:44.270 --> 00:01:46.700
+Double-click and choose Install.
+
+00:01:46.700 --> 00:01:48.350
+Once it's installed,
+you can find
+
+00:01:48.350 --> 00:01:50.420
+VS Code in your App Launcher.
+
+00:01:50.420 --> 00:01:52.565
+If you're going to be
+using this IDE a lot,
+
+00:01:52.565 --> 00:01:54.440
+you can pin it like we
+did with the Terminal.
+
+00:02:00.530 --> 00:02:04.580
+Any application with a .deb
+package can be installed
+
+00:02:04.580 --> 00:02:05.960
+in a similar way.
+
+00:02:05.960 --> 00:02:07.910
+Let's install Atom.
+
+00:02:07.910 --> 00:02:10.580
+The process is
+exactly the same--
+
+00:02:10.580 --> 00:02:17.660
+download, install, and launch.
+
+00:02:17.660 --> 00:02:20.692
+Not every app has
+a .deb package,
+
+00:02:20.692 --> 00:02:23.150
+but you can install any of your
+favorite tools that support
+
+00:02:23.150 --> 00:02:24.380
+Debian Linux.
+
+00:02:24.380 --> 00:02:27.350
+For example, to
+install Sublime Text,
+
+00:02:27.350 --> 00:02:29.570
+follow the Linux
+instructions on the website
+
+00:02:29.570 --> 00:02:32.810
+to set up the APT repo and
+install the editor using
+
+00:02:32.810 --> 00:02:35.690
+the command line.
+
+00:02:35.690 --> 00:02:37.950
+When we install Node
+in a few seconds,
+
+00:02:37.950 --> 00:02:41.040
+we'll take a closer look at
+command line installation.
+
+00:02:41.040 --> 00:02:44.000
+And the same thing goes
+for apps like WebStorm.
+
+00:02:44.000 --> 00:02:46.610
+Just go to the website,
+follow the Linux download
+
+00:02:46.610 --> 00:02:48.350
+and install instructions.
+
+00:02:48.350 --> 00:02:50.150
+I won't do WebStorm right now.
+
+00:02:50.150 --> 00:02:53.090
+Let's get right on to the
+server side of things.
+
+00:02:53.090 --> 00:02:55.860
+Oh, and by the way, at
+the end of this video,
+
+00:02:55.860 --> 00:02:58.100
+I will direct you to a page
+by the Chrome OS DevRel
+
+00:02:58.100 --> 00:03:01.250
+team with installation
+instructions for all the apps
+
+00:03:01.250 --> 00:03:04.360
+and more discussed
+in this video.
+
+00:03:04.360 --> 00:03:06.490
+Now, beyond what I mention
+today in this video,
+
+00:03:06.490 --> 00:03:08.670
+if your favorite tool
+is supported in Linux,
+
+00:03:08.670 --> 00:03:10.170
+it should run on Chromebooks.
+
+00:03:10.170 --> 00:03:13.370
+For example, I like
+gedit for text editing,
+
+00:03:13.370 --> 00:03:17.760
+FileZilla as an FTP client, and
+Inkscape for vector graphics
+
+00:03:17.760 --> 00:03:19.210
+editing.
+
+00:03:19.210 --> 00:03:21.550
+Today, web development
+usually takes more
+
+00:03:21.550 --> 00:03:25.150
+than a text editor, an
+IDE, or an FTP client.
+
+00:03:25.150 --> 00:03:27.250
+Let's get to some
+other tools so we can
+
+00:03:27.250 --> 00:03:29.970
+make some really nice web apps.
+
+00:03:29.970 --> 00:03:33.390
+Node.js requires gnupg2.
+
+00:03:33.390 --> 00:03:37.380
+Open up your Terminal
+and install it with apt.
+
+00:03:37.380 --> 00:03:43.560
+That command is sudo
+apt install gnupg2.
+
+00:03:43.560 --> 00:03:45.810
+If you're new to
+apt, you can probably
+
+00:03:45.810 --> 00:03:50.040
+guess that by replacing gnupg2
+with whatever package name
+
+00:03:50.040 --> 00:03:53.082
+you want, it will
+install that package.
+
+00:03:53.082 --> 00:03:54.540
+Now, finding the
+right package name
+
+00:03:54.540 --> 00:03:56.860
+can sometimes be
+the tricky part.
+
+00:03:56.860 --> 00:04:00.130
+Note, as we continue with
+this video and other terminal
+
+00:04:00.130 --> 00:04:02.555
+commands, I won't read
+every line out loud.
+
+00:04:02.555 --> 00:04:04.180
+But as mentioned, I
+will provide a link
+
+00:04:04.180 --> 00:04:07.470
+at the end that has them all.
+
+00:04:07.470 --> 00:04:11.100
+Now that the dependency is
+installed, let's get Node.js.
+
+00:04:11.100 --> 00:04:16.070
+Run this cURL command followed
+by another apt install command
+
+00:04:16.070 --> 00:04:18.120
+for node.
+
+00:04:18.120 --> 00:04:18.930
+That's it.
+
+00:04:18.930 --> 00:04:21.399
+Node.js is ready to go.
+
+00:04:21.399 --> 00:04:22.620
+Don't believe me?
+
+00:04:22.620 --> 00:04:24.710
+Well, let's try
+it out with PROXX.
+
+00:04:24.710 --> 00:04:29.580
+Use git to clone the PROXX
+repo and NPM to install, build,
+
+00:04:29.580 --> 00:04:32.580
+and serve the PROXX web app.
+
+00:04:32.580 --> 00:04:36.540
+Navigate to localhost:8080 in
+your web browser and check it
+
+00:04:36.540 --> 00:04:38.210
+out.
+
+00:04:38.210 --> 00:04:39.290
+Pretty cool.
+
+00:04:39.290 --> 00:04:41.940
+So much minesweeping to be done.
+
+00:04:41.940 --> 00:04:43.610
+Let's try React.
+
+00:04:43.610 --> 00:04:48.200
+Using NPM, you can
+install, create-react-app,
+
+00:04:48.200 --> 00:04:51.860
+then use create-react-app to
+create a skeleton project.
+
+00:04:51.860 --> 00:04:55.670
+Here, I call it
+hello-world-react.
+
+00:04:55.670 --> 00:04:58.730
+Navigate into the directory
+where it was created
+
+00:04:58.730 --> 00:05:02.280
+and call npm start.
+
+00:05:02.280 --> 00:05:06.090
+Now, navigate to localhost:3000
+in your browser and check it
+
+00:05:06.090 --> 00:05:08.330
+out.
+
+00:05:08.330 --> 00:05:11.350
+If you prefer Angular,
+install that, too.
+
+00:05:11.350 --> 00:05:13.760
+The steps are almost the same.
+
+00:05:13.760 --> 00:05:19.580
+Again, we use NPM to
+install @angular/cli.
+
+00:05:19.580 --> 00:05:24.200
+Create an Angular app using
+ng new my-angular-project.
+
+00:05:24.200 --> 00:05:26.000
+Change directories
+into the project
+
+00:05:26.000 --> 00:05:30.950
+folder using cd, for change
+directory, my-angular-project.
+
+00:05:30.950 --> 00:05:35.510
+Now, in gServ, browse to
+localhost:4200 and check it
+
+00:05:35.510 --> 00:05:36.760
+out.
+
+00:05:36.760 --> 00:05:39.670
+Here, you'll notice that
+I have PROXX, a React
+
+00:05:39.670 --> 00:05:43.240
+app, and an Angular app all
+running on different ports
+
+00:05:43.240 --> 00:05:45.310
+all on the same Chromebook.
+
+00:05:45.310 --> 00:05:46.960
+I think this is pretty handy.
+
+00:05:46.960 --> 00:05:49.690
+What's more, this
+is all local, so
+
+00:05:49.690 --> 00:05:51.850
+as long as your tools
+are already installed,
+
+00:05:51.850 --> 00:05:54.400
+you could do all of your
+development offline--
+
+00:05:54.400 --> 00:05:56.900
+say, like on a plane.
+
+00:05:56.900 --> 00:05:58.190
+What about Docker?
+
+00:05:58.190 --> 00:05:59.400
+No problem.
+
+00:05:59.400 --> 00:06:01.850
+Again, we're going to follow
+the normal Linux installation
+
+00:06:01.850 --> 00:06:03.090
+steps.
+
+00:06:03.090 --> 00:06:06.080
+First, we double-check that all
+the dependencies are installed.
+
+00:06:06.080 --> 00:06:09.050
+We add the Docker
+repository to apt,
+
+00:06:09.050 --> 00:06:12.440
+and then we update the apt
+package list since we just
+
+00:06:12.440 --> 00:06:14.150
+added a new repository.
+
+00:06:14.150 --> 00:06:17.720
+We use sudo apt
+update to do this.
+
+00:06:17.720 --> 00:06:19.890
+Then install Docker.
+
+00:06:19.890 --> 00:06:22.220
+Test it out by
+running hello-world.
+
+00:06:22.220 --> 00:06:25.058
+This is done with sudo
+docker run hello-world.
+
+00:06:25.058 --> 00:06:26.600
+You should get a
+nice message showing
+
+00:06:26.600 --> 00:06:27.770
+that everything is working.
+
+00:06:27.770 --> 00:06:29.270
+Let's do something
+a little bit more
+
+00:06:29.270 --> 00:06:33.230
+advanced by running an Ubuntu
+Linux container in Docker.
+
+00:06:33.230 --> 00:06:36.840
+sudo docker run -it ubuntu bash.
+
+00:06:36.840 --> 00:06:37.850
+And there you go.
+
+00:06:37.850 --> 00:06:40.040
+Your output is going to
+look something like this.
+
+00:06:40.040 --> 00:06:42.890
+In the Ubuntu container, I've
+taken a look at the OS version
+
+00:06:42.890 --> 00:06:50.150
+with cat /etc/os-version and
+you can see, it's really Ubuntu.
+
+00:06:50.150 --> 00:06:54.470
+Now, once an app is ready to
+deploy, it should be tested.
+
+00:06:54.470 --> 00:06:57.620
+Because Chromebooks have
+web, Android, and Linux,
+
+00:06:57.620 --> 00:07:01.440
+you can test across multiple
+browsers on multiple platforms
+
+00:07:01.440 --> 00:07:03.350
+all right on the same device.
+
+00:07:03.350 --> 00:07:07.520
+Let's install a whole pile of
+browsers to prove this point.
+
+00:07:07.520 --> 00:07:12.560
+Using the Terminal and apt,
+install Firefox for Linux.
+
+00:07:12.560 --> 00:07:15.410
+Note in Debian, the package
+name is firefox-esr.
+
+00:07:17.930 --> 00:07:22.250
+Then let's also install the
+Chromium browser for Linux.
+
+00:07:22.250 --> 00:07:23.490
+Feeling brave?
+
+00:07:23.490 --> 00:07:26.060
+Let's install the Brave
+browser for Linux.
+
+00:07:26.060 --> 00:07:28.370
+I won't walk through all
+of these lines right now,
+
+00:07:28.370 --> 00:07:30.710
+but again, they are just
+the standard installation
+
+00:07:30.710 --> 00:07:33.380
+instructions for Debian Linux.
+
+00:07:33.380 --> 00:07:38.150
+We install the GPG key, we
+install the repo, and finally
+
+00:07:38.150 --> 00:07:40.250
+Brave.
+
+00:07:40.250 --> 00:07:45.368
+Now, if four browsers aren't
+enough, let's add a few more.
+
+00:07:45.368 --> 00:07:46.785
+Head over to the
+Google Play Store
+
+00:07:46.785 --> 00:07:49.610
+and install some
+Android browsers.
+
+00:07:49.610 --> 00:07:53.870
+Let's go with Firefox for
+Android, Opera for Android,
+
+00:07:53.870 --> 00:07:55.760
+and Chrome Beta for Android.
+
+00:07:55.760 --> 00:07:58.800
+We now have seven
+browsers installed,
+
+00:07:58.800 --> 00:08:02.870
+which can give us a reasonable
+first attempt at test coverage.
+
+00:08:02.870 --> 00:08:06.810
+We have the Chrome
+OS Chrome browser,
+
+00:08:06.810 --> 00:08:11.210
+three Android browsers--
+that is Firefox, Chrome Beta,
+
+00:08:11.210 --> 00:08:12.780
+and Opera--
+
+00:08:12.780 --> 00:08:17.810
+three Linux browsers-- Firefox
+for Linux, Brave, and Chromium.
+
+00:08:17.810 --> 00:08:20.510
+And here you can see
+that our PROXX web
+
+00:08:20.510 --> 00:08:22.620
+app is running on all seven.
+
+00:08:22.620 --> 00:08:24.350
+One last thing to mention.
+
+00:08:24.350 --> 00:08:27.020
+In case you have a mobile app
+that interacts with your web
+
+00:08:27.020 --> 00:08:30.890
+service, you can do
+Android, TWA, and Flutter
+
+00:08:30.890 --> 00:08:33.140
+development on Chrome
+OS devices, which
+
+00:08:33.140 --> 00:08:35.210
+means you can build and
+package your mobile app
+
+00:08:35.210 --> 00:08:37.940
+on your Chromebook, test it
+right on the device you are
+
+00:08:37.940 --> 00:08:40.610
+coding on, like any
+other Android app,
+
+00:08:40.610 --> 00:08:43.700
+build your web component,
+start your web server,
+
+00:08:43.700 --> 00:08:46.250
+and then test everything
+on multiple browsers
+
+00:08:46.250 --> 00:08:50.510
+and see how it interacts
+right on the device.
+
+00:08:50.510 --> 00:08:52.580
+Android Studio is
+as easy to install
+
+00:08:52.580 --> 00:08:54.590
+as Visual Studio Code or Atom.
+
+00:08:54.590 --> 00:08:58.020
+Head over to the Android Studio
+site and download the .deb
+
+00:08:58.020 --> 00:08:59.997
+file.
+
+00:08:59.997 --> 00:09:01.580
+Then, you can code
+your app like you'd
+
+00:09:01.580 --> 00:09:04.970
+expect in Android Studio
+with one cool difference.
+
+00:09:04.970 --> 00:09:08.870
+You'll notice that you can
+push directly to the Chromebook
+
+00:09:08.870 --> 00:09:10.100
+you're working on.
+
+00:09:10.100 --> 00:09:11.300
+Pretty cool.
+
+00:09:11.300 --> 00:09:13.400
+Full instructions on
+how to set this up
+
+00:09:13.400 --> 00:09:16.010
+can be found on the link
+at the end of this video
+
+00:09:16.010 --> 00:09:18.420
+on the Android page.
+
+00:09:18.420 --> 00:09:20.990
+So with your Chromebook,
+you can build web apps
+
+00:09:20.990 --> 00:09:23.120
+with the tools you
+are used to, develop
+
+00:09:23.120 --> 00:09:26.960
+and test right on device with
+tools like Node.js, Docker,
+
+00:09:26.960 --> 00:09:29.810
+and Angular, test across
+multiple browsers,
+
+00:09:29.810 --> 00:09:34.370
+including mobile browsers, and
+even test mobile app and web
+
+00:09:34.370 --> 00:09:36.770
+interaction right on device.
+
+00:09:36.770 --> 00:09:39.170
+And all of this could
+even happen offline,
+
+00:09:39.170 --> 00:09:40.910
+like on a long flight.
+
+00:09:40.910 --> 00:09:46.640
+So now, don't you agree
+Chromebooks are awesome?
+
+00:09:46.640 --> 00:09:48.740
+As promised, here
+is a link to a guide
+
+00:09:48.740 --> 00:09:50.840
+to get your Linux
+environment customized
+
+00:09:50.840 --> 00:09:52.280
+just the way you like.
+
+00:09:52.280 --> 00:09:58.880
+It's cros.page.link/web-dev.
+
+00:09:58.880 --> 00:09:59.570
+Thank you.
+
+00:09:59.570 --> 00:10:01.040
+Can't wait to see
+what you build.
+
+00:10:01.040 --> 00:10:04.390
+[MUSIC PLAYING]
+

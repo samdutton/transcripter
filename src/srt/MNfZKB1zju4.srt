@@ -1,0 +1,552 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:01.790
+ADRIANA JARA: My
+name is Adriana Jara.
+
+00:00:01.790 --> 00:00:04.830
+I'm a Developer
+Advocate in Chrome OS.
+
+00:00:04.830 --> 00:00:09.180
+I will share five tips to
+make your PWA stand out
+
+00:00:09.180 --> 00:00:11.100
+in a good way.
+
+00:00:11.100 --> 00:00:13.800
+Earlier this year, I was a
+developer on a progressive web
+
+00:00:13.800 --> 00:00:15.900
+app here at Google.
+
+00:00:15.900 --> 00:00:17.610
+And in the beginning,
+our users had
+
+00:00:17.610 --> 00:00:20.910
+a lot of questions about PWA.
+
+00:00:20.910 --> 00:00:22.620
+How do you install a website?
+
+00:00:22.620 --> 00:00:25.500
+What happens if you don't
+install it right away?
+
+00:00:25.500 --> 00:00:27.870
+What happens when
+you're offline?
+
+00:00:27.870 --> 00:00:31.420
+How does it manage
+local resources?
+
+00:00:31.420 --> 00:00:34.830
+These are the lessons I learned
+from answering their questions.
+
+00:00:34.830 --> 00:00:36.870
+Hopefully, they'll help
+you build an experience
+
+00:00:36.870 --> 00:00:38.820
+your users will love.
+
+00:00:38.820 --> 00:00:41.190
+Here we go.
+
+00:00:41.190 --> 00:00:44.970
+Number one, dare to be offline.
+
+00:00:44.970 --> 00:00:46.770
+When a user is
+offline, they don't
+
+00:00:46.770 --> 00:00:49.800
+expect to be able
+to get to a website,
+
+00:00:49.800 --> 00:00:53.520
+let alone enjoy any
+of its features.
+
+00:00:53.520 --> 00:00:57.240
+As a developer, you might even
+be convinced that your app just
+
+00:00:57.240 --> 00:01:00.240
+doesn't make sense offline.
+
+00:01:00.240 --> 00:01:03.960
+And because a PWA requires
+an offline experience,
+
+00:01:03.960 --> 00:01:06.360
+you can create a
+custom page that
+
+00:01:06.360 --> 00:01:10.590
+asks users to come back later
+when there is a connection.
+
+00:01:10.590 --> 00:01:14.370
+Instead, how about creating
+different features?
+
+00:01:14.370 --> 00:01:17.340
+You can't give users
+full functionality,
+
+00:01:17.340 --> 00:01:19.950
+but some parts could still work.
+
+00:01:19.950 --> 00:01:22.770
+With the use of device
+storage and caching,
+
+00:01:22.770 --> 00:01:26.670
+for example, users can't
+get to the latest posts,
+
+00:01:26.670 --> 00:01:30.540
+but they could interact with
+previously retrieved posts.
+
+00:01:30.540 --> 00:01:32.940
+They could comment
+and add reactions.
+
+00:01:32.940 --> 00:01:36.540
+You can save those interactions
+locally and see them later
+
+00:01:36.540 --> 00:01:38.310
+when they are back online.
+
+00:01:38.310 --> 00:01:40.450
+Random searches are impossible.
+
+00:01:40.450 --> 00:01:42.210
+But if you have
+cached recent results,
+
+00:01:42.210 --> 00:01:45.570
+they answer they are
+looking for may be there.
+
+00:01:45.570 --> 00:01:46.410
+The result?
+
+00:01:46.410 --> 00:01:47.610
+Happy user.
+
+00:01:47.610 --> 00:01:50.280
+And you didn't even
+need the internet!
+
+00:01:50.280 --> 00:01:52.320
+By the way, since
+you don't know when
+
+00:01:52.320 --> 00:01:54.630
+a user is going to
+be offline or when
+
+00:01:54.630 --> 00:01:56.480
+the phone is going
+to be turned off,
+
+00:01:56.480 --> 00:02:00.120
+it's a good practice to
+save snapshots in workflows
+
+00:02:00.120 --> 00:02:02.490
+so that the users don't
+lose a lot of work
+
+00:02:02.490 --> 00:02:05.100
+in case of an interruption.
+
+00:02:05.100 --> 00:02:08.669
+Number two, use
+device storage wisely.
+
+00:02:08.669 --> 00:02:12.210
+On the web, our apps seem
+to have unlimited storage.
+
+00:02:12.210 --> 00:02:14.580
+But in a device, it's
+a different story.
+
+00:02:14.580 --> 00:02:16.500
+There are hard limits.
+
+00:02:16.500 --> 00:02:19.380
+Keep tabs on how much
+space is available.
+
+00:02:19.380 --> 00:02:21.210
+You don't want your
+app to just stop
+
+00:02:21.210 --> 00:02:24.270
+working in the middle
+of recording a video.
+
+00:02:24.270 --> 00:02:28.170
+You can use Storage Manager
+to calculate available space,
+
+00:02:28.170 --> 00:02:32.370
+and then show the user warnings
+so they can take action.
+
+00:02:32.370 --> 00:02:36.300
+Also, choose wisely which method
+is more appropriate to save
+
+00:02:36.300 --> 00:02:37.530
+the local data.
+
+00:02:37.530 --> 00:02:40.470
+Some options are cached API--
+
+00:02:40.470 --> 00:02:42.750
+which, by the way, can
+be accessed directly
+
+00:02:42.750 --> 00:02:44.520
+from the window object.
+
+00:02:44.520 --> 00:02:46.920
+It doesn't need to go
+through a service worker.
+
+00:02:46.920 --> 00:02:48.180
+IndexedDB.
+
+00:02:48.180 --> 00:02:50.130
+A good use case
+here are operations
+
+00:02:50.130 --> 00:02:54.420
+that need a transaction or
+the native file system API.
+
+00:02:54.420 --> 00:02:58.110
+It is not fully available yet,
+but you can start to experiment
+
+00:02:58.110 --> 00:02:59.230
+with it.
+
+00:02:59.230 --> 00:03:01.920
+Check out the link in the
+description for more info.
+
+00:03:01.920 --> 00:03:05.830
+Also, don't keep local
+data longer than necessary.
+
+00:03:05.830 --> 00:03:07.860
+Once you can sync the
+data to the cloud,
+
+00:03:07.860 --> 00:03:10.200
+free up space in the device.
+
+00:03:10.200 --> 00:03:13.690
+And clear all local data when
+appropriate-- for example,
+
+00:03:13.690 --> 00:03:16.360
+when the user signs out.
+
+00:03:16.360 --> 00:03:21.190
+Number three, embrace
+multi-device journeys.
+
+00:03:21.190 --> 00:03:23.560
+Users have multiple devices.
+
+00:03:23.560 --> 00:03:27.250
+They jump from one another
+and pick up where they left.
+
+00:03:27.250 --> 00:03:30.580
+At least, that is
+their expectation.
+
+00:03:30.580 --> 00:03:33.640
+As users, we want to start
+a task on our computer
+
+00:03:33.640 --> 00:03:38.540
+and send it to our phone to
+be continued, and vice versa.
+
+00:03:38.540 --> 00:03:41.390
+It is pretty convenient to
+take a picture with our phone.
+
+00:03:41.390 --> 00:03:43.970
+But also, a big
+screen and a keyboard
+
+00:03:43.970 --> 00:03:47.100
+are nice to edit photos
+and type captions.
+
+00:03:47.100 --> 00:03:50.320
+Another example is
+content consumption.
+
+00:03:50.320 --> 00:03:53.200
+We consume content on our
+phone in a different way
+
+00:03:53.200 --> 00:03:55.820
+than we do on a larger screen.
+
+00:03:55.820 --> 00:03:57.730
+Users want to be able
+to take advantage
+
+00:03:57.730 --> 00:03:59.650
+of the real estate
+that is available
+
+00:03:59.650 --> 00:04:02.860
+and consume content in the most
+efficient and enjoyable way
+
+00:04:02.860 --> 00:04:04.220
+for them.
+
+00:04:04.220 --> 00:04:06.250
+Building different
+layouts also helps
+
+00:04:06.250 --> 00:04:09.440
+with making your app more
+accessible and inclusive.
+
+00:04:09.440 --> 00:04:12.820
+Your users know that no matter
+what device they're using,
+
+00:04:12.820 --> 00:04:15.460
+your app will provide the
+appropriate experience
+
+00:04:15.460 --> 00:04:19.060
+for their journey across
+different form factors.
+
+00:04:19.060 --> 00:04:23.050
+Number four, bring
+your users with you.
+
+00:04:23.050 --> 00:04:25.840
+Progressive web apps
+are still new for users.
+
+00:04:25.840 --> 00:04:27.790
+They might not realize
+they have landed
+
+00:04:27.790 --> 00:04:30.670
+on a website with
+special capabilities.
+
+00:04:30.670 --> 00:04:33.180
+Help them along the way.
+
+00:04:33.180 --> 00:04:37.240
+Prompt your users to install
+your app when it is convenient.
+
+00:04:37.240 --> 00:04:40.480
+For a while, we used the
+browser's default prompt.
+
+00:04:40.480 --> 00:04:43.450
+Unfortunately, it would
+interrupt our users
+
+00:04:43.450 --> 00:04:46.080
+in the middle of our
+getting started flow.
+
+00:04:46.080 --> 00:04:49.690
+The prompt would go
+away, and users would
+
+00:04:49.690 --> 00:04:51.910
+forget to install our app.
+
+00:04:51.910 --> 00:04:55.000
+Now, you can capture the
+before install prompt event
+
+00:04:55.000 --> 00:04:58.360
+and prompt the users
+at a later time.
+
+00:04:58.360 --> 00:05:03.060
+You can use headers,
+banners, menus, and others.
+
+00:05:03.060 --> 00:05:06.040
+I added a link to an article in
+the description that walks you
+
+00:05:06.040 --> 00:05:08.150
+through different patterns.
+
+00:05:08.150 --> 00:05:11.270
+You can also help your users
+by adding tips in your UI
+
+00:05:11.270 --> 00:05:14.030
+the first time they
+go through a workflow.
+
+00:05:14.030 --> 00:05:17.320
+You can highlight things like
+what data will be available
+
+00:05:17.320 --> 00:05:19.540
+offline or what
+parts of your app
+
+00:05:19.540 --> 00:05:21.340
+will work in the background.
+
+00:05:21.340 --> 00:05:23.590
+Finally, don't ask
+for permissions
+
+00:05:23.590 --> 00:05:26.740
+until the user is trying
+a specific feature.
+
+00:05:26.740 --> 00:05:29.110
+Don't ask for camera
+access until the user
+
+00:05:29.110 --> 00:05:31.000
+is going to take a picture.
+
+00:05:31.000 --> 00:05:34.390
+This makes the user understand
+why you need permissions,
+
+00:05:34.390 --> 00:05:37.060
+and they will be more
+willing to grant them.
+
+00:05:37.060 --> 00:05:40.720
+Number five, beware
+of service workers.
+
+00:05:40.720 --> 00:05:43.120
+Service workers are
+powerful and are
+
+00:05:43.120 --> 00:05:46.000
+central in implementing
+several of my tips.
+
+00:05:46.000 --> 00:05:48.250
+For example, you can
+use background sync
+
+00:05:48.250 --> 00:05:51.020
+to upload large amounts of data.
+
+00:05:51.020 --> 00:05:53.020
+Even when the app
+is closed, they also
+
+00:05:53.020 --> 00:05:55.630
+make possible to make
+good use of notifications
+
+00:05:55.630 --> 00:05:57.820
+and re-engage your users.
+
+00:05:57.820 --> 00:06:00.490
+Maybe to remind your
+users of unfinished task
+
+00:06:00.490 --> 00:06:02.410
+or of new content.
+
+00:06:02.410 --> 00:06:05.930
+However, service
+workers can be tricky.
+
+00:06:05.930 --> 00:06:08.580
+The best approach
+is to generate it.
+
+00:06:08.580 --> 00:06:10.720
+There are tools
+like Workbox that
+
+00:06:10.720 --> 00:06:14.380
+can help you generate a service
+worker with the strategies
+
+00:06:14.380 --> 00:06:16.010
+your app needs.
+
+00:06:16.010 --> 00:06:19.720
+Finally, keeping your service
+worker code to a minimum
+
+00:06:19.720 --> 00:06:22.240
+will also make your
+app easier to test.
+
+00:06:22.240 --> 00:06:24.510
+This way, you'll
+implement behaviors
+
+00:06:24.510 --> 00:06:28.000
+in helper classes that
+can be better unit tested.
+
+00:06:28.000 --> 00:06:29.450
+Thank you for watching.
+
+00:06:29.450 --> 00:06:33.070
+I hope you got some new ideas
+to make your PWA give users
+
+00:06:33.070 --> 00:06:36.340
+the best of the web
+and native experiences.
+
+00:06:36.340 --> 00:06:38.080
+I included links
+in the description
+
+00:06:38.080 --> 00:06:40.720
+to help you
+implement these tips.
+
+00:06:40.720 --> 00:06:43.090
+Don't forget to subscribe
+and share with your friends.
+
+00:06:43.090 --> 00:06:46.140
+[MUSIC PLAYING]
+

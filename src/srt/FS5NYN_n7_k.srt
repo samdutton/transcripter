@@ -1,0 +1,395 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.300 --> 00:00:01.750
+MINKO GECHEV: Hello, everyone.
+
+00:00:01.750 --> 00:00:02.890
+My name is Minko Gechev.
+
+00:00:02.890 --> 00:00:05.190
+I'm a senior developer
+programs engineer
+
+00:00:05.190 --> 00:00:06.940
+in the Angular team at Google.
+
+00:00:06.940 --> 00:00:08.520
+In this video, I'm
+going to tell you
+
+00:00:08.520 --> 00:00:11.250
+how to improve the user
+experience of your app
+
+00:00:11.250 --> 00:00:13.800
+by using predictive prefetching.
+
+00:00:13.800 --> 00:00:15.390
+Imagine that we're
+in the subway,
+
+00:00:15.390 --> 00:00:16.740
+waiting for the next train.
+
+00:00:16.740 --> 00:00:20.190
+In the meantime, we open
+our favorite Wikipedia app
+
+00:00:20.190 --> 00:00:22.740
+and decide to learn
+more about cheese.
+
+00:00:22.740 --> 00:00:26.520
+Just around the time it gets
+tasty, our train arrives.
+
+00:00:26.520 --> 00:00:29.090
+We get into the car and depart.
+
+00:00:29.090 --> 00:00:32.490
+While sitting there, we decide
+to continue reading more,
+
+00:00:32.490 --> 00:00:34.020
+but we have a poor signal.
+
+00:00:34.020 --> 00:00:37.240
+We start angrily
+rage-clicking on the links,
+
+00:00:37.240 --> 00:00:38.550
+but it doesn't help.
+
+00:00:38.550 --> 00:00:42.170
+It just makes the situation
+even more frustrating.
+
+00:00:42.170 --> 00:00:45.240
+Let us see how we can
+use prefetching for fewer
+
+00:00:45.240 --> 00:00:47.730
+rage-clicking experiences.
+
+00:00:47.730 --> 00:00:50.640
+First, let us explain
+what is prefetching.
+
+00:00:50.640 --> 00:00:54.310
+Imagine a user is reading the
+cheese article from before.
+
+00:00:54.310 --> 00:00:56.490
+In the background, we
+can download and cache
+
+00:00:56.490 --> 00:00:59.280
+the content associated
+with other pages
+
+00:00:59.280 --> 00:01:01.440
+that there are likely
+to be needed next,
+
+00:01:01.440 --> 00:01:03.780
+so when they perform
+a navigation,
+
+00:01:03.780 --> 00:01:06.570
+they can have an
+instant experience.
+
+00:01:06.570 --> 00:01:09.040
+There are different
+prefetching strategies.
+
+00:01:09.040 --> 00:01:13.120
+For example, we can prefetch
+all the assets in the app,
+
+00:01:13.120 --> 00:01:16.860
+prefetch only the assets
+associated with visible links,
+
+00:01:16.860 --> 00:01:20.610
+initiate prefetching when the
+user's cursor is above link,
+
+00:01:20.610 --> 00:01:24.300
+or apply predictive prefetching.
+
+00:01:24.300 --> 00:01:25.920
+Predictive prefetching
+is a technique
+
+00:01:25.920 --> 00:01:29.810
+that uses methods from data
+analytics and machine learning
+
+00:01:29.810 --> 00:01:32.220
+to provides a
+data-driven approach.
+
+00:01:32.220 --> 00:01:34.270
+In order to use
+predictive prefetching,
+
+00:01:34.270 --> 00:01:37.200
+we need an app
+usage report that we
+
+00:01:37.200 --> 00:01:40.220
+can feed into a
+machine-learning model, which
+
+00:01:40.220 --> 00:01:43.980
+enhances the app by providing
+a predictive experience.
+
+00:01:43.980 --> 00:01:47.670
+Microsoft's Office 365
+uses predictive prefetching
+
+00:01:47.670 --> 00:01:51.480
+with Angular to improve the
+responsiveness of their lazily
+
+00:01:51.480 --> 00:01:53.010
+loaded components.
+
+00:01:53.010 --> 00:01:55.350
+YouTube is predictively
+prefetching content
+
+00:01:55.350 --> 00:01:58.590
+for instant user experiences.
+
+00:01:58.590 --> 00:02:00.800
+But you don't have to
+be Microsoft or Google
+
+00:02:00.800 --> 00:02:02.670
+to take advantage
+of this technique.
+
+00:02:02.670 --> 00:02:05.210
+Guess.js is a library that
+adds predictive prefetching
+
+00:02:05.210 --> 00:02:08.720
+support for apps using
+popular frameworks.
+
+00:02:08.720 --> 00:02:11.030
+And you can take
+advantage of it today.
+
+00:02:11.030 --> 00:02:13.580
+It tracks the possible
+navigations from a page
+
+00:02:13.580 --> 00:02:16.160
+and prefectures only
+the JavaScript that
+
+00:02:16.160 --> 00:02:18.230
+is likely to be needed next.
+
+00:02:18.230 --> 00:02:20.090
+Now, let me tell you
+the story of Naveed,
+
+00:02:20.090 --> 00:02:23.090
+who introduced predictive
+prefetching with Guess.js
+
+00:02:23.090 --> 00:02:24.230
+to his web app.
+
+00:02:24.230 --> 00:02:27.680
+Naveed is building a popular
+web app with tens of thousands
+
+00:02:27.680 --> 00:02:30.830
+of users for finding
+jobs in Pakistan.
+
+00:02:30.830 --> 00:02:33.170
+He developed his
+web app with Angular
+
+00:02:33.170 --> 00:02:35.960
+using the Angular
+Router and CLI.
+
+00:02:35.960 --> 00:02:38.060
+Let us compare how three
+different prefetching
+
+00:02:38.060 --> 00:02:41.270
+strategies would perform
+on Naveed's website.
+
+00:02:41.270 --> 00:02:44.450
+If he was prefetching all
+the modules in the app,
+
+00:02:44.450 --> 00:02:47.840
+this will have
+consumed 2.56 megabytes
+
+00:02:47.840 --> 00:02:52.220
+of data for a single user
+visiting the home page.
+
+00:02:52.220 --> 00:02:54.920
+With a more efficient
+strategy, if he was only
+
+00:02:54.920 --> 00:02:57.570
+prefetching the visible
+links on the page,
+
+00:02:57.570 --> 00:03:01.850
+this will have consumed
+1.22 megabytes of data.
+
+00:03:01.850 --> 00:03:07.370
+With Guess.js, Naveed's website
+consumes only 0.18 megabytes
+
+00:03:07.370 --> 00:03:11.310
+of data for prefetching when
+the user visits the home page.
+
+00:03:11.310 --> 00:03:15.020
+This is 7% of the traffic
+consumed by the most aggressive
+
+00:03:15.020 --> 00:03:16.060
+strategy.
+
+00:03:16.060 --> 00:03:18.290
+With the tens of
+thousands of users
+
+00:03:18.290 --> 00:03:20.750
+visiting Naveed's
+websites daily,
+
+00:03:20.750 --> 00:03:22.970
+he saves gigabytes of traffic.
+
+00:03:22.970 --> 00:03:27.560
+The prefetching of Guest.js
+comes with over 90% accuracy.
+
+00:03:27.560 --> 00:03:30.290
+Combined with prefetching
+on mouse-over,
+
+00:03:30.290 --> 00:03:32.120
+it can provide
+instant experiences
+
+00:03:32.120 --> 00:03:34.910
+for all the users
+of his website,
+
+00:03:34.910 --> 00:03:37.030
+while saving their data.
+
+00:03:37.030 --> 00:03:40.310
+Additionally, Guess.js adapts
+its prefetching algorithm
+
+00:03:40.310 --> 00:03:41.990
+to the user's connection speeds.
+
+00:03:41.990 --> 00:03:43.760
+It performs more
+aggressive prefetching
+
+00:03:43.760 --> 00:03:46.820
+for users on fast network,
+and less aggressive
+
+00:03:46.820 --> 00:03:48.900
+for users on a slower network.
+
+00:03:48.900 --> 00:03:52.010
+Guess.js prefetches the
+individual JavaScript chunks,
+
+00:03:52.010 --> 00:03:55.100
+depending on their
+likelihoods to be used.
+
+00:03:55.100 --> 00:03:58.040
+It calculates the probabilities
+for all the chunks
+
+00:03:58.040 --> 00:04:01.340
+to be needed at build
+time so its payload could
+
+00:04:01.340 --> 00:04:03.360
+be reduced to the minimum.
+
+00:04:03.360 --> 00:04:06.050
+And finally, it does not
+block the main thread,
+
+00:04:06.050 --> 00:04:09.950
+since it performs prefetching
+only when the browser is idle.
+
+00:04:09.950 --> 00:04:14.450
+Today you can use Guest.js
+with Angular, Next.js, Gatsby,
+
+00:04:14.450 --> 00:04:16.370
+and Next.js.
+
+00:04:16.370 --> 00:04:17.959
+The important
+takeaways from today
+
+00:04:17.959 --> 00:04:21.500
+are that predictive prefetching
+can speed up page navigation
+
+00:04:21.500 --> 00:04:23.630
+and improve the user experience.
+
+00:04:23.630 --> 00:04:27.100
+By doing so, it will
+increase user satisfaction
+
+00:04:27.100 --> 00:04:29.300
+and reduce their data usage.
+
+00:04:29.300 --> 00:04:32.300
+If you're using Angular
+or a popular React or Vue
+
+00:04:32.300 --> 00:04:36.630
+meta-framework, you can take
+advantage of Guess.js today.
+
+00:04:36.630 --> 00:04:38.060
+You can learn more
+about Guess.js
+
+00:04:38.060 --> 00:04:41.270
+and predictive
+prefetching on Web.dev.
+
+00:04:41.270 --> 00:04:42.560
+Thanks for watching.
+
+00:04:42.560 --> 00:04:46.210
+[MUSIC PLAYING]
+

@@ -1,0 +1,575 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.500 --> 00:00:01.110
+THARU: Hi.
+
+00:00:01.110 --> 00:00:03.150
+My name is Tharu, and
+I'm a Product Manager
+
+00:00:03.150 --> 00:00:04.410
+on the Chrome commercial team.
+
+00:00:04.410 --> 00:00:06.000
+JASON WONG: And
+my name is Jason.
+
+00:00:06.000 --> 00:00:08.835
+I'm a Program Manager on
+the Chrome ecosystem team.
+
+00:00:08.835 --> 00:00:11.010
+THARU: As a developer
+building products
+
+00:00:11.010 --> 00:00:13.300
+for Chrome OS and
+Chrome browser,
+
+00:00:13.300 --> 00:00:15.690
+you may wonder how best
+to support your users
+
+00:00:15.690 --> 00:00:19.470
+and customers while maintaining
+development velocity.
+
+00:00:19.470 --> 00:00:21.150
+This can especially
+be a challenge
+
+00:00:21.150 --> 00:00:23.460
+in enterprise environments
+where downtime
+
+00:00:23.460 --> 00:00:26.340
+can have a severe impact on
+the productivity of thousands
+
+00:00:26.340 --> 00:00:27.615
+of employees.
+
+00:00:27.615 --> 00:00:29.970
+JASON WONG: We've put
+together some best practices
+
+00:00:29.970 --> 00:00:33.060
+from working closely with
+enterprise developers targeting
+
+00:00:33.060 --> 00:00:34.080
+Chrome.
+
+00:00:34.080 --> 00:00:36.960
+In this talk, we'll be
+covering application testing.
+
+00:00:36.960 --> 00:00:39.120
+By following some simple
+testing guidelines,
+
+00:00:39.120 --> 00:00:40.770
+you can ensure that
+your applications
+
+00:00:40.770 --> 00:00:43.610
+will be stable and operate
+with high performance.
+
+00:00:43.610 --> 00:00:47.760
+THARU: First, let's
+talk about what to test.
+
+00:00:47.760 --> 00:00:50.820
+When developing your tests, be
+sure to test your critical user
+
+00:00:50.820 --> 00:00:51.870
+journeys.
+
+00:00:51.870 --> 00:00:53.610
+Your test cases should
+be representative
+
+00:00:53.610 --> 00:00:56.760
+of the workflows people
+use in your application.
+
+00:00:56.760 --> 00:00:59.910
+Second, you should be sure to
+test against multiple operating
+
+00:00:59.910 --> 00:01:00.990
+systems.
+
+00:01:00.990 --> 00:01:05.489
+Chrome Browser is available on
+Windows, Mac, Linux, Android,
+
+00:01:05.489 --> 00:01:07.770
+iOS, and Chrome OS.
+
+00:01:07.770 --> 00:01:10.260
+Look at what operating
+systems your users are on
+
+00:01:10.260 --> 00:01:13.350
+and be sure to test
+those versions of Chrome.
+
+00:01:13.350 --> 00:01:15.870
+In particular, Chrome
+for iOS is built
+
+00:01:15.870 --> 00:01:18.240
+on top of WebKit
+rather than Blink,
+
+00:01:18.240 --> 00:01:22.420
+so there may be unexpected
+feature gaps or unique issues.
+
+00:01:22.420 --> 00:01:25.450
+If you have a strong user
+presence using Chrome for iOS,
+
+00:01:25.450 --> 00:01:28.830
+be sure to test that
+platform separately.
+
+00:01:28.830 --> 00:01:32.490
+Finally, we recommend that you
+test against multiple channels
+
+00:01:32.490 --> 00:01:34.020
+of Chrome.
+
+00:01:34.020 --> 00:01:36.640
+You can install and run
+the stable beta and dev
+
+00:01:36.640 --> 00:01:38.940
+versions of Chrome
+simultaneously
+
+00:01:38.940 --> 00:01:42.030
+on Windows, Linux, and Android.
+
+00:01:42.030 --> 00:01:44.730
+Please note that side by
+side Chrome installation
+
+00:01:44.730 --> 00:01:48.780
+is not currently available
+on Mac OS, iOS, or Chrome OS.
+
+00:01:48.780 --> 00:01:50.790
+To test on these
+platforms, you should use
+
+00:01:50.790 --> 00:01:54.090
+one machine for each channel.
+
+00:01:54.090 --> 00:01:56.130
+There are four Chrome channels.
+
+00:01:56.130 --> 00:01:58.170
+The stable channel--
+you're probably
+
+00:01:58.170 --> 00:02:01.060
+already testing against
+the stable channel today.
+
+00:02:01.060 --> 00:02:03.060
+This is the channel that
+the majority of users
+
+00:02:03.060 --> 00:02:05.680
+are on, including
+enterprise users.
+
+00:02:05.680 --> 00:02:08.430
+So if you do find any bugs
+on the stable channel,
+
+00:02:08.430 --> 00:02:10.440
+they are likely to
+already be affecting
+
+00:02:10.440 --> 00:02:12.383
+your current customers.
+
+00:02:12.383 --> 00:02:14.550
+This is why we recommend
+testing on the beta channel
+
+00:02:14.550 --> 00:02:18.510
+so that you can mitigate
+potential issues ahead of time.
+
+00:02:18.510 --> 00:02:21.360
+The beta channel is the channel
+we most strongly recommend
+
+00:02:21.360 --> 00:02:23.530
+that you use for testing.
+
+00:02:23.530 --> 00:02:25.980
+We also recommend Chrome
+Enterprise organizations
+
+00:02:25.980 --> 00:02:29.220
+to keep 5% of their
+deployment on Chrome beta,
+
+00:02:29.220 --> 00:02:32.340
+as they will get a four to six
+week preview of new features
+
+00:02:32.340 --> 00:02:35.460
+and find issues which could
+impact their entire Chrome user
+
+00:02:35.460 --> 00:02:36.930
+base.
+
+00:02:36.930 --> 00:02:38.970
+The dev channel
+includes new features
+
+00:02:38.970 --> 00:02:41.490
+and is updated
+several times a week.
+
+00:02:41.490 --> 00:02:43.740
+We primarily recommend
+testing on the dev channel
+
+00:02:43.740 --> 00:02:45.930
+for previewing bug fixes.
+
+00:02:45.930 --> 00:02:48.120
+Finally, the canary
+channel includes
+
+00:02:48.120 --> 00:02:51.000
+many experimental
+features and is not
+
+00:02:51.000 --> 00:02:53.400
+recommended for enterprise
+application testing,
+
+00:02:53.400 --> 00:02:56.610
+due to its unstable nature,
+unless you are targeting
+
+00:02:56.610 --> 00:02:58.950
+those experimental features.
+
+00:02:58.950 --> 00:03:02.730
+New versions are released daily.
+
+00:03:02.730 --> 00:03:06.810
+Next, let's talk about when
+to test your application.
+
+00:03:06.810 --> 00:03:10.210
+Chrome operates on a six
+week release schedule.
+
+00:03:10.210 --> 00:03:12.900
+Be sure to test your application
+against the newest beta
+
+00:03:12.900 --> 00:03:14.820
+every six weeks.
+
+00:03:14.820 --> 00:03:17.160
+One week after a new
+stable version of Chrome
+
+00:03:17.160 --> 00:03:19.290
+is pushed to the
+public, the beta channel
+
+00:03:19.290 --> 00:03:22.680
+for the next version of
+Chrome will be released.
+
+00:03:22.680 --> 00:03:25.500
+The beta channel will be
+promoted to stable five weeks
+
+00:03:25.500 --> 00:03:27.090
+after it is released.
+
+00:03:27.090 --> 00:03:29.070
+The best time to
+test your application
+
+00:03:29.070 --> 00:03:31.860
+is during the first two
+weeks of the beta release,
+
+00:03:31.860 --> 00:03:34.740
+so that there is more time
+to address any identified
+
+00:03:34.740 --> 00:03:37.770
+issues before it is
+promoted to stable.
+
+00:03:37.770 --> 00:03:40.065
+You can check the schedule
+at chromestatus.com
+
+00:03:40.065 --> 00:03:44.410
+/features/schedule
+for exact dates.
+
+00:03:44.410 --> 00:03:45.970
+Please note that
+the stable release
+
+00:03:45.970 --> 00:03:49.450
+is done as a scattered update,
+so the publish date does not
+
+00:03:49.450 --> 00:03:51.700
+reflect the date at
+which 100% of users
+
+00:03:51.700 --> 00:03:54.250
+will be on the latest
+version of Chrome.
+
+00:03:54.250 --> 00:03:57.340
+Also, each operating system
+has a different stable rollout
+
+00:03:57.340 --> 00:03:59.384
+plan.
+
+00:03:59.384 --> 00:04:03.110
+JASON WONG: Now, we'll discuss
+how to test your application.
+
+00:04:03.110 --> 00:04:05.830
+First, in order to test
+against the relevant channels
+
+00:04:05.830 --> 00:04:07.540
+and operating
+systems, you will need
+
+00:04:07.540 --> 00:04:10.030
+to download those
+builds of Chrome.
+
+00:04:10.030 --> 00:04:12.190
+All builds of Chrome for
+all operating systems
+
+00:04:12.190 --> 00:04:15.040
+are available through
+the links on this page.
+
+00:04:15.040 --> 00:04:17.320
+Since Chrome Enterprise
+offers version pinning,
+
+00:04:17.320 --> 00:04:19.000
+enterprise deployments
+may be pinned
+
+00:04:19.000 --> 00:04:21.220
+to an older version of Chrome.
+
+00:04:21.220 --> 00:04:23.410
+Please keep this in
+mind, that we do not make
+
+00:04:23.410 --> 00:04:24.770
+historical builds available.
+
+00:04:24.770 --> 00:04:27.280
+So in order to test
+against a specific older
+
+00:04:27.280 --> 00:04:29.500
+version of Chrome, you
+will need to maintain
+
+00:04:29.500 --> 00:04:32.260
+your own archive of builds.
+
+00:04:32.260 --> 00:04:34.360
+Also note, we do
+not support bugs
+
+00:04:34.360 --> 00:04:37.780
+filed against older
+versions of Chrome.
+
+00:04:37.780 --> 00:04:40.300
+Now, let's talk about
+some tools that we provide
+
+00:04:40.300 --> 00:04:42.460
+to help with testing Chrome.
+
+00:04:42.460 --> 00:04:45.700
+Puppeteer is a Node.js library
+which provides a high level
+
+00:04:45.700 --> 00:04:48.850
+API to control headless or
+full non-headless Chrome
+
+00:04:48.850 --> 00:04:52.120
+or Chromium over the
+DevTools protocol.
+
+00:04:52.120 --> 00:04:54.730
+Puppeteer can be used
+to automate navigation
+
+00:04:54.730 --> 00:04:58.900
+to web pages, user input,
+JavaScript, execution,
+
+00:04:58.900 --> 00:05:02.560
+performance testing,
+reporting, and more.
+
+00:05:02.560 --> 00:05:04.750
+Lighthouse is an
+open source automated
+
+00:05:04.750 --> 00:05:07.300
+tool for improving the
+quality of web pages.
+
+00:05:07.300 --> 00:05:09.530
+You can run Lighthouse
+against any web page,
+
+00:05:09.530 --> 00:05:12.330
+whether public or
+requiring authentication.
+
+00:05:12.330 --> 00:05:17.270
+It has audits for performance,
+API deprecations, and more.
+
+00:05:17.270 --> 00:05:19.750
+Finally, let's talk
+about how to report
+
+00:05:19.750 --> 00:05:23.200
+issues that you come
+across in your testing.
+
+00:05:23.200 --> 00:05:26.230
+Testing and reporting bugs
+early, using the right tools
+
+00:05:26.230 --> 00:05:30.610
+and providing the right context,
+are key to getting resolutions.
+
+00:05:30.610 --> 00:05:34.540
+First, you should verify that
+the bug is specific to Chrome.
+
+00:05:34.540 --> 00:05:36.490
+Make sure the bug
+can be reproduced
+
+00:05:36.490 --> 00:05:38.410
+on a different device
+running the latest
+
+00:05:38.410 --> 00:05:40.690
+beta version of Chrome.
+
+00:05:40.690 --> 00:05:43.390
+Before filing a bug, check
+if your issue has already
+
+00:05:43.390 --> 00:05:46.180
+been reported by searching
+through existing bugs.
+
+00:05:46.180 --> 00:05:48.400
+If you're logged in, you
+can click the star icon
+
+00:05:48.400 --> 00:05:51.760
+to subscribe to all
+updates posted on the bug.
+
+00:05:51.760 --> 00:05:54.430
+Starting a bug also helps
+us prioritize it and lets
+
+00:05:54.430 --> 00:05:58.630
+us know how many developers or
+users are impacted by the bug.
+
+00:05:58.630 --> 00:06:00.700
+Duplicate bugs will
+still be triaged.
+
+00:06:00.700 --> 00:06:03.010
+However, this may
+increase the time
+
+00:06:03.010 --> 00:06:04.960
+before your bug is addressed.
+
+00:06:04.960 --> 00:06:07.510
+In other words, it is more
+effective to add a comment
+
+00:06:07.510 --> 00:06:09.880
+to an existing bug and
+star it than to create
+
+00:06:09.880 --> 00:06:12.500
+a new bug for the same issue.
+
+00:06:12.500 --> 00:06:15.580
+Finally, be sure to
+provide sufficient detail.
+
+00:06:15.580 --> 00:06:18.860
+Evaluation and triaging will
+be more efficient and reliable
+
+00:06:18.860 --> 00:06:21.680
+if you can provide as much
+information as possible,
+
+00:06:21.680 --> 00:06:24.880
+including detailed reproduction
+steps, screenshots, operating
+
+00:06:24.880 --> 00:06:27.040
+system, and browser version.
+
+00:06:27.040 --> 00:06:28.960
+You can follow your bugs
+to the Chromium issue
+
+00:06:28.960 --> 00:06:32.160
+tracker, which is available
+to the public at crbug.com
+
+00:06:32.160 --> 00:06:35.210
+[MUSIC PLAYING]
+

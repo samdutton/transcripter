@@ -1,0 +1,601 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.180 --> 00:00:01.030
+THOMAS STEINER: Hi, folks.
+
+00:00:01.030 --> 00:00:01.655
+My name is Tom.
+
+00:00:01.655 --> 00:00:03.853
+And today, I want to
+talk about Dark Mode.
+
+00:00:03.853 --> 00:00:06.270
+I'm not sure when you have
+entered the world of computing,
+
+00:00:06.270 --> 00:00:09.930
+but for me, it was during
+the dark era of MS DOS.
+
+00:00:09.930 --> 00:00:10.800
+And you know what?
+
+00:00:10.800 --> 00:00:13.480
+We've actually gone full
+circle with Dark Mode.
+
+00:00:13.480 --> 00:00:16.590
+If you've used a computer
+in the 1970s or 1980s,
+
+00:00:16.590 --> 00:00:18.390
+you probably have
+used Dark Mode before.
+
+00:00:18.390 --> 00:00:21.270
+Well, Dark Mode became a thing.
+
+00:00:21.270 --> 00:00:23.820
+At that time, when screens
+oftentimes were monochrome
+
+00:00:23.820 --> 00:00:26.000
+and color screens
+incredibly expensive,
+
+00:00:26.000 --> 00:00:29.490
+Dark Mode wasn't a
+choice but simply a fact.
+
+00:00:29.490 --> 00:00:31.800
+Only when color monitors
+became more affordable
+
+00:00:31.800 --> 00:00:35.010
+and what you see is what you
+get desktop publishing evolved,
+
+00:00:35.010 --> 00:00:36.900
+the idea of making
+a virtual document
+
+00:00:36.900 --> 00:00:40.590
+resemble its physical printed
+end product became popular.
+
+00:00:40.590 --> 00:00:43.830
+And this baseline assumption of
+dark text on light background
+
+00:00:43.830 --> 00:00:48.500
+was carried over to the very
+first, earliest web designs.
+
+00:00:48.500 --> 00:00:50.660
+The output of those
+heavy cathode ray tube
+
+00:00:50.660 --> 00:00:53.010
+monitors with
+massive desktop PCs
+
+00:00:53.010 --> 00:00:56.370
+that we consume these very
+first web pages on is long over.
+
+00:00:56.370 --> 00:00:58.320
+And nowadays, more
+often than not,
+
+00:00:58.320 --> 00:01:01.110
+we use mobile devices
+with light LCD displays
+
+00:01:01.110 --> 00:01:04.050
+or AMOLED screens that also have
+enabled completely new usage
+
+00:01:04.050 --> 00:01:05.340
+patterns.
+
+00:01:05.340 --> 00:01:08.060
+For example, I often browse
+the web while in bed.
+
+00:01:08.060 --> 00:01:09.630
+And because it's
+easier on my eyes
+
+00:01:09.630 --> 00:01:11.940
+and less likely to
+wake up my better half,
+
+00:01:11.940 --> 00:01:14.287
+I tend to turn on my
+phone's Dark Mode.
+
+00:01:14.287 --> 00:01:16.620
+I've done some user research
+on why people use Dark Mode
+
+00:01:16.620 --> 00:01:18.360
+and under which circumstances.
+
+00:01:18.360 --> 00:01:20.190
+The results are
+pretty interesting.
+
+00:01:20.190 --> 00:01:22.050
+While the majority
+of the surveyed users
+
+00:01:22.050 --> 00:01:24.660
+unsurprisingly said Dark
+Mode was easier on the eyes
+
+00:01:24.660 --> 00:01:26.850
+and just looked
+beautiful and elegant,
+
+00:01:26.850 --> 00:01:29.340
+the third most mentioned
+reason for using Dark Mode
+
+00:01:29.340 --> 00:01:30.810
+was that it consumes
+less energy.
+
+00:01:35.520 --> 00:01:37.150
+The Android team
+have looked into this
+
+00:01:37.150 --> 00:01:38.930
+and found out that
+on AMOLED screens,
+
+00:01:38.930 --> 00:01:41.710
+Dark Mode can save
+up to 60% energy.
+
+00:01:41.710 --> 00:01:44.700
+This is why on Android Q,
+when Battery Saver kicks in,
+
+00:01:44.700 --> 00:01:46.900
+we automatically
+activate Dark Mode.
+
+00:01:46.900 --> 00:01:48.580
+And finally, some
+people say they
+
+00:01:48.580 --> 00:01:51.310
+require Dark Mode as a
+true accessibility tool,
+
+00:01:51.310 --> 00:01:54.440
+without which they can't
+get their work done.
+
+00:01:54.440 --> 00:01:57.170
+Interestingly, Dark Mode usage
+correlates less than expected
+
+00:01:57.170 --> 00:01:59.150
+with the surrounding
+ambient light situation,
+
+00:01:59.150 --> 00:02:03.140
+meaning a lot of people, like
+me, use Dark Mode permanently.
+
+00:02:03.140 --> 00:02:05.630
+So how do you activate Dark
+Mode in the first place?
+
+00:02:05.630 --> 00:02:08.389
+On Mac OS, it's a setting
+in the System Preferences
+
+00:02:08.389 --> 00:02:09.680
+in the General section.
+
+00:02:09.680 --> 00:02:12.650
+On iOS and iPAD OS, you can
+toggle Dark Mode in Settings
+
+00:02:12.650 --> 00:02:14.960
+in the Display and
+Brightness section.
+
+00:02:14.960 --> 00:02:17.510
+On Android, Dark Mode
+is called Dark Theme.
+
+00:02:17.510 --> 00:02:19.010
+And you can activate
+it in Settings
+
+00:02:19.010 --> 00:02:20.510
+in the Display section.
+
+00:02:20.510 --> 00:02:22.910
+For Windows, Dark Mode can
+be activated in Settings
+
+00:02:22.910 --> 00:02:26.220
+in the Colors dropdown menu in
+the Personalization section.
+
+00:02:26.220 --> 00:02:28.700
+And finally, for the
+various Linux distributions,
+
+00:02:28.700 --> 00:02:30.500
+activating Dark Mode
+typically involves
+
+00:02:30.500 --> 00:02:32.710
+setting a dark desktop theme.
+
+00:02:32.710 --> 00:02:34.508
+Now that we know how
+to enable dark Mode,
+
+00:02:34.508 --> 00:02:36.050
+let's see how we
+can actually support
+
+00:02:36.050 --> 00:02:37.700
+Dark Mode on our web pages.
+
+00:02:37.700 --> 00:02:39.680
+The secret is a user
+reference media feature
+
+00:02:39.680 --> 00:02:41.450
+called prefers-color-scheme.
+
+00:02:41.450 --> 00:02:43.220
+It has three possible values--
+
+00:02:43.220 --> 00:02:46.010
+dark, light, and no preference.
+
+00:02:46.010 --> 00:02:47.990
+The simplest possible
+Dark Mode implementation
+
+00:02:47.990 --> 00:02:50.870
+is to just invert the background
+and the foreground color
+
+00:02:50.870 --> 00:02:53.387
+in the case the user
+prefers Dark Mode.
+
+00:02:53.387 --> 00:02:55.970
+You can see how the page reacts
+when I toggle the MAC OS color
+
+00:02:55.970 --> 00:02:58.490
+theme between light and dark.
+
+00:02:58.490 --> 00:03:00.770
+Switching the entire operating
+system's color scheme
+
+00:03:00.770 --> 00:03:02.120
+can get really annoying.
+
+00:03:02.120 --> 00:03:03.640
+So in Chrome Dev
+Tools, we now allow
+
+00:03:03.640 --> 00:03:06.650
+you to emulate the user's
+preferred color scheme.
+
+00:03:06.650 --> 00:03:08.480
+So back to the
+theme [INAUDIBLE]..
+
+00:03:08.480 --> 00:03:11.025
+While it works, already
+in this basic example,
+
+00:03:11.025 --> 00:03:12.650
+you can see how in
+practice, things are
+
+00:03:12.650 --> 00:03:14.630
+a lot more complex than that.
+
+00:03:14.630 --> 00:03:16.850
+The default purple user
+agent stylesheet color
+
+00:03:16.850 --> 00:03:20.340
+of a visited link has a
+contrast ratio of only 1.9,
+
+00:03:20.340 --> 00:03:21.780
+which isn't enough.
+
+00:03:21.780 --> 00:03:24.260
+We can fix this by
+adding some [INAUDIBLE]..
+
+00:03:24.260 --> 00:03:28.090
+And now it slowly
+starts to look OK.
+
+00:03:28.090 --> 00:03:29.740
+But you can see
+where this is headed.
+
+00:03:29.740 --> 00:03:32.380
+For a production website,
+we'd have hundreds or even
+
+00:03:32.380 --> 00:03:35.780
+thousands of cases like this
+that we'd need to cover.
+
+00:03:35.780 --> 00:03:38.590
+So rather than one by one,
+we need something better,
+
+00:03:38.590 --> 00:03:40.800
+semantic color definitions.
+
+00:03:40.800 --> 00:03:42.940
+You can do this
+with CSS variables.
+
+00:03:42.940 --> 00:03:46.110
+So instead of using hardcoded
+colors on the various elements,
+
+00:03:46.110 --> 00:03:49.510
+we use variables like text
+color or background color
+
+00:03:49.510 --> 00:03:51.490
+and then define these
+variables dynamically
+
+00:03:51.490 --> 00:03:54.580
+based on a preferred
+color scheme.
+
+00:03:54.580 --> 00:03:56.980
+As I said before, we're
+ready for the toy example.
+
+00:03:56.980 --> 00:04:00.520
+We need quite some CSS and even
+more for production web apps.
+
+00:04:00.520 --> 00:04:01.670
+But here's the thing--
+
+00:04:01.670 --> 00:04:03.310
+if you have Dark
+Mode enabled, you
+
+00:04:03.310 --> 00:04:06.460
+shouldn't be forced to load CSS
+that is only relevant in Light
+
+00:04:06.460 --> 00:04:09.175
+Mode and vice versa.
+
+00:04:09.175 --> 00:04:10.800
+You can deal with
+this by splitting out
+
+00:04:10.800 --> 00:04:15.200
+CSS into three files, dark.css
+that contains all the Dark Mode
+
+00:04:15.200 --> 00:04:18.459
+relevant CSS variable
+definitions, light.css that
+
+00:04:18.459 --> 00:04:20.649
+contains all the Light
+Mode relevant CSS variable
+
+00:04:20.649 --> 00:04:24.610
+definitions, and style CSS that
+contains the common CSS where
+
+00:04:24.610 --> 00:04:26.280
+these variables are being used.
+
+00:04:26.280 --> 00:04:29.170
+Like that, they make sure that
+in the critical rendering path,
+
+00:04:29.170 --> 00:04:31.780
+only the CSS that's needed
+for the preferred color scheme
+
+00:04:31.780 --> 00:04:34.600
+gets loaded with the highest
+priority and the rest
+
+00:04:34.600 --> 00:04:36.138
+with the lowest priority.
+
+00:04:36.138 --> 00:04:38.680
+If you have to deal with older
+browsers that don't understand
+
+00:04:38.680 --> 00:04:40.390
+the prefers color
+scheme media query yet,
+
+00:04:40.390 --> 00:04:43.280
+we require one last trick
+to make sure the default
+
+00:04:43.280 --> 00:04:46.240
+CSS, for example,
+light.css gets downloaded
+
+00:04:46.240 --> 00:04:48.640
+with highest priority.
+
+00:04:48.640 --> 00:04:51.610
+Therefore, we manually insert
+the light.css stylesheet
+
+00:04:51.610 --> 00:04:54.640
+with the good old
+insertAdjacentHTML method
+
+00:04:54.640 --> 00:04:57.970
+to force its download
+with the highest priority.
+
+00:04:57.970 --> 00:05:00.182
+The obvious [INAUDIBLE]
+is to make it work even
+
+00:05:00.182 --> 00:05:02.390
+on browsers that are only
+compatible with [INAUDIBLE]
+
+00:05:02.390 --> 00:05:04.010
+script 5.
+
+00:05:04.010 --> 00:05:04.540
+All right.
+
+00:05:04.540 --> 00:05:06.550
+With all of this out of
+the way, let's have a look
+
+00:05:06.550 --> 00:05:08.410
+at how you can actually
+design for Dark Mode
+
+00:05:08.410 --> 00:05:09.970
+and what to keep in mind.
+
+00:05:09.970 --> 00:05:12.730
+As we've seen before, getting
+all the contrasts right,
+
+00:05:12.730 --> 00:05:14.560
+making sure the design
+conveys concepts
+
+00:05:14.560 --> 00:05:17.320
+like elevation in both
+light and dark themes
+
+00:05:17.320 --> 00:05:19.480
+and still incorporating
+your brand's colors
+
+00:05:19.480 --> 00:05:22.360
+and accent colors
+is incredibly hard.
+
+00:05:22.360 --> 00:05:24.580
+Material design can help
+your design team bootstrap
+
+00:05:24.580 --> 00:05:27.340
+a design that respects all
+the best practices material
+
+00:05:27.340 --> 00:05:28.660
+has established.
+
+00:05:28.660 --> 00:05:31.930
+On material.io, you can find a
+number of resources, including
+
+00:05:31.930 --> 00:05:34.000
+a code lab to get you started.
+
+00:05:34.000 --> 00:05:36.460
+One last tip-- remember
+that not everyone who
+
+00:05:36.460 --> 00:05:38.830
+has Dark Mode activated
+on their operating system
+
+00:05:38.830 --> 00:05:41.680
+necessarily wants
+websites to be dark too.
+
+00:05:41.680 --> 00:05:43.420
+It is a nice gesture
+to provide users
+
+00:05:43.420 --> 00:05:45.220
+with a Dark Mode
+toggle for your site
+
+00:05:45.220 --> 00:05:47.710
+that initially respects
+people's prefers-color-scheme
+
+00:05:47.710 --> 00:05:48.340
+preference.
+
+00:05:48.340 --> 00:05:51.540
+But then, I'll ask them to
+temporarily or even permanently
+
+00:05:51.540 --> 00:05:52.540
+override it.
+
+00:05:52.540 --> 00:05:55.150
+You can easily support this
+use case with a custom element
+
+00:05:55.150 --> 00:05:58.720
+that we've developed right for
+this purpose, dark-mode-toggle.
+
+00:05:58.720 --> 00:06:01.210
+All you need to do is load
+the custom element script
+
+00:06:01.210 --> 00:06:02.800
+and then include
+it on your page.
+
+00:06:02.800 --> 00:06:06.510
+You can find out more about
+this custom element on GitHub.
+
+00:06:06.510 --> 00:06:08.980
+And with that, thank you
+very much for watching.
+
+00:06:08.980 --> 00:06:11.190
+You can find links to all
+the features, articles,
+
+00:06:11.190 --> 00:06:13.950
+and code samples from this
+video in the description.
+
+00:06:13.950 --> 00:06:16.720
+See you next time,
+and enjoy Dark Mode.
+
+00:06:16.720 --> 00:06:19.170
+[MUSIC PLAYING]
+
