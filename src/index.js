@@ -251,7 +251,12 @@ function processCaptions(videoId, captions) {
 
   for (const caption of captions) {
     // Replace line breaks in the captions and remove any stray whitespace.
-    caption.text = caption.text.replace(/\n/, ' ').trim();
+    caption.text = caption.text.
+      replace(/\n/, ' ').
+      // The subtitle module returns 'undefined' for blank lines
+      // https://github.com/gsantiago/subtitle.js/issues/43
+      replace(`undefined`, '').
+      trim();
 
     // caption.text is plain text that will bee used for search indexing.
     // caption.html will be marked up for transcript HTML.
