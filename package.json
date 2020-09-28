@@ -35,6 +35,7 @@
     "html-validator": "latest",
     "htmlhint": "latest",
     "jsdom": "latest",
+    "minimist": ">=1.2.5",
     "recursive": "latest",
     "recursive-readdir": "latest",
     "rimraf": "latest",
@@ -42,6 +43,7 @@
     "stylelint-config-standard": "latest",
     "subtitle": "latest",
     "validator": "latest",
-    "yargs": "latest"
+    "yargs": "latest",
+    "yargs-parser": ">=20.2.0"
   }
 }
