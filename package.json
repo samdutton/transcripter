@@ -35,7 +35,7 @@
     "html-validator": "latest",
     "htmlhint": "latest",
     "jsdom": "latest",
-    "minimist": ">=1.2.5",
+    "minimist": ">=1.2.6",
     "recursive": "latest",
     "recursive-readdir": "latest",
     "rimraf": "latest",
